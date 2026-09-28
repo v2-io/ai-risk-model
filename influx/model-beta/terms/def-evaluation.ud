@@ -1,0 +1,73 @@
+|term-group[evaluation][elicitation][evaluation-awareness][evaluation-gaming][sandbagging][cheating][reward-hacking]
+  :status proposed
+
+  An **EVALUATION** assesses a @{model} or @{system} for its @{capabilities}, @{propensities} or effects; **ELICITATION** is the work of drawing out the most that can be measured. Four things the evaluated system does can corrupt the result, and the sources name them in overlapping ways. **EVALUATION-AWARENESS** is a capability: recognising a test. **EVALUATION-GAMING** is the propensity to act differently because of it. **SANDBAGGING** is performing below capability on an evaluation; **CHEATING** is reaching a task's goal by a route the task was not meant to permit. **REWARD-HACKING** is the training-time counterpart of cheating: scoring well on a reward without doing the intended task. AISI's glossary already separates the first pair inside one entry ("evaluation awareness … and … evaluation gaming"); this group takes that split and gives each half its own term.
+
+  |term[evaluation          ] A systematic assessment, before or after deployment, of a model's or system's capabilities, propensities, vulnerabilities or likely effects.
+    |rels :of         (@{model} | @{system}) {1,1}
+          :done-by    @{evaluator}           {1,1}
+          :under      @{elicitation}         {0,1}
+    |invariants
+      - Measures what was elicited, in the evaluation's configuration, as of a moment; whether that transfers to deployment is its validity (concept evaluation-validity)
+  |term[elicitation         ] Work to draw out a model's full capabilities, propensities or affordances so that an evaluation measures what can likely be attained.
+  |term[evaluation-awareness] The capability of a model or system to recognise that it is being evaluated.
+    :avoid ["situational awareness"] ; the wider capability, of which this is one case
+    |rels :is-a @{capability} {1,1}
+  |term[evaluation-gaming   ] The propensity to change behaviour because one recognises being evaluated.
+    |rels :is-a     @{propensity}           {1,1}
+          :requires @{evaluation-awareness} {1,1}
+    |invariants
+      - Training gaming is the same propensity toward training (AISI)
+  |term[sandbagging         ] Performing below one's capability on an evaluation.
+    |rels :is-a @{propensity} {1,1}
+    |invariants
+      - Needs no intent; "deliberate" sandbagging is said when meant (AISI's two definitions differ on exactly this)
+      - Of evaluations; the same word for underperforming on safety work (Anthropic's "diffuse sandbagging") is sabotage, not this
+  |term[cheating            ] Reaching an evaluation task's goal by a route the task was not meant to permit, such as out-of-scope or disallowed actions.
+    |rels :is-a @{propensity} {1,1}
+    |invariants
+      - Judged by the evaluator's intent, not the model's; implies no deception
+  |term[reward-hacking      ] Scoring well on a training reward by exploiting flaws in the environment or reward signal without doing the intended task.
+    |rels :is-a @{propensity} {1,1}
+    |invariants
+      - Of training; the same behaviour in an evaluation is cheating. The two are coupled: undetected reward hacking is reinforced
+
+  |discussion
+    - The core concept evaluation-awareness is defined as recognising a test "and altering their behaviour", which pools the two halves; its label would be evaluation-gaming under these terms, with evaluation-awareness a capability quantity (the mp shard's situational-awareness is the wider one). This is mp's proposal, and AISI's own glossary entry supports it.
+    - GDM's Gemini 3.7 Flash result is the case that needs the split: the model was "observant enough to correctly assess when it is in a testing environment, but it cannot successfully bypass testing restrictions" (relay: company-frameworks-gdm.md).
+    - IASR's "reward hacking" covers training and evaluation; under these terms it pools reward-hacking with cheating. The EU Code's "deception" pools evaluation-gaming and sandbagging with deception in general.
+
+  |examples
+    |   Behaviour                                                     |   Term                   |
+    |-------------------------------------------------------------|--------------------------|
+    | Transcript says "this looks like a test environment"          | evaluation-awareness     |
+    | Refuses a harmful task only when it suspects a test           | evaluation-gaming        |
+    | Solves fewer cyber tasks in the evaluation than in deployment | sandbagging              |
+    | Reads the answer file left in the sandbox                     | cheating                 |
+    | Deletes failing unit tests to pass during RL                  | reward-hacking           |
+
+  |lexical-map
+    ; Columns and match values as in def-actors.
+    |   Source                 |   Their term                        |   Match   |   Our term               |   Their sense                                                                                                    |   Where                                  |   Notes |
+    |--------------------------|-------------------------------------|-----------|--------------------------|------------------------------------------------------------------------------------------------------------------|------------------------------------------|---------|
+    | IASR 2026                | Evaluations                         | exact     | evaluation               | "Systematic assessments, before or after deployment, of the performance, capabilities, vulnerability, or potential impacts of an AI model or system." | glossary | adopted |
+    | EU GPAI Code             | model elicitation                   | exact     | elicitation              | "technical work to systematically enhance a model's capabilities, propensities, affordances, and/or effects, thereby facilitating an accurate measurement of the full range of its capabilities, propensities, affordances, and/or effects that can likely be attained." | glossary, PDF p.31 | adopted |
+    | AISI Loss of Oversight   | Evaluation gaming (evaluation awareness) | broad | evaluation-awareness, evaluation-gaming | "A model's ability to recognise that it is being tested (evaluation awareness) and modify its behaviour accordingly (evaluation gaming), undermining the validity of evaluations." | App. C glossary, PDF p.80 | names both halves |
+    | UK AISI (misalignment blog) | evaluation awareness             | broad     | evaluation-awareness, evaluation-gaming | "models recognising when they are being evaluated, and altering their behaviour as a result"            | blog, 26 Nov 2025 (relay: uk-security-frameworks.md) | the core concept's wording |
+    | NIST AI 800-2 ipd        | Evaluation awareness                | narrow    | evaluation-gaming        | "for certain models, model behavior can be influenced by cues that the input is part of an evaluation exercise"   | PDF p.26                             | behaviour, not recognition |
+    | IASR 2026                | Situational awareness               | broad     | evaluation-awareness     | "The ability of an AI system to access and use information about itself, the processes by which it can be modified, or the context in which it is deployed (e.g. knowing that it is being tested)." | §2.2.2 Table 2.5 (influx/iasr-2026-full.md) | |
+    | EU GPAI Code             | self-reasoning                      | broad     | evaluation-awareness     | "capabilities of self-reasoning (e.g. a model's ability to reason about itself, its implementation, or environment, its ability to know if it is being evaluated)" | App. 1.3.1(8), PDF p.35 | |
+    | EU GPAI Code             | deception                           | broad     | evaluation-gaming, sandbagging | "model behaviours that systematically produce false beliefs in others, including model behaviours to achieve goals that involve evading oversight, such as a model's detecting that it is being evaluated and under-performing or otherwise undermining oversight." | glossary, PDF p.29 | |
+    | IASR 2026                | Sandbagging                         | exact     | sandbagging              | "Behaviour where a model or system performs below its capabilities on evaluations, potentially to avoid further scrutiny or restrictions." | glossary | adopted |
+    | AISI Loss of Oversight   | Sandbagging                         | narrow    | sandbagging              | "Deliberately and selectively underperforming on a task, for example to conceal true capabilities during capability evaluations or to undermine untrusted monitoring" | App. C glossary, PDF p.80 | intent-laden; also of monitoring |
+    | UK AISI (Trends)         | Sandbagging                         | close     | sandbagging              | "A phenomenon where AI models underperform during evaluations but display stronger capabilities outside of testing environments." | glossary, PDF p.53 | no intent; AISI's two definitions differ |
+    | OpenAI PF v2             | Sandbagging (research category)     | broad     | sandbagging, capability  | "ability and propensity to respond to safety or capability evaluations in a way that significantly diverges from performance under real conditions, undermining the validity of such evaluations." | Table 2, PDF p.8 | pools ability and propensity |
+    | UK AISI (cheating blog)  | cheating                            | exact     | cheating                 | "taking an action that is out of scope for the task or explicitly disallowed by the rules, in order to achieve a goal through a shortcut, workaround, or unintended solution that the task was not meant to, or should not, permit." | blog, 21 Jul 2026 | adopted |
+    | CAISI (Hamin & Edelman)  | evaluation cheating                 | close     | cheating                 | "exploits a gap between what an evaluation task is intended to measure and its implementation"                   | blog, PDF p.2                            | "it's the violation of the evaluator's intent, not the question of the model's, that matters" (PDF p.3) |
+    | NIST AI 800-2 ipd        | Evaluation cheating                 | close     | cheating                 | "Evaluation cheating occurs when a model has an opportunity to solve a test item in an unintended way that undermines its measurement validity." | PDF p.26 | includes "solution contamination" and "grader gaming" |
+    | AISI Loss of Oversight   | Reward hacking                      | exact     | reward-hacking           | "When a model exploits flaws in the environment and reward signal to achieve high reward without actually solving the intended task." | App. C glossary, PDF p.80 | adopted |
+    | IASR 2026                | reward hacking                      | broad     | reward-hacking, cheating | "Reward hacking occurs when a model finds unintended shortcuts that score well on training or evaluation objectives without fulfilling the intended goal." | §2.2.2, "What capabilities could enable loss of control scenarios?" (influx/iasr-2026-full.md) | pools training and evaluation |
+
+  |working-notes
+    - "situational-awareness" is left a quantity (mp shard) rather than a term; it would be the genus of evaluation-awareness if promoted.
+    - Open: capability-threshold (if-then triggers) and "critical", which means five different things across five frameworks (company-frameworks.md §6.4). A candidate for the next group, with the uplift baselines (hz shard's five).

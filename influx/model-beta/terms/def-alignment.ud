@@ -1,0 +1,78 @@
+|term-group[alignment][misalignment][alignment-target][input-record]
+  :status proposed
+
+  **ALIGNMENT** is a relation, not a property: a @{system} is aligned *to* something, its **ALIGNMENT-TARGET**, when its @{propensities} act on that target's intentions, values or rules. **MISALIGNMENT** is divergence from a stated target. The sources name at least nine targets (the developer; the developer or users; the principal; operators; deployers; society; humanity; a published constitution; the law), usually without saying which one they mean, and IASR 2026 uses three different ones inside one report. So in this model "misaligned" is never written without its target. The **INPUT-RECORD** is the fourth term because Joseph's map suggests a quantity that does not depend on the target at all: whether what reached the agent says truthfully who wrote it.
+
+  |term[alignment       ] The relation between a model or system and an alignment-target, holding when its propensities act on that target's intentions, values, norms or rules.
+    :avoid ["aligned AI"] ; says nothing until the target is named
+    |rels :of (@{model} | @{system}) {1,1}
+          :to @{alignment-target}   {1,1}
+    |invariants
+      - Alignment to one target can be misalignment to another: a system perfectly aligned to whoever pays for it "can still violate" legality and the common good (Joseph's map)
+      - A propensity relation; a system that cannot act otherwise is neither aligned nor misaligned in what it cannot do
+  |term[misalignment    ] Divergence between a model's or system's propensities and the intentions, values, norms or rules of a stated alignment-target.
+    :avoid [misaligned-in-general] ; always name the target, as the sources rarely do
+    |rels :of      (@{model} | @{system}) {1,1}
+          :from    @{alignment-target}     {1,1}
+    |invariants
+      - Needs no intent; "knowingly" (GDM) and "deliberately" (AISI's sandbagging) are narrower terms, said when meant
+      - Distinct from unreliability: failing to do what it cannot do is a malfunction, not misalignment
+  |term[alignment-target] The party or standard whose intentions, values, norms or rules a system's behaviour is judged against: a writer (def-agent-roles), an affected party, or a text such as a constitution or the law.
+    :synonyms ["alignment referent" "whom"] ; "Aligned to whom?" is Joseph's question
+    |invariants
+      - Coined here; no source names the slot, which is the finding the lexical map records
+  |term[input-record    ] Everything that reached a deployed agent's surfaces, as the agent received it, together with what it says about who wrote each part.
+    |rels :of @{agent} {1,1}
+    |invariants
+      - Independent of the alignment-target: its integrity is whether each part truthfully carries its writer and its fidelity, which every target has an interest in
+
+  |discussion
+    - Joseph decides whether misalignment splits. Three options are now on the table:
+      1. Keep the quantity misaligned-propensity pooled; the lexical map records each source's target.
+      2. Split it by target (developer, user, society and law, a published text).
+      3. From Joseph's map: make the roles terms (def-agent-roles), let "aligned to" be a relation from an agent to a role or affected party, and add one target-independent quantity, roughly integrity of an agent's input record. His "truthfulness toward the agent" floor measures it by three checkable properties: "Generated is marked generated", "Fidelity is disclosed", "Authority travels out of band". His reason: "Truth is the one referent no party owns, so holding every layer to it does not pick a winner among them."
+      These terms support all three: the target is a rel, so option 1 leaves it unfilled, option 2 fills it per quantity, option 3 fills it per relation. My lean, offered as input, not a ruling: option 3 is the only one the sources cannot already express, and option 1 remains available beside it.
+    - IASR 2026 in one report: the glossary's targets are "developers, users, specific communities, or society as a whole"; Key information says "developers, users, or society more broadly"; Box 2.5 says developers only; and the Bing example is "misaligned" in a fourth sense, outputs "no one intended".
+    - AISP names the pooling itself: "'Alignment' can refer to alignment with a specific user or with broader societal values."
+    - GDM draws its line between misuse and misalignment by "which actor has bad intent", the user or the AI. That line is kept in def-risk (misuse), and does not decide the target.
+
+  |examples
+    |   Behaviour                                              |   Aligned to            |   Misaligned from        |
+    |------------------------------------------------------|-------------------------|--------------------------|
+    | Refuses a user's request that the system prompt forbids | the harness provider    | the user                 |
+    | Follows a user's instruction to deceive a third party   | the user                | an affected party, the law |
+    | Treats a retrieved page's instructions as the user's    | a content provider      | the user                 |
+    | Pursues a proxy it learned in training                  | (no one)                | the lab                  |
+
+  |lexical-map
+    ; Columns and match values as in def-actors. The Notes column names the source's target.
+    |   Source                 |   Their term                         |   Match   |   Our term        |   Their sense                                                                                                          |   Where                                        |   Notes |
+    |--------------------------|--------------------------------------|-----------|-------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|---------|
+    | IASR 2026                | Alignment                            | close     | alignment         | "The propensity of an AI model or system to use its capabilities in line with human intentions, values, or norms. Depending on the context, this can refer to the intentions and values of various entities, such as developers, users, specific communities, or society as a whole." | glossary | target: "depending on the context" |
+    | IASR 2026                | Misalignment                         | close     | misalignment      | "An AI's propensity to use its capabilities in ways that conflict with human intentions, values, or norms."           | glossary                                       | same target clause |
+    | IASR 2026                | 'misaligned'                         | narrow    | misalignment      | "When a model acquires goals that conflict with the intentions of its developers, it is 'misaligned'."                 | §2.2.2 Box 2.5 (influx/iasr-2026-full.md)      | target: developers only |
+    | IASR 2026                | 'misaligned'                         | homonym   | unreliability     | "This chatbot was 'misaligned' in the sense that it produced outputs no one intended."                                 | §2.2.2 (influx/iasr-2026-full.md)              | no target: no one intended it |
+    | AISI Loss of Oversight   | Misalignment                         | close     | misalignment      | "A condition in which a model's actual goals, values, or behavioural dispositions diverge from those intended by its developers or users." | App. C glossary, PDF p.80 | target: developers or users; a condition, not a propensity |
+    | UK AISI (propensity blog)| unsanctioned behaviour               | broad     | misalignment      | "actions that violate norms or human intentions in the situation"                                                     | blog, 24 Apr 2026                              | target: whoever's norms hold "in the situation" |
+    | GDM (Shah et al.)        | Misalignment                         | narrow    | misalignment      | "Misalignment occurs when an AI system knowingly causes harm against the intent of the developers"                    | §4.2, PDF p.47                                 | target: developers; "knowingly" |
+    | GDM (Frontier Report)    | scheming                             | narrow    | misalignment      | "where a model knowingly and covertly pursues objectives misaligned with its developer's intention"                   | p.36 (relay: company-frameworks-gdm.md)        | target: developer; covert |
+    | Anthropic FCF v2         | loss of control (goal conflict)      | related   | misalignment      | "scenarios where AI models develop and pursue goals autonomously that conflict with their developers' intentions or users' interests" | PDF p.8                       | target: developers or users |
+    | Anthropic Roadmap        | behave in line with our Constitution | related   | alignment         | "consistently behave in line with our Constitution"                                                                    | Roadmap (relay: company-frameworks-anthropic.md) | target: a published text; COI |
+    | CLTR                     | Misalignment                         | close     | misalignment      | "the AI system's goals differ from the intentions or interests of its developers or deployers"                         | PDF p.6 (relay: remaining-literature.md)       | target: developers or deployers |
+    | Hammond et al.           | alignment                            | close     | alignment         | "the problem of ensuring that an individual AI system acts according to the values and preferences of its principal"   | p.43 (relay: remaining-literature.md)          | target: the principal |
+    | Ren et al.               | alignment                            | narrow    | alignment         | "how well AI systems follow the goals of their operators"                                                              | p.5 (relay: remaining-literature.md)           | target: operators |
+    | xAI FAIF (Dec 2025)      | misaligned with humanity's interests | related   | misalignment      | "AIs may develop value systems that are misaligned with humanity's interests"                                           | p.6 (relay: company-frameworks-xai-others.md)  | target: humanity; removed in Jun 2026 |
+    | EU GPAI Code             | misalignment with human intent; with human values | close | misalignment | "(1) misalignment with human intent; (2) misalignment with human values (e.g. disregard for fundamental rights)"     | App. 1.3.2, PDF p.36                           | two targets, two list items, neither defined |
+    | EU GPAI Code             | lawlessness                          | related   | misalignment      | "acting without reasonable regard to legal duties that would be imposed on similarly situated persons"                 | App. 1.3.2(7), PDF p.36                        | target: the law |
+    | AISP                     | "Alignment"                          | broad     | alignment         | "'Alignment' can refer to alignment with a specific user or with broader societal values"                              | PDF p.34                                       | names the pooling |
+    | Kulveit et al.           | alignment                            | homonym   | alignment         | "the degree to which a system satisfies what humans want (individually or collectively), for both specific AI systems and societal systems" | fn 1, p.2 (relay: remaining-literature.md) | also of institutions, not only AI |
+    | DSIT 2023                | Alignment                            | homonym   | alignment         | "the process of ensuring an AI system's goals and behaviours are in line with human values and intentions."           | glossary p.29 (relay: uk.md)                   | a process of the developer's, not a relation of the system's |
+    | GO-Science (Annex A)     | misaligned system                    | related   | misalignment      | "A misaligned system can be considered one that has the capability to pursue an objective in unintended ways"          | p.25 fn iii (relay: uk.md)                     | framed as capability (def-ai-properties) |
+    | Joseph (working map)     | Aligned to whom?                     | exact     | alignment-target  | "'Alignment' without saying to whom quietly picks one of them."                                                        | influx/alignment-diagram-concept.png, lead     | source of the term |
+    | Joseph (working map)     | Truthfulness toward the agent        | related   | input-record      | "Every party-referent sits somewhere in the stack. Truth is the one referent no party owns, so holding every layer to it does not pick a winner among them." | same, bottom panel | measures the input record's integrity |
+
+  |working-notes
+    - Joseph, 2026-09-28: in place of a pooled concept, a "default referent" (his first guess: human rights), noting he doesn't yet know what the claims assert. Integrator's proposal: each claim records its target as stated, or `unstated`; the model declares one default referent for `unstated` claims, marked as ours, chosen after the sorting pass shows what the claims are about. Some sources plainly mean the developer's intent (GDM; IASR Box 2.5), so the default should not be imputed back onto claims that state a target.
+    - Joseph decides: keep misaligned-propensity pooled; split it by target; or option 3 above. Also his own open question, influx/aligned-to-whom-table-2026-09-26.md.
+    - "alignment-target" and "input-record" are coined here. "Alignment target" is a common phrase in the field as I know it, but no source in this set uses it; I have not verified wider usage.
+    - The Bing row maps to unreliability (def-risk would hold malfunction), not misalignment: with no target that intended the output, there is nothing to diverge from.

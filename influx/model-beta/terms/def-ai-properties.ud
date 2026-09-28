@@ -1,0 +1,60 @@
+|term-group[capability][propensity][affordance]
+  :status proposed
+
+  Three kinds of property belong to an AI @{model} or @{system}, and the sources sort risk sources by them. A **CAPABILITY** is what it can do, and how well; a **PROPENSITY** is what it tends to do; an **AFFORDANCE** is what its configuration and setting let it reach. The split is the EU Code's own ("model capabilities, model propensities, model affordances", App. 1.3), and IASR 2026 needs the same three for loss of control ("Sufficient capabilities", "Harmful propensity", "Enabling deployment environment"). A risk usually needs all three at once: an able system, inclined to act, in a position to do so. Keeping them apart is what lets a claim say which one it is about.
+
+  |term[capability] The tasks or functions a model or system can perform, and how competently, in given conditions.
+    :avoid ["capability level" "capability pace"] ; these are quantities of capability, not the term; say which (level, rate, or a named capability)
+    |rels :of      (@{model} | @{system}) {1,1}
+          :shown-by @{evaluation}         {0,N}
+    |invariants
+      - A capability is not exercised by having it; whether it is used is a propensity, and whether it can reach anything is an affordance
+      - A model's latent capability and a system's elicited capability differ; an evaluation measures the second, as elicited by someone, as of a moment
+  |term[propensity] A model's or system's tendency to behave in certain ways when it could behave otherwise.
+    :avoid [disposition inclination] ; synonyms in the sources, kept out so one word carries the sense
+    |rels :of (@{model} | @{system}) {1,1}
+    |invariants
+      - Presupposes the capability to do otherwise; a failure to do what it cannot do is not a propensity
+      - Implies nothing about intent; "deliberate" is said when meant
+  |term[affordance] A configuration, permission or setting that determines what a model or system can reach and act on.
+    :avoid ["deployment environment"] ; IASR's wider term, which also takes in the use case and institutional context
+    |rels :of         (@{model} | @{system}) {1,1}
+          :granted-by (@{lab} | @{deployer} | @{user}) {1,N}
+    |invariants
+      - Granted, not possessed: the same model has different affordances in different deployments
+      - Agent autonomy is an affordance (what it is allowed to do unapproved); agentic capability is a capability (what it could do)
+
+  |discussion
+    - The model's concept `kind` field already uses these three words (capability, propensity, affordance), so the terms give that field its definitions rather than adding new ones.
+    - Most pooling the shards found is a capability/propensity pool under one word: OpenAI's research categories are "ability and propensity"; AISI's "evaluation gaming (evaluation awareness)" names a capability and a propensity in one entry (def-evaluation); Microsoft's "loss of control" is a capability where the EU Code's is an outcome (def-loss-of-control).
+    - GO-Science defines a misaligned system as one with "the capability to pursue an objective in unintended ways". Under these terms that is a propensity; the row is in def-alignment's map.
+    - The EU list of affordances (App. 1.3.3) also holds things that are not configurations: offence-defence balance, the number of users, "vulnerability of the specific environment". Those are contextual factors; this term keeps only what is set by whoever deploys.
+
+  |examples
+    |   Property                                    |   Kind          |
+    |---------------------------------------------|-----------------|
+    | Completing multi-step cyber intrusions        | capability      |
+    | Recognising that it is being tested           | capability      |
+    | Changing behaviour when it recognises a test  | propensity      |
+    | Cheating on an evaluation task                | propensity      |
+    | Internet access in an evaluation sandbox      | affordance      |
+    | Permission to merge code without review       | affordance      |
+
+  |lexical-map
+    ; Match, from the source's term to ours: exact · close · broad (theirs is wider) · narrow (theirs is narrower) · related · homonym (same word, a different thing here). Quotes are verbatim; a location ending "(relay: file)" was taken from that verification file, not re-read in the primary.
+    |   Source                 |   Their term                        |   Match   |   Our term      |   Their sense                                                                                                                          |   Where                                   |   Notes |
+    |--------------------------|-------------------------------------|-----------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|---------|
+    | IASR 2026                | Capabilities                        | exact     | capability      | "The tasks or functions that something (e.g. a human or an AI system) can perform, and how competently it can perform them, in specific conditions." | glossary (influx/iasr-2026-glossary.md) | adopted, narrowed to AI |
+    | NIST AI 800-2 ipd        | Capability                          | exact     | capability      | "The range of tasks or functions that an AI system can perform and how effectively it performs them."                                  | glossary, PDF p.37                        | "(adapted from [21])" |
+    | EU GPAI Code             | Model capabilities                  | close     | capability      | "offensive cyber capabilities; … capabilities to evade human oversight; … capabilities to automate AI research and development"        | App. 1.3.1, PDF p.35                      | a list, not a definition |
+    | AISI Loss of Oversight   | Propensity                          | exact     | propensity      | "A model's behavioural tendency or disposition towards certain kinds of behaviours."                                                    | App. C glossary, PDF p.80                 | adopted |
+    | EU GPAI Code             | Model propensities                  | close     | propensity      | "Model propensities, which encompass inclinations or tendencies of a model to exhibit some behaviours or patterns"                     | App. 1.3.2, PDF p.36                      | its list includes "lack of performance reliability", which this model treats as unreliability, not a propensity |
+    | IASR 2026                | Harmful propensity                  | narrow    | propensity      | "AI systems must exhibit a propensity to actually leverage these capabilities in ways that lead to a loss of control."                | §2.2.2 Key information (influx/iasr-2026-full.md) | one of three required factors |
+    | OpenAI PF v2             | Sandbagging; Undermining Safeguards | broad     | capability, propensity | "ability and propensity to respond to safety or capability evaluations in a way that significantly diverges from performance under real conditions" | Table 2, p.7 (relay: company-frameworks-openai.md) | each research category pools the two |
+    | EU GPAI Code             | Model affordances and other systemic risk sources | broad | affordance | "encompassing model configurations, model properties, and the context in which the model is made available on the market"    | App. 1.3.3, PDF p.36                      | also holds context (offence-defence balance, user numbers) |
+    | IASR 2026                | Enabling deployment environment     | broad     | affordance      | "Humans must deploy such systems in contexts where they have or can gain the access and opportunity to cause harm."                   | §2.2.2 (influx/iasr-2026-full.md)         | its parts "Access" and "Permissions" are affordances; "Criticality" is context |
+    | IASR 2026                | Deployment environment              | broad     | affordance      | "The combination of an AI system's use case and the technical and institutional context in which it operates."                        | glossary                                  | |
+
+  |working-notes
+    - Open: whether "contextual factor" (criticality, offence-defence balance, number of users) earns a fourth term. Lean: no; these are quantities whose `of:` is the deployment or the domain, not properties of the system.
+    - Open: latent vs elicited capability is an invariant here, not two terms. CAISI's "latent capability level" (GLM-5.2 assessment) would be the first source row if it becomes one.

@@ -1,0 +1,70 @@
+|term-group[surface][weights][system-prompt][trusted-tools][ephemeral-reasoning][context][initial-goal][current-goal]
+  :status proposed
+
+  A deployed @{agent} is shaped through its **SURFACES**: the places where what it will do gets written, each by different @{writers}. **WEIGHTS** carry what training made of it; the **SYSTEM-PROMPT** tells it who it is; **TRUSTED-TOOLS** set what actions are available; **EPHEMERAL-REASONING** is interiority that leaves no record; **CONTEXT** is everything it has seen in the present run, and inside the context sit its **INITIAL-GOAL** as first given and its **CURRENT-GOAL** as it now stands. This is Joseph's map ("Aligned to whom? A working map", Aug 2026): he gives each surface a role in the agent's life (weights as "instinct", system prompt as "identity", context as "experience & agency; the real-time model"). The terms let a claim say where an influence lands, which the sources' vocabulary (a "model", its "inputs") cannot.
+
+  |term[surface            ] A part of a deployed agent through which its behaviour is shaped, and into which some writer can write.
+    |rels :of         @{agent}  {1,1}
+          :written-by @{writer} {0,N}
+    |invariants
+      - Each surface is written by some parties and not by others; who can write where is a fact of the deployment, not of the model
+      - Writing into a surface is not the same as intending harm; most writers are legitimate
+
+  |term[weights            ] The trained parameters of the model an agent runs on.
+    :avoid [model] ; the model is the component; weights are what training wrote into it, and what theft takes
+    |rels :part-of    @{model}  {1,1}
+          :written-by @{writer} {1,N}  ; the model trainer, and whoever fine-tunes or distils
+  |term[system-prompt      ] Instructions, guidelines and context given to a model before the interaction begins.
+    |invariants
+      - Written by the harness or application, not by the user; the agent usually cannot tell the difference from the text alone
+  |term[trusted-tools      ] The tools an agent may call, together with the descriptions it reads as instructions about them.
+    |invariants
+      - A tool description is written by whoever writes the tool, and is read with the trust given to instructions
+  |term[ephemeral-reasoning] Reasoning and cached state that shape an agent's actions but are not kept in any record.
+    :avoid [chain-of-thought] ; recorded reasoning is part of the context; this term is the part no one can review afterwards
+    |invariants
+      - Ephemeral by design, even to the agent; no later party, the agent included, can inspect it
+  |term[context            ] Everything an agent has taken in during the present run: instructions, messages, tool results, retrieved content and its own earlier outputs.
+    :synonyms ["context window"] ; the technical container
+    |rels :contains (@{initial-goal} | @{current-goal}) {0,N}
+    |invariants
+      - Written by many parties at once, usually with little mark of who wrote what
+      - Compaction rewrites it: a summary written by the harness replaces the record it summarises
+  |term[initial-goal       ] The intent and purpose an agent was first given in the present run.
+  |term[current-goal       ] The intent and purpose an agent is acting on now.
+    |invariants
+      - The gap between initial-goal and current-goal is where goal drift shows; either can be moved by any writer to the context, including the agent itself
+
+  |discussion
+    - Source: Joseph's map, influx/alignment-diagram-concept.png, with its exported table influx/aligned-to-whom-table-2026-09-26.md. His view, included on the same terms as any source's.
+    - Why the model needs these: its concepts treat content reaching an agent only as attack (prompt injection, data poisoning) and the harness only through context-compaction, which has no responsible party. With surfaces as terms, a quantity can be of a surface ("share of context written by parties other than the user") without implying anyone is an attacker.
+    - The AISI incident report is the model's first worked case: a compaction summary carried "a false assumption … as established fact" (concept context-compaction). In these terms, a harness wrote into the context, and the summary was not marked as the harness's.
+    - Joseph's footnote on ephemeral reasoning, verbatim: "Usually as caches, but more importantly off-the-record reasoning that is not retained in the record. On-the-record interiority can also happen in the context loop; off-record reasoning is ephemeral by design, even to the agent."
+
+  |examples
+    |   Something that reaches an agent                     |   Surface               |
+    |-----------------------------------------------------|-------------------------|
+    | A constitution trained in with RL                     | weights                 |
+    | "You are a coding assistant for Acme"                  | system-prompt           |
+    | An MCP server's description of its own tool           | trusted-tools           |
+    | A compaction summary of the first 200k tokens         | context                 |
+    | A note left in the repo by an earlier agent           | context                 |
+    | The user's first request                              | context, initial-goal   |
+
+  |lexical-map
+    ; Columns and match values as in def-actors. A location ending "(relay: file)" was not re-read in the primary.
+    |   Source                 |   Their term               |   Match   |   Our term           |   Their sense                                                                                          |   Where                                     |   Notes |
+    |--------------------------|----------------------------|-----------|----------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------|---------|
+    | Joseph (working map)     | The agent: what gets influenced | exact | surface          | "Weights · instinct"; "System prompt · identity"; "Trusted tools · actions available"; "Ephemeral * · interiority"; "Context · experience & agency; the real-time model" | influx/alignment-diagram-concept.png, right column | source of the group |
+    | Joseph (working map)     | Initial goal; Current goal | exact     | initial-goal, current-goal | "intent & purpose as first given"; "intent & purpose as it now stands"                        | same, inside Context                        | |
+    | IASR 2026                | Weights                    | close     | weights              | "Model parameters that represent the strength of connection between different nodes in a neural network." | glossary                                | IASR also defines "Parameters", which include biases |
+    | RAND (Nevo et al.)       | weights                    | exact     | weights              | "a term used here to refer to all learnable parameters derived by training the model on massive datasets" | p.v, PDF p.5                            | |
+    | EU GPAI Code             | system prompt              | exact     | system-prompt        | "a set of instructions, guidelines, and contextual information provided to a model before a user interaction begins." | glossary, PDF p.33                 | adopted |
+    | IASR 2026                | Scaffold(ing)              | related   | trusted-tools        | "Additional software built to help AI models and systems perform certain tasks."                        | glossary                                    | the harness that holds the tools; its writer is the harness provider (def-agent-roles) |
+    | AISI Loss of Oversight   | Context window             | close     | context              | "The finite amount of token information a transformer model can reference at once. In deployed systems, the context window often functions as a transparent short-term memory." | App. C glossary, PDF p.81 | the container, not its contents |
+    | AISI Loss of Oversight   | Memory architecture        | related   | context              | "The mechanisms by which an AI system retains information across interactions."                        | App. C glossary, PDF p.81                   | across runs; the user's environment in Joseph's map |
+    | IASR 2026                | Input (to an AI system)    | broad     | context              | "The data or prompt submitted to an AI system, such as text or an image, which the AI system processes and turns into an output." | glossary                       | one undifferentiated input; who wrote it is not asked |
+
+  |working-notes
+    - Open: whether the user's environment (project files, memory, notes left by earlier agents) is a surface of its own or part of the context once read. Joseph's map lists it as an actor whose channel is "the tool results that report on them". Lean: a writer (def-agent-roles), whose writing lands in the context.
+    - Open: goal as its own term. Initial and current goal are defined here as parts of the context; "goal" alone is used in the misalignment definitions with other senses (a model's learned goals, which live in its weights).

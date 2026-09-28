@@ -1,0 +1,76 @@
+|term-group[harm][hazard][risk][risk-factor][incident][misuse][malfunction]
+  :status proposed
+
+  **HARM** is damage that actually happens. A **HAZARD** is an event or activity that could cause harm; **RISK** is the combination of how likely a harm is and how severe; a **RISK-FACTOR** is a property or condition that makes harm more likely or more severe. An **INCIDENT** is an occurrence in which AI caused harm, or nearly did. Harm reaches the world by a few routes that the sources agree on in substance and name differently: **MISUSE**, where people deliberately use AI to cause harm, and **MALFUNCTION**, where an AI system fails to work as intended with no one meaning it to; misalignment (def-alignment), where the system's own propensities diverge from what was intended, is the third. The first four definitions are IASR 2026's, adopted. The model's own grammar follows from them: hazards and harms are its event and effect concepts; risk is not a node but a relation's target together with that target's scale; every concept upstream of a hazard is a candidate risk factor.
+
+  |term[harm        ] Damage to people, property, institutions or the environment that actually occurs.
+    :avoid [loss] ; STPA's "loss" is a harm unacceptable to stakeholders; kept for that sense if it is needed
+  |term[hazard      ] Any event or activity that has the potential to cause harm.
+    :avoid [threat] ; HMG's "threat" is a hazard with an intending actor
+    |invariants
+      - STPA uses "hazard" for a system state that, with worst-case conditions, leads to a loss; the model's event concepts use IASR's sense
+  |term[risk        ] The combination of the probability and severity of a harm.
+    |invariants
+      - Not a quantity the model stores: shown as a relation's target plus that target's scale, so likelihood is never collapsed with severity
+      - "Systemic risk" is not defined here; its three definitions (EU, IASR body, IASR glossary) are lexical-map rows
+  |term[risk-factor ] A property or condition that can increase the likelihood or severity of harm.
+    |invariants
+      - A role a concept plays relative to a harm, not a kind of concept; the same concept can be a risk factor for one harm and reduce another
+  |term[incident    ] An occurrence in which an AI system's development, use or failure caused harm, or would have but for chance or intervention.
+    :avoid [accident] ; excludes intent, which incidents do not
+    |invariants
+      - Includes near misses; severity thresholds for reporting (EU serious incident, SB 53 critical safety incident) are quantities or legal categories, not this term
+  |term[misuse      ] Deliberate use of an AI system by people to cause harm.
+    :synonyms ["malicious use"]
+    |invariants
+      - The intent is the person's; GDM draws its line against misalignment by "which actor has bad intent"
+  |term[malfunction ] Failure of an AI system to operate as its developer or user intended, with no party intending the failure.
+    :avoid [mistake] ; GDM's narrower term, limited to short output sequences the system did not know were harmful
+
+  |discussion
+    - IASR 2026's chapter is built on three categories, misuse, malfunctions and systemic risks, and files loss of control under malfunctions. GDM's four areas are misuse, misalignment, mistakes and structural risks, and does not treat loss of control as a category. CAIS has malicious use, AI race, organizational risks and rogue AIs. HMG splits "malicious use, misuse or mishap". Under these terms: misuse and malfunction as defined; misalignment its own group; structural and systemic risks are about where risk factors sit (in how many parties act), not a fourth route, and so are not defined.
+    - Severity words differ by orders of magnitude inside single developers. "Catastrophic" is SB 53's >50 deaths or $1B; OpenAI's Preparedness Framework's "severe harm" is "thousands of people or hundreds of billions of dollars"; Anthropic's RSP uses "catastrophic" "in its plain meaning". The rows are below, mapped to risk; severity is a quantity (a concept's scale), not a term.
+    - AISI's operative incident vocabulary ("sample", "event", "incident") is in def-loss-of-control; an AISI incident is a cluster of events, not one occurrence.
+
+  |examples
+    |   Case                                                         |   Term                 |
+    |------------------------------------------------------------|------------------------|
+    | Fraudsters cloning a voice with an AI tool                    | misuse                 |
+    | A coding agent deleting a production database by mistake     | malfunction, incident  |
+    | A pandemic engineered with AI uplift (not yet occurred)       | hazard                 |
+    | Rapid headcount growth at a lab                               | risk-factor (hypothesis) |
+    | A monitor catching an exfiltration attempt before it succeeds | incident (near miss)   |
+
+  |lexical-map
+    ; Columns and match values as in def-actors.
+    |   Source                 |   Their term                  |   Match   |   Our term        |   Their sense                                                                                                         |   Where                                  |   Notes |
+    |--------------------------|-------------------------------|-----------|-------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------|---------|
+    | IASR 2026                | Hazard                        | exact     | hazard            | "Any event or activity that has the potential to cause harm, such as loss of life or injury."                         | glossary                                 | adopted |
+    | Barrett et al. (STPA)    | Hazard                        | homonym   | hazard            | "A system state or set of conditions that, together with a particular set of worst-case environmental conditions, will lead to a loss" | PDF p.25                 | a state, not an event |
+    | Barrett et al. (STPA)    | Loss                          | close     | harm              | "A harm, damage, or cost that is unacceptable to the stakeholders of a system"                                       | PDF p.25                                 | |
+    | IASR 2026                | Risk                          | exact     | risk              | "The combination of the probability and severity of a harm."                                                          | glossary                                 | adopted |
+    | EU AI Act                | risk                          | exact     | risk              | "the combination of the probability of an occurrence of harm and the severity of that harm"                          | Art. 3(2), PDF p.46                      | |
+    | NIST AI 600-1            | Risk                          | exact     | risk              | "the composite measure of an event's probability (or likelihood) of occurring and the magnitude or degree of the consequences." | p.2 (relay: us-security.md)       | |
+    | IASR 2026                | Risk factors                  | exact     | risk-factor       | "Properties or conditions that can increase the likelihood or severity of harm."                                     | glossary                                 | adopted |
+    | EU GPAI Code             | systemic risk source          | close     | risk-factor       | "a factor which alone or in combination with other factors might give rise to systemic risk."                        | glossary, PDF p.33                       | enumerates model-level sources only (App. 1.3) |
+    | Uuk et al.               | Source of risk                | close     | risk-factor       | "the causal or contributing factor to the harm in focus"                                                              | p.10 (relay: remaining-literature.md)    | |
+    | Hammond et al.           | risk factors                  | narrow    | risk-factor       | "the mechanisms via which they can arise, which we call 'risk factors'"                                              | p.20 (relay: remaining-literature.md)    | mechanisms, not conditions |
+    | EU AI Act                | systemic risk                 | homonym   | risk              | "a risk that is specific to the high-impact capabilities of general-purpose AI models, having a significant impact on the Union market due to their reach, or due to actual or reasonably foreseeable negative effects on public health, safety, public security, fundamental rights, or the society as a whole, that can be propagated at scale across the value chain" | Art. 3(65) (relay: eu.md) | frontier-specific risk |
+    | IASR 2026                | Systemic risks (glossary)     | homonym   | risk-factor       | "Risks that arise from how AI development and deployment changes human behaviour, organisational practices, or societal structures, rather than directly from AI capabilities." | glossary | risks from changed practices; opposite of the EU's capability-specific sense |
+    | EU AI Act                | serious incident              | narrow    | incident          | "an incident or malfunctioning of an AI system that directly or indirectly leads to any of the following"          | Art. 3(49), PDF p.49                     | harm-thresholded; the Act leaves "incident" itself undefined |
+    | EU GPAI Code             | near miss                     | narrow    | incident          | "a situation in which a serious incident could have, but ultimately did not, materialise."                           | glossary, PDF p.31                       | |
+    | OECD                     | AI incident                   | close     | incident          | "an event, circumstance or series of events where the development, use or malfunction of one or more AI systems directly or indirectly leads to any of the following harms" | via OECD-HAIP glossary p.32 (relay: remaining-literature.md) | excludes near misses |
+    | California SB 53         | Catastrophic risk             | narrow    | risk              | "will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident" | §22757.11(c), PDF p.4 | identical in NY RAISE |
+    | OpenAI PF v2             | severe harm                   | narrow    | harm              | "the death or grave injury of thousands of people or hundreds of billions of dollars of economic damage"             | fn 1, PDF p.2                            | its law-facing FGF uses >50 / $1B |
+    | Anthropic FCF v2         | systemic risk                 | narrow    | risk              | "including but not limited to >50 fatalities arising from a single incident, or 1 billion dollars of financial damages" | PDF p.4                              | the RSP's "catastrophic" is "plain meaning" (relay: company-frameworks-anthropic.md) |
+    | Meta AASF v2             | Catastrophic outcomes         | narrow    | harm              | "outcomes that would have large scale, devastating, and potentially irreversible harmful impacts on humanity"        | p.41 (relay: company-frameworks-meta-msft-amzn.md) | |
+    | IASR 2026                | Malicious use                 | exact     | misuse            | "Using something, such as an AI system, to intentionally cause harm."                                                 | glossary                                 | the chapter heading says "Risks from misuse" |
+    | GDM (Shah et al.)        | Misuse                        | narrow    | misuse            | "The user intentionally instructs the AI system to take actions that cause harm, against the intent of the developer." | PDF p.3                                | the user only |
+    | HMG (Annex B)            | malicious use, misuse or mishap | broad   | misuse, malfunction | "potentially anyone to pose a threat through malicious use, misuse or mishap."                                      | p.4 (relay: uk.md)                       | "misuse" distinct from malicious use, undefined |
+    | IASR 2026                | Malfunction                   | exact     | malfunction       | "The failure of a system to operate as intended by its developer or user, resulting in incorrect or harmful outputs or operational disruptions." | glossary          | adopted |
+    | IASR 2026                | Risks from malfunctions       | broad     | malfunction       | "where AI systems fail or behave in unexpected and harmful ways"                                                      | §2 intro (influx/iasr-2026-full.md)      | includes loss of control (§2.2.2), which is not a malfunction here |
+    | GDM (Shah et al.)        | Mistakes                      | narrow    | malfunction       | "The AI system produces a short sequence of outputs that directly cause harm, but the AI system did not know that the outputs would lead to harmful consequences that the developer did not intend." | PDF p.4 | |
+
+  |working-notes
+    - Open: "structural risk" and "systemic risk" as terms. Lean: no; each source's sense is a claim about where risk factors lie, which the model already represents by the concepts upstream.
+    - The whole group is IASR's vocabulary with the model's grammar attached; Joseph asked that IASR be adopted where it fits, and here it fits without change.

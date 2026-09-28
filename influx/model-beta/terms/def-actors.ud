@@ -1,0 +1,55 @@
+|term-group[lab][developer][deployer][user][evaluator]
+  :status proposed
+
+  Five kinds of party act in the risk landscape. A **LAB** trains frontier AI models; a **DEVELOPER** is whoever does development work, inside a @{lab} or anywhere else; a **DEPLOYER** puts an AI model or system into use; a **USER** interacts with a deployed system; an **EVALUATOR** tests models or systems. One organization can hold several roles at once (a @{lab} deploying its own models internally is also a @{deployer}), so these are roles defined by what the party does, and a concept names the role it means.
+
+  |term[lab      ] An organization that trains frontier AI models, whether or not it also deploys them.
+    :synonyms ["frontier AI company" "AI developer" "frontier developer"] ; the sources' words; mapped in the lexicon
+    :avoid [developer company firm] ; "developer" is kept for the individual; "company" and "firm" are too broad (AI-heavy firms that train no frontier model)
+    |rels :trains   @{model}      {1,N}
+          :employs  @{developer}  {0,N}
+          :makes    @{commitment} {0,N}
+    |invariants
+      - Defined by training frontier models, not by size, legal form or listing status
+  |term[developer] A person or AI agent doing development work, the individual unit whose speed and expressiveness the concept development-speed measures.
+    :avoid [engineer researcher] ; narrower roles; a developer may be either, or an agent
+    |invariants
+      - Human, AI-assisted and AI developers are all developers
+  |term[deployer ] An organization that puts an AI model or system into use, including governments and labs deploying internally.
+  |term[user     ] A person interacting with a deployed AI system.
+  |term[evaluator] Any party that tests AI models or systems for capabilities, propensities or safeguards.
+    |invariants
+      - Independence is stated when it matters (external-verification); being an evaluator does not imply it
+
+  |discussion
+    - The sources say "developer" for the organization (SB 53's "frontier developer", the IASR's "AI developers"); in this model that word belonged to two things at once until 2026-09-27, when Joseph's development-speed concept used it for the individual.
+    - Roles overlap on purpose: AISI is an evaluator; a lab evaluating its own models is a lab acting as evaluator; governments are deployers (NSPM-11) as well as regulators.
+
+  |examples
+    |   Party                         |   Roles                            |
+    |---------------------------------|------------------------------------|
+    | Anthropic, OpenAI, GDM          | lab, deployer, evaluator (of own)  |
+    | UK AISI, CAISI, METR            | evaluator                          |
+    | A bank using an AI agent        | deployer                           |
+    | A Department of War program     | deployer                           |
+
+  |lexical-map
+    ; Match, from the source's term to ours: exact · close · broad (theirs is wider) · narrow (theirs is narrower) · related · homonym (same word, a different thing here). Sources that concur share a row. Quotes are verbatim.
+    |   Source                 |   Their term               |   Match   |   Our term   |   Their sense                                                                                                                              |   Where                                           |   Notes |
+    |--------------------------|----------------------------|-----------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|---------|
+    | IASR 2026                | AI developer               | broad     | lab          | "Any organisation that designs, builds, or adapts AI models or systems."                                                                   | glossary (influx/iasr-2026-glossary.md)            | includes adapters and downstream developers; a lab is the subset that trains frontier models |
+    | IASR 2026                | Downstream AI developer    | related   | lab          | "A developer who builds AI models, systems, applications or services using or integrating existing AI models or systems created by others." | glossary                                          | not a lab unless it also trains frontier models |
+    | IASR 2026                | developers                 | homonym   | developer    | "A stage of AI development in which developers and data workers collect, clean, label, standardise, and transform raw training data"      | glossary, "Data collection and curation"           | the same report uses "developer" for individuals here and for organisations in "AI developer" |
+    | SB 53 · NY RAISE         | frontier developer         | close     | lab          | "a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications" | SB 53 §22757.11(h), PDF p.4; RAISE §1420(8), PDF p.3 | identical text; the frontier-model threshold is 10^26 operations; "person" includes organisations |
+    | SB 53 · NY RAISE         | large frontier developer   | narrow    | lab          | "a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars" | SB 53 §22757.11(j); RAISE §1420(10)                | most SB 53 duties attach here |
+    | EU AI Act                | provider                   | related   | lab          | "a natural or legal person, public authority, agency or other body that develops an AI system or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark" | Art. 3(3), PDF p.46 | defined by placing on the market, not by training: a lab never placing a model on the EU market is not a provider, and a non-lab can be one |
+    | EU AI Act                | deployer                   | broad     | deployer     | "a natural or legal person, public authority, agency or other body using an AI system under its authority except where the AI system is used in the course of a personal non-professional activity" | Art. 3(4), PDF p.46 | includes natural persons in professional use |
+    | SB 53                    | deploy                     | related   | deployer     | "to make a frontier model available to a third party for use, modification, copying, or combination with other software" | §22757.11(e)(1), PDF p.4 | the developer's act of release, not the deployer's use |
+    | ETSI EN 304 223          | Developers                 | related   | lab          | "Developers can be AI providers under the EU AI Act"                                                                                          | clause 4 (relay: uk-security-frameworks.md)       | ETSI's developer is a role in its stakeholder model |
+
+  |working-notes
+    - Tentative direction, still under discussion (see HANDOFF-2026-09-27.md, "Joseph's decisions, 2026-09-28"): the organizational sense of "developer", and perhaps "lab" itself, may dissolve into the roles in def-agent-roles (model trainer, inference provider, harness provider …), plus an organization-level term for what grows, has a culture and is bound by commitments. Not decided.
+    - Joseph decides: "lab" for the organization and "developer" for the individual (proposed here), or the reverse. The rename touches about 40 concept labels.
+    - Open: whether "lab" should include organizations that only fine-tune or distil frontier models (the distillation-extraction concept makes this live).
+    - "Deployer" pools, as "developer" did: in an agent deployment it covers the inference provider, the harness provider and tool providers, often three organizations (def-agent-roles, from Joseph's map). Proposed: keep deployer as the umbrella (it is the AI Act's word) and write quantities of the specific writer where it matters.
+    - Missing roles proposed elsewhere: public authority (def-commitment's working-notes), threat actor and insider (def-safety-security).

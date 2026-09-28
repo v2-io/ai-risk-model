@@ -1,0 +1,28 @@
+|term-group[model][system][agent][frontier]
+  :status proposed
+
+  Three nested things are called "AI" in the sources. A **MODEL** is the trained component, the weights; a **SYSTEM** is a model put to work with scaffolding, tools and data; an **AGENT** is a system acting toward goals with some autonomy. **FRONTIER** marks the most capable of them at a given time. Properties belong to the level that has them: weights are stolen from a @{model}, actions are taken by a @{system} or @{agent}, and a capability can be a @{model}'s latent ability or a @{system}'s achieved one.
+
+  |term[model   ] A trained computational component that maps inputs to outputs.
+    :avoid [AI] ; say which level
+    |rels :trained-by @{lab}    {1,1}
+    |invariants
+      - Weights, and their theft or leakage, belong to models
+  |term[system  ] The wider system that uses one or more models, along with scaffolding, software, external data, tools, and interfaces, to perform tasks in practice.
+    |rels :uses        @{model}    {1,N}
+          :deployed-by @{deployer} {0,N}
+  |term[agent   ] A system that takes actions toward goals with some autonomy.
+    |rels :is @{system} {1,1}
+    |invariants
+      - Actions, including unsanctioned ones, belong to systems and agents, not to models alone
+  |term[frontier] The most capable models or systems at a given time.
+    :avoid ["frontier model"] ; as a legal threshold: SB 53, RAISE, EO 14409 and CAISI each fix a different one; those are lexicon entries
+    |invariants
+      - Relative and moving: what is frontier now will not be later
+
+  |discussion
+    - Model and system are adopted verbatim from UK AISI's *Loss of Oversight* glossary (App. C, relata aisi-2026-loss-oversight); agent follows the joint agentic-AI guidance (CAREFUL) and IASR 2026 in substance, not verbatim.
+    - The legal definitions of "frontier model" disagree in kind, not only in threshold: compute (SB 53, RAISE), a classified cyber benchmark (EO 14409), relative to a country's previous models (CAISI).
+
+  |working-notes
+    - Open: the core's self-exfiltration says "an AI system copying its own … weights"; under these definitions a system copies its model's weights. A wording fix, to do at the taxonomy pass.

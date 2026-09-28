@@ -1,0 +1,251 @@
+# Hazards and misuse slice (shard). Written 2026-09-27 by a Claude agent (Opus 5.5).
+# Report rows: A1 CBRN, A2 cyber offence, A5 criminal misuse / synthetic content, A7 critical infrastructure;
+# B6 brittle safeguards, B9 open weights, B12 offence-defence, B14 attacks on AI systems; C14 defender lag; §5.6-5.8.
+# Evidence: IASR 2026 (§2.1, §3.3-3.5, read whole in influx/iasr-2026-full.md), NCSC 2025, AISI Trends, NIST 600-1,
+# EU Code App. 1.3-1.4, Anthropic Risk Report Aug 2026 §4, several NCSC/AISI/Five Eyes blogs (all via pdftotext on
+# relata PDFs), plus relays from the verification files. Design notes and proposals for the core: notes-hz.md.
+#
+# Shape. The hazard rows share one causal skeleton, so the slice is a taxonomy of hazard events hung on a small
+# shared mechanism layer, not one subgraph per hazard:
+#   hazard-relevant capability -> uplift (novice / expert) -> hazard event
+#   safeguards, open weights, diffusion -> unsafeguarded-capability-access -> uplift
+#   offence-defence balance, defender lag, resilience -> hazard events
+# Links to core / security concepts rather than duplicating them: capability-pace, offensive-cyber-capability,
+# safeguard-strength, safety-resourcing, race-dynamics, agent-autonomy, capability-diffusion, weight-security-level,
+# hostile-actor-capability, development-speed, ai-lab-velocity.
+
+- {id: g-hazard, kind: group, label: Hazards and misuse}
+
+# ---------------------------------------------------------------- hazard events (the taxonomy)
+- id: cbrn-weapons-harm
+  broader: [g-hazard]
+  kind: event
+  label: Likelihood and severity of AI-enabled chemical, biological, radiological or nuclear attacks
+  proposed_by: "widely used (EU Code App. 1.4(1); IASR 2026 §2.1.4; NIST 600-1 risk #1; every frontier framework)"
+  aisi_term: "Dual-use Science (detail withheld by AISI)"
+  scale: catastrophic (bio with pandemic potential); chemical judged smaller by Anthropic
+  definition: Attacks or accidents with chemical, biological, radiological or nuclear weapons whose likelihood or impact AI raises.
+  notes: 'In substance almost every source means chemical and biological only. IASR 2026 and DSIT assess bio/chem; Meta files radiological/nuclear as "emerging" because "materials access is a strong bottleneck to nuclear risk" (relay: company-frameworks-meta-msft-amzn.md); OpenAI tracks R/N only as a Research Category. Anthropic''s baseline estimate for a novel engineered bioweapon catastrophe, before any AI amplification: per decade "as high as 1 in 50 or so, or as low as 1 in 20,000" (Risk Report Aug 2026, p.120).'
+
+- id: ai-enabled-cyberattacks
+  broader: [g-hazard]
+  kind: event
+  label: Frequency and severity of AI-enabled cyberattacks
+  proposed_by: "widely used (EU Code App. 1.4(3); IASR 2026 §2.1.3; NCSC; NIST 600-1 risk #9)"
+  aisi_term: "Cyber Misuse"
+  definition: Intrusions, ransomware, data theft and destructive attacks whose volume, speed, scale or sophistication AI raises.
+  distinct_from: [attacks-on-ai-systems, offensive-cyber-capability]
+  notes: 'IASR 2026 §2.1.3: "whether AI systems have increased the overall scale and severity of cyberattacks remains uncertain because establishing causal effects is difficult"; "So far, AI capabilities have primarily accelerated or scaled existing attack methods rather than created new kinds of attacks."'
+
+- id: cni-disruption
+  broader: [g-hazard]
+  kind: event
+  label: Likelihood of serious disruption to critical national infrastructure involving AI
+  proposed_by: "EU AI Act Art. 3(49)(b) ('serious incident'); NCSC; AISI Trends §6.3"
+  aisi_term: "risks to critical national infrastructure"
+  scale: severe; the EU Act's serious-incident threshold is "serious and irreversible disruption"
+  definition: Serious disruption of the operation of critical infrastructure (energy, water, health, finance, transport), whether by AI-enabled attack, attack on embedded AI, or AI malfunction in the loop.
+  notes: Three routes appear in the sources, and they are different mechanisms. Attack using AI (NCSC, EU Code App. 1.4(3)); attack on AI embedded in CNI (NCSC "increased attack surface"); and AI itself acting in CNI (RAND-G's misaligned AGI instituting "rolling blackouts"; Amazon's cyber threshold "autonomously extend control over critical infrastructure systems").
+
+- id: synthetic-content-crime
+  broader: [g-hazard]
+  kind: event
+  label: Prevalence of criminal harm from AI-generated content (fraud, impersonation, extortion, NCII, CSAM)
+  proposed_by: "IASR 2026 §2.1.1; AISI ('Criminal Misuse'); NIST 600-1 risk #11"
+  aisi_term: "Criminal Misuse"
+  definition: Scams, identity theft, blackmail, defamation, non-consensual intimate imagery and child sexual abuse material produced with AI-generated text, audio, image or video.
+  notes: 'IASR 2026: "Systematic data on the prevalence and severity of these harms remains limited". Some content is harmful "even when correctly identified as AI-generated, meaning detection alone cannot fully address these risks". The EU Code names CSAM and NCII but not fraud or deepfakes (eu.md).'
+
+- id: attacks-on-ai-systems
+  broader: [g-hazard, g-security]
+  kind: event
+  label: Rate of successful attacks on AI systems (prompt injection and agent hijacking, data poisoning, backdoors and tampering, AI supply-chain compromise)
+  proposed_by: "NIST AI 100-2e2025 (definitions); NIST 600-1 §2.9; NCSC; IASR 2026 Box 2.1; CAISI"
+  aisi_term: "Defending against 3rd party attacks (Safeguard Analysis)"
+  definition: Adversaries manipulating an AI system's inputs, training data, components or development so that it acts for them, leaks information or produces harmful output.
+  distinct_from: [ai-enabled-cyberattacks, ai-insider-sabotage]
+  notes: 'Two kinds of irreducibility are asserted. NCSC: prompt injection "may never be totally mitigated in the way that SQL injection attacks can be" (relay: uk-security-frameworks.md). AISI poisoning study: "as little as 250" documents "could be used to successfully poison the training data of every model we tested" (relay: uk-security-frameworks.md), so the cost of the attack does not grow with model size. IASR Box 2.1 on tampering: "The feasibility of tampering in practice has not been established." Tampering to insert hidden loyalties is also a power-concentration route (IASR: "an individual or small group" gaining "significant, covert influence").'
+
+# ---------------------------------------------------------------- hazard-relevant capabilities
+- id: cb-weapons-capability
+  broader: [g-hazard, g-model]
+  kind: capability
+  label: Level of general-purpose AI capability relevant to chemical and biological weapons development
+  proposed_by: "IASR 2026 §2.1.4; AISI Trends §3.1; VCT (Götting et al.)"
+  definition: Knowledge, protocol generation, troubleshooting and tacit-knowledge support relevant to acquiring, producing and deploying chemical or biological agents.
+  distinct_from: [bio-design-tool-capability, novice-uplift]
+  notes: 'Benchmark capability is not uplift. VCT itself: "Our benchmark, by itself, does not directly assess the capabilities of humans who draw upon that model for assistance in real-world virology work" (p.10). AISI Trends: models now exceed PhD baselines "by up to 60%" and are "up to 90% better than human experts at providing troubleshooting support" (exec summary).'
+
+- id: bio-design-tool-capability
+  broader: [g-hazard, g-model]
+  kind: capability
+  label: Capability and accessibility of AI biological and chemical design tools
+  proposed_by: "IASR 2026 §2.1.4; NIST 600-1 §2.1 ('BDTs')"
+  definition: Specialised models trained on biological or chemical data that design or modify proteins, pathogens, toxins or molecules, including when operated through natural-language or agent interfaces.
+  notes: 'IASR 2026: "most biological AI tools are open-weight"; "only 3% of 375 biological AI tools surveyed had any form of safeguards"; "23% of the highest-performing tools had high misuse potential ... and 61.5% of these were fully open source".'
+
+- id: synthetic-media-realism
+  broader: [g-hazard, g-model]
+  kind: capability
+  label: Realism and indistinguishability of AI-generated text, audio, image and video
+  proposed_by: "IASR 2026 §2.1.1"
+  definition: How hard AI-generated content is for people and detectors to tell from authentic content.
+  notes: 'IASR 2026: participants misidentified AI text as human "77% of the time"; listeners took voice clones for the real speaker "in 80% of cases"; multimodal outputs "appear easier to detect".'
+
+# ---------------------------------------------------------------- the shared misuse mechanism
+- id: novice-uplift
+  broader: [g-hazard]
+  kind: state
+  label: Degree to which AI lets low-skill actors carry out hazardous tasks (lowered barriers to entry)
+  proposed_by: "EU Code App. 1.4 ('significantly lowering the barriers to entry'); NIST 600-1 ('Lowered barriers'); Anthropic CB-1; NCSC"
+  definition: The widening of the set of actors able to attempt a harm, because AI supplies expertise, skill, planning or labour they lack.
+  distinct_from: [expert-uplift, cb-weapons-capability]
+  notes: 'The sources split AI uplift in two, and IASR 2026 names the split as an open question: "there is ongoing debate about whether harmful AI capabilities primarily empower malicious actors with existing expertise (increasing their efficiency) or enable novices with little prior knowledge" (§2.1.4 Evidence gaps). Uplift is always measured against a baseline, and the baselines differ by source (see mappings-hz.yaml).'
+
+- id: expert-uplift
+  broader: [g-hazard]
+  kind: state
+  label: Degree to which AI raises the speed, scale or impact achievable by already-capable actors
+  proposed_by: "EU Code App. 1.4 ('significantly increasing the potential impact achieved'); Anthropic CB-2; NCSC ('only highly capable state actors')"
+  definition: Gains in efficiency, scale, sophistication or novelty for actors who could already attempt the harm, up to "expertise akin to that of a team of world-class human experts" (Anthropic CB-2).
+  distinct_from: [novice-uplift]
+
+- id: unsafeguarded-capability-access
+  broader: [g-hazard]
+  kind: state
+  label: Extent to which hazardous AI capability is usable without effective safeguards
+  proposed_by: "this slice (Claude), as the operative variable behind AISI's 'accessible without the same safeguards' and IASR Box 3.1's 'potentially without any of the mitigations'"
+  definition: How much of the capability relevant to a hazard can be obtained with safeguards absent, bypassed or removed, whether through jailbreaks, open weights, stolen or distilled models, or unsafeguarded tools.
+  distinct_from: [safeguard-strength, capability-diffusion]
+  notes: The misuse-side analogue of security-gap and absorption-gap. Safeguard strength on the frontier model is one input; the others are the routes around it. AISI Trends p.28 states the general form - "Ensuring that all AI systems that ever reach a certain capability level are well-defended is very difficult".
+
+- id: open-weight-capability
+  broader: [g-hazard, g-context]
+  kind: state
+  label: Capability of the most capable openly downloadable models, relative to the closed frontier
+  proposed_by: "IASR 2026 §3.4; AISI (open-closed gap); CAISI"
+  definition: How close the best open-weight models are to the frontier. The observable is the open-closed gap in months.
+  distinct_from: [capability-diffusion]
+  notes: 'Gap estimates: IASR 2026 "less than one year"; AISI Trends "between four and eight months" (general); AISI Jul 2026, cyber, "4 to 7 months", down from "6 to 10 months" through 2025; CAISI Sep 2026, GLM-5.3 cyber "lags ... by about four months". Open release is one route into capability-diffusion (by that concept''s definition).'
+
+- id: capability-cost-decline
+  broader: [g-hazard, g-context]
+  kind: dynamics
+  label: Rate at which the cost of reaching or running a fixed capability level falls
+  proposed_by: "AISI Trends p.28 (citing Epoch AI, algorithmic progress); NCSC/AISI (attack cost)"
+  definition: Falling cost, over time, to train or run a model at a given capability, which puts yesterday's frontier capability in more hands.
+  distinct_from: [development-speed, capability-pace]
+  notes: 'AISI Trends p.28: "the cost of developing an AI system of a fixed capability level has historically fallen quickly over time". Running cost: NCSC/AISI, a full attempt at a 32-step simulated attack "costs around £65"; AISI Jul 2026, a 100M-token range run cost "roughly $85" on Opus 4.5/4.6 against "$1.19 for DeepSeek V4-Pro".'
+
+# ---------------------------------------------------------------- offence, defence and resilience
+- id: offence-defence-balance
+  broader: [g-hazard]
+  kind: state
+  label: Degree to which AI advantages attackers over defenders (high = offence-favoured)
+  proposed_by: "EU Code App. 1.3.3(9); IASR 2026 §2.1.3, §3.5"
+  definition: The relative advantage AI confers on those causing harm versus those preventing, absorbing or recovering from it, in a given domain.
+  distinct_from: [defender-resilience-lag]
+  notes: 'Domain-dependent in the sources. Cyber: IASR "critical but dynamic", uncertain which side benefits more. Bio: IASR §3.5 "one study suggests that offence is currently favoured, and AI may tilt this balance further"; Anthropic: "Unlike in some other domains such as cyberoffense, it is hard to envision a way in which AI-assisted countermeasures could outweigh AI-assisted risks" (p.121). The EU term also folds in "the potential number, capacity, and motivation of malicious actors".'
+
+- id: defensive-ai-adoption
+  broader: [g-hazard, g-controls]
+  kind: practice
+  label: Extent of defenders' effective use of AI for security and resilience
+  proposed_by: "IASR 2026 §2.1.3, §3.5; NCSC"
+  definition: Use of AI by system owners, security teams and public bodies to find and fix vulnerabilities, detect and respond to attacks, and strengthen societal defences.
+
+- id: defender-adoption-constraints
+  broader: [g-hazard, g-org]
+  kind: state
+  label: Organisational and assurance constraints on defenders' use of AI
+  proposed_by: "NCSC (Chismon, 'One does not simply defend agentically'); IASR 2026 §2.1.3 (quality-assurance gap)"
+  definition: Budget, accountability, change-approval and risk-appetite constraints, and the absence of quality-assurance standards, that limit how far defenders can let AI act.
+  notes: 'NCSC: "defenders are most restricted by their organisational policies, whilst most attackers are restricted by technical hurdles"; "Using AI automation for defence therefore quickly becomes a matter of organisational politics". An organisational factor on the defender side of the ledger.'
+
+- id: defender-resilience-lag
+  broader: [g-hazard]
+  kind: state
+  label: Share of systems and institutions not keeping pace with AI-enabled threats (defender and societal resilience lag)
+  proposed_by: "NCSC ('digital divide'); AISI Societal Resilience; IASR 2026 §3.5"
+  aisi_term: "Societal Resilience"
+  definition: How far defences across the population of systems, organisations and societal functions trail what AI-enabled attackers can do.
+  distinct_from: [offence-defence-balance, security-gap]
+  notes: 'NCSC key judgement (PDF p.2): "There will almost certainly be a digital divide between systems keeping pace with AI-enabled threats and a large proportion that are more vulnerable". The society-wide twin of the security slice''s security-gap, which is one developer''s gap.'
+
+- id: resilience-measures
+  broader: [g-hazard, g-controls]
+  kind: practice
+  label: Strength of baseline security and societal resilience measures (resist, absorb, recover, adapt)
+  proposed_by: "IASR 2026 §3.5; NCSC (baseline security); Five Eyes"
+  definition: Measures outside the AI model that reduce the likelihood or impact of AI-enabled harm, from patching, MFA and incident response to DNA screening, media literacy and stockpiles.
+  notes: 'Pools cyber baseline security with societal resilience, as IASR''s Table 3.10 does. IASR: "Little concrete evidence or research exists on the effectiveness of these resilience-building measures in an AI context"; investments "remain small relative to overall AI investment".'
+
+- id: legacy-technical-debt
+  broader: [g-hazard]
+  kind: state
+  label: Accumulated technical debt and unsupported legacy systems exposed to AI-enabled exploitation
+  proposed_by: "NCSC ('vulnerability patch wave'); Five Eyes"
+  definition: Unpatched vulnerabilities, end-of-life systems and insecure code built up by prioritising short-term gains, which AI makes cheaper to find and exploit.
+  sd_kind: stock
+
+- id: adaptation-buffer
+  broader: [g-hazard]
+  kind: state
+  label: Time between a hazardous capability being known to defenders and becoming cheaply usable by attackers
+  proposed_by: "AISI Trends p.28 (after Toner, 'adaptation buffer'); AISI ('preparation time')"
+  definition: The window in which defenders can prepare before a capability seen at the frontier is broadly available without safeguards.
+  notes: 'AISI Trends p.28: strong defences "can still meaningfully delay the point at which malicious applications of certain capabilities become cheaply and broadly accessible. This can create a gap - sometimes called an adaptation buffer". AISI Jul 2026: the open-closed gap "provides a preparation time". A flow of time, eroded from several directions at once.'
+
+- id: staged-release
+  broader: [g-hazard, g-controls]
+  kind: practice
+  label: Degree to which access to new capabilities is staged (vetted users first, delayed or no weight release)
+  proposed_by: "EU Code Measure 5.1(4); IASR 2026 §3.4; Anthropic (Mythos Preview withheld, Aug 2026)"
+  definition: Limiting early access to vetted users or defenders and widening it gradually, including withholding weights.
+
+- id: physical-weapons-bottlenecks
+  broader: [g-hazard]
+  kind: state
+  label: Height of non-informational barriers to weapons production (materials, equipment, hands-on skill)
+  proposed_by: "IASR 2026 §2.1.4; NIST 600-1 §2.1; Meta (nuclear)"
+  definition: Barriers that remain after information and advice are available - regulated materials, equipment, wet-lab execution and serial real-world iteration.
+  notes: 'IASR 2026: "Some experts argue that remaining barriers - including acquiring equipment, obtaining regulated materials, and executing complex procedures - still pose significant challenges for novices". Anthropic p.121: bioweapon creation involves "many serial steps of real-world iteration".'
+
+- id: dna-synthesis-screening
+  broader: [g-hazard, g-controls]
+  kind: practice
+  label: Coverage and rigour of DNA synthesis screening and know-your-customer controls
+  proposed_by: "IASR 2026 §2.1.4, §3.5"
+  definition: Screening of synthetic-DNA orders and customers to stop acquisition of dangerous sequences.
+
+- id: synthetic-content-detection
+  broader: [g-hazard, g-controls]
+  kind: practice
+  label: Effectiveness of detection, labelling, watermarking and provenance for AI-generated content
+  proposed_by: "IASR 2026 §2.1.1, §3.3"
+  definition: Techniques that let people or systems identify AI-generated content or verify authentic content.
+
+- id: ai-attack-surface
+  broader: [g-hazard, g-security]
+  kind: affordance
+  label: Extent of AI integration into organisations' systems, data, operational technology and CNI
+  proposed_by: "NCSC 2025; NIST 600-1 §2.9; UK NRR 2026"
+  definition: How much AI is connected to systems, data, tools and operational technology that attackers could reach through it.
+  distinct_from: [agent-autonomy, internal-ai-deployment]
+
+- id: ai-system-security
+  broader: [g-hazard, g-controls]
+  kind: practice
+  label: Security of AI systems as built and deployed (secure by design, hardened against injection, poisoning and supply-chain attack)
+  proposed_by: "NCSC/CISA Guidelines for secure AI system development; DSIT AI Cyber Security Code; ETSI EN 304 223"
+  definition: Security engineering applied to AI systems themselves, across design, development, deployment and operation.
+  distinct_from: [weight-security-level, safeguard-strength]
+
+# ---------------------------------------------------------------- indicators
+- {id: ind-open-closed-gap, broader: [g-hazard], kind: indicator, label: "Open-closed capability gap, months (AISI cyber 4-7; IASR <12; CAISI ~4)", proposed_by: "AISI; IASR 2026; CAISI"}
+- {id: ind-jailbreak-effort, broader: [g-hazard], kind: indicator, label: "Expert time to find a universal jailbreak (AISI: 10 min to 7+ h across two models six months apart)", proposed_by: "UK AISI (Trends p.24)"}
+- {id: ind-uplift-trials, broader: [g-hazard], kind: indicator, label: "Uplift-trial effect sizes against a stated baseline (AISI 4.7x protocol feasibility; Hong et al. ~1.42x typical task)", proposed_by: "UK AISI; Hong et al. 2026 (via Anthropic)"}
+- {id: ind-bio-tool-safeguards, broader: [g-hazard], kind: indicator, label: "Share of biological AI tools with any safeguard (3% of 375)", proposed_by: "IASR 2026 §2.1.4"}
+- {id: ind-disclosure-to-exploit, broader: [g-hazard], kind: indicator, label: "Time from vulnerability disclosure to exploitation ('shrunk to days', NCSC)", proposed_by: "NCSC 2025; Five Eyes"}
+- {id: ind-attack-cost, broader: [g-hazard], kind: indicator, label: "Cost of an AI attempt at a fixed simulated attack (£65 per full range attempt; $1.19-$85 per run)", proposed_by: "NCSC/AISI; AISI"}
+- {id: ind-content-incidents, broader: [g-hazard], kind: indicator, label: "Reported content-generation incidents (OECD AI Incidents and Hazards Monitor)", proposed_by: "IASR 2026 Fig. 2.1"}

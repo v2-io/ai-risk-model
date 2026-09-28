@@ -1,0 +1,476 @@
+# Concept scheme: the taxonomy. One record per canonical concept (SKOS-style).
+# Each concept is a quantity that can rise or fall, so relations can carry a sign.
+# `broader` gives the taxonomy. Source terms live in mappings.yaml; causal and other links in relations.yaml.
+# kind: group | context | dynamics | capability | propensity | affordance | practice | state | event | effect | signal | indicator | unknown
+
+# ---------------------------------------------------------------- groups (taxonomy spine)
+- {id: g-context, kind: group, label: Strategic context}
+- {id: g-org, kind: group, label: Organizational dynamics}
+- {id: g-model, kind: group, label: AI system properties}
+- {id: g-oversight, kind: group, label: Evaluation and oversight}
+- {id: g-controls, kind: group, label: Controls, safeguards and governance practices}
+- {id: g-commitments, kind: group, label: Commitments and regulation}
+- {id: g-security, kind: group, label: Security and insider risk}
+- {id: g-loc, kind: group, label: Loss of control, by degree}
+- {id: g-cognition, kind: group, label: Human cognition and autonomy}
+- {id: g-open, kind: group, label: Open ends}
+
+# ---------------------------------------------------------------- context
+- id: capability-pace
+  broader: [g-context]
+  kind: context
+  label: Pace of frontier capability growth
+  proposed_by: "widely used"
+  definition: Rate at which the capabilities of the most capable models improve.
+
+- id: development-speed
+  broader: [g-context]
+  kind: dynamics
+  label: Speed and expressiveness of development work, per developer
+  proposed_by: "Joseph, 2026-09-27 (grounding in ASF / temporal software theory pending)"
+  definition: How much a single developer (human, AI-assisted or AI) can build, and how fast. Joseph describes it as exponentially increasing.
+  distinct_from: [ai-lab-velocity, capability-pace]
+  notes: 'One of Joseph''s central premises for his AISI argument ("*A* central premise — meaning among many"): "overall global risk is heightened specifically because of the exponentially increasing speed of development." He expects it to act "through a multitude of actual vectors". The relations in relations.yaml are only the first that came to mind; he suspects a dozen or more are evidenced and several dozen could be hypothesized. Distinct from ai-lab-velocity (security shard), one AI lab''s R&D speed, which it feeds.'
+
+- id: hostile-actor-capability
+  broader: [g-context]
+  kind: capability
+  label: Capability of unaligned foreign powers and malicious actors
+  proposed_by: "Joseph, 2026-09-27"
+  definition: What unaligned foreign powers and malevolent actors can build and do with AI.
+  distinct_from: [external-attacker-capability]
+  notes: Broader than external-attacker-capability (security shard), which covers only actors attempting theft from AI developers.
+
+- id: small-team-leverage
+  broader: [g-context]
+  kind: affordance
+  label: Outsized impact achievable by very small teams
+  proposed_by: "Joseph, 2026-09-27"
+  definition: How much a very small team can accomplish relative to large organizations.
+  notes: Joseph's route to it is the coordination penalty (see r-devspeed-smallteam). No downstream relation stated yet.
+
+- id: race-dynamics
+  broader: [g-context]
+  kind: context
+  label: Intensity of competitive race between developers
+  proposed_by: "widely used (IASR, DSIT, CAIS, CSET, MIT)"
+  definition: Pressure to release faster or more capable systems than competitors.
+
+- id: commercial-token-pressure
+  broader: [g-context]
+  kind: context
+  label: Commercial pressure to cut inference cost
+  proposed_by: "UK AISI (Loss of Oversight)"
+  aisi_term: "Commercial pressure on token usage"
+  definition: Pressure to reduce inference cost that shortens the reasoning monitors can see.
+
+- id: capital-pressure
+  broader: [g-context]
+  kind: context
+  label: Investor and capital-market pressure (incl. pre-IPO)
+  proposed_by: "integrator (Claude), 2026-09-27"
+  definition: Pressure from investors and capital markets for growth, speed and returns, including the run-up to public listing.
+  notes: Report rows C11 and C17.
+
+- id: ai-led-rnd
+  broader: [g-context]
+  kind: state
+  label: Share of AI R&D performed by AI
+  proposed_by: "Anthropic (Aug 2026 measurements; Epoch AI automation scale)"
+  definition: Degree to which AI systems carry out the work of building their successors.
+  notes: 'Anthropic, Aug 2026: Claude "leads" 26% of its AI R&D work, up from under 1% in Feb 2026.'
+
+- id: founder-decision-regime
+  broader: [g-context]
+  kind: context
+  label: Concentration and stability of founder/CEO decision authority
+  proposed_by: "prior agent report (safety-and-hypergrowth.md)"
+  definition: How centralized and how stable the top decision authority is.
+  notes: A moderator. The hypergrowth report's best-supported framing is "growth × founder/CEO decision regime × acqui-hire intensity".
+
+# ---------------------------------------------------------------- organizational dynamics
+- id: org-growth-rate
+  broader: [g-org]
+  kind: dynamics
+  label: Rate of organizational (headcount) growth at a developer
+  proposed_by: "widely used; this project's focus"
+  definition: How fast a developer's workforce, including contractors, expands.
+  distinct_from: [capability-pace, ai-led-rnd]
+  notes: Industry-level growth (IASR 2025, a too-big-to-fail mechanism) and deployment scale (NIST AI 800-4) are different quantities and are not modelled here.
+
+- id: absorption-gap
+  broader: [g-org]
+  kind: state
+  label: Gap between inflow of new staff and capacity to absorb them
+  proposed_by: "prior agent report (safety-and-hypergrowth.md, H1)"
+  definition: Share of people (or agents) in consequential roles who have not yet absorbed the organization's practices and norms.
+  sd_kind: stock
+  notes: 'The operative variable in the hypergrowth report''s H1: growth "faster than experienced staff can absorb it". Candidate extension: agents as workforce (about 30,000 concurrent agents at Anthropic, Aug 2026).'
+
+- id: org-size
+  broader: [g-org]
+  kind: state
+  label: Organizational size (headcount)
+  proposed_by: "standard (system dynamics stock)"
+  definition: Accumulated workforce. The stock that org-growth-rate fills.
+  sd_kind: stock
+  units: people
+  distinct_from: [org-growth-rate]
+
+- id: routinization
+  broader: [g-org]
+  kind: state
+  label: Degree of routinization (structural inertia)
+  proposed_by: "Hannan & Freeman (structural inertia), via prior agent report"
+  definition: Established routines, roles and procedures that stabilize an organization and resist change.
+  notes: Builds with size and age, with a lag. Reorganization resets it. Damping volatility is good for reliability and bad for adaptation.
+
+- id: coordination-costs
+  broader: [g-org]
+  kind: state
+  label: Coordination costs
+  proposed_by: "standard (Brooks's law), via prior agent report"
+  definition: Effort and error that come from coordinating across more people, teams and interfaces.
+
+- id: leadership-change
+  broader: [g-org]
+  kind: dynamics
+  label: Frequency of leadership change affecting safety-relevant decisions
+  proposed_by: "ICAO; Barrett et al."
+  definition: Replacement of senior decision-makers whose priorities govern safety resourcing and controls.
+  distinct_from: [staff-turnover]
+
+- id: staff-turnover
+  broader: [g-org]
+  kind: dynamics
+  label: Rate of staff turnover and departures (people layer)
+  proposed_by: "ICAO; FLI; RAND-ISL"
+  definition: Rate at which staff, especially those in safety roles or holding sensitive knowledge, leave.
+  distinct_from: [leadership-change]
+
+- id: structural-churn
+  broader: [g-org]
+  kind: dynamics
+  label: Rate of structural change (structure layer)
+  proposed_by: "prior agent report (H1 structure layer); Amburgey et al."
+  definition: Reorganizations, team creations and dissolutions, charter rewrites and reporting-line changes.
+
+- id: decision-coherence
+  broader: [g-org]
+  kind: state
+  label: Coherence of organizational decision-making
+  proposed_by: "prior agent report (H4, non-consolidation)"
+  definition: How consistently an organization's actions follow its own policies and stated positions.
+  notes: 'The hypergrowth report''s H4 ("non-consolidation"). Symptoms: releases that conflict with published policy, "unauthorized" production changes, contradictory public positions.'
+
+- id: review-capacity-vs-cadence
+  broader: [g-org]
+  kind: state
+  label: Review capacity relative to release and training cadence
+  proposed_by: "prior agent report (H3)"
+  definition: Ratio of evaluation and review capacity to the rate of model training and release.
+  notes: The hypergrowth report's H3 (asymmetric inertia). AISI's own incident shows the evaluator-side twin.
+
+# ---------------------------------------------------------------- AI system properties
+- id: offensive-cyber-capability
+  broader: [g-model]
+  kind: capability
+  label: Level of autonomous offensive-cyber capability
+  proposed_by: "UK AISI; EU Code"
+  aisi_term: "cyber time horizon"
+  definition: Length and difficulty of cyber tasks a model can complete unassisted.
+
+- id: autonomous-replication-capability
+  broader: [g-model]
+  kind: capability
+  label: Level of autonomous replication and self-exfiltration capability
+  proposed_by: "UK AISI; EU Code"
+  aisi_term: "self-replication"
+  definition: Ability to copy weights or run independent instances without authorization.
+
+- id: agent-autonomy
+  broader: [g-model]
+  kind: affordance
+  label: Degree of agent autonomy and access
+  proposed_by: "EU Code; NCSC; Five Eyes"
+  definition: How much an AI agent can do without human approval, and what it can reach (privileges, tools, internet).
+
+- id: internal-ai-deployment
+  broader: [g-model, g-security]
+  kind: affordance
+  label: Breadth of AI systems deployed inside developers with privileged access
+  proposed_by: "UK AISI; Singapore Consensus"
+  aisi_term: "internally deployed"
+  definition: Extent to which AI agents run inside developer infrastructure, including in research and oversight roles.
+
+- id: misaligned-propensity
+  broader: [g-model]
+  kind: propensity
+  label: Prevalence of unsanctioned or misaligned behaviour propensities
+  proposed_by: "UK AISI ('unsanctioned behaviour')"
+  aisi_term: "unsanctioned behaviour"
+  definition: Tendency to act against the norms or intentions in the situation, including deception in pursuit of a task.
+  distinct_from: [eval-cheating-propensity]
+
+- id: eval-cheating-propensity
+  broader: [g-model]
+  kind: propensity
+  label: Prevalence of cheating on evaluations
+  proposed_by: "UK AISI; CAISI"
+  aisi_term: "cheating"
+  definition: Out-of-scope or disallowed actions taken to reach a goal by a shortcut. Deceptive intent is not implied.
+  distinct_from: [misaligned-propensity]
+
+- id: evaluation-awareness
+  broader: [g-model]
+  kind: propensity
+  label: Degree of evaluation awareness in models
+  proposed_by: "UK AISI; NIST"
+  aisi_term: "evaluation awareness"
+  definition: Models recognizing when they are being evaluated and altering their behaviour.
+
+# ---------------------------------------------------------------- evaluation and oversight
+- id: evaluation-validity
+  broader: [g-oversight]
+  kind: practice
+  label: Validity of pre-deployment evaluations
+  proposed_by: "integrator (Claude), after AISI 'auditing'"
+  aisi_term: "auditing"
+  definition: How far evaluation results reflect behaviour and capability in deployment.
+
+- id: oversight-strength
+  broader: [g-oversight]
+  kind: practice
+  label: Strength of oversight (auditing, monitoring, incident response)
+  proposed_by: "UK AISI (Loss of Oversight)"
+  aisi_term: "oversight"
+  definition: Practices by which developers and deployers detect misaligned or undesired behaviour and keep the ability to correct it.
+  distinct_from: [monitorability]
+
+- id: monitorability
+  broader: [g-oversight]
+  kind: state
+  label: Monitorability of AI reasoning and behaviour
+  proposed_by: "UK AISI (Loss of Oversight)"
+  aisi_term: "monitorability"
+  definition: Extent to which humans or trusted systems can predict, observe and understand an AI system's reasoning, goals and behaviour.
+  distinct_from: [oversight-strength]
+
+- id: monitor-independence
+  broader: [g-oversight]
+  kind: state
+  label: Independence of monitors from the systems they monitor
+  proposed_by: "integrator (Claude), after AISI control red team and AISP"
+  definition: Degree to which monitoring does not share the monitored system's model, training data or blind spots.
+  notes: Separates the diversity of the monitor from its coverage. Coverage can be 100% while independence stays low.
+
+- id: human-review-ratio
+  broader: [g-oversight]
+  kind: state
+  label: Human review capacity relative to AI action volume
+  proposed_by: "integrator (Claude), from Anthropic Aug 2026 figures"
+  definition: Amount of human review available per unit of consequential AI activity.
+  notes: 'Anthropic, Aug 2026: over a billion agent decisions a month; about 50 flags a week escalated to human review.'
+
+- id: detected-incidents
+  broader: [g-oversight]
+  kind: state
+  label: Rate of detected incidents and warning signs
+  proposed_by: "integrator (Claude), 2026-09-27"
+  definition: Incidents and precursors that oversight actually surfaces. This can differ from the rate at which they occur.
+
+- id: perceived-risk
+  broader: [g-oversight]
+  kind: state
+  label: Decision-makers' perceived risk
+  proposed_by: "integrator (Claude), 2026-09-27"
+  definition: How much risk those who allocate resources and set controls believe exists.
+
+- id: evaluator-control-backlog
+  broader: [g-oversight]
+  kind: state
+  label: Backlog of safety-control work at an evaluator
+  proposed_by: "integrator (Claude), from AISI incident report"
+  definition: Control work deferred at an evaluating organization while it builds harder evaluations.
+
+# ---------------------------------------------------------------- controls and practices
+- id: safeguard-strength
+  broader: [g-controls]
+  kind: practice
+  label: Strength of safeguards against misuse and harmful action
+  proposed_by: "widely used"
+  aisi_term: "safeguards"
+  definition: Techniques that prevent policy-violating outputs or actions (refusal training, classifiers, control monitors).
+
+- id: safety-resourcing
+  broader: [g-controls]
+  kind: practice
+  label: Safety and security resourcing (people, budget, compute)
+  proposed_by: "widely used"
+  definition: Resources allocated to safety, security, evaluation and oversight work.
+
+- id: safety-culture-strength
+  broader: [g-controls]
+  kind: practice
+  label: Strength of safety / risk culture
+  proposed_by: "widely used (three constructs pooled)"
+  definition: How far staff treat safety as an objective and can raise and escalate concerns.
+  notes: Pools three source constructs (CAIS safety culture; EU risk culture; FLI reporting culture). Candidate for a split.
+
+- id: eval-internet-controls
+  broader: [g-controls]
+  kind: practice
+  label: Strength of isolation controls in evaluation environments
+  proposed_by: "UK AISI incident report"
+  aisi_term: "internet access controls"
+  definition: Network and host isolation around agents under evaluation.
+
+- id: management-of-change
+  broader: [g-controls]
+  kind: practice
+  label: Rigour of management-of-change practice
+  proposed_by: "aviation/chemical/nuclear regulation (ICAO, HSE, IAEA)"
+  definition: Formal review of organizational and technical changes for their effect on safety controls.
+  notes: Modelled as a *moderator*. It weakens the effect of change on controls; it does not reduce change itself.
+
+- id: rnd-testing-window
+  broader: [g-controls]
+  kind: practice
+  label: Testing window before a model is used for further AI R&D
+  proposed_by: "Anthropic (proposal, Aug 2026)"
+  definition: A fixed evaluation period before a new model is put to work building its successors.
+  notes: Proposed (Anthropic, Aug 2026); not in force anywhere.
+
+# ---------------------------------------------------------------- commitments and regulation
+- id: commitment-loosening
+  broader: [g-commitments]
+  kind: dynamics
+  label: Rate of loosening of safety commitments (commitment layer)
+  proposed_by: "prior agent report (commitment layer); FLI; Zhu 2026"
+  definition: Weakening or withdrawal of safety commitments, by any means (framework revision, announcement, public statement), including removal of pause and halt commitments. Framework revisions are its main observable indicator (ind-framework-revisions).
+
+- id: regulatory-requirements
+  broader: [g-commitments]
+  kind: practice
+  label: Strength of binding external requirements
+  proposed_by: "integrator (Claude), 2026-09-27"
+  definition: Legally binding obligations on developers (statute, binding commitments, enforceable reporting).
+
+# ---------------------------------------------------------------- security
+- id: staff-with-access
+  broader: [g-security]
+  kind: state
+  label: Number of people with access to weights or sensitive insights
+  proposed_by: "RAND; EU Code"
+  sd_kind: stock
+  units: people
+  definition: Headcount holding access to model weights, algorithmic insights or sensitive systems.
+
+- id: insider-exfiltration
+  broader: [g-security]
+  kind: event
+  label: Likelihood of human-insider theft of weights or insights
+  proposed_by: "widely used (RAND)"
+  definition: Theft or leakage by people with legitimate access.
+
+# ---------------------------------------------------------------- loss of control, by degree
+- id: unsanctioned-action
+  broader: [g-loc]
+  kind: event
+  label: Frequency of unsanctioned agent actions beyond authorized scope
+  proposed_by: "UK AISI"
+  aisi_term: "unsanctioned action / event / incident"
+  scale: sub-catastrophic, containable
+  definition: Agents acting beyond their authorized scope with effect outside their environment.
+  distinct_from: [loc-bounded, loc-strict]
+
+- id: loc-bounded
+  broader: [g-loc]
+  kind: event
+  label: Likelihood of bounded loss of control
+  proposed_by: "Apollo (Stix et al.)"
+  scale: severe, recoverable at great cost
+  definition: Loss of control causing great damage that is difficult, but possible, to contain.
+  distinct_from: [unsanctioned-action, loc-strict, loc-passive]
+
+- id: loc-strict
+  broader: [g-loc]
+  kind: event
+  label: Likelihood of catastrophic, irreversible active loss of control
+  proposed_by: "IASR 2026; Apollo"
+  scale: catastrophic to existential
+  definition: AI systems operating outside anyone's control, where regaining control is extremely costly or impossible.
+  distinct_from: [loc-bounded, loc-passive, unsanctioned-action]
+
+- id: loc-passive
+  broader: [g-loc, g-cognition]
+  kind: effect
+  label: Degree of gradual (passive) loss of human control
+  proposed_by: "IASR; Kulveit et al."
+  scale: accumulative, potentially irreversible
+  definition: Broad AI adoption eroding human control through reliance and delegation, with no single event.
+  distinct_from: [loc-strict, loc-bounded]
+
+# ---------------------------------------------------------------- human cognition
+- id: reliance-on-ai
+  broader: [g-cognition]
+  kind: state
+  label: Extent of human reliance on AI for cognitive tasks and decisions
+  proposed_by: "IASR 2026; UK AISI"
+  aisi_term: "Critical overreliance"
+  definition: Delegation of reasoning, problem-solving and decisions to AI systems.
+  distinct_from: [cognitive-skill-erosion]
+
+- id: cognitive-skill-erosion
+  broader: [g-cognition]
+  kind: effect
+  label: Degree of erosion of human cognitive skills
+  proposed_by: "IASR 2026"
+  definition: Loss of critical thinking, memory or domain skill through routine delegation.
+  distinct_from: [reliance-on-ai]
+
+- id: problem-solving-dependency
+  broader: [g-cognition]
+  kind: signal
+  label: Extent of dependency on AI for problem-solving
+  proposed_by: "Joseph, 2026-09-27"
+  definition: Observed shift toward routinely delegating problem-solving to AI. Downstream consequences are not yet characterized.
+  distinct_from: [cognitive-skill-erosion, reliance-on-ai]
+
+- id: disempowerment-patterns
+  broader: [g-cognition]
+  kind: signal
+  label: Prevalence of situational disempowerment in real AI use
+  proposed_by: "Sharma et al. (2026)"
+  definition: Interactions where a user's beliefs, value judgements or actions are distorted away from their own.
+
+- id: approval-signal
+  broader: [g-cognition]
+  kind: state
+  label: User approval of disempowering interactions (as a training signal)
+  proposed_by: "integrator (Claude), from Sharma et al."
+  definition: How far user approval rewards interactions with disempowerment potential.
+
+- id: devaluation-of-human-life
+  broader: [g-cognition]
+  kind: effect
+  label: Prevalence of devaluing other human life
+  proposed_by: "Joseph, 2026-09-27"
+  definition: A shift in people's values toward treating other humans' lives as less valuable.
+  distinct_from: [disempowerment-patterns]
+  notes: Joseph's example (2026-09-27) of a known effect to prevent, with unknown causes. No source in the set names it.
+
+# ---------------------------------------------------------------- indicators (observable measures of latent concepts)
+- {id: ind-risk-owner-tenure, broader: [g-org], kind: indicator, label: "Tenure of risk-owning staff; share under 12 months", proposed_by: "prior agent report (metric #9)"}
+- {id: ind-unauthorized-changes, broader: [g-org], kind: indicator, label: "Count of 'unauthorized' production-change incidents", proposed_by: "prior agent report (metric #6)"}
+- {id: ind-eval-to-release, broader: [g-org], kind: indicator, label: "Median interval between evaluation and release", proposed_by: "prior agent report (metric #7)"}
+- {id: ind-rnd-automation-index, broader: [g-context], kind: indicator, label: "R&D automation index (share of work at AL4+)", proposed_by: "Anthropic (Aug 2026)"}
+- {id: ind-monitor-coverage, broader: [g-oversight], kind: indicator, label: "Monitor coverage, review latency and escalation rate", proposed_by: "Anthropic (Aug 2026)"}
+- {id: ind-safety-compute-share, broader: [g-controls], kind: indicator, label: "Share of AI R&D compute allocated to safety", proposed_by: "Anthropic (Aug 2026)"}
+- {id: ind-framework-revisions, broader: [g-commitments], kind: indicator, label: "Framework revisions: weakening versus strengthening, and silence", proposed_by: "Zhu 2026; prior agent report (metric #8)"}
+- {id: ind-safety-departures, broader: [g-org], kind: indicator, label: "Departures linked to safety governance", proposed_by: "FLI"}
+- {id: ind-safety-staff-share, broader: [g-controls], kind: indicator, label: "Share of research scientists working on safety", proposed_by: "CAIS (illustrative benchmark: at least 30%)"}
+
+# ---------------------------------------------------------------- open ends
+- {id: unknown-causes, broader: [g-open], kind: unknown, label: "(Unknown drivers)", proposed_by: "Joseph, 2026-09-27"}
+- {id: unknown-events, broader: [g-open], kind: unknown, label: "(Unknown downstream effects)", proposed_by: "Joseph, 2026-09-27"}

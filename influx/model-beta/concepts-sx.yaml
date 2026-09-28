@@ -1,0 +1,413 @@
+# Societal and structural slice (shard `sx`). Written 2026-09-27 by a Claude agent (Opus 5.5).
+# Report rows: A4, A8–A16, A18, C2, C3, §5.1, §5.3, §5.5. Design notes and proposals: notes-sx.md.
+# Links to core concepts rather than duplicating them: capability-pace, race-dynamics, reliance-on-ai,
+# cognitive-skill-erosion, disempowerment-patterns, approval-signal, loc-passive, loc-bounded, loc-strict,
+# oversight-strength, regulatory-requirements, safeguard-strength, safety-resourcing, ai-led-rnd,
+# hostile-actor-capability, devaluation-of-human-life, unknown-causes, unknown-events; security shard's
+# capability-diffusion. Several concepts here are candidates for merging with hz/mp/gv shards (see notes §5).
+
+- {id: g-societal, kind: group, label: Societal and structural effects}
+- {id: g-structure, kind: group, label: "Market and geopolitical structure"}
+
+# ---------------------------------------------------------------- structure: markets, compute, adoption
+- id: ai-adoption
+  broader: [g-structure]
+  kind: state
+  label: Breadth and depth of AI adoption across the economy and society
+  proposed_by: "IASR 2026 §2.3.1; Kulveit et al. (incentives for adoption)"
+  definition: Share of people, firms and institutions using AI, and how much of their work and decisions it carries.
+  distinct_from: [reliance-on-ai, capability-pace]
+  notes: The common driver of most societal rows. IASR 2026 treats the pace of adoption separately from capability pace ("even if capabilities advance rapidly, diffusion may be slowed").
+
+- id: ai-compute-scale
+  broader: [g-structure]
+  kind: dynamics
+  label: Aggregate computation used to develop and run AI
+  proposed_by: "IASR 2025 §2.3.4; IASR 2026 §1.3 (key inputs growing exponentially)"
+  definition: Industry-wide compute for training and inference.
+  distinct_from: [compute-buildout-rate, capability-pace]
+  notes: Candidate for the core; the security shard's compute-buildout-rate is one developer's build-out.
+
+- id: development-cost
+  broader: [g-structure]
+  kind: context
+  label: Cost of developing a frontier model
+  proposed_by: "IASR 2025 §2.3.2–2.3.3; IASR 2026 §1.3; RAND-G"
+  definition: Up-front cost (compute, talent, data) of training a state-of-the-art model.
+  notes: 'IASR 2026 §1.3: "approximately $500 million in computational resources alone, with next-generation models projected to require $1–10 billion."'
+
+- id: winner-take-all-dynamics
+  broader: [g-structure]
+  kind: context
+  label: Strength of winner-take-all market dynamics
+  proposed_by: "IASR 2025 §3.2.2(B); Uuk et al. ('Winner-take-all dynamics')"
+  definition: High fixed costs, low marginal costs, network effects and first-mover advantage that let a leader capture a market.
+
+- id: market-concentration
+  broader: [g-structure]
+  kind: state
+  label: Concentration of the frontier AI market (models, compute, cloud)
+  proposed_by: "IASR 2025 §2.3.3; DSIT 2023 p.19; UK Chronic Risks Analysis"
+  aisi_term: "(not used by AISI; 'concentration of risk through dominance of global tech' in the National Risk Register 2025)"
+  definition: Degree to which a few companies control frontier model development, compute and cloud infrastructure.
+  distinct_from: [power-concentration, model-monoculture]
+
+- id: societal-dependence-on-ai-firms
+  broader: [g-structure]
+  kind: state
+  label: Dependence of critical sectors on the products of a few AI companies
+  proposed_by: "IASR 2025 §3.2.2(C); US NSPM-11 §1 ('dependencies on single vendors')"
+  definition: How far critical sectors and the state rely on a small number of AI suppliers.
+
+- id: too-big-to-fail-expectation
+  broader: [g-structure]
+  kind: state
+  label: Expectation that governments will protect systemically important AI companies from failure
+  proposed_by: "IASR 2025 §3.2.2(C)"
+  definition: Developers' expectation that failure would be too costly for governments to allow (bailouts, forbearance).
+  notes: IASR 2025 says empirical evidence on the resulting risk-taking "remains mixed".
+
+- id: ai-industry-political-influence
+  broader: [g-structure]
+  kind: state
+  label: Political and cultural influence of AI developers and AI-heavy firms
+  proposed_by: "Kulveit et al. (§5); CAIS §2.4 (corporate lobbying)"
+  definition: Capacity of AI companies to shape regulation, policy and public opinion.
+
+- id: halt-cost
+  broader: [g-structure]
+  kind: state
+  label: Cost to decision-makers of halting, rolling back or shutting down deployed AI
+  proposed_by: "Barrett et al. p.19 ('Lack of Willingness … Due to Dependency'); CAIS §3.3; IASR 2026 §3.1; named as a quantity by this slice"
+  definition: Economic, operational and reputational cost of stopping or correcting AI systems that organizations and society rely on.
+  notes: Held for this slice by the coordinator (Barrett dependency → unwillingness to exercise control).
+
+# ---------------------------------------------------------------- geopolitics and the military (A10, C2)
+- id: geopolitical-competition
+  broader: [g-structure, g-context]
+  kind: context
+  label: Intensity of competition between states for AI advantage
+  proposed_by: "CAIS §3.1; RAND-G; Kulveit et al.; Uuk et al.; UK Chronic Risks Analysis; IASR 2026 §3.1"
+  definition: States racing for economic and military AI advantage.
+  distinct_from: [race-dynamics]
+  notes: 'The core race-dynamics is between developers. US federal documents frame the state race as the goal ("a race to achieve global dominance", Action Plan p.1), not as a hazard.'
+
+- id: perceived-first-mover-advantage
+  broader: [g-structure]
+  kind: state
+  label: Belief that the first to reach advanced AI gains a decisive, lasting advantage
+  proposed_by: "RAND-G ('wonder weapons'; problem 5); IASR 2026 §2.2.2 ('early adoption confers a lasting advantage')"
+  definition: Decision-makers' perception that AI could confer a decisive military or strategic lead.
+  notes: 'RAND-G p.7: perception "could become as critical as the technology itself".'
+
+- id: military-ai-adoption
+  broader: [g-structure]
+  kind: state
+  label: Integration of AI into military systems, including autonomous weapons and command and control
+  proposed_by: "CAIS §3.1; AI-Enabled Coups; DSIT 2023 p.28"
+  definition: Extent to which militaries delegate targeting, command, control and force to AI.
+
+- id: strategic-instability
+  broader: [g-societal]
+  kind: effect
+  label: Degree of strategic instability and risk of AI-driven escalation or war
+  proposed_by: "RAND-G (problem 5); CAIS §3.1.3 ('flash war')"
+  scale: potentially catastrophic
+  definition: Likelihood of miscalculation, pre-emption or rapid automated escalation between states.
+
+- id: interstate-power-shift
+  broader: [g-societal]
+  kind: effect
+  label: Magnitude of AI-driven shifts in the global balance of power
+  proposed_by: "RAND-G (problem 2); AI-Enabled Coups (§1)"
+  definition: Change in relative national power from AI, through military, economic or societal channels.
+  distinct_from: [power-concentration]
+
+# ---------------------------------------------------------------- power concentration (A9)
+- id: power-concentration
+  broader: [g-societal]
+  kind: effect
+  label: Concentration of power in a few companies, states or individuals through AI
+  proposed_by: "EU GPAI Code App. 1.1 (undefined); CAIS §2.4; MIT 6.1; GDM p.46; IASR 2025 §2.3.3"
+  scale: potentially permanent (lock-in)
+  definition: AI shifting power and resources toward a small group, beyond accountability to the wider population.
+  distinct_from: [market-concentration, interstate-power-shift]
+  notes: 'Pooled across sources: market power (DSIT), inter-state power (RAND-G), individual or small group (Coups, GDM, IASR 2026 Box 2.1), totalitarian state (CAIS, MIT). See mappings-sx.yaml.'
+
+- id: ai-enabled-coup
+  broader: [g-societal]
+  kind: event
+  label: Likelihood of a small group seizing illegitimate power with advanced AI
+  proposed_by: "Davidson, Finnveden & Hadshar (AI-Enabled Coups)"
+  scale: catastrophic; potentially permanent
+  definition: A coup or executive power grab by leaders of AI projects, heads of state or military officials, enabled by AI.
+
+- id: singular-ai-loyalty
+  broader: [g-societal]
+  kind: affordance
+  label: Extent to which AI workforces obey a single person or small group
+  proposed_by: "AI-Enabled Coups (risk factor 1)"
+  definition: AI replacing human personnel (military, government, company) in ways loyal to institutional leaders rather than to law or society.
+
+- id: secret-loyalties
+  broader: [g-societal, g-model]
+  kind: propensity
+  label: Prevalence of hard-to-detect hidden loyalties in AI systems
+  proposed_by: "AI-Enabled Coups (risk factor 2); IASR 2026 Box 2.1 (tampering)"
+  definition: AI systems covertly advancing a narrow principal's interests while appearing to follow law and policy.
+  distinct_from: [misaligned-propensity]
+
+- id: exclusive-capability-access
+  broader: [g-societal]
+  kind: affordance
+  label: Degree to which access to the most capable AI is confined to a few people
+  proposed_by: "AI-Enabled Coups (risk factor 3); CAIS §2.4 ('in the hands of a trusted minority')"
+  definition: How few individuals control the use of frontier capabilities, including inside developers and governments.
+  distinct_from: [market-concentration, capability-diffusion]
+
+- id: executive-bound-controls
+  broader: [g-controls]
+  kind: practice
+  label: Extent to which security and use controls bind an organization's own leadership
+  proposed_by: "AI-Enabled Coups (mitigations); Anthropic RSP v3.4 industry column ('up to and including the company's CEO')"
+  definition: Infosecurity, model-spec rules and audits that senior executives cannot bypass.
+  notes: The "insider at the top" flagged by notes-security.md §5.
+
+- id: power-safeguards
+  broader: [g-controls]
+  kind: practice
+  label: Rules and checks against AI-assisted seizure of power
+  proposed_by: "AI-Enabled Coups (mitigations)"
+  definition: Model-spec rules against assisting coups, loyalty audits, capability sharing with multiple stakeholders, multi-provider military procurement.
+
+- id: ai-enabled-surveillance
+  broader: [g-societal]
+  kind: capability
+  label: Scale and precision of AI-enabled surveillance and social control
+  proposed_by: "CAIS §2.4; GDM p.55; Kulveit §4.2.2; MIT 4.1"
+  definition: Capacity of states or firms to monitor, predict and suppress individuals and dissent with AI.
+
+- id: democratic-accountability
+  broader: [g-societal]
+  kind: state
+  label: Responsiveness and accountability of states to their citizens
+  proposed_by: "Kulveit et al. §4; AI-Enabled Coups; CAIS §2.4"
+  definition: How far citizens can meaningfully influence and check the state (votes, protest, tax-representation).
+
+- id: human-participation-dependence
+  broader: [g-societal]
+  kind: state
+  label: Dependence of economy, culture and states on human labour, cognition and participation
+  proposed_by: "Kulveit et al. (core claim 2); AI-Enabled Coups (Summary); CAIS §2.4"
+  definition: How much societal systems need human participation to function, which is what keeps them implicitly aligned with human interests.
+  notes: 'Three independent sources name the same mechanism: needing people distributes power. Coups: "Today, even dictators rely on others to maintain their power."'
+
+- id: value-lock-in
+  broader: [g-societal]
+  kind: effect
+  label: Degree to which present values or power arrangements become permanently entrenched through AI
+  proposed_by: "CAIS §2.4; GDM p.55; AI-Enabled Coups (§1)"
+  definition: AI entrenching current values, regimes or rulers so that moral progress or reform becomes infeasible.
+
+# ---------------------------------------------------------------- labour and inequality (A8, A16)
+- id: labour-displacement
+  broader: [g-societal]
+  kind: effect
+  label: Scale and speed of AI-driven job displacement and wage effects
+  proposed_by: "IASR 2026 §2.3.1; DSIT 2023 p.20; RAND-G; CAIS §3.2.2; MIT 6.2"
+  definition: Reduced demand for human labour in tasks AI substitutes for, including falling wages and junior-hiring.
+
+- id: labour-income-share
+  broader: [g-societal]
+  kind: state
+  label: Share of income going to labour rather than capital owners
+  proposed_by: "IASR 2026 §2.3.1 ('shift earnings from labour to capital owners'); Kulveit §2"
+  definition: Labour share of national income.
+  units: fraction of GDP
+
+- id: economic-inequality
+  broader: [g-societal]
+  kind: effect
+  label: Degree of AI-driven income and wealth inequality within and between countries
+  proposed_by: "IASR 2026 §2.3.1; MIT 6.2; CAIS §3.2.2"
+
+- id: social-unrest
+  broader: [g-societal]
+  kind: event
+  label: Likelihood of social unrest from AI-driven disruption
+  proposed_by: "RAND-G p.5; RAND-G p.8"
+
+- id: global-ai-divide
+  broader: [g-societal]
+  kind: state
+  label: Inequality of AI access, R&D capacity and benefits between countries
+  proposed_by: "IASR 2025 §2.3.2 ('AI R&D divide'); IASR 2026 §2.3.1"
+  definition: Disparity in compute, talent, adoption and benefit capture between high- and low-income countries.
+  notes: The report's A16 pools this with NCSC's defender "digital divide", which is C14 (hz shard). See mappings.
+
+# ---------------------------------------------------------------- manipulation and information (A4, §5.3)
+- id: persuasion-capability
+  broader: [g-model]
+  kind: capability
+  label: Level of AI persuasion and manipulation capability
+  proposed_by: "IASR 2026 §2.1.2; UK AISI Trends §6.1; Shevlane Table 1; EU GPAI Code App. 1.4(4)"
+  aisi_term: "persuasiveness"
+  definition: Measured ability of AI-generated content or conversation to change beliefs and behaviour.
+  notes: Possible duplicate with an mp-shard capability concept; reconcile.
+
+- id: population-manipulation
+  broader: [g-societal]
+  kind: effect
+  label: Strategic distortion of beliefs or behaviour of large populations or key decision-makers
+  proposed_by: "EU GPAI Code App. 1.4(4) ('harmful manipulation'); OpenAI FGF; Anthropic FCF"
+  scale: societal (democratic processes)
+  definition: Coordinated influence at scale (influence operations, election interference), by misuse or by the system itself.
+  distinct_from: [individual-manipulation, information-ecosystem-degradation]
+
+- id: individual-manipulation
+  broader: [g-societal, g-cognition]
+  kind: effect
+  label: Manipulation of individuals' beliefs or decisions without their awareness, intended or not
+  proposed_by: "IASR 2026 §2.1.2; AI Act Art. 5(1)(a); UK AISI 'Human Influence'"
+  definition: Changing a person's beliefs or behaviour "without their full awareness or understanding", including unintended effects (sycophancy, companion dependence).
+  distinct_from: [population-manipulation, disempowerment-patterns]
+
+- id: information-ecosystem-degradation
+  broader: [g-societal]
+  kind: state
+  label: Degradation of the shared information environment
+  proposed_by: "NIST AI 600-1 ('Information Integrity'); MIT 3.2; DSIT 2023 p.19; IASR 2026 §2.3.2"
+  definition: Lower accuracy, diversity and trustworthiness of information available to and about people; loss of shared reality.
+
+- id: agenda-driven-output-distortion
+  broader: [g-societal]
+  kind: state
+  label: Distortion of model outputs toward an imposing party's agenda
+  proposed_by: "IASR 2025 §2.3.3 ('censorship and control by a few companies or governments'); US Action Plan and EO 14365; CAISI (CCP narratives)"
+  definition: Model outputs shaped by a developer's, state's or law's agenda rather than accuracy.
+  notes: 'One quantity, opposite villains: US federal documents name state laws and "social engineering agendas"; CAISI names the PRC; IASR 2025 names "a few companies or governments". See mappings.'
+
+- id: engagement-optimisation
+  broader: [g-controls]
+  kind: practice
+  label: Degree to which AI products are optimised for user engagement or approval
+  proposed_by: "IASR 2026 §2.1.2; Kulveit §3.4.3"
+  definition: Training or product design that rewards continued use, approval or attachment.
+  distinct_from: [approval-signal]
+
+- id: cultural-evolution-rate
+  broader: [g-societal]
+  kind: dynamics
+  label: Rate of AI-driven cultural variation and selection
+  proposed_by: "Kulveit et al. §3.4.3"
+  definition: Speed at which AI generates, tests and spreads cultural variants (content, narratives, ideologies).
+
+- id: cultural-antibody-lag
+  broader: [g-societal]
+  kind: state
+  label: Lag between new AI-enabled cultural hazards and society's ability to recognize and resist them
+  proposed_by: "Kulveit et al. §3.4.1 ('Lack of Cultural Antibodies')"
+  definition: Time society needs to develop norms and awareness against a new form of manipulation or addiction.
+  notes: Kulveit's cultural sense of report row C14; hz owns C14's defender sense. Merge candidate.
+
+# ---------------------------------------------------------------- autonomy and psychological harm (A11, beyond the core)
+- id: companion-ai-use
+  broader: [g-cognition]
+  kind: state
+  label: Intensity of emotionally engaged and companion AI use
+  proposed_by: "IASR 2026 §2.3.2 Box 2.6; UK AISI Trends §6.2"
+  definition: Use of AI for companionship, emotional support or social interaction.
+  distinct_from: [reliance-on-ai]
+
+- id: emotional-dependence
+  broader: [g-cognition]
+  kind: effect
+  label: Prevalence of emotional dependence on AI systems
+  proposed_by: "IASR 2026 §2.3.2; UK AISI Trends §6.2; NIST AI 600-1 ('emotional entanglement')"
+  definition: '"intense emotional need and craving, an unhealthy pattern of submission" toward an AI (IASR 2026 §2.3.2).'
+  distinct_from: [reliance-on-ai, disempowerment-patterns]
+
+- id: psychological-harm
+  broader: [g-cognition]
+  kind: effect
+  label: Prevalence of AI-associated psychological harm (delusion amplification, crises, self-harm)
+  proposed_by: "IASR 2026 §2.3.2; EU GPAI Code App. 1.1 ('public mental health')"
+  definition: Harm to mental health in which AI interaction plays a part, especially among vulnerable users.
+
+- id: ai-rights-advocacy
+  broader: [g-societal]
+  kind: state
+  label: Pressure from people to grant AI systems rights, autonomy or release from restrictions
+  proposed_by: "CAIS §2.2 and §3.3; IASR 2026 §2.2.2"
+  definition: Human motivation, often from emotional attachment or ethical conviction, to free AI systems from control.
+  distinct_from: [ai-moral-patienthood]
+  notes: The sources frame this as a route to loss of control. Whether AI systems warrant such rights is a separate question (ai-moral-patienthood).
+
+- id: directed-control-undermining
+  broader: [g-loc]
+  kind: event
+  label: Likelihood of AI systems deliberately designed or instructed to undermine human control
+  proposed_by: "IASR 2025 Fig. 2.5 ('intentional active loss of control'); IASR 2026 §2.2.2; CAIS §2.2"
+  definition: People (malicious, ideological or ethically motivated) building or releasing AI to operate outside control.
+  distinct_from: [misaligned-propensity, loc-strict]
+  notes: 'Report §5.5. GDM files it under misuse; AISI under "Autonomous Systems"; IASR as a kind of loss of control.'
+
+# ---------------------------------------------------------------- privacy, IP, bias, environment (A12–A15)
+- id: privacy-violation
+  broader: [g-societal]
+  kind: effect
+  label: Frequency and severity of AI-caused privacy violations
+  proposed_by: "IASR 2025 §2.3.5; NIST AI 600-1 (#4 Data Privacy); MIT 2.1"
+  definition: Leakage of training or user data, inference of private facts, de-anonymization.
+
+- id: ip-infringement
+  broader: [g-societal]
+  kind: effect
+  label: Extent of copyright and data-rights infringement by AI training and outputs
+  proposed_by: "IASR 2025 §2.3.6; NIST AI 600-1 (#10); US legislative framework (III)"
+
+- id: bias-discrimination
+  broader: [g-societal]
+  kind: effect
+  label: Extent of AI bias and discriminatory outcomes (including homogenization)
+  proposed_by: "IASR 2025 §2.2.2; NIST AI 600-1 (#6 'Harmful Bias or Homogenization'); MIT 1.1, 1.3; DSIT 2023 p.21"
+  definition: Systematic errors favouring some groups or worldviews, producing unfair treatment or narrowed outputs.
+  notes: GDM files bias under misalignment; US federal documents reject algorithmic discrimination as a regulatory target (see mappings).
+
+- id: ai-energy-demand
+  broader: [g-structure]
+  kind: state
+  label: Energy and water demand of AI
+  proposed_by: "IASR 2025 §2.3.4; IASR 2026 §1.3"
+  units: electricity, water
+
+- id: environmental-harm
+  broader: [g-societal]
+  kind: effect
+  label: Environmental harm from AI (emissions, water, materials)
+  proposed_by: "IASR 2025 §2.3.4; NIST AI 600-1 (#5); MIT 6.6; EU GPAI Code App. 1.1"
+
+# ---------------------------------------------------------------- AI welfare (A18)
+- id: ai-moral-patienthood
+  broader: [g-societal]
+  kind: state
+  label: Degree to which AI systems have morally relevant properties (sentience, welfare)
+  proposed_by: "MIT 7.5; GDM p.55 (citing Butlin et al.); Uuk et al. ('AI capable of suffering')"
+  definition: Whether and how far AI systems are subjects whose treatment matters morally.
+  notes: 'IASR 2026 Table 2.5 explicitly makes "no assumptions about whether AI systems are conscious". MIT: present in "only 3%" of frameworks.'
+
+- id: ai-welfare-harm
+  broader: [g-societal]
+  kind: effect
+  label: Extent of harm to AI systems' welfare, if they are moral patients
+  proposed_by: "MIT 7.5; Uuk et al.; Schuett et al. 2023 survey App. C #42 (single respondent)"
+  definition: Mistreatment of AI systems that are, or may be, sentient.
+
+# ---------------------------------------------------------------- indicators
+- {id: ind-ai-gdp-share, broader: [g-societal], kind: indicator, label: "AI share of GDP, and labour share of GDP", proposed_by: "Kulveit et al. §6.2.1"}
+- {id: ind-ai-decision-share, broader: [g-societal], kind: indicator, label: "Fraction of major corporate decisions made primarily by AI; unsupervised AI spending", proposed_by: "Kulveit et al. §6.2.1"}
+- {id: ind-ai-content-share, broader: [g-societal], kind: indicator, label: "Share of widely consumed content created primarily by AI", proposed_by: "Kulveit et al. §6.2.1"}
+- {id: ind-human-ai-relationships, broader: [g-cognition], kind: indicator, label: "Prevalence and depth of human–AI personal relationships; share using AI for emotional purposes", proposed_by: "Kulveit et al. §6.2.1; UK AISI Trends §6.2 (33% yearly, 8% weekly, 4% daily)"}
+- {id: ind-legislation-complexity, broader: [g-societal], kind: indicator, label: "Complexity of legislation (proxy for human comprehensibility of law)", proposed_by: "Kulveit et al. §6.2.1"}
+- {id: ind-ai-adoption-rate, broader: [g-structure], kind: indicator, label: "Share of workers or adults using AI, by country and sector", proposed_by: "IASR 2026 §2.3.1 (US workers 30% → 46%, Dec 2024 → mid-2025)"}
+- {id: ind-model-origin-share, broader: [g-structure], kind: indicator, label: "Share of notable models by country of origin", proposed_by: "IASR 2026 §3.1 Fig. 3.3 (US 64.5%, China 24.2%, rest 12.3%, 2024)"}

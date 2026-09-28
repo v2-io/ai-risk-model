@@ -1,0 +1,38 @@
+|term-group[commitment][force][statutory-obligation][code-commitment][self-commitment]
+  :status proposed
+
+  A **COMMITMENT** is an undertaking that binds a @{lab} to act, or not act, in some way. What makes it bind, and who can enforce it, is its **FORCE**. Three kinds differ by force: a **STATUTORY-OBLIGATION** is imposed by law and enforced by a public authority; a **CODE-COMMITMENT** is taken on by signing a voluntary code; a **SELF-COMMITMENT** is one a @{lab} makes on its own, which only it can revise. A commitment is not the text that states it: the same commitment can be stated in a framework, an announcement or a public statement, and it can change without any of them being revised.
+
+  |term[commitment          ] An undertaking that binds a lab to act, or not act, in some way.
+    :avoid [framework policy document] ; these state commitments; they are evidence of them, not the commitments
+    |rels :binds   @{lab}   {1,1}
+          :has     @{force} {1,1}
+    |invariants
+      - A commitment can loosen by withdrawal, by a condition in it releasing it, or by not being honoured; only the first need leave a revised text behind
+  |term[force               ] What makes a commitment bind, and who can enforce it.
+    |invariants
+      - A property of the commitment, not of the document that states it
+      - One lab's commitments can differ in force: the part a statute makes enforceable can be narrower than what the lab professes
+  |term[statutory-obligation] A duty imposed by law and enforced by a public authority.
+    |rels :enforced-by public-authority {1,N}
+  |term[code-commitment     ] An undertaking a lab takes on by signing a voluntary code.
+    |invariants
+      - Voluntary to take on; the EU Code is also the Commission-endorsed way to show compliance with binding law, without a presumption of conformity
+  |term[self-commitment     ] An undertaking a lab makes on its own, however stated, which only it can revise.
+
+  |discussion
+    - Joseph, 2026-09-27: *"I'd rather talk about the revision of a commitment, not the revision of a document that states the commitment -- what if they decide not to change the commitment in a document revision but instead via a public tweet?"* The group is built on that.
+    - The one place the stating text matters is force: SB 53 enforces a lab's compliance with its designated framework, so a commitment changed only by public statement can leave the enforceable commitment where it was. That is a difference in force between two commitments, recorded by the enforceable-self-commitments concept.
+    - Framework texts stay in the model as evidence: claims cite them (doc), and indicators measure them (revision counts, discretionary register).
+
+  |examples
+    |   Commitment                                            |   Kind                 |
+    |-------------------------------------------------------|------------------------|
+    | AI Act Art. 55 duties on GPAI-with-systemic-risk        | statutory-obligation   |
+    | EU GPAI Code Commitment 8 (a signatory's)               | code-commitment        |
+    | A lab's RSP pause commitment                            | self-commitment        |
+    | The same pause commitment withdrawn by blog post        | self-commitment, loosened |
+
+  |working-notes
+    - Joseph decides: keep the core concept regulatory-requirements as a named pool of statutory obligations and code commitments, or retire it.
+    - "public-authority" is not yet a term; the actors group may want it (regulators, courts, attorneys general).

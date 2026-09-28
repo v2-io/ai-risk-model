@@ -1,0 +1,329 @@
+# Governance slice lexicon (SKOS-style; see mappings.yaml header for rel meanings). Generated from Python data.
+- concept: statutory-obligations
+  rel: narrow
+  src: eu-2024-ai-act
+  term: obligations for providers of general-purpose AI models with systemic risk
+  loc: Art. 55(1)
+  channel: 'relay: eu.md'
+  note: 'Four duties: evaluate incl. adversarial testing; assess and mitigate systemic risks ''including their sources''; report serious incidents; cybersecurity.'
+- concept: statutory-obligations
+  rel: narrow
+  src: california-2025-sb53
+  term: frontier AI framework (large frontier developer duties)
+  loc: §22757.12(a)
+  quote: shall write, implement, comply with, and clearly and conspicuously publish
+  channel: primary
+  note: Word-for-word shared with NY RAISE for the catastrophic-risk and critical-incident definitions; count as one lineage.
+- concept: code-commitments
+  rel: exact
+  src: eu-cop-2025-safety-security
+  term: Signatories … commit
+  loc: Objective A, p.2
+  quote: adherence to the Code does not constitute conclusive evidence of compliance
+  channel: 'relay: eu.md'
+  note: Three secondaries (CSET-25, Hacker et al., and the report's first draft) called it 'mandatory' or said it grants a presumption of conformity; Guidelines ¶100 and Omnibus recital 41 say it does not.
+- concept: code-commitments
+  rel: close
+  src: bengio-2026-international
+  term: Frontier AI Safety Commitments (Seoul)
+  loc: §3.2
+  quote: 16 AI developers from multiple countries signed voluntary commitments to publish Frontier AI Safety Frameworks
+  channel: primary (influx/iasr-2026-full.md)
+- concept: code-commitments
+  rel: related
+  src: g7-2023-hiroshima-code-of-conduct
+  term: International Code of Conduct for Organizations Developing Advanced AI Systems
+  channel: 'relay: remaining-literature.md'
+  note: Intergovernmental voluntary code; its risk list nearly copies AI Act recital 110.
+- concept: self-commitments
+  rel: close
+  src: bengio-2026-international
+  term: Frontier AI Safety Framework
+  loc: glossary
+  quote: A set of protocols created by an AI developer, typically structured as if-then commitments, that specifies safety or security measures that they will take when their AI systems reach predefined thresholds.
+  channel: 'relay: absence-claim.md'
+- concept: self-commitments
+  rel: narrow
+  src: bengio-2026-international
+  term: if-then commitments
+  loc: §3.2, Table 3.3
+  quote: a set of technical and organisational protocols and commitments to manage risks as AI models become more capable
+  channel: primary (influx/iasr-2026-full.md)
+- concept: self-commitments
+  rel: exact
+  src: anthropic-2026-rsp-v3-4
+  term: our voluntary framework
+  loc: p.3
+  quote: our voluntary framework for managing catastrophic risks
+  channel: 'relay: company-frameworks-anthropic.md'
+- concept: enforceable-self-commitments
+  rel: related
+  src: california-2025-sb53
+  term: frontier AI framework
+  loc: §22757.11(g)
+  quote: documented technical and organizational protocols to manage, assess, and mitigate catastrophic risks.
+  channel: 'relay: absence-claim.md'
+  note: The legal category; which document fills it is the developer's designation.
+- concept: enforceable-self-commitments
+  rel: related
+  src: anthropic-2026-frontier-compliance-framework-v2
+  term: Frontier Compliance Framework
+  loc: p.3
+  quote: the FCF serves as our Frontier AI Framework under California's Transparency in Frontier AI Act (TFAIA)
+  channel: primary
+- concept: enforceable-self-commitments
+  rel: related
+  src: openai-2026-frontier-governance-framework
+  term: Frontier Governance Framework
+  loc: p.01
+  quote: this FGF is our Frontier AI Framework
+  channel: 'relay: company-frameworks-openai.md'
+- concept: pause-commitments
+  rel: close
+  src: fli-2026-ai-safety-index-summer
+  term: pledges to pause unilaterally
+  loc: p.4
+  channel: 'relay: academic-ngo.md'
+- concept: pause-commitments
+  rel: narrow
+  src: openai-2025-preparedness-framework-v2
+  term: halt further development
+  loc: Table 1
+  quote: Until we have specified safeguards and security controls that would meet a Critical standard, halt further development
+  channel: 'relay: company-frameworks-openai.md'
+- concept: competitor-contingency
+  rel: exact
+  src: anthropic-2026-rsp-v3-4
+  term: competitor-contingent commitments
+  loc: p.4
+  channel: 'relay: company-frameworks-anthropic.md'
+- concept: competitor-contingency
+  rel: narrow
+  src: openai-2025-preparedness-framework-v2
+  term: Marginal risk
+  loc: §4.3, p.12
+  channel: 'relay: company-frameworks-openai.md'
+  note: 'Relaxation clause with a built-in damper: safeguards must stay ''more protective than the other AI developer''.'
+- concept: competitor-contingency
+  rel: related
+  src: bengio-2026-international
+  term: marginal risk (risk tolerance)
+  loc: §3.2, Table 3.2
+  quote: Some companies describe their risk tolerance in terms of a new model's marginal risk; that is, the extent to which a model counterfactually increases risk beyond that already posed by existing models or other technologies.
+  channel: primary (influx/iasr-2026-full.md)
+- concept: revision-visibility
+  rel: related
+  src: zhu-2026-silent
+  term: silent revision
+  loc: abstract
+  quote: 67% of material changes (95% CI 62 to 72) are silent under a strict standard
+  channel: 'relay: company-frameworks.md'
+  note: 'Inverse sense: silence is low visibility.'
+- concept: external-verification
+  rel: close
+  src: bengio-2026-international
+  term: external assessments of developers' compliance
+  loc: §3.2
+  channel: primary (influx/iasr-2026-full.md)
+- concept: external-verification
+  rel: related
+  src: williams-2026-anthropic-rsp-v3
+  term: grading its own homework
+  channel: 'relay: academic-ngo.md'
+  note: Names the absence.
+- concept: regulator-capacity
+  rel: close
+  src: bengio-2026-international
+  term: institutional design and coordination challenges
+  loc: §3.1, Category 4
+  channel: primary (influx/iasr-2026-full.md)
+  note: IASR's category pools capacity, the pace gap (governance-pace-gap), single points of failure and cross-border coordination.
+- concept: governance-pace-gap
+  rel: broad
+  src: bengio-2026-international
+  term: institutional design and coordination challenges
+  loc: §3.1, Category 4
+  channel: primary (influx/iasr-2026-full.md)
+- concept: governance-pace-gap
+  rel: close
+  src: slattery-2026-risk
+  term: 6.5 Governance failure
+  loc: Table 2, p.10
+  quote: Inadequate regulatory frameworks and oversight mechanisms that fail to keep pace with AI development
+  channel: 'relay: academic-ngo.md'
+  note: MIT's term also covers inadequate frameworks in general, i.e. broader on one side.
+- concept: developer-information-asymmetry
+  rel: exact
+  src: bengio-2026-international
+  term: information asymmetries
+  loc: §3.1, Category 2
+  channel: primary (influx/iasr-2026-full.md)
+- concept: harm-externalization
+  rel: close
+  src: bengio-2026-international
+  term: market failures
+  loc: §3.1, Category 3
+  quote: 'This represents a typical market failure: the cost to develop a product does not represent its total societal cost.'
+  channel: primary (influx/iasr-2026-full.md)
+- concept: harm-externalization
+  rel: close
+  src: dsit-2023-capabilities
+  term: Insufficient incentives for AI developers to invest into risk mitigation measures
+  loc: p.18
+  channel: 'relay: uk.md'
+  note: Names the effect (under-investment); our concept is the cause IASR gives.
+- concept: ai-liability-clarity
+  rel: exact
+  src: bengio-2026-international
+  term: liability frameworks
+  loc: §3.1
+  channel: primary (influx/iasr-2026-full.md)
+- concept: incident-reporting-duty
+  rel: close
+  src: eu-cop-2025-safety-security
+  term: serious incident reporting
+  loc: Measure 9.3
+  channel: 'relay: eu.md'
+- concept: incident-reporting-duty
+  rel: related
+  src: california-2025-sb53
+  term: critical safety incident
+  loc: §22757.11(d)
+  channel: 'relay: eu.md'
+  note: A definition of what triggers the duty, including loss of control 'causing death or bodily injury' and deceptive subversion of developer controls 'in a manner that demonstrates materially increased catastrophic risk'.
+- concept: enforcement-exposure
+  rel: narrow
+  src: ec-2025-gpai-guidelines
+  term: fines
+  loc: ¶106
+  quote: up to 3% of global annual turnover or EUR 15 million
+  channel: 'relay: eu.md'
+- concept: deregulatory-posture
+  rel: related
+  src: eo-2025-14365
+  term: a minimally burdensome national policy framework for AI
+  loc: §2
+  channel: 'relay: us-gov-recent.md'
+- concept: geopolitical-competition
+  rel: close
+  src: whitehouse-2025-action-plan
+  term: a race to achieve global dominance
+  loc: p.1
+  channel: 'relay: us-gov-recent.md'
+- concept: government-testing-access
+  rel: narrow
+  src: eo-2026-14409
+  term: covered frontier model (voluntary pre-release access)
+  loc: §3
+  channel: 'relay: us-gov-recent.md'
+  note: Threshold is cyber capability only, set by a classified process; voluntary.
+- concept: developer-usage-restrictions
+  rel: related
+  src: whitehouse-2026-nspm-11
+  term: controllability
+  loc: §6(f)
+  quote: the ability to monitor the operation and outcomes of a system and take corrective action as needed.
+  channel: 'relay: us-gov-recent.md'
+  note: 'Operator (government) control, the inverse sense of the developer''s retained control. The core mapping sends the same term to oversight-strength: one word, two controllers.'
+- concept: procurement-leverage
+  rel: related
+  src: npr-2026-anthropic-scr
+  term: supply chain risk
+  channel: 'press (NPR), relay: us-gov-recent.md'
+  note: 'Federal definition as quoted by NPR: ''risk that an adversary may sabotage, maliciously introduce unwanted function, or otherwise subvert'' a system; applied here to a domestic developer''s usage restrictions. Statute not read.'
+- concept: safetywashing
+  rel: broad
+  src: hendrycks-2023-overview
+  term: safetywashing
+  loc: printed p.29
+  quote: the act of overstating or misrepresenting one's commitment to safety by exaggerating the effectiveness of 'safety' procedures, technical methods, evaluations, and so forth
+  channel: 'relay: academic-ngo.md'
+  note: 'Pools two constructs: overstating one''s commitment, and ''Misrepresenting capabilities developments as safety improvements''.'
+- concept: safetywashing
+  rel: narrow
+  src: ren-2024-safetywashing
+  term: safetywashing
+  loc: abstract
+  quote: capability improvements are misrepresented as safety advancements
+  channel: 'relay: remaining-literature.md'
+- concept: safetywashing
+  rel: close
+  src: fli-2026-ai-safety-index-summer
+  term: Safety rhetoric outpaces revealed behavior
+  loc: p.4
+  channel: 'relay: academic-ngo.md'
+- concept: whistleblower-protection
+  rel: narrow
+  src: eu-cop-2025-safety-security
+  term: not retaliating
+  loc: Measure 8.3(7)
+  channel: 'relay: eu.md'
+- concept: whistleblower-protection
+  rel: broad
+  src: fli-2025-ai-safety-index-winter
+  term: Reporting Culture & Whistleblowing Track Record
+  loc: printed p.81
+  channel: 'relay: academic-ngo.md'
+  note: One FLI indicator pools protection (policy), suppression (track record) and departures ('(vi) departures linked to safety governance').
+- concept: concern-suppression
+  rel: broad
+  src: fli-2025-ai-safety-index-winter
+  term: Reporting Culture & Whistleblowing Track Record
+  loc: printed p.81
+  channel: 'relay: academic-ngo.md'
+- concept: concern-suppression
+  rel: close
+  src: hendrycks-2023-overview
+  term: suppress internal concerns about AI risks
+  loc: printed p.2
+  channel: 'relay: academic-ngo.md'
+- concept: risk-governance-independence
+  rel: narrow
+  src: eu-cop-2025-safety-security
+  term: Systemic risk support and monitoring
+  loc: Measure 8.1(3), p.24
+  channel: 'relay: eu.md'
+- concept: risk-governance-independence
+  rel: broad
+  src: bengio-2026-international
+  term: risk governance
+  loc: §3.2, Table 3.4
+  channel: primary (influx/iasr-2026-full.md)
+  note: IASR's risk governance pools incident reporting, risk responsibility allocation, whistleblower protection, documentation and transparency reports.
+- concept: risk-governance-independence
+  rel: broad
+  src: stelling-2025-evaluating
+  term: Risk Governance
+  loc: glossary, p.35
+  channel: 'relay: academic-ngo.md'
+- concept: fiduciary-insulation
+  rel: close
+  src: fli-2025-ai-safety-index-winter
+  term: Company Structure & Mandate
+  loc: printed p.74
+  channel: 'relay: academic-ngo.md'
+- concept: fiduciary-insulation
+  rel: narrow
+  src: caag-2025-openai-mou
+  term: consider only the Mission
+  loc: ¶8, p.3
+  channel: primary
+- concept: capital-pressure
+  rel: related
+  src: goscience-2023-future
+  term: incentives … to attract investment
+  loc: ¶32
+  channel: 'relay: uk.md'
+  note: GO-Science's claim is about public statements (safetywashing), not safety investment.
+- concept: public-listing
+  rel: related
+  src: ny-2026-raise-s8828
+  term: publicly traded company (ownership-disclosure threshold)
+  loc: §1428(3)(c)
+  channel: 'relay: us-gov-recent.md'
+  note: 'The only instrument in the evidence set that distinguishes listed from unlisted developers: ≥5% owners disclosed if private, ≥50% if public.'
+- concept: risk-assessment-integrity
+  rel: related
+  src: karnofsky-2026-rsp-v3
+  term: distortive pressures
+  channel: primary

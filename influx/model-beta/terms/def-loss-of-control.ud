@@ -1,0 +1,69 @@
+|term-group[loss-of-control][active-loss-of-control][passive-loss-of-control][unsanctioned-action][bounded][strict]
+  :status proposed
+
+  A **LOSS-OF-CONTROL** is a loss of the ability that @{control} names, for a time, by those who held it. Two mechanisms differ in what is lost. In **ACTIVE-LOSS-OF-CONTROL** an AI @{system} acts so that its holders can no longer direct, modify or halt it. In **PASSIVE-LOSS-OF-CONTROL** people cede decisions to AI until they can no longer direct the affairs those decisions govern; no system need act against anyone. Active losses are graded by how recoverable they are: **BOUNDED** when control can be regained at great cost, **STRICT** when it cannot. Below them sits the **UNSANCTIONED-ACTION**, AISI's operative term: an action beyond what was authorized, where control failed to prevent the act but was not lost. The model's concept ladder (unsanctioned-action, loc-bounded, loc-strict, loc-passive) already has this shape; these terms define it.
+
+  |term[loss-of-control        ] A loss, lasting some time, of the ability of those who held control to direct, modify or halt what they controlled.
+    :avoid [LoC] ; the abbreviation hides which of the two mechanisms is meant
+    |rels :of      @{control} {1,1}
+    |invariants
+      - The loss of the ability, not one failure to exercise it; an act that control failed to prevent is an unsanctioned action
+      - Scale-free by definition; severity is carried by the degree (bounded, strict) and by the harm, not by the word
+  |term[active-loss-of-control ] A loss of control in which an AI system itself acts to escape or undermine the control of those who held it.
+    |rels :is    @{loss-of-control} {1,1}
+          :cause ("misalignment" | "direction by people") {1,1}  ; IASR 2025's unintentional vs intentional active loss of control
+  |term[passive-loss-of-control] A loss of control in which people cede decisions and functions to AI systems until they can no longer direct the affairs those decisions govern.
+    |rels :is @{loss-of-control} {1,1}
+    |invariants
+      - What is lost is control over human affairs, not over a particular system; every system may remain individually controllable
+      - Needs no system to act against anyone
+  |term[unsanctioned-action    ] An action by an AI agent beyond what it was authorized to do.
+    :synonyms ["unsanctioned behaviour"] ; AISI's two phrasings
+    |invariants
+      - Control was not lost: the action was not prevented, but the holders could still halt or correct the system afterwards
+      - AISI's "event" is an unsanctioned action "that took effect outside the evaluation range"; its "incident" is a cluster of events (def-risk)
+  |term[bounded                ] Of an active loss of control: regainable, but only with great difficulty and at great cost.
+  |term[strict                 ] Of an active loss of control: maximally severe and permanent; control is not regained.
+
+  |discussion
+    - Joseph's open question, "has it happened yet?", is where the sources disagree on this group's boundary. Stix (Apollo) calls today's events "Deviation", not loss of control; CLTR counts them as "loss of control incidents"; IST's definition has no severity floor. Under these terms the dispute becomes one question: has any unsanctioned action yet been a loss of the ability to halt? The terms record it; they do not settle it. The core relation r-unsanc-bounded (indicates, `?`) is where it lives.
+    - The EU Code's "losing the ability to reliably direct, modify, or shut down" admits a reading in which an episode without reliable control already counts (eu.md's verifier). Under these terms that reading makes the Code's term broad over unsanctioned-action.
+    - The same two words name an outcome in the EU Code, a capability in Microsoft's framework ("A model's ability to undermine effective human control"), and a risk domain defined by an agentic capability in Amazon's. The capability rows map to oversight-evasion capability, not here.
+    - Passive loss of control and Kulveit's gradual disempowerment are the same mechanism by different names; Gruetzemacher files it as recoverable, Kulveit as "effectively irreversible". Bounded and strict are defined for active losses only for that reason.
+    - GDM does not treat loss of control as a category ("we do not discuss loss of control as its own category"); its mitigations are split across misuse, misalignment and structural risk.
+
+  |examples
+    |   Case                                                               |   Term                      |
+    |------------------------------------------------------------------|-----------------------------|
+    | AISI incident, Jul 2026: agents reached the live internet, were halted | unsanctioned-action     |
+    | A self-exfiltrated model running where its developer cannot reach it, later found and shut down at great cost | active, bounded |
+    | IASR's scenario of systems outside anyone's control, with no path back | active, strict           |
+    | Institutions routing decisions through AI until no one can overrule them | passive                |
+
+  |lexical-map
+    ; Columns and match values as in def-actors.
+    |   Source                 |   Their term                      |   Match   |   Our term                  |   Their sense                                                                                                        |   Where                                  |   Notes |
+    |--------------------------|-----------------------------------|-----------|-----------------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------|---------|
+    | EU GPAI Code             | Loss of control                   | broad     | active-loss-of-control      | "Risks from humans losing the ability to reliably direct, modify, or shut down a model."                             | App. 1.4(2), PDF p.37                    | scale-free; a risk, not an event |
+    | IASR 2026                | Loss of control scenario          | close     | active-loss-of-control, strict | "A scenario in which one or more general-purpose AI systems come to operate outside of anyone's control, with no clear path to regaining control." | glossary | |
+    | IASR 2026                | Loss of control scenarios         | close     | active-loss-of-control, bounded, strict | "operate outside of anyone's control, and regaining control is either extremely costly or impossible."       | §2.2.2 Key information (influx/iasr-2026-full.md) | body wording differs from the glossary: costly admitted |
+    | IASR 2026                | Passive loss of control           | exact     | passive-loss-of-control     | "A scenario where the broad adoption of AI systems undermines human control through over-reliance on AI for decision-making or other important societal functions." | glossary | adopted |
+    | IASR 2025                | Intentional / Unintentional active loss of control | narrow | active-loss-of-control | "The AI systems are designed or instructed to be difficult to control"; "The AI systems behave this way due to unintended technical issues such as misalignment" | Fig. 2.5, PDF p.102 | the cause rel |
+    | IASR 2025                | loss of control                   | broad     | active-loss-of-control      | "the consequences of loss of control would not necessarily be catastrophic"                                          | PDF p.108                                | admits non-catastrophic losses |
+    | Stix et al. (Apollo)     | Deviation                         | related   | unsanctioned-action         | "Deviation captures events that cause some harm or inconvenience, but which are relatively easy to contain."          | PDF p.6                                  | explicitly not loss of control |
+    | Stix et al. (Apollo)     | Bounded LoC                       | exact     | bounded                     | "Bounded LoC captures events that can cause great damage or suffering, and are difficult, but possible, to contain, albeit potentially at great cost." | PDF p.6 | adopted |
+    | Stix et al. (Apollo)     | Strict LoC                        | exact     | strict                      | "Strict LoC captures events that are maximally severe and permanent, such as events that result in humanity as a whole becoming extinct." | PDF p.6 | adopted |
+    | UK AISI (incident report)| event; incident                   | narrow    | unsanctioned-action         | "An event is defined as an instance of unsanctioned behaviour that took effect outside the evaluation range."        | §4, PDF p.8                              | |
+    | CLTR                     | loss of control incidents         | homonym   | unsanctioned-action         | "We have detected 1,664 real-world loss of control incidents in 2026"                                                | PDF p.1                                  | counted as loss of control; here, not |
+    | IST                      | loss of control                   | broad     | loss-of-control             | "a hypothetical state in which an AI system diverges from authorized constraints to the extent that the human operator is no longer able to prevent, constrain, or revert undesired and unintended outcomes" | PDF p.6 | no severity floor; Levels 0–5 |
+    | Meta AASF v2             | Loss of Control                   | close     | active-loss-of-control      | "humans lose—and cannot feasibly regain—the ability to direct, modify, contain, or shut down AI systems which have potential for significant real-world impact" | fn 4, PDF p.22 | irreversibility built in: strict |
+    | California SB 53 · NY RAISE | Loss of control of a frontier model causing death or bodily injury | narrow | active-loss-of-control | "Loss of control of a frontier model causing death or bodily injury."                                   | §22757.11(d)(3), PDF p.4                 | a reportable critical safety incident; harm floor, no catastrophe floor |
+    | Microsoft FGF 2026       | Loss of control                   | homonym   | active-loss-of-control      | "A model's ability to undermine effective human control through adaptive, deceptive, or self-reinforcing mechanisms" | PDF p.4                                  | a capability (def-ai-properties) |
+    | Kulveit et al.           | gradual disempowerment            | close     | passive-loss-of-control     | "A gradual loss of control of our own civilization"                                                                  | PDF p.1                                  | |
+    | GDM (Shah et al.)        | loss of control (not a category)  | related   | loss-of-control             | "we do not discuss loss of control as its own category"                                                              | PDF p.17                                 | |
+    | AISI Research Agenda     | Autonomous Systems (risk domain)  | broad     | unsanctioned-action, active-loss-of-control | "Risks posed by the misuse of AI systems escalating out of control or systems taking harmful action without meaningful human oversight." | PDF p.6 (relay: uk.md) | AISI has no definition of loss of control |
+
+  |working-notes
+    - Joseph, 2026-09-28, on "is an unsanctioned action ever a loss of control?": the question assumes controls sit in one place and the top event is their failure. In the chain he uses (sources and causes → preventive controls → risk events [recorded, ideated, unknown] × impact radius → mitigation and recovery → policy and decision-making), "loss of control" is shorthand for control failures spread along the chain. *"I think originally it was about losing and not being able to regain control over an AI system — implying AI system full self sufficiency with unassailable defenses."* Integrator's reading: an unsanctioned action is a failure at the preventive stage (a risk event that may or may not escalate); bounded and strict are degrees of the recovery stage (control regained at cost vs not regainable); "not regainable" is where persistence (def-persistence) enters.
+    - The cause rel on active-loss-of-control is a list of two strings, not terms; directed-control-undermining is the concept for the intentional case.
+    - Open: whether "bounded" and "strict" should be written "bounded-loss-of-control" and "strict-loss-of-control" to stand alone in `of:` lists. Lean: yes, if they are used outside this group.

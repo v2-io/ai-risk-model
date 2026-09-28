@@ -1,0 +1,66 @@
+|term-group[mitigation][safeguard][misuse-safeguard][control-safeguard][security-mitigation]
+  :status proposed
+
+  A **MITIGATION** is any measure taken to reduce a risk: technical, organizational or governance. A **SAFEGUARD** is the kind of mitigation that acts on an AI @{system}'s behaviour to stop it causing harm. Safeguards differ by whose intent they guard against. A **MISUSE-SAFEGUARD** stops people eliciting harm from a system (refusal training, input and output classifiers); a **CONTROL-SAFEGUARD** stops a system acting harmfully of its own accord (monitors, approval gates). A **SECURITY-MITIGATION** protects the model and its infrastructure from theft and interference; it guards the lab's assets, not the world against the system. The split by intent is AISI's ("misuse safeguards" vs "control safeguards") and matches OpenAI's, Amazon's and GDM's own taxonomies; every company framework uses "safeguards" and none defines it.
+
+  |term[mitigation         ] A measure taken to reduce the likelihood or severity of a harm.
+    :avoid [controls] ; the plural pools mitigations with the ability to control (def-control)
+    |invariants
+      - Includes organizational and governance measures (management of change, risk governance); the EU Code's "systemic risk mitigations" are safety, security and governance mitigations
+  |term[safeguard          ] A mitigation that acts on an AI system's behaviour or outputs to prevent it causing harm.
+    :avoid [guardrail] ; used for the same thing, kept out so one word carries it
+    |rels :is     @{mitigation} {1,1}
+          :on     @{system}     {1,1}
+    |invariants
+      - A safeguard is in place or not per deployment and per configuration; disabling one for an evaluation is a fact about that evaluation's configuration, not about the deployed system
+  |term[misuse-safeguard   ] A safeguard against people deliberately eliciting harmful outputs or actions from a system.
+    |rels :is @{safeguard} {1,1}
+  |term[control-safeguard  ] A safeguard against a system taking harmful actions of its own accord.
+    |rels :is       @{safeguard} {1,1}
+          :keeps    @{control}   {1,1}
+    |invariants
+      - Must work against a system that may be trying to evade it; a misuse safeguard may assume the system is on its side
+  |term[security-mitigation] A mitigation that protects a model's weights and its infrastructure from unauthorized access, modification, exfiltration or theft.
+    :synonyms ["security measure"]
+    |rels :is       @{mitigation} {1,1}
+          :protects (@{weights} | "algorithmic insights" | infrastructure) {1,N}
+
+  |discussion
+    - Joseph decides whether to split. The concept safeguard-strength pools misuse and control safeguards (its definition lists "refusal training, classifiers, control monitors"); the hz shard used it in the misuse sense only and the loss-of-control relations in the control sense (r-safeguard-unsanc). The species terms are defined so that either choice is expressible; defining them does not split the quantity.
+    - The evidence differs by species, which is the case for a split: AISI found universal jailbreaks against misuse safeguards (Trends p.24) and "vulnerabilities in every monitor version we tested" against control safeguards (Control Red Team blog).
+    - The AISI incident's "Disabled cyber-classifiers" were misuse safeguards switched off in the evaluation so that capability could be measured. The mp shard routes that through evaluation-realism; under these terms it is a fact of the evaluation's configuration (see safeguard's invariant).
+    - A safeguard is not the ability to control (def-control), and "safety measures" in AISI's blog covers both species.
+
+  |examples
+    |   Measure                                                      |   Term                  |
+    |------------------------------------------------------------|-------------------------|
+    | Refusal training against bioweapon requests                   | misuse-safeguard        |
+    | A classifier on inputs and outputs                            | misuse-safeguard        |
+    | A trusted model reviewing each agent action before it runs    | control-safeguard       |
+    | Denying an agent internet access (sandboxing)                 | control-safeguard       |
+    | Weight storage limited to hardened interfaces (RAND SL3)      | security-mitigation     |
+    | A management-of-change review before a reorganization        | mitigation              |
+    | Staged release to vetted users                                | mitigation              |
+
+  |lexical-map
+    ; Columns and match values as in def-actors.
+    |   Source                 |   Their term                            |   Match   |   Our term             |   Their sense                                                                                                        |   Where                                  |   Notes |
+    |--------------------------|-----------------------------------------|-----------|------------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------|---------|
+    | IASR 2026                | Safeguard                               | close     | safeguard              | "A protective measure intended to prevent an AI system from causing harm."                                           | glossary                                 | pools the species |
+    | NCSC and AISI            | safeguards                              | close     | safeguard              | "techniques developers use to prevent AI systems from producing policy-violating outputs or actions"                  | "From bugs to bypasses", PDF p.1         | "policy-violating" rather than harmful |
+    | UK AISI (Control Red Team blog) | misuse safeguards                | exact     | misuse-safeguard       | "misuse safeguards: protections against humans deliberately eliciting harmful actions from a model"                   | blog, 23 Jul 2026                        | adopted |
+    | UK AISI (Control Red Team blog) | control safeguards               | exact     | control-safeguard      | "control safeguards, which address harmful actions that agents take of their own accord"                             | blog, 23 Jul 2026                        | adopted |
+    | OpenAI PF v2             | Safeguards Against Malicious Users; Safeguards Against a Misaligned Model | close | misuse-safeguard, control-safeguard | "Safeguards Against Malicious Users"; "Safeguards Against a Misaligned Model"            | Table 3, PDF p.12                        | same split, OpenAI's names |
+    | Amazon FMSF 2026         | Abuse Safeguards; Misalignment Safeguards; Security Safeguards | close | misuse-safeguard, control-safeguard, security-mitigation | "Abuse Safeguards"; "Misalignment Safeguards"; "Security Safeguards"    | PDF pp.4–5                               | three species; "safeguard" also for security |
+    | GDM FSF v3.1             | Deployment Mitigations                  | broad     | misuse-safeguard, control-safeguard | "safety measures we implement which are intended to counter the misuse or misaligned expression of critical capabilities in deployments" | glossary, PDF p.19 | pools the two species |
+    | GDM FSF v3.1             | Security Mitigations                    | exact     | security-mitigation    | "safety measures we implement which are intended to prevent the unauthorized modification or exfiltration of model weights by unauthorized actors." | glossary, PDF p.19 | |
+    | EU GPAI Code             | systemic risk mitigations               | exact     | mitigation             | "comprise safety mitigations (pursuant to Commitment 5), security mitigations (pursuant to Commitment 6), and governance mitigations (pursuant to Commitments 1 and 7 to 10) for systemic risk." | glossary, PDF p.32 | |
+    | EU GPAI Code             | safety mitigations                      | broad     | safeguard              | "staging the access to the model, e.g. by limiting API access to vetted users"                                       | Measure 5.1(4), PDF p.17                 | the Code's safety mitigations include release strategy, which here is a mitigation, not a safeguard |
+    | EU GPAI Code             | security mitigations                    | close     | security-mitigation    | "an adequate level of cybersecurity protection for their models and their physical infrastructure"                  | Commitment 6, PDF p.18                   | |
+    | DSIT AI Cyber Security CoP · ETSI EN 304 223 | Guardrails          | close     | safeguard              | "Predefined constraints or rules implemented to control and limit an AI system's outputs and behaviours, ensuring safety, reliability, and alignment with ethical or operational guidelines." | DSIT CoP Annex A, PDF p.18 | ETSI wording not re-read (relay: uk-security-frameworks.md) |
+    | IASR 2026                | Defence-in-depth                        | related   | mitigation             | "A strategy that involves implementing multiple layers of independent safeguards, such that if one measure fails, others remain in place to prevent harm." | glossary               | a way of combining mitigations |
+
+  |working-notes
+    - Joseph decides: whether safeguard-strength splits into misuse and control safeguards.
+    - "algorithmic insights" and "infrastructure" are strings in the rel, not terms; RAND-ISL's definition of insights is recorded in def-safety-security.
+    - The core group g-controls ("Controls, safeguards and governance practices") would read "Safeguards, security measures and governance practices" under these terms (def-control).

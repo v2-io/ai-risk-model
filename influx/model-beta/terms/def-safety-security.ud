@@ -1,0 +1,63 @@
+|term-group[safety][security][national-security][threat-actor][insider]
+  :status proposed
+
+  **SAFETY** and **SECURITY** face in opposite directions. Safety is about harm going out from an AI @{system} to the world, whether someone misuses it or it malfunctions. Security is about interference coming in: a **THREAT-ACTOR** trying to steal, tamper with or subvert the model, its weights, the knowledge behind it, or the system in operation. An **INSIDER** is a threat actor, or a source of accidental loss, that already has legitimate access, and since 2025 the sources count AI systems among insiders as well as people. **NATIONAL-SECURITY** is a third thing, the security of a state, and is always written in full. The two first definitions are IASR 2026's, adopted.
+
+  |term[safety           ] The property of an AI system being unlikely to cause harm, whether through misuse or malfunction.
+    :avoid ["safety and security"] ; pooled in safety-resourcing and elsewhere; say which, or both
+    |rels :of @{system} {1,1}
+  |term[security         ] The property of being resilient to technical interference, such as cyberattacks or leaks, of an AI system, a model's weights, or the knowledge and infrastructure used to build it.
+    :avoid ["AI security"] ; means both this and national security in the sources (AISP)
+    |rels :of      (@{system} | @{weights} | "algorithmic insights" | infrastructure) {1,1}
+          :against @{threat-actor} {0,N}
+    |invariants
+      - Two objects are protected, and the model's concepts keep them apart: the lab's assets (weights, insights; concept weight-security-level) and the deployed system's integrity in operation (prompt injection, poisoning; concept ai-system-security)
+  |term[national-security] The security of a state, including against adversaries' use of AI.
+    |invariants
+      - Never shortened to "security"
+  |term[threat-actor     ] A party that attempts to steal, tamper with, misuse or subvert AI models, systems or the assets behind them.
+    :avoid [attacker] ; narrower (external only)
+    |invariants
+      - Graded by capability in the sources (RAND's OC1 to OC5; the EU Code's "non-state external threats"); the grade is a quantity of the threat actor
+      - A writer (def-agent-roles) with hostile intent is a threat actor; the channel is the same
+  |term[insider          ] A person or AI system with legitimate access to an organization's sensitive resources, considered as a source of theft, sabotage or accidental loss.
+    |rels :of (@{lab} | @{deployer}) {1,1}
+    |invariants
+      - Human and AI insiders are defended differently: personnel security acts on people, while AI insiders "could act at significant scale and potentially overpower labor-intensive insider security techniques" (AISP, PDF p.83)
+      - Includes the accidental case; malice is a property of some insiders, not of the term
+
+  |discussion
+    - "Security" has had three senses in the model's concepts: protecting a lab's assets (weight-security-level), protecting AI systems from attack (ai-system-security), and national security (the US posture concepts). The first two are this term's two objects; the third is its own term.
+    - "Safety" is also used for a kind of work (safety research, safety teams, safety-resourcing). That is work aimed at safety; the property is this term.
+    - HMG's Annex B uses "Safety and Security" for something else again, population-centred: "The protection, wellbeing and autonomy of civil society and the population."
+    - The EU Code's "insider threats" pools human insiders, AI insiders (self-exfiltration) and accidental leakage in one definition; this term keeps all three, and the quantities split them (insider-exfiltration, self-exfiltration, ai-insider-sabotage).
+    - UK AISI was renamed from AI Safety Institute to AI Security Institute in 2025 (from my training knowledge; not verified here). NIST's AISI became CAISI (us-gov-recent.md). The renamings are lexical-map facts about institutions, not definitions.
+
+  |examples
+    |   Case                                                  |   Term              |
+    |-----------------------------------------------------|---------------------|
+    | A model refuses to give bioweapon uplift               | safety              |
+    | Weights are stored so that 20 people can copy them     | security (weights)  |
+    | An agent resists prompt injection in a web page        | security (system)   |
+    | A state programme stealing weights                     | threat-actor        |
+    | A disgruntled researcher; a self-exfiltrating model    | insider             |
+
+  |lexical-map
+    ; Columns and match values as in def-actors.
+    |   Source                 |   Their term                   |   Match   |   Our term           |   Their sense                                                                                                        |   Where                                    |   Notes |
+    |--------------------------|--------------------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------|
+    | IASR 2026                | Safety (of an AI system)       | exact     | safety               | "The property of an AI system being unlikely to cause harm, whether through malicious misuse or system malfunctions." | glossary                                   | adopted |
+    | IASR 2026                | Security (of an AI system)     | close     | security             | "The property of being resilient to technical interference, such as cyberattacks or leaks of the underlying model's source code." | glossary                       | adopted, objects widened |
+    | AISP                     | AI security                    | broad     | security, national-security | "'AI Security' may refer to protecting AI systems from cyber threats - as in cybersecurity - or describing national security implications of advanced AI." | PDF p.34 | names the pooling |
+    | DSIT AI Cyber Security CoP | AI security                  | close     | security             | "'AI security' which is considered a subset of cyber security"                                                       | Scope, PDF p.4                             | system object |
+    | NSPM-11                  | AI security                    | close     | security             | "the application of appropriate protection mechanisms across the AI technology stack to ensure the confidentiality, integrity, and availability of AI systems, from design through deployment" | §6(c), PDF p.4 | |
+    | HMG (Annex B)            | Safety and Security            | homonym   | safety               | "The protection, wellbeing and autonomy of civil society and the population."                                        | p.2 (relay: uk.md)                         | of a population, not of a system |
+    | EU GPAI Code             | insider threats                | broad     | insider              | "hostile operations by humans, AI models, and/or AI systems (e.g. senior management, a senior member of the organisation's research team, other disgruntled employees, perpetrators of industrial espionage operations that have infiltrated their target, and/or model self-exfiltration) with access to sensitive organisational resources, and/or accidental model leakage." | glossary, PDF p.30 | pools human, AI and accident; "hostile" and "accidental" in one definition |
+    | RAND (Nevo et al.)       | insider threats (OC3)          | narrow    | insider              | "attempts by insider threats within the organization, who will have significantly less resources and expertise than the previous operations described as part of this category but significant access to sensitive organization resources" | Fig. 4.1, PDF p.20 | human and hostile only |
+    | GDM (Shah et al.)        | untrusted insider              | related   | insider              | "treat the model similarly to an untrusted insider"                                                                  | PDF p.9                                    | a stance toward AI insiders |
+    | EU GPAI Code             | non-state external threats      | narrow    | threat-actor         | "hostile operations conducted by non-state actors that: (1) are roughly comparable to ten experienced, professional individuals in cybersecurity" | glossary, PDF p.31 | one sized class |
+    | RAND-ISL                 | Algorithmic insights           | related   | security             | "Algorithmic insights are the novel techniques, methods, or design know-how that materially improve the efficiency, performance, deployability, or similar desirable features of AI systems." | PDF p.14 | an object security protects |
+
+  |working-notes
+    - Open: whether "algorithmic-insight" earns a term of its own. Lean: yes, at the quantity pass, if insight-leakage and insight-security-level keep it as their `of:`.
+    - Proposed for def-actors: threat-actor and insider are roles, and belong in the actors group's examples table if Joseph keeps the groups apart.

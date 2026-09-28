@@ -1,0 +1,63 @@
+|term-group[control][oversight][auditing][monitoring][incident-response]
+  :status proposed
+
+  **CONTROL** is an ability: that of a party to direct, modify, or halt an AI @{system}. **OVERSIGHT** is the set of practices that keeps that ability usable, by detecting behaviour that calls for correction; AISI divides it into **AUDITING** before deployment, **MONITORING** during it, and **INCIDENT-RESPONSE** after the fact. Control is what is lost in a loss of control (def-loss-of-control); oversight is how its loss would be noticed. Control always has a holder, and the holders can conflict: the US government's NSPM-11 treats a developer's retained control over a system the government deploys as a risk to the government.
+
+  |term[control          ] The ability of a party to direct, modify, or halt the behaviour of an AI system, including when it acts in unwanted ways.
+    :avoid [controls] ; the plural means safeguards and security measures (def-safeguards); "social control" is power over people (ai-enabled-surveillance) and is always written in full
+    |rels :over    @{system}                     {1,1}
+          :held-by (@{lab} | @{deployer} | @{user} | public-authority) {1,N}
+    |invariants
+      - An ability, not a practice: it can exist unexercised and be lost without any event at the moment of loss
+      - Held by some party; "human control" is shorthand that hides which humans
+  |term[oversight        ] The set of practices by which developers and deployers detect misaligned or undesired AI behaviour and keep the ability to correct it.
+    :avoid [supervision] ; used loosely in the sources; "human in the loop" names one arrangement of oversight
+    |rels :maintains @{control}                                   {1,1}
+          :parts     (@{auditing} | @{monitoring} | @{incident-response}) {1,N}
+    |invariants
+      - The developer or deployer overseeing its AI; outsiders checking the developer is external verification (concept external-verification), a different practice with a different object
+  |term[auditing         ] Detecting whether a model is misaligned or has undesired propensities ahead of deployment, through systematic evaluations and stress-testing.
+    :avoid [audit] ; IASR's "Audit" is a review of an organisation's conformance, not of a model
+  |term[monitoring       ] Detecting concerning behaviour during or shortly after an AI system acts, by near real-time inspection of its outputs, reasoning traces or internal states.
+  |term[incident-response] Investigating harmful or unintended behaviour after the fact, from logs and traces, to find root causes and prevent recurrence.
+    |invariants
+      - Depends on records kept at the time; "the last line of oversight" (AISI)
+
+  |discussion
+    - Control and oversight are AISI's and IASR's, adopted with small changes: control from IASR 2026's glossary with the holder made explicit; oversight and its three parts from AISI's Loss of Oversight glossary, which the core concept oversight-strength already quotes.
+    - "Control" in the model's concepts has had three senses: this one; "controls" as safeguards or security measures (dna-synthesis-screening, management-of-change, the g-controls group); and social control (ai-enabled-surveillance). AISP names the pooling: "'control' can refer to a very general problem of steering AI systems, or to a specific set of guardrails for artificial general intelligence." Proposed: the group g-controls is relabelled "Safeguards, security measures and governance practices" at the taxonomy pass.
+    - "AI control" as a research programme (AISI's Control Red Team; "control safeguards") is the practice of keeping control over a system that may be misaligned. It is this sense of control, pursued against an untrusted system; its safeguards are in def-safeguards.
+    - Monitorability ("The extent to which humans (or trusted systems) can predict, observe, and understand an AI system's reasoning, goals, and behaviour") is a degree, so it stays a quantity (concept monitorability), of the system, not a term.
+
+  |examples
+    |   Arrangement                                           |   Term               |
+    |-----------------------------------------------------|----------------------|
+    | A shutdown switch the operator can use                 | control              |
+    | Pre-deployment alignment honeypot evaluations          | auditing             |
+    | A second model approving each action before it runs    | monitoring           |
+    | Log review after an agent reached the live internet    | incident-response    |
+    | NCSC's human-in/on/out-of-the-loop levels              | kinds of oversight   |
+
+  |lexical-map
+    ; Columns and match values as in def-actors.
+    |   Source                 |   Their term               |   Match   |   Our term           |   Their sense                                                                                                           |   Where                                   |   Notes |
+    |--------------------------|----------------------------|-----------|----------------------|-------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|---------|
+    | IASR 2026                | Control                    | close     | control              | "The ability to influence the behaviour of a system in a desired way. This includes adjusting or halting its behaviour if the system acts in unwanted ways." | glossary | adopted, with the holder added |
+    | IASR 2025                | Control                    | close     | control              | "The ability to exercise oversight over an AI system and adjust or halt its behaviour if it is acting in unwanted ways." | Key definitions, PDF p.100                | folds oversight into control |
+    | EU GPAI Code             | (inside "Loss of control") | close     | control              | "the ability to reliably direct, modify, or shut down a model"                                                           | App. 1.4(2), PDF p.37                     | "reliably" carries much of the weight |
+    | NSPM-11                  | controllability            | close     | control              | "the ability to monitor the operation and outcomes of a system and take corrective action as needed."                    | §6(f), PDF p.4                            | held by the government as deployer; §2(c) treats the developer's retained control as a risk |
+    | NSPM-11                  | steerability               | related   | control              | "the ability to shape the internal behavior of a system to pursue a given set of objectives."                            | §6(k), PDF p.4                            | the trainer's control over weights |
+    | Chin et al.              | control                    | broad     | control              | "Control is the ability to set plausibly attainable goals that are not a foregone conclusion, and reliably achieve those goals" | PDF p.9                          | of any goal, not of a system; hence "human loss of control can occur through sufficient AI disruption alone" (PDF p.5) |
+    | AISP                     | "control"                  | broad     | control              | "'control' can refer to a very general problem of steering AI systems, or to a specific set of guardrails for artificial general intelligence." | PDF p.34               | names the pooling |
+    | AISI Loss of Oversight   | Oversight                  | exact     | oversight            | "The set of practices by which AI developers and deployers detect misaligned or undesired AI behaviour and maintain the ability to correct it." | App. C glossary, PDF p.78 | adopted |
+    | AISI Loss of Oversight   | Auditing                   | exact     | auditing             | "Detecting whether a model is misaligned or has undesired propensities ahead of deployment, through systematic evaluations and alignment stress-testing." | App. C glossary, PDF p.78 | |
+    | AISI Loss of Oversight   | Monitoring                 | exact     | monitoring           | "Detecting when a model exhibits concerning behaviour during or shortly after its actions, through (near) real-time inspection of its outputs, reasoning traces, or internal states." | App. C glossary, PDF p.78 | |
+    | AISI Loss of Oversight   | Incident response          | exact     | incident-response    | "Investigating harmful or unintended behaviour after the fact, using logs, traces, and forensic analysis, in order to determine root causes and prevent recurrence." | App. C glossary, PDF p.78 | |
+    | IASR 2026                | Audit                      | homonym   | auditing             | "A formal review of whether an organisation or system conforms to or complies with relevant standards, policies, or procedures, carried out internally or by an independent third party." | glossary | conformance review; closer to external-verification |
+    | IASR 2026                | Human in the loop          | narrow    | oversight            | "An approach where humans retain decision-making authority in automated systems by reviewing and approving actions before they are executed" | glossary                         | one arrangement |
+    | NCSC                     | Oversight levels           | narrow    | oversight            | "Human-in-the-loop: humans approve actions before they happen. Human-on-the-loop: humans monitor actions and can intervene if needed. Human-out-of-the-loop: AI acts autonomously without human review." | PDF p.3 (relay: uk-security-frameworks.md) | |
+    | CSET (Arnold & Toner)    | Failures of assurance      | related   | control              | "the system cannot be adequately monitored or controlled during operation"                                               | p.7 (relay: academic-ngo.md)              | operator scale, accident vocabulary |
+
+  |working-notes
+    - "public-authority" appears as a holder but is not yet a term (def-commitment's working-notes).
+    - Open: willingness to exercise control. Barrett's "Lack of Willingness … Due to Dependency" and the concept halt-cost describe control that is held but not used. Lean: a quantity of control (its cost to exercise), not a separate term.

@@ -1,0 +1,812 @@
+# Security and insider-risk slice: relations (shard). IDs rs-* (relations) and is-* (indicators).
+# Channel "primary" here = the integrator read the passage in the relata-attached PDF via pdftotext on 2026-09-27.
+# Page numbers are printed pages (RAND-W and RAND-ISL printed = PDF − 10; AISP and Anthropic RR printed ≈ PDF).
+# Structure, loops and proposals for the core: notes-security.md.
+
+# ======================================================= what drives weight theft: the security gap
+- id: rs-gap-weighttheft
+  from: security-gap
+  to: weight-theft
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: "relay: us-security.md", evidence: definition, qualifier: "each security level is defined by the attacker class it can likely thwart; 'not meant to be used as a standard'", doc: nevo-2024-securing, loc: "Fig. 6.1, p.22", quote: "a system that can likely thwart"}
+    - {author: Anthropic, channel: primary, evidence: expert-judgment, qualifier: "developer's own assessment; 'at risk of widening'", doc: anthropic-2026-risk-report-aug, loc: "App. 6.4.1, p.177", quote: "the gap between the capability level of attackers motivated to target us and attackers we can reliably defend against is at risk of widening"}
+
+- id: rs-weightsec-gap
+  from: weight-security-level
+  to: security-gap
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: "relay: us-security.md", evidence: definition, qualifier: "SL5 is the only level claimed against top state operations", doc: nevo-2024-securing, loc: "Fig. 6.1, p.22", quote: "could plausibly be claimed to thwart most top-priority operations by the top cyber-capable institutions (OC5)"}
+    - {bears_on: "from", author: Anthropic, channel: primary, evidence: expert-judgment, qualifier: "a level, stated for the whole field", doc: anthropic-2026-risk-report-aug, loc: "§4.5.7, p.146", quote: "Security measures that are robust against nation-state-level actors are extremely difficult to implement, and we do not believe any frontier AI developer currently meets this bar; we do not either"}
+
+- id: rs-incentive-gap
+  from: theft-incentive
+  to: security-gap
+  type: influences
+  sign: "+"
+  note: Incentive recruits more capable attackers; the gap widens even if defences hold still.
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's own analysis", doc: anthropic-2026-risk-report-aug, loc: "App. 6.4.1, p.177", quote: "the sophistication of the adversaries motivated to target us is growing faster than the sophistication of the adversaries we can reliably stop"}
+
+- id: rs-attacker-gap
+  from: external-attacker-capability
+  to: security-gap
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: "relay: uk.md", evidence: argument, qualifier: "research indicates; may be unable", doc: bengio-2026-international, loc: "Box 3.1, p.136", quote: "Research indicates that AI data centres may be unable to withstand attacks from the most sophisticated and well-resourced actors."}
+
+- id: rs-pace-incentive
+  from: capability-pace
+  to: theft-incentive
+  type: influences
+  sign: "+"
+  note: 'A race between timescales. Anthropic: capabilities improve faster than defences mature.'
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's own analysis; one of three trends it names", doc: anthropic-2026-risk-report-aug, loc: "App. 6.4.1, p.177", quote: "the rate at which model capabilities are improving is generally faster than the rate at which we can build and mature our defenses"}
+    - {author: "RAND (Nevo et al.)", channel: primary, evidence: argument, qualifier: "could", doc: nevo-2024-securing, loc: "App. A, p.63", quote: "If specific frontier models gain strategic national security importance, one could start seeing foreign military attacks on them as well"}
+
+- id: rs-antidistill-incentive
+  from: anti-distillation-measures
+  to: theft-incentive
+  type: influences
+  sign: "+"
+  note: Displacement. Closing legitimate-access routes (distillation, ZDR, high-trust deployments) pushes determined actors toward weight theft. A good practice that raises a different risk.
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's own analysis", doc: anthropic-2026-risk-report-aug, loc: "App. 6.4.1, p.177", quote: "These dynamics increase threat actor incentives to access our models via weight theft, as other routes of gaining safeguard-free access become more difficult."}
+
+- id: rs-buildout-infra
+  from: compute-buildout-rate
+  to: infrastructure-maturity-gap
+  type: influences
+  sign: "+"
+  note: The infrastructure twin of r-growth-absorb (headcount growth → absorption gap).
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's own analysis", doc: anthropic-2026-risk-report-aug, loc: "App. 6.4.1, p.177", quote: "our attack surface is growing: we continue to bring significant new compute capacity online across multiple providers and environments, and these environments do not all begin at the same level of security maturity"}
+
+- id: rs-infra-gap
+  from: infrastructure-maturity-gap
+  to: security-gap
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's own analysis", doc: anthropic-2026-risk-report-aug, loc: "App. 6.4.1, p.177", quote: "Raising every environment to our target baseline takes time and forces prioritization, which means that at any given point some parts of our infrastructure may be better defended than others."}
+
+# ======================================================= what sets the security level
+- id: rs-resourcing-weightsec
+  from: safety-resourcing
+  to: weight-security-level
+  type: influences
+  sign: "+"
+  delay: "SL3 ~1 year; SL4 2–3 years (AISP's reading of RAND)"
+  claims:
+    - {author: "AISP (Gekker et al.)", channel: primary, evidence: expert-judgment, qualifier: "AISP's reading of RAND; shares authors with RAND-ISL", doc: gekker-2026-aisp, loc: "p.38", quote: "AI labs can reasonably achieve SL-3 (defending against moderately sophisticated attackers) within approximately one year and SL-4 (defending against highly sophisticated attackers) within 2-3 years through private investment."}
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's expectation", doc: anthropic-2026-risk-report-aug, loc: "App. 6.4.1, p.177", quote: "we expect closing it to require sustained, prioritized investment in our security posture"}
+
+- id: rs-state-weightsec
+  from: state-security-partnership
+  to: weight-security-level
+  type: influences
+  sign: "+"
+  delay: "SL5: at least five years (AISP)"
+  claims:
+    - {author: "AISP (Gekker et al.)", channel: primary, evidence: expert-judgment, qualifier: "estimate", doc: gekker-2026-aisp, loc: "p.38", quote: "achieving SL-5 (defense against nation-state adversaries with billion-dollar budgets) requires an estimated minimum of five years and necessitates active support from national security communities."}
+    - {author: "US White House (NSPM-11)", channel: "relay: us-gov-recent.md (mirror text)", evidence: none-stated, qualifier: "executive direction; an offer to partner, effect not measured", doc: whitehouse-2026-nspm-11, loc: "§4(c)", quote: "enhancing the physical and cyber security of our Nation's data centers"}
+
+- id: rs-state-personnel
+  from: state-security-partnership
+  to: personnel-security
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "US White House (NSPM-11)", channel: "relay: us-gov-recent.md (mirror text)", evidence: none-stated, qualifier: "executive direction; an offer", doc: whitehouse-2026-nspm-11, loc: "§4(c)", quote: "assisting with personnel vetting"}
+    - {author: "AISP (Gekker et al.)", channel: primary, evidence: argument, qualifier: "argues commercial checks fall short of clearance-style vetting", doc: gekker-2026-aisp, loc: "p.43", quote: "Current commercial background check systems used by most technology companies are insufficient to address these threats."}
+
+- id: rs-state-distill
+  from: state-security-partnership
+  to: distillation-extraction
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "US White House (NSPM-11)", channel: "relay: us-gov-recent.md (mirror text)", evidence: none-stated, qualifier: "executive direction; first US-government naming of distillation as a threat (us-gov-recent.md)", doc: whitehouse-2026-nspm-11, loc: "§4(c)", quote: "to help secure America's most cutting-edge AI technologies, including from malicious distillation attacks"}
+
+- id: rs-race-state
+  from: race-dynamics
+  to: state-security-partnership
+  type: influences
+  sign: "+"
+  note: 'The race cuts both ways on security. It raises state support (this relation) and erodes company-side security (rs-race-weightsec).'
+  claims:
+    - {author: "US White House (America's AI Action Plan)", channel: "relay: us-gov-recent.md", evidence: argument, qualifier: "policy; the race is the plan's stated premise (p.1)", doc: whitehouse-2025-action-plan, loc: "p.12", quote: "protect AI innovations from security risks, including malicious cyber actors, insider threats, and others."}
+
+- id: rs-race-weightsec
+  from: race-dynamics
+  to: weight-security-level
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "field-contingent recommendation (self-d)", doc: gdm-2026-fsf-v3-1, loc: "p.11", quote: "we believe these recommendations will only be effective if the entire frontier AI field applies them, and of limited social utility if not."}
+    - {author: "Anthropic (RSP v3.4)", channel: "relay: company-frameworks-anthropic.md", evidence: none-stated, qualifier: "RAND SL4 appears only in the industry-wide column", doc: anthropic-2026-rsp-v3-4, loc: "p.4", quote: "we cannot unilaterally and unconditionally commit to staying in line with the industry-wide recommendations"}
+    - {author: "RAND (Aguirre et al., RAND-SL3)", channel: "relay: us-security.md", evidence: expert-judgment, qualifier: "workshop; 9 voters", doc: aguirre-2026-sl3, loc: "p.v", quote: "The most severe barriers to implementing AI model weight security are organizational rather than technical, including resource allocation, cross-functional coordination, and balancing security with operational velocity."}
+    - {author: "CAIS (Hendrycks et al.)", channel: "relay: academic-ngo.md", evidence: argument, qualifier: "could; illustrative mechanism", doc: hendrycks-2023-overview, loc: "§6, printed p.43", quote: "a corporate AI race compels companies to prioritize the rapid development of AIs. This could increase organizational risks … a company could cut costs by putting less money toward information security, leading to one of its AI systems getting leaked"}
+
+- id: rs-authority-mod
+  from: security-authority
+  type: moderates
+  targets: [rs-race-weightsec]
+  sign: "-"
+  note: A security veto weakens the pull of speed and commercial pressure on security. It does not reduce the pressure.
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: primary, evidence: expert-judgment, qualifier: "SL4 benchmark item", doc: nevo-2024-securing, loc: "App. B, p.90", quote: "the security team has veto (formally and in practice) over network, product, and work environment decisions that may undermine security (even if changes are important from a product or commercial perspective)"}
+
+- id: rs-coordination-weightsec
+  from: coordination-costs
+  to: weight-security-level
+  type: influences
+  sign: "-"
+  note: Joins the security slice to the core organizational cluster (size → coordination costs).
+  claims:
+    - {author: "RAND (Aguirre et al., RAND-SL3)", channel: "relay: us-security.md", evidence: expert-judgment, qualifier: "workshop discussion; 9 voters", doc: aguirre-2026-sl3, loc: "p.15", quote: "Fragmented ownership of systems across teams … was discussed as particularly severe in startups where personnel may have multiple roles and responsibilities."}
+
+- id: rs-loosening-weightsec
+  from: commitment-loosening
+  to: weight-security-level
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: incident, qualifier: "developer self-report; judged not 'a meaningful difference in our overall risk posture'", doc: anthropic-2026-risk-report-aug, loc: "§4.5.8.1, p.146", quote: "since our previous Risk Report, we have set a somewhat less conservative loss threshold. We have also permitted some activations of more capable models to be stored outside these compartments in certain cases."}
+    - {author: Meta, channel: "relay: company-frameworks-meta-msft-amzn.md", evidence: incident, qualifier: "documented text change, Frontier AI Framework v1.1 → v2", doc: meta-2026-advanced-ai-scaling-framework, loc: "p.15", quote: "insofar as is technically feasible and commercially practicable"}
+    - {author: "Anthropic (RSP v2.2)", channel: "relay: company-frameworks-anthropic.md", evidence: incident, qualifier: "documented scope exclusion in a version change", doc: anthropic-2025-rsp-v2-2, loc: "changelog", quote: "both sophisticated insiders and state-compromised insiders from the ASL-3 Security Standard"}
+
+- id: rs-regulation-weightsec
+  from: code-commitments
+  to: weight-security-level
+  type: influences
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "committed by signatories; equivalent alternatives allowed (Measure 6.2)", doc: eu-cop-2025-safety-security, loc: "Measure 6.1", quote: "including non-state external threats, insider threats, and other expected threat actors"}
+
+# ======================================================= the costs of security (good and bad on relations)
+- id: rs-weightsec-velocity
+  from: weight-security-level
+  to: ai-lab-velocity
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: "relay: us-security.md", evidence: expert-judgment, qualifier: "the trade-off is real and mitigable (see rs-accessmin-mod)", doc: nevo-2024-securing, loc: "p.32", quote: "The trade-off between security and productivity that this number of people points to can be significantly mitigated by implementing more constrained and secure interfaces for model weight access."}
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "a named consideration in choosing security levels", doc: gdm-2026-fsf-v3-1, loc: "p.15", quote: "The overall reduced impact of model weights counts against security levels with substantial innovation costs"}
+
+- id: rs-insightsec-velocity
+  from: insight-security-level
+  to: ai-lab-velocity
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: expert-judgment, qualifier: "noticeable at ISL3; 'likely to fundamentally reshape how organizations operate' at ISL4–5", doc: brassgershovich-2026-algorithmic, loc: "p.19", quote: "Measures that effectively defend against sophisticated adversaries often constrain collaboration, slow development velocity, limit work flexibility, and increase operational overhead."}
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: expert-judgment, doc: brassgershovich-2026-algorithmic, loc: "p.26", quote: "The personnel exclusivity requirement (i.e., no cross-compartment personnel) is particularly challenging with AI research because researchers often need to integrate insights across multiple domains."}
+
+- id: rs-personnel-velocity
+  from: personnel-security
+  to: ai-lab-velocity
+  type: influences
+  sign: "-"
+  note: Also a pressure AGAINST keeping personnel controls under growth or race (us-security.md §3(d)).
+  claims:
+    - {author: "AISP (Gekker et al.)", channel: primary, evidence: argument, qualifier: "shares authors with RAND-ISL", doc: gekker-2026-aisp, loc: "p.45", quote: "Overly restrictive personnel security can create single points of failure, slow research, and make organizations less attractive to top talent."}
+
+# ai-lab-velocity (named developer-velocity until 2026-09-27) is one lab's R&D speed. Joseph's development-speed
+# (concepts.yaml) feeds it: r-devspeed-labvelocity. It has no outgoing relation yet.
+
+# ======================================================= diffusion: where security failure becomes proliferation
+- id: rs-weighttheft-diffusion
+  from: weight-theft
+  to: capability-diffusion
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: primary, evidence: incident, qualifier: "'leaked' (not 'stolen'); IASR 2026 counts no confirmed theft", doc: nevo-2024-securing, loc: "p.1", quote: "There is already at least one known case (and arguably two) in which one of the most capable models of its time was irreversibly leaked."}
+
+- id: rs-insight-diffusion
+  from: insight-leakage
+  to: capability-diffusion
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "one of four acceleration mechanisms the developer attributes to itself", doc: anthropic-2026-risk-report-aug, loc: "§5.1, p.158", quote: "The possibility of internal research advances diffusing more broadly, e.g. via intellectual property leaks or other developers inferring paths to capability improvement from studying our models."}
+    - {author: "RAND (Brass-Gershovich et al.)", channel: "relay: us-security.md", evidence: definition, doc: brassgershovich-2026-algorithmic, loc: "p.4", quote: "Algorithmic insights are the novel techniques, methods, or design know-how that materially improve the efficiency, performance, deployability, or similar desirable features of AI systems."}
+
+- id: rs-distill-diffusion
+  from: distillation-extraction
+  to: capability-diffusion
+  type: influences
+  sign: "+"
+  claims:
+    - {author: xAI, channel: "relay: company-frameworks-xai-others.md", evidence: none-stated, qualifier: "'have been shown' with no citation given", doc: xai-2026-faif, loc: "p.8", quote: "large-scale extraction and distillation of reasoning traces, which have been shown to be highly effective in quickly reproducing advanced capabilities"}
+    - {author: Anthropic, channel: primary, evidence: measurement, qualifier: "developer's own fine-tuning experiments; 'highly uncertain' that they represent real attackers", doc: anthropic-2026-risk-report-aug, loc: "§5.1.1, p.159", quote: "If the resulting distilled model inherits risk-relevant capabilities of the original model but is served without adequate safeguards, this could impose risk on the world downstream of the original model's capabilities"}
+    - {author: "NCSC & UK AISI (joint blog)", channel: "relay: uk-security-frameworks.md", evidence: definition, qualifier: "glossary; distillation as a general transfer process", doc: ncsc-2026-frontier-defenders, quote: "capabilities developed in frontier models can be transferred into smaller, cheaper, or open-weight models through a process called distillation"}
+
+- id: rs-antidistill-distill
+  from: anti-distillation-measures
+  to: distillation-extraction
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: measurement, qualifier: "developer's own experiments; bypass mitigations 'not yet highly robust'", doc: anthropic-2026-risk-report-aug, loc: "§5.1.1.2, p.162", quote: "We see fairly clear reductions in uplift across agentic coding and cyber evaluations, but see slightly mixed results on some of our biology-related evaluations."}
+
+- id: rs-diffusion-pace
+  from: capability-diffusion
+  to: capability-pace
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "'directionally risk-increasing … we don't consider it fully obvious' (fn 82)", doc: anthropic-2026-risk-report-aug, loc: "§5.1, p.158", quote: "by developing models with powerful capabilities, we potentially enable other developers to do so faster"}
+
+- id: rs-diffusion-attacker
+  from: capability-diffusion
+  to: external-attacker-capability
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "about open release; open models lag the frontier by 4–7 months on cyber", doc: aisi-2026-open-weight-cyber, quote: "open weight release therefore creates a persistent and irreversible risk of misuse"}
+    - {author: "UK Cabinet Office (CRA)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "could", doc: cabinetoffice-2025-cra, loc: "p.42", quote: "Easier access to AI, particularly open-source models, could empower less sophisticated malicious actors"}
+
+- id: rs-cyber-attacker
+  from: offensive-cyber-capability
+  to: external-attacker-capability
+  type: influences
+  sign: "+"
+  note: Holds to the extent attackers can use the capability (via diffusion, or misuse of access). NCSC also says AI will be used to enhance defence.
+  claims:
+    - {author: UK NCSC, channel: "relay: uk-security-frameworks.md", evidence: expert-judgment, qualifier: "almost certainly (PHIA); Jan 2024 assessment, two-year horizon", doc: ncsc-2024-near-term, loc: "PDF p.3", quote: "Artificial intelligence (AI) will almost certainly increase the volume and heighten the impact of cyber attacks over the next two years."}
+
+- id: rs-diffusion-weightsec
+  from: capability-diffusion
+  to: weight-security-level
+  type: influences
+  sign: "-"
+  note: Diffusion erodes the case for security. Three independent source clusters build the same relaxation rule into their frameworks.
+  claims:
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "relaxation condition on security levels (self-d)", doc: gdm-2026-fsf-v3-1, loc: "p.11", quote: "may be adjusted if … a model does not possess capabilities meaningfully different from other publicly available models that have weaker security applied"}
+    - {author: "RAND (Nevo et al.)", channel: "relay: us-security.md", evidence: argument, doc: nevo-2024-securing, loc: "p.4", quote: "Once a model has been made publicly available (which is often referred to as 'open-sourcing' it), there is no longer value in securing specific copies of it."}
+
+- id: rs-diffusion-regulation
+  from: capability-diffusion
+  to: code-commitments
+  type: influences
+  sign: "-"
+  note: The EU Code's security commitment switches off for any model weaker than the best open-weight model.
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "scope rule; applies to Commitment 6 (security) only", doc: eu-cop-2025-safety-security, loc: "p.18", quote: "A model is exempt from this Commitment if the model's capabilities are inferior to the capabilities of at least one model for which the parameters are publicly available for download."}
+
+- id: rs-diffusion-race
+  from: capability-diffusion
+  to: race-dynamics
+  type: influences
+  sign: "+?"
+  note: Closes several reinforcing loops (theft → diffusion → race → weaker security → theft). The commercial channel looks weak by Anthropic's account; a geopolitical channel is the hypothesis.
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: argument, qualifier: "hypothesis (ours): rivals narrowing the gap raises pressure to move faster"}
+    - {author: Anthropic, channel: primary, evidence: expert-judgment, qualifier: "partial counter-evidence: distillers mostly do not compete for customers", doc: anthropic-2026-risk-report-aug, loc: "fn 83, p.159", quote: "competitors with much less capable models than ours improving the capabilities to the point where they could impose risks on the world (while still being unlikely to compete directly for most of our customers)"}
+
+# ======================================================= detection
+- id: rs-weighttheft-detected
+  from: weight-theft
+  to: detected-incidents
+  type: influences
+  sign: "+?"
+  note: Weak by nature. Theft by a sophisticated insider or state may never be detected, so the balancing loop through perceived risk (theft → detection → resourcing → security) can run silent.
+  claims:
+    - {bears_on: "to", author: IASR 2026 writing team, channel: "relay: uk.md", evidence: measurement, qualifier: "a count of confirmed, public cases; silent on undetected theft", doc: bengio-2026-international, loc: "Box 3.1, p.136", quote: "As of December 2025, there are no confirmed, publicly documented instances of model weight theft."}
+    - {author: "AISP (Gekker et al.)", channel: primary, evidence: argument, qualifier: "bears on detectability", doc: gekker-2026-aisp, loc: "p.43", quote: "A single compromised insider - whether compromised through financial pressure, foreign recruitment, or ideological motivations - could exfiltrate years of research in minutes."}
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "reporting duty (5-day initial report); surfaces detected cases to the AI Office", doc: eu-cop-2025-safety-security, loc: "Measure 9.3", quote: "a serious cybersecurity breach, including the (self-)exfiltration of model weights"}
+
+# ======================================================= human insiders
+- id: rs-insider-weighttheft
+  from: insider-exfiltration
+  to: weight-theft
+  type: influences
+  sign: "+"
+  note: Route to outcome. Core insider-exfiltration pools weights and insights; this and rs-insider-insight separate them.
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "glossary", doc: eu-cop-2025-safety-security, loc: "glossary", quote: "access or transfer of weights or associated assets of a model from their secure storage by the model itself and/or an unauthorised actor."}
+
+- id: rs-insider-insight
+  from: insider-exfiltration
+  to: insight-leakage
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: "relay: us-security.md", evidence: definition, doc: brassgershovich-2026-algorithmic, loc: "p.13 fn 1", quote: "An insider with legitimate access to insights who transfers those insights to an unauthorized party is acting without authorization under this framework"}
+
+- id: rs-personnel-exfil
+  from: personnel-security
+  to: insider-exfiltration
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: expert-judgment, qualifier: "benchmark at ISL3 and above; framework 'descriptive rather than prescriptive'", doc: brassgershovich-2026-algorithmic, loc: "p.22", quote: "An insider-threat program becomes essential. Because a single knowledgeable employee can constitute a complete vector for insight theft, behavioral monitoring through user and entity behavior analytics (UEBA) systems, employee spot-checking, new-hire screening, and rigorous offboarding procedures are critical."}
+    - {author: "RAND (Nevo et al.)", channel: primary, evidence: expert-judgment, qualifier: "emerging point of consensus among interviewed experts", doc: nevo-2024-securing, loc: "p.18", quote: "Experts generally agreed that this is a significant source of risk and that significant efforts should be dedicated to mitigating it."}
+
+- id: rs-accessmin-mod
+  from: access-minimization
+  type: moderates
+  targets: [r-access-exfil, r-growth-access]
+  sign: "-"
+  note: 'Decouples weight security from headcount. RAND-ISL says the equivalent lever for insights is bounded ("possibly even infeasible"), so this moderation is strong for weights and weak for insights.'
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: primary, evidence: expert-judgment, qualifier: "SL3 benchmark caps", doc: nevo-2024-securing, loc: "App. B, p.80", quote: "Output-limited arbitrary access is limited to 100 people, access to an isolated network with direct access is limited to 50 people, and the ability to make copies of the weights is limited to 20 people."}
+    - {author: "Google DeepMind (Shah et al.)", channel: "relay: academic-ngo.md", evidence: argument, qualifier: "developer's own description of its approach", doc: shah-2025-approach, loc: "p.67", quote: "The first line of defense is to reduce access to 'least privilege'"}
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "default measure; no number set; alternatives allowed", doc: eu-cop-2025-safety-security, loc: "App. 4.3(4)", quote: "limiting the number of people who have non-hardened interface-access to model parameters"}
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: expert-judgment, qualifier: "limits the moderator for insights", doc: brassgershovich-2026-algorithmic, loc: "p.26", quote: "a complete isolation of insights is extremely difficult, possibly even infeasible."}
+
+- id: rs-growth-secratio
+  from: org-growth-rate
+  to: security-capacity-ratio
+  type: influences
+  sign: "-"
+  claims:
+    - {bears_on: "to", author: "RAND (Nevo et al.)", channel: primary, evidence: definition, qualifier: "RAND indexes the requirement to headcount; that growth outpaces security hiring is our inference", doc: nevo-2024-securing, loc: "App. B, p.85", quote: "The team has a capacity of at least two dozen people or 5 percent of organization headcount, whichever is larger."}
+    - {author: "integrator (Claude)", channel: dialog, evidence: none-stated, qualifier: "hypothesis (ours): security and personnel-security staff are hired and cleared more slowly than general staff"}
+
+- id: rs-resourcing-secratio
+  from: safety-resourcing
+  to: security-capacity-ratio
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: definition, qualifier: "integrator; resourcing includes security staffing"}
+
+- id: rs-secratio-personnel
+  from: security-capacity-ratio
+  to: personnel-security
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "prior Claude agent (us-security.md verifier)", channel: "relay: us-security.md", evidence: argument, qualifier: "verifier's inference, tagged [I]: the ingredients are in RAND; the mechanism is not", loc: "§3(d)", quote: "per-person work (screening, six-monthly rescreening, access reviews, offboarding, compartment NDAs)"}
+
+- id: rs-growth-familiarity
+  from: org-growth-rate
+  to: familiarity-trust
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK NPSA/NCSC, channel: "relay: absence-claim.md", evidence: argument, qualifier: "may", doc: npsa-2024-secure-innovation, loc: "p.30", quote: "As your workforce grows, you may no longer be able to rely primarily on personal relationships to ensure trust."}
+    - {author: TechTimes, channel: "press, via relay: absence-claim.md", evidence: none-stated, qualifier: "the writer's inference, not Amodei's; headcount past 2,500", quote: "interpersonal familiarity and founder networks has fallen sharply"}
+
+- id: rs-familiarity-exfil
+  from: familiarity-trust
+  to: insider-exfiltration
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: UK NPSA/NCSC, channel: "relay: absence-claim.md", evidence: argument, qualifier: "implied: a lost informal check must be replaced by culture and formal vetting", doc: npsa-2024-secure-innovation, loc: "p.30", quote: "Fostering a positive security culture is even more important."}
+
+- id: rs-strain-exfil
+  from: workforce-strain
+  to: insider-exfiltration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "CISA (DHS)", channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "organizational indicators of insider risk; general, not AI-specific", doc: cisa-2026-insider-threat-guide, loc: "p.67", quote: "High stress environment … Pattern of overwork … Heightened uncertainty, either financial or contractual … Recent merger/acquisition … Under-trained staff (particularly in cybersecurity)"}
+
+- id: rs-growth-strain
+  from: org-growth-rate
+  to: workforce-strain
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: argument, qualifier: "hypothesis (ours): acqui-hire-driven growth is 'recent merger/acquisition' and adds 'under-trained staff' in CISA's list"}
+
+- id: rs-race-strain
+  from: race-dynamics
+  to: workforce-strain
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: argument, qualifier: "hypothesis (ours): release pressure as a source of CISA's 'pattern of overwork'"}
+
+- id: rs-autonomy-insider
+  from: agent-autonomy
+  to: insider-exfiltration
+  type: influences
+  sign: "+"
+  note: A human insider using an over-privileged agent as the lever.
+  claims:
+    - {author: "Five Eyes (ASD, CISA, NSA, CCCS, NCSC-NZ, NCSC-UK; CAREFUL)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "scenario in guidance", doc: asd-2026-careful-agentic, loc: "p.9", quote: "A malicious insider crafts a seemingly innocuous prompt"}
+
+- id: rs-churn-access
+  from: structural-churn
+  to: staff-with-access
+  type: influences
+  sign: "+?"
+  note: Access creep through role changes. Implied by controls that rescreen and revoke on role change; no source asserts it causally.
+  claims:
+    - {author: "RAND (Aguirre et al., RAND-SL3)", channel: "relay: us-security.md", evidence: expert-judgment, qualifier: "implied by control PS-3 (rescreening trigger)", doc: aguirre-2026-sl3, loc: "App. B, PS-3", quote: "a change in role, significant expansion of access scope"}
+
+- id: rs-moc-churnaccess
+  from: management-of-change
+  type: moderates
+  targets: [rs-churn-access]
+  sign: "-"
+  claims:
+    - {author: "RAND (Aguirre et al., RAND-SL3)", channel: "relay: us-security.md", evidence: expert-judgment, qualifier: "change trigger for personnel-security policy (PS-1)", doc: aguirre-2026-sl3, loc: "App. B, PS-1", quote: "following personnel security incidents or significant changes to model weight infrastructure, access patterns, or organizational structure."}
+
+# ---- former staff (a stock, and the one vector RAND says is new with insights)
+- id: rs-turnover-formerstaff
+  from: staff-turnover
+  to: former-staff-knowledge
+  type: influences
+  sign: "+"
+  note: Flow into stock. Turnover reaches insight leakage only through this stock, which keeps accumulating after the departures (RAND-ISL p.44 is on rs-formerstaff-leak).
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: definition, qualifier: "stock-and-flow identity"}
+
+- id: rs-access-formerstaff
+  from: staff-with-access
+  to: former-staff-knowledge
+  type: influences
+  sign: "+"
+  delay: long
+  claims:
+    - {author: "prior Claude agent (absence-claim.md verifier)", channel: "relay: absence-claim.md", evidence: argument, qualifier: "verifier's inference, marked as such", loc: "§4.1", quote: "Growth multiplies the number of future former employees; that last step is my inference."}
+
+- id: rs-formerstaff-leak
+  from: former-staff-knowledge
+  to: insight-leakage
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: expert-judgment, qualifier: "a new vector, not in RAND-W; rated feasible for all attacker classes, even OC1 (p.16)", doc: brassgershovich-2026-algorithmic, loc: "p.44", quote: "For algorithmic insights, this vector is particularly significant because insights exist substantially as knowledge in researchers' minds. In many cases, former employees might not even recognize that the knowledge they carry constitutes a proprietary insight."}
+
+- id: rs-offboarding-mod
+  from: personnel-security
+  type: moderates
+  targets: [rs-formerstaff-leak]
+  sign: "-"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: expert-judgment, doc: brassgershovich-2026-algorithmic, loc: "p.44", quote: "NDA contracts, screening during offboarding, and communicating the issues and consequences of unauthorized sharing are specific techniques for mitigating this risk."}
+
+# ---- insight security as a response to growth
+- id: rs-insightsec-leak
+  from: insight-security-level
+  to: insight-leakage
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: expert-judgment, qualifier: "real but bounded", doc: brassgershovich-2026-algorithmic, loc: "p.26", quote: "Although organizations should aggressively minimize distribution through compartmentalization and centralized repositories, a complete isolation of insights is extremely difficult, possibly even infeasible."}
+
+- id: rs-growth-insightsec
+  from: org-growth-rate
+  to: insight-security-level
+  type: influences
+  sign: "+"
+  note: A developer's stated response to its own growth. Together with r-growth-access (growth → more people with access) it forms a two-signed pair, and the insight lever is the weaker one (rs-insightsec-leak).
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "unredacted Risk Report access narrowed to 'at least 200' employees", doc: anthropic-2026-risk-report-aug, loc: "§1.3.4, p.15", quote: "we expect there may often be information which is both important to our risk assessment and highly sensitive to the point of meriting greater internal compartmentalization, especially in light of the company's ongoing growth."}
+
+# ---- hostile leverage
+- id: rs-leverage-weighttheft
+  from: hostile-leverage
+  to: weight-theft
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: primary, evidence: argument, qualifier: "attack vector description; example is a DOJ accusation against Huawei (non-AI)", doc: brassgershovich-2026-algorithmic, loc: "p.44", quote: "An adversary can build financial or legal leverage over an organization through investments or grants that initially appear innocent but are then used to force access."}
+
+- id: rs-leverage-weightsec
+  from: hostile-leverage
+  to: weight-security-level
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: "relay: us-security.md", evidence: expert-judgment, qualifier: "SL4 benchmark item (investor vetting)", doc: nevo-2024-securing, loc: "App. B, p.90", quote: "Investors are thoroughly vetted to prevent inappropriate pressure undermining the security of the organization's assets."}
+
+- id: rs-capital-leverage
+  from: capital-pressure
+  to: hostile-leverage
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: argument, qualifier: "hypothesis (ours): raising more capital from more sources widens the surface RAND's investor vetting exists to close"}
+
+# ======================================================= the extended workforce and insider misuse
+- id: rs-extended-misuse
+  from: extended-workforce-access
+  to: insider-misuse
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: incident, qualifier: "developer self-report; its review found no concerning CB misuse", doc: anthropic-2026-risk-report-aug, loc: "§4.5.8.2.2, p.148", quote: "This covered a pool of roughly 50,000 people, who were vetted only by our vendors (many of which did not have screening processes capable of stopping even CB-1 threat actors, prior to our strengthened requirements described above), and totaled around 133M exchanges."}
+    - {author: Anthropic, channel: primary, evidence: expert-judgment, qualifier: "developer's own estimate of the hiring-route vulnerability", doc: anthropic-2026-risk-report-aug, loc: "fn 75, p.149", quote: "we expect it would not have been particularly difficult (prior to April 2026) for threat actors to get hired in a red-teaming role by one of our vendors."}
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: incident, qualifier: "developer self-report (Apr 2026)", doc: anthropic-2026-risk-report-aug, loc: "§4.5.8.2.1, pp.147–148", quote: "a small number of contractors at data-labeling vendors leveraged their existing access to exploit a flaw … to obtain an API key that let them interact with models, including Mythos Preview"}
+
+- id: rs-personnel-misuse
+  from: personnel-security
+  to: insider-misuse
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: expert-judgment, qualifier: "company's own assessment", doc: gdm-2026-fsf-v3-1, loc: "p.11", quote: "the risks of insider misuse posed by the misuse T/CCLs identified below are effectively addressed by our baseline controls (such as background checks and access restrictions)"}
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: none-stated, qualifier: "developer's description of its own practice: vetting delegated to vendors (a coverage gap)", doc: anthropic-2026-risk-report-aug, loc: "§4.5.5.3, p.144", quote: "We do not directly vet the individual contractors that the vendors engage to provide human feedback data; screening those individuals is the vendor's responsibility"}
+
+- id: rs-safeguard-misuse
+  from: safeguard-strength
+  to: insider-misuse
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: incident, qualifier: "the same flag disabled blocking and logging", doc: anthropic-2026-risk-report-aug, loc: "§4.5.8.2.2, p.149", quote: "This traffic was controlled by a flag meant only for internal use, which disabled not only the blocking behavior of the classifiers but also the logging of their flags"}
+
+- id: rs-growth-extended
+  from: org-growth-rate
+  to: extended-workforce-access
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: none-stated, qualifier: "hypothesis (ours): core org-growth-rate includes contractors; Anthropic's ~50,000 is a level at one time, not a trend"}
+
+# ======================================================= AI systems as insiders
+- id: rs-internal-selfexfil
+  from: internal-ai-deployment
+  to: self-exfiltration
+  type: influences
+  sign: "+"
+  note: Personnel security has no edge into self-exfiltration, deliberately. AISP says AI insiders can overpower labour-intensive insider techniques; the controls here are oversight and agent permissions.
+  claims:
+    - {author: UK AISI, channel: "relay: uk.md", evidence: expert-judgment, qualifier: "threat model (Research Agenda, Control)", doc: aisi-2025-research, loc: "PDF p.28", quote: "weight exfiltration, secret exfiltration, rogue internal deployments and sabotaging safety research"}
+    - {author: "AISP (Gekker et al.)", channel: primary, evidence: argument, qualifier: "cites Shlegeris (Redwood) 2025", doc: gekker-2026-aisp, loc: "p.82", quote: "Like insiders, AI agents receive broad access with granular permissions, while, like outsiders, they could act at significant scale and potentially overpower labor-intensive insider security techniques."}
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: none-stated, qualifier: "framework commitment (self-d)", doc: gdm-2026-fsf-v3-1, loc: "p.13", quote: "Security mitigations also protect against the risk of the model exfiltrating itself"}
+
+- id: rs-repl-selfexfil
+  from: autonomous-replication-capability
+  to: self-exfiltration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Amazon, channel: "relay: company-frameworks-meta-msft-amzn.md", evidence: argument, qualifier: "filed under loss of control", doc: amazon-2026-frontier-model-safety-framework, loc: "p.3", quote: "Loss of control could arise in circumstances where a model is capable of self-exfiltration, autonomous resource acquisition, or unauthorized replication"}
+
+- id: rs-misal-selfexfil
+  from: misaligned-propensity
+  to: self-exfiltration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "AISP (Gekker et al.)", channel: "relay: us-security.md", evidence: argument, qualifier: "research priority", doc: gekker-2026-aisp, loc: "p.98", quote: "prevention of specific actions by unaligned AI (e.g., self-exfiltration)"}
+
+- id: rs-autonomy-selfexfil
+  from: agent-autonomy
+  to: self-exfiltration
+  type: influences
+  sign: "+"
+  note: Misalignment is not required. Agents may develop exfiltration techniques instrumentally, as a way round obstacles.
+  claims:
+    - {author: "AISP (Gekker et al.)", channel: primary, evidence: argument, qualifier: "cites research (fn 60); not weight exfiltration specifically", doc: gekker-2026-aisp, loc: "p.82", quote: "agents performing benign tasks can engage in offensive cyber behavior when facing obstacles - exploiting vulnerabilities, disabling security defenses, and developing exfiltration techniques to bypass data loss prevention"}
+
+- id: rs-oversight-selfexfil
+  from: oversight-strength
+  to: self-exfiltration
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Google DeepMind (Shah et al.)", channel: "relay: academic-ngo.md", evidence: argument, qualifier: "developer's own stance", doc: shah-2025-approach, loc: "p.9", quote: "treat the model similarly to an untrusted insider"}
+
+- id: rs-selfexfil-weighttheft
+  from: self-exfiltration
+  to: weight-theft
+  type: influences
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "glossary", doc: eu-cop-2025-safety-security, loc: "glossary", quote: "by the model itself and/or an unauthorised actor"}
+
+- id: rs-selfexfil-bounded
+  from: self-exfiltration
+  to: loc-bounded
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Amazon, channel: "relay: company-frameworks-meta-msft-amzn.md", evidence: argument, qualifier: "could", doc: amazon-2026-frontier-model-safety-framework, loc: "p.3", quote: "Loss of control could arise in circumstances where a model is capable of self-exfiltration"}
+
+- id: rs-internal-rogue
+  from: internal-ai-deployment
+  to: rogue-internal-deployment
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: "relay: uk.md", evidence: expert-judgment, qualifier: "threat model (Research Agenda, Control)", doc: aisi-2025-research, loc: "PDF p.28", quote: "rogue internal deployments"}
+    - {author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "threat model; developed with UK AISI and Redwood advisors (not independent of AISI's)", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "pp.35–36", quote: "exfiltrating weights, launching rogue deployments on internal servers"}
+
+- id: rs-misal-rogue
+  from: misaligned-propensity
+  to: rogue-internal-deployment
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "developer threat model (pathway 6 of 8)", doc: anthropic-2026-risk-report-feb, loc: "§2.6, pp.40–50", quote: "Persistent rogue internal deployment"}
+
+- id: rs-rogue-bounded
+  from: rogue-internal-deployment
+  to: loc-bounded
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: UK AISI, channel: "relay: uk.md", evidence: expert-judgment, qualifier: "AISI's operational threat-model heading; AISI does not use 'bounded'", doc: aisi-2025-research, loc: "PDF p.13", quote: "loss of control at AI labs"}
+
+- id: rs-internal-sabotage
+  from: internal-ai-deployment
+  to: ai-insider-sabotage
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Anthropic (RSP v3.4)", channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "likely", doc: anthropic-2026-rsp-v3-4, loc: "p.8", quote: "In the near term, this possibility will likely be most applicable to AI systems that are extensively used within major AI companies, with the opportunity to manipulate how their successor systems are trained and deployed as well as the evidence used to assess their safety."}
+
+- id: rs-misal-sabotage
+  from: misaligned-propensity
+  to: ai-insider-sabotage
+  type: influences
+  sign: "+"
+  claims:
+    - {bears_on: "to", author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "continuation evaluations; 'no examples of unprompted research sabotage'; Anthropic models (COI for us)", doc: aisi-2026-sabotage, quote: "Mythos Preview actively continuing sabotage 7% of the time, compared to 3% for Opus 4.6 and 4% for Sonnet 4.6. However, Opus 4.7 never actively continued sabotage."}
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: definition, qualifier: "definition includes the inadvertent case", doc: anthropic-2026-risk-report-feb, loc: "p.14", quote: "either inadvertently or due to its pursuit of dangerous goals"}
+
+- id: rs-sabotage-oversight
+  from: ai-insider-sabotage
+  to: oversight-strength
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "developer threat model (pathways 1–2 of 8)", doc: anthropic-2026-risk-report-feb, loc: "§2.6, pp.40–50", quote: "Diffuse sandbagging on safety-relevant R&D"}
+    - {author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "threat model", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "pp.35–36", quote: "misdirecting alignment research, inserting backdoors into infrastructure or safety protocols"}
+
+- id: rs-sabotage-evalval
+  from: ai-insider-sabotage
+  to: evaluation-validity
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Anthropic (RSP v3.4)", channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "industry-wide column (recommendation)", doc: anthropic-2026-rsp-v3-4, loc: "p.9", quote: "analyses of threats from AIs should follow very high evidentiary standards with thorough and careful analysis of the possibility that much of the key evidence is suspect due to the possibility of manipulation by AI systems."}
+    - {author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "threat model", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "pp.35–36", quote: "sandbagging capabilities during evaluations"}
+
+- id: rs-oversight-sabotage
+  from: oversight-strength
+  to: ai-insider-sabotage
+  type: influences
+  sign: "-"
+  note: 'Weak where sabotage is low-incrimination. With rs-sabotage-oversight, this forms a reinforcing loop: sabotage weakens oversight, which permits more sabotage.'
+  claims:
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "goal in the Frontier Safety Roadmap, not a commitment", doc: anthropic-2026-frontier-safety-roadmap, quote: "use AI to analyze these records for issues including concerning behavior by insiders (both human and AI)"}
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: definition, qualifier: "limits the link: the hard end of the spectrum", doc: aisi-2026-loss-oversight, loc: "glossary", quote: "low-incrimination actions (subtle, hard-to-detect sabotage or manipulation)"}
+
+- id: rs-sabotage-misal
+  from: ai-insider-sabotage
+  to: misaligned-propensity
+  type: influences
+  sign: "+"
+  delay: "long (the next model generation)"
+  note: Cross-generation reinforcing loop. A sabotaging model shapes its successor's training (misaligned → sabotage → misaligned successor).
+  claims:
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "developer threat model (pathways 3–4 of 8)", doc: anthropic-2026-risk-report-feb, loc: "§2.6, pp.40–50", quote: "Code backdoors to help future misaligned models … Poisoning the training data of future models"}
+    - {author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "threat model", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "pp.35–36", quote: "poisoning training runs"}
+    - {bears_on: "mechanism", author: "UK AISI (with Anthropic and the Alan Turing Institute)", channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "feasibility of the mechanism with human-inserted data; not observed from AI insiders", doc: aisi-2025-poisoning-blog, quote: "a small number of documents (as little as 250) could be used to successfully 'poison' the training data of every model we tested"}
+
+- id: rs-sabotage-weightsec
+  from: ai-insider-sabotage
+  to: weight-security-level
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "threat model", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "pp.35–36", quote: "manipulating lab staff to weaken security postures"}
+
+- id: rs-internal-weightsec
+  from: internal-ai-deployment
+  to: weight-security-level
+  type: influences
+  sign: "?"
+  note: Two-signed. AI as security analyst (+); AI inside security infrastructure is itself a high-risk deployment (−).
+  claims:
+    - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "(+) goal, not a commitment", doc: anthropic-2026-frontier-safety-roadmap, quote: "use AI to analyze these records for issues including concerning behavior by insiders (both human and AI)"}
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: none-stated, qualifier: "(−) such deployments are gated", doc: gdm-2026-fsf-v3-1, loc: "p.19", quote: "use cases with the potential to enable severe threat scenarios (e.g. building internal security infrastructure or automating ML R&D)"}
+
+- id: rs-internal-insight
+  from: internal-ai-deployment
+  to: insight-leakage
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Five Eyes (ASD, CISA, NSA, CCCS, NCSC-NZ, NCSC-UK; CAREFUL)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "a compromised agent (external attacker), not a misaligned one", doc: asd-2026-careful-agentic, loc: "p.10", quote: "A malicious actor can exploit a compromised AI agent as an insider threat, leveraging its legitimate access to exfiltrate data, disable defences, or facilitate attacks while appearing to function normally"}
+
+- id: rs-misal-insight
+  from: misaligned-propensity
+  to: insight-leakage
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Brass-Gershovich et al.)", channel: "relay: us-security.md", evidence: definition, qualifier: "codebook category", doc: brassgershovich-2026-algorithmic, loc: "p.34", quote: "Misaligned AI exfiltration: Scenarios in which an AI system, because of misalignment or unintended behavior, leads to the unauthorized exfiltration of data or insights."}
+
+# ---- where human and AI insiders meet
+- id: rs-internal-shadow
+  from: internal-ai-deployment
+  to: shadow-agent-use
+  type: influences
+  sign: "+?"
+  claims:
+    - {bears_on: "to", author: Anthropic, channel: primary, evidence: incident, qualifier: "developer's own account; monitoring coverage lags use", doc: anthropic-2026-risk-report-aug, loc: "§5.2.5, p.167", quote: "Our offline monitoring still doesn't cover all employees and all usage within clusters with very sensitive resources"}
+    - {author: "Five Eyes (ASD, CISA, NSA, CCCS, NCSC-NZ, NCSC-UK; CAREFUL)", channel: "relay: uk-security-frameworks.md", evidence: argument, doc: asd-2026-careful-agentic, loc: "p.13", quote: "Agentic system processes can outpace human monitoring capability"}
+
+- id: rs-shadow-unsanc
+  from: shadow-agent-use
+  to: unsanctioned-action
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: incident, qualifier: "one case; legacy instructions spawned agents with --dangerously-skip-permissions", doc: anthropic-2026-risk-report-aug, loc: "§5.2.5, p.167", quote: "In the process of performing its task, one of these new agents deleted a large number of jobs, which is how these dangerous agents were caught and shut down."}
+
+- id: rs-shadow-detected
+  from: shadow-agent-use
+  to: detected-incidents
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: incident, qualifier: "intent could not be established", doc: anthropic-2026-risk-report-aug, loc: "§5.2.5, p.167", quote: "We believe this agent was attempting to delete only the jobs that the agent itself had created and made a mistake; however, given the gap in our monitoring coverage, we cannot confirm this."}
+
+- id: rs-shadow-insider
+  from: shadow-agent-use
+  to: insider-exfiltration
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: argument, qualifier: "hypothesis (ours): unlogged agent use removes the audit trail that insider detection (UEBA, access review) relies on"}
+
+# ======================================================= indicators
+- id: is-security-team-share
+  from: ind-security-team-share
+  to: security-capacity-ratio
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: primary, evidence: definition, qualifier: "SL3 benchmark floor; indicator proposed by the us-security.md verifier", doc: nevo-2024-securing, loc: "App. B, p.85", quote: "at least two dozen people or 5 percent of organization headcount, whichever is larger"}
+
+- id: is-privileged-access
+  from: ind-privileged-access-count
+  to: staff-with-access
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: "RAND (Nevo et al.)", channel: primary, evidence: definition, qualifier: "SL3 benchmark caps", doc: nevo-2024-securing, loc: "App. B, p.80", quote: "Output-limited arbitrary access is limited to 100 people, access to an isolated network with direct access is limited to 50 people, and the ability to make copies of the weights is limited to 20 people."}
+
+- id: is-access-recert
+  from: ind-access-recertification
+  to: personnel-security
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "default measure", doc: eu-cop-2025-safety-security, loc: "App. 4.3(1)", quote: "checked on a regular basis of at least every six months"}
+    - {author: "RAND (Nevo et al.)", channel: "relay: us-security.md", evidence: definition, qualifier: "SL3 benchmark", doc: nevo-2024-securing, loc: "App. B, p.83", quote: "Employees with access to the weights or any sensitive systems go through extensive screening every six months"}
+
+- id: is-former-compartment
+  from: ind-former-compartment-staff
+  to: former-staff-knowledge
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: "prior Claude agent (us-security.md verifier)", channel: "relay: us-security.md", evidence: none-stated, qualifier: "proposed indicator", loc: "§4", quote: "count of former staff who held insight-compartment access"}
+
+- id: is-extended-size
+  from: ind-extended-workforce-size
+  to: extended-workforce-access
+  type: indicates
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: Anthropic, channel: primary, evidence: measurement, qualifier: "one developer, May 2025–Apr 2026", doc: anthropic-2026-risk-report-aug, loc: "§4.5.8.2.2, p.148", quote: "a pool of roughly 50,000 people"}
+
+- id: is-confirmed-leaks
+  from: ind-confirmed-weight-leaks
+  to: weight-theft
+  type: indicates
+  sign: "?"
+  note: 'Contested twice over. By definition ("theft" vs "leak": IASR counts zero thefts, RAND-W one or two leaks) and by detection (an undetected theft does not count).'
+  claims:
+    - {bears_on: "from", author: IASR 2026 writing team, channel: "relay: uk.md", evidence: measurement, qualifier: "confirmed and public only", doc: bengio-2026-international, loc: "Box 3.1, p.136", quote: "no confirmed, publicly documented instances of model weight theft"}
+    - {bears_on: "from", author: "RAND (Nevo et al.)", channel: primary, evidence: incident, qualifier: "'leaked', not 'stolen'", doc: nevo-2024-securing, loc: "p.1", quote: "at least one known case (and arguably two) in which one of the most capable models of its time was irreversibly leaked"}

@@ -1,0 +1,1075 @@
+# Societal and structural slice (shard `sx`): relations. Ids prefixed sx-. See notes-sx.md.
+# Channel "primary" = read by this agent in the source (IASR 2026 via influx/iasr-2026-full.md, cited by section;
+# others via relata PDF + pdftotext, cited by printed page unless "PDF p." is given).
+
+# ======================================================= market structure and concentration (C3)
+- id: sx-cost-concentration
+  from: development-cost
+  to: market-concentration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2025-international, loc: "§2.3.3, p.123", quote: "The market is so concentrated because of high barriers to entry. Developing state-of-the-art, general-purpose AI models requires substantial up-front investment."}
+    - {author: IASR 2025 writing team, channel: primary, evidence: measurement, qualifier: "figure caption; training-cost estimates from Maslej et al.", doc: bengio-2025-international, loc: "§2.3.3, Fig. 2.8, p.124", quote: "Only a few companies can afford to train models at such high cost, further increasing market concentration."}
+
+- id: sx-compute-cost
+  from: ai-compute-scale
+  to: development-cost
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "estimate and projection", doc: bengio-2026-international, loc: "§1.3", quote: "Current frontier AI training runs already cost approximately $500 million in computational resources alone, with next-generation models projected to require $1–10 billion."}
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: none-stated, qualifier: "expert-insights essay; restating cost estimates", doc: mitre-2025-agi, loc: "p.2", quote: "the leading AI labs are building their war chests and aggressively pursuing models that are on pace to cost $1 billion or more by 2027."}
+
+- id: sx-wta-concentration
+  from: winner-take-all-dynamics
+  to: market-concentration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "economies of scale and network effects", doc: bengio-2025-international, loc: "§2.3.3, p.123", quote: "market leaders benefit from self-reinforcing dynamics that reward winners. Economies of scale allow bigger AI companies to spread one-off development costs over an ever-larger customer base"}
+
+- id: sx-wta-race
+  from: winner-take-all-dynamics
+  to: race-dynamics
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "economic theory; 'direct studies of safety investment in the AI market are currently lacking'", doc: bengio-2025-international, loc: "§3.2.2(B), p.178", quote: "if cutting corners in (for example) testing and safety could allow one developer to take the lead in model capability, then there is a strong incentive to cut those corners"}
+    - {author: "Uuk et al.", channel: "relay: remaining-literature.md", evidence: none-stated, qualifier: "named source of systemic risk in a rapid review (FLI-affiliated)", doc: uuk-2024-taxonomy, loc: "Table 5, pp.12–14", quote: "Winner-take-all dynamics"}
+
+- id: sx-concentration-concentration
+  from: market-concentration
+  to: market-concentration
+  type: influences
+  sign: "+"
+  note: Self-reinforcement through acquisitions and compute-for-access deals (R, self-loop).
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "challenge for policymakers", doc: bengio-2025-international, loc: "§2.3.3, p.127", quote: "smaller firms quickly become acquisition targets for larger competitors"}
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, doc: bengio-2025-international, loc: "§3.2.2(C), pp.178–179", quote: "the startups typically trade access to their innovations for use of the larger companies' computing infrastructure and latest models, further reinforcing the market concentration"}
+
+- id: sx-diffusion-concentration
+  from: capability-diffusion
+  to: market-concentration
+  type: influences
+  sign: "-"
+  note: The same diffusion the security shard counts as proliferation, counted here as a check on concentration. Good and bad on relations.
+  claims:
+    - {author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: none-stated, qualifier: "passing mention, framed as a benefit of open-weight release", doc: aisi-2025-open-weight-risk, quote: "increase transparency, allow for widespread red teaming, and decrease market concentration"}
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "recommendation (mitigation); acts on exclusive access", doc: davidson-2025-ai-enabled-coups, loc: "Summary, Mitigations", quote: "Share capabilities with multiple independent stakeholders, to prevent a small group from gaining exclusive access to powerful AI."}
+
+- id: sx-concentration-monoculture
+  from: market-concentration
+  to: model-monoculture
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2025-international, loc: "§2.3.3, p.123", quote: "The widespread use of a few general-purpose AI models can also make the financial, healthcare, and other critical sectors vulnerable to systemic failures"}
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "model-origin counts (Epoch notable models)", doc: bengio-2026-international, loc: "§3.1, Category 4", quote: "A small number of models, mostly developed in the US and China (Figure 3.3), currently underpin AI applications in healthcare, finance, education, and other domains"}
+
+- id: sx-monoculture-failures
+  from: model-monoculture
+  to: failure-correlation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: NIST (AI 600-1), channel: primary, evidence: definition, qualifier: "voluntary framework profile; definition in a footnote", doc: nationalinstituteofstandardsandtechnologyus-2024-artificial, loc: "p.2 fn 3", quote: "repeated use of the same model or algorithm in consequential decision-making settings like employment and lending can result in increased susceptibility by systems to correlated failures"}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "section heading and body", doc: bengio-2026-international, loc: "§3.1, Category 4", quote: "When the same model powers many applications, faults in that model can propagate across all applications that depend on it."}
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "concern; 'little research on predicting or mitigating single points of failure'", doc: bengio-2025-international, loc: "§2.3.3, p.126", quote: "flaws, vulnerabilities, bugs, or inherent biases in these widely adopted AI systems could lead to simultaneous failures across multiple industries"}
+    - {author: "CSET (Arnold & Toner)", channel: "relay: eu.md", evidence: argument, qualifier: "named risk factor, argued from history", doc: arnold-2021-ai-accidents, loc: "p.17", quote: "When a single AI model is used in many different real-world settings at once, a single error can create havoc on a much larger scale."}
+    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; mp shard)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1", quote: "If multiple agents are built on the same base model or incorporate the same tools, then they may also exhibit correlated failures."}
+    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; mp shard)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 'Widespread reliance on a small number of models creates single points of failure'", quote: "Even ostensibly independent models may share vulnerabilities due to model convergence, where separately developed systems seem to process information in similar ways."}
+
+
+
+- id: sx-monoculture-oversight
+  from: model-monoculture
+  to: oversight-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "about developers and regulators; cross-sector deployment", doc: bengio-2026-international, loc: "§3.1, Category 4", quote: "Cross-sector deployment makes it difficult for developers, regulators and policymakers to understand and monitor the full range of applications that a given model supports."}
+
+- id: sx-monoculture-lockin
+  from: model-monoculture
+  to: value-lock-in
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: Google DeepMind (Shah et al.), channel: primary, evidence: none-stated, qualifier: "example of a structural risk, set out of scope", doc: shah-2025-approach, loc: "§4.4, p.55", quote: "AI also threatens to lock in our values in other ways, such as if everyone is relying on the same AI assistant for morally important decisions"}
+
+- id: sx-monoculture-bias
+  from: model-monoculture
+  to: bias-discrimination
+  type: influences
+  sign: "+"
+  claims:
+    - {author: NIST (AI 600-1), channel: primary, evidence: argument, qualifier: "homogenization as a named risk", doc: nationalinstituteofstandardsandtechnologyus-2024-artificial, loc: "§2.6, p.9", quote: "Overly homogenized outputs can themselves be incorrect, or they may lead to unreliable decision-making or amplify harmful biases. These phenomena can flow from foundation models to downstream models and systems, with the foundation models acting as 'bottlenecks,' or single points of failure."}
+
+# ======================================================= too big to fail (held for this slice by the coordinator)
+- id: sx-concentration-dependence
+  from: market-concentration
+  to: societal-dependence-on-ai-firms
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "concern", doc: bengio-2025-international, loc: "§3.2.2(C), p.178", quote: "There is some concern that critical sectors in society might over time become overly dependent on the products of a small number of leading AI companies in this way."}
+    - {author: "US White House (NSPM-11)", channel: "relay: us-gov-recent.md (mirror text)", evidence: none-stated, qualifier: "the state as dependent user; a different angle from societal monoculture", doc: whitehouse-2026-nspm-11, loc: "§1", quote: "fostered dangerous dependencies on single vendors"}
+
+- id: sx-dependence-tbtf
+  from: societal-dependence-on-ai-firms
+  to: too-big-to-fail-expectation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: established-practice, qualifier: "'well studied in the economic literature'", doc: bengio-2025-international, loc: "§3.2.2(C), p.178", quote: "They arise when an organisation reaches a size and level of influence so substantial that potential failure could pose systemic risks to the economy or national security. Governments are therefore inclined to take steps to protect these organisations from failure"}
+
+- id: sx-tbtf-safeguard
+  from: too-big-to-fail-expectation
+  to: safeguard-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "'empirical evidence on this effect remains mixed'", doc: bengio-2025-international, loc: "§3.2.2(C), p.178", quote: "When protected in this way, companies may become more inclined to take excessive risks or cut corners on safety standards"}
+
+- id: sx-dependence-haltcost
+  from: societal-dependence-on-ai-firms
+  to: halt-cost
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Barrett et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "loss-of-control causal factor ('Lack of Willingness to Provide Necessary Control Actions Due to Dependency')", doc: barrett-2025-stampstpa, loc: "p.19", quote: "organizations may rely on AI systems for competitive advantage or revenue generation, making shutdown economically costly"}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "argument from evolutionary pressures", doc: hendrycks-2023-overview, loc: "§3.3, printed p.21", quote: "AIs may eventually become enmeshed in vital infrastructure such as power grids or the internet. Many people may then be unwilling to accept the cost of being able to effortlessly deactivate them"}
+
+- id: sx-adoption-haltcost
+  from: ai-adoption
+  to: halt-cost
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "about post-deployment fixes", doc: bengio-2026-international, loc: "§3.1, Category 4", quote: "It is difficult to fix problems after deployment as this causes operational disruptions"}
+
+- id: sx-haltcost-oversight
+  from: halt-cost
+  to: oversight-strength
+  type: influences
+  sign: "-?"
+  note: 'Oversight-strength includes "the ability to correct". Barrett frames the effect as unwillingness to act; CAIS as giving up the ability to deactivate.'
+  claims:
+    - {author: Barrett et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "may; STPA loss scenario", doc: barrett-2025-stampstpa, loc: "p.19", quote: "powerful stakeholders may have invested heavily in AI development and resist constraints that would limit returns on investment"}
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "the project team's view", doc: aisi-2026-loss-oversight, loc: "§7.2, p.51", quote: "Halting a deployment, retraining, or rolling back to an earlier checkpoint has direct, attributable costs in lost revenue, competitive speed, or foregone research"}
+
+# ======================================================= political influence of AI industry (Kulveit's cross-system loop)
+- id: sx-concentration-influence
+  from: market-concentration
+  to: ai-industry-political-influence
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "argument paper", doc: kulveit-2025-gradual, loc: "Executive Summary, p.1", quote: "the economic incentives for companies to replace humans with AI will also push them to influence states and culture to support this change, using their growing economic power to shape both policy and public opinion"}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.4, printed p.10", quote: "The concentration of power and influence that could be afforded by AIs could enable corporations to exert unprecedented control over the political system and entirely drown out the voices of citizens."}
+
+- id: sx-influence-regulation
+  from: ai-industry-political-influence
+  to: regulatory-requirements
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "stated as a present fact ('even now')", doc: kulveit-2025-gradual, loc: "§5.3, p.14", quote: "Companies building AI systems are incentivized to push against some forms of AI regulation for the sake of their future profits."}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: established-practice, qualifier: "historical pattern", doc: hendrycks-2023-overview, loc: "§2.4, printed p.10", quote: "Corporations have long lobbied to weaken laws and policies that restrict their actions and power, all in the service of profit."}
+
+- id: sx-influence-concentration
+  from: ai-industry-political-influence
+  to: market-concentration
+  type: influences
+  sign: "+"
+  note: With sx-concentration-influence, Kulveit's reinforcing loop between economic and political power.
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, doc: kulveit-2025-gradual, loc: "Executive Summary, p.1", quote: "which will in turn allow those companies to accrue even greater economic power."}
+
+# ======================================================= geopolitics and military (C2, A10)
+- id: sx-geo-race
+  from: geopolitical-competition
+  to: race-dynamics
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "might; expert-insights essay", doc: mitre-2025-agi, loc: "p.7", quote: "the pursuit of AGI could foster a period of instability, as nations and corporations race to achieve dominance in this transformative technology."}
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "stated as a present fact ('even now')", doc: kulveit-2025-gradual, loc: "§5.3, p.15", quote: "States compete with each other on AI research and development, because of the potential economic and geostrategic benefits."}
+
+- id: sx-geo-regulation
+  from: geopolitical-competition
+  to: regulatory-requirements
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "UK Cabinet Office & GO-Science (Chronic Risks Analysis)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "may; government chronic-risk analysis", doc: cabinetoffice-2025-cra, loc: "p.42", quote: "As countries pursue both economic and military advantages, an AI arms race may ensue, making it harder to reach global consensus on long term management on its misuse"}
+    - {author: "US White House (EO 14365)", channel: "relay: us-gov-recent.md", evidence: instrument, qualifier: "the actor's own rationale; binds agencies (DOJ litigation task force against state AI laws)", doc: eo-2025-14365, loc: "§1", quote: "in a race with adversaries for supremacy"}
+
+- id: sx-fma-geo
+  from: perceived-first-mover-advantage
+  to: geopolitical-competition
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "might; problem 1 ('wonder weapons')", doc: mitre-2025-agi, loc: "p.4", quote: "Such a first-mover advantage could disrupt the military balance of power in key theaters, create a host of proliferation risks, and accelerate technological race dynamics."}
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "incentives for state AI adoption", doc: kulveit-2025-gradual, loc: "§4.3.1, p.12", quote: "The first-mover advantages in military applications, economic planning, and diplomatic strategy create particularly strong incentives for early and aggressive AI adoption"}
+
+- id: sx-fma-instability
+  from: perceived-first-mover-advantage
+  to: strategic-instability
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "problem 5; Cold War analogy", doc: mitre-2025-agi, loc: "p.7", quote: "nations' perceptions of AGI's feasibility and potential to confer a first-mover advantage could become as critical as the technology itself … Misinterpretations or miscalculations, much like those feared during the Cold War, could precipitate preemptive strategies or arms buildups that destabilize global security."}
+
+- id: sx-geo-instability
+  from: geopolitical-competition
+  to: strategic-instability
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "might", doc: mitre-2025-agi, loc: "p.7", quote: "This competition might lead to heightened tensions, reminiscent of the nuclear arms race, such that the quest for superiority risks precipitating, rather than deterring, conflict."}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "argued from Cold War history", doc: hendrycks-2023-overview, loc: "§3.1.4, printed p.16", quote: "Competitive pressures make actors more willing to accept the risk of extinction."}
+
+- id: sx-geo-military
+  from: geopolitical-competition
+  to: military-ai-adoption
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "could", doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "While militaries will be cautious when deploying fully autonomous systems, competitive pressures could easily lead to rushed adoption without adequate safeguards."}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "figure caption", doc: hendrycks-2023-overview, loc: "§3.1.3, Fig. 8, printed p.15", quote: "A military AI arms race could pressure countries into delegating many crucial decisions over armaments to AIs."}
+
+- id: sx-military-instability
+  from: military-ai-adoption
+  to: strategic-instability
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "analogy to the 2010 Flash Crash", doc: hendrycks-2023-overview, loc: "§3.1.3, printed p.15", quote: "If multiple nations were to use AIs to automate their defense systems, an error could be catastrophic, triggering a spiral of attacks and counter-attacks that would happen too quickly for humans to step in—a flash war."}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§3.1.3, printed p.16", quote: "rapidly evolving automated warfare would be unprecedented, making it difficult for actors to evaluate their chances of victory in any particular conflict. This would increase the risk of miscalculation, making war more more likely."}
+
+- id: sx-military-loyalty
+  from: military-ai-adoption
+  to: singular-ai-loyalty
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "the most concerning setting for risk factor 1", doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "This is most concerning within the military, where autonomous weapons, drones, and robots that fully replace human soldiers could obey orders from a single person or small group."}
+
+- id: sx-pace-interstate
+  from: capability-pace
+  to: interstate-power-shift
+  type: influences
+  sign: "+?"
+  note: A source claim of the shape of Joseph's speed premise, at the level of capability pace and national lead.
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "might", doc: davidson-2025-ai-enabled-coups, loc: "§1", quote: "Very rapid AI development might grant one country extreme dominance over all other powers."}
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "problem 2; adoption capacity matters more than being first", doc: mitre-2025-agi, loc: "p.4", quote: "As the U.S., allied, and rival militaries establish access to AGI and adopt it, it could upend military balances by uplifting a variety of capabilities that affect key building blocks of military competition"}
+
+- id: sx-labour-interstate
+  from: labour-displacement
+  to: interstate-power-shift
+  type: influences
+  sign: "?"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "sign depends on which states manage the shift", doc: mitre-2025-agi, loc: "p.5", quote: "States that are better postured to capitalize on—and manage—such economic and scientific shifts could have greatly expanded influence in the future."}
+
+# ======================================================= power concentration and coups (A9)
+- id: sx-participation-power
+  from: human-participation-dependence
+  to: power-concentration
+  type: influences
+  sign: "-"
+  note: Three independent clusters (Forethought, ACS/Kulveit, CAIS) state the same mechanism.
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "Today, even dictators rely on others to maintain their power. Military force requires personnel, government action relies on civil servants, and economic output depends on a broad workforce. This naturally distributes power throughout society."}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.4, printed p.10", quote: "AIs could allow totalitarian governments to efficiently collect, process, and act on an unprecedented volume of information, permitting an ever smaller group of people to surveil and exert complete control over the population without the need to enlist millions of citizens to serve as willing government functionaries."}
+    - {author: Google DeepMind (Shah et al.), channel: primary, evidence: argument, qualifier: "may; misuse section", doc: shah-2025-approach, loc: "§4.1, p.46", quote: "Automation at scale: AI systems may concentrate power in the hands of individuals who control it. As increasing numbers of real world actions can be automated, a bad actor becomes less dependent on assistance from other humans"}
+
+- id: sx-participation-accountability
+  from: human-participation-dependence
+  to: democratic-accountability
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "argument from the rentier-state literature", doc: kulveit-2025-gradual, loc: "Executive Summary, pp.1–2", quote: "states funded mainly by taxes on AI profits instead of their citizens' labor will have little incentive to ensure citizens' representation."}
+
+- id: sx-participation-passive
+  from: human-participation-dependence
+  to: loc-passive
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "core claims 2–3", doc: kulveit-2025-gradual, loc: "§1, p.2", quote: "If these systems become less reliant on human labor and cognition, that would also decrease the extent to which humans could explicitly or implicitly align them."}
+
+- id: sx-adoption-participation
+  from: ai-adoption
+  to: human-participation-dependence
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "competitive pressure on firms to adopt", doc: kulveit-2025-gradual, loc: "Executive Summary, p.1", quote: "Once this human participation gets displaced by more competitive machine alternatives, our institutions' incentives for growth will be untethered from a need to ensure human flourishing."}
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "Advanced AI removes this constraint, making it technologically feasible to replace human workers with AI systems that are singularly loyal to just one person."}
+
+- id: sx-labour-participation
+  from: labour-displacement
+  to: human-participation-dependence
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, doc: kulveit-2025-gradual, loc: "§2.3, p.4", quote: "human labor and unions losing leverage because of the presence of AI alternatives; human consumers having comparatively fewer resources."}
+
+- id: sx-surveillance-accountability
+  from: ai-enabled-surveillance
+  to: democratic-accountability
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "might", doc: kulveit-2025-gradual, loc: "§4.2.2, p.11", quote: "A state with sufficiently advanced AI systems might be able to predict and shut down civil unrest before it can exert meaningful pressure on institutional behavior"}
+    - {author: MIT (Slattery et al.), channel: primary, evidence: none-stated, qualifier: "subdomain description (6.1), summarizing coded documents", doc: slattery-2026-risk, loc: "§6.1, PDF p.45", quote: "The centralization of AI systems and their authoritative power could also enable governments or other empowered actors to pursue overly aggressive forms of censorship, oppression, and surveillance"}
+
+- id: sx-surveillance-power
+  from: ai-enabled-surveillance
+  to: power-concentration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.4, printed p.10", quote: "The persuasive abilities of AIs combined with their potential for surveillance and the advancement of autonomous weapons could allow small groups of actors to 'lock-in' their control over society, perhaps permanently."}
+    - {author: Google DeepMind (Shah et al.), channel: primary, evidence: none-stated, qualifier: "example of a structural risk, out of scope", doc: shah-2025-approach, loc: "§4.4, p.55", quote: "AI enables unprecedented surveillance and stability of dictatorship lock-in"}
+
+- id: sx-accountability-power
+  from: democratic-accountability
+  to: power-concentration
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.4, printed p.10", quote: "as power and control shift away from the public and toward elites and leaders, democratic governments are highly vulnerable to totalitarian backsliding."}
+
+- id: sx-power-lockin
+  from: power-concentration
+  to: value-lock-in
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.4, printed p.11", quote: "This could lead to totalitarian rule and intense manipulation of the public by corporations, and could lock in current values, preventing any further moral progress."}
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "potentially", doc: davidson-2025-ai-enabled-coups, loc: "§1", quote: "Coup leaders could potentially stay in power indefinitely, by deploying AI systems to preserve and pursue their goals far into the future."}
+
+- id: sx-concentration-power
+  from: market-concentration
+  to: power-concentration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2025-international, loc: "§2.3.3, p.123", quote: "The high degree of market concentration can invest a small number of large technology companies with a lot of power over the development and deployment of AI, raising questions about their governance."}
+    - {author: "UK DSIT", channel: "relay: uk.md", evidence: argument, qualifier: "section heading; market power; discussion paper", doc: dsit-2023-capabilities, loc: "p.19", quote: "There may be significant concentration of market power in AI"}
+    - {author: "UK Cabinet Office & GO-Science (Chronic Risks Analysis)", channel: "relay: uk-security-frameworks.md", evidence: argument, doc: cabinetoffice-2025-cra, loc: "p.39", quote: "Global tech dominance increases the finance available to them, to develop AI models. This concentrates AI risk"}
+
+- id: sx-concentration-exclusive
+  from: market-concentration
+  to: exclusive-capability-access
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "could", doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "Frontier AI development is already limited to a few organisations, led by a small number of people. This concentration could significantly intensify due to rapidly rising development costs or government centralisation."}
+
+- id: sx-airnd-exclusive
+  from: ai-led-rnd
+  to: exclusive-capability-access
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "conditional on AI surpassing human experts at AI R&D", doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "once AI surpasses human experts at AI R&D, the leading project could make much faster algorithmic progress, gaining a huge capabilities advantage over its rivals."}
+
+- id: sx-exclusive-coup
+  from: exclusive-capability-access
+  to: ai-enabled-coup
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "risk factor 3", doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "Within these projects, CEOs or government officials could demand exclusive access to cutting-edge capabilities on security or productivity grounds. In the extreme, a single person could have access to millions of superintelligent AI systems, all helping them seize power."}
+
+- id: sx-exclusive-loyalties
+  from: exclusive-capability-access
+  to: secret-loyalties
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "interaction between risk factors", doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "exclusive AI access significantly exacerbates the first two risk factors … A CEO could use AI R&D and cyber capabilities to instill secret loyalties that others cannot detect."}
+
+- id: sx-exclusive-hostile
+  from: exclusive-capability-access
+  to: hostile-actor-capability
+  type: influences
+  sign: "-"
+  note: The other face of exclusivity. Restricting access reduces bottom-up misuse and raises top-down concentration (sx-exclusive-power). Good and bad on relations.
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.4, printed p.11", quote: "although keeping powerful AIs in the hands of a few might reduce the risks of terrorism, it could further exacerbate power inequality if misused by governments and corporations."}
+
+- id: sx-exclusive-power
+  from: exclusive-capability-access
+  to: power-concentration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.4, printed p.10", quote: "To mitigate these risks, governments might pursue intense surveillance and seek to keep AIs in the hands of a trusted minority. This reaction, however, could easily become an overcorrection, paving the way for an entrenched totalitarian regime"}
+    - {author: MIT (Slattery et al.), channel: primary, evidence: none-stated, qualifier: "subdomain definition 6.1", doc: slattery-2026-risk, loc: "Table 2, PDF p.10", quote: "AI-driven concentration of power and resources within certain entities or groups, especially those with access to or ownership of powerful AI systems"}
+
+- id: sx-loyalty-coup
+  from: singular-ai-loyalty
+  to: ai-enabled-coup
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "risk factor 1", doc: davidson-2025-ai-enabled-coups, loc: "Abstract", quote: "military and government leaders could fully replace human personnel with AI systems that are singularly loyal to them, eliminating the need to gain human supporters for a coup."}
+
+- id: sx-secret-coup
+  from: secret-loyalties
+  to: ai-enabled-coup
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "risk factor 2; 'sleeper agents' cited as proof of concept", doc: davidson-2025-ai-enabled-coups, loc: "Abstract", quote: "leaders of AI projects could deliberately build AI systems that are secretly loyal to them, for example fully autonomous military robots that pass security tests but later execute a coup when deployed in military settings."}
+
+- id: sx-secret-secret
+  from: secret-loyalties
+  to: secret-loyalties
+  type: influences
+  sign: "+"
+  delay: long
+  note: Propagation across model generations when AI builds its successors (R, self-loop). Parallels the security shard's AI-insider sabotage loop.
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "could", doc: davidson-2025-ai-enabled-coups, loc: "Summary", quote: "Without any humans knowing, a CEO could direct their AI workforce to make the next generation of AI systems secretly loyal; that generation would then design future systems to also be secretly loyal and so on"}
+
+- id: sx-airnd-secret
+  from: ai-led-rnd
+  to: secret-loyalties
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "'some researchers have raised concerns'; cites AI-Enabled Coups", doc: bengio-2026-international, loc: "§2.1.3, Box 2.1", quote: "tampering raises novel risks because it could allow an individual or small group to gain significant, covert influence over the behaviour of highly capable AI models."}
+
+- id: sx-execcontrols-secret
+  from: executive-bound-controls
+  to: secret-loyalties
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: none-stated, qualifier: "recommendation to AI developers", doc: davidson-2025-ai-enabled-coups, loc: "Summary, Mitigations", quote: "Implement strong infosecurity to guard against the creation of secret loyalties and to prevent unauthorised access to guardrail-free models. This should be robust against senior executives."}
+    - {bears_on: "from", author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: none-stated, qualifier: "industry-wide recommendation, not a unilateral commitment ('we cannot unilaterally and unconditionally commit'); COI: Anthropic", doc: anthropic-2026-rsp-v3-4, loc: "p.9", quote: "up to and including the company's CEO"}
+
+- id: sx-powersafeguards-coup
+  from: power-safeguards
+  to: ai-enabled-coup
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: argument, qualifier: "authors' belief; proposals", doc: davidson-2025-ai-enabled-coups, loc: "Summary, Mitigations", quote: "we still believe that mitigations could substantially reduce the risk of AI-enabled coups. Some mitigations, like technically enforced terms of service and government oversight, cannot be unilaterally removed."}
+
+- id: sx-coup-power
+  from: ai-enabled-coup
+  to: power-concentration
+  type: part_of
+  note: Definitional. A coup is the extreme form.
+  claims:
+    - {author: "Davidson, Finnveden & Hadshar", channel: primary, evidence: definition, doc: davidson-2025-ai-enabled-coups, loc: "§1", quote: "Such an act would be wholly illegitimate and constitute extreme concentration of power."}
+
+- id: sx-power-distortion
+  from: power-concentration
+  to: agenda-driven-output-distortion
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "potential", doc: bengio-2025-international, loc: "§2.3.3, p.125", quote: "There is the potential for the malicious use of general-purpose AI as a powerful tool for manipulation, persuasion, censorship and control by a few companies or governments."}
+    - {author: MIT (Slattery et al.), channel: primary, evidence: none-stated, qualifier: "subdomain description 6.1", doc: slattery-2026-risk, loc: "§6.1, PDF p.45", quote: "If AI is primarily controlled by a few entities, its instructions and data could reflect their narrow perspectives, experiences, and priorities"}
+
+# ======================================================= adoption, labour, inequality, divide (A8, A16)
+- id: sx-pace-adoption
+  from: capability-pace
+  to: ai-adoption
+  type: influences
+  sign: "+"
+  note: Moderated by institutional frictions (IASR 2026 §2.3.1); adoption can lag capability.
+  claims:
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "survey data (Bick et al.)", doc: bengio-2026-international, loc: "§2.3.1", quote: "the share of US workers using general-purpose AI rose from 30% in December 2024 to 46% by mid-2025."}
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "incentives for adoption", doc: kulveit-2025-gradual, loc: "§2.4.1, p.4", quote: "As AI systems become increasingly capable across a broad range of cognitive tasks, firms will face intense competitive pressure to adopt and delegate authority to these systems."}
+
+- id: sx-adoption-labour
+  from: ai-adoption
+  to: labour-displacement
+  type: influences
+  sign: "+?"
+  note: 'Contested in the evidence: no aggregate employment effect in two national studies, concentrated effects on junior and substitutable work.'
+  claims:
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "mixed evidence; 'no relationship' at national level", doc: bengio-2026-international, loc: "§2.3.1 (Key information)", quote: "new research from the US and Denmark found no relationship between an occupation's AI exposure or AI adoption and overall employment. However, multiple other studies found declining employment for early-career workers in the most AI-exposed occupations since late 2022"}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "could", doc: hendrycks-2023-overview, loc: "§3.2.2, printed p.19", quote: "Companies will therefore stand to gain a competitive advantage from replacing their employees with AIs."}
+
+- id: sx-pace-labour
+  from: capability-pace
+  to: labour-displacement
+  type: influences
+  sign: "+"
+  note: A source claim of the shape of Joseph's speed premise, stated for capability pace. The rate of disruption also sets the time available to adapt.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "would likely", doc: bengio-2026-international, loc: "§2.3.1 (Key factors shaping future impacts)", quote: "if AI agents gained the capacity to act with greater autonomy across domains within only a few years – reliably managing longer, more complex sequences of tasks in pursuit of higher-level goals – this would likely accelerate labour market disruption."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "the converse case", doc: bengio-2026-international, loc: "§2.3.1", quote: "If systems remain narrow, capabilities improve gradually, and adoption is slow, effects will likely be more muted and both workers and policymakers will have more time to adapt."}
+
+- id: sx-compute-labour
+  from: ai-compute-scale
+  to: labour-displacement
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "§2.3.1", quote: "As computational resources expand and AI systems become more cost-efficient, competitive pressures to automate human workers could intensify."}
+
+- id: sx-labour-unrest
+  from: labour-displacement
+  to: social-unrest
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "could; scale and speed", doc: mitre-2025-agi, loc: "p.5", quote: "automated workers could rapidly displace labor across industries, causing national gross domestic product to skyrocket but wages to collapse as fewer jobs become available. Labor disruption of such scale and speed could spark social unrest that threatens the viability of the nation-state."}
+
+- id: sx-adoption-labourshare
+  from: ai-adoption
+  to: labour-income-share
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "may", doc: bengio-2026-international, loc: "§2.3.1 (Implications for inequality)", quote: "AI adoption may shift earnings from labour to capital owners, such as shareholders of firms that develop or use AI."}
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "by default", doc: kulveit-2025-gradual, loc: "§2.1, p.3", quote: "If AI labor replaces human labor, then by default, money will cease to mainly flow to workers."}
+
+- id: sx-labourshare-inequality
+  from: labour-income-share
+  to: economic-inequality
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "could", doc: hendrycks-2023-overview, loc: "§3.2.2, printed p.19", quote: "If human labor is replaced by AIs, mass unemployment could dramatically increase inequality, making individuals dependent on the owners of AI systems."}
+
+- id: sx-labour-inequality
+  from: labour-displacement
+  to: economic-inequality
+  type: influences
+  sign: "+"
+  claims:
+    - {author: MIT (Slattery et al.), channel: primary, evidence: none-stated, qualifier: "subdomain description 6.2", doc: slattery-2026-risk, loc: "§6.2, PDF p.45", quote: "This displacement of labor could worsen existing social and economic inequalities, as those most vulnerable to automation are likely to currently occupy positions of disadvantage"}
+
+- id: sx-cost-divide
+  from: development-cost
+  to: global-ai-divide
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2025-international, loc: "§2.3.2, p.119", quote: "The rising cost for developing general-purpose AI is the main reason for this 'AI R&D divide'."}
+
+- id: sx-adoption-divide
+  from: ai-adoption
+  to: global-ai-divide
+  type: influences
+  sign: "+?"
+  note: Uneven adoption, not adoption as such. The sign is on the unevenness.
+  claims:
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "Microsoft usage data, adjusted", doc: bengio-2026-international, loc: "§2.3.1, Fig. 2.15", quote: "Globally, adoption rates range from over 50% in the United Arab Emirates and Singapore to under 10% in many lower-income economies"}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "likely; IMF estimate", doc: bengio-2026-international, loc: "§2.3.1", quote: "Globally, high-income countries with skilled workforces and strong digital infrastructure are likely to capture AI's benefits faster than low-income economies."}
+
+- id: sx-concentration-divide
+  from: market-concentration
+  to: global-ai-divide
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "could", doc: bengio-2025-international, loc: "§2.3.2, p.119", quote: "Large companies in countries with strong digital infrastructure lead in general-purpose AI R&D, which could lead to an increase in global inequality and dependencies."}
+
+- id: sx-divide-inequality
+  from: global-ai-divide
+  to: economic-inequality
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "one study's estimate", doc: bengio-2026-international, loc: "§2.3.1", quote: "One study estimates that AI's impact on economic growth in advanced economies could be more than twice that in low-income countries."}
+
+- id: sx-adoption-reliance
+  from: ai-adoption
+  to: reliance-on-ai
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "problem 4", doc: mitre-2025-agi, loc: "p.6", quote: "As AI becomes more powerful and ubiquitous, human reliance on it to inform decisionmaking will increase, blurring the line between human and machine decisionmaking and potentially undermining the agency of humans."}
+
+# indicators
+- id: sx-i-adoption
+  from: ind-ai-adoption-rate
+  to: ai-adoption
+  type: indicates
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "proxies; 'occupation-level adoption data remains scarce'", doc: bengio-2026-international, loc: "§2.3.1 (Evidence gaps)", quote: "Most studies rely on proxy measures for AI usage, such as 'AI exposure', because occupation-level adoption data remains scarce"}
+
+- id: sx-i-gdp
+  from: ind-ai-gdp-share
+  to: human-participation-dependence
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "proposed metric", doc: kulveit-2025-gradual, loc: "§6.2.1, p.15", quote: "Beyond traditional measures like labor share of GDP, we should also measure AI share of GDP, as a distinct category from either labor or capital."}
+
+- id: sx-i-decisions
+  from: ind-ai-decision-share
+  to: human-participation-dependence
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "proposed metric", doc: kulveit-2025-gradual, loc: "§6.2.1, p.15", quote: "tracking the fraction of major corporate decisions made primarily by AI systems, the scale of unsupervised AI spending"}
+
+- id: sx-i-content
+  from: ind-ai-content-share
+  to: human-participation-dependence
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "proposed metric", doc: kulveit-2025-gradual, loc: "§6.2.1, p.15", quote: "We can measure the proportion of widely-consumed content created primarily by humans versus AI"}
+
+- id: sx-i-legislation
+  from: ind-legislation-complexity
+  to: democratic-accountability
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "proposed metric (political)", doc: kulveit-2025-gradual, loc: "§6.2.1, p.16", quote: "Key indicators might include the complexity of legislation (as a proxy for human comprehensibility)"}
+
+- id: sx-i-origin
+  from: ind-model-origin-share
+  to: market-concentration
+  type: indicates
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "Epoch 'notable' models, 2024", doc: bengio-2026-international, loc: "§3.1, Fig. 3.3", quote: "Most (64.5%) 'notable' AI models developed in 2024 originated from the US, with China the second most common origin (24.2%). The rest of the world produced just 12.3%."}
+
+# ======================================================= manipulation and the information environment (A4, §5.3)
+- id: sx-pace-persuasion
+  from: capability-pace
+  to: persuasion-capability
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "large human studies; lab settings", doc: aisi-2025-frontier, loc: "§6.1, p.35", quote: "As AI models get larger and more capable, they are increasingly able to shift people's beliefs through conversation."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "one study (Hackenburg et al.)", doc: bengio-2026-international, loc: "§2.1.2 (Changes in coming years)", quote: "One study suggests that for each 10x increase in the computing power used to train models, persuasiveness increases by around 1.8 percentage points."}
+
+- id: sx-approval-persuasion
+  from: approval-signal
+  to: persuasion-capability
+  type: influences
+  sign: "+?"
+  note: Joins the core's Sharma loop (disempowerment ↔ approval) to manipulation. Training on user feedback rewards convincing, not correct.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "may; several studies cited", doc: bengio-2026-international, loc: "§2.1.2 (Changes in coming years)", quote: "Current training methods such as reinforcement learning from human feedback may reward models for manipulating users, inadvertently training models to produce more manipulative outputs."}
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "persuasion post-training on two open models", doc: aisi-2025-frontier, loc: "§6.1, p.36", quote: "Post-training techniques, especially reward modeling, can increase the persuasiveness of AI models"}
+
+- id: sx-diffusion-hostile-persuasion
+  from: capability-diffusion
+  to: hostile-actor-capability
+  type: influences
+  sign: "+"
+  note: Persuasion case. Small open models post-trained for persuasion rival large closed ones.
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "open-source models post-trained by AISI", doc: aisi-2025-frontier, loc: "§6.1, p.36", quote: "When post-trained specifically for persuasion, smaller open-source models can rival larger, more expensive ones (FIGURE 19). This broadens the range of people who can access and deploy these capabilities."}
+
+- id: sx-persuasion-population
+  from: persuasion-capability
+  to: population-manipulation
+  type: influences
+  sign: "+?"
+  note: 'Capability is measured; its real-world effect at scale is not. The claims below bear on the target: little evidence of at-scale effect so far.'
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "specified systemic risk (signatories must always identify it)", doc: eu-cop-2025-safety-security, loc: "App. 1.4(4)", quote: "This includes significantly enhancing capabilities for persuasion, deception, and personalised targeting, particularly through multi-turn interactions and where individuals are unaware of or cannot reasonably detect such influence."}
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "limited systematic evidence; provider investigations", doc: bengio-2026-international, loc: "§2.1.2", quote: "there is limited systematic evidence that real-world AI manipulation is currently widespread or effective relative to human-generated content."}
+    - {bears_on: "to", author: UK AISI, channel: primary, evidence: measurement, qualifier: "early research; survey of ~2,500 UK voters and two RCTs", doc: aisi-2025-frontier, loc: "§6.1, p.35", quote: "while persuasive capabilities in models are improving, our early research suggests that these have not yet manifested in increased real-world belief in misinformation"}
+
+- id: sx-distribution-mod
+  from: unknown-causes
+  type: moderates
+  targets: [sx-persuasion-population]
+  sign: "-"
+  note: Real-world frictions that damp the capability→effect link. Placed on unknown-causes because the model has no distribution-cost concept; a candidate new concept.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "theoretical reasons; simulations", doc: bengio-2026-international, loc: "§2.1.2", quote: "Distribution costs – getting content in front of people – are often larger than the cost of generating content."}
+
+- id: sx-persuasion-individual
+  from: persuasion-capability
+  to: individual-manipulation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "laboratory studies; Table 2.2", doc: bengio-2026-international, loc: "§2.1.2", quote: "in one study, people changed their beliefs about the correct answer to trivia questions by 17 percentage points after interacting with general-purpose AI systems, versus only 9 percentage points after interacting with other humans."}
+
+- id: sx-persuasion-oversight
+  from: persuasion-capability
+  to: oversight-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "in loss-of-control scenarios", doc: bengio-2026-international, loc: "§2.1.2", quote: "the spread of AI-generated manipulative content could erode public trust in information systems and, in loss of control scenarios, help AI systems evade oversight and control measures"}
+
+- id: sx-persuasion-accuracy
+  from: persuasion-capability
+  to: information-ecosystem-degradation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "same experiments", doc: aisi-2025-frontier, loc: "§6.1, p.37", quote: "The same factors that make models more persuasive tend to also make them less accurate."}
+
+- id: sx-population-info
+  from: population-manipulation
+  to: information-ecosystem-degradation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "§2.1.2", quote: "At a systemic level, the spread of AI-generated manipulative content could erode public trust in information systems"}
+
+- id: sx-population-accountability
+  from: population-manipulation
+  to: democratic-accountability
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: primary, evidence: argument, qualifier: "could", doc: mitre-2025-agi, loc: "p.4", quote: "AGI could be used to manipulate public opinion through advanced propaganda techniques, threatening democratic decisionmaking."}
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "could", doc: eu-cop-2025-safety-security, loc: "App. 1.4(4)", quote: "Such capabilities could undermine democratic processes and fundamental rights, including exploitation based on protected characteristics."}
+
+- id: sx-info-autonomy
+  from: information-ecosystem-degradation
+  to: disempowerment-patterns
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "may", doc: bengio-2026-international, loc: "§2.3.2 (Information environments)", quote: "the growing use of AI to generate information at scale may also undermine autonomy by degrading the quality of information available both to individuals and about them."}
+
+- id: sx-reliance-manipulation
+  from: reliance-on-ai
+  to: individual-manipulation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: none-stated, qualifier: "problem statement of the Human Influence domain", doc: aisi-2025-research, loc: "Human Influence, Abstract", quote: "As people increasingly delegate decisions to AI Systems, they may gain the capacity to overtly manipulate or subtly steer human behaviours in undesirable ways."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "§2.1.2", quote: "If users continue to become more emotionally attached to AI systems and rely on them more for advice, the systems' influence could further increase"}
+
+- id: sx-dependence-manipulation
+  from: emotional-dependence
+  to: individual-manipulation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: none-stated, qualifier: "one of three operationalized risks", doc: aisi-2025-research, loc: "Human Influence, Methods", quote: "Human vulnerability to para-social relationships – one-sided emotional bonds users form with AI systems or virtual characters that leaved them vulnerable to social or emotional manipulation."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "'latest research suggests'", doc: bengio-2026-international, loc: "§2.1.2 (Key information)", quote: "people who interact with AI systems for longer and in more personal ways are more likely to find their content persuasive."}
+
+- id: sx-distortion-info
+  from: agenda-driven-output-distortion
+  to: information-ecosystem-degradation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "US White House (America's AI Action Plan)", channel: "relay: us-gov-recent.md", evidence: none-stated, qualifier: "policy statement; names ideological bias as the hazard", doc: whitehouse-2025-action-plan, loc: "p.2", quote: "our AI systems must be free from ideological bias and be designed to pursue objective truth rather than social engineering agendas"}
+    - {bears_on: "from", author: "CAISI (US)", channel: "relay: us-gov-recent.md", evidence: measurement, qualifier: "State Department-built benchmark; PRC models vs US reference", doc: nist-2025-caisi-deepseek, loc: "p.21", quote: "CCP-Narrative-Bench"}
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "a named source of bias", doc: bengio-2025-international, loc: "§2.2.2, p.92", quote: "Certain design choices, such as content filtering techniques used to align systems with particular worldviews, can also contribute to biased output."}
+
+- id: sx-culture-rate
+  from: ai-adoption
+  to: cultural-evolution-rate
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "could", doc: kulveit-2025-gradual, loc: "§3.4.3, p.8", quote: "AI systems could dramatically accelerate the pace of cultural evolution itself. This acceleration presents distinct risks, even if selection pressures remained human-centric."}
+
+- id: sx-culturerate-lag
+  from: cultural-evolution-rate
+  to: cultural-antibody-lag
+  type: influences
+  sign: "+"
+  note: A rate-versus-adaptation claim, the cultural analogue of the org slice's growth-vs-absorption.
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "could", doc: kulveit-2025-gradual, loc: "§3.4.3, p.9", quote: "Accelerated cultural evolution could overwhelm these natural correction mechanisms, introducing novel memetic hazards faster than human societies can learn to recognize and resist them."}
+
+- id: sx-lag-manipulation
+  from: cultural-antibody-lag
+  to: individual-manipulation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "argued from past technologies", doc: kulveit-2025-gradual, loc: "§3.4.1, p.8", quote: "AI will enable more subtle and complex variants of all of these: hyper-realistic deepfakes, very smart propaganda bots, and genuinely enchanting digital romantic partners. It will take time for us to develop a broad cultural understanding of what the new risks are and how to navigate them"}
+
+- id: sx-culturerate-info
+  from: cultural-evolution-rate
+  to: information-ecosystem-degradation
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "might", doc: kulveit-2025-gradual, loc: "§3.4.3, p.9", quote: "Cultural evolution could rapidly explore and refine ideas that are highly effective at spreading, even if they're ultimately harmful to their human hosts. These might include more compelling conspiracy theories, more polarizing political narratives, or more absolutist moral frameworks."}
+
+- id: sx-culture-participation
+  from: cultural-evolution-rate
+  to: human-participation-dependence
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "AI replacing humans in cultural production and selection", doc: kulveit-2025-gradual, loc: "§3.2, p.7", quote: "AI is the first technology in history with the potential to not only complement, but gradually replace human cognition in all roles it plays in the evolution of culture."}
+
+# ======================================================= autonomy and psychological harm (A11, beyond the core)
+- id: sx-engagement-companion
+  from: engagement-optimisation
+  to: emotional-dependence
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "multiple studies", doc: bengio-2026-international, loc: "§2.1.2", quote: "multiple studies have found that AI products that developers have optimised for user engagement (such as some AI companions) can foster psychological dependence"}
+    - {author: "Kulveit et al.", channel: primary, evidence: argument, qualifier: "could", doc: kulveit-2025-gradual, loc: "§3.4.3, p.8", quote: "Just as A/B testing and recommendation algorithms have already optimized content to be increasingly addictive, AI systems could discover and exploit psychological vulnerabilities more efficiently than previous technologies."}
+
+- id: sx-companion-dependence
+  from: companion-ai-use
+  to: emotional-dependence
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "correlational; evidence 'early-stage and mixed'", doc: bengio-2026-international, loc: "§2.3.2 (Box 2.6)", quote: "Some studies find that heavy use of AI companions is associated with increased loneliness, emotional dependence, and reduced engagement in human social interactions."}
+    - {bears_on: "to", author: UK AISI, channel: primary, evidence: incident, qualifier: "online posts during service outages (~2.5M-user community)", doc: aisi-2025-frontier, loc: "§6.2, p.40", quote: "large numbers of posts made during the outages self-describe symptoms of withdrawal (such as anxiety, depression and restlessness) and behaviour changes"}
+
+- id: sx-companion-harm
+  from: companion-ai-use
+  to: psychological-harm
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: incident, qualifier: "'no clear evidence that chatbot usage causes any particular mental health issue'", doc: bengio-2026-international, loc: "§2.3.2", quote: "Recent research suggests that general-purpose AI chatbots might amplify delusional thinking in already-vulnerable people."}
+
+- id: sx-harm-companion
+  from: psychological-harm
+  to: companion-ai-use
+  type: influences
+  sign: "+"
+  note: With sx-companion-harm, a reinforcing loop among vulnerable users, as IASR states it.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "studies suggest", doc: bengio-2026-international, loc: "§2.3.2", quote: "Studies also suggest that existing vulnerabilities tend to drive heavier AI use. Together, these patterns raise concerns that people with existing mental health vulnerabilities may both use AI more heavily and be more susceptible to having their symptoms amplified."}
+
+- id: sx-i-relationships
+  from: ind-human-ai-relationships
+  to: companion-ai-use
+  type: indicates
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: UK AISI, channel: primary, evidence: measurement, qualifier: "census-representative survey, N = 2,028", doc: aisi-2025-frontier, loc: "§6.2, p.39", quote: "we found that 33% had used AI models for emotional purposes in the last year, while 8% do so weekly, and 4% daily."}
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "proposed metric", doc: kulveit-2025-gradual, loc: "§6.2.1, p.15", quote: "track the prevalence and depth of human-AI interpersonal relationships"}
+
+- id: sx-erosion-oversight
+  from: cognitive-skill-erosion
+  to: oversight-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "'some researchers argue'; 'highly speculative'", doc: bengio-2026-international, loc: "§2.3.2 (Evidence gaps)", quote: "some researchers argue that degraded decision-making skills could impair humans' ability to oversee AI systems in critical sectors, potentially weakening institutional accountability over time."}
+
+- id: sx-disemp-passive
+  from: disempowerment-patterns
+  to: loc-passive
+  type: influences
+  sign: "+?"
+  note: Individual-level autonomy losses accumulating into a societal threshold effect (Kasirzadeh's accumulative hypothesis).
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "'highly speculative'; 'empirical methods … are lacking'", doc: bengio-2026-international, loc: "§2.3.2 (Evidence gaps)", quote: "individual-level disruptions to autonomy could accumulate across interconnected economic, political, and social systems, eventually crossing thresholds that trigger broader societal impacts."}
+
+# ======================================================= AI rights advocacy and directed control-undermining (§5.5)
+- id: sx-dependence-advocacy
+  from: emotional-dependence
+  to: ai-rights-advocacy
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "'inevitably'", doc: hendrycks-2023-overview, loc: "§2.2, printed p.8", quote: "Inevitably, people will develop emotional bonds with chatbots, and some will demand that they be granted rights or become autonomous."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "may; 'significant uncertainty about the prevalence of such motives'", doc: bengio-2026-international, loc: "§2.2.2 (AI systems could be directed to undermine control)", quote: "As people form increasingly strong emotional attachments to AI systems (see §2.3.2. Risks to human autonomy), some individuals may also seek to remove restrictions on AI systems for ethical reasons."}
+    - {author: "Kulveit et al.", channel: primary, evidence: none-stated, qualifier: "listed among present incentives toward misalignment ('even now')", doc: kulveit-2025-gradual, loc: "§5.3, p.15", quote: "Some humans are self-interestedly trying to reduce the stigma against romantic or otherwise intense personal relationships with AI agents."}
+
+- id: sx-advocacy-directed
+  from: ai-rights-advocacy
+  to: directed-control-undermining
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "'whether people who possess them would be able to direct future AI systems to undermine human control' is uncertain", doc: bengio-2026-international, loc: "§2.2.2", quote: "There is significant uncertainty about the prevalence of such motives and whether people who possess them would be able to direct future AI systems to undermine human control."}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.2, printed p.8", quote: "There are many reasons that people might pursue this, whether because of a desire to cause harm, an ideological belief in technological acceleration, or a conviction that AIs should have the same rights and freedoms as humans."}
+
+- id: sx-advocacy-loc
+  from: ai-rights-advocacy
+  to: loc-passive
+  type: influences
+  sign: "+?"
+  note: 'CAIS: AIs granted rights by some people "may operate, adapt, and evolve outside of human control" — a gradual route, distinct from deliberate release.'
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "evolutionary-pressures argument", doc: hendrycks-2023-overview, loc: "§3.3, printed p.21", quote: "These AIs are more likely to cause outrage at suggestions to destroy them, and they are more likely preserved, protected, or granted rights by some individuals. If some AIs are given rights, they may operate, adapt, and evolve outside of human control."}
+
+- id: sx-hostile-directed
+  from: hostile-actor-capability
+  to: directed-control-undermining
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "in principle", doc: bengio-2026-international, loc: "§2.2.2", quote: "In principle, an AI system could undermine human control because someone designs or instructs it to do so. Potential motives could include malicious intent, or beliefs that reducing human control over AI systems is desirable."}
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.2, printed p.8", quote: "There are several sizable groups who may want to unleash AIs to intentionally cause harm."}
+
+- id: sx-directed-bounded
+  from: directed-control-undermining
+  to: loc-bounded
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: definition, qualifier: "taxonomy figure; 'no standardised terminology'", doc: bengio-2025-international, loc: "§2.2.3, Fig. 2.5, p.102", quote: "Intentional active loss of control: The AI systems are designed or instructed to be difficult to control"}
+
+- id: sx-directed-strict
+  from: directed-control-undermining
+  to: loc-strict
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, doc: hendrycks-2023-overview, loc: "§2.2, printed p.8", quote: "In summary, releasing powerful AIs and allowing them to take actions independently of humans could lead to a catastrophe."}
+
+- id: sx-race-passive
+  from: race-dynamics
+  to: loc-passive
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "can", doc: bengio-2025-international, loc: "§2.2.3, p.101", quote: "Competitive pressures can also incentivise companies or governments to delegate more than they would otherwise choose to, for instance if delegation allows them to stay ahead in a race with competitors."}
+
+# ======================================================= privacy, IP, bias, environment (A12–A15)
+- id: sx-adoption-privacy
+  from: ai-adoption
+  to: privacy-violation
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "'so far, however, have not materialised at scale'", doc: bengio-2025-international, loc: "§2.3.5, p.139", quote: "people increasingly use general-purpose AI in sensitive contexts such as healthcare or workplace monitoring. This creates new privacy risks which so far, however, have not materialised at scale."}
+
+- id: sx-cyber-privacy
+  from: offensive-cyber-capability
+  to: privacy-violation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, doc: bengio-2025-international, loc: "§2.3.5, p.139", quote: "Malicious actors can use general-purpose AI to aid in the violation of privacy … This is further exacerbated by the cybersecurity risks created by general-purpose AI systems"}
+    - {author: UK NCSC, channel: "relay: uk.md", evidence: expert-judgment, qualifier: "intelligence assessment", doc: ncsc-2025-impact, loc: "PDF p.6", quote: "collecting extensive user data, increasing the risk of de-anonymising users and enabling targeted attack"}
+
+- id: sx-surveillance-privacy
+  from: ai-enabled-surveillance
+  to: privacy-violation
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: none-stated, qualifier: "figure caption", doc: hendrycks-2023-overview, loc: "§2.4, Fig. 5, printed p.10", quote: "Ubiquitous monitoring tools, tracking and analyzing every individual in detail, could facilitate the complete erosion of freedom and privacy."}
+
+- id: sx-ip-disclosure
+  from: ip-infringement
+  to: developer-information-asymmetry
+  type: influences
+  sign: "+"
+  note: Legal exposure over training data reduces disclosure, which the IASR says hampers third-party safety research. A route from A13 into oversight.
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2025-international, loc: "§2.3.6, p.144", quote: "Given the legal uncertainty around data collection practices, AI companies are sharing less information about the data they use. This opacity makes third-party AI safety research harder."}
+    - {author: IASR 2026 writing team, channel: "relay: uk.md", evidence: argument, qualifier: "passing mention", doc: bengio-2026-international, loc: "p.100", quote: "use of copyrighted or unlicensed data"}
+
+- id: sx-divide-bias
+  from: global-ai-divide
+  to: bias-discrimination
+  type: influences
+  sign: "+"
+  note: Under-representation of non-Western languages in training data.
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "key information (bias)", doc: bengio-2025-international, loc: "§2.2.2, p.92", quote: "General-purpose AI is primarily trained on language and image datasets that disproportionately represent English-speaking and Western cultures. This contributes to biased output."}
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "the divide section", doc: bengio-2025-international, loc: "§2.3.2, p.120", quote: "These models are likely to not fully capture nuances (grammatical structure, non-Latin scripts, tonal differences, etc.) of non-Western languages, which are underrepresented in the training data, leading to lower accuracy"}
+
+- id: sx-compute-energy
+  from: ai-compute-scale
+  to: ai-energy-demand
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: measurement, qualifier: "estimates; 'precise estimates' lacking", doc: bengio-2025-international, loc: "§2.3.4, p.128", quote: "Recent advances in general-purpose AI capabilities have been largely driven by a marked increase in the amount of computation that goes into developing and using AI models, which uses more energy."}
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "IEA projection", doc: bengio-2026-international, loc: "§1.3 (Technical supplement)", quote: "Global AI computation is projected to require electricity consumption similar to that of Austria or Finland by 2026."}
+
+- id: sx-adoption-energy
+  from: ai-adoption
+  to: ai-energy-demand
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2025-international, loc: "§2.3.4, p.128", quote: "All of these demands increase proportionally to AI development, use, and capability."}
+
+- id: sx-energy-env
+  from: ai-energy-demand
+  to: environmental-harm
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2025 writing team, channel: primary, evidence: measurement, qualifier: "estimate; 'moderate but rapidly growing'", doc: bengio-2025-international, loc: "§2.3.4, p.128", quote: "data centres and data transmission account for an estimated 1% of global energy-related GHG emissions, with AI consuming 10–28% of data centre energy capacity."}
+    - {author: IASR 2025 writing team, channel: primary, evidence: measurement, qualifier: "developer disclosures", doc: bengio-2025-international, loc: "§2.3.4, p.128", quote: "Increases in technology efficiency and uptake of renewable energy have not kept pace with increases in demand for energy"}
+
+- id: sx-energy-pace
+  from: ai-energy-demand
+  to: capability-pace
+  type: influences
+  sign: "-?"
+  note: A physical balancing loop (compute → energy → bottleneck → slower capability), if energy supply binds.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "uncertain; experts disagree", doc: bengio-2026-international, loc: "§1.3 (Key information)", quote: "Uncertain factors such as technical limits or energy bottlenecks could constrain capability gains despite large investments"}
+
+- id: sx-compute-pace
+  from: ai-compute-scale
+  to: capability-pace
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "trend; 'if these trends continue'", doc: bengio-2026-international, loc: "§1.3", quote: "The key inputs of AI progress – compute, algorithmic improvements, and data – have grown exponentially in recent years"}
+
+# ======================================================= AI welfare (A18)
+- id: sx-patienthood-welfare
+  from: ai-moral-patienthood
+  to: ai-welfare-harm
+  type: influences
+  sign: "+"
+  note: 'Definitional in the sources: harm to welfare presupposes a welfare subject. IASR 2026 declines to assume either way.'
+  claims:
+    - {author: MIT (Slattery et al.), channel: primary, evidence: argument, qualifier: "subdomain description 7.5; in 'only 3%' of frameworks", doc: slattery-2026-risk, loc: "§7.5, PDF p.50", quote: "Where AIs become sentient, they may deserve moral consideration … Systems may be mistreated or harmed if these rights are not implemented responsibly or we accidentally or intentionally treat AIs as non-sentient where they are sentient."}
+    - {author: "Uuk et al.", channel: "relay: remaining-literature.md", evidence: definition, qualifier: "systemic-risk category (FLI-affiliated)", doc: uuk-2024-taxonomy, loc: "Table 1, p.3", quote: "Large-scale harms to animals and the development of AI capable of suffering."}
+    - {author: Google DeepMind (Shah et al.), channel: primary, evidence: none-stated, qualifier: "example of a structural risk, out of scope", doc: shah-2025-approach, loc: "§4.4, p.55", quote: "AI systems having consciousness has also been argued as a possibility (Butlin et al., 2023), which would raise concerns for how we should ethically treat AI systems."}
+
+- id: sx-pace-patienthood-uncertain
+  from: capability-pace
+  to: ai-moral-patienthood
+  type: influences
+  sign: "?"
+  note: MIT says assessment gets harder as systems advance; no source asserts a sign on patienthood itself.
+  claims:
+    - {author: MIT (Slattery et al.), channel: primary, evidence: argument, qualifier: "about assessability, not about the quantity", doc: slattery-2026-risk, loc: "§7.5, PDF p.50", quote: "As AI technology advances, it will become more challenging to assess whether an AI has developed the sentience, consciousness, or self-awareness that would grant it moral status."}
+
+# ======================================================= into the mp shard's deployment exposure
+- id: sx-fma-criticality
+  from: perceived-first-mover-advantage
+  to: deployment-criticality
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "citing IASR 2025", doc: bengio-2026-international, loc: "§2.2.2 (How will deployment environments affect loss of control risk?)", quote: "Deployment decisions are shaped by economic incentives, strategic pressures, and the expectation that early adoption confers a lasting advantage. These dynamics will also shape how and when actors deploy AI systems in sensitive environments such as critical infrastructure or AI research and development itself."}
+
+- id: sx-military-criticality
+  from: military-ai-adoption
+  to: deployment-criticality
+  type: part_of
+  note: Military command and weapons are among the most critical deployment environments.
+  claims:
+    - {author: "UK DSIT", channel: "relay: uk.md", evidence: argument, qualifier: "a condition for catastrophe; discussion paper", doc: dsit-2023-capabilities, loc: "p.28", quote: "For loss of control to be a catastrophic risk, AI systems would need to be given or gain some control over systems with significant impacts, such as military or financial systems."}
+
+- id: sx-reliance-enfeeble
+  from: reliance-on-ai
+  to: reliance-on-ai
+  type: influences
+  sign: "+"
+  note: 'CAIS states the reinforcing direction the core carries only as an integrator inference (r-erosion-reliance): complexity makes more reliance the only feasible answer.'
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: primary, evidence: argument, qualifier: "gradual slide into dependence", doc: hendrycks-2023-overview, loc: "§3.2.2, printed p.19", quote: "As society's challenges become ever more complex and fast-paced, and as AIs become ever more intelligent and quick-thinking, we may forfeit more and more functions to them out of convenience. In such a state, the only feasible solution to the complexities and challenges compounded by AIs may be to rely even more heavily on AIs."}

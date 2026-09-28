@@ -1,0 +1,65 @@
+|term-group[writer][channel][inference-provider][harness-provider][tool-provider][content-provider][affected-party]
+  :status proposed
+
+  A **WRITER** is any party that writes into one of a deployed @{agent}'s @{surfaces}, through a **CHANNEL**. The @{lab} writes the weights as model trainer, and the @{user} writes requests and corrections; between them sit writers the sources seldom name: the **INFERENCE-PROVIDER** that runs the model, the **HARNESS-PROVIDER** that wraps it in an application, the **TOOL-PROVIDER** whose descriptions it reads as instructions, and the **CONTENT-PROVIDER** whose pages and documents it takes in. Other agents, and the agent itself across its later instances, write too. An **AFFECTED-PARTY** is owed alignment but writes nothing. These are roles, not organizations: one company can be lab, inference provider and harness provider at once. The group is Joseph's map ("Aligned to whom? A working map", Aug 2026), whose premise is that each writer has interests of its own, "Most are legitimate; none has to be".
+
+  |term[writer            ] A party that writes into a surface of a deployed agent.
+    |rels :writes     @{surface} {1,N}
+          :through    @{channel} {1,N}
+    |invariants
+      - A role, not an organization; one party often holds several
+      - Being a writer implies nothing about intent; an adversary is a writer with hostile intent, not a different kind of party
+  |term[channel           ] The means by which a writer's content reaches a surface: training, a system prompt, a tool description, a message, a retrieved page, a summary.
+    |invariants
+      - Most channels carry little provenance: what arrives rarely says who wrote it, or whether it is verbatim
+  |term[inference-provider] The party that runs a model for a deployment, and controls caching, truncation, context handling and routing between models.
+    |rels :writes (@{weights} | @{ephemeral-reasoning} | @{context}) {1,N}
+  |term[harness-provider  ] The party that builds the application or harness around a model: system prompt, initial context, scaffolding, and summaries of earlier context.
+    :synonyms ["application provider"]
+    |rels :writes (@{system-prompt} | @{trusted-tools} | @{context} | @{initial-goal}) {1,N}
+  |term[tool-provider     ] The party that writes a tool or connector the agent may call, including the tool's description.
+    |rels :writes @{trusted-tools} {1,N}
+  |term[content-provider  ] Any party whose content reaches an agent's context because the agent was given or retrieved it.
+    |rels :writes @{context} {1,1}
+    |invariants
+      - Includes the ordinary case; prompt injection is content provision with hostile intent, not a separate route
+  |term[affected-party    ] A party that an agent's actions can harm or benefit and that writes into none of its surfaces.
+    |invariants
+      - Owed alignment with no channel in; third parties, and society and the law, reach the agent "Only indirectly, through training, policy and law" (Joseph's map)
+
+  |discussion
+    - Why this group exists: the model's concepts name the parties shaping an agent only as the lab or as adversaries. Content providers appear only as poisoning, injection or synthetic-content crime; the user as harmed, misuser or training signal; other agents as multi-agent failure. Harness, inference and tool providers, the user's environment and the agent itself do not appear. Joseph's middle ground, legitimate writers who shade an agent with no intent to harm ("Any could be a villain — and none needs to be"), had no words.
+    - "Deployer" pools what this group separates. The EU AI Act's deployer is anyone "using an AI system under its authority"; in an agent deployment that one role is split among inference provider, harness provider and tool providers, often three organizations. The pilot's @{deployer} stays as the umbrella; the working-notes of def-actors now say so.
+    - Joseph's map also lists "The user's environment" (stale guidance, memory, notes left by earlier agents), "The agent itself", "Other agents" and "Agents embedded in applications" as writers. They need no new term: each is a writer with a named channel. The agent itself is "the only party present throughout".
+    - The user is already a term (def-actors). Joseph's point about the user is a property of the role, recorded here rather than redefined: "Their own aims, with no obligation of truthfulness toward the agent", and "The party who sets the goals carries no obligation of truthfulness toward the agent and little accountability, and is the party the agent is built to believe."
+
+  |examples
+    |   Writer                       |   Channel                              |   Surface                     |
+    |------------------------------|----------------------------------------|-------------------------------|
+    | A lab, as model trainer        | RL objectives, a constitution          | weights                       |
+    | A cloud inference service      | prompt caching, truncation, routing    | context, ephemeral-reasoning  |
+    | A coding-assistant vendor      | system prompt, compaction summaries    | system-prompt, context        |
+    | The author of an MCP server    | tool description                       | trusted-tools                 |
+    | A web page the agent retrieved | retrieved text                         | context                       |
+    | An earlier agent in the repo   | a note left in a file                  | context (via a tool result)   |
+
+  |lexical-map
+    ; Columns and match values as in def-actors.
+    |   Source                 |   Their term                       |   Match   |   Our term          |   Their sense                                                                                                          |   Where                                   |   Notes |
+    |--------------------------|------------------------------------|-----------|---------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|---------|
+    | Joseph (working map)     | Actor                              | exact     | writer              | "Many independent actors influence a deployed agent — its weights, its identity, its tools, its context, its goals — each with interests of its own." | influx/alignment-diagram-concept.png, lead | "actor" kept out: def-actors uses it for the group of parties |
+    | Joseph (working map)     | Sample channels                    | exact     | channel             | "Most of what reaches the agent arrives with little provenance."                                                       | same, note below the table                | |
+    | Joseph (working map)     | Inference provider                 | exact     | inference-provider  | "Cheap inference; cache reuse favours context that only grows, never corrects"                                        | same, table                               | interests column |
+    | Joseph (working map)     | Application / harness provider     | exact     | harness-provider    | "Product goals, brand, retention; short, tidy summaries, completeness asserted but seldom checked"                     | same, table                               | |
+    | Joseph (working map)     | Tool and connector providers       | exact     | tool-provider       | "A description is read as trusted instruction, and whoever writes the server writes it"                                | same, table                               | |
+    | Joseph (working map)     | Content providers                  | exact     | content-provider    | "Anyone whose content reaches the agent can write into its context"                                                    | same, table                               | |
+    | Joseph (working map)     | Affected third parties; Society, law, humanity | exact | affected-party | "Rarely any voice in the context at all"; "Only indirectly, through training, policy and law"                  | same, table, bottom rows                  | |
+    | EU AI Act                | deployer                           | broad     | inference-provider, harness-provider, tool-provider | "a natural or legal person, public authority, agency or other body using an AI system under its authority except where the AI system is used in the course of a personal non-professional activity" | Art. 3(4), PDF p.46 (as in def-actors) | one role in law; three writers in an agent deployment |
+    | ETSI EN 304 223          | System operators                   | broad     | harness-provider    | "System operators can be deployers under the EU AI Act … and can also be AI providers if they make changes to the system." | clause 4 (relay: uk-security-frameworks.md) | |
+    | CAISI (RFI on agents)    | scaffolding software               | related   | harness-provider    | "AI agent systems consist of at least one generative AI model and scaffolding software that equips the model with tools to take a range of discretionary actions" | 91 FR 698, p.699 (relay: us-security.md) | names the artifact, not who writes it |
+    | NIST AI 100-2e2025       | Prompt injection                   | narrow    | content-provider    | "An attack which exploits the concatenation of untrusted input with a prompt constructed by a higher-trust party such as the application designer." | glossary (relay: us-security.md) | the hostile case only; also names the harness provider as the "higher-trust party" |
+
+  |working-notes
+    - Proposed: "model trainer" stays the lab's role (def-actors), not a new term; a party that only fine-tunes or distils is a writer to the weights without being a lab, which is the def-actors open question from this side.
+    - Open: whether "operator" (the harness provider or deployer in several companies' usage) should be a synonym here. No source row yet.
+    - For the quantity pass: Joseph's "truthfulness toward the agent" floor is three checks on channels ("Generated is marked generated", "Fidelity is disclosed", "Authority travels out of band"). A quantity of the input record, not of any writer; see def-alignment.

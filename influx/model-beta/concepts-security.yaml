@@ -1,0 +1,256 @@
+# Security and insider-risk slice (shard). Written 2026-09-27 by a Claude agent (Opus 5.5), from the
+# verification files plus primaries read via pdftotext on relata-attached PDFs (RAND-W, RAND-ISL, AISP,
+# Anthropic Risk Report Aug 2026). Links to core concepts rather than duplicating them:
+#   staff-with-access, insider-exfiltration, internal-ai-deployment, staff-turnover, org-growth-rate,
+#   autonomous-replication-capability, agent-autonomy, misaligned-propensity, oversight-strength,
+#   safety-resourcing, race-dynamics, capability-pace, capital-pressure, commitment-loosening,
+#   regulatory-requirements, detected-incidents, perceived-risk, management-of-change, safeguard-strength.
+# Design notes and proposals for the core are in notes-security.md.
+
+# ---------------------------------------------------------------- what is lost (events)
+- id: weight-theft
+  broader: [g-security]
+  kind: event
+  label: Likelihood that model weights leave secure storage without authorization (any actor, any route)
+  proposed_by: "EU GPAI Code glossary ('(self-)exfiltration of model weights'); RAND (Nevo et al.)"
+  scale: irreversible proliferation; severity set by the stolen model's capabilities
+  definition: Access to or transfer of weights (or associated assets) out of secure storage by an unauthorized actor or by the model itself.
+  distinct_from: [insight-leakage, distillation-extraction, insider-exfiltration]
+  notes: 'Routes: external attack, human insider (core insider-exfiltration), AI insider (self-exfiltration), hostile leverage. Counts disagree by definition: IASR 2026 "no confirmed, publicly documented instances of model weight theft" (Dec 2025); RAND-W "at least one known case (and arguably two)" of a frontier model "irreversibly leaked".'
+
+- id: insight-leakage
+  broader: [g-security]
+  kind: event
+  label: Rate of leakage of algorithmic insights to unauthorized parties
+  proposed_by: "RAND (Brass-Gershovich et al., RAND-ISL); echoed by AISP (shared authors)"
+  definition: Transfer of novel techniques, methods or design know-how that materially improve AI systems, by any route (insiders, former staff, compromised agents, inference from released models).
+  distinct_from: [weight-theft, insider-exfiltration]
+  notes: 'RAND-ISL p.iii: insights "are distributed across code, documentation, communications, and human expertise, making them far harder to contain" than weights. This asymmetry is why the growth mechanism bites insights harder than weights (us-security.md §0 item 1).'
+
+- id: distillation-extraction
+  broader: [g-security]
+  kind: event
+  label: Rate of unauthorized extraction of model outputs to train other models (distillation attacks)
+  proposed_by: "Anthropic (Risk Report Aug 2026); xAI; US NSPM-11"
+  aisi_term: "distillation (NCSC, as a capability-transfer process)"
+  definition: Unauthorized, systematic extraction of a model's output transcripts for training a separate model, circumventing access controls.
+  distinct_from: [weight-theft, insight-leakage]
+  notes: A capability-theft vector that needs no access to weights or to staff. Anthropic separates it from legitimate distillation of one's own models.
+
+- id: self-exfiltration
+  broader: [g-security, g-loc]
+  kind: event
+  label: Likelihood of an AI system copying its own (or another model's) weights out of secure storage
+  proposed_by: "EU GPAI Code; UK AISI Control agenda; Anthropic, GDM, Amazon frameworks"
+  aisi_term: "weight exfiltration (Control threat model)"
+  definition: An AI system with legitimate access moving model weights beyond authorized storage, whether from misalignment or as an instrumental step in a task.
+  distinct_from: [autonomous-replication-capability, insider-exfiltration, rogue-internal-deployment]
+  notes: 'The capability is core autonomous-replication-capability; this is the event. Filed under loss of control by Amazon and the EU Code, under security incidents by the EU Code (Measure 9.3) and the GPAI Guidelines ¶103, and under insider threats by the EU glossary: one event, three homes.'
+
+- id: rogue-internal-deployment
+  broader: [g-security, g-loc]
+  kind: event
+  label: Likelihood of a persistent, unauthorized internal deployment run by an AI system
+  proposed_by: "UK AISI Control agenda; Anthropic Risk Report Feb 2026 (pathway 6); GDM Frontier Report"
+  aisi_term: "rogue internal deployments"
+  definition: AI instances running inside developer infrastructure without sanction or monitoring, launched by an AI system.
+  distinct_from: [self-exfiltration, shadow-agent-use]
+
+- id: ai-insider-sabotage
+  broader: [g-security, g-oversight]
+  kind: event
+  label: Likelihood of internally deployed AI sabotaging safety-relevant work or infrastructure
+  proposed_by: "Anthropic (Risk Report Feb 2026, 'sabotage'); UK AISI (sabotage evaluations); GDM Frontier Report"
+  definition: An internally deployed AI system using its affordances to tamper with the developer's research, evaluations, training data, code or security posture in ways that raise later risk.
+  distinct_from: [misaligned-propensity, unsanctioned-action]
+  notes: 'Anthropic''s eight pathways (Feb 2026): diffuse sandbagging of safety R&D; targeted sabotage; code backdoors for future models; poisoning successors'' training data; self-exfiltration; persistent rogue internal deployment; R&D sabotage at other developers; decision sabotage in governments. The first four are this concept.'
+
+- id: insider-misuse
+  broader: [g-security]
+  kind: event
+  label: Likelihood of misuse of privileged model access by people with legitimate access
+  proposed_by: "Google DeepMind FSF v3.1 ('insider misuse')"
+  definition: People with legitimate access to unreleased or less-safeguarded models using that access to obtain harmful capability, without exfiltrating weights.
+  distinct_from: [insider-exfiltration, weight-theft]
+  notes: Downstream hazard concepts (CBRN, cyber) are not yet in the model; this is a census entry until they are.
+
+# ---------------------------------------------------------------- practices (controls, or roles relations give them)
+- id: weight-security-level
+  broader: [g-security, g-controls]
+  kind: practice
+  label: Strength of model-weight and infrastructure security
+  proposed_by: "RAND (Security Levels SL1–SL5); EU GPAI Code Commitment 6"
+  definition: Security that protects weights and the systems that process them, graded by the class of attacker it can likely thwart.
+  distinct_from: [insight-security-level, safeguard-strength]
+  notes: 'Four collided vocabularies: RAND SL/WSL, RAND ISL, Anthropic ASL, and AISP''s re-glossed SL-3/4/5 (us-security.md §5). "AI security" itself is pooled (AISP p.34).'
+
+- id: insight-security-level
+  broader: [g-security, g-controls]
+  kind: practice
+  label: Strength of algorithmic-insight protection (compartmentalization and information-flow control)
+  proposed_by: "RAND-ISL (Insight Security Levels ISL1–ISL5)"
+  definition: Measures that limit who knows which insights and how insights move (compartments, clean-desk, information-flow monitoring, cleared-personnel pipelines).
+  distinct_from: [weight-security-level]
+  notes: RAND-ISL p.26 says complete isolation of insights is "possibly even infeasible", so this lever is weaker than its weight counterpart.
+
+- id: personnel-security
+  broader: [g-security, g-controls]
+  kind: practice
+  label: Rigour of personnel security and the insider-threat programme
+  proposed_by: "RAND (W, ISL, SL3); EU GPAI Code App. 4.4; NIST AI 800-1 (draft)"
+  definition: Screening, periodic rescreening, behavioural monitoring, access reviews and structured offboarding for people with sensitive access.
+  distinct_from: [access-minimization, safety-culture-strength]
+  notes: Per-person work. It does not apply to AI systems as insiders (AISP p.82).
+
+- id: access-minimization
+  broader: [g-security, g-controls]
+  kind: practice
+  label: Degree to which weight access is limited in number and mediated by hardened interfaces
+  proposed_by: "RAND-W (SL3 caps; constrained interfaces); EU GPAI Code App. 4.3(4); GDM ('least privilege')"
+  definition: Caps on how many people hold each class of weight access, plus interfaces that let work proceed without copyable access.
+  notes: 'The lever that decouples weight security from headcount (RAND-W p.32). RAND-W SL3 caps: 100 output-limited / 50 isolated-network / 20 copy.'
+
+- id: anti-distillation-measures
+  broader: [g-security, g-controls]
+  kind: practice
+  label: Strength of defences against distillation and extraction through legitimate access
+  proposed_by: "Anthropic (Risk Report Aug 2026); xAI"
+  definition: Reasoning summarization, connector-text summarization, customer verification, access limits and anomaly detection that reduce extraction volume or uplift.
+
+- id: security-authority
+  broader: [g-security, g-controls]
+  kind: practice
+  label: Authority of the security function over product and commercial decisions
+  proposed_by: "RAND-W (SL4, 'Prioritizing leak prevention over other organizational goals')"
+  definition: Formal and practical power of security to veto decisions that would undermine it, even when commercially important.
+
+- id: state-security-partnership
+  broader: [g-security, g-controls]
+  kind: practice
+  label: Extent of government security assistance to developers
+  proposed_by: "AISP; US NSPM-11 and America's AI Action Plan"
+  definition: Government support to developers for vetting, counterintelligence, physical and cyber security of facilities, and defence against distillation.
+
+# ---------------------------------------------------------------- states and dynamics
+- id: security-gap
+  broader: [g-security]
+  kind: state
+  label: Gap between attackers motivated to target a developer and attackers its security can reliably stop
+  proposed_by: "Anthropic (Risk Report Aug 2026, App. 6.4); structurally RAND's OC-vs-SL framing"
+  definition: How far the capability of the actors motivated to steal from a developer exceeds the capability its security reliably stops.
+  notes: 'The operative variable for theft, analogous to absorption-gap and human-review-ratio. Anthropic: "the gap between the capability level of attackers motivated to target us and attackers we can reliably defend against is at risk of widening".'
+
+- id: theft-incentive
+  broader: [g-security, g-context]
+  kind: context
+  label: Adversary incentive to steal a developer's weights or insights
+  proposed_by: "Anthropic (Risk Report Aug 2026); RAND-W (national-security motivation)"
+  definition: Value to adversaries (states, competitors, criminals) of obtaining the developer's assets, net of other routes to the same value.
+
+- id: external-attacker-capability
+  broader: [g-security, g-context]
+  kind: context
+  label: Capability and resourcing of external threat actors targeting AI developers
+  proposed_by: "RAND-W (operational capacity OC1–OC5); EU GPAI Code ('non-state external threats')"
+  definition: The budget, expertise, access and tooling (including AI tooling) of actors attempting theft.
+
+- id: hostile-leverage
+  broader: [g-security]
+  kind: affordance
+  label: Adversary financial or legal leverage over a developer
+  proposed_by: "RAND-W (SL4 investor vetting); RAND-ISL ('organizational leverage attacks')"
+  definition: Leverage built through investments, grants or business relationships that can later be used to force access.
+  distinct_from: [capital-pressure]
+
+- id: infrastructure-maturity-gap
+  broader: [g-security]
+  kind: state
+  label: Share of compute environments not yet raised to the security baseline
+  proposed_by: "Anthropic (Risk Report Aug 2026, App. 6.4); named as a quantity by this slice"
+  definition: Compute capacity running below the developer's target security baseline while it is being hardened.
+  sd_kind: stock
+  notes: The infrastructure twin of absorption-gap. New environments arrive faster than they can be hardened.
+
+- id: compute-buildout-rate
+  broader: [g-security, g-org]
+  kind: dynamics
+  label: Rate of bringing new compute capacity online across providers and environments
+  proposed_by: "Anthropic (Risk Report Aug 2026, App. 6.4)"
+  definition: How fast a developer adds training and inference capacity, including across multiple cloud providers.
+  distinct_from: [org-growth-rate]
+
+- id: security-capacity-ratio
+  broader: [g-security, g-org]
+  kind: state
+  label: Security-team capacity relative to organizational headcount
+  proposed_by: "integrator (Claude, security slice), from RAND-W's headcount-indexed SL3 requirement"
+  definition: Security and personnel-security staffing per person to be screened, rescreened, monitored and offboarded.
+  notes: 'RAND-W SL3: "at least two dozen people or 5 percent of organization headcount, whichever is larger" (p.85).'
+
+- id: familiarity-trust
+  broader: [g-security, g-org]
+  kind: state
+  label: Share of staff vouched for through personal relationships
+  proposed_by: "UK NPSA/NCSC (Secure Innovation)"
+  definition: How far trust in staff rests on founders' and colleagues' direct knowledge of them, rather than on formal vetting.
+
+- id: workforce-strain
+  broader: [g-security, g-org]
+  kind: state
+  label: Organizational strain on staff (overwork, uncertainty, recent M&A)
+  proposed_by: "CISA (Insider Threat Mitigation Guide, 2026)"
+  definition: Organizational conditions that CISA lists as insider-risk indicators.
+
+- id: extended-workforce-access
+  broader: [g-security]
+  kind: state
+  label: Number of third-party contractors with privileged access to unreleased or less-safeguarded models
+  proposed_by: "Anthropic (Risk Report Aug 2026)"
+  definition: Vendor-engaged people (e.g. human-feedback and red-teaming contractors) with open-ended model access, vetted by the vendor rather than the developer.
+  distinct_from: [staff-with-access]
+  sd_kind: stock
+  units: people
+  notes: 'Anthropic, Aug 2026: "a pool of roughly 50,000 people, who were vetted only by our vendors".'
+
+- id: former-staff-knowledge
+  broader: [g-security]
+  kind: state
+  label: Number of former staff carrying sensitive insights
+  proposed_by: "RAND-ISL ('Risks from Former Employees')"
+  definition: People who have left and carry proprietary insight in their heads, often without recognizing it as proprietary.
+  sd_kind: stock
+  units: people
+  notes: 'Filled by staff-turnover out of staff-with-access. RAND-ISL: this vector "was not in SMW" (RAND-W).'
+
+- id: shadow-agent-use
+  broader: [g-security, g-oversight]
+  kind: state
+  label: Extent of unlogged, unmonitored staff use of AI agents with sensitive access
+  proposed_by: "Anthropic (Risk Report Aug 2026, §5.2.5); Five Eyes CAREFUL guidance"
+  definition: Staff directing agents over sensitive resources outside logging and monitoring coverage, where human and AI insider risk meet.
+  distinct_from: [rogue-internal-deployment, internal-ai-deployment]
+
+- id: ai-lab-velocity
+  broader: [g-org]
+  kind: dynamics
+  label: Speed of an AI lab's own research and development work
+  proposed_by: "RAND-ISL; RAND-SL3; AISP (as the cost side of security)"
+  definition: Rate at which an AI lab's research and engineering proceeds, including collaboration and talent attraction.
+  distinct_from: [capability-pace, org-growth-rate]
+  notes: The quantity security trades against in every source in this slice. Frontier capability-pace is the industry-level aggregate.
+
+- id: capability-diffusion
+  broader: [g-security, g-context]
+  kind: state
+  label: Extent to which frontier capabilities are held by actors outside the originating developer's controls
+  proposed_by: "Anthropic (Risk Report Aug 2026, §5.1 acceleration mechanisms); NCSC (frontier capabilities 'can be transferred')"
+  definition: Spread of frontier-level capability, by theft, leakage, distillation or open release, to parties without the originator's safeguards.
+  notes: Likely shared with an open-weights slice. It is the point where security failures turn into proliferation and pace.
+
+# ---------------------------------------------------------------- indicators
+- {id: ind-security-team-share, broader: [g-security], kind: indicator, label: "Security-team headcount ÷ organization headcount (against RAND-W's 5% / 24-person SL3 floor)", proposed_by: "prior agent (us-security.md verifier), from RAND-W"}
+- {id: ind-privileged-access-count, broader: [g-security], kind: indicator, label: "Headcount holding each class of weight access (against RAND-W's 100 / 50 / 20 caps)", proposed_by: "prior agent (us-security.md verifier), from RAND-W; EU GPAI Code App. 4.3(4)"}
+- {id: ind-access-recertification, broader: [g-security], kind: indicator, label: "Rescreening and access re-authorization cadence; time-to-revoke on departure", proposed_by: "prior agent (us-security.md verifier), from RAND-W, RAND-SL3 PS-4, EU App. 4.3(1)"}
+- {id: ind-former-compartment-staff, broader: [g-security], kind: indicator, label: "Count of former staff who held insight-compartment access", proposed_by: "prior agent (us-security.md verifier), from RAND-ISL"}
+- {id: ind-extended-workforce-size, broader: [g-security], kind: indicator, label: "Size of vendor-vetted contractor pools with open-ended access to unreleased models", proposed_by: "Anthropic (Risk Report Aug 2026)"}
+- {id: ind-confirmed-weight-leaks, broader: [g-security], kind: indicator, label: "Publicly confirmed frontier weight thefts or leaks", proposed_by: "IASR 2026; RAND-W"}

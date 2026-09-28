@@ -1,0 +1,1391 @@
+# Governance, commitments and enforcement slice: relations (ids gv-*). Generated from Python data for reliable quoting.
+# Claim fields as in SCHEMA.md, plus two PROPOSED optional fields (check.py ignores them; see notes-gv.md §3):
+#   force       the force of the DOCUMENT the claim cites: law · commit · exec · self · self-d · rec · bench · crit · prop · draft · desc,
+#               with overlays for designated frameworks, e.g. "self-d+law" (a developer's own text, in discretionary register, that a statute binds it to comply with)
+#   checked_by  who can actually enforce or check it (e.g. "California Attorney General", "European Commission (AI Office)"); absent = no one named
+# `gv-i-*` relations are `indicates` relations (the core uses `i-*`).
+- id: gv-statute-partof-regreq
+  from: statutory-obligations
+  to: regulatory-requirements
+  type: part_of
+  note: The core regulatory-requirements pools law and signatory commitments. These two part_of links make the pooling explicit without editing the core.
+  claims:
+  - author: integrator (Claude)
+    channel: dialog
+    evidence: definition
+    qualifier: this slice's decomposition of the core concept's own definition ('statute, binding commitments, enforceable reporting')
+- id: gv-code-partof-regreq
+  from: code-commitments
+  to: regulatory-requirements
+  type: part_of
+  claims:
+  - author: EU GPAI Code (signatories)
+    channel: 'relay: eu.md'
+    evidence: definition
+    force: commit
+    qualifier: voluntary; one route to demonstrating compliance with binding Art. 55
+    doc: eu-cop-2025-safety-security
+    loc: Objective A, p.2
+    quote: to serve as a guiding document for demonstrating compliance … while recognising that adherence to the Code does not constitute conclusive evidence of compliance
+  - author: European Union (Digital Omnibus on AI)
+    channel: 'relay: remaining-literature.md'
+    evidence: instrument
+    force: law
+    qualifier: recital; limits the legal effect of the part
+    doc: eu-2026-digital-omnibus-ai
+    loc: recital 41, p.13
+    quote: do not grant a presumption of conformity
+- id: gv-pause-partof-self
+  from: pause-commitments
+  to: self-commitments
+  type: part_of
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: definition
+    qualifier: descriptive
+    doc: bengio-2026-international
+    loc: §3.2
+    quote: they vary in their definitions of risk tiers and thresholds … and the comprehensiveness of their mitigation commitments (for example, whether they include deleting model weights versus just pausing development)
+- id: gv-statute-code
+  from: statutory-obligations
+  to: code-commitments
+  type: influences
+  sign: +
+  note: The Code exists to operationalize Art. 55; law gives the voluntary layer its point.
+  claims:
+  - author: European Union (AI Act)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: law
+    checked_by: European Commission (AI Office)
+    doc: eu-2024-ai-act
+    loc: Art. 55(2), p.86
+    quote: may rely on codes of practice … to demonstrate compliance … until a harmonised standard is published
+  - author: European Commission (GPAI Guidelines)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: law
+    qualifier: official guidance
+    doc: ec-2025-gpai-guidelines
+    loc: ¶100, p.27
+    quote: A code of practice is a temporary tool … As opposed to adherence to a code of practice, compliance with harmonised standards grants a presumption of conformity
+- id: gv-statute-self
+  from: statutory-obligations
+  to: self-commitments
+  type: influences
+  sign: +
+  note: Law requires developers to write, publish and comply with a framework, and pulls statutory content into voluntary texts too. See gv-statute-desig for the counter-movement.
+  claims:
+  - author: California (SB 53)
+    channel: primary
+    evidence: instrument
+    force: law
+    checked_by: California Attorney General
+    doc: california-2025-sb53
+    loc: §22757.12(a)
+    quote: A large frontier developer shall write, implement, comply with, and clearly and conspicuously publish … a frontier AI framework
+  - author: Microsoft
+    channel: 'relay: company-frameworks-meta-msft-amzn.md'
+    evidence: document-change
+    force: self
+    qualifier: the developer's own account of why it revised
+    doc: microsoft-2026-frontier-governance-framework
+    loc: change log, p.15
+    quote: One year update following finalization of the EU Code of Practice for General Purpose AI (CoP), NY RAISE Act and CA Transparency in Frontier Artificial Intelligence Act
+  - author: Meta
+    channel: 'relay: company-frameworks-meta-msft-amzn.md'
+    evidence: document-change
+    force: self
+    qualifier: content maps onto SB 53 element by element without citing it (verifier's inference); change log lists the additions
+    doc: meta-2026-advanced-ai-scaling-framework
+    loc: p.44
+    quote: Added Loss of Control as a risk domain
+- id: gv-code-self
+  from: code-commitments
+  to: self-commitments
+  type: influences
+  sign: +
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: incident
+    qualifier: descriptive; signatories committed to publish frameworks
+    doc: bengio-2026-international
+    loc: §3.2
+    quote: 16 AI developers from multiple countries signed voluntary commitments to publish Frontier AI Safety Frameworks for their most capable models and systems
+  - author: xAI
+    channel: 'relay: company-frameworks-xai-others.md'
+    evidence: document-change
+    force: self-d
+    qualifier: Jun 2026 FAIF adopts the Code's four specified risks and cites its terminology
+    doc: xai-2026-faif
+    loc: p.1 fn 1
+    quote: Terminology used in the The Safety and Security Chapter of the General-Purpose AI Code of Practice
+  - author: prior Claude agent (company-frameworks verifier)
+    channel: prior agent report (influx/verification/company-frameworks.md §3)
+    evidence: measurement
+    qualifier: observation across frameworks; bears on content, not force
+    quote: In the law-backed documents (ANT-FCF, OAI-FGF, xAI-26, MSFT, AMZN) the A1–A4 cells converge on the EU's four specified risks, often in the EU's words
+  - author: Vorp Labs
+    channel: 'relay: company-frameworks-xai-others.md'
+    evidence: none-stated
+    qualifier: 'secondary inventory; counter-instance: Seoul signatories without a published framework'
+    quote: Zhipu, MiniMax and 01.AI signed the Seoul commitments but have published no framework
+- id: gv-statute-desig
+  from: statutory-obligations
+  to: enforceable-self-commitments
+  type: influences
+  sign: '?'
+  note: Where law makes a developer's own commitments enforceable, the enforceable set is the thinner one at Anthropic and OpenAI. No source asserts that law causes this; the developers' own statements describe the split, and the direction of any effect is our open question.
+  claims:
+  - author: Anthropic
+    channel: 'relay: company-frameworks-anthropic.md'
+    evidence: none-stated
+    force: self
+    qualifier: developer's stated rationale for two documents
+    doc: anthropic-2025-fcf-announcement
+    quote: The RSP will remain our voluntary safety policy, reflecting what we believe best practices should be as the AI landscape evolves, even when that goes beyond or otherwise differs from current regulatory requirements.
+  - author: OpenAI
+    channel: 'relay: company-frameworks-openai.md'
+    evidence: none-stated
+    force: self
+    qualifier: developer's stated rationale
+    doc: openai-2026-frontier-governance-framework-announcement
+    quote: The Preparedness Framework remains the foundation … including our internal practices that go beyond current legal requirements.
+  - author: integrator (Claude)
+    channel: dialog
+    evidence: argument
+    qualifier: 'hypothesis (ours): making commitments enforceable rewards stating them in discretionary register; the opposite (law raises the floor) is equally consistent with the evidence'
+- id: gv-exposure-adherence
+  from: enforcement-exposure
+  to: commitment-adherence
+  type: influences
+  sign: +
+  claims:
+  - author: California (SB 53)
+    channel: primary
+    evidence: instrument
+    force: law
+    checked_by: California Attorney General
+    doc: california-2025-sb53
+    loc: §22757.15(a)
+    quote: fails to comply with its own frontier AI framework shall be subject to a civil penalty in an amount dependent upon the severity of the violation that does not exceed one million dollars ($1,000,000)
+  - author: European Commission (GPAI Guidelines)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: law
+    checked_by: European Commission (AI Office)
+    doc: ec-2025-gpai-guidelines
+    loc: ¶106, p.29
+    quote: impose fines of up to 3% of global annual turnover or EUR 15 million … starting on 2 August 2026
+- id: gv-desig-mod
+  from: enforceable-self-commitments
+  type: moderates
+  targets:
+  - gv-exposure-adherence
+  sign: +
+  note: The penalty reaches only the commitments that are legally enforceable. Where those are stated in discretionary register, little is enforced.
+  claims:
+  - author: Anthropic (FCF v2)
+    channel: primary
+    evidence: instrument
+    force: self-d+law
+    checked_by: California Attorney General; EU AI Office via the Code
+    qualifier: the law-backed document's operative register
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    loc: §3, p.12
+    quote: By way of non-exhaustive example, we do and will implement the following mitigations and measures as appropriate
+  - author: OpenAI (FGF)
+    channel: 'relay: company-frameworks-openai.md'
+    evidence: instrument
+    force: self-d+law
+    qualifier: 'term search: ''halt'', ''pause'', ''stop'' absent from the FGF; halt language lives in the voluntary PF v2'
+    doc: openai-2026-frontier-governance-framework
+    loc: p.11
+    quote: If residual risks associated with the model exceed acceptable risk levels, the model is not deployed unless additional mitigation measures are implemented that sufficiently minimize risk.
+  - author: prior Claude agent (company-frameworks verifier)
+    channel: prior agent report (influx/verification/company-frameworks.md §1.2)
+    evidence: argument
+    qualifier: verifier's reading
+    quote: a +law document can be almost entirely self-d in register … The overlay binds compliance with whatever the document commits to, which can be little.
+- id: gv-capacity-exposure
+  from: regulator-capacity
+  to: enforcement-exposure
+  type: influences
+  sign: +?
+  claims:
+  - author: Zwetsloot & Dafoe
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    qualifier: about structural interventions generally
+    doc: zwetsloot-2019-thinking
+    loc: '''Structure''s Effects on AI'''
+    quote: the biggest obstacle to such structural interventions tends to be a lack of resources and competency on the part of regulatory bodies.
+  - author: EU GPAI Code Chairs and Vice-Chairs
+    channel: primary
+    evidence: expert-judgment
+    qualifier: statement published with the Code, not part of it; unofficial host
+    doc: eu-cop-chairs-2025-statement
+    loc: p.3
+    quote: they constantly have to meet urgent deadlines. This means that it is nobody's job to scan what is happening at the frontier of AI development
+- id: gv-capacity-verif
+  from: regulator-capacity
+  to: external-verification
+  type: influences
+  sign: +
+  claims:
+  - author: UK DSIT
+    channel: 'relay: uk.md'
+    evidence: argument
+    qualifier: discussion paper; 'does not represent a policy position of HMG'
+    doc: dsit-2023-capabilities
+    loc: p.18
+    quote: There is currently little government capacity for this
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.1, Category 4
+    quote: Some institutions struggle to build sufficient technical capacity to engage with AI research
+- id: gv-verif-adherence
+  from: external-verification
+  to: commitment-adherence
+  type: influences
+  sign: +
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: descriptive; 'policy recommendations are outside the scope'
+    doc: bengio-2026-international
+    loc: §3.2, 'The effectiveness of Frontier AI Safety Frameworks is uncertain'
+    quote: External assessments of developers' compliance with their Frontier AI Safety Frameworks so far remain limited, in part because most frameworks are recent, publicly available information is scarce, and there are no standardised external audits.
+  - author: GovAI (Williams & Freund)
+    channel: 'relay: academic-ngo.md'
+    evidence: argument
+    qualifier: authors' views, not GovAI's; about RSP v3.0
+    doc: williams-2026-anthropic-rsp-v3
+    loc: '''Reasons to be concerned'''
+    quote: Anthropic will effectively be grading its own homework.
+  - author: Anthropic (RSP v3.4)
+    channel: 'relay: company-frameworks-anthropic.md'
+    evidence: instrument
+    force: self
+    qualifier: the review that exists is procedural
+    doc: anthropic-2026-rsp-v3-4
+    loc: §4, p.16
+    quote: not substantive outcomes
+- id: gv-adherence-safeguard
+  from: commitment-adherence
+  to: safeguard-strength
+  type: influences
+  sign: +?
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.2
+    quote: On their own, these frameworks may not ensure effective risk management, since their practical impact depends on how well and to what extent they are implemented.
+- id: gv-i-fulfilment
+  from: ind-commitment-fulfilment
+  to: commitment-adherence
+  type: indicates
+  sign: +
+  claims:
+  - bears_on: from
+    author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: measurement
+    qualifier: IASR summarizing a study of prior voluntary commitments (arXiv 2508.08345; not read)
+    doc: bengio-2026-international
+    loc: §3.2
+    quote: A study on prior voluntary commitments found uneven fulfilment across measures, suggesting that adherence to voluntary commitments is likely to vary between companies and domains.
+  - bears_on: from
+    author: OpenAI
+    channel: 'relay: company-frameworks-openai.md'
+    evidence: incident
+    force: self-d
+    qualifier: 'an unmet stated expectation, not a breached commitment: no PF version after v2 found by 27 Sep 2026, though Astra was designated Critical on 1 Sep'
+    doc: openai-2025-preparedness-framework-v2
+    loc: §4.4, p.12
+    quote: we expect to further update this Preparedness Framework before reaching such a level with any model
+  - bears_on: from
+    author: The Midas Project
+    channel: 'relay: company-frameworks-xai-others.md'
+    evidence: none-stated
+    qualifier: watchdog commentary [F][C]; not verified against a primary
+    quote: xAI released Grok Code Fast 1 despite the model failing a safety test that the company's policy says models must pass before release.
+- id: gv-loosen-self
+  from: commitment-loosening
+  to: self-commitments
+  type: influences
+  sign: '-'
+  note: Definitional in direction; the claims are documented instances.
+  claims:
+  - author: Zhu (2026)
+    channel: 'relay: company-frameworks.md'
+    evidence: measurement
+    qualifier: preprint; first-pass coding by a Claude-family system; inter-coder agreement not yet reported
+    doc: zhu-2026-silent
+    loc: abstract
+    quote: 77% of traced changes weaken or remove a commitment
+  - author: xAI
+    channel: 'relay: company-frameworks-xai-others.md'
+    evidence: document-change
+    force: self
+    qualifier: Dec 2025 → Jun 2026 FAIF, no revision account; the whistleblower and anonymous-reporting text was removed
+    doc: xai-2025-faif
+    loc: p.8
+    quote: Internally, we allow xAI employees to anonymously report concerns about nonadherence, with protections from retaliation.
+  - author: Google DeepMind (FSF)
+    channel: 'relay: company-frameworks-gdm.md'
+    evidence: document-change
+    force: self
+    qualifier: named governance bodies (v2.0) replaced by an unnamed 'governance function' (v3.0)
+    doc: gdm-2025-fsf-v2-0
+    loc: p.7
+    quote: the response plan will be reviewed and approved by appropriate corporate governance bodies such as the Google DeepMind AGI Safety Council
+- id: gv-loosen-pause
+  from: commitment-loosening
+  to: pause-commitments
+  type: influences
+  sign: '-'
+  claims:
+  - author: FLI (review panel)
+    channel: 'relay: academic-ngo.md'
+    evidence: argument
+    qualifier: 'rating-index finding; checked against primaries by the company-frameworks agents: holds for Anthropic, GDM, Meta; OpenAI''s is a paraphrase omitting three conditions'
+    doc: fli-2026-ai-safety-index-summer
+    loc: p.4
+    quote: Anthropic, OpenAI, Google DeepMind, and Meta have weakened or voided pledges to pause unilaterally if redlines are approached, some citing competitor-contingent conditions
+  - author: Meta
+    channel: 'relay: company-frameworks-meta-msft-amzn.md'
+    evidence: document-change
+    force: self
+    qualifier: Meta's own change log; the announcement calls v2 a revision that 'strengthens how we make deployment decisions' [F]
+    doc: meta-2026-advanced-ai-scaling-framework
+    loc: p.44
+    quote: Critical threshold changed from 'Stop' to 'Develop with Mitigations.' High threshold measure changed from 'Do not release' to 'Deploy with mitigations.'
+  - author: Anthropic (RSP v2.2 → v3.x)
+    channel: 'relay: company-frameworks-anthropic.md'
+    evidence: document-change
+    force: self
+    qualifier: v2.2 text, absent from v3.0–v3.4; v2.2 fn 17 already allowed lowering safeguards if others passed thresholds
+    doc: anthropic-2025-rsp-v2-2
+    loc: §6.2, printed p.11
+    quote: we will pause training until we have implemented the ASL-3 Security Standard
+  - author: Google DeepMind (FSF)
+    channel: 'relay: company-frameworks-gdm.md'
+    evidence: document-change
+    force: self-d
+    qualifier: v2.0 hold language ('may'); v3.0/v3.1 limit risk acceptance to deployment
+    doc: gdm-2026-fsf-v3-1
+    loc: p.7
+    quote: This is required only for external deployment, not internal deployment or further development
+- id: gv-pause-velocity
+  from: pause-commitments
+  to: ai-lab-velocity
+  type: influences
+  sign: -?
+  note: Does a pause commitment, where it survives, actually slow a lab? One executed pause, one insider's doubt.
+  claims:
+  - author: OpenAI
+    channel: 'relay: company-frameworks-openai.md'
+    evidence: incident
+    force: self
+    qualifier: developer self-report; PF v2 halts at Critical; OpenAI never says in terms that it invoked the clause
+    doc: openai-2026-pacing-model-development
+    loc: 18 Aug 2026 post
+    quote: This included a two-week pause in reinforcement learning (RL) training on our latest models intended for deployment
+  - author: Karnofsky (lead author of RSP v3)
+    channel: primary
+    evidence: expert-judgment
+    qualifier: author's views, not Anthropic's; disputes that such commitments bind
+    doc: karnofsky-2026-rsp-v3
+    quote: I do not believe that any frontier AI company will actually unilaterally pause or slow AI development (by a significant amount) on the basis of this sort of policy
+- id: gv-race-contingency
+  from: race-dynamics
+  to: competitor-contingency
+  type: influences
+  sign: +
+  claims:
+  - author: Anthropic (RSP v3.4)
+    channel: 'relay: company-frameworks-anthropic.md'
+    evidence: instrument
+    force: self
+    qualifier: the developer names the collective-action problem as the reason for the change
+    doc: anthropic-2026-rsp-v3-4
+    loc: Introduction, p.3
+    quote: If one AI developer paused development to implement safety measures while others moved forward … the developers with the weakest protections would set the pace
+  - author: Google DeepMind (FSF v2.0)
+    channel: 'relay: company-frameworks-gdm.md'
+    evidence: instrument
+    force: self-d
+    qualifier: clause dropped in v3.0; field-contingent language remains
+    doc: gdm-2025-fsf-v2-0
+    loc: p.1
+    quote: our adoption of the protocols described in this Framework may depend on whether such organizations across the field adopt similar protocols
+  - author: OpenAI (PF v2)
+    channel: 'relay: company-frameworks-openai.md'
+    evidence: instrument
+    force: self
+    qualifier: relaxation only 'if' three conditions all hold
+    doc: openai-2025-preparedness-framework-v2
+    loc: §4.3, p.12
+    quote: 'we could adjust accordingly the level of safeguards that we require in that capability area, but only if: … in order to avoid a race to the bottom on safety, we keep our safeguards at a level more protective than the other AI developer'
+- id: gv-contingency-mod
+  from: competitor-contingency
+  type: moderates
+  targets:
+  - r-race-loosening
+  - rs-race-weightsec
+  sign: +
+  note: Contingent clauses are the mechanism by which competitors' conduct becomes a licence to loosen. OpenAI's §4.3 condition ('more protective than the other AI developer') is a damper written into the same clause.
+  claims:
+  - author: Anthropic (RSP v3.4)
+    channel: 'relay: company-frameworks-anthropic.md'
+    evidence: instrument
+    force: self
+    qualifier: the one delay not needing a competitor to act is conditioned on Anthropic's lead
+    doc: anthropic-2026-rsp-v3-4
+    loc: Appendix A, p.17
+    quote: We will delay AI development and deployment as needed to achieve this, until and unless we no longer believe we have a significant lead
+  - author: Google DeepMind (FSF v3.1)
+    channel: 'relay: company-frameworks-gdm.md'
+    evidence: instrument
+    force: self-d
+    qualifier: relaxation condition on security levels
+    doc: gdm-2026-fsf-v3-1
+    loc: p.11
+    quote: may be adjusted if … a model does not possess capabilities meaningfully different from other publicly available models that have weaker security applied
+- id: gv-geo-dereg
+  from: geopolitical-competition
+  to: deregulatory-posture
+  type: influences
+  sign: +
+  claims:
+  - author: US White House (America's AI Action Plan)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: rec
+    qualifier: policy plan; the race is its stated premise
+    doc: whitehouse-2025-action-plan
+    loc: p.1
+    quote: The United States is in a race to achieve global dominance in artificial intelligence (AI).
+  - author: US Department of Commerce (Lutnick)
+    channel: 'relay: us-security.md'
+    evidence: none-stated
+    qualifier: agency statement of plans on reforming US AISI into CAISI
+    doc: commerce-2025-caisi
+    quote: For far too long, censorship and regulations have been used under the guise of national security. Innovators will no longer be limited by these standards.
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: '''may''; countries, not a named government'
+    doc: bengio-2026-international
+    loc: §3.1, 'Competition intensifies speed-versus-safety trade-offs'
+    quote: countries may face trade-offs between advancing domestic AI capabilities and implementing safety measures that could slow development, particularly if they perceive other countries as not adopting comparable measures
+- id: gv-dereg-statute
+  from: deregulatory-posture
+  to: statutory-obligations
+  type: influences
+  sign: '-'
+  claims:
+  - author: US White House (EO 14365)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: exec
+    qualifier: binds federal agencies; the Commerce list of 'onerous' state laws was reportedly unpublished as of Apr 2026 [S]
+    doc: eo-2025-14365
+    loc: §3
+    quote: whose sole responsibility shall be to challenge State AI laws inconsistent with the policy
+  - author: US White House (legislative framework)
+    channel: 'relay: us-gov-recent.md'
+    evidence: argument
+    force: prop
+    qualifier: recommendations to Congress
+    doc: whitehouse-2026-legislative-framework
+    loc: §VII, p.4
+    quote: States should not be permitted to regulate AI development, because it is an inherently interstate phenomenon with key foreign policy and national security implications
+  - author: US White House (EO 14409)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: exec
+    doc: eo-2026-14409
+    loc: §3(c)
+    quote: Nothing in this section shall be construed to authorize the creation of a mandatory governmental licensing, preclearance, or permitting requirement
+- id: gv-dereg-loosen
+  from: deregulatory-posture
+  to: commitment-loosening
+  type: influences
+  sign: +
+  claims:
+  - author: Anthropic
+    channel: primary
+    evidence: none-stated
+    qualifier: the developer's own account; one of three named causes
+    doc: anthropic-2026-rsp-v3-announcement
+    loc: 24 Feb 2026 post
+    quote: The combination of (a) the zone of ambiguity muddling the public case for risk, (b) an anti-regulatory political climate, and (c) requirements at the higher RSP levels that are very hard to meet unilaterally, creates a structural challenge for our current RSP.
+- id: gv-dereg-capacity
+  from: deregulatory-posture
+  to: regulator-capacity
+  type: influences
+  sign: -?
+  claims:
+  - author: US White House (legislative framework)
+    channel: 'relay: us-gov-recent.md'
+    evidence: argument
+    force: prop
+    doc: whitehouse-2026-legislative-framework
+    loc: §V, p.3
+    quote: Congress should not create any new federal rulemaking body to regulate AI
+  - bears_on: to
+    author: NIST (CAISI careers page)
+    channel: 'relay: us-gov-recent.md'
+    evidence: measurement
+    qualifier: a snapshot (updated 27 Aug 2026), not a trend; no stated cause
+    doc: nist-2026-caisi-careers
+    quote: not hiring at this time
+- id: gv-geo-access
+  from: geopolitical-competition
+  to: government-testing-access
+  type: influences
+  sign: +
+  note: The same race framing that argues against regulation motivates voluntary national-security testing access.
+  claims:
+  - author: US White House (America's AI Action Plan)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: rec
+    doc: whitehouse-2025-action-plan
+    loc: p.22
+    quote: Evaluate frontier AI systems for national security risks in partnership with frontier AI developers, led by CAISI
+  - author: US White House (EO 14409)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: exec
+    qualifier: voluntary for developers; threshold is cyber capability, classified, NSA-designated
+    doc: eo-2026-14409
+    loc: §3(b)(ii)
+    quote: for a period of up to 30 days before they plan to release such models to other trusted partners
+- id: gv-access-verif
+  from: government-testing-access
+  to: external-verification
+  type: influences
+  sign: +
+  claims:
+  - author: NIST CAISI
+    channel: 'relay: us-gov-recent.md'
+    evidence: incident
+    qualifier: agency release, withdrawn from nist.gov by 8 May 2026; text via Wayback
+    doc: nist-2026-caisi-agreements
+    loc: 5 May 2026
+    quote: To date, CAISI has completed more than 40 such evaluations, including on state-of-the-art models that remain unreleased.
+  - author: OpenAI (GPT-6 Astra system card)
+    channel: 'relay: company-frameworks-openai.md'
+    evidence: incident
+    qualifier: UK AISI pre-deployment evaluation as relayed by the developer
+    doc: openai-2026-gpt6-astra-system-card
+    loc: PDF p.46
+    quote: 2 out of 500 samples (down from 60 out of 499
+- id: gv-procure-restrict
+  from: procurement-leverage
+  to: developer-usage-restrictions
+  type: influences
+  sign: '-'
+  note: 'The mirror image of loss of control: here retained developer control is what the state counts as risk. Conflict of interest: Anthropic is the developer in the only case; read via news only.'
+  claims:
+  - author: US White House (NSPM-11)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: exec
+    qualifier: binds national-security agencies; text read from a mirror
+    doc: whitehouse-2026-nspm-11
+    loc: §2(c)
+    quote: no commercial entity or adversary possesses the capability to prevent use of, disable or degrade, or materially modify without Federal Government knowledge and approval, an AI system that our men and women depend on
+  - author: US Department of War
+    channel: 'press (NPR), relay: us-gov-recent.md'
+    evidence: incident
+    qualifier: designation of Anthropic; one designation held unlawful (district court, Aug 2026), the other upheld 2–1 (D.C. Cir., 25 Sep 2026); opinions not read
+    doc: npr-2026-anthropic-scr
+    quote: The military will not allow a vendor to insert itself into the chain of command by restricting the lawful use of a critical capability
+- id: gv-extern-resourcing
+  from: harm-externalization
+  to: safety-resourcing
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: '''may'''
+    doc: bengio-2026-international
+    loc: §3.1, Category 3
+    quote: When harms are diffuse, delayed, or difficult to trace back to their source, there are fewer incentives for private actors to invest in safety measures.
+  - author: UK DSIT
+    channel: 'relay: uk.md'
+    evidence: argument
+    qualifier: section heading; discussion paper, not HMG policy
+    doc: dsit-2023-capabilities
+    loc: p.18
+    quote: Insufficient incentives for AI developers to invest into risk mitigation measures
+  - author: NIST AI 800-4 (reporting workshop attendees)
+    channel: 'relay: us-gov-recent.md'
+    evidence: expert-judgment
+    qualifier: reported practitioner views, not NIST's
+    doc: nist-2026-ai-800-4
+    loc: p.14
+    quote: lack of requirements (or more generally incentives) for AI makers and deployers to worry about harms to human stakeholders
+- id: gv-liability-extern
+  from: ai-liability-clarity
+  to: harm-externalization
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: reports that 'some experts argue'
+    doc: bengio-2026-international
+    loc: §3.1, 'It is unclear whether existing liability frameworks are suitable'
+    quote: Some experts argue that liability regimes will play a key role in ensuring basic protection for victims harmed by using or interacting with these systems.
+  - author: UK AISI (Taylor et al.)
+    channel: 'relay: uk-security-frameworks.md'
+    evidence: argument
+    qualifier: suggestion; 'less well-grounded in evidence than our analysis of degradation pathways'
+    doc: aisi-2026-loss-oversight
+    loc: §7
+    quote: internalising the costs from risks which would otherwise be felt externally
+- id: gv-autonomy-liability
+  from: agent-autonomy
+  to: ai-liability-clarity
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.1, liability
+    quote: This uncertainty is compounded by growth in the use of AI agents that operate with reduced human oversight.
+- id: gv-infoasym-liability
+  from: developer-information-asymmetry
+  to: ai-liability-clarity
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.1, liability
+    quote: harms can be difficult to trace to specific design choices, especially since full information about risk management processes is not public, and responsibility is distributed across model developers, application builders, deployers, and users
+- id: gv-infoasym-verif
+  from: developer-information-asymmetry
+  to: external-verification
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.1, Category 2
+    quote: These 'information asymmetries' mean that policymakers sometimes lack certain kinds of data and evidence that would help them make informed decisions about AI.
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.1, Category 2
+    quote: Leading AI companies also have access to internal AI systems that are more capable than those available to the public
+- id: gv-statute-infoasym
+  from: statutory-obligations
+  to: developer-information-asymmetry
+  type: influences
+  sign: -?
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: '''may''; ''usefulness in practice remains uncertain'''
+    doc: bengio-2026-international
+    loc: §3.1, Key information
+    quote: Several jurisdictions have also developed transparency and incident reporting frameworks that may provide policymakers with more relevant information, though the recency of these developments means their usefulness in practice remains uncertain.
+  - author: California (SB 53)
+    channel: primary
+    evidence: instrument
+    force: law
+    checked_by: California Attorney General
+    doc: california-2025-sb53
+    loc: §22757.12(e)(1)(A)
+    quote: A frontier developer shall not make a materially false or misleading statement about catastrophic risk from its frontier models or its management of catastrophic risk.
+- id: gv-reporting-infoasym
+  from: incident-reporting-duty
+  to: developer-information-asymmetry
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.2, Key information
+    quote: Lack of incident reporting and monitoring makes it difficult to assess how well current practices reduce risks or how consistently they are implemented.
+- id: gv-statute-reporting
+  from: statutory-obligations
+  to: incident-reporting-duty
+  type: influences
+  sign: +
+  claims:
+  - author: European Commission (GPAI Guidelines)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: law
+    checked_by: European Commission (AI Office)
+    doc: ec-2025-gpai-guidelines
+    loc: ¶103
+    quote: (self-)exfiltration of model parameters and cyberattacks
+  - author: New York (RAISE Act, S.8828)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: law
+    checked_by: NY DFS office
+    qualifier: introduced text; enacted text not confirmed equal; effective 1 Jan 2027
+    doc: ny-2026-raise-s8828
+    loc: §1422(3)(a)
+    quote: within seventy-two hours
+- id: gv-code-reporting
+  from: code-commitments
+  to: incident-reporting-duty
+  type: influences
+  sign: +
+  claims:
+  - author: EU GPAI Code (signatories)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: commit
+    qualifier: committed 'save in exceptional circumstances'
+    doc: eu-cop-2025-safety-security
+    loc: Measure 9.3
+    quote: a serious cybersecurity breach, including the (self-)exfiltration of model weights
+- id: gv-pace-govgap
+  from: capability-pace
+  to: governance-pace-gap
+  type: influences
+  sign: +
+  note: IASR's 'speed of AI development' is industry capability pace, so it is attached here, not to development-speed.
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.1, 'AI development outpaces traditional governance cycles'
+    quote: The capabilities of the best AI systems improve significantly month-to-month, while major legislation typically takes years to draft, negotiate, and implement.
+  - author: Barrett et al.
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    doc: barrett-2025-stampstpa
+    loc: p.18
+    quote: AI development outpaces regulation, creating a governance vacuum
+  - author: Five Eyes agency heads
+    channel: 'relay: uk-security-frameworks.md'
+    evidence: expert-judgment
+    qualifier: joint statement, cyber
+    doc: fiveeyes-2026-ai-shift
+    quote: The timeline is not years, it is months.
+- id: gv-govgap-statute
+  from: governance-pace-gap
+  to: statutory-obligations
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: '''may challenge'''
+    doc: bengio-2026-international
+    loc: §3.1
+    quote: some current governance approaches use thresholds based on training compute to determine risk management requirements. However, recent advances in inference-time scaling may challenge the effectiveness of such thresholds
+- id: gv-pace-capacity
+  from: capability-pace
+  to: regulator-capacity
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    doc: bengio-2026-international
+    loc: §3.1, Category 4
+    quote: The speed of AI development makes it difficult for existing government, research, and academic institutions to generate evidence about AI risks in a timely and coordinated manner and build the capacity to respond effectively.
+- id: gv-i-staffing
+  from: ind-regulator-staffing
+  to: regulator-capacity
+  type: indicates
+  sign: +
+  claims:
+  - bears_on: from
+    author: EU GPAI Code Chairs and Vice-Chairs
+    channel: primary
+    evidence: expert-judgment
+    qualifier: endorsing The Future Society open letter's figure; a target, not a count
+    doc: eu-cop-chairs-2025-statement
+    quote: the AI Safety unit (DG CNECT A3) should be scaled up to 100 staff, with the full implementation team of the AI Act expanding to 200
+  - author: European Union (Digital Omnibus on AI)
+    channel: 'relay: remaining-literature.md'
+    evidence: instrument
+    force: law
+    qualifier: a duty, no number
+    doc: eu-2026-digital-omnibus-ai
+    loc: Art. 64(3), p.26
+    quote: the AI Office shall be allocated adequate resources to effectively perform its duties and exercise its powers
+- id: gv-statute-visibility
+  from: statutory-obligations
+  to: revision-visibility
+  type: influences
+  sign: +
+  claims:
+  - author: California (SB 53)
+    channel: primary
+    evidence: instrument
+    force: law
+    checked_by: California Attorney General
+    doc: california-2025-sb53
+    loc: §22757.12(b)(2)
+    quote: clearly and conspicuously publish the modified frontier AI framework and a justification for that modification within 30 days
+  - author: Microsoft
+    channel: 'relay: company-frameworks-meta-msft-amzn.md'
+    evidence: document-change
+    force: self
+    qualifier: v1 said updates published 'Where appropriate'
+    doc: microsoft-2026-frontier-governance-framework
+    loc: p.9
+    quote: All material revisions will be made public within 30 days of adoption
+- id: gv-visibility-loosen
+  from: revision-visibility
+  to: commitment-loosening
+  type: influences
+  sign: -?
+  claims:
+  - author: Zhu (2026)
+    channel: 'relay: company-frameworks.md'
+    evidence: measurement
+    qualifier: association across version pairs, not a causal test; preprint; Claude-family first-pass coder
+    doc: zhu-2026-silent
+    loc: abstract
+    quote: in seven of eight pairs weakenings are more often silent than strengthenings
+  - author: Anthropic
+    channel: 'relay: company-frameworks.md'
+    evidence: argument
+    qualifier: developer's own account of SB 53 (also on core r-regulation-loosening)
+    doc: anthropic-2025-fcf-announcement
+    quote: the law ensures these commitments can't be abandoned quietly later once models get more capable
+- id: gv-i-silent
+  from: ind-silent-revision-rate
+  to: revision-visibility
+  type: indicates
+  sign: '-'
+  claims:
+  - bears_on: from
+    author: Zhu (2026)
+    channel: 'relay: company-frameworks.md'
+    evidence: measurement
+    qualifier: strict standard; 95% CI 62–72; xAI's four revisions have no account of any kind (Table 7)
+    doc: zhu-2026-silent
+    loc: abstract
+    quote: 67% of material changes (95% CI 62 to 72) are silent under a strict standard
+- id: gv-statute-whistle
+  from: statutory-obligations
+  to: whistleblower-protection
+  type: influences
+  sign: +
+  claims:
+  - author: California (SB 53)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: law
+    qualifier: adds Labor Code ch. 5.1 (§1107 ff.); binds whatever a developer's own framework says
+    doc: california-2025-sb53
+    loc: Labor Code §1107 ff.
+    quote: whistleblower protections
+  - author: prior Claude agent (xAI-others verifier)
+    channel: prior agent report (influx/verification/company-frameworks-xai-others.md §4)
+    evidence: argument
+    qualifier: on xAI's Jun 2026 removal of its whistleblower text
+    quote: SB 53's whistleblower protections (Labor Code §1107 ff.) bind regardless of the framework text, so the removal changes xAI's self layer, not the law layer.
+- id: gv-code-whistle
+  from: code-commitments
+  to: whistleblower-protection
+  type: influences
+  sign: +
+  claims:
+  - author: EU GPAI Code (signatories)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: commit
+    qualifier: Measure 8.3 indicator (7); the indicators are 'Examples … and/or'; recital (d) ties it to Directive (EU) 2019/1937
+    doc: eu-cop-2025-safety-security
+    loc: Measure 8.3(7), p.25
+    quote: not retaliating in any form … against any person publishing or providing information … to competent authorities about systemic risks
+- id: gv-loosen-whistle
+  from: commitment-loosening
+  to: whistleblower-protection
+  type: influences
+  sign: '-'
+  claims:
+  - author: xAI
+    channel: 'relay: company-frameworks-xai-others.md'
+    evidence: document-change
+    force: self
+    qualifier: present in Dec 2025 FAIF, absent from Jun 2026 FAIF; no revision account
+    doc: xai-2025-faif
+    loc: p.9
+    quote: xAI employees have whistleblower protections enabling them to raise concerns to relevant government agencies regarding imminent threats to public safety
+- id: gv-whistle-suppress
+  from: whistleblower-protection
+  to: concern-suppression
+  type: influences
+  sign: '-'
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: descriptive (Table 3.4)
+    doc: bengio-2026-international
+    loc: §3.2, Table 3.4
+    quote: Because much of AI development occurs behind closed doors, some governance frameworks include whistleblower protections to enable disclosure of potential risks to authorities.
+  - author: CAIS (Hendrycks, Mazeika & Woodside)
+    channel: 'relay: academic-ngo.md'
+    evidence: argument
+    qualifier: illustrative story ('Weak Safety Culture'), fiction
+    doc: hendrycks-2023-overview
+    loc: printed p.31
+    quote: replaced with a new, more agreeable CRO
+- id: gv-culture-suppress
+  from: safety-culture-strength
+  to: concern-suppression
+  type: influences
+  sign: '-'
+  claims:
+  - author: CAIS (Hendrycks, Mazeika & Woodside)
+    channel: 'relay: academic-ngo.md'
+    evidence: definition
+    doc: hendrycks-2023-overview
+    loc: printed p.28
+    quote: open communication in which potential risks and issues can be freely discussed without fear of retribution
+  - author: FLI (review panel)
+    channel: 'relay: academic-ngo.md'
+    evidence: definition
+    force: crit
+    qualifier: rating criterion (Reporting Culture indicator)
+    doc: fli-2025-ai-safety-index-winter
+    loc: printed p.81
+    quote: fosters a climate in which employees can raise safety-relevant concerns without fear of retaliation and with confidence that the concerns will be addressed
+- id: gv-suppress-perceived
+  from: concern-suppression
+  to: perceived-risk
+  type: influences
+  sign: '-'
+  claims:
+  - author: SaferAI (Campos et al.)
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    qualifier: proposal paper citing established risk management
+    doc: campos-2025-frontier
+    loc: p.11
+    quote: A poor organization-wide culture can lead the leadership to systematically underestimate risk.
+  - author: CAIS (Hendrycks, Mazeika & Woodside)
+    channel: 'relay: academic-ngo.md'
+    evidence: argument
+    doc: hendrycks-2023-overview
+    loc: exec. summary, printed p.2
+    quote: suppress internal concerns about AI risks
+- id: gv-suppress-infoasym
+  from: concern-suppression
+  to: developer-information-asymmetry
+  type: influences
+  sign: +
+  claims:
+  - author: The Future Society et al. (open letter)
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    force: rec
+    qualifier: argument for mandatory third-party testing; signatories include FLI and SaferAI
+    doc: tfs-2025-protecting-gpai
+    loc: p.2
+    quote: prevent internal pressure to downplay risks in favour of rapid deployment
+- id: gv-capital-washing
+  from: capital-pressure
+  to: safetywashing
+  type: influences
+  sign: +
+  claims:
+  - author: GO-Science (DSIT Annex A)
+    channel: 'relay: uk.md'
+    evidence: expert-judgment
+    qualifier: '''highly likely''; ''NOT A STATEMENT OF GOVERNMENT POLICY'''
+    doc: goscience-2023-future
+    loc: ¶32, p.9
+    quote: Perception of a model's power, and future development, are important to attract investment… These incentives are highly likely to influence the public and private statements from industry figures.
+- id: gv-statute-washing
+  from: statutory-obligations
+  to: safetywashing
+  type: influences
+  sign: +?
+  note: 'Good and bad on the relation: scrutiny is meant to discipline claims and is reported to increase the incentive to wash them. SB 53''s false-statement bar (gv-statute-infoasym) pulls the other way.'
+  claims:
+  - author: Ren et al. (CAIS)
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    qualifier: discussion, not what the paper measured; shares Hendrycks with CAIS
+    doc: ren-2024-safetywashing
+    loc: p.20
+    quote: Corporate entities often engage in safetywashing for the sake of appearances … This behavior is particularly pronounced when there is significant public pressure or regulatory scrutiny.
+- id: gv-verif-washing
+  from: external-verification
+  to: safetywashing
+  type: influences
+  sign: '-'
+  claims:
+  - author: SaferAI (Campos et al.)
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    doc: campos-2025-frontier
+    loc: p.11
+    quote: Without independent groups providing regular checks on risk management processes, they can quickly deteriorate in quality and become purely performative.
+- id: gv-washing-perceived
+  from: safetywashing
+  to: perceived-risk
+  type: influences
+  sign: -?
+  claims:
+  - author: CAIS (Hendrycks, Mazeika & Woodside)
+    channel: 'relay: academic-ngo.md'
+    evidence: definition
+    qualifier: the effect on others' beliefs is implied by the definition
+    doc: hendrycks-2023-overview
+    loc: printed p.29
+    quote: the act of overstating or misrepresenting one's commitment to safety by exaggerating the effectiveness of 'safety' procedures, technical methods, evaluations, and so forth
+  - author: Karnofsky (lead author of RSP v3)
+    channel: primary
+    evidence: argument
+    qualifier: author's views; about the impression his own company's policy gave
+    doc: karnofsky-2026-rsp-v3
+    quote: I expect some people will be upset about the move away from a “hard commitments”/”binding ourselves to the mast” vibe.
+- id: gv-i-washing
+  from: ind-safety-capability-correlation
+  to: safetywashing
+  type: indicates
+  sign: +
+  claims:
+  - bears_on: from
+    author: Ren et al. (CAIS)
+    channel: 'relay: remaining-literature.md'
+    evidence: measurement
+    qualifier: NeurIPS 2024; operationalizes only the capabilities-as-safety sense
+    doc: ren-2024-safetywashing
+    loc: abstract
+    quote: many safety benchmarks highly correlate with both upstream model capabilities and training compute, potentially enabling 'safetywashing'—where capability improvements are misrepresented as safety advancements
+  - bears_on: to
+    author: FLI (review panel)
+    channel: 'relay: academic-ngo.md'
+    evidence: expert-judgment
+    force: crit
+    qualifier: rating-index finding about the level, not an indicator of this kind
+    doc: fli-2026-ai-safety-index-summer
+    loc: p.4
+    quote: Safety rhetoric outpaces revealed behavior
+- id: gv-code-riskgov
+  from: code-commitments
+  to: risk-governance-independence
+  type: influences
+  sign: +
+  claims:
+  - author: EU GPAI Code (signatories)
+    channel: 'relay: eu.md'
+    evidence: instrument
+    force: commit
+    qualifier: inside a safe-harbour paragraph ('presumed to be fulfilled' if followed); allocation 'as suitable for … organisational complexity'
+    doc: eu-cop-2025-safety-security
+    loc: Measure 8.1, p.24
+    quote: This member(s) must not also be responsible for the Signatory's core business activities that may produce systemic risk (e.g. research and product development).
+- id: gv-statute-riskgov
+  from: statutory-obligations
+  to: risk-governance-independence
+  type: influences
+  sign: +?
+  note: SB 53 requires a framework to describe governance practices; it sets no structure.
+  claims:
+  - author: California (SB 53)
+    channel: primary
+    evidence: instrument
+    force: law
+    checked_by: California Attorney General
+    qualifier: an element the published framework must address
+    doc: california-2025-sb53
+    loc: §22757.12(a)(9)
+    quote: Instituting internal governance practices to ensure implementation of these processes.
+- id: gv-riskgov-mod
+  from: risk-governance-independence
+  type: moderates
+  targets:
+  - r-race-resourcing
+  - gv-capital-resourcing
+  sign: '-'
+  note: An independent risk function weakens the pull of deadlines and short-term performance on safety allocation; it does not reduce the pressure.
+  claims:
+  - author: SaferAI (Campos et al.)
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    force: prop
+    qualifier: proposal paper drawing on COSO ERM and financial-services risk committees
+    doc: campos-2025-frontier
+    loc: p.10
+    quote: Without them, senior management's decisions are likely to be subject to short-term pressures such as deadlines or performance, at the expense of safety
+  - author: SaferAI (Campos et al.)
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    force: prop
+    doc: campos-2025-frontier
+    loc: p.11
+    quote: Without the Board, senior management can overly optimize for short-term performance, ignoring risks.
+- id: gv-capital-resourcing
+  from: capital-pressure
+  to: safety-resourcing
+  type: influences
+  sign: -?
+  note: The security shard noted that no source states capital-pressure → security outright. This is the general safety-prioritization form, from a rating criterion.
+  claims:
+  - author: FLI (review panel)
+    channel: 'relay: absence-claim.md'
+    evidence: argument
+    force: crit
+    qualifier: rating-criterion rationale; 'may'
+    doc: fli-2025-ai-safety-index-summer
+    loc: p.61
+    quote: During competitive pressures or deployment races, traditional for-profit structures may legally compel management to prioritize shareholder returns even when activities may pose significant societal risks.
+  - author: Barrett et al.
+    channel: 'relay: remaining-literature.md'
+    evidence: argument
+    qualifier: loss scenario in an STPA analysis
+    doc: barrett-2025-stampstpa
+    loc: p.19
+    quote: powerful stakeholders may have invested heavily in AI development and resist constraints that would limit returns on investment
+- id: gv-fiduciary-mod
+  from: fiduciary-insulation
+  type: moderates
+  targets:
+  - gv-capital-resourcing
+  sign: '-'
+  claims:
+  - author: California AG and OpenAI (MOU)
+    channel: primary
+    evidence: instrument
+    force: law
+    checked_by: California Attorney General
+    qualifier: binding regulatory agreement (conditions of non-objection); applies to OpenAI only
+    doc: caag-2025-openai-mou
+    loc: ¶8, p.3
+    quote: requiring the PBC Board to consider only the Mission (and may not consider the pecuniary interests of stockholders or any other interest) in respect of safety and security issues related to the OpenAI enterprise
+  - author: FLI (review panel)
+    channel: 'relay: academic-ngo.md'
+    evidence: definition
+    force: crit
+    qualifier: rating criterion ('Company Structure & Mandate')
+    doc: fli-2025-ai-safety-index-winter
+    loc: printed p.74
+    quote: evaluates whether a company's fundamental legal structure, ownership model, and fiduciary obligations enable safety prioritization over short-term financial pressures in high-stakes situations
+  - author: Anthropic
+    channel: 'relay: absence-claim.md'
+    evidence: argument
+    qualifier: first-party, 2023 [F]
+    loc: '''The Long-Term Benefit Trust'', 19 Sep 2023'
+    quote: the LTBT can ensure that the organizational leadership is incentivized to carefully evaluate future models for catastrophic risks … rather than prioritizing being the first to market above all other objectives
+- id: gv-verif-integrity
+  from: external-verification
+  to: risk-assessment-integrity
+  type: influences
+  sign: +
+  claims:
+  - bears_on: from
+    author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: states the absence, i.e. evidence about the verification endpoint more than the link
+    doc: bengio-2026-international
+    loc: §3.2, Risk mitigation
+    quote: No established mechanism currently exists for validating risk acceptance decisions made by developers prior to release.
+  - author: GovAI (Williams & Freund)
+    channel: 'relay: academic-ngo.md'
+    evidence: argument
+    qualifier: authors' views
+    doc: williams-2026-anthropic-rsp-v3
+    loc: '''Reasons to be concerned'''
+    quote: Anthropic will effectively be grading its own homework.
+- id: gv-integrity-safeguard
+  from: risk-assessment-integrity
+  to: safeguard-strength
+  type: influences
+  sign: +?
+  claims:
+  - author: IASR 2026 writing team
+    channel: primary (influx/iasr-2026-full.md)
+    evidence: argument
+    qualifier: release decisions rest partly on evaluations whose reading this concept is about
+    doc: bengio-2026-international
+    loc: §3.2, 'Common risk analysis tools'
+    quote: Highly consequential decisions by companies and governments about model releases partially rely on these evaluations.
+- id: gv-listing-capital
+  from: public-listing
+  to: capital-pressure
+  type: influences
+  sign: +?
+  claims:
+  - author: Straight Arrow News (Pavlou)
+    channel: 'relay: absence-claim.md'
+    evidence: none-stated
+    qualifier: commentary [F][C]
+    loc: 1 Jun 2026
+    quote: If its biggest competitor, OpenAI, releases a more powerful chatbot, analysts could consider Anthropic slow and too safe, even if the company believes it made the right call. This could result in some brutal quarterly earnings calls with aggressive investors upset.
+- id: gv-listing-riskgov
+  from: public-listing
+  to: risk-governance-independence
+  type: influences
+  sign: +?
+  claims:
+  - author: SaferAI (Campos et al.)
+    channel: 'relay: remaining-literature.md'
+    evidence: established-practice
+    force: desc
+    qualifier: describes listing requirements as existing governance structures; not framed as an AI claim
+    doc: campos-2025-frontier
+    loc: pp.11–12
+    quote: internal audit is a common function in publicly listed organizations and is a listing requirement of many stock exchanges, such as the New York Stock Exchange
+  - author: Anthropic (as reported by Axios)
+    channel: 'press (Axios via Yahoo Finance mirror), relay: absence-claim.md'
+    evidence: none-stated
+    qualifier: developer-side argument as reported [S][F]
+    loc: 14 Sep 2026
+    quote: arguing that safety is improved via the transparency of being a public company
+- id: gv-listing-infoasym
+  from: public-listing
+  to: developer-information-asymmetry
+  type: influences
+  sign: '?'
+  note: 'Two directions in two instruments: listing brings risk disclosure; New York''s RAISE Act asks listed developers to disclose far fewer owners.'
+  claims:
+  - author: SaferAI (Campos et al.)
+    channel: 'relay: remaining-literature.md'
+    evidence: established-practice
+    force: desc
+    doc: campos-2025-frontier
+    loc: p.12
+    quote: risk disclosure is required for listed companies and is provided in the annual report
+  - author: New York (RAISE Act, S.8828)
+    channel: 'relay: us-gov-recent.md'
+    evidence: instrument
+    force: law
+    qualifier: ownership-disclosure scope rule; introduced text
+    doc: ny-2026-raise-s8828
+    loc: §1428(3)(c)
+    quote: In the event such owner or the ultimate parent is a publicly traded company, … all persons or entities that beneficially own a fifty percent or greater interest
+- id: gv-perceived-listing
+  from: perceived-risk
+  to: public-listing
+  type: influences
+  sign: -?
+  note: Risk salience may delay listing. One CEO says so; one report says another developer will not be slowed.
+  claims:
+  - author: OpenAI (Altman)
+    channel: 'press (Fortune), relay: absence-claim.md'
+    evidence: none-stated
+    qualifier: '[S][F]; followed OpenAI''s 26 Aug incident disclosure and 1 Sep Critical designation; what he referred to is not established'
+    loc: Fortune, 12 Sep 2026
+    quote: given everything happening with safety, right now would be an ill-advised moment to go public
+  - author: Axios (Primack)
+    channel: 'press (Axios via Yahoo Finance mirror), relay: absence-claim.md'
+    evidence: none-stated
+    qualifier: '[S][F]; counter-instance'
+    loc: 14 Sep 2026
+    quote: Anthropic is still likely to go public in 2026, even as AI safety rockets into the zeitgeist
+- id: gv-i-ratings
+  from: ind-framework-ratings
+  to: self-commitments
+  type: indicates
+  sign: +
+  note: 'Ratings measure published documents, not practice, and each rated a now-superseded Anthropic version (conflict of interest: we are Anthropic models).'
+  claims:
+  - bears_on: from
+    author: SaferAI (Stelling et al.)
+    channel: 'relay: academic-ngo.md'
+    evidence: measurement
+    force: crit
+    qualifier: v5; assessed Anthropic RSP v2.2; SaferAI helped write G42's framework, ranked third
+    doc: stelling-2025-evaluating
+    loc: abstract; fn 7 p.10
+    quote: Overall scores range from 34% (Anthropic) to 8% (Cohere), with a median of 18%.
+  - author: SaferAI (Stelling et al.)
+    channel: 'relay: academic-ngo.md'
+    evidence: definition
+    force: crit
+    doc: stelling-2025-evaluating
+    loc: p.10
+    quote: an aspirational benchmark rather than a description of current or achievable industry practice
+  - bears_on: from
+    author: FLI (review panel)
+    channel: 'relay: academic-ngo.md'
+    evidence: measurement
+    force: crit
+    qualifier: highest grade (C+) to Anthropic, alongside a recommendation to reverse its pause walk-back
+    doc: fli-2026-ai-safety-index-summer
+    loc: pp.3–4
+    quote: Reverse the RSP 3.0 walk-back on pause commitments and restore credibility of commitments
+- id: gv-i-register
+  from: ind-discretionary-register
+  to: enforceable-self-commitments
+  type: indicates
+  sign: '-'
+  claims:
+  - bears_on: from
+    author: Anthropic (FCF v2)
+    channel: primary
+    evidence: instrument
+    force: self-d+law
+    qualifier: one of several discretionary clauses in the law-backed document
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    loc: p.6
+    quote: the specific mitigations we implement may be determined when the relevant risk tier is reached
+  - bears_on: from
+    author: Google DeepMind (FSF v3.1)
+    channel: 'relay: company-frameworks-gdm.md'
+    evidence: instrument
+    force: self-d
+    qualifier: SB 53 designation not stated by Google; same register in the voluntary text
+    doc: gdm-2026-fsf-v3-1
+    loc: p.6
+    quote: the specific mitigations we implement may be determined when a T/CCL is reached
+- id: gv-internal-scope
+  from: enforceable-self-commitments
+  to: internal-ai-deployment
+  type: influences
+  sign: '?'
+  note: Whether the legally enforceable commitments cover internal deployment at all. Stated side by side; no compliance conclusion drawn.
+  claims:
+  - author: Anthropic (FCF v2)
+    channel: primary
+    evidence: instrument
+    force: self-d+law
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    loc: p.4
+    quote: The systemic risk assessment and mitigation processes described in this Framework currently apply to models in scope of the Framework that are deployed externally. Some internal development and use of in-scope models may also be subject to these processes, while others are subject to separate evaluation and mitigation processes that are in development.
+  - author: California (SB 53)
+    channel: primary
+    evidence: instrument
+    force: law
+    checked_by: California Attorney General
+    doc: california-2025-sb53
+    loc: §22757.12(a)(10)
+    quote: Assessing and managing catastrophic risk resulting from the internal use of its frontier models, including risks resulting from a frontier model circumventing oversight mechanisms.

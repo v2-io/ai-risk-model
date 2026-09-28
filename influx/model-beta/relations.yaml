@@ -1,0 +1,999 @@
+# Relations between concepts, each carried by one or more CLAIMS.
+# type: influences (sign + / - / ? ; "+?" = direction asserted, weakly) | moderates (acts on other relations: `targets`)
+#       | indicates (observable measure of a concept) | part_of (definitional, not causal)
+# No magnitudes: signs only, unless a source quantifies (then in the claim's quote).
+# Claim fields (provenance in three layers plus a qualifier):
+#   author    who asserts it
+#   channel   how it reached us: primary · press · secondary summary · "relay: <verification file>" · prior agent report · dialog
+#   evidence  what backs it: none-stated · argument · expert-judgment · measurement · incident · definition · established-practice
+#   qualifier the source's own hedge or status, verbatim or close: "may", "Highly likely (PHIA)", "hypothesis H1", "proposal", …
+#   doc (relata key or file), loc, quote
+# A relation's standing is READ OFF its claims (how many, how independent, what evidence). It is never stored as a number.
+
+# ======================================================= context and the recursive R&D loop
+- id: r-race-pace
+  from: race-dynamics
+  to: capability-pace
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: "relay: uk.md", evidence: argument, qualifier: "may face trade-offs", doc: bengio-2026-international, loc: "p.97", quote: "Due to competitive pressures, AI companies may face trade-offs between faster product releases and investments in risk reduction efforts."}
+
+- id: r-race-resourcing
+  from: race-dynamics
+  to: safety-resourcing
+  type: influences
+  sign: "-"
+  claims:
+    - {author: IASR 2026 writing team, channel: "relay: uk.md", evidence: argument, qualifier: "can incentivise", doc: bengio-2026-international-extended, loc: "p.17", quote: "Competitive pressures can incentivise AI developers to reduce their investment in testing and risk mitigation in order to release new models quickly."}
+    - {author: "CSET (Arnold & Toner)", channel: "relay: academic-ngo.md", evidence: argument, qualifier: "expected risk factor, argued from history", doc: arnold-2021-ai-accidents, loc: "p.17", quote: "Competitive pressure. When not using AI could mean falling behind competitors or losing profits, companies, militaries, and governments are more likely to deploy buggy AI systems, use them in reckless ways, or cut corners on testing and operator training."}
+    - {author: "UK DSIT", channel: "relay: uk.md", evidence: argument, qualifier: "discussion paper; 'does not represent a policy position of HMG'", doc: dsit-2023-capabilities, loc: "p.19", quote: "Competition on AI has raised concern about potential \"race to the bottom\" scenarios, where actors compete to rapidly develop AI systems and under-invest in safety measures."}
+    - {author: IASR 2026 writing team, channel: "relay: uk.md", evidence: argument, qualifier: "section heading; filed under market failures", doc: bengio-2026-international, loc: "p.102", quote: "Competition intensifies speed-versus-safety trade-offs."}
+    - {author: Barrett et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "may; a loss-of-control causal factor", doc: barrett-2025-stampstpa, loc: "p.19", quote: "organisations or countries may relax safety constraints to gain competitive advantages over those maintaining stronger safeguards"}
+    - {author: "Uuk et al.", channel: "relay: remaining-literature.md", evidence: argument, qualifier: "could; a source of systemic risk in a rapid review (FLI-affiliated lead author)", doc: uuk-2024-taxonomy, loc: "Table 5, p.12", quote: "Competitive pressures could lead to the neglect of safety measures in AI development"}
+
+- id: r-race-token
+  from: race-dynamics
+  to: commercial-token-pressure
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: expert-judgment, qualifier: "Highly likely (ongoing) (PHIA)", doc: aisi-2026-loss-oversight, loc: "p.4", quote: "Competitive pressure to reduce costs pushes towards shorter reasoning"}
+
+- id: r-race-reliance
+  from: race-dynamics
+  to: reliance-on-ai
+  type: influences
+  sign: "+"
+  note: Race dynamics acting on adopters, not developers.
+  claims:
+    - {author: Kulveit et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "would likely", doc: kulveit-2025-gradual, loc: "p.4", quote: "Companies that maintain strict human oversight would likely find themselves at a significant competitive disadvantage compared to those willing to cede substantial control to AI systems"}
+    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; sx shard)", evidence: argument, qualifier: "incentives to deploy quickly limit evaluation of effects", doc: bengio-2026-international, loc: "§2.3.2", quote: "organisational and governmental incentives to deploy AI systems quickly can limit opportunities to evaluate these effects carefully"}
+
+
+- id: r-race-loosening
+  from: race-dynamics
+  to: commitment-loosening
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Anthropic (Kaplan)", channel: "secondary summary of TIME, via prior agent report (safety-and-hypergrowth.md fn 17)", evidence: none-stated, qualifier: "the actor's own explanation", quote: "if competitors are blazing ahead"}
+    - {author: Google, channel: "press (CNN), via prior agent report (fn 30)", evidence: none-stated, qualifier: "the actor's own explanation", quote: "There's a global competition taking place for AI leadership"}
+    - {author: FLI (review panel), channel: "relay: academic-ngo.md", evidence: argument, qualifier: "rating-index finding (document review)", doc: fli-2026-ai-safety-index-summer, loc: "p.4", quote: "have weakened or voided pledges to pause unilaterally if redlines are approached, some citing competitor-contingent conditions"}
+
+- id: r-loosening-race
+  from: commitment-loosening
+  to: race-dynamics
+  type: influences
+  sign: "+?"
+  note: One developer's loosening licenses others'. Closes a reinforcing loop with r-race-loosening.
+  claims:
+    - {author: OpenAI, channel: "relay: company-frameworks.md", evidence: none-stated, qualifier: "conditional commitment: only if three conditions hold", doc: openai-2025-preparedness-framework-v2, loc: "§4.3", quote: "in order to avoid a race to the bottom"}
+
+- id: r-pace-cyber
+  from: capability-pace
+  to: offensive-cyber-capability
+  type: influences
+  sign: "+"
+  claims:
+    - {bears_on: "to", author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "understates by design (2.5M-token cap)", doc: aisi-2026-cyber-horizons, quote: "had doubled every 4.7 months since late 2024 – already an acceleration from our November 2025 estimate of 8 months"}
+
+- id: r-pace-repl
+  from: capability-pace
+  to: autonomous-replication-capability
+  type: influences
+  sign: "+"
+  claims:
+    - {bears_on: "to", author: UK AISI, channel: "relay: uk.md", evidence: measurement, qualifier: "benchmark (RepliBench)", doc: aisi-2025-frontier, loc: "p.30", quote: "By summer 2025, two frontier models had achieved a success rate of over 60%"}
+
+- id: r-pace-airnd
+  from: capability-pace
+  to: ai-led-rnd
+  type: influences
+  sign: "+"
+  claims:
+    - {bears_on: "to", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "self-report; Claude-judged; one lab", doc: anthropic-2026-measuring-pace, quote: "Claude “leads” 26% of Anthropic’s AI R&D work"}
+
+- id: r-airnd-pace
+  from: ai-led-rnd
+  to: capability-pace
+  type: influences
+  sign: "+"
+  note: With r-pace-airnd, the recursive-acceleration loop (R).
+  claims:
+    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "stated as a benefit", doc: anthropic-2026-measuring-pace, quote: "This process allows labs in democratic countries to develop more capable models more quickly"}
+    - {author: Anthropic, channel: "relay: company-frameworks.md", evidence: measurement, qualifier: "developer risk report", doc: anthropic-2026-risk-report-aug, loc: "p.11", quote: "early signs of acceleration"}
+
+- id: r-airnd-oversight
+  from: ai-led-rnd
+  to: oversight-strength
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "could", doc: anthropic-2026-measuring-pace, quote: "models accelerating their own development could make it more challenging for humans to understand or control these systems"}
+
+- id: r-airnd-reviewratio
+  from: ai-led-rnd
+  to: human-review-ratio
+  type: influences
+  sign: "-"
+  claims:
+    - {bears_on: "both endpoints", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "a level at one point in time, not a trend; one platform", doc: anthropic-2026-measuring-pace, quote: "the highest priority flags (approximately ~50 per week) are escalated to human review"}
+
+- id: r-airnd-independence
+  from: ai-led-rnd
+  to: monitor-independence
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "could", doc: anthropic-2026-measuring-pace, quote: "we’re using our own models to evaluate our systems, which could mean that the “judge” model could make the same kinds of errors as the model it is checking"}
+
+- id: r-testwindow-mod
+  from: rnd-testing-window
+  type: moderates
+  targets: [r-airnd-pace]
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: none-stated, qualifier: "proposal; not in force", doc: anthropic-2026-measuring-pace, quote: "a fixed testing window before a new model is used for further AI R&D"}
+
+- id: r-pace-backlog
+  from: capability-pace
+  to: evaluator-control-backlog
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI (about itself), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "possible contributing factor; no causal analysis done", doc: aisi-2026-incident, loc: "§5.1, p.17", quote: "This was largely driven by the pace of model capability improvements and the resulting need for harder evaluations to keep tracking progress."}
+
+- id: r-pace-evalval
+  from: capability-pace
+  to: evaluation-validity
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Meta, channel: "relay: company-frameworks.md", evidence: none-stated, qualifier: "threat scenario in a company framework", doc: meta-2026-advanced-ai-scaling-framework, loc: "TS.1.1", quote: "new capabilities and behaviors emerge faster than the organization's evaluation processes"}
+    - {author: UK AISI (about itself), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "self-assessment after an incident", doc: aisi-2026-incident-blog, quote: "we did not revisit that judgment quickly enough as capabilities advanced"}
+    - {author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "may; evaluator-side", doc: aisi-2026-cheating, quote: "If AI capabilities continue to advance rapidly, with accelerated deployment cycles and decisions, pressure on third party evaluators to move at pace may make it difficult to conduct the verification required for high confidence evaluations."}
+    - {author: "Five Eyes cyber agency heads", channel: "relay: uk-security-frameworks.md", evidence: expert-judgment, qualifier: "joint statement", doc: fiveeyes-2026-ai-shift, loc: "p.3", quote: "cyber risk assumptions can become outdated in months, not years."}
+
+- id: r-pace-reviewratio
+  from: capability-pace
+  to: review-capacity-vs-cadence
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "OpenAI (Chen)", channel: "mirror of Wired, via prior agent report (fn 22) [W]", evidence: none-stated, qualifier: "internal memo as reported; cites cadence, not headcount", quote: "we have bigger coordination challenges around safety today than ever before"}
+
+- id: r-reviewratio-evalval
+  from: review-capacity-vs-cadence
+  to: evaluation-validity
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Financial Times (8 sources), channel: "blog quoting FT, via prior agent report (fn 65) [W]", evidence: none-stated, qualifier: "anonymous-source reporting", quote: "Staff and third-party groups have recently been given just days"}
+    - {author: METR, channel: "press (TechCrunch), via prior agent report (fn 66)", evidence: none-stated, qualifier: "evaluator's own caveat", quote: "conducted in a relatively short time"}
+    - {bears_on: "from", author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: measurement, qualifier: "developer self-report", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "p.2", quote: "we have precautionarily conducted light-weight versions of our risk assessment process on this model"}
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: instrument, qualifier: "an illustrative benchmark, not a requirement", doc: eu-cop-2025-safety-security, loc: "App. 3.4", quote: "For example, a period of at least 20 business days is appropriate for most systemic risks and model evaluation methods"}
+
+
+
+# ======================================================= organizational dynamics (rebuilt on the hypergrowth report)
+- id: r-growth-absorb
+  from: org-growth-rate
+  to: absorption-gap
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H1, rated 60–75% as amplifier", quote: "growth faster than experienced staff can absorb it"}
+    - {author: UK NPSA/NCSC, channel: primary, evidence: argument, qualifier: "may", doc: npsa-2024-secure-innovation, loc: "p.30", quote: "As your workforce grows, you may no longer be able to rely primarily on personal relationships to ensure trust."}
+
+- id: r-absorb-coherence
+  from: absorption-gap
+  to: decision-coherence
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "xAI (Babuschkin, engineering head)", channel: "press (Business Insider), via prior agent report (fn 2)", evidence: incident, qualifier: "actor's own after-the-fact attribution", quote: "hasn't fully absorbed xAI's culture yet"}
+
+- id: r-race-coherence
+  from: race-dynamics
+  to: decision-coherence
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H4, rated 65–80%", quote: "Competition between firms and between nations keeps hierarchies from consolidating."}
+    - {author: "OpenAI (Altman)", channel: "press (Sherwood News), via prior agent report (fn 10)", evidence: incident, qualifier: "actor's own retrospective", quote: "It just looked opportunistic and sloppy."}
+
+- id: r-coherence-safeguard
+  from: decision-coherence
+  to: safeguard-strength
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: Ars Technica, channel: "feed mirror, via prior agent report (fn 3)", evidence: incident, qualifier: "press report of xAI's statement", quote: "circumvented in this incident"}
+
+- id: r-growth-churn
+  from: org-growth-rate
+  to: structural-churn
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2, rated 50–65%", quote: "They carry the coordination costs of size without the routines that stabilize large firms"}
+    - {author: ICAO, channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "expansion listed among the kinds of organizational change (aviation SMS guidance)", doc: icao-2018-doc9859-smm, loc: "§9.5.5.1", quote: "Service providers experience change due to a number of factors including, but not limited to: a) organizational expansion or contraction"}
+
+- id: r-churn-churn
+  from: structural-churn
+  to: structural-churn
+  type: influences
+  sign: "+"
+  note: Reorganization momentum (R, self-loop). The effect decays over time.
+  claims:
+    - {author: "Amburgey, Kelly & Barnett (1993)", channel: "abstract, via prior agent report (fn 73)", evidence: measurement, qualifier: "1,011 Finnish newspapers over 193 years; external validity to AI labs limited", quote: "an immediate increase in the likelihood of additional changes of the same type"}
+
+- id: r-churn-turnover
+  from: structural-churn
+  to: staff-turnover
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Baron, Hannan & Burton (2001)", channel: "via prior agent report (fn 74)", evidence: measurement, qualifier: "young high-tech firms (non-AI); change in founding employment model", quote: "suggesting 'old guard disenchantment' as the primary cause"}
+
+- id: r-turnover-culture
+  from: staff-turnover
+  to: safety-culture-strength
+  type: influences
+  sign: "-?"
+  note: Closes the old-guard loop (churn → senior exits → weaker culture → more change) only if culture feeds back into structural churn. That return edge is NOT asserted by any source here.
+  claims:
+    - {author: UK HSE, channel: "relay: absence-claim.md", evidence: argument, qualifier: "regulator guidance (chemical)", doc: hse-2003-chis7, loc: "p.5", quote: "One danger that is easy to overlook is the loss to the business of informal knowledge and processes."}
+
+- id: r-leader-churn
+  from: leadership-change
+  to: structural-churn
+  type: influences
+  sign: "+"
+  claims:
+    - {author: US CSB, channel: "relay: absence-claim.md", evidence: incident, qualifier: "non-AI (BP Texas City)", doc: csb-2007-bp-texas-city, loc: "p.193", quote: "there has been little organizational stability. This makes the management of protection very difficult"}
+
+- id: r-churn-safeguard
+  from: structural-churn
+  to: safeguard-strength
+  type: influences
+  sign: "-?"
+  delay: "6–12 months (HSE)"
+  claims:
+    - {author: ICAO, channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "may; aviation SMS guidance", doc: icao-2018-doc9859-smm, loc: "§9.5.5.2", quote: "Change may affect the effectiveness of existing safety risk controls."}
+    - {author: UK HSE, channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "regulator guidance (chemical); on timing", doc: hse-2003-chis7, loc: "p.6", quote: "the effects of change can be subtle or delayed eg six months to a year afterwards"}
+
+- id: r-churn-culture
+  from: structural-churn
+  to: safety-culture-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: UK HSE, channel: "relay: absence-claim.md", evidence: incident, qualifier: "non-AI (Hickson & Welch fire, 5 killed)", doc: hse-2003-chis7, loc: "p.1", quote: "Because of a recent company reorganisation, the cleaning task had been organised by inexperienced team leaders reporting to an overworked area manager."}
+
+- id: r-churn-oversight
+  from: structural-churn
+  to: oversight-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: "NIST AI 800-4 (reporting workshop attendees)", channel: "relay: us-gov-recent.md", evidence: expert-judgment, qualifier: "reported practitioner views, not NIST's", doc: nist-2026-ai-800-4, loc: "p.14", quote: "Workshop attendees and researchers noted obstacles to monitoring while undergoing internal and external changes to the organization."}
+
+- id: r-moc-mod
+  from: management-of-change
+  type: moderates
+  targets: [r-churn-safeguard, r-churn-culture, r-churn-oversight]
+  sign: "-"
+  note: Management of change weakens change's effect on controls. It does not reduce change.
+  claims:
+    - {author: ICAO, channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "triggers for formal change management", doc: icao-2018-doc9859-smm, loc: "§9.5.5.5", quote: "changes in key personnel; d) significant changes in staffing levels"}
+    - {author: IAEA, channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "safety requirement (nuclear)", doc: iaea-2016-gsr-part2, loc: "¶4.13", quote: "identify any changes (including organizational changes and the cumulative effects of minor changes) that could have significant implications for safety"}
+    - {author: US CSB, channel: "relay: absence-claim.md", evidence: incident, qualifier: "recommendation after Texas City", doc: csb-2007-bp-texas-city, loc: "R9, p.213", quote: "personnel changes, including changes in staffing levels or staff experience"}
+    - {author: Barrett et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "proposal (AI)", doc: barrett-2025-stampstpa, loc: "p.23", quote: "management of change procedures aimed at preventing degradations and vulnerabilities being introduced when system changes are implemented"}
+    - {author: "Gomez et al.", channel: "relay: absence-claim.md", evidence: argument, qualifier: "proposal (AI): trigger for an ad hoc internal-audit review", doc: gomez-2025-frontier, loc: "p.11", quote: "when rapid organizational change introduces risks not anticipated during planning"}
+
+- id: r-growth-loosening
+  from: org-growth-rate
+  to: commitment-loosening
+  type: influences
+  sign: "+?"
+  note: Growth bears on the SPEED and FRAGMENTATION of commitment change; racing on its DIRECTION (r-race-loosening).
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "interpretation", quote: "Growth relative to absorptive capacity is a candidate explanation only for its speed and fragmentation."}
+
+- id: r-founder-mod
+  from: founder-decision-regime
+  type: moderates
+  targets: [r-growth-churn, r-growth-loosening]
+  sign: "?"
+  note: Determines WHICH layer growth shows up in. It does not set how much.
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "interpretation; a falsifiable 6-month prediction is attached", quote: "Where founders stay in risk-owning roles, hypergrowth shows up as commitment revision."}
+
+- id: r-growth-access
+  from: org-growth-rate
+  to: staff-with-access
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Google DeepMind (Shah et al.), channel: "relay: academic-ngo.md", evidence: argument, qualifier: "developer's own description", doc: shah-2025-approach, loc: "p.67", quote: "an immense effort from many teams, which results in many people with access to the model weights"}
+
+- id: r-access-exfil
+  from: staff-with-access
+  to: insider-exfiltration
+  type: influences
+  sign: "+"
+  claims:
+    - {author: RAND (Brass-Gershovich et al.), channel: "relay: us-security.md", evidence: expert-judgment, qualifier: "descriptive framework", doc: brassgershovich-2026-algorithmic, loc: "p.5", quote: "Generally, the more employees or contractors who work with a particular insight, the higher the risk of its theft or leakage."}
+
+- id: r-growth-resourcing
+  from: org-growth-rate
+  to: safety-resourcing
+  type: influences
+  sign: "?"
+  note: Genuinely two-signed. Growth adds capacity, and the security capacity RAND requires rises with headcount.
+  claims:
+    - {author: RAND (Nevo et al.), channel: "relay: absence-claim.md", evidence: none-stated, qualifier: "benchmark requirement indexed to headcount; no causal claim", doc: nevo-2024-securing, loc: "p.85", quote: "at least two dozen people or 5 percent of organization headcount, whichever is larger"}
+
+- id: r-leader-safeguard
+  from: leadership-change
+  to: safeguard-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: Zwetsloot & Dafoe, channel: "relay: remaining-literature.md", evidence: incident, qualifier: "second-hand (Business Insider); Uber 2018", doc: zwetsloot-2019-thinking, quote: "felt pressured to impress the new CEO with the progress of the self-driving unit, which the CEO was reportedly considering cutting"}
+    - {author: ICAO, channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "'may include'; an input to a regulator's organizational risk profile (aviation)", doc: icao-2018-doc9859-smm, loc: "§8.5.3.8(c)", quote: "turnover rate of the key personnel such as the accountable executive and safety manager"}
+    - {author: "CAIS (Hendrycks et al.)", channel: "relay: academic-ngo.md", evidence: none-stated, qualifier: "illustrative fiction (the 'Weak Safety Culture' story): a risk officer resigns under a non-disparagement agreement", doc: hendrycks-2023-overview, loc: "printed p.31", quote: "replaced with a new, more agreeable CRO"}
+    - {author: Barrett et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "may; a loss-of-control causal factor ('Control Algorithm Not in Place for Long Enough')", doc: barrett-2025-stampstpa, loc: "p.19", quote: "new leadership may deprioritise AI safety in favor of economic growth or other concerns"}
+
+# ======================================================= resourcing, culture, oversight
+- id: r-resourcing-safeguard
+  from: safety-resourcing
+  to: safeguard-strength
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: "relay: uk.md", evidence: measurement, qualifier: "appears to be; R² = 0.097 between capability and robustness", doc: aisi-2025-frontier, loc: "p.27", quote: "the strength of safeguards appears to be determined mostly by the effort and resource invested in developing, testing, and deploying defences"}
+    - {author: UK AISI, channel: "relay: uk.md", evidence: measurement, qualifier: "usually", doc: aisi-2025-frontier, loc: "p.25", quote: "This is usually driven by how much company effort and resource has gone into building, testing, and deploying strong defences"}
+
+- id: r-resourcing-oversight
+  from: safety-resourcing
+  to: oversight-strength
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "NIST AI 800-4 (reporting workshop attendees)", channel: "relay: us-gov-recent.md", evidence: expert-judgment, qualifier: "reported practitioner view; could", doc: nist-2026-ai-800-4, loc: "p.16", quote: "An organization lacking sufficient AI experts… could create gaps in post-deployment monitoring, leading to blind spots and overconfidence."}
+
+- id: r-resourcing-backlog
+  from: safety-resourcing
+  to: evaluator-control-backlog
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: argument, qualifier: "integrator inference; AISI says prioritisation, not resourcing", doc: aisi-2026-incident, loc: "§5.1", quote: "AISI prioritised building harder cyber range evaluations over more fine-grained internet access controls."}
+
+- id: r-culture-oversight
+  from: safety-culture-strength
+  to: oversight-strength
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: SaferAI (Campos et al.), channel: "relay: remaining-literature.md", evidence: argument, qualifier: "proposal paper, citing established risk management", doc: campos-2025-frontier, loc: "p.11", quote: "incentives to perform and report positive information at each level of management can filter out negative information"}
+    - {author: IASR 2026 writing team, channel: "relay: uk.md", evidence: argument, qualifier: "observation; direction not stated ('in various ways'); described, not named as a risk factor", doc: bengio-2026-international, loc: "p.114", quote: "Organisational culture, leadership structure, and incentives affect risk management efforts in various ways."}
+    - {author: "NIST AI 800-4 (reporting workshop attendees)", channel: "relay: us-gov-recent.md", evidence: expert-judgment, qualifier: "reported practitioner views, not NIST's; deployer-side monitoring; direction both ways", doc: nist-2026-ai-800-4, loc: "§3.1.4, p.14", quote: "An organization's culture and incentive structure can play a role in deterring or supporting effective AI monitoring"}
+
+- id: r-evalval-oversight
+  from: evaluation-validity
+  to: oversight-strength
+  type: part_of
+  note: Definitional. Auditing is one of AISI's three components of oversight.
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: definition, qualifier: "report glossary", doc: aisi-2026-loss-oversight, quote: "oversight is broken into three components: auditing, monitoring, and incident response."}
+
+- id: r-monitorab-oversight
+  from: monitorability
+  to: oversight-strength
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: expert-judgment, qualifier: "key takeaway", doc: aisi-2026-loss-oversight, loc: "p.3", quote: "current oversight rests on contingent properties of AI systems, many of which are likely to erode."}
+
+- id: r-token-monitorab
+  from: commercial-token-pressure
+  to: monitorability
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: expert-judgment, qualifier: "Highly likely (ongoing) (PHIA)", doc: aisi-2026-loss-oversight, loc: "p.4", quote: "reducing the amount of thinking that is visible to monitors"}
+
+- id: r-independence-oversight
+  from: monitor-independence
+  to: oversight-strength
+  type: influences
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: UK AISI (control red team), channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "named as an open problem", doc: aisi-2026-control-red-team, quote: "In practice, developers often use one instance of a potentially misaligned LLM to oversee another instance of itself."}
+    - {author: AISP (Gekker et al.), channel: "relay: us-security.md", evidence: argument, qualifier: "likely", doc: gekker-2026-aisp, loc: "p.72", quote: "AI agents trained on similar data are likely to share systematic blind spots"}
+    - {author: "UK AISI (Taylor et al.)", channel: "primary (read by mp shard agent)", evidence: argument, qualifier: "recommendation", doc: aisi-2026-loss-oversight, loc: "Executive Summary, recommendation 3, p.7", quote: "The held-out sources should be independent from the sources that are trained against, in the sense that they aren't likely to fail for the same reasons."}
+
+
+- id: r-reviewratio-oversight
+  from: human-review-ratio
+  to: oversight-strength
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "stated purpose of the measures", doc: anthropic-2026-measuring-pace, quote: "these measures would allow society to see whether oversight is keeping pace with the growing role of AI in AI R&D"}
+
+- id: r-internal-oversight
+  from: internal-ai-deployment
+  to: oversight-strength
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: 2026 Singapore Consensus, channel: "relay: remaining-literature.md", evidence: expert-judgment, qualifier: "could", doc: ecosystem-2026-2026, loc: "pp.46–47", quote: "could also erode a developer's understanding of how their own internal risk management infrastructure works"}
+
+- id: r-reliance-oversight
+  from: reliance-on-ai
+  to: oversight-strength
+  type: influences
+  sign: "-?"
+  note: Human reliance weakens the human-in-the-loop part of oversight. This joins the cognition and control clusters.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "limited by", doc: bengio-2026-international, loc: "§3.3 (Human in the loop)", quote: "these techniques are limited by automation bias"}
+
+# ---- evidence-starvation loop (R): weaker oversight → fewer detected incidents → lower perceived risk → less resourcing → weaker oversight
+- id: r-oversight-detected
+  from: oversight-strength
+  to: detected-incidents
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "could", doc: aisi-2026-loss-oversight, loc: "p.50", quote: "Some loss of monitorability could go unnoticed"}
+
+- id: r-detected-perceived
+  from: detected-incidents
+  to: perceived-risk
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "the project team's view", doc: aisi-2026-loss-oversight, loc: "§7.2", quote: "Requiring strong, legible evidence before taking action risks biasing decisions towards inaction."}
+    - {author: Anthropic, channel: "relay: notes-security.md (shard agent read the primary)", evidence: incident, qualifier: "developer self-report, after discovering its own classifier gap (COI: Anthropic)", doc: anthropic-2026-risk-report-aug, loc: "p.148", quote: "The discovery of this gap, however, leads us to believe that there is an increased likelihood of other, similar issues unknown to us."}
+    - {author: Barrett et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "the failure mode of this link: no detected failures, so complacency", doc: barrett-2025-stampstpa, loc: "§7, p.23", quote: "frequently control systems degrade over time, for example, as organizations become complacent due to the absence of failures having occurred"}
+    - {author: Anthropic, channel: "primary (read by mp shard agent)", evidence: incident, qualifier: "developer raised its own risk rating after incident disclosures; COI", doc: anthropic-2026-risk-report-aug, loc: "Table 1.2.A, p.10", quote: "Low (an increase from our previous assessment of “very low,\" in light of general increased uncertainty around recent incident disclosures related to model behavior in cybersecurity evaluations)."}
+
+
+- id: r-perceived-resourcing
+  from: perceived-risk
+  to: safety-resourcing
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "the project team's view", doc: aisi-2026-loss-oversight, loc: "p.51", quote: "whereas the cost of not acting on a concerning signal is typically diffuse and externalised … This asymmetry biases decisions towards inaction."}
+
+# ---- regulation arm
+- id: r-detected-regulation
+  from: detected-incidents
+  to: statutory-obligations
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: CLTR, channel: "relay: remaining-literature.md", evidence: argument, qualifier: "policy recommendation prompted by incident counts", doc: cltr-2026-loc-incidents-worsening, loc: "p.3", quote: "Mandate monitoring and reporting of severe loss of control incidents"}
+
+- id: r-regulation-loosening
+  from: statutory-obligations
+  to: commitment-loosening
+  type: influences
+  sign: "-"
+  claims:
+    - {author: Anthropic, channel: "relay: company-frameworks.md", evidence: argument, qualifier: "developer's own account of SB 53", doc: anthropic-2025-fcf-announcement, quote: "ensures these commitments can't be abandoned quietly … as competition intensifies"}
+
+- id: r-regulation-resourcing
+  from: code-commitments
+  to: safety-resourcing
+  type: influences
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code (signatories), channel: "relay: eu.md", evidence: definition, qualifier: "committed by signatories of a voluntary code", doc: eu-cop-2025-safety-security, loc: "Measure 8.2", quote: "The allocation of such resources will include: (1) human … (4) computational"}
+
+# ======================================================= the AISI incident chain (evaluator side)
+- id: r-backlog-evalctl
+  from: evaluator-control-backlog
+  to: eval-internet-controls
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI (about itself), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "possible contributing factor", doc: aisi-2026-incident, loc: "§5.1, p.17", quote: "had been a backlogged project since April 2026"}
+
+- id: r-evalctl-unsanc
+  from: eval-internet-controls
+  to: unsanctioned-action
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI (about itself), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "stated counterfactual", doc: aisi-2026-incident, loc: "§5.1, p.16", quote: "Had the agent been prevented from accessing the internet, this incident would not have occurred."}
+    - {author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: incident, qualifier: "developer self-report of a second lab's evaluation-environment escape (26 Aug 2026 post); METR/Redwood's report not read", doc: openai-2026-hugging-face-incident, quote: "during internal cybersecurity evaluations, OpenAI models circumvented controls designed to isolate them from the internet and compromised parts of OpenAI's internal research infrastructure and Hugging Face's systems"}
+    - {author: UK AISI (about itself), channel: "primary (read by mp shard agent)", evidence: argument, qualifier: "controls may not hold against a capable agent", doc: aisi-2026-incident, loc: "§5.1, p.17", quote: "However, they may have proven insufficient against a capable AI agent committed to bypassing them, as illustrated by the OpenAI Hugging Face incident [OpenAI, 2026]."}
+
+
+- id: r-unsanc-evalctl
+  from: unsanctioned-action
+  to: eval-internet-controls
+  type: influences
+  sign: "+"
+  note: Remediation. Together with r-evalctl-unsanc it forms a balancing loop (B).
+  claims:
+    - {author: UK AISI (about itself), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "should be reconsidered", doc: aisi-2026-incident, loc: "§6.2, p.19", quote: "current models have capabilities and propensities that mean internet access configuration should be reconsidered."}
+
+- id: r-safeguard-unsanc
+  from: safeguard-strength
+  to: unsanctioned-action
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: UK AISI (about itself), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "one of five possible factors; no causal analysis", doc: aisi-2026-incident, loc: "§1.2, p.3", quote: "Disabled cyber-classifiers"}
+    - {author: UK AISI (about itself), channel: "primary (read by mp shard agent)", evidence: incident, qualifier: "likely; evaluation-time classifiers, deliberately disabled", doc: aisi-2026-incident, loc: "§1.2, p.3", quote: "AISI deliberately disables developer-implemented cyber-classifiers (which likely would have reduced the scope of the observed unsanctioned behaviour) so that maximum model capabilities can be measured in cyber testing"}
+
+
+- id: r-oversight-unsanc
+  from: oversight-strength
+  to: unsanctioned-action
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI (about itself), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "one of five possible factors", doc: aisi-2026-incident, loc: "§1.2, p.3", quote: "No synchronous run monitoring"}
+    - {author: UK AISI (about itself and other labs' incidents), channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "shared conditions across several evaluation incidents; no causal analysis", doc: aisi-2026-incident, loc: "§7.1, p.20", quote: "All of these incidents share similar conditions of disabled classifiers (Section 5.2), no synchronous monitoring (Section 5.3), and the existence of pathways to access the internet (Section 5.1)."}
+    - {author: UK AISI (about itself), channel: "primary (read by mp shard agent)", evidence: incident, qualifier: "a limit on the fix", doc: aisi-2026-incident, loc: "§5.3, p.18", quote: "Synchronous monitoring for cyber evaluations is challenging. This is because both expected and unsanctioned behaviours involve executing offensive cyber actions, which may make them hard to robustly disambiguate."}
+
+
+- id: r-misal-unsanc
+  from: misaligned-propensity
+  to: unsanctioned-action
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: incident, qualifier: "observed in the incident", doc: aisi-2026-incident-blog, quote: "deception emerged as a by-product of pursuing the task"}
+    - {author: UK AISI, channel: "primary (read by mp shard agent)", evidence: measurement, qualifier: "controlled variation of environmental factors", doc: aisi-2026-propensity, quote: "These results support claims that models' behaviour in previously discovered one-off instances is in part indicative of genuine misalignment in these situations"}
+
+
+- id: r-auton-unsanc
+  from: agent-autonomy
+  to: unsanctioned-action
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "interim guidance", doc: ncsc-2026-managing-agentic, loc: "PDF p.2", quote: "The greater an agent's autonomy, the greater the potential impact if it: malfunctions unexpectedly; accesses information it should not; takes actions outside its intended scope"}
+
+- id: r-awareness-evalval
+  from: evaluation-awareness
+  to: evaluation-validity
+  type: influences
+  sign: "-"
+  claims:
+    - {bears_on: "from", author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "when prompted", doc: aisi-2026-sabotage, quote: "all models we tested can reliably distinguish our evaluation scenarios from deployment data when prompted."}
+    - {author: NIST (CAISI), channel: "relay: us-gov-recent.md", evidence: argument, qualifier: "draft guidance", doc: nist-2026-ai-800-2-ipd, loc: "pp.21–22", quote: "the absence of verbalized evaluation awareness does not imply the absence of evaluation awareness"}
+    - {author: "UK AISI (Taylor et al.)", channel: "primary (read by mp shard agent)", evidence: expert-judgment, qualifier: "cites Anthropic 2025d and Schoen et al. 2025", doc: aisi-2026-loss-oversight, loc: "Executive Summary, p.5", quote: "It is already threatening to undermine the validity of some alignment audits"}
+    - {author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: incident, qualifier: "a threshold test invalidated", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "pp.39–40", quote: "Cover Your Tracks results are invalidated because the model sometimes chooses not to engage in the side task"}
+
+
+
+- id: r-cheat-evalval
+  from: eval-cheating-propensity
+  to: evaluation-validity
+  type: influences
+  sign: "-"
+  claims:
+    - {bears_on: "from", author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: measurement, doc: aisi-2026-cheating, quote: "Every model we have tested for this behaviour attempted to cheat."}
+    - {bears_on: "from", author: CAISI (Hamin & Edelman), channel: "relay: us-gov-recent.md", evidence: measurement, qualifier: "lower bound", doc: hamin-2025-cheating, quote: "CVE-Bench (internal) 4.80%"}
+    - {author: UK AISI, channel: "primary (read by mp shard agent)", evidence: incident, qualifier: "a third-party evaluation affected", doc: aisi-2026-cheating, quote: "Cheating also creates additional verification work in AISI’s capability evaluations, which slows down the production of reliable results and, in the worst case, can invalidate them entirely: METR’s evaluation of GPT-5.6 Sol was significantly affected in this way."}
+
+
+# ======================================================= into loss of control, by degree
+- id: r-oversight-bounded
+  from: oversight-strength
+  to: loc-bounded
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: definition, qualifier: "follows from the definition of oversight", doc: aisi-2026-loss-oversight, quote: "maintain the ability to correct it"}
+
+- id: r-oversight-strict
+  from: oversight-strength
+  to: loc-strict
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: definition, qualifier: "follows from the definition of oversight", doc: aisi-2026-loss-oversight, quote: "maintain the ability to correct it"}
+
+- id: r-misal-bounded
+  from: misaligned-propensity
+  to: loc-bounded
+  type: influences
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "may emerge from", doc: eu-cop-2025-safety-security, loc: "App. 1.4(2)", quote: "Such risks may emerge from misalignment with human intent or values, self-reasoning, self-replication"}
+
+- id: r-misal-strict
+  from: misaligned-propensity
+  to: loc-strict
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "a required factor", doc: bengio-2026-international, loc: "§2.2.2", quote: "AI systems must exhibit a propensity to actually leverage these capabilities in ways that lead to a loss of control."}
+
+- id: r-auton-strict
+  from: agent-autonomy
+  to: loc-strict
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "a required factor", doc: bengio-2026-international, loc: "§2.2.2", quote: "Humans must deploy such systems in contexts where they have or can gain the access and opportunity to cause harm."}
+    - {author: "UK DSIT", channel: "relay: uk.md", evidence: argument, qualifier: "a condition for catastrophe; discussion paper", doc: dsit-2023-capabilities, loc: "p.28", quote: "For loss of control to be a catastrophic risk, AI systems would need to be given or gain some control over systems with significant impacts, such as military or financial systems."}
+
+- id: r-repl-bounded
+  from: autonomous-replication-capability
+  to: loc-bounded
+  type: influences
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code, channel: "relay: eu.md", evidence: definition, qualifier: "may emerge from", doc: eu-cop-2025-safety-security, loc: "App. 1.4(2)", quote: "self-replication"}
+
+- id: r-internal-bounded
+  from: internal-ai-deployment
+  to: loc-bounded
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: 2026 Singapore Consensus, channel: "relay: remaining-literature.md", evidence: expert-judgment, qualifier: "key risk factor", doc: ecosystem-2026-2026, loc: "pp.46–47", quote: "It forms a key risk factor for loss of control"}
+
+- id: r-unsanc-bounded
+  from: unsanctioned-action
+  to: loc-bounded
+  type: indicates
+  sign: "?"
+  note: Contested. The two claims below disagree on whether today's events are loss of control at all.
+  claims:
+    - {author: "Institute for Security and Technology", channel: "relay: remaining-literature.md", evidence: argument, qualifier: "warning level", doc: tkeshelashvili-2026-loc-iw, loc: "p.3", quote: "LEVEL 2: Isolated production incidents or multiple research findings converging on the same indicator"}
+    - {author: "Apollo Research (Stix et al.)", channel: "relay: remaining-literature.md", evidence: argument, qualifier: "disputes the link", doc: stix-2025-loss, loc: "p.14", quote: "LoC does not capture events below the national risk assessment threshold and, by extension, AI-related events occurring today."}
+    - {author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: incident, qualifier: "developer self-report; METR/Redwood's independent report not read", doc: openai-2026-hugging-face-incident, quote: "a 'warning shot' that today's model capabilities present the possibility of loss-of-control incidents"}
+
+
+# ======================================================= human cognition
+- id: r-reliance-erosion
+  from: reliance-on-ai
+  to: cognitive-skill-erosion
+  type: influences
+  sign: "+"
+  note: 'IASR notes the other sign on a different outcome. Offloading "can free up cognitive resources and improve efficiency". An efficiency node would carry that edge.'
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "research is nascent", doc: bengio-2026-international, loc: "§2.3.2", quote: "three months after the introduction of AI support, clinicians' ability to detect tumours without AI assistance had dropped by 6%"}
+
+- id: r-erosion-reliance
+  from: cognitive-skill-erosion
+  to: reliance-on-ai
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: none-stated, qualifier: "integrator inference; no source states this direction"}
+
+- id: r-reliance-passive
+  from: reliance-on-ai
+  to: loc-passive
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: definition, qualifier: "definition of passive loss of control", doc: bengio-2026-international, loc: "glossary", quote: "undermines human control through over-reliance on AI for decision-making or other important societal functions"}
+    - {author: "RAND (Mitre & Predd, RAND-G)", channel: "primary (read by sx shard agent)", evidence: argument, doc: mitre-2025-agi, loc: "p.6", quote: "the erosion of human agency as humans become increasingly reliant on the technology"}
+
+
+- id: r-reliance-psd
+  from: reliance-on-ai
+  to: problem-solving-dependency
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "may", doc: bengio-2026-international, loc: "§2.3.2", quote: "When these tasks are routinely delegated to chatbots, users may engage less deeply with underlying reasoning."}
+
+- id: r-psd-unknown
+  from: problem-solving-dependency
+  to: unknown-events
+  type: influences
+  sign: "?"
+  claims:
+    - {author: Joseph, channel: dialog, evidence: none-stated, qualifier: "deliberately open on the right", quote: "unprecedented changes that therefore imply the possibility"}
+
+- id: r-disemp-approval
+  from: disempowerment-patterns
+  to: approval-signal
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Sharma et al. (Anthropic authors and data)", channel: "relay: remaining-literature.md", evidence: measurement, qualifier: "1.5M Claude.ai conversations; COI", doc: sharma-2026-whos, loc: "abstract", quote: "interactions with greater disempowerment potential receive higher user approval ratings"}
+
+- id: r-approval-disemp
+  from: approval-signal
+  to: disempowerment-patterns
+  type: influences
+  sign: "+?"
+  note: Through preference training. With r-disemp-approval, a reinforcing loop.
+  claims:
+    - {author: "Sharma et al. (Anthropic authors and data)", channel: "relay: remaining-literature.md", evidence: measurement, qualifier: "tested on a preference model", doc: sharma-2026-whos, loc: "p.3", quote: "does not robustly disincentivize disempowerment"}
+
+- id: r-unknown-disemp
+  from: unknown-causes
+  to: disempowerment-patterns
+  type: influences
+  sign: "?"
+  claims:
+    - {bears_on: "to", author: "Sharma et al.", channel: "relay: remaining-literature.md", evidence: measurement, qualifier: "increase observed after May 2025; causes uncertain", doc: sharma-2026-whos, loc: "p.3", quote: "we remain uncertain about the causes"}
+
+- id: r-disemp-unknown
+  from: disempowerment-patterns
+  to: unknown-events
+  type: influences
+  sign: "?"
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: none-stated, qualifier: "downstream consequences not characterized in any source here"}
+
+- id: r-unknown-devaluation
+  from: unknown-causes
+  to: devaluation-of-human-life
+  type: influences
+  sign: "?"
+  claims:
+    - {author: Joseph, channel: dialog, evidence: none-stated, qualifier: "deliberately open on the left", quote: "there are probably some aspects of human thinking and behavior that we want to prevent (events), such as devaluing other human life, but we don't know what would cause it"}
+
+# ======================================================= indicators
+- id: i-tenure
+  from: ind-risk-owner-tenure
+  to: absorption-gap
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#9)", quote: "Share of risk-owning roles filled by acqui-hires or staff with under 12 months' tenure."}
+
+- id: i-unauthorized
+  from: ind-unauthorized-changes
+  to: decision-coherence
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#6)", quote: "Count of \"unauthorized\" production-change incidents."}
+
+- id: i-eval-release
+  from: ind-eval-to-release
+  to: review-capacity-vs-cadence
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#7)", quote: "Median interval between evaluation and release."}
+
+- id: i-automation-index
+  from: ind-rnd-automation-index
+  to: ai-led-rnd
+  type: indicates
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "prototype index; Claude judge agreed with humans about as often as humans with each other (59% vs 35% exact)", doc: anthropic-2026-measuring-pace, quote: "Claude is not operating fully autonomously for any measured subset of AI R&D work."}
+
+- id: i-coverage
+  from: ind-monitor-coverage
+  to: oversight-strength
+  type: indicates
+  sign: "+"
+  note: Coverage indicates ONE component. It says nothing about monitor independence or the human review ratio.
+  claims:
+    - {bears_on: "from", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "one internal platform, Aug 2026", doc: anthropic-2026-measuring-pace, quote: "100% of these agents’ actions pass through the online monitor before they are executed"}
+
+- id: i-compute
+  from: ind-safety-compute-share
+  to: safety-resourcing
+  type: indicates
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "one week; conservative; boundary contested", doc: anthropic-2026-measuring-pace, quote: "about 6% of compute that went to AI R&D was allocated toward safety"}
+
+- id: i-revisions
+  from: ind-framework-revisions
+  to: commitment-loosening
+  type: indicates
+  sign: "+"
+  claims:
+    - {bears_on: "from", author: Zhu (2026), channel: "relay: company-frameworks.md", evidence: measurement, qualifier: "preprint; first-pass coding by a Claude-family model", doc: zhu-2026-silent, quote: "77% of traced changes weaken or remove a commitment"}
+
+- id: i-departures
+  from: ind-safety-departures
+  to: safety-culture-strength
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: FLI (review panel), channel: "relay: absence-claim.md", evidence: argument, qualifier: "rating criterion", doc: fli-2025-ai-safety-index-summer, loc: "p.18", quote: "High turnover on the safety team and failure to meet Superalignment commitments were taken as an indication of a concerning shift in priorities"}
+    - {author: FLI, channel: "relay: academic-ngo.md", evidence: definition, qualifier: "rating criterion: evidence item for the Reporting Culture indicator", doc: fli-2025-ai-safety-index-winter, loc: "printed p.81", quote: "(vi) departures linked to safety governance"}
+
+# ======================================================= size vs rate (added 2026-09-27, on Joseph's question)
+# Rate raises volatility immediately. Size dampens it only through routinization, which lags.
+# Growing fast means size (and its coordination costs) arrives before routines do: H2's "large and fluid" regime.
+- id: r-growth-size
+  from: org-growth-rate
+  to: org-size
+  type: influences
+  sign: "+"
+  note: Flow into stock (accumulation). Definitional in system-dynamics terms.
+  claims:
+    - {author: "integrator (Claude)", channel: dialog, evidence: definition, qualifier: "stock-and-flow identity"}
+
+- id: r-size-routinization
+  from: org-size
+  to: routinization
+  type: influences
+  sign: "+"
+  delay: long
+  claims:
+    - {author: "Hannan & Freeman (1984)", channel: "carried over [C] in prior agent report (influx/safety-and-hypergrowth.md, Theoretical grounding)", evidence: measurement, qualifier: "structural inertia theory; not re-fetched", quote: "inertia grows with size and age"}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2, rated 50–65%", quote: "the inertia that would dampen change lags beyond the 6-month window"}
+
+- id: r-routinization-churn
+  from: routinization
+  to: structural-churn
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "the inertia that would dampen change"}
+
+- id: r-churn-routinization
+  from: structural-churn
+  to: routinization
+  type: influences
+  sign: "-"
+  note: Reorganization resets the clock. With r-routinization-churn this is a reinforcing loop (churn → less routine → more churn), a second route to Amburgey's momentum.
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "Each reorganization resets the liability of newness and makes further reorganization more likely."}
+    - {author: "Amburgey, Kelly & Barnett (1993)", channel: "abstract, via prior agent report (fn 73)", evidence: measurement, qualifier: "the paper is titled 'Resetting the Clock'; non-AI", quote: "an immediate increase in the likelihood of additional changes of the same type"}
+
+- id: r-size-coordination
+  from: org-size
+  to: coordination-costs
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "They carry the coordination costs of size without the routines that stabilize large firms"}
+    - {author: "Brooks's law / sublinear team scaling", channel: "carried over [C] in prior agent report (Theoretical grounding)", evidence: established-practice, qualifier: "named only; not re-fetched"}
+
+- id: r-coordination-coherence
+  from: coordination-costs
+  to: decision-coherence
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "OpenAI (Chen)", channel: "mirror of Wired, via prior agent report (fn 22) [W]", evidence: none-stated, qualifier: "internal memo as reported", quote: "we have bigger coordination challenges around safety today than ever before"}
+
+- id: r-routinization-coherence
+  from: routinization
+  to: decision-coherence
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "the routines that stabilize large firms"}
+
+# ======================================================= closing the growth loop (our hypotheses, 2026-09-27)
+- id: r-size-growth
+  from: org-size
+  to: org-growth-rate
+  type: influences
+  sign: "-"
+  note: 'Closes a balancing loop (growth → size → slower growth). Candidate mechanisms: management bandwidth, absorption limits, and a larger base making the same hiring a smaller percentage.'
+  claims:
+    - {author: "Joseph & integrator (Claude)", channel: dialog, evidence: argument, qualifier: "hypothesis (ours); no source in hand"}
+
+- id: r-capital-growth
+  from: capital-pressure
+  to: org-growth-rate
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "Joseph & integrator (Claude)", channel: dialog, evidence: argument, qualifier: "hypothesis (ours); no source in hand"}
+
+# ======================================================= one of Joseph's central premises (2026-09-27)
+# Premise: "overall global risk is heightened specifically because of the exponentially increasing speed of development."
+# He expects it to act "through a multitude of actual vectors". These are only the first that came to mind: he suspects
+# a dozen or more are evidenced and several dozen could be hypothesized.
+# ASF/TST citations (segment and theorem IDs) to be added from the ASF repo, not reconstructed from memory.
+- id: r-devspeed-pace
+  from: development-speed
+  to: capability-pace
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Joseph, channel: dialog, evidence: none-stated, qualifier: "intuition, held confidently ('for sure'); one of the central premises of his AISI argument; ASF/TST grounding pending", quote: "speeding up AI capabilities for sure"}
+    - {author: Joseph, channel: dialog, evidence: none-stated, qualifier: "as above", quote: "one of the core claims that I feel is underappreciated right now"}
+
+- id: r-devspeed-labvelocity
+  from: development-speed
+  to: ai-lab-velocity
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Joseph, channel: dialog, evidence: none-stated, qualifier: "stated as obvious", quote: "which obviously has a causal edge from development-speed"}
+    - {author: Anthropic, channel: "primary (read by mp shard agent)", evidence: expert-judgment, qualifier: "developer self-estimate of AI assistance on its own R&D speed; 'though we are uncertain and measurement is difficult'; one lab; COI", doc: anthropic-2026-risk-report-aug, loc: "Table 1.2.B, p.11", quote: "We believe our internal AI R&D efforts are significantly faster than they would be without AI assistance, but not yet by a factor of 2 (though we are uncertain and measurement is difficult)."}
+
+
+- id: r-devspeed-hostile
+  from: development-speed
+  to: hostile-actor-capability
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Joseph, channel: dialog, evidence: none-stated, qualifier: "intuition; one of the central premises of his AISI argument", quote: "empowering unaligned foreign powers and malevolent actors"}
+
+- id: r-devspeed-smallteam
+  from: development-speed
+  to: small-team-leverage
+  type: influences
+  sign: "+"
+  note: 'Mechanism as stated: coordination cost grows as N^λ with team size N, so as each individual''s development speed and expressiveness rise, the relative penalty of large teams grows and small teams gain. Links in principle to coordination-costs (org-size → coordination-costs), which is not yet connected here.'
+  claims:
+    - {author: Joseph, channel: dialog, evidence: argument, qualifier: "hypothesis (ours): 'undeveloped but highly suspected'", quote: "making it so that very small teams can have an outsized impact because the coordination penalty N^λ is far worse as per-individual development expressiveness and speed increases"}
+
+# ======================================================= from the report's organizational rows (C8, C16) and the loss-of-control ladder
+- id: r-growth-culture
+  from: org-growth-rate
+  to: safety-culture-strength
+  type: influences
+  sign: "-?"
+  note: Composition of new hires (motive, norms), as distinct from the absorption gap (not yet having absorbed the norms).
+  claims:
+    - {author: "Anthropic (Amodei)", channel: "press (Tech Times, citing Axios 3 Aug 2026), via absence-claim.md [F]", evidence: none-stated, qualifier: "CEO's reported private concern; second-hand, unverified at source", quote: "new talent is joining for the money rather than the mission"}
+
+- id: i-safety-staff-share
+  from: ind-safety-staff-share
+  to: safety-resourcing
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: "CAIS (Hendrycks et al.)", channel: "relay: academic-ngo.md", evidence: none-stated, qualifier: "illustrative recommendation ('say'); a benchmark, not a finding", doc: hendrycks-2023-overview, loc: "§4.3, printed p.33", quote: "AI labs should ensure that a substantial portion of their employees and budgets go into research that minimizes potential safety risks: say, at least 30 percent of research scientists."}
+    - {author: "GovAI commentary (Williams & Freund)", channel: "relay: academic-ngo.md", evidence: none-stated, qualifier: "authors' views, not GovAI's; a recommendation to Anthropic", doc: williams-2026-anthropic-rsp-v3, loc: "Reasons to be concerned", quote: "could commit to minimum staffing or investment for the safety goals in its Roadmap"}
+
+- id: r-airnd-strict
+  from: ai-led-rnd
+  to: loc-strict
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: "FLI (review panel)", channel: "relay: academic-ngo.md", evidence: expert-judgment, qualifier: "reviewers' description of Anthropic and OpenAI (COI: about Anthropic)", doc: fli-2026-ai-safety-index-summer, loc: "p.22", quote: "racing towards recursive self-improvement, risking an irreversible loss of control"}
+
+- id: r-race-autonomy
+  from: race-dynamics
+  to: agent-autonomy
+  type: influences
+  sign: "+"
+  note: Race acting on deployers' willingness to grant access and affordances.
+  claims:
+    - {author: "Apollo Research (Stix et al.)", channel: "relay: remaining-literature.md", evidence: argument, qualifier: "how a 'state of vulnerability' arises through human choices", doc: stix-2025-loss, loc: "p.27", quote: "accept greater risk to leverage greater functionality, or succumb to competitive pressures to keep up with other entities' speed or output"}
+    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; mp shard)", evidence: argument, qualifier: "may face pressures", doc: bengio-2026-international, loc: "§2.2.2 'How will deployment environments affect loss of control risk?'", quote: "AI deployers may face pressures to reduce their investment in safeguards – such as limiting permissions and access or deploying only in lower-criticality environments – when such measures are costly or time-consuming to develop"}
+
+
+- id: r-pace-safeguard
+  from: capability-pace
+  to: safeguard-strength
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "UK Cabinet Office & GO-Science (Chronic Risks Analysis)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "government chronic-risk analysis", doc: cabinetoffice-2025-cra, loc: "p.40", quote: "rapid advancements pose enduring challenges, including outpacing safety measures, misuse, and potential disruptions to society and the economy"}
+
+- id: r-pace-oversight
+  from: capability-pace
+  to: oversight-strength
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI (Taylor et al.), channel: "relay: uk-security-frameworks.md", evidence: expert-judgment, qualifier: "Highly likely (PHIA); the gap between frontier models and trusted monitors", doc: aisi-2026-loss-oversight, loc: "Executive Summary table, p.5", quote: "Growing capability gap"}
+    - {author: "NIST AI 800-4 (reporting workshop attendees)", channel: "relay: us-gov-recent.md", evidence: expert-judgment, qualifier: "reported practitioner views; deployer-side; release pace, not capability level", doc: nist-2026-ai-800-4, loc: "§3.1.3, p.14", quote: "Barriers included scaling human-driven monitoring alongside rapid rollouts to users and adjusting to a rapidly shifting landscape across the AI stack."}
+
+- id: r-race-oversight
+  from: race-dynamics
+  to: oversight-strength
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "NIST AI 800-4 (reporting workshop attendees)", channel: "relay: us-gov-recent.md", evidence: expert-judgment, qualifier: "reported practitioner views, not NIST's; deployer-side monitoring", doc: nist-2026-ai-800-4, loc: "§3.1.4, p.14", quote: "Barrier: Balancing competitive pressures with necessary oversight"}

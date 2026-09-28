@@ -1,0 +1,17 @@
+# Author clusters: claims whose authors share people, institution or lineage are NOT independent.
+# check.py counts distinct clusters per relation; an author not listed here is its own cluster.
+# Match is by substring of the claim's `author` field.
+this-project:        ["Joseph", "integrator (Claude)", "prior Claude agent"]
+anthropic:           ["Anthropic", "Sharma et al.", "Karnofsky"]
+uk-aisi:             ["UK AISI"]
+iasr:                ["IASR"]            # AISI hosts the secretariat, but the writing team is independent
+rand-nevo-network:   ["RAND", "AISP"]    # RAND-ISL and AISP share three authors
+cais-hendrycks:      ["CAIS", "Hendrycks", "Ren et al."]
+nist-caisi:          ["NIST", "CAISI"]
+ncsc-five-eyes:      ["NCSC", "Five Eyes", "NPSA"]
+eu-code:             ["EU GPAI Code"]
+org-sociology:       ["Amburgey", "Baron, Hannan", "Hannan & Freeman"]   # a shared research tradition
+google-deepmind:     ["Google DeepMind", "Google"]   # GDM-FR's AI-insider threat models were developed with UK AISI and Redwood advisors: not fully independent of uk-aisi
+white-house:         ["White House", "EO 14409", "NSPM-11", "America's AI Action Plan"]
+fli:                 ["FLI", "Uuk"]      # Uuk et al. is FLI-affiliated; MIT v3 also has an FLI co-author (Risto Uuk)
+arcadia-impact:      ["Barrett", "Bollinger"]   # both Arcadia Impact AI Governance Taskforce outputs

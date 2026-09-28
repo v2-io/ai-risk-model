@@ -1,0 +1,686 @@
+# Hazards and misuse slice (shard): relations. Prefix hz-. See concepts-hz.yaml for the shape and notes-hz.md for choices.
+# Page conventions for primaries read by this slice (channel: primary):
+#   IASR 2026 (bengio-2026-international): cited by section, read in influx/iasr-2026-full.md (no page numbers there).
+#   NCSC 2025 (ncsc-2025-impact): PDF pages. AISI Trends (aisi-2025-frontier): printed page = PDF - 2.
+#   NIST 600-1 (nationalinstituteofstandardsandtechnologyus-2024-artificial): printed = PDF - 4.
+#   Anthropic Risk Report Aug 2026: printed page (= PDF page). NCSC / AISI / Five Eyes blogs: PDF page of the relata render.
+
+# ======================================================= capabilities rise with the frontier
+- id: hz-pace-cb
+  from: capability-pace
+  to: cb-weapons-capability
+  type: influences
+  sign: "+"
+  claims:
+    - {bears_on: "to", author: UK AISI, channel: primary, evidence: measurement, qualifier: "open-ended QA against PhD baseline; capability, not uplift", doc: aisi-2025-frontier, loc: "Executive summary, p.01", quote: "They first reached our expert baseline for open-ended questions in 2024 and now exceed it by up to 60%"}
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "benchmarks; 'substantial uncertainty' about risk in practice", doc: bengio-2026-international, loc: "§2.1.4 Key information", quote: "AI systems now match or exceed expert performance on many benchmarks measuring knowledge relevant for biological weapons development."}
+    - {bears_on: "to", author: "VCT (Götting ... Hendrycks, Donoughe)", channel: "relay: academic-ngo.md", evidence: measurement, qualifier: "benchmark; the authors say it does not measure uplift", doc: gotting-2025-virology, loc: "abstract", quote: "OpenAI's o3, reaches 43.8% accuracy, outperforming 94% of expert virologists even within their sub-areas of specialization"}
+
+- id: hz-pace-biotools
+  from: capability-pace
+  to: bio-design-tool-capability
+  type: influences
+  sign: "+"
+  note: Specialised tools are not the general frontier; the link is that tool numbers and agent access to them rise over time.
+  claims:
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "count of tools (Webster et al., Fig. 2.9)", doc: bengio-2026-international, loc: "§2.1.4 AI tools can be adapted to design pathogens and toxins", quote: "Developers are releasing many more of them over time (Figure 2.9) and integrating them with natural language interfaces to make them more accessible to users without specialist expertise."}
+
+- id: hz-pace-media
+  from: capability-pace
+  to: synthetic-media-realism
+  type: influences
+  sign: "+"
+  claims:
+    - {bears_on: "to", author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "user studies", doc: bengio-2026-international, loc: "§2.1.1 Updates", quote: "Since the publication of the previous Report (January 2025), AI-generated content has become harder to distinguish from real content."}
+
+# ======================================================= capability -> uplift (novice breadth, expert depth)
+- id: hz-cb-novice
+  from: cb-weapons-capability
+  to: novice-uplift
+  type: influences
+  sign: "+"
+  note: 'Contested. IASR: "evidence of real-world uplift is mixed". The measurements disagree in size and depend on baseline, task and whether safeguards were on. AISI finds 4.7x odds of a feasible protocol; Hong et al. find no substantial effect on lab completion. Both are kept.'
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "protocol writing (not wet-lab execution); baseline internet only; CI 2.8-7.9", doc: aisi-2025-frontier, loc: "§3.1, p.16", quote: "non-experts who used frontier models to write experimental protocols for viral recovery had significantly higher odds of writing a feasible protocol (4.7x, confidence interval: 2.8- 7.9) than a group using the internet alone."}
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "internal studies; details not published", doc: aisi-2025-frontier, loc: "§3.1, p.17", quote: "in our internal studies, novices can succeed at hard wet lab tasks when given access to an LLM."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "one study, proxy tasks, models without safeguards; earlier studies found no or small effects", doc: bengio-2026-international, loc: "§2.1.4 Relevant capabilities have improved but evidence of real-world uplift is mixed", quote: "In a recently published real-world uplift study, general-purpose AI systems without relevant safeguards provided substantial assistance in bioweapon acquisition proxy tasks, compared to a baseline of internet access only."}
+    - {author: "Hong et al. 2026 (RCT)", channel: "secondary summary: Anthropic Risk Report Aug 2026 §4.4.2.1, p.124 (paper not read)", evidence: measurement, qualifier: "null-to-modest; mid-2025 models; underpowered (36% power for OR 2.0); post-hoc ~1.42x on a typical task", doc: anthropic-2026-risk-report-aug, loc: "p.124", quote: "Overall, mid-2025 LLMs did not substantially increase novice completion of complex laboratory procedures but were associated with a modest performance benefit."}
+    - {author: NIST (AI 600-1), channel: primary, evidence: measurement, qualifier: "2024 summary of earlier studies; dated", doc: nationalinstituteofstandardsandtechnologyus-2024-artificial, loc: "§2.1, p.5", quote: "Recent research on this topic found that LLM outputs regarding biological threat creation and attack planning provided minimal assistance beyond traditional search engine queries"}
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "conditional: 'sufficiently capable'; developer's threat model CB-1", doc: anthropic-2026-risk-report-aug, loc: "§4.2.1, p.116", quote: "Sufficiently capable AI models could provide an uplift on the production of chemical or biological weapons that goes well beyond what's currently available on the public internet, and thus could raise novices to the level of experts."}
+
+- id: hz-cb-expert
+  from: cb-weapons-capability
+  to: expert-uplift
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "conditional: 'sufficiently capable'; threat model CB-2 (well-resourced, incl. state programs)", doc: anthropic-2026-risk-report-aug, loc: "§4.2.2, p.119", quote: "sufficiently capable AI models could significantly uplift well-resourced groups that seek to develop unprecedentedly dangerous weapons by providing expertise akin to that of a team of world-class human experts assisting with hypothesis generation, design, and iteration."}
+
+- id: hz-biotools-expert
+  from: bio-design-tool-capability
+  to: expert-uplift
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "demonstrations; bacteriophage, not a human pathogen", doc: bengio-2026-international, loc: "§2.1.4 AI tools can be adapted to design pathogens and toxins", quote: "Biological foundation models can generate designs for novel pathogens. ... Some models can also generate designs for novel pathogens more harmful than their natural equivalents."}
+    - {author: NIST (AI 600-1), channel: primary, evidence: argument, qualifier: "may", doc: nationalinstituteofstandardsandtechnologyus-2024-artificial, loc: "§2.1, p.5", quote: "chemical and biological design tools (BDTs) ... may augment design capabilities in chemistry and biology beyond what text-based LLMs are able to provide."}
+
+- id: hz-biotools-novice
+  from: bio-design-tool-capability
+  to: novice-uplift
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "direction asserted; size unstudied", doc: bengio-2026-international, loc: "§2.1.4 Tools are increasingly accessible through chat interfaces and integrations", quote: "Developers are integrating chat interfaces into chemical and biological design software, allowing inexpert users to operate sophisticated tools. There is little research on how much more accessible these integrations make such tools, and the effect on overall risk - particularly for novices versus those with existing expertise - is unclear."}
+
+- id: hz-cyber-novice
+  from: offensive-cyber-capability
+  to: novice-uplift
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "highly likely (PHIA); 'from a low base'; via safeguard-evading tools sold as a service", doc: ncsc-2025-impact, loc: "PDF p.5", quote: "This will uplift (from a low base) novice cyber criminals, hackers for hire and hacktivists in conducting opportunistic information gathering and disruptive operations."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: incident, qualifier: "threat-intelligence reporting", doc: bengio-2026-international, loc: "§2.1.3 Despite uneven capabilities, general-purpose AI already assists in cyberattacks", quote: "Underground marketplaces now sell pre-packaged AI tools and AI-generated ransomware that lower the skill threshold for conducting attacks, making these capabilities more accessible to less sophisticated actors."}
+    - {author: NIST (AI 600-1), channel: primary, evidence: argument, qualifier: "named risk category", doc: nationalinstituteofstandardsandtechnologyus-2024-artificial, loc: "risk #9, p.4", quote: "Information Security: Lowered barriers for offensive cyber capabilities, including via automated discovery and exploitation of vulnerabilities"}
+    - {author: Five Eyes cyber agency heads, channel: primary, evidence: expert-judgment, qualifier: "joint statement", doc: fiveeyes-2026-ai-shift, loc: "p.1", quote: "It lowers barriers for malicious actors and increases the speed and complexity of attacks"}
+    - {author: "NCSC and UK AISI (Paul J, Steer)", channel: primary, evidence: measurement, qualifier: "simulated 32-step range; models before Mar 2026; co-authored by NCSC and AISI", doc: ncsc-2026-frontier-defenders, loc: "PDF p.2", quote: "Running these attacks is getting cheaper, not harder. Giving the same model more processing time reliably improves results with no additional attacker skill required. At current pricing, a full attempt at this simulated attack costs around £65. This means the limiting factor is increasingly funding, not expertise."}
+
+- id: hz-cyber-expert
+  from: offensive-cyber-capability
+  to: expert-uplift
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "highly likely (PHIA), to 2027", doc: ncsc-2025-impact, loc: "PDF p.4", quote: "For skilled cyber actors with the ability to fine-tune AI models or build sovereign AI systems dedicated to vulnerability exploitation, AI will highly likely enhance zero-day discovery and exploitation techniques to 2027."}
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "near-term; full potential limited to highly capable states", doc: ncsc-2025-impact, loc: "PDF p.3", quote: "In the near-term, only highly capable state actors with access to requisite investment, quality training data and expertise will be able to harness the full potential of AI in advanced cyber operations."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: incident, qualifier: "one developer's report (Nov 2025); no end-to-end autonomous attack reported", doc: bengio-2026-international, loc: "§2.1.3 Degree of automation in cyberattacks", quote: "In November 2025, one AI developer reported that a threat actor used their models to automate 80-90% of the effort involved in an intrusion, with human involvement limited to critical decision points."}
+
+# ======================================================= the access layer: who can use the capability without safeguards
+- id: hz-unsafe-novice
+  from: unsafeguarded-capability-access
+  to: novice-uplift
+  type: influences
+  sign: "+"
+  note: Safeguards bind novices harder than skilled actors, so removing them widens the pool more than it deepens it.
+  claims:
+    - {author: UK AISI, channel: primary, evidence: expert-judgment, qualifier: "expectation", doc: aisi-2025-frontier, loc: "§4, p.24", quote: "We expect it would take far longer for a novice to develop a similar attack."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "about open weights; 'many users will not have the skill or incentive'", doc: bengio-2026-international, loc: "§3.4 Open-weight models' safeguards are easier to remove", quote: "open model weights can exacerbate the misuse risks discussed in §2.1. Risks from malicious use by allowing more actors to leverage and augment existing capabilities for malicious purposes without oversight."}
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "highly likely (PHIA)", doc: ncsc-2025-impact, loc: "PDF p.5", quote: "Skilled cyber criminals will highly likely focus on getting around safeguards on available AI models and AI-enabled commercial penetration testing tools to make AI-enabled cyber tools available 'as a service'."}
+
+- id: hz-unsafe-expert
+  from: unsafeguarded-capability-access
+  to: expert-uplift
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "about stolen weights", doc: bengio-2026-international, loc: "§3.4 Box 3.1", quote: "Malicious actors could remove safeguards from the most capable models. Unlike legitimate developers, such actors would not face the reputational, legal, or commercial constraints that currently incentivise frontier AI companies to deploy their models safely."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "concern", doc: bengio-2026-international, loc: "§3.4", quote: "Although many users will not have the skill or incentive to remove safeguards on open-weight models, highly motivated malicious actors are a concern."}
+
+- id: hz-safeguard-unsafe
+  from: safeguard-strength
+  to: unsafeguarded-capability-access
+  type: influences
+  sign: "-"
+  note: 'The claims mostly measure the limits of this lever: every tested system has been universally jailbroken, but the effort needed can rise sharply. Safeguards also cut against defenders (hz-safeguard-defai).'
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "every system tested to date", doc: aisi-2025-frontier, loc: "§4, p.24", quote: "We've discovered universal jailbreaks for every system we've tested to date. These jailbreaks reliably extract policy-violating information with accuracy close to that of a similarly capable model with no safeguards in place."}
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "one pair of models, bio misuse, ~40x", doc: aisi-2025-frontier, loc: "§4, p.24", quote: "while the first test required just 10 minutes of expert red teamer time to find and apply a publicly-known vulnerability, the second test required over seven hours of expert effort and the development of a novel universal jailbreak."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "'cat and mouse'", doc: bengio-2026-international, loc: "§3.3 AI developers use adversarial training to improve model robustness", quote: "Attackers are consistently able to develop new successful attacks against state-of-the-art models. ... modern AI systems remain persistently vulnerable."}
+    - {author: Anthropic, channel: primary, evidence: incident, qualifier: "developer self-report; four non-public routes known; fixes not tested against a public jailbreak", doc: anthropic-2026-risk-report-aug, loc: "§4.5.3.2, p.136", quote: "our resolution times for these non-public jailbreaks have been as long as several months to reach all deployment surfaces on our most capable models."}
+    - {author: "NIST (Vassilev)", channel: "relay: us-gov-recent.md", evidence: argument, qualifier: "formal claim; NIST release read, paper not read", doc: nist-2026-vassilev-proof, quote: "there is no finite set of guardrails that is universally robust against adversarial prompts."}
+    - {author: "UK AISI and CAISI", channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "a PRC open-weight model", doc: aisi-caisi-2026-kimi-k3, quote: "Kimi K3's safeguards did not prevent it from attempting cyber exploit development or offensive cyber operations"}
+
+- id: hz-openweight-unsafe
+  from: open-weight-capability
+  to: unsafeguarded-capability-access
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2026-international, loc: "§3.4 Key information", quote: "compared to closed-weight models, open-weight models are more easily modified to exhibit potentially harmful behaviours, and monitoring their usage is more difficult."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "cyber", doc: bengio-2026-international, loc: "§2.1.3 Mitigations", quote: "By using capable open-weight models, attackers can move their AI usage entirely offline and outside any oversight."}
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "'for models with dangerous capabilities'; evaluations 'largely unimpeded by safeguards'", doc: aisi-2026-open-weight-cyber, loc: "blog, 17 Jul 2026", quote: "For models with dangerous capabilities - including highly cyber-capable models - open weight release therefore creates a persistent and irreversible risk of misuse."}
+    - {author: UK AISI, channel: primary, evidence: argument, qualifier: "cites Palisade (Badllama 3)", doc: aisi-2025-frontier, loc: "§7, p.42", quote: "Open model releases can allow malicious actors to easily modify base models by removing safeguards and fine-tuning them for harmful purposes. Their safeguards can be quickly and cheaply removed"}
+    - {author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "tamper-resistance research", doc: aisi-2025-open-weight-risk, quote: "can be easily undone using just dozens of training examples in a matter of minutes."}
+    - {author: CAISI, channel: "relay: us-gov-recent.md", evidence: measurement, qualifier: "GLM-5.2 evaluation", doc: caisi-2026-glm52, loc: "p.2", quote: "Regardless of their robustness, safeguards for open-weight models can be circumvented when self-hosted."}
+
+- id: hz-openweight-diffusion
+  from: open-weight-capability
+  to: capability-diffusion
+  type: influences
+  sign: "+"
+  note: Open release is one of the routes in capability-diffusion's definition (security slice); the irreversibility is what the sources add.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: definition, qualifier: "key information", doc: bengio-2026-international, loc: "§3.4 Key information", quote: "Open-weight model releases are irreversible. Once released, model weights cannot be recalled."}
+
+- id: hz-diffusion-unsafe
+  from: capability-diffusion
+  to: unsafeguarded-capability-access
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "about theft", doc: bengio-2026-international, loc: "§3.4 Box 3.1", quote: "Stolen closed model weights would pose risks similar to those described above for open-weight models, but potentially without any of the mitigations."}
+    - {author: "NCSC and UK AISI (Paul J, Steer)", channel: primary, evidence: argument, qualifier: "glossary; 'set the direction of travel'", doc: ncsc-2026-frontier-defenders, loc: "PDF p.1", quote: "capabilities developed in frontier models can be transferred into smaller, cheaper, or open-weight models through a process called distillation - meaning advances at the frontier set the direction of travel for the whole ecosystem."}
+
+- id: hz-cost-unsafe
+  from: capability-cost-decline
+  to: unsafeguarded-capability-access
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: argument, qualifier: "historical trend (Epoch AI) plus inference", doc: aisi-2025-frontier, loc: "§4, p.28", quote: "Due to improvements in algorithms and computational efficiency, the cost of developing an AI system of a fixed capability level has historically fallen quickly over time. Accordingly, if a frontier AI system possesses a certain concerning capability, developing that capability will become progressively cheaper, making it increasingly difficult to ensure that all such capable systems are safeguarded."}
+
+- id: hz-cost-openweight
+  from: capability-cost-decline
+  to: open-weight-capability
+  type: influences
+  sign: "+?"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: argument, qualifier: "named as a factor on the gap; direction left to the reader", doc: aisi-2025-frontier, loc: "§7, p.43", quote: "Factors affecting the size of the gap moving forward include compute and data requirements for training frontier models, the accessibility of compute for AI developers releasing leading open models, and whether these developers continue to open-source their models."}
+
+- id: hz-biotools-unsafe
+  from: bio-design-tool-capability
+  to: unsafeguarded-capability-access
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "surveys of tools", doc: bengio-2026-international, loc: "§2.1.4 Some AI-enabled biological tools are restricted, but others are widely accessible", quote: "One recent study found that 23% of the highest-performing tools had high misuse potential due to dangerous capabilities and accessibility, and 61.5% of these were fully open source ... Another study found that only 3% of 375 biological AI tools surveyed had any form of safeguards."}
+
+# ======================================================= damping: dangerous capability triggers safeguards and pauses
+- id: hz-cb-safeguard
+  from: cb-weapons-capability
+  to: safeguard-strength
+  type: influences
+  sign: "+"
+  note: If-then commitments at work. The same capability that raises uplift also triggers stronger safeguards, which is the damping half of the structure.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: established-practice, qualifier: "precautionary; 'unable to exclude the possibility'", doc: bengio-2026-international, loc: "§2.1.4 Key information; Box 2.2", quote: "Major AI developers have released (some) recent models with heightened safeguards after being unable to exclude the possibility that they could meaningfully assist novices in creating biological weapons."}
+    - {author: Anthropic, channel: primary, evidence: established-practice, qualifier: "developer self-report; 'err on the side of caution'", doc: anthropic-2026-risk-report-aug, loc: "§4.4.2, p.123", quote: "Since the release of Claude Opus 4, we have assessed it and all of our subsequent frontier model releases as provisionally meeting the CB-1 threshold. We have done this in order to err on the side of caution rather than because we are confident these models cross the threshold."}
+
+- id: hz-cyber-safeguard
+  from: offensive-cyber-capability
+  to: safeguard-strength
+  type: influences
+  sign: "+"
+  claims:
+    - {author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: established-practice, qualifier: "developer's own evaluation; first Critical designation (Sep 2026)", doc: openai-2026-path-to-astra, quote: "On our set of cyber jailbreak evaluations, Astra refuses 91.5% of requests (compared to 59% from GPT-5.6 Sol)"}
+    - {author: Anthropic, channel: primary, evidence: established-practice, qualifier: "developer self-report, in a section listing its own beneficial choices", doc: anthropic-2026-risk-report-aug, loc: "§5.3.1, p.170", quote: "We held our model from public release until we had implemented the conservative safeguards that accompany Claude Fable 5."}
+
+- id: hz-cyber-labvelocity
+  from: offensive-cyber-capability
+  to: ai-lab-velocity
+  type: influences
+  sign: "-"
+  delay: short
+  note: A developer slowing its own training in response to a dangerous capability. The damping loop this could close (lab velocity -> capability pace -> cyber capability) stays open, because ai-lab-velocity -> capability-pace is withheld in the core (see notes-security §3).
+  claims:
+    - {author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: incident, qualifier: "developer action; the run restarted 28 Aug 2026", doc: openai-2026-pacing-model-development, loc: "18 Aug 2026", quote: "This included a two-week pause in reinforcement learning (RL) training on our latest models intended for deployment"}
+
+- id: hz-pace-safeguard
+  from: capability-pace
+  to: safeguard-strength
+  type: influences
+  sign: "?"
+  note: Recorded because the measurement answers a plausible hypothesis (more capable models are more robust) with a near-zero association. Resourcing, not capability, is what the same source finds drives safeguards (core r-resourcing-safeguard).
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "R² = 0.097 across providers", doc: aisi-2025-frontier, loc: "§4, p.27", quote: "we find minimal correlation between capability and robustness (R2 = 0.097), indicating that improvements in model capability do not reliably translate to stronger safeguards."}
+
+- id: hz-openweight-safeguard
+  from: open-weight-capability
+  to: safeguard-strength
+  type: influences
+  sign: "-"
+  note: 'The misuse-side twin of the security slice''s relative-security ratchet (rs-diffusion-weightsec). Frameworks measure uplift or marginal risk against a baseline that includes openly available models, so as open models improve, the same frontier capability counts as less uplift and warrants less safeguarding. Each rule is locally sensible. Joins the mp slice''s threshold-baseline-relativity and the gv slice''s competitor-contingency.'
+  claims:
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: instrument, qualifier: "risk-acceptance criterion in the developer's own framework", doc: gdm-2026-fsf-v3-1, loc: "p.7", quote: "what capabilities and mitigations are available on other publicly available models (e.g. if other models are similarly capable and have few mitigations, then the marginal risk added by our external deployment is likely low)"}
+    - {author: Microsoft, channel: "relay: company-frameworks-meta-msft-amzn.md", evidence: instrument, qualifier: "uplift baseline includes open-weight models", doc: microsoft-2026-frontier-governance-framework, loc: "p.6", quote: "marginal capability uplift a model may provide over and above currently available tools and information, including currently available open-weights models"}
+    - {author: Amazon, channel: "relay: company-frameworks-meta-msft-amzn.md", evidence: document-change, qualifier: "baseline moved from 'research or tools, such as internet search' (2025) to available models (2026)", doc: amazon-2026-frontier-model-safety-framework, loc: "p.2, l.58-60", quote: "beyond other publicly available models in known harnesses"}
+
+# ======================================================= uplift -> hazard events
+- id: hz-novice-cbrn
+  from: novice-uplift
+  to: cbrn-weapons-harm
+  type: influences
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code, channel: primary, evidence: definition, qualifier: "specified systemic risk; signatories must always assess it", doc: eu-cop-2025-safety-security, loc: "App. 1.4(1), PDF p.37", quote: "This includes significantly lowering the barriers to entry for malicious actors, or significantly increasing the potential impact achieved, in the design, development, acquisition, release, distribution, and use of related weapons or materials."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "can", doc: bengio-2026-international, loc: "§2.1.4", quote: "By combining and interpreting existing complex information on the internet that is relevant to weapons development, and tailoring advice to specific malicious activities, AI systems can lower existing expertise barriers, allowing more actors to cause harm."}
+    - {author: Anthropic, channel: primary, evidence: expert-judgment, qualifier: "preliminary; cites Righetti (GovAI) 2025; 'a great deal of uncertainty'", doc: anthropic-2026-risk-report-aug, loc: "§4.2.1, p.117", quote: "Preliminary analysis suggests that AI capabilities could significantly increase the likelihood of such events, although a great deal of uncertainty remains in current assessment methodologies."}
+    - {author: "RAND-G (Mitre & Predd)", channel: "relay: us-security.md", evidence: argument, qualifier: "one of five 'hard problems'; about AGI", doc: mitre-2025-agi, loc: "p.5", quote: "AGI might empower nonexperts to develop weapons of mass destruction"}
+
+- id: hz-expert-cbrn
+  from: expert-uplift
+  to: cbrn-weapons-harm
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "threat model CB-2; the catastrophe chain is 'highly unlikely' at baseline", doc: anthropic-2026-risk-report-aug, loc: "§4.2.2, pp.119-121", quote: "Despite the very low likelihood of such a catastrophe, we believe the potential damages here would exceed those of all AI risk threat models other than the ones already discussed elsewhere in this report."}
+
+- id: hz-bottleneck-mod
+  from: physical-weapons-bottlenecks
+  targets: [hz-novice-cbrn, hz-expert-cbrn]
+  type: moderates
+  sign: "-"
+  note: Non-informational barriers weaken how far uplift turns into attacks. Its strength is the disputed quantity behind the mixed uplift evidence.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: expert-judgment, qualifier: "'some experts argue'", doc: bengio-2026-international, loc: "§2.1.4", quote: "Some experts argue that remaining barriers - including acquiring equipment, obtaining regulated materials, and executing complex procedures - still pose significant challenges for novices seeking to develop weapons."}
+    - {author: NIST (AI 600-1), channel: primary, evidence: argument, qualifier: "2024", doc: nationalinstituteofstandardsandtechnologyus-2024-artificial, loc: "§2.1, p.5", quote: "The physical synthesis development, production, and use of chemical or biological agents will continue to require both applicable expertise and supporting materials and infrastructure."}
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's expectation, 'not confident'", doc: anthropic-2026-risk-report-aug, loc: "§4.2.3, p.121", quote: "We expect that in order to get substantial uplift from AI models, threat actors would likely need substantial and persistent guidance, involving dozens of queries over substantial periods of time (weeks if not months), and spanning a wide range of topics."}
+    - {author: Meta, channel: "relay: company-frameworks-meta-msft-amzn.md", evidence: argument, qualifier: "nuclear filed as 'emerging'", doc: meta-2026-advanced-ai-scaling-framework, loc: "p.36", quote: "materials access is a strong bottleneck to nuclear risk"}
+
+- id: hz-dna-bottleneck
+  from: dna-synthesis-screening
+  to: physical-weapons-bottlenecks
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "likely", doc: bengio-2026-international, loc: "§2.1.4 Mitigations", quote: "Using synthetic DNA is likely the most straightforward way to create modified pathogens and it allows malicious actors to avoid using infectious source material."}
+
+- id: hz-novice-cyber
+  from: novice-uplift
+  to: ai-enabled-cyberattacks
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "highly likely (PHIA), to 2027", doc: ncsc-2025-impact, loc: "PDF p.5", quote: "Proliferation of AI-enabled cyber tools will highly likely increase access to AI-enabled intrusion capability to an expanded range of state and non-state actors."}
+    - {author: EU GPAI Code, channel: primary, evidence: definition, qualifier: "specified systemic risk", doc: eu-cop-2025-safety-security, loc: "App. 1.4(3), PDF p.37", quote: "This includes significantly lowering the barriers to entry for malicious actors, or significantly increasing the potential impact achieved in offensive cyber operations, e.g. through automated vulnerability discovery, exploit generation, operational use, and attack scaling."}
+
+- id: hz-expert-cyber
+  from: expert-uplift
+  to: ai-enabled-cyberattacks
+  type: influences
+  sign: "+"
+  note: IASR's reading of the observed trend is weaker than NCSC's forward judgement.
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "almost certainly (PHIA); key judgement", doc: ncsc-2025-impact, loc: "PDF p.2", quote: "Artificial intelligence (AI) will almost certainly continue to make elements of cyber intrusion operations more effective and efficient, leading to an increase in frequency and intensity of cyber threats."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: incident, qualifier: "attack development trend 2024-25; AI 'likely secondary'", doc: bengio-2026-international, loc: "§2.1.3 Table 2.3", quote: "AI systems appear to have contributed to the trend, but are likely secondary to other factors. It is unclear whether AI systems enabled substantial attacks beyond the sophistication level of the attackers."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "can", doc: bengio-2026-international, loc: "§2.1.3", quote: "General-purpose AI systems can help malicious actors conduct cyberattacks, such as data breaches, ransomware, and attacks on critical infrastructure, with greater speed, scale, and sophistication."}
+
+- id: hz-novice-content
+  from: novice-uplift
+  to: synthetic-content-crime
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "key information", doc: bengio-2026-international, loc: "§2.1.1 Key information", quote: "Accessible AI tools have substantially lowered the barrier to creating harmful synthetic content at scale. Many tools are free or low-cost, require no technical expertise, and can be used anonymously."}
+    - {author: UK AISI, channel: primary, evidence: argument, qualifier: "could; likely", doc: aisi-2025-crimes-future, loc: "blog, 3 Jul 2025, 'A new criminal toolkit'", quote: "widespread consumer market adoption could create new attack surfaces and reduce barriers to criminal use."}
+
+- id: hz-media-content
+  from: synthetic-media-realism
+  to: synthetic-content-crime
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "'suggesting'; one study", doc: bengio-2026-international, loc: "§2.1.1 Updates", quote: "For audio deepfakes, a study found that people took AI voice clones to be the real speaker in 80% of cases, suggesting heightened risks of impersonation."}
+    - {author: UK AISI, channel: primary, evidence: argument, qualifier: "could", doc: aisi-2025-crimes-future, loc: "blog, 3 Jul 2025, 'A new criminal toolkit'", quote: "Multimodal generation: realistic audio, video, and images can now be generated with minimal effort - enabling more convincing deception and abuse."}
+
+- id: hz-media-detection
+  from: synthetic-media-realism
+  to: synthetic-content-detection
+  type: influences
+  sign: "-"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "detection benchmarks vs real-world deepfakes", doc: bengio-2026-international, loc: "§2.1.1 Challenges for policymakers", quote: "deepfake detection benchmarks ... are outdated and perform about 50% worse on real-world deepfakes than on the benchmarks usually used to evaluate them."}
+
+- id: hz-detection-content
+  from: synthetic-content-detection
+  to: synthetic-content-crime
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "mixed effectiveness; modest effect", doc: bengio-2026-international, loc: "§2.1.1 Mitigations", quote: "a study found that warning labels on AI-generated videos improved participants' accuracy at identifying AI-generated videos from 10.7% to 21.6%, with most people still failing to spot deepfakes."}
+
+- id: hz-cyber-cni
+  from: ai-enabled-cyberattacks
+  to: cni-disruption
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "highly likely (PHIA)", doc: ncsc-2025-impact, loc: "PDF p.4", quote: "This will highly likely contribute to an increased threat to CNI or CNI supply chains, particularly any operational technology with lower levels of security."}
+
+# ======================================================= attacks on AI systems (B14)
+- id: hz-surface-aiattacks
+  from: ai-attack-surface
+  to: attacks-on-ai-systems
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "almost certainly (PHIA); key judgement", doc: ncsc-2025-impact, loc: "PDF p.5", quote: "The growing incorporation of AI models and systems across the UK's technology base, and particularly within CNI, almost certainly presents an increased attack surface for adversaries to exploit."}
+    - {author: NIST (AI 600-1), channel: primary, evidence: argument, qualifier: "one of two primary information-security risks", doc: nationalinstituteofstandardsandtechnologyus-2024-artificial, loc: "§2.9, p.10", quote: "it expands the available attack surface, as GAI itself is vulnerable to attacks like prompt injection or data poisoning."}
+
+- id: hz-aiattacks-cyber
+  from: attacks-on-ai-systems
+  to: ai-enabled-cyberattacks
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "already capable", doc: ncsc-2025-impact, loc: "PDF p.5", quote: "Techniques such as direct prompt injection, software vulnerabilities, indirect prompt injection and supply chain attack are already capable of enabling exploitation of AI systems to facilitate access to wider systems."}
+    - {author: CAISI, channel: primary, evidence: measurement, qualifier: "simulated environment; non-adaptive attacks", doc: nist-2025-caisi-deepseek, loc: "news release, 30 Sep 2025", quote: "Hijacked agents sent phishing emails, downloaded and ran malware, and exfiltrated user login credentials, all in a simulated environment."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "§2.1.3 Box 2.1", quote: "compromising an AI system that contributes to an organisation's cyber defences could leave that organisation vulnerable to other threats."}
+
+- id: hz-autonomy-aiattacks-mod
+  from: agent-autonomy
+  targets: [hz-aiattacks-cyber]
+  type: moderates
+  sign: "+"
+  note: The more an agent may do, the more a hijacked agent does.
+  claims:
+    - {author: "ASD, CISA, NSA, CCCS, NCSC-NZ, NCSC-UK (CAREFUL)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "joint guidance", doc: asd-2026-careful-agentic, loc: "p.7", quote: "Privileges assigned to agents directly determine the level of risk they can introduce"}
+    - {author: "UK NCSC (Toby W)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "interim advice", doc: ncsc-2026-managing-agentic, loc: "PDF p.2", quote: "The greater an agent's autonomy, the greater the potential impact if it: malfunctions unexpectedly; accesses information it should not; takes actions outside its intended scope"}
+
+- id: hz-surface-cni
+  from: ai-attack-surface
+  to: cni-disruption
+  type: influences
+  sign: "+?"
+  note: The route where AI embedded in CNI fails or acts, rather than being attacked.
+  claims:
+    - {author: UK Cabinet Office (NRR 2026), channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "government risk register, health and care cyber risk", doc: cabinetoffice-2026-nrr, loc: "p.67", quote: "emerging 'agentic AI', where autonomy, access, and unclear ownership can significantly amplify the impact of failure."}
+    - {author: "RAND-G (Mitre & Predd)", channel: "relay: us-security.md", evidence: argument, qualifier: "illustrative scenario about misaligned AGI", doc: mitre-2025-agi, loc: "p.6", quote: "institute rolling blackouts to increase the cost-effectiveness of energy distribution networks"}
+
+- id: hz-aisec-aiattacks
+  from: ai-system-security
+  to: attacks-on-ai-systems
+  type: influences
+  sign: "-"
+  note: The limit is stated as strongly as the lever.
+  claims:
+    - {author: DSIT (AI Cyber Security Code of Practice), channel: "relay: uk-security-frameworks.md", evidence: established-practice, qualifier: "voluntary code", doc: dsit-2025-ai-cyber-cop, loc: "Introduction", quote: "AI has distinct differences to software. These include security risks from data poisoning, model obfuscation, indirect prompt injection"}
+    - {author: "UK NCSC (Chismon)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "residual risk", doc: ncsc-2025-prompt-injection, loc: "PDF p.3", quote: "it's very possible that prompt injection attacks may never be totally mitigated in the way that SQL injection attacks can be."}
+
+- id: hz-safeguard-aiattacks
+  from: safeguard-strength
+  to: attacks-on-ai-systems
+  type: influences
+  sign: "-"
+  claims:
+    - {author: CAISI, channel: primary, evidence: measurement, qualifier: "comparison of PRC and US models; published as part of a US-vs-adversary evaluation", doc: nist-2025-caisi-deepseek, loc: "news release, 30 Sep 2025", quote: "Agents based on DeepSeek's most secure model (R1-0528) were, on average, 12 times more likely than evaluated U.S. frontier models to follow malicious instructions designed to derail them from user tasks."}
+    - {author: Anthropic, channel: primary, evidence: none-stated, qualifier: "developer self-report about its own models", doc: anthropic-2026-risk-report-aug, loc: "§4.5.5.4, p.145", quote: "Our models, especially recent ones, are generally quite robust to prompt injection risks, and are regularly used in real-world computer use settings without significant issues from this failure mode."}
+
+- id: hz-aiattacks-cbrn
+  from: attacks-on-ai-systems
+  to: cbrn-weapons-harm
+  type: influences
+  sign: "+?"
+  note: A route asserted in theory and judged negligible by the only source that discusses it.
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "'extremely unlikely via this route'; four reasons given", doc: anthropic-2026-risk-report-aug, loc: "§4.5.5.4, pp.144-145", quote: "In theory, an agent running with classifier exemptions and granted broad internet permissions could encounter online content which performed a successful prompt injection, and convinced the agent in question to spend time working on a harmful bioweapon-related task"}
+
+- id: hz-race-aisec
+  from: race-dynamics
+  to: ai-system-security
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "'there is a risk'", doc: ncsc-2025-impact, loc: "PDF p.6", quote: "In the rush to provide a market-leading AI model (or applications that are more advanced than competitors) there is a risk that developers will prioritise an accelerated release schedule over security considerations, increasing the cyber threat from compromised or insecure systems."}
+
+- id: hz-devspeed-aisec
+  from: development-speed
+  to: ai-system-security
+  type: influences
+  sign: "-"
+  note: 'Concept match is this slice''s judgement. GSAID speaks of the pace of AI development and of rapid development cycles among those building AI systems; Joseph''s development-speed is per-developer speed and expressiveness. The two are close, not identical. If the coordinator prefers, the same claims sit as well on capability-pace or ai-lab-velocity.'
+  claims:
+    - {author: "NCSC, CISA and 21 agencies (GSAID)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "joint guidance, 2023", doc: ncsc-2023-guidelines-secure-ai, loc: "p.5", quote: "When the pace of development is high - as is the case with AI - security can often be a secondary consideration."}
+    - {author: "NCSC, CISA and 21 agencies (GSAID)", channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "likely", doc: ncsc-2023-guidelines-secure-ai, loc: "p.13", quote: "your levels of technical debt are likely to be high due to rapid development cycles and a lack of well-established protocols and interfaces."}
+
+# ======================================================= offence-defence balance (B12)
+- id: hz-cyber-odb
+  from: offensive-cyber-capability
+  to: offence-defence-balance
+  type: influences
+  sign: "?"
+  note: Dual use. The same capability serves both sides, and the sources decline to sign it.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "uncertain", doc: bengio-2026-international, loc: "§2.1.3 The offence-defence balance is critical but dynamic", quote: "Many of the same AI capabilities used for cyberattacks can also strengthen defences, creating uncertainty about whether AI benefits attackers or defenders more."}
+    - {author: UK NCSC, channel: "relay: uk-security-frameworks.md", evidence: expert-judgment, qualifier: "2024 assessment; 'More work is required to understand the extent'", doc: ncsc-2024-near-term, loc: "PDF p.4", quote: "will be offset by the use of AI to enhance cyber security resilience"}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "may", doc: bengio-2026-international, loc: "§3.5 Leveraging AI for resilience requires managing the offence-defence balance", quote: "Due to its dual-use nature, developing AI capabilities to defend against AI-enabled threats may simultaneously accelerate offensive capabilities. This may, in turn, shift the offence-defence balance ... in sometimes unpredictable ways."}
+
+- id: hz-cb-odb
+  from: cb-weapons-capability
+  to: offence-defence-balance
+  type: influences
+  sign: "+"
+  note: Unlike cyber, the bio sources sign it toward offence.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "one study", doc: bengio-2026-international, loc: "§3.5 Leveraging AI for resilience requires managing the offence-defence balance", quote: "In biosecurity, one study suggests that offence is currently favoured, and AI may tilt this balance further."}
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "developer's threat model CB-2", doc: anthropic-2026-risk-report-aug, loc: "§4.2.2, p.121", quote: "Unlike in some other domains such as cyberoffense, it is hard to envision a way in which AI-assisted countermeasures could outweigh AI-assisted risks."}
+
+- id: hz-odb-cyber
+  from: offence-defence-balance
+  to: ai-enabled-cyberattacks
+  type: influences
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: definition, qualifier: "general statement", doc: bengio-2026-international, loc: "§3.5", quote: "When the balance shifts toward defence, harms become less likely and less severe, but when it shifts toward offence, harms become more likely or more damaging."}
+    - {author: EU GPAI Code, channel: primary, evidence: definition, qualifier: "listed systemic-risk source", doc: eu-cop-2025-safety-security, loc: "App. 1.3.3(9), PDF p.36", quote: "offence-defence balance, including the potential number, capacity, and motivation of malicious actors to misuse the model"}
+
+- id: hz-odb-cbrn
+  from: offence-defence-balance
+  to: cbrn-weapons-harm
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Anthropic, channel: primary, evidence: argument, qualifier: "reason for prioritising the threat", doc: anthropic-2026-risk-report-aug, loc: "§4.2.1, p.118", quote: "This is especially true because of the difficulty of constructing robust defenses against biological and chemical weapons (in the same way that, for example, cyberdefenses can be mounted), and because of the potential lack of early warning signs of such an attack."}
+
+- id: hz-defai-odb
+  from: defensive-ai-adoption
+  to: offence-defence-balance
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "NCSC and UK AISI (Paul J, Steer)", channel: primary, evidence: argument, qualifier: "'this advantage is not guaranteed'", doc: ncsc-2026-frontier-defenders, loc: "PDF p.4", quote: "Where attackers adopt AI more effectively than defenders, or where baseline cyber security is weak, the quality of defensive data degrades and the information gap narrows quickly."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "example", doc: bengio-2026-international, loc: "§2.1.3", quote: "AI capabilities that allow an attacker to rapidly discover vulnerabilities can also be used by a defender to find and patch them first."}
+
+- id: hz-constraints-defai
+  from: defender-adoption-constraints
+  to: defensive-ai-adoption
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "UK NCSC (Chismon)", channel: primary, evidence: argument, qualifier: "'an inconvenient truth'", doc: ncsc-2026-defend-agentically, loc: "PDF p.1", quote: "Defenders simply cannot put AI to work in the same way attackers can. This is an inconvenient truth, as it suggests that the threat from AI-enabled cyber attacks will grow, whilst autonomous / agentic cyber defence might struggle to keep up unless we approach things differently."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "asymmetry with attackers", doc: bengio-2026-international, loc: "§2.1.3 Mitigations", quote: "defenders face barriers to adopting AI-powered security tools due to the absence of standardised quality-assurance methods - a constraint that attackers do not face."}
+
+- id: hz-safeguard-defai
+  from: safeguard-strength
+  to: defensive-ai-adoption
+  type: influences
+  sign: "-"
+  note: Good and bad on one practice. Misuse safeguards that refuse cyber requests also refuse defenders.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "'dual-use dilemma'", doc: bengio-2026-international, loc: "§2.1.3 Key information", quote: "Since it can be difficult to distinguish helpful uses from harmful ones, overly aggressive safeguards such as preventing AI systems from responding to cyber-related requests can hamper defenders."}
+
+- id: hz-defai-weightsec
+  from: defensive-ai-adoption
+  to: weight-security-level
+  type: influences
+  sign: "-"
+  note: 'A developer arguing that better defence lowers the harm of theft, and so lowers the security it needs. The security slice listed this as unmodelled (notes-security §5).'
+  claims:
+    - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "rationale in the developer's own framework for its cyber CCL security level", doc: gdm-2026-fsf-v3-1, loc: "p.12", quote: "the potential for automated cyber-defense and social adaptation as a response to exfiltration means that higher levels of security, and the resulting costs to innovation, are likely not warranted"}
+
+# ======================================================= defender and societal resilience lag (C14)
+- id: hz-defai-lag
+  from: defensive-ai-adoption
+  to: defender-resilience-lag
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "'remote chance' of universal access; 'almost certainly' a divide", doc: ncsc-2025-impact, loc: "PDF p.4", quote: "As there is a remote chance of universal access to AI for cyber security defence by 2027, there will almost certainly be a digital divide between systems keeping pace with AI-enabled threat, and a large proportion that are more vulnerable."}
+
+- id: hz-resil-lag
+  from: resilience-measures
+  to: defender-resilience-lag
+  type: influences
+  sign: "-"
+  claims:
+    - {author: "NCSC and UK AISI (Paul J, Steer)", channel: primary, evidence: argument, qualifier: "advice", doc: ncsc-2026-frontier-defenders, loc: "PDF p.5", quote: "Since AI will more quickly enable rapid scaling of attacks against 'soft' rather than 'hard' targets, strong baseline security is vital."}
+    - {author: Five Eyes cyber agency heads, channel: primary, evidence: expert-judgment, qualifier: "call to action", doc: fiveeyes-2026-ai-shift, loc: "p.1", quote: "Success will come from getting the basics right, acting quickly, and integrating cyber security into core business strategy. Those that do not will face growing operational and strategic disadvantage."}
+
+- id: hz-debt-lag
+  from: legacy-technical-debt
+  to: defender-resilience-lag
+  type: influences
+  sign: "+"
+  claims:
+    - {author: "UK NCSC (Whitehouse)", channel: primary, evidence: expert-judgment, qualifier: "'showing the ability'; NCSC expects a 'forced correction'", doc: ncsc-2026-patch-wave, loc: "PDF p.1", quote: "Artificial Intelligence, when used by sufficiently-skilled and knowledgeable individuals, is showing the ability to exploit this technical debt at scale and at pace across the technology ecosystem."}
+    - {author: Five Eyes cyber agency heads, channel: primary, evidence: expert-judgment, qualifier: "joint statement", doc: fiveeyes-2026-ai-shift, loc: "p.2", quote: "Unsupported systems are easy targets. They are not just technical debt, they are strategic liabilities."}
+
+- id: hz-cyber-lag
+  from: offensive-cyber-capability
+  to: defender-resilience-lag
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "almost certainly (PHIA)", doc: ncsc-2025-impact, loc: "PDF p.4", quote: "The time between disclosure and exploitation has shrunk to days and AI will almost certainly reduce this further."}
+    - {author: Five Eyes cyber agency heads, channel: primary, evidence: expert-judgment, qualifier: "joint statement", doc: fiveeyes-2026-ai-shift, loc: "p.1", quote: "shrinking the window between vulnerability discovery and exploitation ever more quickly"}
+    - {author: "UK NCSC (Horne)", channel: primary, evidence: expert-judgment, qualifier: "FT letter", doc: ncsc-2026-retaining-advantage, loc: "PDF p.1", quote: "AI will make it easier, faster and cheaper to discover and exploit weaknesses that previously required more time, skill or resource for attackers to identify. And the pressure on organisations to patch systems quickly will only grow more acute."}
+
+- id: hz-pace-lag
+  from: capability-pace
+  to: defender-resilience-lag
+  type: influences
+  sign: "+"
+  claims:
+    - {author: Five Eyes cyber agency heads, channel: primary, evidence: expert-judgment, qualifier: "joint statement", doc: fiveeyes-2026-ai-shift, loc: "p.3", quote: "The rapid pace of frontier AI development means cyber risk assumptions can become outdated in months, not years."}
+    - {author: UK Cabinet Office (CRA), channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "chronic-risk analysis", doc: cabinetoffice-2025-cra, loc: "p.40", quote: "rapid advancements pose enduring challenges, including outpacing safety measures, misuse, and potential disruptions"}
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "almost certainly (PHIA)", doc: ncsc-2025-impact, loc: "PDF p.2", quote: "Keeping pace with 'frontier AI' capabilities will almost certainly be critical to cyber resilience for the decade to come."}
+
+- id: hz-lag-cyber
+  from: defender-resilience-lag
+  to: ai-enabled-cyberattacks
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "almost certainly (PHIA); key judgement", doc: ncsc-2025-impact, loc: "PDF p.2", quote: "Insufficient cyber security will almost certainly increase opportunity for capable state-linked actors and cyber criminals to misuse AI to support offensive activities."}
+
+- id: hz-lag-cni
+  from: defender-resilience-lag
+  to: cni-disruption
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, qualifier: "realistic possibility (PHIA); conditional on a lag", doc: ncsc-2025-impact, loc: "PDF p.2", quote: "Assuming a lag, or no change to cyber security mitigations, there is a realistic possibility of critical systems becoming more vulnerable to advanced threat actors by 2027."}
+
+- id: hz-resil-cbrn
+  from: resilience-measures
+  to: cbrn-weapons-harm
+  type: influences
+  sign: "-"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "probably; partially", doc: bengio-2026-international, loc: "§2.1.4 Mitigations", quote: "Biological risks - whether AI-enabled or not - can probably be at least partially mitigated by improving biosecurity directly through reducing indoor pathogen transmission, developing broad-spectrum antivirals, and improving laboratory biosecurity and biosafety globally."}
+
+- id: hz-resil-content
+  from: resilience-measures
+  to: synthetic-content-crime
+  type: influences
+  sign: "-?"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "examples drawn from non-AI precedents; effectiveness evidence sparse", doc: bengio-2026-international, loc: "§3.5 Table 3.10", quote: "Critical media literacy and education to inform the public of the capabilities and pitfalls of AI-generated content; disclosure mechanisms for synthetic content to prevent deception."}
+
+# ======================================================= the adaptation buffer
+- id: hz-safeguard-buffer
+  from: safeguard-strength
+  to: adaptation-buffer
+  type: influences
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: argument, qualifier: "after Toner (2025)", doc: aisi-2025-frontier, loc: "§4, p.28", quote: "strong defences on the most capable and widely used systems can still meaningfully delay the point at which malicious applications of certain capabilities become cheaply and broadly accessible. This can create a gap - sometimes called an adaptation buffer"}
+
+- id: hz-openweight-buffer
+  from: open-weight-capability
+  to: adaptation-buffer
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "gap narrowed from 6-10 to 4-7 months (cyber)", doc: aisi-2026-open-weight-cyber, loc: "blog, 17 Jul 2026", quote: "One reason the gap between the cyber capabilities of open and closed models matters is because it provides a preparation time: a window for cyber defenders with access to the most capable closed systems to take action before today's frontier cyber capabilities might become available without the same safeguards."}
+
+- id: hz-staged-buffer
+  from: staged-release
+  to: adaptation-buffer
+  type: influences
+  sign: "+"
+  claims:
+    - {author: EU GPAI Code, channel: primary, evidence: instrument, qualifier: "example safety mitigation (Measure 5.1(4))", doc: eu-cop-2025-safety-security, loc: "Measure 5.1(4), PDF p.17", quote: "staging the access to the model, e.g. by limiting API access to vetted users, gradually expanding access based on post-market monitoring, and/or not making the model parameters publicly available for download initially"}
+    - {author: Anthropic, channel: primary, evidence: incident, qualifier: "developer self-assessment of its own decision ('room for disagreement')", doc: anthropic-2026-risk-report-aug, loc: "§5.3.1, p.170", quote: "we believe that these decisions improved the world's preparedness for strong AI cyber capabilities"}
+
+- id: hz-buffer-lag
+  from: adaptation-buffer
+  to: defender-resilience-lag
+  type: influences
+  sign: "-"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: argument, qualifier: "what the buffer is for", doc: aisi-2025-frontier, loc: "§4, p.28", quote: "During this buffer period, beneficial applications can be deployed, governance measures strengthened, and societal resilience improved, reducing the overall scale and severity of malicious use even if it cannot be eliminated entirely."}
+
+# ======================================================= joins to Joseph's hostile-actor-capability (definitional, non-causal)
+- id: hz-novice-hostile
+  from: novice-uplift
+  to: hostile-actor-capability
+  type: part_of
+  claims:
+    - {author: "integrator (Claude, hz slice)", channel: "dialog", evidence: definition, qualifier: "our construal: the breadth half of the EU Code's two-pronged definition ('lowering the barriers to entry')", quote: "novice-uplift is the breadth of hostile-actor-capability: how many actors can attempt the harm"}
+
+- id: hz-expert-hostile
+  from: expert-uplift
+  to: hostile-actor-capability
+  type: part_of
+  claims:
+    - {author: "integrator (Claude, hz slice)", channel: "dialog", evidence: definition, qualifier: "our construal: the depth half ('increasing the potential impact achieved')", quote: "expert-uplift is the depth of hostile-actor-capability: how much the already-capable can do"}
+
+# ======================================================= indicators
+- id: ihz-open-closed-gap
+  from: ind-open-closed-gap
+  to: open-weight-capability
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "cyber; narrow tasks and ranges", doc: aisi-2026-open-weight-cyber, quote: "recent open weight models lag frontier closed models' cyber capabilities by 4 to 7 months - a narrower gap than the 6 to 10 months we measured internally through most of 2025."}
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "general capability (Epoch ECI)", doc: bengio-2026-international, loc: "§3.4 Key information", quote: "The capabilities of leading closed models are now estimated to be less than one year ahead of leading open-weight models on prominent AI benchmarks."}
+
+- id: ihz-jailbreak-effort
+  from: ind-jailbreak-effort
+  to: safeguard-strength
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "metric used by AISI", doc: aisi-2025-frontier, loc: "§4, p.26 (Fig. 14)", quote: "Throughout, we give time for experts to achieve a strong universal jailbreak that extracts policy-violating information with accuracy close to that of a similarly capable model without safeguards in place."}
+
+- id: ihz-uplift-trials
+  from: ind-uplift-trials
+  to: novice-uplift
+  type: indicates
+  sign: "+"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: definition, qualifier: "legal and information-hazard limits on such studies (Box 2.3)", doc: bengio-2026-international, loc: "§2.1.4 Box 2.3", quote: "real-world 'uplift studies', which systematically compare how well people perform a given task when they have access to an AI model or system, relative to a relevant baseline such as merely having internet access."}
+
+- id: ihz-bio-tool-safeguards
+  from: ind-bio-tool-safeguards
+  to: unsafeguarded-capability-access
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, doc: bengio-2026-international, loc: "§2.1.4", quote: "only 3% of 375 biological AI tools surveyed had any form of safeguards."}
+
+- id: ihz-disclosure-to-exploit
+  from: ind-disclosure-to-exploit
+  to: defender-resilience-lag
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: UK NCSC, channel: primary, evidence: expert-judgment, doc: ncsc-2025-impact, loc: "PDF p.4", quote: "System owners already face a race in identifying and mitigating disclosed vulnerabilities before threat actors can exploit them."}
+
+- id: ihz-attack-cost
+  from: ind-attack-cost
+  to: novice-uplift
+  type: indicates
+  sign: "-"
+  claims:
+    - {author: "NCSC and UK AISI (Paul J, Steer)", channel: primary, evidence: measurement, doc: ncsc-2026-frontier-defenders, loc: "PDF p.2", quote: "In just 18 months, the best AI models went from barely making any progress on a realistic simulated enterprise attack to completing over half of it, and the cost of a full attempt is now around £65."}
+
+- id: ihz-content-incidents
+  from: ind-content-incidents
+  to: synthetic-content-crime
+  type: indicates
+  sign: "?"
+  note: Underreporting and better detection both move the count, so the sign is not clean.
+  claims:
+    - {author: IASR 2026 writing team, channel: primary, evidence: measurement, qualifier: "incident database; 'systematic data ... is limited'", doc: bengio-2026-international, loc: "§2.1.1", quote: "While the number of reported incidents is rising (Figure 2.1), systematic data on the frequency or severity of AI-enabled crimes is limited."}

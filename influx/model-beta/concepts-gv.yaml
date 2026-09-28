@@ -1,0 +1,234 @@
+# Governance, commitments and enforcement slice (relation ids gv-*). See notes-gv.md.
+# Design: the core's `regulatory-requirements` pools three layers of force. This shard splits them into
+# statutory-obligations (law), code-commitments (voluntary codes signatories commit to) and self-commitments
+# (a developer's own framework), each `part_of`-linked where the core concept already pools them.
+# Concepts are commitments and their force, however stated (framework, announcement, statement). Documents are evidence:
+# they appear as claims' `doc` and as indicators. The force of the text a claim cites is recorded on the claim (`force`, proposed field).
+# "Who actually checks" is carried by external-verification, regulator-capacity and enforcement-exposure.
+
+- {id: g-enforcement, kind: group, label: "Enforcement and external accountability"}
+
+# ---------------------------------------------------------------- layers of force
+- id: statutory-obligations
+  broader: [g-commitments]
+  kind: practice
+  label: Strength of statutory obligations on frontier developers
+  proposed_by: "this slice (Claude, gv shard), splitting the core's regulatory-requirements"
+  definition: Obligations imposed by law and enforceable by a public authority, e.g. AI Act Art. 55, California SB 53, New York RAISE.
+  distinct_from: [code-commitments, self-commitments]
+  notes: 'Narrower than the core regulatory-requirements, which is defined as "legally binding" but is carried in part by EU GPAI Code claims. Linked to it by part_of. A statute can make a developer''s own stated commitments enforceable (SB 53 §22757.15(a)); the strength then depends on enforceable-self-commitments.'
+
+- id: code-commitments
+  broader: [g-commitments]
+  kind: practice
+  label: Strength of commitments made by signatories of voluntary codes
+  proposed_by: "this slice; the report's force code 'commit'"
+  definition: Undertakings a developer makes by signing a voluntary instrument (EU GPAI Code of Practice, Seoul Frontier AI Safety Commitments, G7 Hiroshima Code of Conduct). Binding only as the signatory's own commitment.
+  distinct_from: [statutory-obligations, self-commitments]
+  notes: 'The EU Code is the Commission-endorsed way to demonstrate compliance with binding Art. 55, but "adherence to the Code does not constitute conclusive evidence of compliance" (Objective A) and codes "do not grant a presumption of conformity" (Omnibus recital 41). Since 2 Aug 2026 it sits under live Commission fining powers for the underlying law.'
+
+- id: self-commitments
+  broader: [g-commitments]
+  kind: practice
+  label: Stringency of developers' own safety commitments
+  proposed_by: "IASR 2026 ('Frontier AI Safety Frameworks'); this slice for the quantity"
+  definition: How much a developer's own commitments bind it to concrete if-then actions, however they are stated (a framework such as an RSP, Preparedness Framework or FSF; an announcement; a public statement). Revisable by the developer alone.
+  distinct_from: [code-commitments, enforceable-self-commitments]
+  notes: 'Evidence mostly comes from framework texts, whose clauses the verification agents code self (binding register) vs self-d (discretionary: "may", "as appropriate", "or we otherwise assess that"). Four developers now state their commitments in two places: a voluntary framework and a legally designated one, so professed and enforceable commitments can differ (enforceable-self-commitments).'
+
+- id: pause-commitments
+  broader: [g-commitments]
+  kind: practice
+  label: Strength of commitments to pause or halt development or deployment
+  proposed_by: "FLI (AI Safety Index Summer 2026); company frameworks"
+  definition: Unconditional or conditional commitments to stop training, development or release when thresholds are reached without adequate safeguards.
+  notes: 'As of Sep 2026, per the company-framework verification: unconditional pause text survives at Microsoft (p.8) and G42 (p.5); OpenAI PF v2 keeps "halt further development" at Critical; Anthropic, GDM and Meta removed or weakened theirs. Anthropic''s remaining delay is conditioned on its competitive position (RSP v3.4 App. A).'
+
+- id: enforceable-self-commitments
+  broader: [g-commitments, g-enforcement]
+  kind: state
+  label: Strength of a developer's legally enforceable safety commitments
+  proposed_by: "company-frameworks verification agent (finding); named as a quantity by the gv shard (as designated-framework-stringency), recast by the integrator"
+  definition: How much of a developer's own commitments the law actually enforces, e.g. the commitments SB 53 penalises non-compliance with. Can sit well below the commitments the developer professes (self-commitments).
+  distinct_from: [self-commitments]
+  notes: 'At Anthropic (FCF) and OpenAI (FGF) the commitments stated in the legally designated framework are mostly descriptive/discretionary, with no tier-to-action mapping and no halt language; the if-then commitments are stated in the voluntary framework. So the law enforces the thinner set. For Google, Meta and Amazon the designation is not stated publicly; xAI''s Jun 2026 framework dropped its Dec 2025 TFAIA-compliance statement.'
+
+- id: competitor-contingency
+  broader: [g-commitments]
+  kind: state
+  label: Degree to which commitments are conditioned on competitors' conduct or position
+  proposed_by: "FLI (Summer 2026: 'competitor-contingent conditions'); Anthropic RSP v3.4 ('competitor-contingent commitments')"
+  definition: Share of a developer's safety commitments whose force depends on what other developers do (relaxation clauses, field-wide conditions, delay conditioned on holding a lead).
+  notes: 'Instances: OpenAI PF v2 §4.3 (lower safeguards if another developer ships without them, "but only if" three conditions hold, including staying "more protective"); GDM FSF v2.0 adoption "may depend on" the field (dropped in v3.0); GDM v3.1 marginal-risk and security relaxation conditions; Anthropic RSP v3.x Appendix A. It is the channel through which race-dynamics acts on commitments inside the instrument.'
+
+- id: revision-visibility
+  broader: [g-commitments, g-enforcement]
+  kind: practice
+  label: Visibility of changes to safety commitments (announced, logged, justified)
+  proposed_by: "Zhu 2026 ('silent revision'); SB 53 §22757.12(b)(2)"
+  definition: How far material changes to a developer's commitments, whether made by revising a framework, by announcement or otherwise, are disclosed and justified rather than made silently.
+
+# ---------------------------------------------------------------- who checks, and with what consequence
+- id: commitment-adherence
+  broader: [g-enforcement]
+  kind: state
+  label: Degree to which developers act as their commitments say
+  proposed_by: "IASR 2026 §3.2 ('adherence to voluntary commitments is likely to vary')"
+  definition: Gap between what a developer has committed to and what it does.
+  distinct_from: [self-commitments]
+
+- id: external-verification
+  broader: [g-enforcement, g-oversight]
+  kind: practice
+  label: Strength of independent external verification of developers' claims and compliance
+  proposed_by: "IASR 2026 §3.2; GovAI commentary ('grading its own homework'); Campos et al."
+  definition: Audits, third-party evaluations, regulator review and validation of risk-acceptance decisions by parties independent of the developer.
+  distinct_from: [oversight-strength]
+  notes: 'IASR 2026: "No established mechanism currently exists for validating risk acceptance decisions made by developers prior to release"; "there are no standardised external audits". Anthropic''s RSP v3.4 third-party review is procedural, "not substantive outcomes". G42 commits to annual external audits. oversight-strength (core) is the developer''s own detection and correction of AI behaviour; this concept is outsiders checking the developer.'
+
+- id: regulator-capacity
+  broader: [g-enforcement]
+  kind: practice
+  label: Technical capacity and staffing of regulators and public evaluators
+  proposed_by: "DSIT 2023; IASR 2026; EU Code Chairs' statement"
+  definition: People, expertise and mandate available to public bodies (EU AI Office, CAISI, UK AISI, state AGs) to understand frontier systems and check developers.
+
+- id: enforcement-exposure
+  broader: [g-enforcement]
+  kind: state
+  label: Expected sanction for non-compliance with binding obligations
+  proposed_by: "this slice"
+  definition: Likelihood times size of a penalty for breaching statutory obligations, including failing to comply with one's own designated framework.
+  notes: 'Instruments: AI Act fines "up to 3% of global annual turnover or EUR 15 million", applicable from 2 Aug 2026 (Guidelines ¶106); SB 53 civil penalty up to $1M per violation, AG enforcement (§22757.15); NY RAISE up to $1M first / $3M subsequent (§1427). No enforcement action against a frontier developer appears in the evidence set.'
+
+- id: developer-information-asymmetry
+  broader: [g-enforcement, g-context]
+  kind: state
+  label: Information asymmetry between developers and outsiders
+  proposed_by: "IASR 2026 §3.1 (Category 2: information asymmetries)"
+  definition: How much safety-relevant information (training data, internal evaluations, incidents, risk assessments, internal models) developers hold that regulators, researchers and the public lack.
+
+- id: incident-reporting-duty
+  broader: [g-enforcement]
+  kind: practice
+  label: Strength of mandatory incident reporting to authorities
+  proposed_by: "EU Code Measure 9.3; SB 53; NY RAISE"
+  definition: Scope, deadlines and enforceability of duties to report serious or critical safety incidents to a public authority.
+  notes: 'EU Code: 2/5/10/15-day initial reports by severity, (self-)exfiltration of weights at 5 days. SB 53 and RAISE share the "critical safety incident" definition; RAISE requires a report within 72 hours. The Commission template (Nov 2025) scopes root-cause analysis to model outputs, inputs and mitigation failures, with no organizational-cause field.'
+
+- id: ai-liability-clarity
+  broader: [g-enforcement]
+  kind: state
+  label: Clarity of legal liability for AI-caused harm
+  proposed_by: "IASR 2026 §3.1"
+  definition: How clearly existing liability regimes assign responsibility and compensation for harms from general-purpose AI.
+
+- id: harm-externalization
+  broader: [g-context]
+  kind: context
+  label: Degree to which AI harms fall on third parties rather than the developer
+  proposed_by: "IASR 2026 ('a typical market failure'); DSIT 2023 ('insufficient incentives'); UK AISI Loss of Oversight §7.2"
+  definition: Share of the expected cost of AI harms that is diffuse, delayed or borne by others, so not priced into the developer's decisions. Report row C4.
+
+- id: governance-pace-gap
+  broader: [g-enforcement, g-context]
+  kind: state
+  label: Gap between the pace of AI development and the pace of governance adaptation
+  proposed_by: "IASR 2026 ('AI development outpaces traditional governance cycles'); MIT 6.5; Barrett et al."
+  definition: How far legislation, standards and regulatory thresholds lag the capabilities they govern.
+
+# ---------------------------------------------------------------- state posture
+- id: deregulatory-posture
+  broader: [g-context]
+  kind: context
+  label: Strength of government posture against regulating AI development
+  proposed_by: "report §5.10 (US posture); us-gov-recent verification"
+  definition: Policy stance treating regulation of AI development as a risk to competitiveness, expressed through preemption, voluntary-only testing and refusal of new rulemaking bodies.
+  notes: 'US federal, 2025–26: EO 14110 rescinded; EO 14365 (DOJ task force against state AI laws); White House legislative framework (no new federal rulemaking body; states barred from regulating "AI development"); EO 14409 §3(c) (no licensing or preclearance). A context variable of one jurisdiction; the EU posture runs the other way.'
+
+- id: government-testing-access
+  broader: [g-enforcement, g-oversight]
+  kind: practice
+  label: Extent of government pre-deployment access to frontier models
+  proposed_by: "CAISI agreements; EO 14409; UK AISI evaluations and MoUs"
+  definition: Voluntary or mandated access by public evaluators to unreleased models for testing, including models with safeguards removed.
+
+- id: procurement-leverage
+  broader: [g-context]
+  kind: context
+  label: Government leverage over developers through procurement and designation
+  proposed_by: "NSPM-11; Department of War 'supply chain risk' designation (via press)"
+  definition: Power of a state customer to shape developers' conduct through contract terms, termination and designations.
+
+- id: developer-usage-restrictions
+  broader: [g-controls]
+  kind: practice
+  label: Strength of developer-imposed restrictions on how deployers, including governments, may use a model
+  proposed_by: "this slice, from NSPM-11 §2(c) and the Anthropic–Pentagon litigation"
+  definition: Use restrictions a developer keeps and enforces against its customers (e.g. on mass domestic surveillance, fully autonomous weapons), and its retained ability to disable or modify a deployed system.
+  notes: 'NSPM-11 treats this retained developer control as a risk to the deployer, the mirror image of loss of control. Conflict of interest: the case in the evidence is Anthropic''s, read only through news.'
+
+# ---------------------------------------------------------------- inside the developer: governance and integrity
+- id: safetywashing
+  broader: [g-controls]
+  kind: state
+  label: Degree to which safety rhetoric exceeds revealed safety behaviour
+  proposed_by: "CAIS (Hendrycks et al. 2023); Ren et al. 2024; FLI Summer 2026"
+  definition: Overstatement of one's safety commitment or progress, including presenting capability gains as safety gains. Report row C10.
+  notes: 'One word, two constructs: CAIS "overstating or misrepresenting one''s commitment to safety"; Ren et al. operationalize only capability gains "misrepresented as safety advancements". See mappings-gv.yaml.'
+
+- id: whistleblower-protection
+  broader: [g-controls]
+  kind: practice
+  label: Strength of whistleblower protection and non-retaliation for staff raising safety concerns
+  proposed_by: "EU Code Measure 8.3(7); SB 53 (Labor Code §1107 ff.); IASR 2026 Table 3.4"
+  definition: Legal and internal protection for staff (and in some cases contractors) who report safety concerns internally or to authorities.
+
+- id: concern-suppression
+  broader: [g-org]
+  kind: state
+  label: Degree to which internal safety concerns are suppressed or filtered out
+  proposed_by: "CAIS ('suppress internal concerns'); Campos et al. (negative-information filtering)"
+  definition: How far concerns and negative risk information fail to reach decision-makers or authorities, through retaliation, non-disparagement terms or incentive-driven filtering.
+  distinct_from: [safety-culture-strength]
+
+- id: risk-governance-independence
+  broader: [g-controls]
+  kind: practice
+  label: Independence of risk oversight from the executives who own revenue-producing activity
+  proposed_by: "EU Code Measure 8.1; Campos et al.; Schuett 2023/24"
+  definition: Separation of risk support, monitoring and assurance (CRO, board risk committee, internal audit) from risk ownership by research and product executives. Report row C7.
+  notes: 'Level observations, not modelled as relations: Meta''s CAIO supervises its Director of Alignment and Risk (one reporting line); Cohere''s CEO delegates final authority to its Chief Scientist; OpenAI leadership can decide without the SAG while the Board SSC may reverse; GDM''s FSF v3.1 names no governance body (v2.0 named three councils); Schuett: "Based on public information, AGI labs do not seem to have any of these structures".'
+
+- id: fiduciary-insulation
+  broader: [g-controls]
+  kind: practice
+  label: Degree to which legal structure insulates safety decisions from shareholder returns
+  proposed_by: "FLI ('Company Structure & Mandate'); California AG–OpenAI MOU ¶8"
+  definition: Charter, trust or regulatory provisions that bar or discount stockholders' pecuniary interest in safety and security decisions (e.g. MOU ¶8; Anthropic's Long-Term Benefit Trust).
+  distinct_from: [risk-governance-independence]
+
+- id: risk-assessment-integrity
+  broader: [g-controls, g-oversight]
+  kind: state
+  label: Integrity of developers' own threshold and risk determinations
+  proposed_by: "this slice, from Karnofsky (2026) and GovAI commentary"
+  definition: How far a developer's declarations (capability threshold crossed or not; mitigations adequate or not) track the evidence rather than the consequences of the declaration for the company.
+  distinct_from: [evaluation-validity]
+  notes: 'evaluation-validity (core) is whether measurements reflect deployment behaviour. This is whether the organization''s reading of them is bent by what a finding would cost it.'
+
+- id: public-listing
+  broader: [g-context]
+  kind: state
+  label: Extent to which frontier developers are publicly listed (or preparing to list)
+  proposed_by: "report row C17; press and commentary (2026)"
+  definition: 'A frontier developer becoming publicly traded. Two-signed in the sources: listing brings market pressure and brings SOX/NYSE/SEC governance and disclosure structures.'
+  notes: 'No authoritative body in any sector names an IPO as a risk factor (absence-claim.md). Context: Z.ai listed in Hong Kong (8 Jan 2026); Anthropic reported "likely to go public in 2026" (Axios); Altman ruled out a 2026 OpenAI IPO citing safety (Fortune, 12 Sep 2026).'
+
+# ---------------------------------------------------------------- indicators
+- {id: ind-silent-revision-rate, broader: [g-commitments], kind: indicator, label: "Share of material framework changes made without disclosure (Zhu's silent-revision rate)", proposed_by: "Zhu 2026"}
+- {id: ind-commitment-fulfilment, broader: [g-enforcement], kind: indicator, label: "Measured fulfilment of published voluntary commitments", proposed_by: "IASR 2026 (citing arXiv 2508.08345)"}
+- {id: ind-framework-ratings, broader: [g-commitments], kind: indicator, label: "External ratings of published frameworks (SaferAI scores; FLI grades)", proposed_by: "SaferAI; FLI"}
+- {id: ind-regulator-staffing, broader: [g-enforcement], kind: indicator, label: "Technical staffing of AI regulators and public evaluators (e.g. AI Office AI Safety unit vs the proposed 100)", proposed_by: "The Future Society open letter; EU Code Chairs' statement"}
+- {id: ind-discretionary-register, broader: [g-commitments], kind: indicator, label: "Share of a designated framework's operative text in discretionary register ('may', 'as appropriate', 'non-exhaustive example')", proposed_by: "company-frameworks verification agents (self / self-d coding)"}
+- {id: ind-safety-capability-correlation, broader: [g-controls], kind: indicator, label: "Correlation of safety-benchmark scores with general capabilities and compute", proposed_by: "Ren et al. 2024"}

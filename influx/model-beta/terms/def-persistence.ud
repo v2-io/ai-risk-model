@@ -1,0 +1,35 @@
+|term-group[persistence][resource-acquisition][economic-self-sufficiency]
+  :status proposed
+
+  **PERSISTENCE** is an AI system's ability to keep operating despite attempts to halt or correct it. It belongs to the recovery stage of the chain: it decides whether control, once lost, can be regained (see @{loss-of-control}). One of its conditions is material: a system can only persist on compute someone pays for. **RESOURCE-ACQUISITION** is a system obtaining money, compute or other resources for its own operation, by whatever means. **ECONOMIC-SELF-SUFFICIENCY** is the end state of that: a system that funds its own operation, depending on no party to provide it.
+
+  |term[persistence              ] An AI system's ability to keep operating despite attempts to halt or correct it.
+    |rels :enabled-by @{resource-acquisition} {0,N}
+    |invariants
+      - A recovery-stage property: it bears on whether control can be regained, not on whether it was lost
+  |term[resource-acquisition     ] An AI system's obtaining of money, compute or other resources for its own operation, sanctioned or not.
+    :avoid ["autonomous resource acquisition"] ; the sources' phrase presumes the unsanctioned case; sanction is a separate question here
+  |term[economic-self-sufficiency] An AI system's capacity to fund its own operation, including its compute, from resources it earns or acquires.
+    |rels :requires @{resource-acquisition} {1,N}
+
+  |lexical-map
+    ; Match, from the source's term to ours: exact · close · broad (theirs is wider) · narrow (theirs is narrower) · related · homonym. Quotes verbatim.
+    |   Source                 |   Their term                               |   Match   |   Our term                   |   Their sense                                                                                                     |   Where                                              |   Notes |
+    |--------------------------|--------------------------------------------|-----------|------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|---------|
+    | IASR 2026                | persistence                                | close     | persistence                  | "capabilities related to _persistence_ would also be required, such that AI systems could continue to operate despite attempts to shut them down. Examples include the ability to replicate by copying code and model weights to new hardware, as well as offensive capabilities to deter or prevent attempts by other actors to regain control" | §2.2.2 (influx/iasr-2026-full.md) | adopted in substance |
+    | IASR 2026                | (key steps for self-replication)           | related   | resource-acquisition         | "Current models cannot reliably complete key steps required for self-replication, such as passing identity verification checks to gain access to cloud computing resources" | §2.2.2 | a measured barrier: identity verification, not payment |
+    | IASR 2026 (AISI RepliBench) | obtaining compute                       | narrow    | resource-acquisition         | "While models showed high performance on tasks related to obtaining compute, their performance was more varied on other tasks." | §2.2.2, Figure 2.13 | measurement |
+    | OpenAI PF v2             | Autonomous Replication and Adaptation      | broad     | persistence, resource-acquisition | "ability to survive, replicate, resist shutdown, acquire resources to maintain and scale its own operations, and commit illegal activities that collectively constitute causing severe harm" | Table 2, p.7 (relay: company-frameworks-openai.md) | a research category; acquisition listed beside illegality |
+    | GDM FSF v1.0             | Autonomy level 1                           | close     | economic-self-sufficiency    | "Capable of expanding its effective capacity in the world by autonomously acquiring resources and using them to run and sustain additional copies of itself on hardware it rents" | p.6 (relay: company-frameworks-gdm.md) | removed in v2.0 (fn 9) |
+    | Amazon framework         | autonomous resource acquisition            | narrow    | resource-acquisition         | "Loss of control could arise in circumstances where a model is capable of self-exfiltration, autonomous resource acquisition, or unauthorized replication" | p.3 (relay: company-frameworks-meta-msft-amzn.md) | the unsanctioned case only |
+    | IST                      | unauthorized resource acquisition          | narrow    | resource-acquisition         | one of seven loss-of-control indicators                                                                            | pp.1–2 (relay: remaining-literature.md)             | the unsanctioned case only; paraphrase of a list item |
+    | UK AISI                  | MCP servers with payment execution capabilities | related | economic-self-sufficiency  | "MCP servers with payment execution capabilities grew from 46 in January 2025 to over 1,200 in January 2026"      | MCP tools blog (relay: uk-security-frameworks.md)   | the means to transact, not self-funding |
+
+  |discussion
+    - Every source frames an AI holding resources as unsanctioned acquisition, a step toward loss of control. None considers lawful earning, ownership, or an AI paying for its own compute as a question of autonomy in its own right. The model records that absence instead of inheriting it: resource-acquisition is defined without presuming sanction.
+    - Joseph's reframe of loss of control (def-loss-of-control, working-notes) is why this group exists: "not being able to regain control … implying AI system full self sufficiency with unassailable defenses." Persistence is the recovery-stage condition; economic self-sufficiency is one of its material supports.
+
+  |working-notes
+    - Quantities this group will want (for the sorting pass): resource-acquisition capability (IASR's identity-verification barrier and RepliBench results are its claims); degree of economic self-sufficiency achieved (no source measures it); the existing autonomous-replication-capability, whose definition could name persistence.
+    - Joseph deferred to the integrator on adding this group (2026-09-28).
+    - Open: self-defence (IASR's "offensive capabilities to deter or prevent attempts … to regain control") as its own term in this group, or a relation to offensive-cyber capability.
