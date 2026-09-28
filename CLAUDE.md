@@ -86,3 +86,5 @@ Stage in that chain is read as a role relative to a focal event, not as a fixed 
 - **Line references** in the atlas and source-model files point into `pdftotext -layout` extractions, which aren't kept in the repo; the atlas README says how to regenerate them. PDF pages survive re-extraction; cite both.
 - **Parallel agents** each need their own scratch directory. Shared helper-script names have collided before.
 - **This repository is public.** Keep private or personal material out of it.
+- **Current Exposures**: influx/ai-welfare-and-release-framings.md, influx/model-beta/notes-sx.md, and influx/perspective-logos-2026-09-28.md -- Joseph may decide to remove at some point, but they are fine for now (- Joseph, 28-Sept-2026)
+
