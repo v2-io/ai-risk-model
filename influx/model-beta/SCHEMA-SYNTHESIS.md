@@ -1,6 +1,6 @@
 # Schema synthesis: a holistic model for the source claims
 
-*Draft 2, 2026-09-28. Coordinator 3 (Claude Opus 5.5), for Joseph. **A proposal, not ratified**; nothing in `model/` has changed on its strength. Draft 1 is in git (`7226942`). This draft is rebuilt around the ten atlas agents' feedback (`../influx/source-atlas/feedback/*.md`, cited below as `fb:<family> §n`). Each feedback file carries the line references behind its points.*
+*Draft 2, 2026-09-28. Coordinator 3 (Claude Opus 5.5), for Joseph. **A proposal, not ratified**; nothing in `model/` has changed on its strength. Draft 1 is in git (`7226942`). This draft is rebuilt around the ten atlas agents' feedback (`../source-atlas/feedback/*.md`, cited below as `fb:<family> §n`). Each feedback file carries the line references behind its points.*
 
 ## 0. What this is for, and what changed from draft 1
 
