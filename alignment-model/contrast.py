@@ -1,0 +1,238 @@
+#!/usr/bin/env python3
+"""Perceptual contrast report for the palette in style.css.
+
+    python3 contrast.py                 # writes contrast-report.md
+    python3 contrast.py --la 318.3      # brighter adapting luminance (cd/m²)
+    python3 contrast.py --theme themes/spread.css   # -> contrast-report-spread.md
+
+Standard library only. Colours are read from style.css (the --<hue>, --<hue>-deep,
+--<hue>-deeper, -bd, -edge and -ink tokens, plus paper and ink), with an optional theme
+file applied on top.
+
+Metric: CAM02-UCS ΔE' (Luo, Cui & Li 2006) on CIECAM02 (CIE 159:2004), sRGB display,
+D65 white, average surround, Y_b = 20, L_A = 64/(5π) ≈ 4.07 cd/m² by default (the sRGB
+reference viewing condition). Also reported: CIECAM02 lightness J, colourfulness M, hue h,
+and the WCAG 2 contrast ratio for text.
+
+Rough reading of ΔE' (like CIEDE2000, ~1 ≈ a just-noticeable difference side by side):
+  < 1  not distinguishable · 1–2 visible on close inspection · 2–5 clearly visible
+  5–10 obvious · > 10 distinct colours
+"""
+import argparse
+import math
+import re
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+
+
+# ------------------------------------------------------------------ sRGB, OKLab
+
+def hex_rgb(h):
+    h = h.lstrip("#")
+    return [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
+
+
+def to_lin(c):
+    return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+
+def to_srgb(c):
+    c = 12.92 * c if c <= 0.0031308 else 1.055 * c ** (1 / 2.4) - 0.055
+    return min(1.0, max(0.0, c))
+
+
+def rgb_hex(rgb):
+    return "#%02X%02X%02X" % tuple(round(c * 255) for c in rgb)
+
+
+def oklab(h):
+    r, g, b = [to_lin(c) for c in hex_rgb(h)]
+    l = (0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b) ** (1 / 3)
+    m = (0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b) ** (1 / 3)
+    s = (0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b) ** (1 / 3)
+    return (0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
+            1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
+            0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s)
+
+
+def from_oklab(L, a, b):
+    l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3
+    m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3
+    s = (L - 0.0894841775 * a - 1.2914855480 * b) ** 3
+    return rgb_hex([to_srgb(x) for x in (
+        4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+        -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+        -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s)])
+
+
+def mix(a, b, pb):
+    """CSS color-mix(in oklab, a, b pb) — pb is b's share (0..1)."""
+    A, B = oklab(a), oklab(b)
+    return from_oklab(*[x * (1 - pb) + y * pb for x, y in zip(A, B)])
+
+
+# ------------------------------------------------------------------ CIECAM02 / CAM02-UCS
+
+M02 = [[0.7328, 0.4296, -0.1624], [-0.7036, 1.6975, 0.0061], [0.0030, 0.0136, 0.9834]]
+M02_INV = [[1.096124, -0.278869, 0.182745], [0.454369, 0.473533, 0.072098], [-0.009628, -0.005698, 1.015326]]
+MHPE = [[0.38971, 0.68898, -0.07868], [-0.22981, 1.18340, 0.04641], [0.0, 0.0, 1.0]]
+WHITE = [95.047, 100.0, 108.883]
+
+
+def mul(M, v):
+    return [sum(M[i][j] * v[j] for j in range(3)) for i in range(3)]
+
+
+def xyz(h):
+    r, g, b = [to_lin(c) for c in hex_rgb(h)]
+    return [100 * (0.4124564 * r + 0.3575761 * g + 0.1804375 * b),
+            100 * (0.2126729 * r + 0.7151522 * g + 0.0721750 * b),
+            100 * (0.0193339 * r + 0.1191920 * g + 0.9503041 * b)]
+
+
+class Viewing:
+    def __init__(self, L_A=64 / (5 * math.pi), Y_b=20.0, F=1.0, c=0.69, N_c=1.0):
+        self.c, self.N_c = c, N_c
+        k = 1 / (5 * L_A + 1)
+        self.F_L = 0.2 * k ** 4 * (5 * L_A) + 0.1 * (1 - k ** 4) ** 2 * (5 * L_A) ** (1 / 3)
+        n = Y_b / WHITE[1]
+        self.n, self.z = n, 1.48 + math.sqrt(n)
+        self.N_bb = self.N_cb = 0.725 * n ** -0.2
+        self.D = min(1.0, max(0.0, F * (1 - (1 / 3.6) * math.exp((-L_A - 42) / 92))))
+        self.RGB_w = mul(M02, WHITE)
+        self.A_w = self._achromatic(self._adapt(WHITE))[0]
+
+    def _adapt(self, XYZ):
+        RGB = mul(M02, XYZ)
+        RGB_c = [(WHITE[1] * self.D / w + 1 - self.D) * v for v, w in zip(RGB, self.RGB_w)]
+        RGBp = mul(MHPE, mul(M02_INV, RGB_c))
+        out = []
+        for v in RGBp:
+            x = (self.F_L * abs(v) / 100) ** 0.42
+            out.append(math.copysign(400 * x / (27.13 + x), v) + 0.1)
+        return out
+
+    def _achromatic(self, a):
+        return (2 * a[0] + a[1] + a[2] / 20 - 0.305) * self.N_bb, a
+
+    def jmh(self, hexcol):
+        A, (R, G, B) = self._achromatic(self._adapt(xyz(hexcol)))
+        a = R - 12 * G / 11 + B / 11
+        b = (R + G - 2 * B) / 9
+        h = math.degrees(math.atan2(b, a)) % 360
+        e_t = 0.25 * (math.cos(math.radians(h) + 2) + 3.8)
+        J = 100 * (A / self.A_w) ** (self.c * self.z)
+        t = (50000 / 13 * self.N_c * self.N_cb * e_t * math.hypot(a, b)) / (R + G + 21 / 20 * B)
+        C = t ** 0.9 * math.sqrt(J / 100) * (1.64 - 0.29 ** self.n) ** 0.73
+        return J, C * self.F_L ** 0.25, h
+
+    def ucs(self, hexcol):
+        J, M, h = self.jmh(hexcol)
+        Mp = math.log(1 + 0.0228 * M) / 0.0228
+        return 1.7 * J / (1 + 0.007 * J), Mp * math.cos(math.radians(h)), Mp * math.sin(math.radians(h))
+
+    def dE(self, x, y):
+        return math.dist(self.ucs(x), self.ucs(y))
+
+
+def wcag(x, y):
+    lum = lambda h: sum(k * to_lin(c) for k, c in zip((0.2126, 0.7152, 0.0722), hex_rgb(h)))
+    a, b = sorted((lum(x), lum(y)), reverse=True)
+    return (a + 0.05) / (b + 0.05)
+
+
+# ------------------------------------------------------------------ palette
+
+TONES = ("normal", "deep", "deeper")
+
+
+def palette(theme=None):
+    css = (HERE / "style.css").read_text(encoding="utf-8")
+    if theme:
+        css += "\n" + Path(theme).read_text(encoding="utf-8")   # later tokens win
+    tok = dict(re.findall(r"--([\w-]+):\s*(#[0-9A-Fa-f]{6})", css))
+    hues = list(dict.fromkeys(re.findall(r"--([a-z]+)-deeper:\s*#", css)))
+    fam = {h: {"normal": tok[h], "deep": tok[h + "-deep"], "deeper": tok[h + "-deeper"],
+               "bd": tok[h + "-bd"], "edge": tok[h + "-edge"], "ink": tok[h + "-ink"]} for h in hues}
+    return tok, hues, fam
+
+
+def report(vc, theme=None):
+    tok, hues, fam = palette(theme)
+    paper, ink, black = tok["paper"], tok["ink"], "#000000"
+    f1 = lambda v: "%.1f" % v
+    out = ["# Palette contrast — CAM02-UCS ΔE′", "",
+           "Generated by `contrast.py` from `style.css`%s. Viewing conditions: sRGB display, D65, "
+           "average surround, Y_b = 20, L_A = %.2f cd/m². Paper %s, text ink %s." % (
+               " + `%s`" % Path(theme).name if theme else "", vc_LA, paper, ink), "",
+           "ΔE′ ≈ 1 is roughly one just-noticeable difference side by side; 2–5 clearly visible; > 10 distinct colours. "
+           "J = CIECAM02 lightness (paper = %.1f), M = colourfulness, h = hue angle. "
+           "WCAG = contrast ratio for text (4.5 is the AA threshold for body text)." % vc.jmh(paper)[0], ""]
+
+    # summary
+    out += ["## Summary", "", "| | min | median | max |", "|---|---|---|---|"]
+    def row(label, vals):
+        vals = sorted(vals)
+        out.append("| %s | %s | %s | %s |" % (label, f1(vals[0]), f1(vals[len(vals) // 2]), f1(vals[-1])))
+    for t in TONES + ("bd",):
+        row("%s ↔ paper" % t, [vc.dE(fam[h][t], paper) for h in hues])
+    row("normal ↔ deep (step)", [vc.dE(fam[h]["normal"], fam[h]["deep"]) for h in hues])
+    row("deep ↔ deeper (step)", [vc.dE(fam[h]["deep"], fam[h]["deeper"]) for h in hues])
+    for t in TONES:
+        row("%s: family ↔ family" % t, [vc.dE(fam[a][t], fam[b][t]) for i, a in enumerate(hues) for b in hues[i + 1:]])
+    row("WCAG text ink on any fill", [wcag(fam[h][t], ink) for h in hues for t in TONES])
+    row("WCAG accent ink on its own fills", [wcag(fam[h][t], fam[h]["ink"]) for h in hues for t in TONES])
+    out.append("")
+
+    # 1. every tone against paper, black, text ink
+    out += ["## 1. Each tone against the paper, black and the text ink", "",
+            "| hue | tone | hex | J | M | h | ΔE′ paper | ΔE′ black | ΔE′ ink | WCAG ink | WCAG accent |",
+            "|---|---|---|---|---|---|---|---|---|---|---|"]
+    for h in hues:
+        for t in TONES + ("bd", "edge", "ink"):
+            c = fam[h][t]
+            J, M, hh = vc.jmh(c)
+            fill = t in TONES
+            out.append("| %s | %s | `%s` | %s | %s | %.0f | %s | %s | %s | %s | %s |" % (
+                h, t, c, f1(J), f1(M), hh, f1(vc.dE(c, paper)), f1(vc.dE(c, black)), f1(vc.dE(c, ink)),
+                f1(wcag(c, ink)) if fill else "—", f1(wcag(c, fam[h]["ink"])) if fill else "—"))
+
+    # 2. within-family neighbours
+    pairs = [("normal", "deep"), ("deep", "deeper"), ("normal", "deeper"), ("deeper", "bd"), ("edge", "deeper"), ("edge", "paper")]
+    out += ["", "## 2. Neighbours within a family", "",
+            "Border vs deeper = how visible a box outline is; line vs fill / paper = how visible a line is where it lands or crosses.", "",
+            "| hue | " + " | ".join("%s ↔ %s" % p for p in pairs) + " |", "|---|" + "---|" * len(pairs)]
+    for h in hues:
+        f = dict(fam[h], paper=paper)
+        out.append("| %s | %s |" % (h, " | ".join(f1(vc.dE(f[a], f[b])) for a, b in pairs)))
+
+    # 3. adjacent families
+    out += ["", "## 3. Adjacent families (palette order, wrapping)", "",
+            "| pair | normal | deep | deeper | edge |", "|---|---|---|---|---|"]
+    for i, h in enumerate(hues):
+        g = hues[(i + 1) % len(hues)]
+        out.append("| %s ↔ %s | %s |" % (h, g, " | ".join(f1(vc.dE(fam[h][t], fam[g][t])) for t in TONES + ("edge",))))
+
+    # 4. pairwise per tone
+    for t in TONES:
+        out += ["", "## 4%s. All %s fills, pairwise ΔE′" % ("abc"[TONES.index(t)], t), "",
+                "| | " + " | ".join(hues) + " |", "|---|" + "---|" * len(hues)]
+        for h in hues:
+            out.append("| **%s** | %s |" % (h, " | ".join("" if h == g else f1(vc.dE(fam[h][t], fam[g][t])) for g in hues)))
+    return "\n".join(out) + "\n"
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--la", type=float, default=64 / (5 * math.pi), help="adapting luminance L_A in cd/m²")
+    ap.add_argument("-o", "--out", default=str(HERE / "contrast-report.md"))
+    ap.add_argument("--theme", help="token overrides applied after style.css, e.g. themes/spread.css")
+    a = ap.parse_args()
+    vc_LA = a.la
+    out = a.out
+    if a.theme and out == str(HERE / "contrast-report.md"):
+        out = str(HERE / ("contrast-report-%s.md" % Path(a.theme).stem))
+    Path(out).write_text(report(Viewing(L_A=a.la), a.theme), encoding="utf-8")
+    a.out = out
+    print("wrote %s" % a.out)

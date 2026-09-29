@@ -1,0 +1,27 @@
+/* Balanced palette — an alternative to the tokens in style.css.
+
+   Fitted in CAM02-UCS (CIECAM02, sRGB reference viewing conditions) against the
+   paper colour #F5F3EC, so every family stands out from the paper by the same
+   perceived amount:
+       row / lighter  ΔE' ≈ 4     base (bg)  ≈ 8     deeper  ≈ 12     border ≈ 21
+   and the steps lighter ↔ base ↔ deeper are each ≈ 4 (one clearly visible step).
+   Lines (edge) and inks share one lightness and colourfulness across families
+   (ΔE' ≈ 52 and ≈ 62 from the paper; stone kept near-neutral).
+   Hue angles are those of the original families.
+
+   Use:  python3 build.py --theme themes/balanced.css
+   Check: python3 contrast.py --theme themes/balanced.css
+   Note: the row tint and `lighter` are the same colour in this theme. */
+
+:root {
+  --stone-row: #EAE6DD;  --stone-bg: #DDD9D1;  --stone-lighter: #EAE6DD;  --stone-deeper: #D1CCC4;  --stone-bd: #B6B2AB;  --stone-edge: #6F6C62;  --stone-ink: #525046;
+  --sand-row: #F7EBDC;  --sand-bg: #F3E2C7;  --sand-lighter: #F7EBDC;  --sand-deeper: #EFD8B2;  --sand-bd: #D0B78E;  --sand-edge: #85652A;  --sand-ink: #604C27;
+  --ochre-row: #F3EDDA;  --ochre-bg: #ECE5C6;  --ochre-lighter: #F3EDDA;  --ochre-deeper: #E4DCB1;  --ochre-bd: #C4BC8D;  --ochre-edge: #776C2B;  --ochre-ink: #575027;
+  --clay-row: #F8E9E4;  --clay-bg: #F9DED2;  --clay-lighter: #F8E9E4;  --clay-deeper: #F8D2C0;  --clay-bd: #DBB19D;  --clay-edge: #955A3C;  --clay-ink: #6B4531;
+  --rose-row: #F5EAEA;  --rose-bg: #F5DEE0;  --rose-lighter: #F5EAEA;  --rose-deeper: #F4D1D6;  --rose-bd: #D7B0B6;  --rose-edge: #985462;  --rose-ink: #6D414A;
+  --plum-row: #F2EBEC;  --plum-bg: #EEE0E8;  --plum-lighter: #F2EBEC;  --plum-deeper: #EAD5E3;  --plum-bd: #CCB4C5;  --plum-edge: #8B5885;  --plum-ink: #64445F;
+  --indigo-row: #F0ECED;  --indigo-bg: #E5E4EB;  --indigo-lighter: #F0ECED;  --indigo-deeper: #DADBE9;  --indigo-bd: #B9BBCD;  --indigo-edge: #616A99;  --indigo-ink: #494F6B;
+  --slate-row: #EFECEE;  --slate-bg: #E1E5EB;  --slate-lighter: #EFECEE;  --slate-deeper: #D4DDE9;  --slate-bd: #B1BECC;  --slate-edge: #4B7293;  --slate-ink: #3D5468;
+  --teal-row: #EBEEED;  --teal-bg: #DBE8E8;  --teal-lighter: #EBEEED;  --teal-deeper: #CAE1E3;  --teal-bd: #A5C3C5;  --teal-edge: #2E797E;  --teal-ink: #2F585B;
+  --sage-row: #E9F0E1;  --sage-bg: #DBEAD1;  --sage-lighter: #E9F0E1;  --sage-deeper: #CDE4C1;  --sage-bd: #AAC59F;  --sage-edge: #4F7845;  --sage-ink: #3F5837;
+}

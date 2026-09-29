@@ -1,0 +1,13 @@
+/* The original palette (old token format, before the normal/deep/deeper scale). Kept for reference; not compatible with the current style.css. */
+:root {
+  --stone-row: #ECEBE8;  --stone-bg: #ECEAE5;  --stone-bd: #C9C5BC;  --stone-edge: #6B6E75;  --stone-ink: #45484E;  --stone-lighter: #F3F1EE;  --stone-deeper: #E4E2DC;
+  --sand-row: #EFE6DD;  --sand-bg: #F2E8DC;  --sand-bd: #C9B49A;  --sand-edge: #8A5215;  --sand-ink: #623E1C;  --sand-lighter: #F7F0E8;  --sand-deeper: #E9DCCD;
+  --ochre-row: #EFEBDE;  --ochre-bg: #E9E3CC;  --ochre-bd: #C4B992;  --ochre-edge: #7C6B25;  --ochre-ink: #554708;  --ochre-lighter: #F1EDDE;  --ochre-deeper: #E1DABF;
+  --clay-row: #F4E8E4;  --clay-bg: #F6E9E4;  --clay-bd: #C9A99E;  --clay-edge: #7A3B2E;  --clay-ink: #68392F;  --clay-lighter: #F9F1ED;  --clay-deeper: #ECDBD4;
+  --rose-row: #F4E8E9;  --rose-bg: #F2DDDF;  --rose-bd: #D2AEB2;  --rose-edge: #8F5B61;  --rose-ink: #643A3F;  --rose-lighter: #F7E9EA;  --rose-deeper: #EBD3D5;
+  --plum-row: #F2E8EE;  --plum-bg: #EFDDE8;  --plum-bd: #CCAFC1;  --plum-edge: #875C79;  --plum-ink: #5D3B52;  --plum-lighter: #F5E9F0;  --plum-deeper: #E7D3DF;
+  --indigo-row: #EAEAF2;  --indigo-bg: #E1E1EF;  --indigo-bd: #B7B7CD;  --indigo-edge: #676693;  --indigo-ink: #444367;  --indigo-lighter: #EBEBF5;  --indigo-deeper: #D8D8E7;
+  --slate-row: #E3E8EF;  --slate-bg: #D6DEE8;  --slate-bd: #B9C4D1;  --slate-edge: #3B5B7A;  --slate-ink: #2B4A68;  --slate-lighter: #E4E9F0;  --slate-deeper: #D0D8E3;
+  --teal-row: #E3EDEE;  --teal-bg: #D5E7E8;  --teal-bd: #A1C0C2;  --teal-edge: #32787C;  --teal-ink: #145154;  --teal-lighter: #E4EFF0;  --teal-deeper: #C9DEE0;
+  --sage-row: #E4EEDD;  --sage-bg: #DCE8D3;  --sage-bd: #A8C09A;  --sage-edge: #5E8A4F;  --sage-ink: #34512A;  --sage-lighter: #E8F0E2;  --sage-deeper: #D0DFC6;
+}

@@ -1,0 +1,18 @@
+/* balanced-mid — equal distances from the paper (normal ΔE' ≈ 4, deep ≈ 8, deeper ≈ 12,
+   border ≈ 21) with steps of ≈ 4; warm families take colourfulness halfway between the
+   original palette and full balance. Hues are the original ones, so in this theme the
+   "moss" slot is a yellow ochre, "jade" a sage green and "iris" an indigo.
+   Use:  python3 build.py --theme themes/balanced-mid.css --palette */
+
+:root {
+  --stone: #EAE5DF;  --stone-deep: #DDD9D2;  --stone-deeper: #D0CCC5;  --stone-bd: #B6B2AA;  --stone-edge: #6F6C62;  --stone-ink: #525046;
+  --rose: #F5EAEA;  --rose-deep: #F3DDDF;  --rose-deeper: #ECCFD2;  --rose-bd: #D5B0B5;  --rose-edge: #985462;  --rose-ink: #6D414A;
+  --clay: #F3E7E3;  --clay-deep: #EDDAD1;  --clay-deeper: #E7CDC1;  --clay-bd: #D4B09F;  --clay-edge: #955A3C;  --clay-ink: #6B4531;
+  --sand: #F1E7DC;  --sand-deep: #E9DBC8;  --sand-deeper: #E1D0B6;  --sand-bd: #CAB593;  --sand-edge: #85652A;  --sand-ink: #604C27;
+  --moss: #F0EAD9;  --moss-deep: #E7E1C6;  --moss-deeper: #DDD6B3;  --moss-bd: #C2BB8F;  --moss-edge: #776C2B;  --moss-ink: #575027;
+  --jade: #E9F0E1;  --jade-deep: #DBEAD1;  --jade-deeper: #CDE4C1;  --jade-bd: #AAC59F;  --jade-edge: #4F7845;  --jade-ink: #3F5837;
+  --teal: #EBEEED;  --teal-deep: #DBE8E8;  --teal-deeper: #CAE1E3;  --teal-bd: #A5C3C5;  --teal-edge: #2E797E;  --teal-ink: #2F585B;
+  --slate: #EFECEE;  --slate-deep: #E1E5EB;  --slate-deeper: #D4DDE9;  --slate-bd: #B1BECC;  --slate-edge: #4B7293;  --slate-ink: #3D5468;
+  --iris: #F0ECED;  --iris-deep: #E5E4EB;  --iris-deeper: #DADBE9;  --iris-bd: #B9BBCD;  --iris-edge: #616A99;  --iris-ink: #494F6B;
+  --plum: #F2EBEC;  --plum-deep: #EEE0E8;  --plum-deeper: #EAD5E3;  --plum-bd: #CCB4C5;  --plum-edge: #8B5885;  --plum-ink: #64445F;
+}

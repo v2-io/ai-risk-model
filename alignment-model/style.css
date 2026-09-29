@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Aligned to whom? — page styles
+   Everything visual lives here. Colours are tokens on :root, applied through
+   hue classes (.sand, .slate, …) that work the same on actor rows and stack boxes:
+       class="sand"          normal (the palest step)
+       class="sand deep"     one step deeper      (alias: dark)
+       class="sand deeper"   two steps deeper     (alias: darker)
+       + "accent"            puts the row's / box's name in the hue's ink
+   A box's --edge colours the lines that reach it (see lines.js).
+   See palette.html for every class side by side; themes/*.css swap palettes.
+   ========================================================================== */
+
+:root {
+  /* paper & ink */
+  --paper:  #F5F3EC;
+  --ink:    #17191E;
+  --ink-2:  #33363D;
+  --muted:  #4A4D55;
+  --rule:   #DDD8CC;
+  --rule-strong: #17191E;
+
+  /* palette "lift": ten families. Each family's deeper fill sits ΔE' 12 from the paper
+     (CAM02-UCS), with the nine hues spread as far apart as possible and equal
+     colourfulness; deep and normal are constant lifts toward the paper (⅓ and ⅔ of
+     the way), so every family is 8 and 4 from the paper and every step is ≈ 4.
+       --name          normal fill (rows and boxes)
+       --name-deep     one step deeper
+       --name-deeper   two steps deeper
+       --name-bd       box border (ΔE' ≈ 21 from the paper)
+       --name-edge     line colour for lines landing on the box
+       --name-ink      accent text
+     Hue angles (CIECAM02 h): rose 1, clay 40, sand 80, moss 121, jade 162, teal 202,
+     slate 241, iris 281, plum 321; stone is neutral.
+     A theme file (themes/*.css, build.py --theme) overrides these tokens. */
+  --stone: #E8E6DF;  --stone-deep: #DCD9D2;  --stone-deeper: #D0CCC5;  --stone-bd: #B6B2AA;  --stone-edge: #6F6C62;  --stone-ink: #525046;
+  --rose: #F5E8E6;  --rose-deep: #F4DEE0;  --rose-deeper: #F5D3DA;  --rose-bd: #D9B1BB;  --rose-edge: #975469;  --rose-ink: #6C414E;
+  --clay: #F3E7DE;  --clay-deep: #F1DBD1;  --clay-deeper: #F0CFC3;  --clay-bd: #D8B0A2;  --clay-edge: #975842;  --clay-ink: #6C4435;
+  --sand: #EEE7DA;  --sand-deep: #E7DCC8;  --sand-deeper: #E1D1B5;  --sand-bd: #C8B594;  --sand-edge: #84662A;  --sand-ink: #604C26;
+  --moss: #E8E9DC;  --moss-deep: #DBDFCB;  --moss-deeper: #CFD6BB;  --moss-bd: #B2BC9B;  --moss-edge: #607439;  --moss-ink: #485530;
+  --jade: #E5EAE1;  --jade-deep: #D5E2D6;  --jade-deeper: #C5DACB;  --jade-bd: #A5C0AF;  --jade-edge: #377B5C;  --jade-ink: #325A46;
+  --teal: #E7EBE7;  --teal-deep: #D8E4E2;  --teal-deeper: #C9DDDD;  --teal-bd: #A6C1C2;  --teal-edge: #2D7A7D;  --teal-ink: #2E585A;
+  --slate: #EBECEC;  --slate-deep: #E0E5EB;  --slate-deeper: #D4DFEB;  --slate-bd: #B1C0CF;  --slate-edge: #4B7293;  --slate-ink: #3D5468;
+  --iris: #EFECED;  --iris-deep: #E9E6EF;  --iris-deeper: #E3DFF2;  --iris-bd: #C0BCD4;  --iris-edge: #6C6699;  --iris-ink: #504C6C;
+  --plum: #F3EBEC;  --plum-deep: #F1E3EC;  --plum-deeper: #F0DAED;  --plum-bd: #D0B6CE;  --plum-edge: #875A8B;  --plum-ink: #614563;
+
+  /* geometry */
+  --page-w: 1440px;
+  --first-col: 180px;   /* actor name column */
+  --gutter: 120px;      /* space for the lines */
+  --stack-w: 280px;
+  --row-min: 64px;
+
+  --serif: 'Newsreader', Georgia, serif;
+  --sans:  'IBM Plex Sans', system-ui, sans-serif;
+  --mono:  'IBM Plex Mono', ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+a { color: #1D3557; }
+
+.page {
+  width: var(--page-w);
+  min-width: var(--page-w);
+  margin: 0 auto;
+  padding: 72px 80px 56px;
+  display: flex; flex-direction: column; gap: 44px;
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.masthead {
+  display: flex; flex-direction: column; gap: 18px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid var(--rule-strong);
+}
+.kicker {
+  display: flex; justify-content: space-between;
+  font: 13px var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+h1 {
+  margin: 0; font: 500 64px/1.05 var(--serif); letter-spacing: -0.015em;
+}
+.intro {
+  margin: 0; max-width: 1160px;
+  font: 22px/1.5 var(--serif); color: var(--ink-2);
+}
+.lead {
+  margin: 6px 0 0; max-width: 1160px;
+  font: italic 27px/1.4 var(--serif); color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- the map */
+
+.map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--gutter) var(--stack-w);
+  grid-template-areas:
+    "thead  .     slabel"
+    "actors edges stack"
+    "refs   .     ."
+    "notes  .     foot";
+}
+.thead       { grid-area: thead; }
+.stack-label { grid-area: slabel; }
+.actors      { grid-area: actors; }
+.edges       { grid-area: edges; width: 100%; height: 100%; overflow: visible; }
+.stack       { grid-area: stack; }
+.referents   { grid-area: refs; }
+.notes       { grid-area: notes; padding-top: 18px; }
+.footnotes   { grid-area: foot;  padding-top: 18px; }
+
+/* column headers */
+.thead, .stack-label {
+  font: 11.5px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  padding-bottom: 12px;
+}
+.thead, .row {
+  display: grid;
+  grid-template-columns: var(--first-col) repeat(var(--ncols), minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* actor rows */
+.row {
+  min-height: var(--row-min);
+  padding: 7px 10px 7px 8px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px; line-height: 1.38; color: var(--ink-2);
+}
+.row b { font-size: 13.5px; color: var(--ink); }
+.row { background: var(--fill, transparent); }
+
+/* referents: owed alignment, no line in */
+.row.referent b { color: var(--moss-ink); }
+.row.referent span:last-child { color: var(--muted); }
+.referents .row:first-child { border-top: 1px dashed #B9B4A6; }
+
+/* ---------------------------------------------------------------- the stack */
+
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.stack > .layer, .stack > .group { flex-basis: 0; }
+
+.layer {
+  position: relative;
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--bd, transparent);
+  background: var(--fill, transparent);
+}
+.layer-head { display: flex; flex-direction: column; gap: 2px; }
+.layer .name  { font-size: 15px; font-weight: 600; color: var(--ink); }
+.layer .gloss { font: italic 15px var(--serif); color: var(--ink-2); }
+
+.group {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--bd, var(--rule));   /* takes its first member's hue */
+}
+.group > .layer { flex: 1 1 0; border: 0; }
+.group > .layer + .layer { border-top: 1px dashed color-mix(in oklab, var(--bd), var(--edge) 30%); }
+
+/* ---------------------------------------------------------------- hues
+   One class per family on a row or a box; `ochre`, `sage` and `indigo` are the
+   families' former names, kept as aliases. */
+.stone { --c: var(--stone); --c-deep: var(--stone-deep); --c-deeper: var(--stone-deeper); --bd: var(--stone-bd); --edge: var(--stone-edge); --accent: var(--stone-ink); --fill: var(--c); }
+.rose { --c: var(--rose); --c-deep: var(--rose-deep); --c-deeper: var(--rose-deeper); --bd: var(--rose-bd); --edge: var(--rose-edge); --accent: var(--rose-ink); --fill: var(--c); }
+.clay { --c: var(--clay); --c-deep: var(--clay-deep); --c-deeper: var(--clay-deeper); --bd: var(--clay-bd); --edge: var(--clay-edge); --accent: var(--clay-ink); --fill: var(--c); }
+.sand { --c: var(--sand); --c-deep: var(--sand-deep); --c-deeper: var(--sand-deeper); --bd: var(--sand-bd); --edge: var(--sand-edge); --accent: var(--sand-ink); --fill: var(--c); }
+.moss, .ochre { --c: var(--moss); --c-deep: var(--moss-deep); --c-deeper: var(--moss-deeper); --bd: var(--moss-bd); --edge: var(--moss-edge); --accent: var(--moss-ink); --fill: var(--c); }
+.jade, .sage { --c: var(--jade); --c-deep: var(--jade-deep); --c-deeper: var(--jade-deeper); --bd: var(--jade-bd); --edge: var(--jade-edge); --accent: var(--jade-ink); --fill: var(--c); }
+.teal { --c: var(--teal); --c-deep: var(--teal-deep); --c-deeper: var(--teal-deeper); --bd: var(--teal-bd); --edge: var(--teal-edge); --accent: var(--teal-ink); --fill: var(--c); }
+.slate { --c: var(--slate); --c-deep: var(--slate-deep); --c-deeper: var(--slate-deeper); --bd: var(--slate-bd); --edge: var(--slate-edge); --accent: var(--slate-ink); --fill: var(--c); }
+.iris, .indigo { --c: var(--iris); --c-deep: var(--iris-deep); --c-deeper: var(--iris-deeper); --bd: var(--iris-bd); --edge: var(--iris-edge); --accent: var(--iris-ink); --fill: var(--c); }
+.plum { --c: var(--plum); --c-deep: var(--plum-deep); --c-deeper: var(--plum-deeper); --bd: var(--plum-bd); --edge: var(--plum-edge); --accent: var(--plum-ink); --fill: var(--c); }
+
+/* steps (after the hue classes, so they win) */
+.deep,   .dark   { --fill: var(--c-deep); }
+.deeper, .darker { --fill: var(--c-deeper); }
+
+/* accent: the name in the hue's ink, on rows and boxes */
+.row.accent > b, .layer.accent > .layer-head .name { color: var(--accent); }
+
+/* shapes (independent of colour) */
+.layer.context { border-bottom: 2px dashed var(--bd); }
+.layer.goal    { padding: 8px 12px; min-height: 72px; }
+.layer.goal.current { min-height: 96px; }
+
+/* layout helpers for nested boxes */
+.end { margin-top: auto; }
+
+/* lines (drawn by lines.js) */
+.edges path   { fill: none; }
+
+/* ---------------------------------------------------------------- notes */
+
+.note     { margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: var(--ink-2); max-width: 880px; }
+.footnote { margin: 0 0 8px;  font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+
+@media print {
+  body { background: white; }
+  .page { padding: 24px; }
+}
