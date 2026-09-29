@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+# rake            build alignment.html
+# rake palette    also write palette.html
+# rake link       build with styles.css + lines.js linked (for tweaking in the browser)
+# rake contrast   CAM02-UCS contrast report -> contrast-report.md   (python3)
+# rake fit        dry-run of fit_palette.py: print re-fitted colours (python3)
+
+task default: :build
+
+desc "Build alignment.html from alignment.md"
+task(:build) { ruby "build.rb" }
+
+desc "Build alignment.html and palette.html"
+task(:palette) { ruby "build.rb", "--palette" }
+
+desc "Build with styles.css and lines.js linked instead of inlined"
+task(:link) { ruby "build.rb", "--link" }
+
+desc "Write contrast-report.md (python3)"
+task(:contrast) { sh "python3", "contrast.py" }
+
+desc "Print a re-fit of the palette without writing it (python3); run fit_palette.py directly to write"
+task(:fit) { sh "python3", "fit_palette.py", "--dry-run" }

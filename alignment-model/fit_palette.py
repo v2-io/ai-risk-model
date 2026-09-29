@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Fit the colour families in palette.css (CIECAM02 / CAM02-UCS), and write them back.
+"""Fit the colour families in styles/palette.sass (CIECAM02 / CAM02-UCS), and write them back.
 
     python3 fit_palette.py --dry-run          # print the token block + a summary, change nothing
-    python3 fit_palette.py                    # rewrite the family tokens in palette.css
+    python3 fit_palette.py                    # rewrite the family tokens in styles/palette.sass
     python3 fit_palette.py --deeper 11 --red-trim 0.85 --rotate 5    # try variations
-    python3 build.py --palette && python3 contrast.py                 # then look and measure
+    rake palette contrast                                              # then look and measure
 
 Standard library only (reuses the CIECAM02 model in contrast.py). With no options it
 reproduces the current palette.
 
 HOW EACH FAMILY IS BUILT (all distances are CAM02-UCS ΔE', measured from the paper colour
-in palette.css, sRGB reference viewing conditions):
+in styles/palette.sass, sRGB reference viewing conditions):
 
   deeper   A point at hue h with a fixed colourfulness M' (--m-deeper; × --red-trim for the
            --red families), darkened until it sits --deeper from the paper. Darkening is capped
@@ -64,7 +64,9 @@ _spec.loader.exec_module(cam)
 NAMES = ["rose", "clay", "sand", "sage", "jade", "teal", "slate", "iris", "mauve"]
 HUES = [16, 55, 95, 136, 177, 217, 256, 296, 336]
 ORDER = ["stone"] + NAMES
-BEGIN = "  /* families: normal / deep / deeper fills, border, line, accent ink */"
+PALETTE = HERE / "styles" / "palette.sass"
+BEGIN = "  // families: normal / deep / deeper fills, border, line, accent ink (written by fit_palette.py)"
+END = "  // end of families"
 
 
 # ------------------------------------------------------------------ inverse CIECAM02
@@ -168,7 +170,7 @@ def family(vc, paper, h, m, mb, a, edge=None, ink=None, cap=True):
 
 
 def fit(a):
-    css = (HERE / "palette.css").read_text(encoding="utf-8")
+    css = PALETTE.read_text(encoding="utf-8")
     paper_hex = re.search(r"--paper:\s*(#[0-9A-Fa-f]{6})", css).group(1)
     vc = cam.Viewing()
     paper = vc.ucs(paper_hex)
@@ -191,10 +193,8 @@ def fit(a):
 
 
 def token_block(fams):
-    return "\n".join(
-        "  --{n}: {f[]};  --{n}-deep: {f[deep]};  --{n}-deeper: {f[deeper]};  --{n}-bd: {f[bd]};  "
-        "--{n}-edge: {f[edge]};  --{n}-ink: {f[ink]};".replace("{f[]}", fams[n][""]).format(n=n, f=fams[n])
-        for n in ORDER)
+    return "\n".join("  --%s%s: %s" % (n, "" if k == "" else "-" + k, fams[n][k])
+                     for n in ORDER for k in ("", "deep", "deeper", "bd", "edge", "ink"))
 
 
 def summary(paper_hex, hues, fams, warn):
@@ -217,7 +217,7 @@ def summary(paper_hex, hues, fams, warn):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0],
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    ap.add_argument("--dry-run", action="store_true", help="print, don't write palette.css")
+    ap.add_argument("--dry-run", action="store_true", help="print, don't write styles/palette.sass")
     ap.add_argument("--deeper", type=float, default=10.0, help="ΔE' of deeper fills from the paper")
     ap.add_argument("--lift-deep", type=float, default=1 / 3, help="deep = deeper moved this far toward the paper")
     ap.add_argument("--lift-normal", type=float, default=2 / 3, help="normal = deeper moved this far toward the paper")
@@ -245,7 +245,7 @@ if __name__ == "__main__":
         print("\n" + block)
         sys.exit(0)
     i = css.index(BEGIN) + len(BEGIN) + 1
-    j = css.index("\n}", i)
-    (HERE / "palette.css").write_text(css[:i] + block + css[j:], encoding="utf-8")
-    print("wrote palette.css — note its header still describes the default settings; "
+    j = css.index(END, i)
+    PALETTE.write_text(css[:i] + block + "\n" + css[j:], encoding="utf-8")
+    print("wrote styles/palette.sass — note its header still describes the default settings; "
           "update it if you keep the change")

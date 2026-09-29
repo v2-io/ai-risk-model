@@ -1,0 +1,56 @@
+/ Swatch page: every family as rows and boxes at each step, plus its lines
+/ at weight 1 and weight 3 (the widths lines.js uses).
+- steps = [["", "normal"], ["deep", "deep"], ["deeper", "deeper"]]
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    title Palette
+    link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap"
+    == styles
+    css:
+      .page{gap:14px} .swatch{display:grid;grid-template-columns:520px 120px 1fr;align-items:center}
+      .swatch .rows{--ncols:1} .swatch .row{min-height:36px;align-items:center}
+      .swatch .row b.ink{color:var(--accent)} .swatch .row i{color:var(--muted)}
+      .swatch svg{width:120px;height:56px;fill:none;stroke:var(--edge)} .swatch svg .w1{stroke-width:1.3;stroke-opacity:.65} .swatch svg .w3{stroke-width:3.2}
+      .boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  body
+    main.page
+      header.masthead
+        .kicker
+          span styles/palette.sass
+          span colour families
+        h1 Palette
+        p.intro
+          | Same classes on rows and boxes: 
+          code sand
+          |  (normal), 
+          code sand deep
+          | , 
+          code sand deeper
+          | ; add 
+          code accent
+          |  for the name in the family’s ink. Lines: weight 1 and weight 3.
+      - families.each do |f|
+        section.swatch class=f
+          .rows
+            - steps.each do |mod, label|
+              .row class=[f, mod]
+                b = [f, mod].reject(&:empty?).join(" ")
+                - if mod.empty?
+                  span
+                    | normal &nbsp;·&nbsp; 
+                    b.ink #{f} accent
+                    |  
+                    i name in the family’s ink
+                - else
+                  span = label
+          svg viewBox="0 0 120 56"
+            path.w1 d="M0,14 C60,14 60,22 120,22"
+            path.w3 d="M0,44 C60,44 60,36 120,36"
+          .boxes
+            - steps.each do |mod, label|
+              .layer class=[f, mod]
+                .layer-head
+                  span.name = [f, mod].reject(&:empty?).join(" ")
+                  span.gloss = label

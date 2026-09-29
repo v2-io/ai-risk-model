@@ -1,0 +1,55 @@
+/ The whole page. `page` is the parsed markdown (build.rb: Alignment::Page);
+/ md() renders inline markdown, partial() another template, styles / script
+/ the compiled Sass and lines.js (inlined, or linked with --link).
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title = page.title
+    link rel="preconnect" href="https://fonts.googleapis.com"
+    link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    == styles
+  body
+    main.page
+      header.masthead
+        .kicker
+          span == md(page.meta["kicker_left"])
+          span == md(page.meta["kicker_right"])
+        h1 == md(page.title)
+        - page.intro.each do |p|
+          p class=(p.lead ? "lead" : "intro") == md(p.text)
+
+      / The map: actor table | connector gutter | the agent's stack.
+      / --ncols = number of displayed columns after the first.
+      section.map style="--ncols: #{page.headers.size - 1}"
+        .thead
+          - page.headers.each do |h|
+            span == md(h)
+        .stack-label == md(page.meta["stack_label"])
+
+        .actors
+          - page.actors.each do |a|
+            == partial("actor", a: a)
+        svg.edges aria-hidden="true"
+        .stack
+          - page.stack.each do |item|
+            - if item.is_a?(Alignment::Group)
+              / boxes sharing one frame; the frame takes its first member's classes (colour)
+              .group class=[item.name, item.classes] style="flex-grow: #{number(item.size)}"
+                - item.members.each do |b|
+                  == partial("box", b: b, top: true)
+            - else
+              == partial("box", b: item, top: true)
+
+        .referents
+          - page.referents.each do |a|
+            == partial("actor", a: a)
+
+        .notes
+          - page.notes.each do |p|
+            p.note == md(p)
+        .footnotes
+          - page.footnotes.each do |p|
+            p.footnote == md(p)
+    == script

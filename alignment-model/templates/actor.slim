@@ -1,0 +1,8 @@
+/ One actor row: the first display column is the name, the rest are spans.
+/ data-edges ("target:weight …") is what lines.js draws from.
+.row class=a.classes data-edges=a.edges.join(" ")
+  - a.cells.each_with_index do |cell, i|
+    - if i.zero?
+      b == md(cell)
+    - else
+      span == md(cell)

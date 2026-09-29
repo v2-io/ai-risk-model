@@ -1,0 +1,8 @@
+/ One box in the agent's stack, with any boxes nested inside it.
+/ Top-level boxes (and group members) take their relative height from `size`.
+.layer class=b.classes data-layer=b.id style=(top && !b.size.empty? ? "flex-grow: #{b.size}" : nil)
+  .layer-head
+    span.name == md(b.name)
+    span.gloss == md(b.gloss)
+  - b.children.each do |c|
+    == partial("box", b: c, top: false)

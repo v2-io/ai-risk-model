@@ -1,0 +1,126 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bigdecimal (4.1.3)
+    google-protobuf (4.36.2)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-aarch64-linux-gnu)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-aarch64-linux-musl)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-arm64-darwin)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-x86-linux-gnu)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-x86-linux-musl)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-x86_64-darwin)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-x86_64-linux-gnu)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.2-x86_64-linux-musl)
+      bigdecimal
+      rake (~> 13.3)
+    rake (13.4.2)
+    sass-embedded (1.105.0)
+      google-protobuf (~> 4.31)
+      rake (~> 13.3)
+    sass-embedded (1.105.0-aarch64-linux-android)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-aarch64-linux-gnu)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-aarch64-linux-musl)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-arm-linux-androideabi)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-arm-linux-gnueabihf)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-arm-linux-musleabihf)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-arm64-darwin)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-riscv64-linux-android)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-riscv64-linux-gnu)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-riscv64-linux-musl)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-x86_64-darwin)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-x86_64-linux-android)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-x86_64-linux-gnu)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.105.0-x86_64-linux-musl)
+      google-protobuf (~> 4.31)
+    slim (5.2.2)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
+    temple (0.10.7)
+    tilt (2.9.0)
+
+PLATFORMS
+  aarch64-linux-android
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-androideabi
+  arm-linux-gnueabihf
+  arm-linux-musleabihf
+  arm64-darwin
+  riscv64-linux-android
+  riscv64-linux-gnu
+  riscv64-linux-musl
+  ruby
+  x86-linux-gnu
+  x86-linux-musl
+  x86_64-darwin
+  x86_64-linux-android
+  x86_64-linux-gnu
+  x86_64-linux-musl
+
+DEPENDENCIES
+  rake
+  sass-embedded
+  slim
+
+CHECKSUMS
+  bigdecimal (4.1.3) sha256=61ebe1e5e559bdc3cc6f2c0ee7f427321fc838f59611c294356eb04d6e21cf66
+  google-protobuf (4.36.2) sha256=2f8daff50ae14aad36ab0ccdcf284065fa71d726c444efe114e6db82ffe62494
+  google-protobuf (4.36.2-aarch64-linux-gnu) sha256=c3279ec6eaa59f6ed6276eda2a33cffb4306471183ab79a332e698b8564f5169
+  google-protobuf (4.36.2-aarch64-linux-musl) sha256=0772c9dde1e6dce9a6b44d1d35c28c29adee99d9bd6aff5e21840daeb22161ce
+  google-protobuf (4.36.2-arm64-darwin) sha256=f70d810e6bbab9d8ad9c1d5fd685a21de4c10ad3ad32efb9455e17e5b1286917
+  google-protobuf (4.36.2-x86-linux-gnu) sha256=ffcd06d49bffca24afff18c900dd61a51ea3028d43c47d0d9621d00bf38a5866
+  google-protobuf (4.36.2-x86-linux-musl) sha256=e1afec03babd73c9117cc09d5fc2a98dfef37a414bfd8a4d0ceaac7bd66fc028
+  google-protobuf (4.36.2-x86_64-darwin) sha256=8d1bd2a344f7f589703b202ad2ee4cca8ef731b4ced45782ef92d385967384ba
+  google-protobuf (4.36.2-x86_64-linux-gnu) sha256=d25a820873e423f1d209ae8c672a4a28b019e2429debd0901d26670a0b4e14db
+  google-protobuf (4.36.2-x86_64-linux-musl) sha256=0fa17686c896da96a60a705e56ddc7d4ff56413f52787c655bd4c9fb33ffe14f
+  rake (13.4.2) sha256=cb825b2bd5f1f8e91ca37bddb4b9aaf345551b4731da62949be002fa89283701
+  sass-embedded (1.105.0) sha256=322f46df344e5d974fc808fa2a6fe973a02932c21545402a25ac5b7aee62ff5f
+  sass-embedded (1.105.0-aarch64-linux-android) sha256=1153c80152059a0c7b9c1a1f2fed7c527f2d06d6c7ffd2a5b2212283ef5cf3e5
+  sass-embedded (1.105.0-aarch64-linux-gnu) sha256=26dc2b0f8063f99ad4df226ebecac361c52ce06c63d8acc20ebc615d1450ea09
+  sass-embedded (1.105.0-aarch64-linux-musl) sha256=f74817c6d12cd63ce8b479844b2a791c68dca69500808925276f19bab875c072
+  sass-embedded (1.105.0-arm-linux-androideabi) sha256=6ccb0ed5710098a6d3df68567d270c04d659a9c69233cc6455fbb7d0aa399d89
+  sass-embedded (1.105.0-arm-linux-gnueabihf) sha256=32562783fcddcb83f1530b079c2920acffea40affc7bbbde4e0434fb5eb44b1b
+  sass-embedded (1.105.0-arm-linux-musleabihf) sha256=b1e766f2d95a8e08446640013fa00d8b006fe1679c7adabc54f3e9cd09aaa6a0
+  sass-embedded (1.105.0-arm64-darwin) sha256=c9a7bdcf976b03c7a420df25de1ce39255cc8c9776117ea20bcf0fe7cbadee3f
+  sass-embedded (1.105.0-riscv64-linux-android) sha256=7b1f3ba3b2eab5ee45dc028f892685481f18c05e04eb2e0e107f28eee068c03e
+  sass-embedded (1.105.0-riscv64-linux-gnu) sha256=d0ac6793b8af67c43a7b9976d5c42869fd728b7300d212718b263437ff724e5d
+  sass-embedded (1.105.0-riscv64-linux-musl) sha256=1874212cd688b52726d4bad085794ba348c230187761807d18fa381eb3b13f14
+  sass-embedded (1.105.0-x86_64-darwin) sha256=4e2d4238f8e286e0b256b63d3713ad27a06542b3079087e54d2c169072fb77fa
+  sass-embedded (1.105.0-x86_64-linux-android) sha256=893c960a3456645dc8d810266577eb5410e2665460617146ab63d4bdcda14de9
+  sass-embedded (1.105.0-x86_64-linux-gnu) sha256=c7cb4884c6d1ddad41d52f5950167d5cf77e242d7900ca0ec13170ba43878977
+  sass-embedded (1.105.0-x86_64-linux-musl) sha256=fbbda8c5df1073e177382cccd8c640ed7f49553e040713cd7fffca1af194cf96
+  slim (5.2.2) sha256=d1b5a575fcfa904a5eb66ec0a8f48a2363c7b9c57d50debb42dbab31524ef5e3
+  temple (0.10.7) sha256=369fe560adb6534674ce232899c2232df614bcb29c5359b05efedff7a57ed9c0
+  tilt (2.9.0) sha256=da5735d0280bba96e9a91041bb14aee435ccad5c17b0fa519249ae543d9aa3a5
+
+BUNDLED WITH
+  4.0.3
