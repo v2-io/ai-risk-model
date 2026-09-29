@@ -3,11 +3,11 @@
 
     python3 build.py                          # alignment.md -> alignment.html
     python3 build.py other.md -o other.html
-    python3 build.py --link                   # link style.css / lines.js instead of inlining (for live CSS tweaking)
-    python3 build.py --palette                # also write palette.html (every hue class and modifier)
-    python3 build.py --theme themes/spread.css --palette   # -> alignment-spread.html, palette-spread.html
+    python3 build.py --link                   # link the CSS / JS instead of inlining (edit CSS, just reload)
+    python3 build.py --palette                # also write palette.html (every colour class)
 
-Standard library only. Layout lives in template.html + style.css; the connector
+Standard library only. Structure lives in template.html, layout in style.css and
+all colour in palette.css; the connector
 lines are drawn in the browser by lines.js from the rendered boxes, so rows and
 boxes can change size freely and the lines follow.
 
@@ -174,23 +174,23 @@ def render_actors(lines, stack_ids):
     return head, len(shown), "\n".join(main), "\n".join(ref)
 
 
-def build(md_path, out_path, link, theme=None):
+CSS = ("palette.css", "style.css")
+
+
+def styles(link):
+    if link:
+        return "\n".join('<link rel="stylesheet" href="%s">' % f for f in CSS)
+    return "<style>\n%s\n</style>" % "\n\n".join((HERE / f).read_text(encoding="utf-8") for f in CSS)
+
+
+def build(md_path, out_path, link):
     meta, title, sec = parse(Path(md_path).read_text(encoding="utf-8"))
     stack_html, ids = render_stack(sec.get("stack", []))
     head, ncols, rows, refs = render_actors(sec.get("actors", []), ids)
     para = lambda k, c: "\n".join('<p class="%s">%s</p>' % (c, inline(p))
                                   for p in paragraphs(sec.get(k, [])))
-    if link:
-        style = '<link rel="stylesheet" href="style.css">'
-        if theme:
-            style += '\n<link rel="stylesheet" href="%s">' % Path(theme).resolve().relative_to(HERE).as_posix()
-        script = '<script src="lines.js"></script>'
-    else:
-        css = (HERE / "style.css").read_text(encoding="utf-8")
-        if theme:
-            css += "\n\n/* theme: %s */\n" % Path(theme).name + Path(theme).read_text(encoding="utf-8")
-        style = "<style>\n%s\n</style>" % css
-        script = "<script>\n%s\n</script>" % (HERE / "lines.js").read_text(encoding="utf-8")
+    script = ('<script src="lines.js"></script>' if link else
+              "<script>\n%s\n</script>" % (HERE / "lines.js").read_text(encoding="utf-8"))
     slots = {
         "title": inline(title), "title_text": html.escape(title),
         "kicker_left": inline(meta.get("kicker_left", "")),
@@ -200,7 +200,7 @@ def build(md_path, out_path, link, theme=None):
         "head": head, "ncols": str(ncols - 1),
         "rows": rows, "referents": refs, "stack": stack_html,
         "notes": para("notes", "note"), "footnote": para("footnote", "footnote"),
-        "style": style, "script": script,
+        "style": styles(link), "script": script,
     }
     page = (HERE / "template.html").read_text(encoding="utf-8")
     page = re.sub(r"\{\{(\w+)\}\}", lambda m: slots.get(m.group(1), m.group(0)), page)
@@ -208,15 +208,13 @@ def build(md_path, out_path, link, theme=None):
     print("wrote %s" % out_path)
 
 
-def build_palette(out_path, theme=None):
-    """Swatch page for every hue class in style.css (links style.css, so it stays current)."""
-    css = (HERE / "style.css").read_text(encoding="utf-8")
-    if theme:
-        css += Path(theme).read_text(encoding="utf-8")
-    hues = list(dict.fromkeys(re.findall(r"--([a-z]+)-deeper:\s*#", css)))
+def build_palette(out_path):
+    """Swatch page for every colour family in palette.css (links the CSS, so it stays current)."""
+    css = (HERE / "palette.css").read_text(encoding="utf-8")
+    families = list(dict.fromkeys(re.findall(r"--([a-z]+)-deeper:\s*#", css)))
     blocks = []
     steps = (("", "normal"), ("deep", "deep"), ("deeper", "deeper"))
-    for h in hues:
+    for h in families:
         boxes = "".join(
             '<div class="layer %s %s"><div class="layer-head"><span class="name">%s</span>'
             '<span class="gloss">%s</span></div></div>' % (h, mod, (h + " " + mod).strip(), label)
@@ -224,26 +222,25 @@ def build_palette(out_path, theme=None):
         rows = "".join(
             '<div class="row %s %s"><b>%s</b><span>%s</span></div>' % (
                 h, mod, (h + " " + mod).strip(),
-                'normal &nbsp;·&nbsp; <b class="ink">%s accent</b> <i>name in the hue\u2019s ink</i>' % h
+                'normal &nbsp;·&nbsp; <b class="ink">%s accent</b> <i>name in the family\u2019s ink</i>' % h
                 if not mod else label)
             for mod, label in steps)
         blocks.append('<section class="swatch %s"><div class="rows">%s</div>'
-                      '<svg viewBox="0 0 120 56"><path class="w1" d="M0,14 C60,14 60,22 120,22"/><path class="w3" d="M0,44 C60,44 60,36 120,36"/></svg>'
+                      '<svg viewBox="0 0 120 56"><path class="w1" d="M0,14 C60,14 60,22 120,22"/>'
+                      '<path class="w3" d="M0,44 C60,44 60,36 120,36"/></svg>'
                       '<div class="boxes">%s</div></section>' % (h, rows, boxes))
     page = """<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Palette</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap">
-<link rel="stylesheet" href="style.css">%s
+%s
 <style>
 .page{gap:14px} .swatch{display:grid;grid-template-columns:520px 120px 1fr;align-items:center}
 .swatch .rows{--ncols:1} .swatch .row{min-height:36px;align-items:center}
 .swatch .row b.ink{color:var(--accent)} .swatch .row i{color:var(--muted)}
 .swatch svg{width:120px;height:56px;fill:none;stroke:var(--edge)} .swatch svg .w1{stroke-width:1.3;stroke-opacity:.65} .swatch svg .w3{stroke-width:3.2}
 .boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-</style></head><body><main class="page"><header class="masthead"><div class="kicker"><span>style.css</span><span>hue classes &amp; modifiers</span></div><h1>Palette</h1>
-<p class="intro">Same classes on rows and boxes: <code>sand</code> (normal), <code>sand deep</code>, <code>sand deeper</code>; add <code>accent</code> for the name in the hue\u2019s ink.</p></header>
-%s</main></body></html>""" % (
-        '\n<link rel="stylesheet" href="%s">' % Path(theme).resolve().relative_to(HERE).as_posix() if theme else "",
-        "\n".join(blocks))
+</style></head><body><main class="page"><header class="masthead"><div class="kicker"><span>palette.css</span><span>colour families</span></div><h1>Palette</h1>
+<p class="intro">Same classes on rows and boxes: <code>sand</code> (normal), <code>sand deep</code>, <code>sand deeper</code>; add <code>accent</code> for the name in the family\u2019s ink. Lines: weight 1 and weight 3.</p></header>
+%s</main></body></html>""" % (styles(True), "\n".join(blocks))
     Path(out_path).write_text(page, encoding="utf-8")
     print("wrote %s" % out_path)
 
@@ -253,13 +250,10 @@ if __name__ == "__main__":
     ap.add_argument("markdown", nargs="?", default=str(HERE / "alignment.md"))
     ap.add_argument("-o", "--out")
     ap.add_argument("--link", action="store_true",
-                    help="link style.css and lines.js instead of inlining them")
+                    help="link palette.css, style.css and lines.js instead of inlining them")
     ap.add_argument("--palette", action="store_true",
-                    help="also write palette.html showing every hue class")
-    ap.add_argument("--theme", help="extra CSS applied after style.css, e.g. themes/spread.css")
+                    help="also write palette.html showing every colour class")
     a = ap.parse_args()
-    suffix = "-" + Path(a.theme).stem if a.theme else ""
     if a.palette:
-        build_palette(str(HERE / ("palette%s.html" % suffix)), a.theme)
-    out = a.out or str(Path(a.markdown).with_name(Path(a.markdown).stem + suffix + ".html"))
-    build(a.markdown, out, a.link, a.theme)
+        build_palette(str(HERE / "palette.html"))
+    build(a.markdown, a.out or str(Path(a.markdown).with_suffix(".html")), a.link)

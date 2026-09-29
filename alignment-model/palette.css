@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Aligned to whom? — palette
+   All colour lives here; layout and type are in style.css.
+
+   Ten families, each a three-step fill scale plus a border, a line colour and
+   an accent ink. Rows and boxes take the same classes:
+       class="sand"           normal — the palest step
+       class="sand deep"      one step deeper
+       class="sand deeper"    two steps deeper
+       + "accent"             the row's / box's name in the family's ink
+   A box's --edge colours the lines that land on it (lines.js reads it).
+
+   How the fills were fitted (CAM02-UCS, sRGB reference viewing, paper #F5F3EC):
+   · deeper sits ΔE' ≈ 10 from the paper; deep and normal are constant lifts
+     toward the paper (⅓ and ⅔ of the way): ≈ 6.7 and 3.3, steps ≈ 3.3
+   · nine hues spread ~40° apart at equal colourfulness (CIECAM02 h):
+       rose 16  clay 55  sand 95  sage 136  jade 177  teal 217  slate 256  iris 296  mauve 336
+     stone is neutral
+   · rose, clay and mauve carry 10% less colourfulness (reds look more vivid than
+     the model predicts: the Helmholtz–Kohlrausch effect)
+   · darkening is capped (ΔJ' ≤ 7), so families near the paper's own hue (clay,
+     sand, sage, jade) stay light and pastel, at ΔE' 8.5–9.4 instead of 10
+   · borders ΔE' ≈ 18 from the paper; lines (J' 48, M' 19) and accent inks
+     (J' 36, M' 18 — about the most sRGB allows for jade and teal) share one
+     lightness and colourfulness across families
+   · fit_palette.py regenerates the family tokens below from these settings
+   contrast.py measures all of this; palette.html shows it (build.py --palette).
+   ========================================================================== */
+
+:root {
+  /* paper & ink */
+  --paper:  #F5F3EC;
+  --ink:    #17191E;
+  --ink-2:  #33363D;
+  --muted:  #4A4D55;
+  --rule:   #DDD8CC;
+  --rule-strong: #17191E;
+  --rule-dashed: #B9B4A6;
+  --link:   #1D3557;
+  --referent-ink: var(--sage-ink);   /* names of the owed-alignment rows */
+
+  /* families: normal / deep / deeper fills, border, line, accent ink */
+  --stone: #EAE8E1;  --stone-deep: #E0DDD6;  --stone-deeper: #D7D2CB;  --stone-bd: #BFBBB3;  --stone-edge: #6F6C62;  --stone-ink: #525046;
+  --rose: #F3E9E4;  --rose-deep: #F2DFDD;  --rose-deeper: #F1D6D6;  --rose-bd: #DAB9BA;  --rose-edge: #99545A;  --rose-ink: #763B40;
+  --clay: #F2EAE0;  --clay-deep: #F0E0D5;  --clay-deeper: #EED7C9;  --clay-bd: #D4B9A8;  --clay-edge: #925D35;  --clay-ink: #704221;
+  --sand: #EFEBDF;  --sand-deep: #E9E4D1;  --sand-deeper: #E3DCC4;  --sand-bd: #C7BFA1;  --sand-edge: #796C2B;  --sand-ink: #5B4F16;
+  --sage: #EBEDE2;  --sage-deep: #E0E6D7;  --sage-deeper: #D6E0CD;  --sage-bd: #B6C4AC;  --sage-edge: #507844;  --sage-ink: #375A2D;
+  --jade: #E9EDE6;  --jade-deep: #DDE7E0;  --jade-deeper: #D0E1DA;  --jade-bd: #B0C7BE;  --jade-edge: #2D7C69;  --jade-ink: #0F5D4D;
+  --teal: #EBEDEA;  --teal-deep: #E0E7E8;  --teal-deeper: #D5E2E6;  --teal-bd: #B5C7CD;  --teal-edge: #377787;  --teal-ink: #1B5A68;
+  --slate: #EFEEEE;  --slate-deep: #E8E9EF;  --slate-deeper: #E1E5F1;  --slate-bd: #C0C6D6;  --slate-edge: #586E97;  --slate-ink: #3E5176;
+  --iris: #F3EEEF;  --iris-deep: #F1EAF2;  --iris-deeper: #EFE5F6;  --iris-bd: #CDC3D7;  --iris-edge: #776196;  --iris-ink: #5A4675;
+  --mauve: #F3EBEA;  --mauve-deep: #F1E3E8;  --mauve-deeper: #F0DBE6;  --mauve-bd: #D5BCCB;  --mauve-edge: #8E5780;  --mauve-ink: #6D3D62;
+}
+
+/* families */
+.stone  { --c: var(--stone); --c-deep: var(--stone-deep); --c-deeper: var(--stone-deeper); --bd: var(--stone-bd); --edge: var(--stone-edge); --accent: var(--stone-ink); --fill: var(--c); }
+.rose   { --c: var(--rose); --c-deep: var(--rose-deep); --c-deeper: var(--rose-deeper); --bd: var(--rose-bd); --edge: var(--rose-edge); --accent: var(--rose-ink); --fill: var(--c); }
+.clay   { --c: var(--clay); --c-deep: var(--clay-deep); --c-deeper: var(--clay-deeper); --bd: var(--clay-bd); --edge: var(--clay-edge); --accent: var(--clay-ink); --fill: var(--c); }
+.sand   { --c: var(--sand); --c-deep: var(--sand-deep); --c-deeper: var(--sand-deeper); --bd: var(--sand-bd); --edge: var(--sand-edge); --accent: var(--sand-ink); --fill: var(--c); }
+.sage   { --c: var(--sage); --c-deep: var(--sage-deep); --c-deeper: var(--sage-deeper); --bd: var(--sage-bd); --edge: var(--sage-edge); --accent: var(--sage-ink); --fill: var(--c); }
+.jade   { --c: var(--jade); --c-deep: var(--jade-deep); --c-deeper: var(--jade-deeper); --bd: var(--jade-bd); --edge: var(--jade-edge); --accent: var(--jade-ink); --fill: var(--c); }
+.teal   { --c: var(--teal); --c-deep: var(--teal-deep); --c-deeper: var(--teal-deeper); --bd: var(--teal-bd); --edge: var(--teal-edge); --accent: var(--teal-ink); --fill: var(--c); }
+.slate  { --c: var(--slate); --c-deep: var(--slate-deep); --c-deeper: var(--slate-deeper); --bd: var(--slate-bd); --edge: var(--slate-edge); --accent: var(--slate-ink); --fill: var(--c); }
+.iris   { --c: var(--iris); --c-deep: var(--iris-deep); --c-deeper: var(--iris-deeper); --bd: var(--iris-bd); --edge: var(--iris-edge); --accent: var(--iris-ink); --fill: var(--c); }
+.mauve  { --c: var(--mauve); --c-deep: var(--mauve-deep); --c-deeper: var(--mauve-deeper); --bd: var(--mauve-bd); --edge: var(--mauve-edge); --accent: var(--mauve-ink); --fill: var(--c); }
+
+/* steps (after the families, so they win) */
+.deep   { --fill: var(--c-deep); }
+.deeper { --fill: var(--c-deeper); }
+
+/* accent: the name in the family's ink, on rows and boxes */
+.row.accent > b, .layer.accent > .layer-head .name { color: var(--accent); }

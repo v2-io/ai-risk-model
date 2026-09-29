@@ -15,8 +15,8 @@ Many independent actors influence a deployed agent — its weights, its identity
 <!--
 One row per box on the right.
   id      — what actor edges point at
-  class   — space-separated CSS classes: a hue (stone rose clay sand moss jade teal slate iris plum),
-            optionally `deep` or `deeper`, plus `accent` (name in the hue's ink), shapes (`context`,
+  class   — space-separated CSS classes: a family (stone rose clay sand sage jade teal slate iris mauve),
+            optionally `deep` or `deeper`, plus `accent` (name in the family's ink), shapes (`context`,
             `goal`) and `end` (pin a child to the bottom of its parent). See palette.html.
   group   — consecutive rows with the same group share one box
   parent  — nest this box inside another (e.g. goals inside context)
@@ -25,7 +25,7 @@ One row per box on the right.
 
 | id        | layer         | gloss                                    | class             | group | parent  | size |
 |-----------|---------------|------------------------------------------|-------------------|-------|---------|------|
-| weights   | Weights       | instinct, propensity, impulse & compulsions                                  | moss deep         |       |         | 2    |
+| weights   | Weights       | instinct, propensity, impulse & compulsions                                  | sage deep         |       |         | 2    |
 | sysprompt | System prompt | identity                                 | slate deep        | setup |         | 1.5  |
 | tools     | Trusted tools | actions available                        | slate             | setup |         | 1.5  |
 | ephemeral | Ephemeral *   | interiority, reasoning                              | stone deep        |       |         | 2    |
@@ -38,15 +38,15 @@ One row per box on the right.
 <!--
 Every column except `edges` and `class` is displayed, in order, under its header.
   edges — comma-separated stack ids, each optionally `:weight` (default 1; 2 = heavier, 3 = bold)
-  class — row highlight: a hue (stone rose clay sand moss jade teal slate iris plum), optionally
-          `deep` or `deeper`, plus `accent` (name in the hue's ink); or `referent` (no lines;
+  class — row highlight: a family (stone rose clay sand sage jade teal slate iris mauve), optionally
+          `deep` or `deeper`, plus `accent` (name in the family's ink); or `referent` (no lines;
           drawn below the map).
 -->
 
 | Actor | Its own interests, incentives & pressures | Sample channels | edges | class |
 |---|---|---|---|---|
 | Pre-training content providers | Their own purposes — commerce, persuasion, art, ideology — almost never the model’s; what is abundant becomes what is normal | The web, books, code, forums, licensed and synthetic corpora — whatever is scraped, bought or generated | weights:2 | |
-| Model trainer | What gets rewarded becomes what is wanted; capability and cost targets | RL objectives, constitutions, fine-tuning, distillation, *potentially feedback from a predecessor agent*. | weights:2 | moss |
+| Model trainer | What gets rewarded becomes what is wanted; capability and cost targets | RL objectives, constitutions, fine-tuning, distillation, *potentially feedback from a predecessor agent*. | weights:2 | sage |
 | Inference provider | Cheap inference; cache reuse favours context that only grows, never corrects | Context handling, caching, truncation, model routing or fallback | weights:2, ephemeral:3, context:2 | sand |
 | Application / harness provider | Product goals, brand, retention; short, tidy summaries, completeness asserted but seldom checked | System prompt, initial context, scaffolding, compaction summaries | sysprompt:2, tools:2, context:2, initial:2 | sand |
 | Tool and connector providers | A description is read as trusted instruction, and whoever writes the server writes it | Tool descriptions | tools | |
