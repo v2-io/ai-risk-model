@@ -18,15 +18,17 @@
 - **Both** put the sources' claims into our structure before the sources' words had been translated into our vocabulary. That is the step this iteration reorders.
 
 **The method, in four moves:**
-1. **Lexicon first, with method terms before domain terms.** The method terms come from domain-driven design, Joseph's address theory, terminology science, speech-act theory, argumentation and norm theory. The domain terms are built as Joseph put it on 2026-10-06: the union of the most precise, scoped definitions, with umbrella terms that contain them.
-2. **One translation per source**, from its words into ours. At the term level it says what the source's word probably means here, with a rationale. At the occurrence level it records how each use of a key word resolves, ambiguity included.
+1. **Lexicon first, with method terms before domain terms.** The method terms come from domain-driven design, Joseph's address theory, terminology science, speech-act theory, argumentation and norm theory. The domain terms are built as Joseph put it on 2026-10-06: the union of the most precise, scoped definitions, with umbrella terms that contain them. Terms live in namespaces, so `ddd:context` and the agent part *context* never share a name.
+2. **One translation per source**, from its words into ours. At the term level it says what the source's word probably means here, with a rationale. Where a word's meaning shifts inside a source, a resolution record says which meaning it had there, ambiguity included.
 3. **Assertions** recorded in our terms, with each source's words verbatim beside them, its voice kept nested, and its own hedges intact.
-4. **Views** computed from those records, never maintained by hand: a bow-tie around a chosen event, causal loops, crosswalks, and corroboration that respects lineage.
+4. **Views** computed from those records, never maintained by hand. Which views earn a place is decided by the questions the model must answer, not chosen in advance.
 
 **What is new in this draft:**
 - **Many of model beta's coinages have established names**, including the load-bearing ones. Established vocabularies fit the problems model beta solved with coinages, and adopting them gives a better theory, not only better words (section 3).
 - **The actor and agent-part vocabulary comes first among domain terms.** That is Joseph's priority; it is the vocabulary that dissolves "developer" (section 3.9).
-- **A set of acceptance tests** says when the lexicon is good enough to start translating at scale (section 3.11).
+- **Competency questions**, written up front, are the model's requirements and its final test. Lexicon acceptance tests sit under them (section 3.11).
+- **Refinement is budgeted.** Lexicon entries get repeated truthification passes before anything downstream relies on them (section 2).
+- **Translation is treated as coding**, with two independent translators per pilot source (section 4, G4).
 - **A plan in eight phases** says who does what, who reads it, and how each phase is known to be done (section 4).
 
 **Decisions for Joseph** are collected in section 5, each with a recommendation and its confidence.
@@ -55,6 +57,8 @@
   - Relations were chosen first and claims hung on them, so a word like "developer" came to mean "a lab" across about forty concepts.
   - Loop enumeration consumed attention (641,083 loops before one edge was recast, about 186,000 after; `notes-mp.md` item 8) without producing findings that outlasted it.
   - The lexicon adopted IASR 2026's definitions directly ("The first four definitions are IASR 2026's, adopted", `def-risk.ud`). That was a reasonable early move. In domain-driven design's terms, though, adopting a source's definitions wholesale is the *conformist* pattern: our lexicon takes one upstream source's model as its own, which the translation step is meant to prevent.
+  - Risk analysis was being built at the same time as the lexicon it depended on, without the discipline to keep the two concerns apart. The result began to read as its own ball of mud.
+- **How gamma uses it:** for ideation only. Nothing in model beta (terms, concepts, relations, mappings, schema draft 2) has been independently checked. Anything taken from it is re-derived against the primaries and re-owned, never carried over verbatim.
 
 ### 1.3 What the corpus turned out to be
 
@@ -110,6 +114,11 @@ These findings shape the method. Each was established in the source models (`inf
   - no source's precision is ever lost in translation;
   - broader terms exist as declared umbrellas that *contain* the precise ones, never as replacements for them.
 - **Priority.** *Joseph, 2026-10-06*: "One of the high priorities for me are our agreed-upon definitions for those actors (and agent parts) listed in the alignment-model/ directory."
+- **Refinement is where the value is.** *Joseph, 2026-10-06*, on the address-theory entries, the one lexicon in his work that became genuinely useful: they took "multiple truthification passes until almost every line had been severely scrutinized for coherence and completeness … the value really only settles in during the last 5-10% of the refinement. First pass and lazily generated stuff, even from ample context, will be more likely to seed confusion and misunderstanding than truthful analysis and understanding." In practice:
+  - few entries refined deeply, rather than many drafted broadly;
+  - every agent-drafted entry is a candidate until it has had repeated line-by-line passes;
+  - downstream work (translations, assertions) does not lean on an entry as settled before then;
+  - the address-theory entries are the quality bar.
 - **Established vocabulary over coinage** (Joseph's standing rule elsewhere in his work: "a coinage where an ancient word exists is a smell; a coinage where there is established academic vocabulary to adopt is a smell"). The rule cuts both ways, so also: **don't borrow an established word in a different sense.** Section 3 lists the collisions this draft found.
 - **Neutrality lives in the assertions, not the vocabulary.** The lexicon is our model (Evans: "a change in the language is a change to the model"). It is judged by whether it can express every source's distinctions without loss, not by whether it looks neutral. Compilation-not-adjudication governs what we say the sources claim.
 
@@ -145,12 +154,13 @@ Two vocabularies do two jobs. The seam between them should be explicit in `def/`
 
   Two patterns do *not* fit where they first seemed to. *Separate ways* ("no connection to the others at all") is not the RSP's "plain meaning" "catastrophic": that is one deliberately unbound term in a well-connected document, and the resolution outcome *deliberately unbound* names it better. *Big ball of mud* ("Do not try to apply sophisticated modeling within this context") is the opposite of what self-inconsistent sources need. Those are best treated as several scopes under one cover and mapped scope by scope, which is finding 5 applied (thanks to the de novo review for both corrections).
 
-**Joseph's address theory (`~/src/arch/firmatum/udon/v2/references/def/*.ud`) supplies the mechanism:**
+**Joseph's address theory supplies the mechanism.** Its entries are in the public repository `v2-io/udon`, at `v2/references/def/` (cited as of commit `90f4fb6`, 2026-08-27): <https://github.com/v2-io/udon/tree/90f4fb6/v2/references/def>.
 - *reference* and *referent*, with *intended cardinality*;
-- *binding* (minted and maintained) vs *match* (a test run at use);
-- *scope*, with containment edges;
+- *binding* (minted and maintained by a *maintainer*) vs *match* (a test run at use);
+- *scope*, with containment edges: the unit within which bindings are kept and collisions counted, which makes it the natural *namespace*;
 - *resolution* from an origin, as of a moment, with its path, under declared admissibility and preference;
-- *ambiguity* as an outcome, not an error.
+- *ambiguity* as an outcome, not an error;
+- the failure modes: a binding *dangles* when it no longer reaches a referent, and *collides* when one maintainer mints the same name twice in one scope.
 
 DDD's bounded context is flat; the sources' scopes are nested (finding 5), so **bounded context should be defined in terms of scope.**
 
@@ -166,6 +176,19 @@ DDD's bounded context is flat; the sources' scopes are nested (finding 5), so **
 | **broad / narrow** | SKOS: `<A> skos:broadMatch <B>` means *B* is broader | See section 3.4: model beta's mapping files use the opposite direction |
 | **qualifier** | Toulmin: the force of one inference ("presumably") | Use Toulmin's narrow sense, or a different word for draft 2's bundle |
 | **norm**, **commitment**, **assertion**, **argument**, **declaration**, **exemption**, **rebuttal** | each has several established senses (section 3.6) | each lexicon entry names the sense it takes and lists the others under "not to be confused with" |
+
+**Namespaces.** Our method words also collide with our own domain words, inside the one lexicon:
+
+| Word | Method sense | Domain sense | Elsewhere |
+|---|---|---|---|
+| **context** | DDD's context (G1) | the agent part in `alignment.md` ("experience & agency") | Institutional Grammar's and GSN's Context; ordinary use |
+| **model** | DDD's domain model | an AI model | "source model", "model gamma" |
+| **source** | a source document | a *risk source* (SRA, ISO) | FactBank's nested source; SP 800-30's threat source |
+| **role** | Goffman's production roles; "stage is a role relative to a focal event" | actor roles, functional and institutional (section 3.9) | model alpha's role codes |
+| **scope** | address theory: where a binding holds | a source's declared coverage (what it is about) | |
+| **agent** | the agent that made a record (PROV, SSSOM) | an AI agent | |
+
+**Proposed:** every term lives in a declared namespace, which is address theory's *scope* used for exactly its purpose. For example `ddd:context`, a namespace for the agent parts (`agent:context`, name open), and the ordinary word left unprefixed. Where a source's own word is meant, the source's namespace is used. "Coverage", not "scope", is used for what a document is about.
 
 ### 3.3 The lexicon
 
@@ -208,6 +231,23 @@ The format is udon, per `CLAUDE.md`.
 
 Our lexicon should never contain a category that merges a thing in the world with a fact about our reading.
 
+**What the lexicon holds from the start, and what it leaves out.** The test for including something early is whether we need it to *describe what the sources say* without loss. Analysing risk is a separate concern, a separate bounded context built on top of the lexicon later.
+
+*In from the start:*
+- **The method terms** (section 3.2): DDD's strategic terms; address theory's terms; the terminology-work terms; the evidence-plane terms (passage, assertion, nested voice, strength, attack, norm-proposition).
+- **What address theory implies for every term about a source's words:**
+  - whether a source term is *bound* (the source defines it and maintains the definition: SB 53's "frontier developer", with a statutory annual review) or a *match* (used undefined, so it reaches whatever fits the reader's understanding at the time);
+  - its *intended cardinality* (SB 53's "frontier developer" stands for any number of persons; a named incident for one);
+  - who *maintains* it, and when it is meant to be re-resolved;
+  - the *as-of* moment of every resolution;
+  - the failure vocabulary: a source definition that *dangles* (its test no longer reaches what it was meant to, which is what SB 53 §22757.14 guards against) or *collides* (IASR using "developer" in two senses within one scope).
+- **Actors and agent parts** (section 3.9).
+- **The risk components the sources' own definitions are built from** (section 3.8): source, cause, event, harm, magnitude, likelihood (with what it is a probability *of*, and its window), confidence, exposure and vulnerability, controls; plus intent and recoverability. These are needed to translate a definition such as SB 53's "catastrophic risk" without loss.
+
+*Left out until later, and built on top:* signed causal influences, loops, bow-ties, and any graph structure that analyses how risk behaves. Those are *our* model of risk, our claims, and they get their own context once the lexicon and translations can carry them.
+
+*Deferred:* whether a single high-precision formal object (Kaplan & Garrick's scenario triplets are the strongest candidate) underlies the risk readings. Some readings in the corpus don't reduce to it (section 3.8), so it wants its own spike later rather than being built in.
+
 ### 3.4 Per-source translations
 
 Each main source gets one translation document: its terms mapped into ours, under its own scopes. It works at two levels, and the research found that the standards cover only the first.
@@ -222,24 +262,26 @@ Each main source gets one translation document: its terms mapped into ours, unde
   - separate author, creator and reviewer;
   - our confidence, kept apart from the source's own hedge.
 
-**Occurrence level: how this use of the word resolves.** SSSOM says outright that "Mappings themselves have no context (i.e. are always true)". The corpus needs the opposite for about a dozen heavily loaded terms (catastrophic, severe and systemic risk; loss of control; (mis)alignment; safeguard; hazard; developer, provider and deployer; threshold; incident; frontier). For those, a resolution record per occurrence carries:
+**Resolution within a source: why, and how much.** A word's meaning can shift inside one source. IASR 2026 uses "developer" for organisations in one place and for individual people in another, and SB 53 defines "catastrophic risk" differently in each of the two codes it amends. When an assertion is recorded, we need to know which meaning a word had *there*. SSSOM says outright that "Mappings themselves have no context (i.e. are always true)", so the type-level row can't carry this.
 
-- **outcome**, one of:
-  - one;
-  - several;
-  - none (a gap in our vocabulary);
-  - ambiguous among named candidates;
-  - withheld by the source;
-  - delegated to the reader;
-  - defective as written;
-  - deliberately unbound ("plain meaning");
-  - declined by the source;
+**The selection rule.** Recording every use is infeasible: IASR 2026 alone has about 1,200 raw uses of the heavily loaded terms (count by the de novo review, including cited titles). So:
+- each scope (a document, section, code section or table) gets one *default* resolution of each key term, recorded once;
+- a separate record is made only where a use departs from its scope's default, or where the use sits inside an assertion we record.
+
+The heavily loaded terms are about a dozen: catastrophic, severe and systemic risk; loss of control; (mis)alignment; safeguard; hazard; developer, provider and deployer; threshold; incident; frontier.
+
+**What a resolution record carries:**
+- **an outcome**, in address theory's terms: zero, one, several, or ambiguous among named candidates, read against the term's intended cardinality;
+- **a reason**, with whose fact it is:
+  - facts about the source: withheld, delegated to the reader, defective as written, deliberately unbound ("plain meaning"), declined, or imported from an outside institution (California law for "foreseeable");
+  - a fact about our lexicon: no term of ours fits yet;
+  - a fact about our reading: we can't tell which candidate is meant;
 - **the path** (glossary, section definition, imported binding, inline, our reading);
-- **the author of the resolution**: us, the source itself, or a third party (IASR resolves the EU's "systemic risk"; Anthropic's FCF files RSP thresholds under the statutory "loss of control");
+- **who resolved it**: us, the source itself, or a third party (IASR resolves the EU's "systemic risk"; Anthropic's FCF files RSP thresholds under the statutory "loss of control");
 - **an as-of date**, for deictic terms;
 - for relational terms, **the reference standard and the bearer** ("aligned with what, borne by what").
 
-Only part of this is address theory's: its resolution gives zero, one, many or ambiguity, with intended cardinality giving each its meaning. The other outcomes (withheld, delegated, defective, deliberately unbound, declined) come from schema draft 2 §5. They are *reasons*, and facts about the source, where "none" is a fact about our lexicon and "ambiguous" a fact about our reading. A cleaner record keeps an *outcome* (address theory's) plus a *reason* with its author. This record is ours to define.
+Keeping outcome and reason apart is the MIT "Other" lesson applied to our own records. The record's format is ours to define (G1).
 
 **The broad/narrow direction needs deciding now.** It was found in research and checked against the repo:
 - `def-actors.ud` gives the legend all of model beta's term files use: "Match, from the source's term to ours: … broad (theirs is wider)".
@@ -388,7 +430,7 @@ The convergent set, as the research report reads it:
 - the receiving side (exposure, vulnerability, capacity);
 - **the knowledge the judgment rests on**: the SRA's (C′, Q, K) puts background knowledge and its strength inside the risk description, and PHIA pairs probability with a separate analytical confidence rating.
 
-**Bow-tie analysis is Joseph's chain, around a chosen event.** In the UK Civil Aviation Authority's own method steps (read at the primary):
+**Bow-tie analysis is the established structure closest to Joseph's chain, around one chosen event.** It is a candidate *view*, not the glue: the glue is the lexicon plus the recorded assertions, and whether bow-tie earns its place as an analytic frame depends on the questions the model must answer (section 3.11). It is also acyclic around its one event, while the cycles Joseph expects live *between* events (one event's consequence is another's cause), so a bow-tie can show at most a local slice. In the UK Civil Aviation Authority's own method steps (read at the primary):
 - the hazard is "the source of potential harm";
 - the top event is "the point at which control of the hazard is lost";
 - threats are "all conditions or factors that could cause the top event";
@@ -536,6 +578,13 @@ The lexicon should keep both kinds, and a translation records which kind each so
 4. **Owed-alignment referents.** A role in an alignment claim, not a writer. Beta's "affected party" is a candidate.
 5. **Institutional roles.** One translation per source, plus the umbrella question: does "developer" survive as a declared umbrella containing the precise roles, or is it deprecated? The lexicon shape in section 2 (umbrellas containing precise terms) allows either answer.
 
+**The alignment referent.** `alignment.md` opens: "'Alignment' without saying to whom quietly picks one of them." Whether "alignment" should have a default referent, no default (every alignment claim names its referent from the actor set, or records it as ambiguous), or something else is open. A spike launched 2026-10-06 (`influx/spikes/spike-alignment-referents-2026-10-06/`) is looking at:
+- the implications of an ambiguous alignment definition;
+- established terms for the existing actors;
+- new actors the references suggest.
+
+Its results feed this group directly.
+
 **Done-test for this group:** every one of these resolves to our terms with nothing left unresolved unless it is declared ambiguous:
 - each actor and part in `alignment.md`;
 - each role in AI Act Art. 3(3)–(8) and (68);
@@ -546,32 +595,42 @@ The lexicon should keep both kinds, and a translation records which kind each so
 
 ### 3.10 Where views come from
 
-Views are computed from the records, never hand-maintained:
-- a bow-tie per chosen focal event;
-- causal loops;
+Views are computed from the records, never hand-maintained. Which views earn a place is decided by the competency questions (section 3.11). Candidates:
+- answers to the competency questions themselves;
 - crosswalks between sources (ours and the sources' own);
 - lineage-aware corroboration;
-- coverage by each source's declared scope, including its exclusions, so "out of scope" never reads as "silent".
+- coverage by each source's declared coverage, including its exclusions, so "out of coverage" never reads as "silent";
+- a bow-tie around a chosen focal event;
+- causal loops, which need a vocabulary of causal relations *between* events that no phase defines yet (section 4, G7).
 
-The causal loop diagram is one view among several.
+### 3.11 Competency questions, and acceptance tests for the lexicon
 
-### 3.11 Acceptance tests for the lexicon
+**Competency questions come first.** They are questions, written before building, that the finished model must be able to answer; they serve as its requirements and as its final test. This is an established practice in ontology engineering. The de novo review cites Grüninger & Fox (1995) from memory; that is not yet checked. Examples drawn from the aim in `CLAUDE.md`:
+- For a single-incident event with 60 deaths, which sources would call it catastrophic, severe or systemic, under what conditions, and through how many independent lineages?
+- For loss of control, which preventive controls do sources name, and which of them are duties with no holder of the correlative claim?
+- Which actors write into which agent part, and which sources' role words resolve to each?
 
-These say when the lexicon is good enough to translate at scale. Each is a check someone can run.
-1. **Round trip.** Each of these definitions can be re-expressed clause by clause in our terms, with nothing left over and nothing added:
+**Proposed:** Joseph writes or approves a short list early, in G1. A piece of machinery earns its place in the lexicon or the record formats when some competency question needs it; that is the check against importing more than the work needs (section 6).
+
+**Lexicon acceptance tests**, which sit under the questions and say when the lexicon is ready to translate at scale:
+1. **Round trip.** Each of these definitions can be re-expressed clause by clause in our terms:
    - SB 53 "catastrophic risk" (§22757.11(c));
    - AI Act "systemic risk" (Art. 3(65));
    - Anthropic's "misalignment risk" (August 2026 Risk Report).
+
+   A faithful translation may legitimately end at an imported binding to an outside institution (SB 53's "foreseeable" and "materially contribute" take their content from California law), at a deliberately unbound term ("plain meaning"), or at a declared ambiguity; those outcomes count as passing. The test names the passage under test. Anthropic's report, for example, defines misalignment risk twice: once without "catastrophic" (p. 25), then 25 lines later with it, alongside a narrower "covered risk".
 2. **Collisions.** Every sense in OVERVIEW §2's collision tables (16 main terms, 12 secondary) is either a resolution target in our lexicon or part of a declared ambiguity.
-3. **No mixed categories.** No term mixes a thing in the world with a fact about our reading (the MIT "Other" test, section 3.3).
+3. **No mixed categories.** No term or record field mixes a thing in the world with a fact about our reading (the MIT "Other" test, section 3.3).
 4. **Actors.** The done-test in section 3.9.
-5. **Lineage.** The EU Code's loss-of-control formula, in its nine later appearances, counts as one source in the corroboration view.
+5. **Distinctions.** Every basis of division in the distinctions inventory (G5) can be expressed in the lexicon.
+
+Lineage is not a lexicon test. That the EU Code's loss-of-control formula reappears nine times is something the lineage records must hold, each appearance with its relation type and author; how the corroboration view counts them follows from those records (G7).
 
 ---
 
 ## 4. The plan
 
-Eight phases. The first four are the third iteration's core; the rest follow from them. Phases that don't depend on each other can run in parallel.
+Eight phases. G1–G4 are the third iteration's core; the rest follow from them. Phases that don't depend on each other can run in parallel. Throughout, lexicon entries get repeated truthification passes (section 2): a phase's "done" means its entries have been through those passes, not merely drafted.
 
 **G0. Housekeeping. Done 2026-10-06 (`b6ed3c7`).**
 - 130 stale paths repointed to `ref/`.
@@ -580,24 +639,27 @@ Eight phases. The first four are the third iteration's core; the rest follow fro
 
 *Still open:* decide the broad/narrow direction (section 3.4).
 
-**G1. `def/`: the method terms.** *Next:* DDD's definitions first, then the method ("meta") terms the later steps need.
+**G1. `def/`: the method terms, the record formats, and the questions.** *Next:* DDD's definitions first, then the method ("meta") terms the later steps need.
 
 Contents:
-- **(a) DDD terms verbatim** with CC BY 4.0 attribution: domain, model, context, bounded context, ubiquitous language, context map, the relationship patterns, anticorruption layer, published language, big ball of mud.
-- **(b) Address theory** imported by reference.
+- **(a) DDD terms verbatim** with CC BY 4.0 attribution: domain, model, context, bounded context, ubiquitous language, context map, the relationship patterns, anticorruption layer, published language, big ball of mud. Each in the `ddd:` namespace.
+- **(b) Address theory** imported by reference, cited at its public commit.
 - **(c) Terminology-work terms**:
   - concept, designation, definition, delimiting characteristic;
   - onomasiological and semasiological;
   - acceptability status;
   - declared ambiguity;
-  - umbrella containment.
+  - umbrella containment;
+  - namespace.
 - **(d) The evidence-plane terms from section 3.6**: passage, assertion (with Searle's point, strength and mode), nested source and factuality, the three attacks, norm-proposition, and the norm layering.
+- **(e) The record formats**: a translation row, a resolution record (section 3.4) and an assertion record. Without an owner, the pilots would invent them in passing and they would harden by default.
+- **(f) A first list of competency questions** (section 3.11), for Joseph to write or approve.
 
-Everything is marked *proposed*. Who reads it: Joseph, to decide senses and names; then the agents writing translations.
+Status: (a)–(c) and (f) go to Joseph for ratification. (d) and (e) are marked *supported*: agents may work with them, and Joseph ratifies them in batches once G4 has shown which terms and fields actually bore weight.
 
-Done when Joseph has ratified or redirected each group, and the collision notes in section 3.2 are recorded in the entries.
+Who reads it: Joseph, to decide senses and names; then the agents writing translations.
 
-**G2. Actors and agent parts.** The groups in section 3.9, drafted from `alignment.md` and translated against the sources named there. This can run alongside G1(d). Done when the section 3.9 done-test passes.
+**G2. Actors and agent parts.** The groups in section 3.9, drafted from `alignment.md`, informed by the alignment-referents spike, and translated against the sources named there. This can run alongside G1(d)–(e). Done when the section 3.9 done-test passes.
 
 **G3. Risk-side core concepts.** Defined at the concept level first:
 - the components (section 3.8);
@@ -606,16 +668,29 @@ Done when Joseph has ratified or redirected each group, and the collision notes 
 - the intent attribute;
 - the impact-radius components.
 
-Joseph then decides the names (section 5). Done when acceptance tests 1 and 2 pass for the risk-side terms.
+Joseph then decides the names (section 5). Done when acceptance tests 1, 2 and 5 pass for the risk-side terms.
 
-**G4. Pilot translations, and the loss-of-control slice.** Three sources chosen to be as different as possible:
+**G4. Pilots: translation as coding, and one thin pass end to end.**
+
+*Four pilot sources*, chosen to be as different as possible:
 - **SB 53**: a statute, stricter than us;
-- **Anthropic's August 2026 Risk Report**: a company's argued assessment with its own rigorous vocabulary (note the conflict of interest);
+- **the EU Code of Practice** (Safety & Security chapter): an anchor whose interpretation clause declares its own resolution policy, and the lineage root of the loss-of-control formula;
+- **Anthropic's August 2026 Risk Report**: a company's argued assessment with its own defined vocabulary, and its own definitional drift (note the conflict of interest);
 - **IASR 2026**: a landscape synthesis, loose in places and inconsistent with itself.
 
-Then carry **loss of control** through all eleven models in OVERVIEW. It is the most collided term, which makes it the hardest test of the method. Findings feed back into G1–G3 before any wider translation, following Evans's "refactoring toward deeper insight". Done when the three translations exist, the slice is recorded, and the lexicon changes they forced are made.
+*Translation is coding, so it is checked like coding:*
+- two independent translations of each pilot source, ideally by translators from different model families (same-model agreement is coherence, not confirmation);
+- disagreements are recorded and resolved as attributed assertions;
+- the per-term disagreement rate is the measure of where the lexicon is underspecified, which is the feedback G4 exists to produce;
+- the guidelines the translators converge on become the codebook that G6 inherits.
 
-**G5. Distinctions inventory** (an agent, in parallel with G2–G4). Every basis of division and category boundary the corpus draws, so the lexicon can express each. Examples:
+*One thin pass end to end.* Before widening, take one pilot source and one competency question all the way through: translation, resolution records, assertion records, and the answer the question asks for. This is where defects in the record formats show up cheaply.
+
+Then carry **loss of control** through all eleven models in OVERVIEW: the most collided term, so the hardest test of the method. Findings feed back into G1–G3 before any wider translation (Evans's "refactoring toward deeper insight").
+
+Done when the pilot translations exist with their disagreement data, the thin pass answers its question, the slice is recorded, and the lexicon changes they forced have been made.
+
+**G5. Distinctions inventory** (an agent, in parallel with G2–G4). Every basis of division and category boundary the corpus draws, so the lexicon can express each (acceptance test 5). Examples:
 - MIT's entity / intent / timing;
 - the EU Code's capabilities / propensities / affordances;
 - the NRR's hazard / threat;
@@ -624,17 +699,23 @@ Then carry **loss of control** through all eleven models in OVERVIEW. It is the 
 
 This is not "pick the best taxonomy", which would import a source's model. It feeds G3 and the later translations.
 
-**G6. The remaining translations**, in Influence order from `source-catalog.md`: the 11 anchors, then the 26 major sources. Each translation follows the G4 pattern. Self-inconsistent sources are mapped scope by scope (section 3.2).
+**G6. The remaining translations**, in Influence order from `source-catalog.md`: the 11 anchors, then the 26 major sources. Each follows the G4 pattern and codebook. Self-inconsistent sources are mapped scope by scope (section 3.2).
+
+*A milestone worth having here: translated editions of the sources.* For each source, its own text with each key term marked in place as our term beside the original, for example `[ns:our-term](original term)` or a footnote form, plus a sidecar document discussing the nuances and translation problems. It makes the translation reviewable by anyone reading the source. Two caveats:
+- **Licensing.** The repository is public. Full translated text can be published only for sources whose licence allows it (statutes, US federal works, UK Open Government Licence material, CC-licensed papers). Others stay local-only, as the IASR 2026 text in `ref/` already does, with their sidecars published.
+- **Format.** Markdown link syntax would collide with real links in the sources, so the marking format needs a decision (section 5).
 
 **G7. Assertions for the slice, then views.**
-- Record loss-of-control assertions from the translated sources: point and strength, nested factuality, attacks, norm layering, anchored passages, lineage.
-- Compute the first bow-tie around a loss-of-control top event, and the first lineage-aware corroboration view.
+- Record loss-of-control assertions from the translated sources: point and strength, nested factuality, attacks, norm layering, anchored passages, lineage (each reappearance of a formula with its relation type and author).
+- Define the vocabulary of causal relations between events that any cyclical analysis needs. It belongs to the analysis context, built on the lexicon, not inside it.
+- Compute the views the competency questions call for. Candidates include a lineage-aware corroboration view and a bow-tie around one focal event.
 
-**G8. Widen** to the remaining focal events, then the remaining views.
+**G8. Widen** to the remaining focal events and questions, then the remaining views.
 
 **Process notes:**
 - Parallel agents each get their own scratch directory; helper-script names have collided before.
-- Translation rows record their justification and the agent that made them (SSSOM's `AgentBasedMatching`, then a reviewer). The repo's workflow is agent-made, human-reviewed, and the records should say so.
+- Translation rows record their justification and the agent that made them (SSSOM's `AgentBasedMatching`, then a reviewer). The repo's workflow is agent-made, human-reviewed, and the records should say so, including which rows were reviewed and how they were sampled.
+- Model beta is input for ideation only (section 1.2).
 
 ---
 
@@ -648,9 +729,13 @@ Each item has my recommendation and how confident I am in it.
 4. **"Risk."** *Recommend* a declared umbrella with named readings, following the SRA. *Confidence: high* on the structure, open on the names.
 5. **"Developer."** Dissolve it into functional and institutional roles plus an organization term, and keep "developer" either as a declared umbrella or as a deprecated term. *Recommend* the declared umbrella, which matches the lexicon shape in section 2. *Confidence: moderate.*
 6. **Names for the agent-part umbrella and the oversight relation** (section 3.9). *No recommendation*: these are your model's words.
-7. **STPA.** Adopt STPA's vocabulary for the chain, or keep it as one translated source? *Recommend* keeping it as a source. Bind any terms we do take to the STPA Handbook itself, not to the AI papers' glossaries: the research found Barrett's and Mylius's paraphrases drift ("will" lead to a loss becomes "can"; Mylius drops a scenario type). Use bow-tie's structure for the chain. *Confidence: moderate.*
+7. **STPA.** Adopt STPA's vocabulary for the chain, or keep it as one translated source? *Recommend* keeping it as a source. Bind any terms we do take to the STPA Handbook itself, not to the AI papers' glossaries: the research found Barrett's and Mylius's paraphrases drift ("will" lead to a loss becomes "can"; Mylius drops a scenario type). Whether bow-tie, STPA's control structure or something else frames the analysis is left to the competency questions. *Confidence: moderate.*
 8. **Contest standings.** Record them as attributed assertions or computed views, never as our fields. *Recommend* yes. *Confidence: high.*
-9. **Format for the evidence plane.** udon now, or YAML until a parser exists. This is unchanged from CLAUDE.md, and still yours.
+9. **Format for the evidence plane.** udon now, or YAML until a parser exists. This is unchanged from CLAUDE.md, and still yours. G1(e) has to settle the record formats either way.
+10. **The misalignment referent.** A default referent, none (every alignment claim names its referent from the actor set, or records it as ambiguous), or something else. *Recommendation deferred* to the alignment-referents spike.
+11. **The impact radius** (from `CLAUDE.md`'s open decisions): target (a group of people, or a system or shared good) × degree × recoverability. *Recommend* adopting the three dimensions, with the receiver-side terms in section 3.8 (exposure, vulnerability, capacity) under "target" and the NRR's banded scales as one source vocabulary for "degree". *Confidence: moderate*; "degree" is the least worked-out of the three.
+12. **The competency questions** (section 3.11). Yours to write or approve; *recommend* five to ten to start.
+13. **Translated editions** (G6): whether to produce them, and the in-place marking format. *Recommend* yes, starting with the pilots, using a marking that can't be mistaken for an ordinary link. *Confidence: moderate.*
 
 ---
 
@@ -659,8 +744,9 @@ Each item has my recommendation and how confident I am in it.
 - **The established vocabularies may be heavier than the work needs.** IG 2.0, LegalRuleML, SACM and the rest were built for their own fields. The proposal is to take their *distinctions and names*, not their full machinery. If a lexicon entry starts importing machinery without a corpus case that needs it, that is the failure.
 - **Same-model coherence.** The three research reports and this document are all Claude (Opus 5.5) work from one session's framing, so their agreement with each other is coherence, not independent confirmation. What cuts that is the primaries the reports quote (most marked as read at the source), and Joseph's review. The de novo review (`influx/reviews/gamma-de-novo-review.md`) cuts this session's framing but not same-model coherence; a reviewer or translator from a different model family would.
 - **Lexicon first can still harden too early.** The guard is G4: the pilot translations are expected to change the lexicon, and the plan sequences them before any wide translation.
+- **First-pass entries can look finished.** Fluently drafted definitions read as settled and get inherited as if they were (model beta's term files are the example). The guards are the refinement passes (section 2), the *supported* status for entries that haven't had them, and the coding disagreement data from G4.
 - **Over-weighting the strict sources.** The round-trip test favours statutes and rigorous company documents. The loose sources (most of the research literature, IASR in places) test something else: whether declared ambiguity stays honest rather than becoming a dumping ground. The MIT "Other" test is the guard there.
-- **Conflict of interest.** Anthropic's August Risk Report is one of the three pilots and the main example of a rigorous source vocabulary in this document. That is a judgment about its definitions, made by an Anthropic model. A non-Anthropic pilot of similar rigor (OpenAI's Preparedness Framework, or the EU Code) could replace it if that weighs more.
+- **Conflict of interest.** Anthropic's August Risk Report is one of the four pilots and the main example of a source with its own defined vocabulary in this document. That is a judgment about its definitions, made by an Anthropic model. The EU Code is now a pilot alongside it, and two-translator coding (G4) from different model families is the structural check.
 
 ---
 
@@ -695,6 +781,7 @@ Found during this work. All are small; they are listed here so they are not lost
 - California SB 53;
 - model beta's `def-risk.ud`, `def-loss-of-control.ud`, `def-actors.ud`, `def-agent-roles.ud` and `def-agent-surfaces.ud`;
 - the three research reports in `influx/gamma-research/`;
+- the de novo review, `influx/reviews/gamma-de-novo-review.md`, whose findings this revision folds in;
 - the conversation side of the 2026-09-28 session in which this repository was created.
 
 **Read as passages** (via `bin/extract-text`, line ranges in the files):
