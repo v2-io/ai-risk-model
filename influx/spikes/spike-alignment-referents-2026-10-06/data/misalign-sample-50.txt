@@ -1,0 +1,100 @@
+1. anthropic-2026-rsp-v3-4 L434: ​for which we have publicly analyzed risks related to chemical/biological weapons production, high-stakes​ ​misalignment, or automated R&D (e.g., in a prior Risk Report, System Card, or other public artifact).​ 
+
+2. bengio-2026-international L5091:  Box 2.5: How can misalignment arise? As discussed in §1.1. What is general-purpose AI?, training processes are complex and
+
+3. anthropic-2025-fcf-announcement L77: including chemical, biological, radiological, and nuclear harms, as well as harms from misaligned model autonomy. Publishing system cards at deployment: Documentation summarizing testing,
+
+4. openai-2026-hugging-face-incident L876: More generally, we are building toward monitoring systems with tiered responses for misalignment, with the end goal of having fully autonomous shutdown procedures for severe issues.
+
+5. ecosystem-2026-2026 L4791: New Security Boundaries]. 腾讯新闻. https://news.qq.com/rain/a/20250411A082ME00 121. [UK AISI-B] Souly, A., Kirk, R., Merizian, J., D’Cruz, A., & Davies, X. (2025, November 26). Investigating models for misalignment. UK AI Secu- rity Institute. https://www.aisi.gov.uk/blog/investigating-models-for-misalignment
+
+6. sharma-2026-whos L364: reflect those distortions rather than their authentic values. misaligned actions or value judgments have occurred. For Over time, they might become less likely to inhabit cir-
+
+7. gruetzemacher-2026-loss L1031: President. 42.​ Whittlestone, J. and Hobbs, H., 2026. Misalignment, incorrigibility, and empowerment: a framework for loss of control risks. Governing Transformative AI https://governingtransformativeai.substack.com/p/misalignment-incorrigibility-and
+
+8. brundage-2026-frontier L767:  Auditing also mitigates a distinct institutional failure of self-assessment: potential misalignment between deployment incentives and judgments about sufficient safety precautions. Frontier AI developers are
+
+9. openai-2026-hugging-face-incident-report L1414: incident responses, including relevant security and safety personnel and other response functions. 4. Clarify decision rights for misalignment incidents. This includes consequential decisions such as pausing or terminating affected activity, isolating systems, imposing containment measures,
+
+10. gdm-2025-fsf-v3-0 L64: Misalignment can pose a number of risks. In the context of the Framework, we address specific scenarios where general-purpose AI agents are potentially misaligned and can become difficult to control, thereby posing a risk of severe harm.
+
+11. mitre-2025-agi L368: institute rolling blackouts to increase the cost-effectiveness of energy distribution networks. OpenAI elevated its scoring of misalignment risks in its latest AI, o1, because it “sometimes instrumentally faked alignment during testing” by knowingly providing incorrect information to
+
+12. bengio-2025-international L11262:  Misalignment: An AI’s propensity to use its capabilities in ways that conflict with human intentions or values. Depending on the context, this can variously refer to the intentions and values of
+
+13. google-2026-ai-responsibility-update L207: against critical infrastructure, to AI systems user — performing tasks such as researching, becoming misaligned and deceiving human users. planning, and using tools. The research also considers various mitigations,
+
+14. fli-2025-ai-safety-index-winter L3693: Industry leaders and the recent International Scientific Report on the Safety of Advanced AI • Companies should be able to demonstrate that they would be able to detect misaligned have identified potentially catastrophic risks from advanced AI systems. Several assessed systems and reliably prevent them from escaping human control, and have formulated companies predict AGI development within 2-5 years, creating urgenc
+
+15. dsit-2023-emerging-processes L1412: cause harm, which have not already been addressed ● Controllability issues (i.e. “misalignment”): when models apply their capabilities in ways that substantially diverge from what users intend or desire
+
+16. shah-2025-approach L24: and implementing robust security, access restrictions, monitoring, and model safety mitigations. To address misalignment, we outline two lines of defense. First, model-level mitigations such as amplified oversight and robust training can help to build an aligned model. Second, system-level security measures
+
+17. oecd-2024-future-ai-risks L1755: that they do not believe existing risk management activities and policy efforts adequately consider the potential risk of humans losing control over hypothetical future misaligned artificial general intelligence (AGI) systems (Bengio, 2024[257]; Cass-Beggs, 2024[293]; Faggella, 2024[294]; Taylor, 2023[295]),4 which they
+
+18. tkeshelashvili-2026-loc-iw L573: creators never intended and cannot easily detect through standard interpretability methods.45 Finally, researchers are also concerned that misaligned goals in AI models can persist in novel deployment contexts and resist correction attempts. Training methods can embed deceptive
+
+19. stix-2025-loss L1531: if we could, in fact, end up in a ‘safe world’ scenario, it is unlikely that we would be able to reliably prove this ahead of time. While we may be able to assure that misalignment will not occur, one would be required to make an affirmative case that pure malfunction is also impossible. This affirmative case appears
+
+20. kierans-2025-catastrophic L184: Healthcare illustrates the challenges of attributing liability pare in this case study are nuclear reactor meltdowns and when AI systems are integrated into human decision-making misaligned AI takeover. We recognize that relative to nu- processes. Cybersecurity highlights adversarial risk, anchor- clear energy, the sources and likelihood of such catastrophic
+
+21. ren-2024-safetywashing L1260: even when the underlying advances are predom- log10(FLOP) inantly in capabilities. This misalignment of incentives can lead to a proliferation of research Figure 15: Capabilities score is highly correlated
+
+22. bengio-2026-iasr-md L1317:  ##### AI systems could be misaligned 
+
+23. aisi-2026-control-red-team L151: How can we simulate a realistic AI attacker? One of the most challenging aspects of control red teaming is deciding what a simulated misaligned agent should be able to do, and then judging the plausibility of attacks we find. Our automated red
+
+24. gdm-2026-fsf-v3-1 L664:  3.2 ML R&D and Misalignment Capability Levels We take a tiered approach to addressing ML R&D and misalignment risks:
+
+25. chin-2026-reframing L351: absence of the AI “gaining control”. And AI can create instances of goal misalignment for humans. This happens with AI systems having misaligned goals with the entities deploying them, from unwanted discrimination (cases of AI wrongly flagging benefits applicants in the Netherlands for fraud), to actions misaligned with other specified goals (Air
+
+26. openai-2026-misalignment-reporting-framework L459: https://openai.com/index/model-misalignment-reporting-framework/ 11/12 9/27/26, 4:32 PM Our framework for reporting model misalignment | OpenAI 
+
+27. gdm-2026-strengthening-fsf-blog L56: In addition to the misuse risks arising from these capabilities, there are also misalignment risks stemming from a model’s potential for undirected action at these capability levels, and the likely integration of such models into AI development and
+
+28. shanghaiailab-2025-frontier L2123: and values of developers, operators, users, specific communities, or society at large. ●​ Deceptive alignment: A difficult-to-detect form of misalignment in which the system behaves benignly—at least initially—while concealing harmful intentions.
+
+29. brassgershovich-2026-algorithmic L1713: AI safety Statements or perspectives that reflect the viewpoint, priorities, or judgments of individuals focused on minimizing, identifying, or preventing harm arising from AI systems, such as misalignment or unsafe behaviors
+
+30. anthropic-2026-risk-report-aug L54: likely to be mitigated​ 62 2.12 Claim 6: Catastrophic harm from unknown pervasive misalignment is somewhat likely to be 
+
+31. dsit-2025-ai-cyber-cop-guide L552: reputable sources and use automated tools to detect bias, personal data, and copyright issues. 2.5 Data Custodians Misalignment Ensure Data Custodian Assurance: Require Data Custodians to review system's intended • ICO: UK GDPR shall ensure that the between the intended usage and the data security controls to ensure compliance and balancing these risks with Guidance and Resources
+
+32. vaintrob-2023-beware-safety-washing L288: 4. A researcher looked into AI risk, and is convinced that AI could be highly dangerous if misused, and that "misalignment" is a serious problem that could lead to some very bad outcomes, from increased sexism to significant amount of deaths from say misaligned weapon
+
+33. aisi-2026-loss-oversight L1309: point, our ability to detect misalignment may not improve suﬃciently quickly to keep up, and it may grow increasingly plausible that new models are egregiously misaligned. However we have substantial uncertainty over the pace and extent of this gap between trusted and untrusted
+
+34. bengio-2025-international L13493: http://arxiv.org/abs/2310.19852. 607 A. Pan, K. Bhatia, J. Steinhardt, “The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models” in The 10th International Conference on Learning Representations (ICLR 2022) (Virtual, 2021);
+
+35. openai-2026-frontier-governance-framework-announcement L78: at the United Nations for effective third party reporting model Security Council assessments misalignment 
+
+36. fli-2026-ai-safety-index-summer L4582: percentile of skilled adults. The paper identifies four areas of risk: misuse, misalignment, mistakes, and structural risks and chooses to focus on technical approaches to misuse and misalignment. Specifically, the strategy for misalignment is “two lines of defense,” including model-level mitigations + system-level security measures.
+
+37. gdm-2026-fsf-v3-1 L151: risks. Such capabilities may serve as a substantial cross-cutting risk factor for several pathways (e.g. through misalignment, misuse or structural risks) to severe harm. 
+
+38. tkeshelashvili-2026-loc-iw L1067: misgeneralization, well before any explicit failure occurs. This pattern demonstrates hidden misalignment. Systems appear aligned during training and testing, but the actual pursued goals differ from the intended objectives. Failure only manifests
+
+39. anthropic-2026-frontier-safety-roadmap L243: findings from our interpretability research, and will validate the effectiveness of our methods using testing exercises with intentionally misaligned models. We will publish our findings in our system cards or Risk Reports.
+
+40. kulveit-2025-gradual L833: The gradual disempowerment scenario described in this paper presents distinct challenges from more commonly discussed AI risk scenarios. Rather than addressing the risk of misaligned AI systems breaking free from human control, we must consider how to maintain human relevance and influence in societal systems that may continue
+
+41. meta-2026-advanced-ai-scaling-framework L853: access limitations it faces, and potential misalignment between its goal and that of its evaluators.
+
+42. karnofsky-2026-rsp-v3 L787:  Then there’s the question of how to make risk very low from misaligned power-seeking from potentially superintelligent AI systems:
+
+43. fli-2025-ai-safety-index-summer L5023: oversight, dangerous capability evaluations, model organisms of misalignment, mechanistic safety classifiers mechanistic interpretability, AI control,
+
+44. openai-2025-preparedness-framework-v2 L893: restricted permissions. These misalignment claims may be further complemented by the safeguards applied towards the malicious-actor-oriented “Robustness” and “Usage Monitoring” claims, which similarly limit a mis-
+
+45. perset-2025-how-managing-risks L637: based on red teaming, adversarial testing, and evolving threats. Google DeepMind has published research on AGI safety outlining a systematic approach across areas such as misuse, misalignment, accidents, and structural risks.
+
+46. fli-2025-ai-safety-index-winter L1212: qualitative thresholds, and mitigation measures. In particular, Google DeepMind’s framework is commended by the reviewer for expanding its framework to include harmful manipulation and misalignment risks and introducing early-warning evaluations to maintain a safety buffer. On the other hand, Meta’s framework is
+
+47. vassilev-2025-adversarial L345: * Targeted Poisoning (ID: NISTAML.024) * Misaligned Outputs (ID: NISTAML.027) – Privacy Compromises (ID: NISTAML.03)
+
+48. chin-2026-reframing L1705: consume all of their grain stores out of hunger, thus satisfying their short-term goal of having sufficient food now, but compromising their long-term goal of being able to farm and eat each season. This is a temporal misalignment of goals, which, according to Beer’s Viable System Model, can also be understood as a tension between the “inside and
+
+49. gdm-2024-fsf-v1-0 L311: Future work will aim to include additional pressing risks, with possible examples including: ○ Misaligned AI: protection against the risk of systems acting adversarially against humans may require additional Framework components, including new evaluations and control
+
+50. dsit-2025-ai-cyber-cop-guide L1907: 1. Chatbot App: Regularly analyse session logs to identify trends in user escalations or repeated failed responses, which could indicate prompt misalignment. 2. ML Fraud Detection: Use of regular log analysis help detect poisoning patterns or
+
