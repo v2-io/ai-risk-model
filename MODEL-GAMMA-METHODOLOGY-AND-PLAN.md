@@ -610,7 +610,7 @@ Views are computed from the records, never hand-maintained. Which views earn a p
 - For loss of control, which preventive controls do sources name, and which of them are duties with no holder of the correlative claim?
 - Which actors write into which agent part, and which sources' role words resolve to each?
 
-**Proposed:** Joseph writes or approves a short list early, in G1. A piece of machinery earns its place in the lexicon or the record formats when some competency question needs it; that is the check against importing more than the work needs (section 6).
+**Proposed:** Joseph writes or approves a short list early, in G1. A first draft of eleven candidates, each tied to an axis of the aim and to the machinery it would exercise, is in `influx/competency-questions-draft.md`. A piece of machinery earns its place in the lexicon or the record formats when some competency question needs it; that is the check against importing more than the work needs (section 6).
 
 **Lexicon acceptance tests**, which sit under the questions and say when the lexicon is ready to translate at scale:
 1. **Round trip.** Each of these definitions can be re-expressed clause by clause in our terms:
