@@ -513,6 +513,16 @@ This is Joseph's decision (section 5).
 - **Recoverability as its own axis**, which is where the loss-of-control definitions split.
 - **Tolerability vocabulary**: ALARP and "gross disproportion" (HSE).
 
+**Documented instances are the only empirical channel for priors.** Scenarios, threat models, arguments and expert elicitation give priors from reasoning. Frequencies come only from documented instances. So the instance record (G1(e)) has to carry what turning instances into base rates honestly requires:
+- **a denominator**: the population the instances came from. AISI's incident report counts "19 events" across 10 of 122 runs; most retellings give no denominator, and a count without one is not a rate;
+- **the reporting channel and its selection effects**: mandated reports (SB 53's critical safety incidents, the EU's serious incidents), voluntary disclosures, press accounts and automated detection (CLTR's rubric-scored reports) each select different instances. SB 53 publishes only anonymized annual aggregates, so the corpus will hold counts without cases;
+- **status**: allegation, company disclosure, regulator finding, or our reading;
+- **merging**: which reports count as one instance, recorded as someone's judgment, since a mis-merge changes the count;
+- **the reference class**: which kind of event (section 3.3's types) an instance counts as an occurrence of. Choosing the class is a modelling decision that moves the prior, so it is recorded with its author;
+- **near misses and precursors**, which carry most of the frequency information for rare events.
+
+Kaplan & Garrick's "probability of frequency" and the SRA's knowledge component are where such base rates enter a risk description.
+
 **A precedent worth checking.** The HSE's *Reducing Risks, Protecting People* (2001) proposes treating as intolerable a risk "of an accident killing 50 people or more in a single event" at more than one in five thousand per year. SB 53's bar is "more than 50 people … arising from a single incident". Whether SB 53 drew on it is unchecked; it is a lead, not a lineage claim.
 
 ### 3.9 Actors and agent parts (the first domain group)
