@@ -58,7 +58,7 @@ Stage in that chain is read as a role relative to a focal event, not as a fixed 
 ## Open decisions (Joseph's)
 
 - "Developer": dissolve into roles conferred by instruments (model trainer, inference provider, harness provider, …) plus an organisation term. This is the direction under discussion, not decided.
-- Hazard vs threat: Joseph leans toward the National Risk Register's sense (hazard is the non-malicious counterpart of threat). Leaning, not decided.
+- Hazard vs threat: open. On first seeing the National Risk Register's sense (hazard as the non-malicious counterpart of threat), Joseph said *"Oh, I really like the hazard distinction from threat definition (not having seen the others)"* (2026-09-28); that is a first reaction, not a leaning. See `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` §3.8 for the other senses.
 - Misalignment: a default referent, chosen after the claims show what they are about.
 - The impact radius as target (a group of people, or a system or shared good) × degree × recoverability.
 - Whether STPA's vocabulary is adopted for the chain or kept as one mapped source among several.
