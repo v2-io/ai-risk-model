@@ -22,6 +22,8 @@
 7. **The source catalog.** Two developer documents carry the working conflict rule that the risk literature's "alignment" relies on: Anthropic's constitution and OpenAI's Model Spec. Neither is in the corpus. Adding both (with the conflict-of-interest note) would let the operator-against-users risk and the injection filings be cited from the corpus.
 8. **The ETSI / DSIT "affected entities" wording** ("not directly affected"), set against NIST's "directly or indirectly affected". Worth a lineage record and a check at the PDF. It is my inference that the ETSI text derives from NIST's.
 
+9. **The actor term group** can draw on the role-vocabulary report's parties × relations table (§6 there) and collision list (§7 there). Those are its strongest contributions to G2.
+
 ## What needs the verifier's eyes first (load-bearing)
 
 - `03-structure.md` §2 (the list-degeneracy argument) and §4 (the no-go table, row by row: does each cited risk really come out *aligned* under that default?).
@@ -39,7 +41,7 @@ Interpretive language that is mine, not the sources'. Please don't carry it into
 - **"aspect"**: my label; the literature report says "content", Leike says "preference payload", Askell says "outcome ordering".
 - **"invariant over S" / "sensitive"**: my outcome names. The established frame is supervaluation, but the outcome names are mine.
 - **"admissibility"**: my word for the legitimacy condition. The constitution's own word is "legitimate".
-- **"the six relations"** in `04-actors.md` §1: my decomposition. Each has evidence; the set is mine.
+- **"the six relations"** in `04-actors.md` §1 (seven, with *benefits*): my decomposition. Each has evidence; the set is mine.
 - **"one functional layer and several institutional layers, connected by conferral"**: my reading of the role bases.
 - **The six-row no-go table** (§4): my construction. Its cells cite sources, but none of the sources says "this default hides that risk".
 - **Characterizations of sources as "careful", "rigorous" or "loose"**: avoid these. I tried not to write any.

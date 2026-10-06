@@ -28,6 +28,10 @@
    - **norm authors / the state**;
    - possibly **model hosts** (open-weight platforms), which were the harmed third party in the OpenAI–Hugging Face incident.
 
+5a. **Two more candidates from the role-vocabulary report:**
+   - **The counterparty**: the party the agent negotiates or transacts with for a principal. It is likely where "Agents embedded in applications" belongs, since that row is another principal's agent.
+   - **Writers of authority**: identity providers, credential providers, verifiers. AP2's non-agentic "Trusted Surface" carries the user's consent past the agent's context. That is a deployed instance of "authority travels out of band", and possibly the best concrete example the floor could cite.
+
 6. **The floor has one adversarial case worth stating.** "Generated is marked generated" conflicts with honeypot evaluation, which only works if the agent can't tell. AISI reports that evaluation awareness is already eroding honeypots. The floor might hold at the level of the regime (the agent is told that some contexts are evaluations) rather than per instance. That is a hypothesis, recorded in `03-structure.md` §6.3.
 
 7. **Where the map is ahead of its sources, keep it marked as the map's own:**

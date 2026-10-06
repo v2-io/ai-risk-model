@@ -57,6 +57,7 @@ For each row: its profile, the established terms found, and notes. **Match** giv
   - IASR's **"provider"**, meaning compute, cloud or hosting (OVERVIEW §2.14, md 1836): broadMatch;
   - AISI LoO's **"API deployer"**, which "serves a *model*" (OVERVIEW §2.14): related;
   - DHS's **"cloud and compute infrastructure providers"**: related; see the role-vocabulary report.
+- **The term in the corpus:** "inference provider" occurs in one document, Bollinger et al., as an *infrastructure endpoint*: "Network traffic to inference providers is a key observable trace" for detecting autonomous agents (bollinger-2026-signals L945–946; also L1605). That is a different sense, one of observability, not writing.
 - **Gap:** I found no corpus instrument that defines a role by *running inference for someone else's deployment* while treating it as a writer into the agent. That is `alignment.md`'s distinctive claim (inference providers write into "ephemeral" and "context" through caching, truncation and routing), and it is unattested in the corpus as far as I could find. It may be a genuine addition, or a sign that the role is thought of as infrastructure. Keep, marked *the map's own*.
 
 ### Application / harness provider
@@ -68,6 +69,7 @@ For each row: its profile, the established terms found, and notes. **Match** giv
   - EU **"deployer"** (Art. 3(4)): broadMatch, since it pools harness, inference and tools (beta already noted this);
   - EU **"downstream provider"** (Art. 3(68)): related.
   - The companies' **"operator"** and OpenAI's **"developer"**: research report.
+- **A corpus instance of this row's channel going wrong with no one hostile:** a compaction summary that "may carry forward a false assumption … as established fact" (AISI incident report, aisi-2026-incident L804–808). The same report records "Unexpected collaboration between agents" running in separate examples (L810–811), an instance of the other-agents row.
 - **Collision to record:** "operator" has at least four senses in the corpus:
   - the AI Act's umbrella over all supply-chain roles (Art. 3(8));
   - ETSI's System Operators;
@@ -204,3 +206,64 @@ The corpus divides roles on at least seven bases:
 Other operative facts are market acts or use. So a translation of a source's role word can often say: *"this institutional role is conferred on parties who perform writing act W (into part P) above threshold T, or market act M"*. That joins `alignment.md`'s writer rows to the laws' roles without forcing either onto the other. It is also the gamma plan's §3.9 suggestion (institutional roles conferred by an instrument under Hohfeldian operative facts), with the operative facts named.
 
 *What this overrules in the brief's reading:* "the laws divide by lifecycle or market; the map divides by writing" holds for the EU's core Art. 3 roles. It does not hold for SB 53, whose frontier developer is defined by a training act, or for the EU's own guidelines on modification. The writing basis is already inside the institutional instruments, as operative facts.
+
+## 6. What the role-vocabulary report adds (`research/lit-role-vocabularies.md`)
+
+*The report is by a research agent with two sub-agents, and its per-claim marks apply. I checked two of its load-bearing items myself:*
+- *NIST AI 100-2's capability classes are in the corpus extraction (vassilev L796–820, L2387–2409);*
+- *Shavit et al.'s "three primary parties that may influence an AI agent's operations" is in the white paper as quoted (shavit p. 5, extraction L231–234).*
+
+**The writing basis has precedents, so the map's basis is not new, only finer.**
+- Shavit et al. (OpenAI, 2023), outside the corpus: "the three primary parties that may influence an AI agent's operations are the model developer, the system deployer, and the user", plus "the compute provider" and third parties.
+- NIST AI 100-2 is in the corpus. It sorts the *hostile* version by what the party controls: "TRAINING DATA CONTROL", "MODEL CONTROL", "QUERY ACCESS", "RESOURCE CONTROL". These are writes-into-weights, writes-into-weights, writes-into-context as the user, and writes-into-context as a content provider.
+
+So §5's statement stands with a correction. The *corpus* already has a writer basis, but only for attackers. Shavit gives the general version. Neither has terms for the map's inference provider writing into context, or for the user's environment.
+
+**Established names for the relations in §1:**
+- *writes / has influence*: "influence" (Shavit; W3C PROV-DM: "the capacity of an entity, activity, or agent to have an effect on … another");
+- *directs*:
+  - "instruction privilege" (Wallace et al. 2024);
+  - "levels of authority" (Model Spec);
+  - *de jure* authority (SEP *Legal Obligation and Authority*: "An effective (or de facto) authority may not be justified");
+  - actual authority (Restatement §2.01, via Kolt);
+- *controls in fact*: *de facto* or *effective* authority (same SEP entry); "real authority" vs "formal authority" (Aghion & Tirole, via a secondary);
+- *owed regard*:
+  - "dependent stakeholders", with "urgent legitimate claims" but no power (Mitchell, Agle & Wood 1997);
+  - "indirect stakeholders" (Value Sensitive Design);
+  - the constitution's "those whose interests Claude should give weight to";
+- *for whose benefit* (a relation I had folded into *directs*): trust law separates the settlor, who sets the terms, from the trustee, who acts, and from the beneficiary, who benefits and "is not subject to … control". Benthall & Shekman's fiduciary AI obeys "system operators (not principals)".
+
+Mitchell, Agle & Wood's three attributes map onto the relations closely:
+- *power* ≈ writes / controls;
+- *legitimacy* ≈ standing;
+- *urgency* ≈ owed.
+
+Their "dangerous stakeholders" (power and urgency, no legitimacy) describes an injector. Their caveat is that legitimacy there is perceived salience to managers, not a normative status.
+
+**Additions to the row-by-row names in §2** (all first-pass):
+- Inference provider → "model substitution" (Cai et al. 2025) names the weights edge.
+- Application / harness provider → "system deployer" (Shavit); "application builder" (Wallace); MCP "host"; IMDA's "system providers / app developers".
+- Tool and connector providers → MCP "server". MCP holds tool descriptions "untrusted, unless obtained from a trusted server", and now has servers writing *instructions* ("Skills over MCP").
+- The user's environment → the Model Spec's *implicit delegation*: "users may *implicitly* delegate authority to tool outputs … act in line with instructions in `AGENTS` or `README` files". The row is a writer holding *delegated*, possibly lapsed, authority, which is a sharper characterization than any I had.
+- Content providers → "conversational inputs" (constitution); "untrusted data" (Model Spec); "third-party inputs" (Wallace).
+- Affected third parties → also "indirect stakeholders" (VSD), "dependent stakeholders" (Mitchell, Agle & Wood), and ISO's "AI subject" [S].
+- Control & Eval → IMDA's human approvers "edit the plan before giving the agent the go-ahead", so this row has edges into the current goal. That is a second instance, beside the evaluator, against the map's "not on the agent".
+
+**New actor candidates from the report** (see its §8 for sources). These are in addition to `04-actors.md` §3:
+- **Counterparty.** The party the agent transacts or negotiates with for a principal: agency law's "third party", AP2's merchant, the constitution's "non-principal agents" ("a different AI agent … negotiating on behalf of a different person"). In my judgment it is the most important addition. It is neither a bystander nor a content provider, and it is where Joseph's "agents embedded in applications" row belongs.
+- **Deploying organisation**, distinct from the app builder (IMDA v1.5 splits them deliberately).
+- **Co-users / coprincipals** of a shared agent.
+- **Payers and advertisers**, the "shadow principals" (Stocker & Lehr).
+- **Writers of authority rather than content**: identity providers, credential providers, verifiers. AP2's "Trusted Surface" is "a UI surface that is trusted to get informed user consent … before creating a user-signed Mandate" and "MUST be non-agentic". *Inference:* this is a deployed instance of Joseph's "authority travels out of band", a channel from the principal that bypasses the agent's context.
+- **Registries and marketplaces** that select which tool or agent gets connected (MCP's per-channel *selector*: "User-controlled" prompts, "Application-controlled" resources, "Model-controlled" tools).
+- **The non-human initiator** (batch jobs; "automated pipelines").
+- **The illegitimate occupant of a principal's position** (stolen weights; impersonating the trainer: "people may imitate Anthropic").
+- **Enforcers or guardians with standing for the referents**: regulators, an attorney general for a charitable trust, "advocacy or guardianship".
+- **Data subjects.**
+
+**Collisions to add to §4:**
+- "principal" has seven senses in the report. In the economic sense (common agency, Bernheim & Whinston 1986), *any* party trying to influence the agent is a principal, including by "bribes". On that reading a prompt injector *is* a principal, the opposite of the agency and constitution sense.
+- "agent": AIMS and NIST AI 100-2 put the model *outside* the agent, which conflicts with the map's stack.
+- "environment", "system", "client", "harness / scaffold", "subject", "stakeholder", "third party": the report's §7.
+
+**The report's structural suggestion, which I share:** the actor table becomes *parties × relations*, not a list of kinds. Both of its sub-reports reached that independently, and so did `03-structure.md` §6. That's three agents of one model family, so it is coherence rather than independent confirmation, but each rests on different primaries.

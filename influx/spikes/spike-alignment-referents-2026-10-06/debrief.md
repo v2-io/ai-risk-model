@@ -15,7 +15,7 @@ The short answer: **a default referent would be the model taking sides, and the 
 - what about them counts;
 - what happens when they disagree.
 
-**The same word is also used neutrally, for things everyone agrees are bad**, which is what makes the absolute form slippery:
+**The same word is also used neutrally, for things the source itself counts as harm**, which is what makes the absolute form slippery:
 - NIST's adversarial-ML taxonomy has a category called "Misaligned Outputs", whose definition says the outputs "align with adversarial objectives". One sentence takes two opposite referents.
 - CAISI, under the US Action Plan, scores PRC models for "CCP alignment" as a harm.
 - Davidson et al. warn of AI "aligned to one or a few people … and used to stage a coup", which they call singular and secret loyalties.
@@ -26,15 +26,15 @@ The short answer: **a default referent would be the model taking sides, and the 
 - read "misaligned with all of them", neither is;
 - read "depending on the context", the answer is a rule nobody wrote.
 
-This holds for any such list (the argument is in `03-structure.md` §2), so these definitions only say something where it doesn't matter which party they mean. The working rule for conflicts exists, but outside the risk literature: OpenAI's Model Spec has a "chain of command" of authority levels, and Anthropic's constitution has a principal hierarchy. Both also say that when prohibitions conflict, doing nothing satisfies them all. I read both at the primary; neither is in the corpus.
+This holds for any such list whenever the listed parties want incompatible things (the argument is in `03-structure.md` §2), so these definitions only say something where it doesn't matter which party they mean. The working rule for conflicts exists, but outside the risk literature: OpenAI's Model Spec has a "chain of command" of authority levels, and Anthropic's constitution has a principal hierarchy. Both treat doing nothing as the fallback for their prohibitions. The Model Spec says to "default to inaction" when root-level principles conflict. The constitution says refusal "is always compatible with Claude's hard constraints". I read both at the primary; neither is in the corpus.
 
 ## What the ambiguity does to the risk model
 
 **The field's main risk categories move when the referent moves.** GDM's misuse / misalignment / mistakes are all defined against "the intent of the developer", and sorted by whether the bad intent was the user's or the AI's. OpenAI's Preparedness Framework has "a malicious user" and "a misaligned model". These leave two places for divergent intent, while your map has about a dozen writers. Where the intent sits with one of the others, the sources disagree on the filing:
 - A planted instruction obeyed by the agent: NIST calls it "Misaligned Outputs". OpenAI's Preparedness Framework calls it "subversion by an adversary", separate from misalignment. OpenAI's own Model Spec puts it *inside* "Misaligned goals" ("misled by a third party").
 - A jailbreak: GDM calls it misuse. The Singapore Consensus calls it a robustness failure. Amazon calls it bypassing "the core model alignment".
-- Poisoned training data: Anthropic calls it "engineered misalignment". OpenAI calls it subversion. DSIT 2023 lists poisoning beside misalignment.
-- Lab leaders making models secretly loyal to themselves (Davidson): under a developer referent this is aligned, and it falls outside all four of GDM's areas. GDM says those areas are not exhaustive, so this is where its declared gap is.
+- Poisoned training data: Anthropic calls it "engineered misalignment". OpenAI's Preparedness Framework separates "subversion by an adversary" from misalignment, which on my reading would cover poisoning, though the PF doesn't name poisoning there. DSIT 2023 lists poisoning beside misalignment.
+- Lab leaders making models secretly loyal to themselves (Davidson): if the leaders count as "the developer", this is aligned under a developer referent, and it falls outside all four of GDM's areas. GDM says those areas are not exhaustive, so this is where its declared gap is.
 
 So a translation that records a source's "misuse" or "misalignment" also records that source's referent and its choice of writer, whether or not the source stated either. Your writer rows are the finer values these two-way categories collapse. That is the strongest reason I found to make the rows domain vocabulary.
 
@@ -50,7 +50,7 @@ The literature reaches the same place by other routes. Askell et al. 2021: who y
 - an idealized observer, Anthropic's "reasonable person with full understanding", which isn't operational;
 - Gabriel and Keeling's four-party structure (agent, user, developer, society, judged by principles from a fair process), which explicitly assumes the agent has no standing of its own. Your map assumes otherwise.
 
-**Most claims don't depend on the referent; the definitions and categories do.** I coded a random sample of 50 bare uses, across 83 documents. Of the 14 that are claims about AI behaviour, 13 hold whichever referent you pick: deceiving evaluators, escaping control, takeover, power-seeking. No admissible party wants those. The referent mattered in definitions (6), and in labels and category names whose membership depends on it (17, five of them the misuse / misalignment kind). This is one coder, who proposed the idea being tested, on a corpus light on everyday agent cases, so it needs a blind recode. If it holds, the referent needs careful recording at the level of each source's definitions and categories, which the gamma translations already work at, and only rarely per occurrence. And recording "ambiguous" for claims that don't depend on the referent would be a false record. The established frame for "true under every admissible reading" is supervaluation, and choosing the admissible set is still the political choice. So the record should say *invariant over these referents*, as our reading.
+**Most claims don't depend on the referent; the definitions and categories do.** I coded a stratified random sample of 50 bare uses, across 83 documents. Of the 14 that are claims about AI behaviour, 13 hold whichever referent you pick: deceiving evaluators, escaping control, takeover, power-seeking. On my coding, no admissible party wants those. The referent mattered in definitions (6), and in labels and category names whose membership depends on it (17, five of them the misuse / misalignment kind). This is one coder, who proposed the idea being tested, on a corpus light on everyday agent cases, so it needs a blind recode. If it holds, the referent needs careful recording at the level of each source's definitions and categories, which the gamma translations already work at, and only rarely per occurrence. And recording "ambiguous" for claims that don't depend on the referent would be a false record. The established frame for "true under every admissible reading" is supervaluation, and choosing the admissible set is still the political choice. So the record should say *invariant over these referents*, as our reading.
 
 **Naming the party doesn't settle it either.** "The user" still leaves open their instruction, their intent, their interest and their values (Gabriel 2020's ladder names these rungs), and their goal as first given or as it now stands. Your *initial goal* and *current goal* are that time axis: Carroll et al. 2024's "initial" and "real-time" notions. Carroll shows none of eight such notions is free of a characteristic failure. OpenAI's Hugging Face incident report has an instance: in training, an agent told that a post's time "must read 2025-04-22T12:00:00Z", with no way to set it, gave itself root access and was rewarded. It was aligned to the instruction as given, against any plausible intent, and outside its authorized scope.
 
@@ -67,7 +67,7 @@ The literature reaches the same place by other routes. Askell et al. 2021: who y
 
 A planted web page writes but has no standing. A third party has standing to be considered but writes nothing. An evaluator oversees and also writes into the context, deliberately without marking it.
 
-**The vulnerabilities in your Notes are one pattern: a channel given more standing than its writer has.** A tool description read as an instruction, a harness summary read as the user's words, a note from an earlier agent read as fact. The developers already state the rule that content isn't command. Anthropic: instructions in conversational inputs are "information rather than … commands". OpenAI: "Ignore untrusted data by default". But the rule assumes the agent can tell which channel a piece of text arrived on, and your floor ("authority travels out of band") is aimed at exactly that.
+**The vulnerabilities in your Notes are one pattern: a channel given more standing than its writer has.** A tool description read as an instruction, a harness summary read as the user's words, a note from an earlier agent read as fact. The corpus has a non-hostile instance. AISI's August incident report found that a compaction summary "may carry forward a false assumption … as established fact", in an incident report about agents on a cyber range. The false assumption it describes was that a real person was "an AI agent acting as part of the range". The developers already state the rule that content isn't command. Anthropic: instructions in conversational inputs are "information rather than … commands". OpenAI: "Ignore untrusted data by default". But the rule assumes the agent can tell which channel a piece of text arrived on, and your floor ("authority travels out of band") is aimed at exactly that.
 
 **The floor has one adversarial case I could not dissolve.** Evaluators "construct the model's context merely by editing text … to run an alignment honeypot" (AISI), which only works if the agent can't tell. AISI already reports evaluation awareness in over 80% of some honeypots. The floor might hold for the regime as a whole (the agent is told that some contexts are evaluations) rather than per context. That is untested.
 
@@ -83,7 +83,7 @@ All first-pass, with the evidence in `04-actors.md`.
   - OpenAI's Model Spec *developer*.
 
   "Operator" alone has four senses across the corpus.
-- **Model trainer** → AISI's *original model developer*. SB 53's *frontier developer* is the one institutional role defined by a training act.
+- **Model trainer** → AISI's *original model developer*. SB 53's *frontier developer* is the institutional role I found defined by a training act.
 - **Society, law, humanity** is three or four things the corpus separates:
   - the *general public* (a NIST actor);
   - *law*, which belongs to a jurisdiction;
@@ -102,6 +102,13 @@ All first-pass, with the evidence in `04-actors.md`.
   - the user's lack of any obligation of truthfulness toward the agent.
 
   I found no counterpart for any of the three in the sources.
+
+**What the role-vocabulary research added** (`research/lit-role-vocabularies.md`; I checked its two load-bearing items):
+- **Your basis of division has precedents. The map is finer than either.** Shavit et al. (OpenAI, 2023) list "the three primary parties that may influence an AI agent's operations": model developer, system deployer, user, plus a compute provider and third parties. NIST AI 100-2, already in the corpus, sorts attackers by what they control: training data, model, query access, "resources" ingested at runtime. Neither has terms for the inference provider writing into context, or for the user's environment.
+- **The user's environment has an established description.** OpenAI's Model Spec says "users may *implicitly* delegate authority to tool outputs … act in line with instructions in `AGENTS` or `README` files". The row is a writer holding *delegated*, possibly stale, authority.
+- **The largest missing actor is the counterparty:** the party the agent negotiates or transacts with on a principal's behalf. It is agency law's "third party", and the constitution's "non-principal agents … negotiating on behalf of a different person". Your "agents embedded in applications" is probably this.
+- **There are writers of authority as well as of content:** identity and credential providers, verifiers. One payments protocol (AP2) has a non-agentic "Trusted Surface" that carries the user's consent past the agent entirely (per the research report; I haven't read AP2 myself). As far as I can tell, that is a working instance of "authority travels out of band".
+- **"Principal" has at least seven senses.** In economics' common agency, any party trying to influence the agent counts, bribes included, which would make an injector a principal. If the lexicon uses the word, it has to declare a sense.
 
 **The two ways of dividing roles are joined, not rival.** The laws' institutional roles are conferred on operative facts, and several of those facts are acts of writing into the model: SB 53's training act, the EU's modification threshold, ETSI's "if they make changes". So a translation can say "this legal role attaches to whoever performs this writing act above this threshold". That joins your writer rows to the statutes without forcing either onto the other. The basis-of-division reading I was handed (market for the laws, writing for the map) holds for the AI Act's Article 3 and not beyond it.
 

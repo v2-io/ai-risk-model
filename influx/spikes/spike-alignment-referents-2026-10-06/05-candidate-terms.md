@@ -56,3 +56,16 @@ These sit beside the gamma plan's resolution outcomes (§3.4), as reasons with a
   - model trainer → *original model developer* (AISI) / *frontier developer* (SB 53, by training act).
 - **New rows, with evidence:** fine-tuner or downstream modifier; human feedback providers; evaluator (split from overseer); norm author; state or regulator as a writer through mandated training; data custodian; model host or distributor; general public (split out of "society, law, humanity").
 - **Standing mismatch** (my name): a channel given more standing than its writer has. This is the common form of the map's Notes' vulnerabilities. Nearest est. language: the companies' rules ("information rather than … commands"; "Ignore untrusted data by default") [P].
+
+## D. Additions from the role-vocabulary report (first-pass)
+
+- **Relations, with established names:**
+  - *influence* (Shavit; W3C PROV-DM) for **writes**;
+  - *instruction privilege* (Wallace) / *levels of authority* (Model Spec) / *de jure authority* (SEP) for **directs**;
+  - *de facto* / *effective authority* for **controls in fact**;
+  - *dependent* / *indirect stakeholder* (Mitchell, Agle & Wood; VSD) for **owed**;
+  - *beneficiary* (trust law) for a seventh relation, **benefits**, that can come apart from **directs**.
+- **Delegated authority** (Model Spec: "authority may be delegated to these sources"; "users may *implicitly* delegate authority … AGENTS or README files"): the est. name for how the user's environment and tool outputs acquire standing.
+- **Counterparty** (agency law's third party; Chan et al. 2025; AP2's merchant): a new actor candidate, likely the home of the map's "agents embedded in applications".
+- **Confused deputy** (Hardy 1988; OWASP ASI03): the est. security name for a standing mismatch exploited.
+- **"principal"** now has seven recorded senses. The economic one (common agency) makes an injector a principal. A declared sense is required if the word is adopted.
