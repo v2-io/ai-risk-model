@@ -115,7 +115,7 @@ These findings shape the method. Each was established in the source models (`inf
   - broader terms exist as declared umbrellas that *contain* the precise ones, never as replacements for them.
 - **Priority.** *Joseph, 2026-10-06*: "One of the high priorities for me are our agreed-upon definitions for those actors (and agent parts) listed in the alignment-model/ directory."
 - **Refinement is where the value is.** *Joseph, 2026-10-06*, on the address-theory entries, the one lexicon in his work that became genuinely useful: they took "multiple truthification passes until almost every line had been severely scrutinized for coherence and completeness … the value really only settles in during the last 5-10% of the refinement. First pass and lazily generated stuff, even from ample context, will be more likely to seed confusion and misunderstanding than truthful analysis and understanding." In practice:
-  - few entries refined deeply, rather than many drafted broadly;
+  - the lesson is the *cost*: even a handful of entries took an astounding amount of work, so every entry needs that kind of effort budgeted. It is not a limit on how many entries the lexicon has;
   - every agent-drafted entry is a candidate until it has had repeated line-by-line passes;
   - downstream work (translations, assertions) does not lean on an entry as settled before then;
   - the address-theory entries are the quality bar.
