@@ -47,7 +47,7 @@ For each row: its profile, the established terms found, and notes. **Match** giv
   - NIST **"AI Development actors"**: by task.
 - **Splits the corpus makes that the row doesn't:** the *original* trainer vs. a **fine-tuner or downstream modifier** (§3, new candidate); and the human feedback that trainers aggregate (raters, §3).
 - **Corroborated detail:** the map's italic "*potentially feedback from a predecessor agent*" is attested from three directions:
-  - Anthropic counts misalignment "engineered by a prior model (e.g. one used to generate training data)" (aug fn 14, L913–916);
+  - Anthropic counts misalignment "engineered by a prior model (e.g. one used to generate training data)" (aug fn 14, L912–914);
   - Davidson describes a CEO directing an AI workforce "to make the next generation of AI systems secretly loyal" (davidson L114–117);
   - OpenAI's incident report shows behaviour reinforced by reward during training (incident-report L975–977).
 
@@ -165,7 +165,7 @@ First-pass candidates. Each has corpus evidence. Whether each is a new *row* or 
 | **Norm author** (constitution author, standards body, civil-society norm setter) | authors | NIST rmf L1704–1707; the constitution as a misalignment standard (aug L849–850); IASR: a behaviour specification "serves as a blueprint for AI alignment" (md 1725); Davidson's "protective model specs" (L1113–1114) | Authoring a standard is a different relation from writing into the agent. It reaches the agent only through the trainer, and it can bind the trainer (`03-structure.md` §4, §6) |
 | **State or regulator as writer** | authors (law), and directs training indirectly | CAISI's "CCP alignment" (L115–116, L1742–1746); US Action Plan "free from ideological bias … pursue objective truth" (L139–140); EO 14365 on state law forcing "false results" (L31–35) | The map's "Society, law, humanity" has "no channel in". The corpus shows states with a channel through mandated training content and through law |
 | **Data custodian** | controls data that reaches context or training | ETSI etsi L474–487 | Controls, rather than authors, what the user's environment and retrieval supply |
-| **Model host / distributor** (open-weight platforms) | neither writes nor directs, but controls availability; can be a harmed third party | AI Act "distributor" (Art. 3(7)); CAISI on "model sharing platforms" (deepseek L49–50); the OpenAI incident, where Hugging Face's systems were compromised (hf-incident L23–24) | Absent from the map. In the corpus it is both a supply-chain role (EU) and a victim |
+| **Model host / distributor** (open-weight platforms) | neither writes nor directs, but controls availability; can be a harmed third party | AI Act "distributor" (Art. 3(7)); CAISI on "model sharing platforms" (caisi-2025-deepseek-eval L50–51); the OpenAI incident, where Hugging Face's systems were compromised (hf-incident L23–24) | Absent from the map. In the corpus it is both a supply-chain role (EU) and a victim |
 | **General public** | owed | NIST rmf L1708–1712 | Split out of "Society, law, humanity" (above) |
 | **Insider** | an intent attribute on trainer or harness roles, not a new kind | Davidson: "leaders within AI projects present the greatest risk" (L112–113); CISA insider-threat guide (in the corpus, not read in this spike) | Per beta's rule, intent is an attribute. Listed so the infographic can choose whether to show it |
 

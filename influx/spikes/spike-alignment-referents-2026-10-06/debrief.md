@@ -6,7 +6,7 @@
 
 You asked for the implications of an ambiguous alignment definition, established names for the actors on your map, and any new actors the references suggest. `CLAUDE.md` held the related decision: should misalignment get a default referent?
 
-The short answer: **a default referent would be the model taking sides, and it isn't needed.** Any single default makes some named risk come out as *aligned*. And most claims that use the word don't depend on the referent at all. What does depend on it is the sources' definitions and their risk categories. So the lexicon can define alignment as a relation with named slots, leave every slot without a default, and record for each source which slots it filled. A view can still fix a referent, as that view's declared choice.
+The short answer: **a default referent would be the model taking sides, and the records don't need one.** Each of the six single defaults I tested makes some named risk come out as *aligned*. And most claims that use the word don't depend on the referent at all. What does depend on it is the sources' definitions and their risk categories. So the lexicon can define alignment as a relation with named slots, leave every slot without a default, and record for each source which slots it filled. A view can still fix a referent, as that view's declared choice.
 
 ## What is true about the word in the corpus
 
@@ -36,9 +36,9 @@ This holds for any such list (the argument is in `03-structure.md` §2), so thes
 - Poisoned training data: Anthropic calls it "engineered misalignment". OpenAI calls it subversion. DSIT 2023 lists poisoning beside misalignment.
 - Lab leaders making models secretly loyal to themselves (Davidson): under a developer referent this is aligned, and it falls outside all four of GDM's areas. GDM says those areas are not exhaustive, so this is where its declared gap is.
 
-So a translation that records a source's "misuse" or "misalignment" also records that source's referent and its choice of writer, whether or not the source stated either. Your writer rows are exactly the values these two-way categories collapse. That is the strongest reason I found to make the rows domain vocabulary.
+So a translation that records a source's "misuse" or "misalignment" also records that source's referent and its choice of writer, whether or not the source stated either. Your writer rows are the finer values these two-way categories collapse. That is the strongest reason I found to make the rows domain vocabulary.
 
-**Every single default referent hides a risk that someone names.** I tried six:
+**Each single default referent I tried hides a risk that someone names.** I tried six:
 - *the developer* hides secret loyalties and what Ren et al. call "business alignment";
 - *the user* hides misuse, and sycophancy that "validated paranoid beliefs";
 - *the operator* hides an operator turning the agent against its own users. Anthropic's constitution names this and rules it out; it is not in the corpus;

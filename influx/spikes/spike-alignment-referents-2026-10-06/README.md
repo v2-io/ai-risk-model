@@ -6,7 +6,7 @@
 - "Aligned" is used in two ways. *Relational* ("aligned with X") is neutral and can name an attacker. *Absolute* ("misaligned") is evaluative and presupposes which parties count and how their conflicts are settled. The corpus overwhelmingly uses the absolute form. → `03-structure.md` §1
 - Multi-party definitions with no conflict rule fail exactly where the referent matters (demonstrated). → §2
 - The misuse / misalignment partitions move with the referent. Sources file the same event (a planted instruction, a jailbreak, poisoning) differently, depending on which writer carried the intent. → §3
-- Every single default referent hides a risk that is named somewhere: six candidates tested, five against corpus risks and one against a company document. A default is a choice about which risks count. → §4
+- Each of the six single default referents tested hides a risk that is named somewhere: five against corpus risks, and one against a company document. A default is a choice about which risks count. → §4
 - Most truth-apt claims are invariant across referents. The referent matters in definitions and category labels. This rests on a single-coder pilot, and needs a blind recode. → §5, `data/`
 - "To whom" is several relations: writes into, directs, controls in fact, is owed regard, authors the standard, oversees, answers for. The map's Notes describe one vulnerability pattern, a channel given more standing than its writer has. → §6
 - Naming the party doesn't fix the referent: instruction, intent, interest and values differ, and so do initial and current goal. → §7

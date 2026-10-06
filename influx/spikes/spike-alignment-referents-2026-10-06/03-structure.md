@@ -15,7 +15,7 @@
 1. **"Aligned" is used in two ways.** *Relational:* "aligned with X", which is neutral, and X can be an attacker. *Absolute:* "aligned" / "misaligned", which is evaluative and needs no complement. In the corpus the negative words almost always take the absolute use. The absolute use presupposes three things it never states: which parties or standards count (*admissibility*), what about them counts (*aspect* and *time*), and how conflicts between them are settled (*conflict rule*). After the literature report, I treat admissibility and the conflict rule together as one slot, the *adjudicating standard*, applied over a *claimant set* (Gabriel and Keeling's two layers). (§1, §2)
 2. **Lists of referents with no conflict rule fail exactly where the referent matters.** A list like "developers, users, or society" either makes every option misaligned, or none, or leaves the verdict to an unstated "context", whenever the listed parties want incompatible things. *Demonstrated* (§2).
 3. **The misuse / misalignment / mistakes partitions are not invariant under a change of referent,** and they sort by *who* had the divergent intent on a two-value basis (user or AI). `alignment.md` has a dozen writers. The corpus files the same event (a planted instruction obeyed; a jailbreak; a poisoned model) in different categories, depending on which writer carried the intent. *Demonstrated with corpus instances* (§3).
-4. **Every single default referent hides a risk the corpus itself names.** Developer, user, operator, society or humanity, law, and a published standard: for each, at least one corpus-named risk comes out as *aligned* under it. *Demonstrated by construction for the six candidates tested*: five against risks the corpus names, and the operator against one named in a company document outside the corpus (§4). So choosing a default is adjudication, in the project's own sense.
+4. **Each single default referent tested hides a named risk.** Developer, user, operator, society or humanity, law, and a published standard: for each, at least one named risk comes out as *aligned* under it. *Demonstrated by construction for the six candidates tested*: five against risks the corpus names, and the operator against one named in a company document outside the corpus (§4). So choosing a default is adjudication, in the project's own sense.
 5. **Most claims don't depend on the referent at all; definitions and category labels do.** "Ambiguous" is the wrong record for referent-independent claims. The record needs a third outcome: *invariant over a stated candidate set*. In a pilot coding of 50 bare corpus uses, 13 of the 14 truth-apt claims were invariant, and the referent-dependence sat in definitions and partition labels. *Inference, with a single-coder pilot* (§5).
 6. **"To whom" is several relations, which `alignment.md`'s edges and rows merge.** I distinguish seven: writes into; has standing to direct; controls in fact; is owed regard; authors the standard; oversees; answers for. The map's Notes list vulnerabilities that are one pattern: a channel given more standing than its writer has. *Inference* (§6).
 7. **Naming the party does not fix the referent.** Aspect (instruction, intent, interest, values) and time (initial vs current goal) vary within one party. Sycophancy and a documented reward-hacking case are instances. *Corpus-attested* (§7).
@@ -32,7 +32,7 @@
 The two uses meet in one phrase. NIST's category is called **Misaligned** Outputs, and its definition says the outputs **align** with the attacker. The label takes a benign referent and the definition takes the attacker, in one sentence. A reader resolves this without noticing, which is the point: the absolute use carries a referent set the reader supplies.
 
 *Inference:* the absolute use is shorthand for "misaligned relative to the parties and standards that ought to count, weighed as they ought to be". Its hidden content is normative, and it has three parts:
-- **admissibility**: which parties or standards count at all. The attacker never does. The coup leader does not, even when that is the developer or a head of state (Davidson). A foreign state's narratives do not, for CAISI.
+- **admissibility**: which parties or standards count at all. In no source I found does the attacker count. The coup leader does not, even when that is the developer or a head of state (Davidson). A foreign state's narratives do not, for CAISI.
 - **aspect and time**: what about them counts (§7);
 - **the conflict rule**: what happens when admissible referents disagree (§2).
 
@@ -97,9 +97,9 @@ Nothing about the event changed. So a translation that records "misuse" or "misa
 
 *Inference:* the partition the field uses is a two-value projection of a finer structure: which writer's intent, through which channel, against which admissible referent. `alignment.md` is that finer structure on the writer side. This is the strongest argument I found for making its rows domain vocabulary. They are exactly the values the corpus's partitions collapse.
 
-## 4. Every single default hides a named risk
+## 4. Each single default tested hides a named risk
 
-*Demonstrated by construction.* For each candidate default, a risk the corpus names comes out as *aligned*, so under that default it is not misalignment:
+*Demonstrated by construction.* For each candidate default, a named risk (from the corpus, except the operator row) comes out as *aligned*, so under that default it is not misalignment:
 
 | Default referent | A corpus-named risk that is *aligned* under it | Evidence |
 |---|---|---|
@@ -251,7 +251,7 @@ These come apart in documented cases:
 
 ## 9. What the research reports changed
 
-Both reports are in `research/`. They are by agents of the same model family, so where they agree with this document, that is coherence, not independent confirmation. The independent evidence is the primaries they quote. I re-read the load-bearing company quotes myself (constitution, Model Spec).
+Both reports are in `research/`. They are by agents of the same model family, so where they agree with this document, that is coherence, not independent confirmation. The independent evidence is the primaries they quote. I re-read the load-bearing company quotes myself (constitution, Model Spec). I also spot-checked two of the report's literature quotes at the arXiv PDFs (Askell et al. App. E.3; Hellrigel-Holderbaum & Dung pp.10–11), and both hold.
 
 - **§2:** the companies' conflict rules are confirmed at the primary (chain of command; principal hierarchy; null action). The two-layer reading (claimant set plus adjudicating standard) replaces my "party vs. standard" framing.
 - **§4:** the operator row is now evidenced, from outside the corpus. The literature's own versions of the no-go (Askell App. E.3; Hellrigel-Holderbaum & Dung) are cited beside mine.
