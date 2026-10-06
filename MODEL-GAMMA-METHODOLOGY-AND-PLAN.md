@@ -10,7 +10,7 @@
 
 ## 0. In one page
 
-**The aim** (from `CLAUDE.md`, unchanged): a consolidated map of the frontier-AI risk landscape, built from what the field's own risk assessments, safety frameworks, laws and research claim, held with high fidelity to those sources and expressed in a rigorous shared vocabulary of our own, so it can be projected by cause, control, event, impact, who is affected and who decides. That summary sentence leaves out the response side that Joseph's chain in the same file includes (mitigation, recovery, resilience), and the corpus adds further axes; `influx/competency-questions-draft.md` lists twelve.
+**The aim** (from `CLAUDE.md`, unchanged): a consolidated map of the frontier-AI risk landscape, built from what the field's own risk assessments, safety frameworks, laws and research claim, held with high fidelity to those sources and expressed in a rigorous shared vocabulary of our own, so it can be projected by cause, control, event, impact, who is affected and who decides. That summary sentence leaves out the response side that Joseph's chain in the same file includes (mitigation, recovery, resilience), and the corpus adds further axes; `influx/competency-questions-draft.md` lists thirteen.
 
 **What the first two attempts taught.**
 - **Model alpha** cross-walked the sources' risk factors into one master list. Disagreements had nowhere to go except prose.
@@ -610,7 +610,7 @@ Views are computed from the records, never hand-maintained. Which views earn a p
 - For loss of control, which preventive controls do sources name, and which of them are duties with no holder of the correlative claim?
 - Which actors write into which agent part, and which sources' role words resolve to each?
 
-**Proposed:** Joseph writes or approves a short list early, in G1. A first draft is in `influx/competency-questions-draft.md`: an explicit list of the axes the map should be projectable along (from Joseph's chain, bow-tie, and the corpus), then sixteen candidate questions, each tied to its axes and to the machinery it would exercise. A piece of machinery earns its place in the lexicon or the record formats when some competency question needs it; that is the check against importing more than the work needs (section 6).
+**Proposed:** Joseph writes or approves a short list early, in G1. A first draft is in `influx/competency-questions-draft.md`: an explicit list of the axes the map should be projectable along (from Joseph's chain, bow-tie, and the corpus), then nineteen candidate questions, each tied to its axes and to the machinery it would exercise. A piece of machinery earns its place in the lexicon or the record formats when some competency question needs it; that is the check against importing more than the work needs (section 6).
 
 **Lexicon acceptance tests**, which sit under the questions and say when the lexicon is ready to translate at scale:
 1. **Round trip.** Each of these definitions can be re-expressed clause by clause in our terms:
@@ -652,7 +652,7 @@ Contents:
   - umbrella containment;
   - namespace.
 - **(d) The evidence-plane terms from section 3.6**: passage, assertion (with Searle's point, strength and mode), nested source and factuality, the three attacks, norm-proposition, and the norm layering.
-- **(e) The record formats**: a translation row, a resolution record (section 3.4) and an assertion record. Without an owner, the pilots would invent them in passing and they would harden by default.
+- **(e) The record formats**: a translation row, a resolution record (section 3.4), an assertion record, and an *instance record* for documented occurrences (incidents, near misses, evaluation events). The instance record is thin: what happened, when, anchored to its passages. Who acted, with what intent and outcome, and whether two accounts describe the same instance are attributed assertions *about* it, and each account is a record of its own. Without an owner, the pilots would invent these formats in passing and they would harden by default.
 - **(f) A first list of competency questions** (section 3.11), for Joseph to write or approve.
 
 Status: (a)–(c) and (f) go to Joseph for ratification. (d) and (e) are marked *supported*: agents may work with them, and Joseph ratifies them in batches once G4 has shown which terms and fields actually bore weight.

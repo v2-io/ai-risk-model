@@ -20,8 +20,9 @@ The questions should cover every axis the map is meant to be projected along. A 
 | J. Knowledge and uncertainty | what is known, measured, argued or assumed, with what confidence, and what can't yet be evaluated | the SRA's knowledge component; PHIA's confidence ratings; IASR's evidence gaps |
 | K. Time | trends, versions, as-of dates, how fast an event unfolds, windows | the NRR's windows; the EU Code's "high velocity"; framework revisions |
 | L. Lineage and independence | which claims are independent and which are copies, restatements or shared authorship | the project's "correlation is not corroboration" |
+| M. Documented instances | particular things that happened (incidents, near misses, evaluation events, case studies), kept apart from the *kinds* of event in C and from the *accounts* given of them; what each source uses them as evidence for | AISI's sample / event / incident and its incident report; the EU's serious incidents and near misses; CLTR's report-to-incident merging; the instances retold across sources (TaskRabbit, the database deletion, the Kiro outage) |
 
-Bow-tie covers A–F around one event. G–L are where the corpus goes beyond it.
+Bow-tie covers A–F around one event. G–M are where the corpus goes beyond it. C and M differ the way a type differs from an individual: C is kinds of event and scenarios, M is particular occurrences.
 
 ## The questions
 
@@ -45,6 +46,9 @@ Questions 1, 3 and 4 are the de novo review's examples; the rest are mine.
 | 14 | Which response capabilities are shared across many different events (the NRR's "common consequences" view), and which are specific to AI? | E, C | cause-agnostic response; crosswalk between the NRR and AI-specific sources |
 | 15 | What do sources say weakens a given control over time, and which of those weakenings are already observed rather than anticipated? | F, J, K | escalation factors and degradation pathways; observed vs anticipated (factuality); trends |
 | 16 | Which events do sources say can trigger or worsen other events, and do any of those links form cycles? | I | causal relations between events, which the plan's G7 has to define; the cyclical structure Joseph expects |
+| 17 | For each named risk, which sources cite documented instances of it, and which rest on scenarios or argument alone? | M, C, J | instance records; observed vs anticipated (factuality per source); the line between kinds of event and occurrences |
+| 18 | For a documented instance (for example the TaskRabbit case or AISI's INC-2026-07-28-01), which sources retell it, and where do their accounts disagree on who acted, with what intent, and with what outcome? | M, H, L | thin instance records with accounts as separate, attributed records; identity across accounts as an assertion |
+| 19 | How many distinct instances stand behind a general claim once retellings of the same instance are merged, and out of what population (the denominator)? | M, L, J | report vs incident; merging as an attributed judgment; denominators ("19 events across 10 of 122 runs") |
 
 **Not yet covered, worth deciding whether they should be:**
 - the alignment referent itself (waiting on the alignment-referents spike);
