@@ -115,7 +115,8 @@ def palette():
     tok = dict(re.findall(r"--([\w-]+):\s*(#[0-9A-Fa-f]{6})", css))
     hues = list(dict.fromkeys(re.findall(r"--([a-z]+)-deeper:\s*#", css)))
     fam = {h: {"normal": tok[h], "deep": tok[h + "-deep"], "deeper": tok[h + "-deeper"],
-               "bd": tok[h + "-bd"], "edge": tok[h + "-edge"], "ink": tok[h + "-ink"]} for h in hues}
+               "bd": tok[h + "-bd"], "edge": tok[h + "-edge"], "ink": tok[h + "-ink"],
+               "dark": tok.get(h + "-dark", tok[h + "-ink"])} for h in hues}
     return tok, hues, fam
 
 
@@ -141,6 +142,10 @@ def report(vc):
     row("deep ↔ deeper (step)", [vc.dE(fam[h]["deep"], fam[h]["deeper"]) for h in hues])
     for t in TONES:
         row("%s: family ↔ family" % t, [vc.dE(fam[a][t], fam[b][t]) for i, a in enumerate(hues) for b in hues[i + 1:]])
+    for t in ("ink", "dark"):
+        row("%s: family ↔ family" % t, [vc.dE(fam[a][t], fam[b][t]) for i, a in enumerate(hues) for b in hues[i + 1:]])
+        row("%s: neighbours" % t, [vc.dE(fam[a][t], fam[b][t]) for a, b in zip(hues[1:], hues[2:] + hues[1:2])])
+    row("WCAG white on dark", [wcag(fam[h]["dark"], "#FFFFFF") for h in hues])
     row("WCAG text ink on any fill", [wcag(fam[h][t], ink) for h in hues for t in TONES])
     row("WCAG accent ink on its own fills", [wcag(fam[h][t], fam[h]["ink"]) for h in hues for t in TONES])
     out.append("")

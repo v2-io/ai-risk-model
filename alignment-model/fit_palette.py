@@ -25,6 +25,10 @@ in styles/palette.sass, sRGB reference viewing conditions):
   bd       Border: colourfulness --m-border (red-trimmed too), darkened to --border from the
            paper (no cap).
   edge     Line colour: fixed J' / M' (--edge J M) at the family's hue.
+  dark     The dark set (for bars, rules and tags drawn in a family's colour, and their text):
+           near the ink, but each family has its own J' / M' (DARK below, or --fit-dark) so
+           neighbours on the hue circle are spread further apart — mostly by alternating
+           lightness slightly, since at this darkness there is little room in colourfulness.
   ink      Accent text: fixed J' / M' (--ink J M) at the family's hue. M' 18 is about the most
            J' 36 allows before jade and teal leave the sRGB gamut (watch for the warning).
 
@@ -64,6 +68,10 @@ _spec.loader.exec_module(cam)
 NAMES = ["rose", "clay", "sand", "sage", "jade", "teal", "slate", "iris", "mauve"]
 HUES = [16, 55, 95, 136, 177, 217, 256, 296, 336]
 ORDER = ["stone"] + NAMES
+# The "dark" set: J' and M' per family, fitted (--fit-dark) so neighbouring families are as far
+# apart as the range allows, mostly by alternating lightness a little. Same hues as the fills.
+DARK = {"rose": (33, 21.5), "clay": (39, 23), "sand": (36.5, 19.5), "sage": (33, 23), "jade": (33, 18.5),
+        "teal": (39, 21), "slate": (33, 20), "iris": (36, 22.5), "mauve": (33, 22.5)}
 PALETTE = HERE / "styles" / "palette.sass"
 BEGIN = "  // families: normal / deep / deeper fills, border, line, accent ink (written by fit_palette.py)"
 END = "  // end of families"
@@ -150,7 +158,7 @@ def lift(p, paper, k):
     return tuple(x + (y - x) * k for x, y in zip(p, paper))
 
 
-def family(vc, paper, h, m, mb, a, edge=None, ink=None, cap=True):
+def family(vc, paper, h, m, mb, a, edge=None, ink=None, cap=True, dark=None):
     Jd = darken_to(paper, m, h, a.deeper)
     if cap:
         Jd = max(Jd, paper[0] - a.cap)
@@ -166,7 +174,45 @@ def family(vc, paper, h, m, mb, a, edge=None, ink=None, cap=True):
         out[k], ok = (given, True) if given else ucs_to_hex(vc, *point(J, M, h))
         if not ok:
             bad.append(k)
+    if isinstance(dark, str):
+        out["dark"] = dark
+    else:
+        out["dark"], ok = ucs_to_hex(vc, *point(dark[0], dark[1], h))
+        if not ok:
+            bad.append("dark")
     return out, bad
+
+
+def fit_dark(vc, hues, a):
+    """Choose J' / M' per family within --dark-range so the closest pair of neighbouring dark
+    colours (around the hue circle) is as far apart as possible, keeping white text on each at
+    WCAG >= 6 and each at >= 5.5 against the paper. Coordinate descent from several starts."""
+    import random
+    jlo, jhi, mlo, mhi = a.dark_range
+    steps = lambda lo, hi: [lo + 0.5 * i for i in range(int((hi - lo) * 2) + 1)]
+    def usable(J, M, h):
+        hx, ok = ucs_to_hex(vc, *point(J, M, h))
+        return ok and cam.wcag(hx, "#FFFFFF") >= 6 and cam.wcag(hx, "#F5F3EC") >= 5.5
+    cand = {n: [(J, M) for J in steps(jlo, jhi) for M in steps(mlo, mhi) if usable(J, M, h)]
+            for n, h in zip(NAMES, hues)}
+    pts = {n: {c: point(c[0], c[1], h) for c in cand[n]} for n, h in zip(NAMES, hues)}
+    def score(sel):
+        P = [pts[n][sel[n]] for n in NAMES]
+        return min(dist(P[i], P[(i + 1) % len(P)]) for i in range(len(P)))
+    rnd, best = random.Random(0), None
+    for _ in range(20):
+        sel = {n: rnd.choice(cand[n]) for n in NAMES}
+        better = True
+        while better:
+            better = False
+            for n in NAMES:
+                top = max(cand[n], key=lambda c: score({**sel, n: c}))
+                if score({**sel, n: top}) > score(sel):
+                    sel[n], better = top, True
+        if best is None or score(sel) > score(best):
+            best = dict(sel)
+    print("fitted dark set: " + "  ".join("%s %g/%g" % (n, *best[n]) for n in NAMES))
+    return best
 
 
 def fit(a):
@@ -181,25 +227,26 @@ def fit(a):
         hues = [hues[0] + 40 * i for i in range(len(NAMES))]
     hues = [(x + a.rotate) % 360 for x in hues]
     red = set(a.red.split(","))
+    dark = fit_dark(vc, hues, a) if a.fit_dark else DARK
     fams, warn = {}, []
     fams["stone"], bad = family(vc, paper, a.stone_hue, a.stone_m, a.stone_m * 1.1, a,
-                                edge=a.stone_edge, ink=a.stone_ink, cap=False)
+                                edge=a.stone_edge, ink=a.stone_ink, cap=False, dark=a.stone_ink)
     warn += [("stone", b) for b in bad]
     for n, h in zip(NAMES, hues):
         k = a.red_trim if n in red else 1.0
-        fams[n], bad = family(vc, paper, h, a.m_deeper * k, a.m_border * k, a)
+        fams[n], bad = family(vc, paper, h, a.m_deeper * k, a.m_border * k, a, dark=dark[n])
         warn += [(n, b) for b in bad]
     return css, paper_hex, hues, fams, warn
 
 
 def token_block(fams):
     return "\n".join("  --%s%s: %s" % (n, "" if k == "" else "-" + k, fams[n][k])
-                     for n in ORDER for k in ("", "deep", "deeper", "bd", "edge", "ink"))
+                     for n in ORDER for k in ("", "deep", "deeper", "bd", "edge", "ink", "dark"))
 
 
 def summary(paper_hex, hues, fams, warn):
     vc = cam.Viewing()
-    tone = {"normal": "", "deep": "deep", "deeper": "deeper"}
+    tone = {"normal": "", "deep": "deep", "deeper": "deeper", "ink": "ink", "dark": "dark"}
     print("hues: " + "  ".join("%s %.0f" % (n, h) for n, h in zip(NAMES, hues)))
     rng = lambda xs: "%.1f–%.1f" % (min(xs), max(xs))
     for t, k in tone.items():
@@ -229,6 +276,9 @@ if __name__ == "__main__":
     ap.add_argument("--red-trim", type=float, default=0.9, help="colourfulness factor for --red")
     ap.add_argument("--edge", type=float, nargs=2, default=[48, 19], metavar=("J", "M"), help="line colour J' M'")
     ap.add_argument("--ink", type=float, nargs=2, default=[36, 18], metavar=("J", "M"), help="accent ink J' M'")
+    ap.add_argument("--fit-dark", action="store_true", help="re-fit the dark set (else use DARK above)")
+    ap.add_argument("--dark-range", type=float, nargs=4, default=[33, 39, 16, 23], metavar=("JLO", "JHI", "MLO", "MHI"),
+                    help="J' and M' bounds for --fit-dark")
     ap.add_argument("--hues", nargs=9, default=HUES, metavar="H", help="hue angles for " + " ".join(NAMES))
     ap.add_argument("--rotate", type=float, default=0.0, help="add to every hue (degrees)")
     ap.add_argument("--even", action="store_true", help="space the hues exactly 40° apart from the first")
