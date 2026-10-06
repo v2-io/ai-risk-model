@@ -523,6 +523,14 @@ This is Joseph's decision (section 5).
 
 Kaplan & Garrick's "probability of frequency" and the SRA's knowledge component are where such base rates enter a risk description.
 
+**Why this is lexicon work, not a semantics debate.** Whether AISI's cyber-range incident (INC-2026-07-28-01) counts as an instance of "loss of control", of "unsanctioned action", or of an incident inside an evaluation is where the sources disagree, and the answer moves any prior computed from it more than the count does. Argued as "is this loss of control?", it is a dispute about a word. With the kinds of event separated in the lexicon, each with stated criteria, it becomes checkable questions:
+- did control fail to prevent the act, or was the ability to halt lost?
+- was it recoverable, and at what cost?
+- did it happen inside an evaluation, which SB 53's fourth kind of critical safety incident excludes?
+- which sources' criteria does it meet?
+
+The disagreement doesn't disappear. It lands where it belongs: in different criteria, attributed to the sources that hold them, with each one's effect on the count visible.
+
 **A precedent worth checking.** The HSE's *Reducing Risks, Protecting People* (2001) proposes treating as intolerable a risk "of an accident killing 50 people or more in a single event" at more than one in five thousand per year. SB 53's bar is "more than 50 people … arising from a single incident". Whether SB 53 drew on it is unchecked; it is a lead, not a lineage claim.
 
 ### 3.9 Actors and agent parts (the first domain group)
