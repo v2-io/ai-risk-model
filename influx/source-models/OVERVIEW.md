@@ -211,14 +211,15 @@ The NRR and CRA share a row, because their section treats their vocabulary toget
 | AISI | Essentially unused. "hazardous capabilities"; a loose "crosscutting hazard". STPA is named but its hazard sense is never used | Trends 224; LoO 3677; Agenda 493 |
 | *STPA (upstream)* | A system state | "A system state or set of conditions that, together with a particular set of worst-case environmental conditions, will lead to a loss (Leveson …)" (barrett-2025-stampstpa L1075–1076) [checked] |
 
-**Where they collide.** Seven senses:
+**Where they collide.** Seven senses here, and an eighth outside the eight models (added 2026-10-06, below):
 1. an event or activity with potential to harm (IASR; Shanghai, copied);
 2. an item in a product-safety analysis that carries its own risk estimate (EU Art. 9; NVIDIA, FMEA-style);
 3. a non-malicious *cause class* defined by the absence of intent (NRR);
 4. a harm category, paired with "harm" (MIT);
 5. a risk source or cause category (CAIS);
 6. information harmful to share (IASR, Anthropic, OpenAI);
-7. a system state that leads to loss given worst-case conditions (STPA, named by IASR and AISI but used by neither).
+7. a system state that leads to loss given worst-case conditions (STPA, named by IASR and AISI but used by neither);
+8. outside the eight models: a root cause of AI risk (Schnitzer et al., "AI Hazard Management", arXiv 2310.16727; see `../gamma-research/risk-formalisms.md` §2.10).
 
 The only two models that put weight on the word are incompatible. The NRR's hazard excludes malicious causation by definition. NVIDIA's hazard is a scored unit, whatever its source. Senses 1 and 7 differ in kind: an event or activity on one side, a standing condition of a system on the other. Four models (NIST, Anthropic, OpenAI, AISI) do not use the word as a term at all. So in frontier-AI usage "hazard" is nearly unclaimed. Any definition will still collide with IASR's glossary, the civil-contingencies usage and STPA.
 
@@ -238,7 +239,7 @@ The only two models that put weight on the word are incompatible. The NRR's haza
 | AISI | Undefined; "Risks posed by …" in each domain definition | Agenda 155–178 |
 
 **Where they collide.**
-- IASR, the EU and NIST share the probability × severity form. It comes from ISO 31000 and allied texts; IASR names SRA and ISO/IEC 23894 among its borrowings.
+- IASR, the EU and NIST share the probability × severity form. That form is ISO/IEC Guide 51's (product safety). ISO 31000 and ISO Guide 73 define risk differently, as "effect of uncertainty on objectives". NIST's "Adapted from: ISO 31000:2018" follows its sentence on positive and negative impacts, which is ISO 31000's note, while the core of its definition matches OMB A-130's form. IASR names SRA and ISO/IEC 23894 among its borrowings. (Corrected 2026-10-06; evidence in `../gamma-research/risk-formalisms.md` §2.4.)
 - NIST's version includes *positive* consequences, which no other model does.
 - None of the three applies the formula to produce a number.
 - In the NRR, a "risk" is a *scenario instance*.
@@ -720,7 +721,7 @@ Each item is either something a section left unclear, something that looked like
 | TFAIA's definitions, which three sections cite second-hand | Catastrophic risk (>50 people or >$1B, single incident, three conducts including "Evading the control of its frontier developer or user"); critical safety incident (four kinds, the fourth excluding evaluation contexts); frontier model (>10^26); deploy (to a third party) | california-2025-sb53 L187–224, L245–246 |
 | G7 → recital 110 | The G7 Action 1 list carries the barriers-to-entry, physical-systems control, self-replication and "entire city" chain-reaction items that recital 110 reproduces | g7-2023-hiroshima-code-of-conduct L95–121 |
 | NIST 600-1's three-way grouping and IASR | "derived in part from the UK's International Scientific Report on the Safety of Advanced AI" | nationalinstitute…-2024-artificial L203–213 |
-| The NRR's PHIA mapping (the section's table looked odd) | As printed: PHIA "Unlikely (25–35%)" and every word above it map to NRR score 5; "Highly unlikely" to 4; "Remote chance" to 3; scores 1–2 have no PHIA word | cabinetoffice-2026-nrr L400–427 |
+| The NRR's PHIA mapping (the section's table looked odd) | As printed: PHIA "Unlikely (25–35%)" and every word above it map to NRR score 5; "Highly unlikely" to 4; "Remote chance" to 3; scores 1–2 have no PHIA word. The NRR also prints "Highly unlikely" as 5–25%, where the official yardstick (gov.uk 2025; the figure in AISI's *Loss of Oversight*) has ≈10–20%: a restatement of an upstream scale with altered values (noted 2026-10-06) | cabinetoffice-2026-nrr L400–427 |
 | AISI LoO's PHIA scale | The standard seven-band yardstick | aisi-2026-loss-oversight L502–515 |
 | Provenance of "match or exceed … most advanced models" | UK DSIT Oct 2023 discussion paper glossary | dsit-2023-capabilities L1305–1306 |
 | STPA's sense of "hazard" | "A system state or set of conditions that, together with a particular set of worst-case environmental conditions, will lead to a loss" (Leveson, via Barrett) | barrett-2025-stampstpa L1075–1076 |

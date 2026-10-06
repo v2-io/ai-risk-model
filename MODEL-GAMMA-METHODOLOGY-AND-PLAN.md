@@ -58,7 +58,7 @@
   - Loop enumeration consumed attention (641,083 loops before one edge was recast, about 186,000 after; `notes-mp.md` item 8) without producing findings that outlasted it.
   - The lexicon adopted IASR 2026's definitions directly ("The first four definitions are IASR 2026's, adopted", `def-risk.ud`). That was a reasonable early move. In domain-driven design's terms, though, adopting a source's definitions wholesale is the *conformist* pattern: our lexicon takes one upstream source's model as its own, which the translation step is meant to prevent.
   - Risk analysis was being built at the same time as the lexicon it depended on, without the discipline to keep the two concerns apart. The result began to read as its own ball of mud.
-- **How gamma uses it:** for ideation only. Nothing in model beta (terms, concepts, relations, mappings, schema draft 2) has been independently checked. Anything taken from it is re-derived against the primaries and re-owned, never carried over verbatim.
+- **How gamma uses it:** for ideation only. Model beta's claims carry verbatim anchors, but none of its terms, concepts, relations, mappings or schema draft 2 have had an independent double-check. Anything taken from it is re-derived against the primaries and re-owned, never carried over verbatim.
 
 ### 1.3 What the corpus turned out to be
 
@@ -152,7 +152,7 @@ Two vocabularies do two jobs. The seam between them should be explicit in `def/`
   - *published language*;
   - *anticorruption layer*: "create an isolating layer … in terms of your own domain model".
 
-  Two patterns do *not* fit where they first seemed to. *Separate ways* ("no connection to the others at all") is not the RSP's "plain meaning" "catastrophic": that is one deliberately unbound term in a well-connected document, and the resolution outcome *deliberately unbound* names it better. *Big ball of mud* ("Do not try to apply sophisticated modeling within this context") is the opposite of what self-inconsistent sources need. Those are best treated as several scopes under one cover and mapped scope by scope, which is finding 5 applied (thanks to the de novo review for both corrections).
+  Two patterns don't fit the cases they might seem to. *Separate ways* ("no connection to the others at all") is not the RSP's "plain meaning" "catastrophic": that is one deliberately unbound term in a well-connected document, and the resolution outcome *deliberately unbound* names it better. *Big ball of mud* ("Do not try to apply sophisticated modeling within this context") is the opposite of what self-inconsistent sources need. Those are best treated as several scopes under one cover and mapped scope by scope, which is finding 5 applied.
 
 **Joseph's address theory supplies the mechanism.** Its entries are in the public repository `v2-io/udon`, at `v2/references/def/` (cited as of commit `90f4fb6`, 2026-08-27): <https://github.com/v2-io/udon/tree/90f4fb6/v2/references/def>.
 - *reference* and *referent*, with *intended cardinality*;
@@ -240,7 +240,7 @@ Our lexicon should never contain a category that merges a thing in the world wit
   - its *intended cardinality* (SB 53's "frontier developer" stands for any number of persons; a named incident for one);
   - who *maintains* it, and when it is meant to be re-resolved;
   - the *as-of* moment of every resolution;
-  - the failure vocabulary: a source definition that *dangles* (its test no longer reaches what it was meant to, which is what SB 53 §22757.14 guards against) or *collides* (IASR using "developer" in two senses within one scope).
+  - the failure vocabulary: a source definition that *dangles* (its test no longer reaches what it was meant to, which is what SB 53 §22757.14 guards against) or *collides* (the same name defined twice within one scope; IASR 2026's two wordings for loss of control, in its glossary and its body, are a candidate if the body's wording counts as a definition).
 - **Actors and agent parts** (section 3.9).
 - **The risk components the sources' own definitions are built from** (section 3.8): source, cause, event, harm, magnitude, likelihood (with what it is a probability *of*, and its window), confidence, exposure and vulnerability, controls; plus intent and recoverability. These are needed to translate a definition such as SB 53's "catastrophic risk" without loss.
 
@@ -262,7 +262,7 @@ Each main source gets one translation document: its terms mapped into ours, unde
   - separate author, creator and reviewer;
   - our confidence, kept apart from the source's own hedge.
 
-**Resolution within a source: why, and how much.** A word's meaning can shift inside one source. IASR 2026 uses "developer" for organisations in one place and for individual people in another, and SB 53 defines "catastrophic risk" differently in each of the two codes it amends. When an assertion is recorded, we need to know which meaning a word had *there*. SSSOM says outright that "Mappings themselves have no context (i.e. are always true)", so the type-level row can't carry this.
+**Resolution within a source: why, and how much.** A word's meaning can shift inside one source. IASR 2026 uses "developer" for organisations in one place and for individual people in another, and SB 53 defines "catastrophic risk" separately, and differently, in two of the codes it amends. When an assertion is recorded, we need to know which meaning a word had *there*. SSSOM says outright that "Mappings themselves have no context (i.e. are always true)", so the type-level row can't carry this.
 
 **The selection rule.** Recording every use is infeasible: IASR 2026 alone has about 1,200 raw uses of the heavily loaded terms (count by the de novo review, including cited titles). So:
 - each scope (a document, section, code section or table) gets one *default* resolution of each key term, recorded once;
@@ -371,7 +371,7 @@ Draft 2 of the schema rebuilt, under its own names, most of what speech-act theo
 - Hohfeld's "exemption" means immunity, not draft 2's derogation;
 - Institutional Grammar's "norm" means a statement without a sanction, not the umbrella.
 
-**A worked consequence** (the research report's reading, which I checked). IASR 2026 declares that it makes no recommendations, yet says: "To avoid catastrophic harm, developers of open-weight models should not release models without evaluating risks" (`ref/iasr-2026-full.md`, line 2077). That is von Wright's *technical norm*: if you want an end, you ought to do X. It presupposes an *anankastic* statement, that evaluation is a necessary condition, which is truth-apt and fits a descriptive report. Draft 2 treated this as a conflict; it becomes a typed ambiguity between a technical norm and a prescription.
+**A worked consequence** (the research report's reading; I checked the sentence it rests on). IASR 2026 declares that it makes no recommendations, yet says: "To avoid catastrophic harm, developers of open-weight models should not release models without evaluating risks" (`ref/iasr-2026-full.md`, line 2077). That is von Wright's *technical norm*: if you want an end, you ought to do X. It presupposes an *anankastic* statement, that evaluation is a necessary condition, which is truth-apt and fits a descriptive report. Draft 2 treated this as a conflict; it becomes a typed ambiguity between a technical norm and a prescription.
 
 ### 3.7 Lineage and corroboration
 
@@ -450,7 +450,7 @@ The convergent set, as the research report reads it:
 Bow-tie is also already in the corpus: IASR 2026 defines the "bowtie method" in its table of risk-management practices (`ref/iasr-2026-full.md` line 1688, citing Koessler & Schuett), and Buhl et al. recommend it. "Stage is a role relative to a focal event" (CLAUDE.md) has this precedent, and ISO's event notes say an event's cause can itself be an event in a chain.
 
 **But "risk" cannot be one formal object.** Kaplan & Garrick would make "risk" mean the set of triplets, and then the probability, the expected value, a single event and the NRR's one scored scenario are all projections of it. Several senses in the corpus are not projections:
-- **STAMP's risk is "the effectiveness of the controls"** used to enforce safe behaviour (STPA Handbook p. 133, checked in the downloaded text). It is a property of a control structure, which is what AISI's *Loss of Oversight* grades as "severity".
+- **STAMP's risk is "the effectiveness of the controls"** used to enforce safe behaviour (STPA Handbook p. 133, checked in the downloaded text). It is a property of a control structure. The research report reads AISI's *Loss of Oversight* "severity" (how badly a pathway would undermine an oversight channel) as this kind of risk.
 - **ISO 31000's risk is "effect of uncertainty on objectives"**, relative to someone's objectives and including upside.
 - **The IPCC counts risks that arise from the responses themselves.**
 - **MIT's unit is a *risk description***: a structured statement about a risk, written by some source.
@@ -547,14 +547,14 @@ This is Joseph's decision (section 5).
 
 Two **owed-alignment referents** have no channel in: affected third parties; and society, law, humanity.
 
-**The finding that shapes this group: the sources and `alignment.md` divide roles on different bases.** I read the AI Act's Article 3 and NIST's AI RMF Appendix A at the primary for this.
+**The sources divide roles on several different bases.** My first reading, from the AI Act's Article 3 and NIST's AI RMF Appendix A (read at the primary), found the two in the table below. The alignment-referents spike, sweeping about 210 documents, reports at least five more: task (NIST), responsibility for an asset (ETSI's "data custodians", "system operators"), a training act with a threshold (SB 53), authority to instruct (the companies' "principal" and "chain of command"), and affectedness ("affected individuals/communities", "affected entities", "affected persons"). That is a mid-spike report, not yet verified. The bases are plural, and the table shows two of them.
 
 | Basis of division | Examples | What a role is |
 |---|---|---|
 | **The AI product's lifecycle or market** | AI Act Art. 3(3): a *provider* "develops … and places it on the market or puts the AI system into service under its own name"; Art. 3(4): a *deployer* is "using an AI system under its authority"; plus authorised representative, importer, distributor and downstream provider, with *operator* as their umbrella (Art. 3(8)). SB 53 §22757.11(h): a *frontier developer* "has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use" the compute threshold. NIST AI RMF: "AI actors" (the OECD's term) defined by *tasks* (design, development, deployment, operation and monitoring, TEVV, …). IASR: "AI developer" = "Any organisation that designs, builds, or adapts AI models or systems". | a position relative to the artifact: who makes it, sells it, runs it |
 | **What writes into a deployed agent** | `alignment.md`: model trainer → weights; inference provider → weights, ephemeral, context; harness provider → system prompt, tools, context, initial goal; tool provider → tools; user → context and goals; content providers → context; the agent itself → ephemeral, context, current goal | a position relative to the agent: what it writes into, through what channel |
 
-One organization holds roles on both bases, often several at once, and none of the four sources checked (AI Act, SB 53, NIST, IASR) has the second basis. AISI's *Loss of Oversight* comes closest: its supply-chain list ("original model developer, scaffolding developer or fine-tuner, API deployer, end user") has members that sit near writer roles. That is why "developer" collides so badly. In the corpus it is, at once:
+One organization holds roles on both bases, often several at once, and none of the four sources checked (AI Act, SB 53, NIST, IASR) has the second basis. AISI's *Loss of Oversight* comes closest: its supply-chain list ("original model developer, scaffolding developer or fine-tuner, API deployer, end user") has members that sit near writer roles. That is why "developer" means so many different things. In the corpus it is, at once:
 - a model trainer;
 - an EU provider, whose role turns on a market act;
 - a SB 53 frontier developer, whose role turns on a training act, a compute threshold and stated intent;
@@ -605,7 +605,7 @@ Views are computed from the records, never hand-maintained. Which views earn a p
 
 ### 3.11 Competency questions, and acceptance tests for the lexicon
 
-**Competency questions come first.** They are questions, written before building, that the finished model must be able to answer; they serve as its requirements and as its final test. This is an established practice in ontology engineering. The de novo review cites Grüninger & Fox (1995) from memory; that is not yet checked. Examples drawn from the aim in `CLAUDE.md`:
+**Competency questions come first.** They are questions, written before building, that the finished model must be able to answer; they serve as its requirements and as its final test. This is an established practice in ontology engineering. The de novo review cites Grüninger & Fox (1995) from memory; that is not yet checked. The de novo review's examples, drawn from the aim in `CLAUDE.md`:
 - For a single-incident event with 60 deaths, which sources would call it catastrophic, severe or systemic, under what conditions, and through how many independent lineages?
 - For loss of control, which preventive controls do sources name, and which of them are duties with no holder of the correlative claim?
 - Which actors write into which agent part, and which sources' role words resolve to each?
@@ -695,7 +695,7 @@ Done when the pilot translations exist with their disagreement data, the thin pa
 - the EU Code's capabilities / propensities / affordances;
 - the NRR's hazard / threat;
 - the accident / misuse / structure distinction (Zwetsloot & Dafoe);
-- the bases in section 3.9.
+- the bases of role division in section 3.9, which the alignment-referents spike is already extending.
 
 This is not "pick the best taxonomy", which would import a source's model. It feeds G3 and the later translations.
 
@@ -752,7 +752,7 @@ Each item has my recommendation and how confident I am in it.
 
 ## 7. Corrections to the repo's existing documents
 
-Found during this work. All are small; they are listed here so they are not lost.
+Found during this work. All are small. Items 1–3 and 6 are now applied in `influx/source-models/OVERVIEW.md`; items 4, 5 and 7 concern model beta, which gamma uses for ideation only, so they stay recorded here rather than edited in.
 
 1. **OVERVIEW §2.2** says the probability × severity form "comes from ISO 31000 and allied texts". It is ISO/IEC Guide 51's (product safety). ISO 31000 defines risk as "effect of uncertainty on objectives" (research report §2.4; ISO 31000 read via an official reproduction, Guide 51 via two reproductions).
 2. **NIST AI RMF's attribution.** "Adapted from: ISO 31000:2018" follows NIST's sentence on positive and negative impacts (RMF lines 272–278, read). Whether it also covers the preceding "composite measure" definition is itself ambiguous. The core of that definition matches OMB A-130's form, which NIST cites in the next sentence.
