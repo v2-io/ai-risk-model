@@ -63,7 +63,7 @@ It is tempting to say the "strong subset" of the graph is the high-confidence sy
 
 ## State, as of 2026-09-27
 
-A worked slice: about 70 concepts, over 50 source-term mappings, about 100 relations carried by over 115 claims, and 16 loops. It covers loss of control by degree; oversight and evaluation; organizational dynamics, rebuilt on `influx/safety-and-hypergrowth.md` (absorption gap; people, structure and commitment layers; H3/H4; size and routinization); the recursive AI-R&D loop and oversight measures from `influx/anthropic-autonomous-dev.md`; human cognition with open ends; and indicators.
+A worked slice: about 70 concepts, over 50 source-term mappings, about 100 relations carried by over 115 claims, and 16 loops. It covers loss of control by degree; oversight and evaluation; organizational dynamics, rebuilt on `ref/safety-and-hypergrowth.md` (absorption gap; people, structure and commitment layers; H3/H4; size and routinization); the recursive AI-R&D loop and oversight measures from `ref/anthropic-autonomous-dev.md`; human cognition with open ends; and indicators.
 
 Not yet in:
 - most of the hazard taxonomy;

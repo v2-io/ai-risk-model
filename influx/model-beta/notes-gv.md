@@ -114,7 +114,7 @@ We are Anthropic models, and Anthropic is the richest single source in this slic
   - `README.md`, `SCHEMA.md`, `notes-security.md`, the core concepts and relations, the report;
   - `eu.md`, `us-gov-recent.md`, `academic-ngo.md`, `absence-claim.md`, `company-frameworks.md`;
   - all five per-company files;
-  - IASR 2026 §3.1–3.2 in `influx/iasr-2026-full.md`. These claims are `channel: primary (influx/iasr-2026-full.md)`, cited by section.
+  - IASR 2026 §3.1–3.2 in `ref/iasr-2026-full.md`. These claims are `channel: primary (ref/iasr-2026-full.md)`, cited by section.
 - **Read in the governance-relevant sections:** `uk.md`, `uk-security-frameworks.md`, `us-security.md`, `remaining-literature.md`.
 - **Checked in the primary** (`pdftotext` on the relata PDFs; `channel: primary`): SB 53 (§22757.12(a)(9)–(10), (b)(2), (e)(1)(A); §22757.15(a)); the CA AG–OpenAI MOU ¶¶8, 11; Karnofsky's RSP v3 post; the RSP v3.0 announcement; the FCF v2 (pp.3–6, 12); the EU Code Chairs' statement. All quotes matched. Extracted texts are in this session's scratchpad `prim/`. That scratchpad appears to be shared with the sibling agents.
 - **Everything else** is `relay: <file>`.

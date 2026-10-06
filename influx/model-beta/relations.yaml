@@ -48,7 +48,7 @@
   note: Race dynamics acting on adopters, not developers.
   claims:
     - {author: Kulveit et al., channel: "relay: remaining-literature.md", evidence: argument, qualifier: "would likely", doc: kulveit-2025-gradual, loc: "p.4", quote: "Companies that maintain strict human oversight would likely find themselves at a significant competitive disadvantage compared to those willing to cede substantial control to AI systems"}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; sx shard)", evidence: argument, qualifier: "incentives to deploy quickly limit evaluation of effects", doc: bengio-2026-international, loc: "§2.3.2", quote: "organisational and governmental incentives to deploy AI systems quickly can limit opportunities to evaluate these effects carefully"}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md; sx shard)", evidence: argument, qualifier: "incentives to deploy quickly limit evaluation of effects", doc: bengio-2026-international, loc: "§2.3.2", quote: "organisational and governmental incentives to deploy AI systems quickly can limit opportunities to evaluate these effects carefully"}
 
 
 - id: r-race-loosening
@@ -92,7 +92,7 @@
   type: influences
   sign: "+"
   claims:
-    - {bears_on: "to", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "self-report; Claude-judged; one lab", doc: anthropic-2026-measuring-pace, quote: "Claude “leads” 26% of Anthropic’s AI R&D work"}
+    - {bears_on: "to", author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "self-report; Claude-judged; one lab", doc: anthropic-2026-measuring-pace, quote: "Claude “leads” 26% of Anthropic’s AI R&D work"}
 
 - id: r-airnd-pace
   from: ai-led-rnd
@@ -101,7 +101,7 @@
   sign: "+"
   note: With r-pace-airnd, the recursive-acceleration loop (R).
   claims:
-    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "stated as a benefit", doc: anthropic-2026-measuring-pace, quote: "This process allows labs in democratic countries to develop more capable models more quickly"}
+    - {author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "stated as a benefit", doc: anthropic-2026-measuring-pace, quote: "This process allows labs in democratic countries to develop more capable models more quickly"}
     - {author: Anthropic, channel: "relay: company-frameworks.md", evidence: measurement, qualifier: "developer risk report", doc: anthropic-2026-risk-report-aug, loc: "p.11", quote: "early signs of acceleration"}
 
 - id: r-airnd-oversight
@@ -110,7 +110,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "could", doc: anthropic-2026-measuring-pace, quote: "models accelerating their own development could make it more challenging for humans to understand or control these systems"}
+    - {author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "could", doc: anthropic-2026-measuring-pace, quote: "models accelerating their own development could make it more challenging for humans to understand or control these systems"}
 
 - id: r-airnd-reviewratio
   from: ai-led-rnd
@@ -118,7 +118,7 @@
   type: influences
   sign: "-"
   claims:
-    - {bears_on: "both endpoints", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "a level at one point in time, not a trend; one platform", doc: anthropic-2026-measuring-pace, quote: "the highest priority flags (approximately ~50 per week) are escalated to human review"}
+    - {bears_on: "both endpoints", author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "a level at one point in time, not a trend; one platform", doc: anthropic-2026-measuring-pace, quote: "the highest priority flags (approximately ~50 per week) are escalated to human review"}
 
 - id: r-airnd-independence
   from: ai-led-rnd
@@ -126,7 +126,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "could", doc: anthropic-2026-measuring-pace, quote: "we’re using our own models to evaluate our systems, which could mean that the “judge” model could make the same kinds of errors as the model it is checking"}
+    - {author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "could", doc: anthropic-2026-measuring-pace, quote: "we’re using our own models to evaluate our systems, which could mean that the “judge” model could make the same kinds of errors as the model it is checking"}
 
 - id: r-testwindow-mod
   from: rnd-testing-window
@@ -134,7 +134,7 @@
   targets: [r-airnd-pace]
   sign: "-"
   claims:
-    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: none-stated, qualifier: "proposal; not in force", doc: anthropic-2026-measuring-pace, quote: "a fixed testing window before a new model is used for further AI R&D"}
+    - {author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: none-stated, qualifier: "proposal; not in force", doc: anthropic-2026-measuring-pace, quote: "a fixed testing window before a new model is used for further AI R&D"}
 
 - id: r-pace-backlog
   from: capability-pace
@@ -183,7 +183,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H1, rated 60–75% as amplifier", quote: "growth faster than experienced staff can absorb it"}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H1, rated 60–75% as amplifier", quote: "growth faster than experienced staff can absorb it"}
     - {author: UK NPSA/NCSC, channel: primary, evidence: argument, qualifier: "may", doc: npsa-2024-secure-innovation, loc: "p.30", quote: "As your workforce grows, you may no longer be able to rely primarily on personal relationships to ensure trust."}
 
 - id: r-absorb-coherence
@@ -200,7 +200,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H4, rated 65–80%", quote: "Competition between firms and between nations keeps hierarchies from consolidating."}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H4, rated 65–80%", quote: "Competition between firms and between nations keeps hierarchies from consolidating."}
     - {author: "OpenAI (Altman)", channel: "press (Sherwood News), via prior agent report (fn 10)", evidence: incident, qualifier: "actor's own retrospective", quote: "It just looked opportunistic and sloppy."}
 
 - id: r-coherence-safeguard
@@ -217,7 +217,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2, rated 50–65%", quote: "They carry the coordination costs of size without the routines that stabilize large firms"}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2, rated 50–65%", quote: "They carry the coordination costs of size without the routines that stabilize large firms"}
     - {author: ICAO, channel: "relay: absence-claim.md", evidence: established-practice, qualifier: "expansion listed among the kinds of organizational change (aviation SMS guidance)", doc: icao-2018-doc9859-smm, loc: "§9.5.5.1", quote: "Service providers experience change due to a number of factors including, but not limited to: a) organizational expansion or contraction"}
 
 - id: r-churn-churn
@@ -300,7 +300,7 @@
   sign: "+?"
   note: Growth bears on the SPEED and FRAGMENTATION of commitment change; racing on its DIRECTION (r-race-loosening).
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "interpretation", quote: "Growth relative to absorptive capacity is a candidate explanation only for its speed and fragmentation."}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "interpretation", quote: "Growth relative to absorptive capacity is a candidate explanation only for its speed and fragmentation."}
 
 - id: r-founder-mod
   from: founder-decision-regime
@@ -309,7 +309,7 @@
   sign: "?"
   note: Determines WHICH layer growth shows up in. It does not set how much.
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "interpretation; a falsifiable 6-month prediction is attached", quote: "Where founders stay in risk-owning roles, hypergrowth shows up as commitment revision."}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "interpretation; a falsifiable 6-month prediction is attached", quote: "Where founders stay in risk-owning roles, hypergrowth shows up as commitment revision."}
 
 - id: r-growth-access
   from: org-growth-rate
@@ -424,7 +424,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "stated purpose of the measures", doc: anthropic-2026-measuring-pace, quote: "these measures would allow society to see whether oversight is keeping pace with the growing role of AI in AI R&D"}
+    - {author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: argument, qualifier: "stated purpose of the measures", doc: anthropic-2026-measuring-pace, quote: "these measures would allow society to see whether oversight is keeping pace with the growing role of AI in AI R&D"}
 
 - id: r-internal-oversight
   from: internal-ai-deployment
@@ -751,7 +751,7 @@
   type: indicates
   sign: "-"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#9)", quote: "Share of risk-owning roles filled by acqui-hires or staff with under 12 months' tenure."}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#9)", quote: "Share of risk-owning roles filled by acqui-hires or staff with under 12 months' tenure."}
 
 - id: i-unauthorized
   from: ind-unauthorized-changes
@@ -759,7 +759,7 @@
   type: indicates
   sign: "-"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#6)", quote: "Count of \"unauthorized\" production-change incidents."}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#6)", quote: "Count of \"unauthorized\" production-change incidents."}
 
 - id: i-eval-release
   from: ind-eval-to-release
@@ -767,7 +767,7 @@
   type: indicates
   sign: "+"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#7)", quote: "Median interval between evaluation and release."}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: none-stated, qualifier: "proposed metric (#7)", quote: "Median interval between evaluation and release."}
 
 - id: i-automation-index
   from: ind-rnd-automation-index
@@ -775,7 +775,7 @@
   type: indicates
   sign: "+"
   claims:
-    - {bears_on: "from", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "prototype index; Claude judge agreed with humans about as often as humans with each other (59% vs 35% exact)", doc: anthropic-2026-measuring-pace, quote: "Claude is not operating fully autonomously for any measured subset of AI R&D work."}
+    - {bears_on: "from", author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "prototype index; Claude judge agreed with humans about as often as humans with each other (59% vs 35% exact)", doc: anthropic-2026-measuring-pace, quote: "Claude is not operating fully autonomously for any measured subset of AI R&D work."}
 
 - id: i-coverage
   from: ind-monitor-coverage
@@ -784,7 +784,7 @@
   sign: "+"
   note: Coverage indicates ONE component. It says nothing about monitor independence or the human review ratio.
   claims:
-    - {bears_on: "from", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "one internal platform, Aug 2026", doc: anthropic-2026-measuring-pace, quote: "100% of these agents’ actions pass through the online monitor before they are executed"}
+    - {bears_on: "from", author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "one internal platform, Aug 2026", doc: anthropic-2026-measuring-pace, quote: "100% of these agents’ actions pass through the online monitor before they are executed"}
 
 - id: i-compute
   from: ind-safety-compute-share
@@ -792,7 +792,7 @@
   type: indicates
   sign: "+"
   claims:
-    - {bears_on: "from", author: Anthropic, channel: "primary (influx/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "one week; conservative; boundary contested", doc: anthropic-2026-measuring-pace, quote: "about 6% of compute that went to AI R&D was allocated toward safety"}
+    - {bears_on: "from", author: Anthropic, channel: "primary (ref/anthropic-autonomous-dev.md)", evidence: measurement, qualifier: "one week; conservative; boundary contested", doc: anthropic-2026-measuring-pace, quote: "about 6% of compute that went to AI R&D was allocated toward safety"}
 
 - id: i-revisions
   from: ind-framework-revisions
@@ -830,8 +830,8 @@
   sign: "+"
   delay: long
   claims:
-    - {author: "Hannan & Freeman (1984)", channel: "carried over [C] in prior agent report (influx/safety-and-hypergrowth.md, Theoretical grounding)", evidence: measurement, qualifier: "structural inertia theory; not re-fetched", quote: "inertia grows with size and age"}
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2, rated 50–65%", quote: "the inertia that would dampen change lags beyond the 6-month window"}
+    - {author: "Hannan & Freeman (1984)", channel: "carried over [C] in prior agent report (ref/safety-and-hypergrowth.md, Theoretical grounding)", evidence: measurement, qualifier: "structural inertia theory; not re-fetched", quote: "inertia grows with size and age"}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2, rated 50–65%", quote: "the inertia that would dampen change lags beyond the 6-month window"}
 
 - id: r-routinization-churn
   from: routinization
@@ -839,7 +839,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "the inertia that would dampen change"}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "the inertia that would dampen change"}
 
 - id: r-churn-routinization
   from: structural-churn
@@ -848,7 +848,7 @@
   sign: "-"
   note: Reorganization resets the clock. With r-routinization-churn this is a reinforcing loop (churn → less routine → more churn), a second route to Amburgey's momentum.
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "Each reorganization resets the liability of newness and makes further reorganization more likely."}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "Each reorganization resets the liability of newness and makes further reorganization more likely."}
     - {author: "Amburgey, Kelly & Barnett (1993)", channel: "abstract, via prior agent report (fn 73)", evidence: measurement, qualifier: "the paper is titled 'Resetting the Clock'; non-AI", quote: "an immediate increase in the likelihood of additional changes of the same type"}
 
 - id: r-size-coordination
@@ -857,7 +857,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "They carry the coordination costs of size without the routines that stabilize large firms"}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "They carry the coordination costs of size without the routines that stabilize large firms"}
     - {author: "Brooks's law / sublinear team scaling", channel: "carried over [C] in prior agent report (Theoretical grounding)", evidence: established-practice, qualifier: "named only; not re-fetched"}
 
 - id: r-coordination-coherence
@@ -874,7 +874,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (influx/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "the routines that stabilize large firms"}
+    - {author: "prior Claude agent (report for Joseph)", channel: "prior agent report (ref/safety-and-hypergrowth.md)", evidence: argument, qualifier: "hypothesis H2", quote: "the routines that stabilize large firms"}
 
 # ======================================================= closing the growth loop (our hypotheses, 2026-09-27)
 - id: r-size-growth
@@ -970,7 +970,7 @@
   note: Race acting on deployers' willingness to grant access and affordances.
   claims:
     - {author: "Apollo Research (Stix et al.)", channel: "relay: remaining-literature.md", evidence: argument, qualifier: "how a 'state of vulnerability' arises through human choices", doc: stix-2025-loss, loc: "p.27", quote: "accept greater risk to leverage greater functionality, or succumb to competitive pressures to keep up with other entities' speed or output"}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; mp shard)", evidence: argument, qualifier: "may face pressures", doc: bengio-2026-international, loc: "§2.2.2 'How will deployment environments affect loss of control risk?'", quote: "AI deployers may face pressures to reduce their investment in safeguards – such as limiting permissions and access or deploying only in lower-criticality environments – when such measures are costly or time-consuming to develop"}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md; mp shard)", evidence: argument, qualifier: "may face pressures", doc: bengio-2026-international, loc: "§2.2.2 'How will deployment environments affect loss of control risk?'", quote: "AI deployers may face pressures to reduce their investment in safeguards – such as limiting permissions and access or deploying only in lower-criticality environments – when such measures are costly or time-consuming to develop"}
 
 
 - id: r-pace-safeguard

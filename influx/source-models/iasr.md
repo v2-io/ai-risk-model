@@ -4,7 +4,7 @@
 
 ## Sources and line references
 
-- **"md":** `influx/iasr-2026-full.md` (the 2026 full report).
+- **"md":** `ref/iasr-2026-full.md` (the 2026 full report).
 - **"2025":** `…/scratchpad/src-text/bengio-2025-international.txt` (the 2025 full report).
 - **KU1 and KU2:** the two 2025 Key Updates in the same folder.
 - **ES:** the 2026 Extended Summary for Policymakers.
@@ -63,7 +63,7 @@
 ## Key terms as this model uses them
 
 **Where the definitions come from:**
-- **2026:** the glossary at md 2196–2556 (identical to `influx/iasr-2026-glossary.md`: glossary line = md line − 2195), plus a few inline definitions.
+- **2026:** the glossary at md 2196–2556 (the original repo also kept it as a separate file, `iasr-2026-glossary.md`, not carried over here; that file's line = md line − 2195), plus a few inline definitions.
 - **2025:** the glossary at 2025 10887–11498, and per-section Key Definitions boxes.
 
 **Status labels in the table:**

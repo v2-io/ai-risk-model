@@ -3,7 +3,7 @@
 *From the atlas agent for the International AI Safety Report family (`../iasr.md`), 2026-09-28.*
 
 **Line-reference conventions:**
-- **"md"** means `influx/iasr-2026-full.md`.
+- **"md"** means `ref/iasr-2026-full.md`.
 - **2025, KU1, KU2 and ES** refer to `…/scratchpad/src-text/bengio-2025-international.txt`, `…-key-update-1.txt`, `…-key-update-2.txt` and `bengio-2026-international-extended.txt`.
 - Page numbers are in the atlas.
 

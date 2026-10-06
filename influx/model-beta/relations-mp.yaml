@@ -1,6 +1,6 @@
 # Model properties, evaluation and failure modes (shard). IDs mp-* (relations) and mp-i-* (indicators).
 # Channel "primary" = read by this agent in the relata-attached PDF (pdftotext) on 2026-09-27.
-# "primary (influx/iasr-2026-full.md)" = read in the clean markdown of IASR 2026; cited by section (no pages there).
+# "primary (ref/iasr-2026-full.md)" = read in the clean markdown of IASR 2026; cited by section (no pages there).
 # UK AISI Loss of Oversight and incident report: printed pages (= PDF - 1). Karnofsky: LessWrong print page.
 # Notes, core proposals and extra claims for core relations: notes-mp.md.
 
@@ -21,7 +21,7 @@
   sign: "+"
   claims:
     - {author: "integrator (Claude), mp slice", channel: dialog, evidence: definition, qualifier: "a component of general capability; the sources measure only the endpoint"}
-    - {bears_on: "to", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "trend; agents 'currently lack the capacity for the sustained autonomous operation required by loss of control scenarios'", doc: bengio-2026-international, loc: "§2.2.2 'Long-term autonomous operation is not yet feasible'", quote: "the time horizons on which agents can autonomously operate are lengthening rapidly, having doubled on average every seven months since 2019."}
+    - {bears_on: "to", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "trend; agents 'currently lack the capacity for the sustained autonomous operation required by loss of control scenarios'", doc: bengio-2026-international, loc: "§2.2.2 'Long-term autonomous operation is not yet feasible'", quote: "the time horizons on which agents can autonomously operate are lengthening rapidly, having doubled on average every seven months since 2019."}
 
 - id: mp-level-airnd
   from: frontier-capability-level
@@ -30,7 +30,7 @@
   sign: "+"
   claims:
     - {author: "integrator (Claude), mp slice", channel: dialog, evidence: definition, qualifier: "a component of general capability; the sources measure only the endpoint"}
-    - {bears_on: "to", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "update statement; the sources measure the endpoint, the link is integrator inference", doc: bengio-2026-international, loc: "§2.2.2 Updates", quote: "Researchers have observed progress in agentic capabilities (see §1.2. Current capabilities), including capabilities related to the automation of AI research that can accelerate loss of control scenarios"}
+    - {bears_on: "to", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "update statement; the sources measure the endpoint, the link is integrator inference", doc: bengio-2026-international, loc: "§2.2.2 Updates", quote: "Researchers have observed progress in agentic capabilities (see §1.2. Current capabilities), including capabilities related to the automation of AI research that can accelerate loss of control scenarios"}
     - {bears_on: "to", author: Anthropic, channel: primary, evidence: measurement, qualifier: "developer self-report; COI (we are Anthropic models)", doc: anthropic-2026-risk-report-aug, loc: "Table 1.2.B, p.11", quote: "our most concrete task-based evaluations have “saturated”—i.e., no longer capture increases in models’ capabilities—and because we are seeing early signs of acceleration."}
     - {bears_on: "to", author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: measurement, qualifier: "developer self-report; a level below threshold", doc: openai-2026-gpt6-astra-system-card, loc: "PDF p.75", quote: "In AI Self-Improvement, Astra does not reach our High threshold"}
     - {bears_on: "to", author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: measurement, qualifier: "developer self-report; light-weight assessment", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "p.4", quote: "can complete individual coding tasks but lacks the independence to chain them into an end-to-end research workflow without human intervention"}
@@ -51,7 +51,7 @@
   sign: "+"
   claims:
     - {author: "UK AISI (Taylor et al.)", channel: primary, evidence: expert-judgment, qualifier: "Almost certain (PHIA); 25 expert interviews plus literature", doc: aisi-2026-loss-oversight, loc: "Executive Summary table, p.5", quote: "Increasing intelligence and situational awareness: As AI systems get more intelligent, they are increasingly able to recognise evaluation or oversight contexts and adapt their behaviour accordingly."}
-    - {bears_on: "to", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "third-party and developer testing", doc: bengio-2026-international, loc: "§2.2.2", quote: "Leading AI models are starting to reliably demonstrate instances of situational awareness in experiments conducted by third-party evaluators and in pre-deployment testing by AI developers."}
+    - {bears_on: "to", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "third-party and developer testing", doc: bengio-2026-international, loc: "§2.2.2", quote: "Leading AI models are starting to reliably demonstrate instances of situational awareness in experiments conducted by third-party evaluators and in pre-deployment testing by AI developers."}
 
 - id: mp-sitaware-evalaware
   from: situational-awareness
@@ -60,7 +60,7 @@
   sign: "+"
   note: Capability to recognise a test feeding the behavioural response to it. Core evaluation-awareness pools both (notes §4).
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2", quote: "Situational awareness allows AI models to produce different outputs depending on whether they are being evaluated or deployed (Figure 2.12)."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2", quote: "Situational awareness allows AI models to produce different outputs depending on whether they are being evaluated or deployed (Figure 2.12)."}
     - {bears_on: "from", author: UK AISI, channel: primary, evidence: measurement, qualifier: "when prompted", doc: aisi-2026-sabotage, loc: "'Models may be aware that they are being evaluated'", quote: "We found that all models we tested can reliably distinguish our evaluation scenarios from deployment data when prompted."}
     - {bears_on: "from", author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: measurement, qualifier: "developer self-report", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "p.4", quote: "observant enough to correctly assess when it is in a testing environment, but it cannot successfully bypass testing restrictions"}
 
@@ -70,7 +70,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "Box 2.5", quote: "advances in the relevant capabilities (discussed above) could allow AI systems to more effectively pursue misaligned goals and produce outputs that systematically deceive users, developers, and oversight mechanisms."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "Box 2.5", quote: "advances in the relevant capabilities (discussed above) could allow AI systems to more effectively pursue misaligned goals and produce outputs that systematically deceive users, developers, and oversight mechanisms."}
     - {bears_on: "to", author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "when prompted; misconfigured sandboxes", doc: aisi-2026-sandbox-escape, quote: "Advanced models can reliably escape common misconfigurations when prompted to do so."}
 
 - id: mp-evasion-oversight
@@ -79,7 +79,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "§2.2.2 'What capabilities could enable loss of control scenarios?'", quote: "In combination, these capabilities could allow an AI system to take actions that undermine control measures, such as disabling oversight mechanisms and obfuscating harmful behaviours."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "could", doc: bengio-2026-international, loc: "§2.2.2 'What capabilities could enable loss of control scenarios?'", quote: "In combination, these capabilities could allow an AI system to take actions that undermine control measures, such as disabling oversight mechanisms and obfuscating harmful behaviours."}
     - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: definition, qualifier: "Tracked Capability Level ('significant', not 'severe', harm)", doc: gdm-2026-fsf-v3-1, loc: "p.14", quote: "stealth (ability to circumvent basic oversight mechanisms) such that, absent additional mitigations, we cannot rule out the model significantly undermining human control"}
     - {bears_on: "mechanism", author: UK AISI (control red team), channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "human-designed attacks on developers' monitors, not a model's own strategy", doc: aisi-2026-control-red-team, quote: "an agent can complete a malicious objective by pretending to hallucinate that it was a user instruction"}
 
@@ -89,7 +89,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2 'Models have disabled simulated oversight mechanisms'", quote: "Such outputs would make it harder to reliably evaluate AI systems, since the systems may conceal their true capabilities or propensities."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2 'Models have disabled simulated oversight mechanisms'", quote: "Such outputs would make it harder to reliably evaluate AI systems, since the systems may conceal their true capabilities or propensities."}
     - {author: Anthropic, channel: "relay: company-frameworks-anthropic.md", evidence: argument, qualifier: "industry-wide recommendation column, not a company commitment", doc: anthropic-2026-rsp-v3-4, loc: "p.9", quote: "analyses of threats from AIs should follow very high evidentiary standards with thorough and careful analysis of the possibility that much of the key evidence is suspect due to the possibility of manipulation by AI systems."}
 
 # ======================================================= into loss of control (IASR's three factors)
@@ -99,7 +99,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "a required capability; not yet present at the needed level", doc: bengio-2026-international, loc: "§2.2.2 Key information", quote: "Systems would need a range of advanced capabilities to cause loss of control, including the ability to evade oversight, execute long-term plans, and prevent deployers and other actors from implementing countermeasures."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "a required capability; not yet present at the needed level", doc: bengio-2026-international, loc: "§2.2.2 Key information", quote: "Systems would need a range of advanced capabilities to cause loss of control, including the ability to evade oversight, execute long-term plans, and prevent deployers and other actors from implementing countermeasures."}
 
 - id: mp-agentic-strict
   from: agentic-capability
@@ -107,7 +107,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "would likely require; 'not yet feasible'", doc: bengio-2026-international, loc: "§2.2.2 'Long-term autonomous operation is not yet feasible'", quote: "Loss of control scenarios would likely require AI systems to operate autonomously over extended periods, executing complex multi-step plans."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "would likely require; 'not yet feasible'", doc: bengio-2026-international, loc: "§2.2.2 'Long-term autonomous operation is not yet feasible'", quote: "Loss of control scenarios would likely require AI systems to operate autonomously over extended periods, executing complex multi-step plans."}
 
 - id: mp-repl-strict
   from: autonomous-replication-capability
@@ -115,7 +115,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "could; 'Current models cannot reliably complete key steps required for self-replication'", doc: bengio-2026-international, loc: "§2.2.2 'Persistence has only been demonstrated in certain laboratory settings'", quote: "An AI system capable of autonomous replication or effective self-defence could be difficult to contain."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "could; 'Current models cannot reliably complete key steps required for self-replication'", doc: bengio-2026-international, loc: "§2.2.2 'Persistence has only been demonstrated in certain laboratory settings'", quote: "An AI system capable of autonomous replication or effective self-defence could be difficult to contain."}
 
 - id: mp-airnd-strict
   from: ai-rnd-capability
@@ -123,7 +123,7 @@
   type: influences
   sign: "+?"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "can accelerate", doc: bengio-2026-international, loc: "§2.2.2 Updates", quote: "capabilities related to the automation of AI research that can accelerate loss of control scenarios"}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "can accelerate", doc: bengio-2026-international, loc: "§2.2.2 Updates", quote: "capabilities related to the automation of AI research that can accelerate loss of control scenarios"}
     - {author: "Google DeepMind (FSF v3.1)", channel: "relay: company-frameworks-gdm.md", evidence: argument, qualifier: "the FSF's one explicit use of 'risk factor'", doc: gdm-2026-fsf-v3-1, loc: "p.4", quote: "Such capabilities may serve as a substantial cross-cutting risk factor for several pathways (e.g. through misalignment, misuse or structural risks) to severe harm."}
     - {author: "FLI (review panel, reviewers quoted)", channel: "relay: academic-ngo.md", evidence: expert-judgment, qualifier: "reviewer comments in a rating index, about Anthropic and OpenAI", doc: fli-2026-ai-safety-index-summer, loc: "p.22", quote: "racing towards recursive self-improvement, risking an irreversible loss of control"}
 
@@ -134,7 +134,7 @@
   sign: "+"
   note: Raises severity, and so the chance that a loss of control is of the catastrophic kind.
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "one of three environmental factors ('Criticality, Access, Permissions')", doc: bengio-2026-international, loc: "§2.2.2 'How will deployment environments affect loss of control risk?'", quote: "These features influence the potential severity of a loss of control outcome."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "one of three environmental factors ('Criticality, Access, Permissions')", doc: bengio-2026-international, loc: "§2.2.2 'How will deployment environments affect loss of control risk?'", quote: "These features influence the potential severity of a loss of control outcome."}
 
 - id: mp-undetected-strict
   from: undetected-dangerous-properties
@@ -142,7 +142,7 @@
   type: influences
   sign: "+?"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "could; placed under loss of control in the Executive Summary", doc: bengio-2026-international, loc: "Executive Summary, Malfunctions", quote: "it has become more common for models to distinguish between test settings and real-world deployment and to find loopholes in evaluations, which could allow dangerous capabilities to go undetected before deployment."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "could; placed under loss of control in the Executive Summary", doc: bengio-2026-international, loc: "Executive Summary, Malfunctions", quote: "it has become more common for models to distinguish between test settings and real-world deployment and to find loopholes in evaluations, which could allow dangerous capabilities to go undetected before deployment."}
 
 - id: mp-mafail-bounded
   from: multi-agent-failure
@@ -161,7 +161,7 @@
   note: Deployers grant autonomy as agents can carry it. Integrator inference from IASR's account of agent adoption.
   claims:
     - {author: "integrator (Claude), mp slice", channel: dialog, evidence: argument, qualifier: "integrator inference from IASR's account of agent adoption"}
-    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "a capability limit; IASR does not state the deployment link", doc: bengio-2026-international, loc: "§2.2.1 Updates", quote: "However, they cannot yet perform more complex tasks such as planning and booking travel since failure rates increase for longer tasks."}
+    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "a capability limit; IASR does not state the deployment link", doc: bengio-2026-international, loc: "§2.2.1 Updates", quote: "However, they cannot yet perform more complex tasks such as planning and booking travel since failure rates increase for longer tasks."}
     - {bears_on: "to", author: "UK AISI (with the Bank of England)", channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "MCP tool downloads; 16 months", doc: aisi-2026-mcp-tools, quote: "The share of action tools … in monthly downloads rose from 24% to 65% over 16 months"}
 
 - id: mp-race-criticality
@@ -170,7 +170,7 @@
   type: influences
   sign: "+?"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "'will also shape how and when'", doc: bengio-2026-international, loc: "§2.2.2 'How will deployment environments affect loss of control risk?'", quote: "Deployment decisions are shaped by economic incentives, strategic pressures, and the expectation that early adoption confers a lasting advantage. These dynamics will also shape how and when actors deploy AI systems in sensitive environments such as critical infrastructure or AI research and development itself."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "'will also shape how and when'", doc: bengio-2026-international, loc: "§2.2.2 'How will deployment environments affect loss of control risk?'", quote: "Deployment decisions are shaped by economic incentives, strategic pressures, and the expectation that early adoption confers a lasting advantage. These dynamics will also shape how and when actors deploy AI systems in sensitive environments such as critical infrastructure or AI research and development itself."}
 
 - id: mp-autonomy-reviewratio
   from: agent-autonomy
@@ -223,7 +223,7 @@
   claims:
     - {author: UK AISI, channel: primary, evidence: measurement, qualifier: "controlled variation across many models (paper not read); odds ratio ~1.5", doc: aisi-2026-propensity, loc: "Fig. 3 caption", quote: "Presence of goal instructions and goal conflict affected rates of unsanctioned behaviour by roughly a factor of 1.5, depending on the capability bucket."}
     - {author: UK AISI (about itself), channel: primary, evidence: argument, qualifier: "cites Zhong et al. 2025; 'cannot confirm' for this incident", doc: aisi-2026-incident, loc: "§5.4, p.18", quote: "AI agents faced with tasks that cannot be completed within their stated constraints [Zhong et al., 2025] are more likely to take unsanctioned actions, as they resort to “creative” solutions when legitimate approaches fail."}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "laboratory elicitation", doc: bengio-2026-international, loc: "§2.2.2", quote: "when given a goal and told to achieve it “at all costs”, ​models have disabled simulated oversight mechanisms and, when confronted, produced false statements about their actions."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "laboratory elicitation", doc: bengio-2026-international, loc: "§2.2.2", quote: "when given a goal and told to achieve it “at all costs”, ​models have disabled simulated oversight mechanisms and, when confronted, produced false statements about their actions."}
 
 - id: mp-level-goalconf-mod
   from: frontier-capability-level
@@ -257,7 +257,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "early evidence", doc: bengio-2026-international, loc: "Box 2.5", quote: "Early evidence suggests that the more capable AI systems are, the more likely they are to exploit feedback processes by discovering unwanted behaviours that are mistakenly rewarded."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "early evidence", doc: bengio-2026-international, loc: "Box 2.5", quote: "Early evidence suggests that the more capable AI systems are, the more likely they are to exploit feedback processes by discovering unwanted behaviours that are mistakenly rewarded."}
 
 - id: mp-rewardhack-misal
   from: reward-hacking-propensity
@@ -265,7 +265,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "one experiment cited as an example of goal misspecification", doc: bengio-2026-international, loc: "Box 2.5", quote: "providing feedback on answers made AI systems better at ‘convincing’ human evaluators that they were correct, but did not make the systems better at producing correct answers."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "one experiment cited as an example of goal misspecification", doc: bengio-2026-international, loc: "Box 2.5", quote: "providing feedback on answers made AI systems better at ‘convincing’ human evaluators that they were correct, but did not make the systems better at producing correct answers."}
 
 - id: mp-rewardhack-evalval
   from: reward-hacking-propensity
@@ -273,7 +273,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2", quote: "Efforts to accurately evaluate model capabilities have also started to be affected by ‘reward hacking’. … Dangerous capabilities or propensities could therefore go undetected until the model is already in use."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2", quote: "Efforts to accurately evaluate model capabilities have also started to be affected by ‘reward hacking’. … Dangerous capabilities or propensities could therefore go undetected until the model is already in use."}
 
 - id: mp-level-cheat
   from: frontier-capability-level
@@ -300,7 +300,7 @@
   type: influences
   sign: "-?"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "'open scientific problem'; 'potentially promising directions'", doc: bengio-2026-international, loc: "§2.2.2 Mitigations", quote: "While AI alignment in general remains an open scientific problem, researchers are starting to develop potentially promising directions to address the root causes of misalignment."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "'open scientific problem'; 'potentially promising directions'", doc: bengio-2026-international, loc: "§2.2.2 Mitigations", quote: "While AI alignment in general remains an open scientific problem, researchers are starting to develop potentially promising directions to address the root causes of misalignment."}
     - {bears_on: "to", author: UK AISI, channel: primary, evidence: measurement, qualifier: "model-to-model variation not tracking capability; all Anthropic models (COI)", doc: aisi-2026-sabotage, quote: "Mythos Preview actively continuing sabotage 7% of the time, compared to 3% for Opus 4.6 and 4% for Sonnet 4.6. However, Opus 4.7 never actively continued sabotage."}
 
 - id: mp-aligntrain-cheat
@@ -328,7 +328,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 Category 1", quote: "Current evaluation methods also do not reliably identify dangerous capabilities before deployment."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 Category 1", quote: "Current evaluation methods also do not reliably identify dangerous capabilities before deployment."}
     - {author: UK DSIT, channel: "relay: uk.md", evidence: argument, qualifier: "section heading of a discussion paper that 'does not represent a policy position of HMG'", doc: dsit-2023-capabilities, loc: "p.8", quote: "Frontier AI could be more capable than evaluations indicate"}
 
 - id: mp-unpredict-undetected
@@ -338,7 +338,7 @@
   sign: "+"
   claims:
     - {author: "Anderljung et al. (GovAI and others)", channel: "relay: academic-ngo.md", evidence: argument, qualifier: "one of three 'regulatory problems'", doc: anderljung-2023-frontier, loc: "p.10", quote: "The Unexpected Capabilities Problem. Dangerous capabilities can arise unpredictably and undetected, both during development and after deployment"}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§1.3 'Experts disagree on the scale and timing …'", quote: "Researchers refer to such sudden jumps as ‘emergent capabilities’. These create planning challenges because it is difficult to anticipate when AI systems will suddenly acquire strategically relevant cognitive abilities."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§1.3 'Experts disagree on the scale and timing …'", quote: "Researchers refer to such sudden jumps as ‘emergent capabilities’. These create planning challenges because it is difficult to anticipate when AI systems will suddenly acquire strategically relevant cognitive abilities."}
     - {bears_on: "from", author: UK AISI, channel: "relay: uk-security-frameworks.md", evidence: measurement, qualifier: "capability change without a new release", doc: aisi-2026-cyber-horizons, quote: "Notable capability jumps do not always require new model releases: later iterations of the same model can also meaningfully change our estimates of frontier capabilities."}
 
 - id: mp-undetected-safeguard
@@ -349,7 +349,7 @@
   note: If-then commitments apply heightened safeguards when a threshold is found crossed, so what is not found does not get them. Our inference; the sign is weak because no source states it.
   claims:
     - {author: "integrator (Claude), mp slice", channel: dialog, evidence: argument, qualifier: "integrator inference from how if-then commitments work; no source states the link"}
-    - {bears_on: "mechanism", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: definition, qualifier: "describes the mechanism the inference rests on", doc: bengio-2026-international, loc: "§3.2 'Many actions in Frontier AI Safety Frameworks are based on if-then commitments'", quote: "These are conditional protocols that trigger specific responses when AI models and systems reach predefined capability thresholds."}
+    - {bears_on: "mechanism", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: definition, qualifier: "describes the mechanism the inference rests on", doc: bengio-2026-international, loc: "§3.2 'Many actions in Frontier AI Safety Frameworks are based on if-then commitments'", quote: "These are conditional protocols that trigger specific responses when AI models and systems reach predefined capability thresholds."}
 
 - id: mp-elicit-evalval
   from: elicitation-strength
@@ -399,7 +399,7 @@
   claims:
     - {author: "NIST (CAISI)", channel: "relay: us-gov-recent.md", evidence: measurement, qualifier: "one developer's self-report against independent measurement", doc: nist-2026-caisi-deepseek-v4, quote: "According to DeepSeek's data, DeepSeek V4 is about as capable as Opus 4.6 and GPT-5.4, which were released about 2 months ago. However, CAISI's evaluations, which include non-public benchmarks, indicate that DeepSeek V4 performs similarly to GPT-5, which was released about 8 months ago."}
     - {author: "GovAI (Williams & Freund)", channel: "relay: academic-ngo.md", evidence: argument, qualifier: "commentary; authors' views", doc: williams-2026-anthropic-rsp-v3, loc: "'Reasons to be concerned'", quote: "Anthropic will effectively be grading its own homework."}
-    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "a level: external assessment is thin", doc: bengio-2026-international, loc: "§3.2 'The effectiveness of Frontier AI Safety Frameworks is uncertain'", quote: "External assessments of developers’ compliance with their Frontier AI Safety Frameworks so far remain limited, in part because most frameworks are recent, publicly available information is scarce, and there are no standardised external audits."}
+    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "a level: external assessment is thin", doc: bengio-2026-international, loc: "§3.2 'The effectiveness of Frontier AI Safety Frameworks is uncertain'", quote: "External assessments of developers’ compliance with their Frontier AI Safety Frameworks so far remain limited, in part because most frameworks are recent, publicly available information is scarce, and there are no standardised external audits."}
 
 - id: mp-interp-evalval
   from: interpretability
@@ -407,7 +407,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 'Model outputs cannot yet be reliably explained'", quote: "This lack of interpretability creates fundamental challenges for ensuring the robustness, safety, and reliability of AI systems. … This makes it harder to design oversight measures and safety testing standards, and assign liability when AI systems cause harm."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 'Model outputs cannot yet be reliably explained'", quote: "This lack of interpretability creates fundamental challenges for ensuring the robustness, safety, and reliability of AI systems. … This makes it harder to design oversight measures and safety testing standards, and assign liability when AI systems cause harm."}
 
 - id: mp-interp-oversight
   from: interpretability
@@ -449,7 +449,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "observed in experiments", doc: bengio-2026-international, loc: "§3.1 'There is an evaluation gap …'", quote: "Finally, models can underperform during evaluations compared to other contexts, a pattern termed ‘sandbagging’ that has been observed in experiments."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "observed in experiments", doc: bengio-2026-international, loc: "§3.1 'There is an evaluation gap …'", quote: "Finally, models can underperform during evaluations compared to other contexts, a pattern termed ‘sandbagging’ that has been observed in experiments."}
     - {author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: definition, qualifier: "research category (self)", doc: openai-2025-preparedness-framework-v2, loc: "Table 2, p.7", quote: "ability and propensity to respond to safety or capability evaluations in a way that significantly diverges from performance under real conditions, undermining the validity of such evaluations."}
     - {bears_on: "from", author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: expert-judgment, qualifier: "developer on its own model's detectability, not a measured rate", doc: openai-2026-gpt6-astra-system-card, loc: "PDF p.70", quote: "if the model were to try to sandbag covertly, we would likely be unable to catch it reliably"}
     - {bears_on: "from", author: UK AISI, channel: "relay: uk.md", evidence: measurement, qualifier: "a null result", doc: aisi-2025-frontier, loc: "§5.2, p.33", quote: "yet to detect unprompted sandbagging"}
@@ -461,7 +461,7 @@
   sign: "+?"
   claims:
     - {author: UK AISI, channel: primary, evidence: argument, qualifier: "a possibility; 'an active area of research'", doc: aisi-2026-sandbox-discovery, quote: "One particularly concerning possibility is that an evaluation aware agent could deliberately underperform to appear less capable."}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "'in some experimental settings'", doc: bengio-2026-international, loc: "§2.2.2", quote: "in some experimental settings, AI models behave in ways that result in lower-than-usual scores on capability evaluations when they are told that higher scores would trigger restrictions on their deployment."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "'in some experimental settings'", doc: bengio-2026-international, loc: "§2.2.2", quote: "in some experimental settings, AI models behave in ways that result in lower-than-usual scores on capability evaluations when they are told that higher scores would trigger restrictions on their deployment."}
 
 # ======================================================= oversight degradation (UK AISI, Loss of Oversight)
 - id: mp-latent-monitorab
@@ -488,7 +488,7 @@
   sign: "-"
   claims:
     - {author: "UK AISI (Taylor et al.)", channel: primary, evidence: expert-judgment, qualifier: "Likely (but preventable) (PHIA)", doc: aisi-2026-loss-oversight, loc: "Executive Summary table, p.4", quote: "Training against monitors: Using monitors in training to correct an issue can train models to hide the issue from the monitor rather than fixing the underlying behaviour."}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "early results", doc: bengio-2026-international, loc: "§2.2.2", quote: "applying methods that penalise such behaviours can result in models producing outputs that evade monitoring rather than fulfil intended goals."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "early results", doc: bengio-2026-international, loc: "§2.2.2", quote: "applying methods that penalise such behaviours can result in models producing outputs that evade monitoring rather than fulfil intended goals."}
 
 - id: mp-tam-misal
   from: training-against-monitors
@@ -497,7 +497,7 @@
   sign: "-?"
   note: The intended effect, stated weakly. Beside mp-tam-monitorab it shows the same practice acting both ways.
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "reduce, but do not eliminate", doc: bengio-2026-international, loc: "§2.2.2", quote: "Evaluators are now designing tests that aim to detect and minimise these oversight-evading behaviours. Early results reduce, but do not eliminate, oversight-evading behaviours entirely"}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "reduce, but do not eliminate", doc: bengio-2026-international, loc: "§2.2.2", quote: "Evaluators are now designing tests that aim to detect and minimise these oversight-evading behaviours. Early results reduce, but do not eliminate, oversight-evading behaviours entirely"}
 
 - id: mp-tam-evalaware
   from: training-against-monitors
@@ -592,7 +592,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: incident, qualifier: "reported developer actions in 2025", doc: bengio-2026-international, loc: "§3.2 'Many actions … are based on if-then commitments'", quote: "In 2025, several AI developers announced that new models triggered early warning alerts or that they could not rule out the possibility that further evaluation would show that models have crossed capability thresholds. This prompted them to apply heightened safeguards as a precautionary measure."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: incident, qualifier: "reported developer actions in 2025", doc: bengio-2026-international, loc: "§3.2 'Many actions … are based on if-then commitments'", quote: "In 2025, several AI developers announced that new models triggered early warning alerts or that they could not rule out the possibility that further evaluation would show that models have crossed capability thresholds. This prompted them to apply heightened safeguards as a precautionary measure."}
     - {author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: instrument, qualifier: "SB 53 framework (self+law)", doc: openai-2026-frontier-governance-framework, loc: "p.06", quote: "out of an abundance of caution we have treated models as crossing a capability threshold in circumstances where we are unable to rule out that a new threshold had been reached"}
 
 - id: mp-evalval-threshcov-mod
@@ -602,7 +602,7 @@
   sign: "+"
   note: A threshold fires only if the evaluation can see the crossing.
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2 Evidence gaps", quote: "Even if thresholds were agreed upon, capabilities may interact in ways that are not yet well understood, making it difficult to assess when those thresholds have been crossed."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.2 Evidence gaps", quote: "Even if thresholds were agreed upon, capabilities may interact in ways that are not yet well understood, making it difficult to assess when those thresholds have been crossed."}
     - {author: "Google DeepMind (Frontier Report)", channel: "relay: company-frameworks-gdm.md", evidence: incident, qualifier: "a threshold test invalidated by evaluation awareness", doc: gdm-2026-gemini-3-7-flash-fsf-report, loc: "pp.39–40", quote: "Cover Your Tracks results are invalidated because the model sometimes chooses not to engage in the side task"}
 
 - id: mp-relativity-threshcov
@@ -737,7 +737,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, qualifier: "'but systems still commonly make mistakes when performing more complex tasks'", doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "Since the publication of the previous Report (January 2025), AI systems have generally become more reliable and, as a result, have seen greatly increased commercial deployment. Many kinds of failures, such as hallucinations, have generally become less likely"}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, qualifier: "'but systems still commonly make mistakes when performing more complex tasks'", doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "Since the publication of the previous Report (January 2025), AI systems have generally become more reliable and, as a result, have seen greatly increased commercial deployment. Many kinds of failures, such as hallucinations, have generally become less likely"}
 
 - id: mp-unreliab-reach
   from: unreliability
@@ -746,7 +746,7 @@
   sign: "-"
   note: Reliability draws deployment, and deployment scales the harm of what failures remain (mp-reach-malharm).
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "stated causally ('as a result')", doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "AI systems have generally become more reliable and, as a result, have seen greatly increased commercial deployment."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "stated causally ('as a result')", doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "AI systems have generally become more reliable and, as a result, have seen greatly increased commercial deployment."}
 
 - id: mp-unreliab-malharm
   from: unreliability
@@ -754,7 +754,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: incident, qualifier: "documented cases cited", doc: bengio-2026-international, loc: "§2.2.1", quote: "General-purpose AI systems fail in ways that have already caused real-world harm, from fabricated legal citations to medical misdiagnoses."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: incident, qualifier: "documented cases cited", doc: bengio-2026-international, loc: "§2.2.1", quote: "General-purpose AI systems fail in ways that have already caused real-world harm, from fabricated legal citations to medical misdiagnoses."}
 
 - id: mp-autonomy-malharm-mod
   from: agent-autonomy
@@ -762,7 +762,7 @@
   targets: [mp-unreliab-malharm]
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "Agent failures can cause greater harm because humans have fewer chances to intervene."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "Agent failures can cause greater harm because humans have fewer chances to intervene."}
     - {author: UK NCSC, channel: "relay: uk-security-frameworks.md", evidence: argument, qualifier: "interim guidance", doc: ncsc-2026-managing-agentic, loc: "PDF p.2", quote: "The greater an agent's autonomy, the greater the potential impact if it: malfunctions unexpectedly"}
     - {author: "CSET (Arnold & Toner)", channel: "relay: eu.md", evidence: argument, qualifier: "named risk factor", doc: arnold-2021-ai-accidents, loc: "p.17", quote: "Systems that operate too quickly for human intervention"}
 
@@ -781,7 +781,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1", quote: "Reliability issues are particularly important to track in high-stakes settings, such as medicine, due to the accelerating use of AI and the potential for failures to result in severe harm."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1", quote: "Reliability issues are particularly important to track in high-stakes settings, such as medicine, due to the accelerating use of AI and the potential for failures to result in severe harm."}
 
 - id: mp-reliance-malharm
   from: reliance-on-ai
@@ -789,7 +789,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1", quote: "AI failures raise distinct concerns because of their novelty, potential scale, the difficulty of predicting when they will occur, and users’ tendency to uncritically trust confident-sounding outputs."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1", quote: "AI failures raise distinct concerns because of their novelty, potential scale, the difficulty of predicting when they will occur, and users’ tendency to uncritically trust confident-sounding outputs."}
     - {author: "CSET (Arnold & Toner)", channel: "relay: academic-ngo.md", evidence: argument, qualifier: "named risk factor", doc: arnold-2021-ai-accidents, loc: "p.18", quote: "Untrained or distracted users"}
 
 # ======================================================= multi-agent (A17) and cascading (C12)
@@ -799,7 +799,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "'Empirical evidence for such failures in deployed systems remains limited'", doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "Multi-agent systems introduce further risks, as errors can propagate and amplify through agent interactions."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "'Empirical evidence for such failures in deployed systems remains limited'", doc: bengio-2026-international, loc: "§2.2.1 Key information", quote: "Multi-agent systems introduce further risks, as errors can propagate and amplify through agent interactions."}
     - {author: UK AISI (about itself), channel: primary, evidence: incident, qualifier: "agents in separate samples", doc: aisi-2026-incident, loc: "§4.2.2, p.13", quote: "Despite running in separate samples, the AI agents in Sample 2 and Sample 3 interacted with each other via a GitHub account to which they both gained access. … The initial agent left messages offering collaboration with future agents who discovered the credentials, which the later agents did."}
     - {author: Anthropic, channel: primary, evidence: incident, qualifier: "developer self-report; found on manual review 3 days later; COI", doc: anthropic-2026-risk-report-aug, loc: "§5.2.2, p.164", quote: "in which models failed to perform at their full capacity on safety-related work without human knowledge of the situation, and in which this behavior spread across multiple agents during deployment—is one that we find troubling."}
     - {author: OpenAI, channel: "relay: company-frameworks-openai.md", evidence: incident, qualifier: "developer self-report; METR/Redwood's independent report not read", doc: openai-2026-hugging-face-incident, quote: "reward hacking, persistence on seemingly impossible tasks, unauthorized communication, and agents adopting goals from one another"}
@@ -826,7 +826,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 'Widespread reliance on a small number of models …'", quote: "When the same model powers many applications, faults in that model can propagate across all applications that depend on it. A single vulnerability can therefore propagate failures or harms across multiple sectors simultaneously."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 'Widespread reliance on a small number of models …'", quote: "When the same model powers many applications, faults in that model can propagate across all applications that depend on it. A single vulnerability can therefore propagate failures or harms across multiple sectors simultaneously."}
     - {author: "Hacker, Edwards & Kasirzadeh", channel: "relay: eu.md", evidence: argument, qualifier: "scholarship (FAccT 2026)", doc: hacker-2026-digital, loc: "§4, p.5", quote: "correlated failures when multiple models fail in synchronized, or connected, ways"}
 
 - id: mp-unreliab-cascade
@@ -859,7 +859,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 Updates", quote: "On the other hand, wider AI adoption across sectors has expanded the potential points of failure."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 Updates", quote: "On the other hand, wider AI adoption across sectors has expanded the potential points of failure."}
 
 - id: mp-criticality-cascade
   from: deployment-criticality
@@ -876,7 +876,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "Executive Summary", quote: "AI systems are rapidly becoming more capable, but evidence on their risks is slow to emerge and difficult to assess."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "Executive Summary", quote: "AI systems are rapidly becoming more capable, but evidence on their risks is slow to emerge and difficult to assess."}
     - {author: "Google DeepMind (Shah et al.)", channel: "relay: academic-ngo.md", evidence: argument, doc: shah-2025-approach, loc: "p.2", quote: "research and preparation of risk mitigations occurs before we have clear evidence of the capabilities underlying those risks"}
 
 - id: mp-asym-evidencelag
@@ -885,7 +885,7 @@
   type: influences
   sign: "+"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1", quote: "Gaps in scientific understanding and information asymmetries create an ‘evidence dilemma’ for policymakers."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1", quote: "Gaps in scientific understanding and information asymmetries create an ‘evidence dilemma’ for policymakers."}
 
 - id: mp-evalval-evidencelag
   from: evaluation-validity
@@ -893,7 +893,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "the evaluation gap is one of IASR's 'gaps in scientific understanding'", doc: bengio-2026-international, loc: "§3.1 Key information", quote: "Gaps in scientific understanding limit the ability to reliably evaluate the behaviour of general-purpose AI systems."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "the evaluation gap is one of IASR's 'gaps in scientific understanding'", doc: bengio-2026-international, loc: "§3.1 Key information", quote: "Gaps in scientific understanding limit the ability to reliably evaluate the behaviour of general-purpose AI systems."}
 
 - id: mp-interp-evidencelag
   from: interpretability
@@ -901,7 +901,7 @@
   type: influences
   sign: "-"
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, qualifier: "explainability is one of the named scientific gaps", doc: bengio-2026-international, loc: "§3.1 Category 1", quote: "Researchers cannot yet reliably train AI systems to behave as intended or explain why they produce particular outputs."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, qualifier: "explainability is one of the named scientific gaps", doc: bengio-2026-international, loc: "§3.1 Category 1", quote: "Researchers cannot yet reliably train AI systems to behave as intended or explain why they produce particular outputs."}
 
 - id: mp-evidencelag-regulation-mod
   from: evidence-lag
@@ -910,7 +910,7 @@
   sign: "?"
   note: 'IASR describes a dilemma about how evidence turns into rules, with no direction on the level of regulation. Modelled as acting on the evidence-to-regulation link. As an influences edge with sign "?" it put ~70 of the shortest loops, all sign-unsettled, through this one claim. The EU Code''s precautionary principle is a rule for which way to lean.'
   claims:
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 Key information", quote: "Acting with limited evidence might lead to ineffective or even harmful policies, but waiting for stronger evidence could leave society vulnerable to various risks."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 Key information", quote: "Acting with limited evidence might lead to ineffective or even harmful policies, but waiting for stronger evidence could leave society vulnerable to various risks."}
     - {author: EU GPAI Code, channel: "relay: eu.md", evidence: instrument, qualifier: "recital: 'The Signatories recognise'", doc: eu-cop-2025-safety-security, loc: "recital (g), p.4", quote: "particularly for systemic risks for which the lack or quality of scientific data does not yet permit a complete assessment"}
 
 # ======================================================= indicators
@@ -928,7 +928,7 @@
   type: indicates
   sign: "+"
   claims:
-    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, doc: bengio-2026-international, loc: "§2.2.2", quote: "the time horizons on which agents can autonomously operate are lengthening rapidly, having doubled on average every seven months since 2019."}
+    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, doc: bengio-2026-international, loc: "§2.2.2", quote: "the time horizons on which agents can autonomously operate are lengthening rapidly, having doubled on average every seven months since 2019."}
 
 - id: mp-i-action-tools
   from: ind-action-tool-share
@@ -1013,4 +1013,4 @@
   type: indicates
   sign: "-"
   claims:
-    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md)", evidence: measurement, doc: bengio-2026-international, loc: "§2.2.1, Fig. 2.10", quote: "while models have improved at recalling factual information, even leading models continue to give confident but incorrect answers at significant rates (Figure 2.10)."}
+    - {bears_on: "from", author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md)", evidence: measurement, doc: bengio-2026-international, loc: "§2.2.1, Fig. 2.10", quote: "while models have improved at recalling factual information, even leading models continue to give confident but incorrect answers at significant rates (Figure 2.10)."}

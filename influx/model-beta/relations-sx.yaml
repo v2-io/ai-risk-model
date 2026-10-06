@@ -1,5 +1,5 @@
 # Societal and structural slice (shard `sx`): relations. Ids prefixed sx-. See notes-sx.md.
-# Channel "primary" = read by this agent in the source (IASR 2026 via influx/iasr-2026-full.md, cited by section;
+# Channel "primary" = read by this agent in the source (IASR 2026 via ref/iasr-2026-full.md, cited by section;
 # others via relata PDF + pdftotext, cited by printed page unless "PDF p." is given).
 
 # ======================================================= market structure and concentration (C3)
@@ -77,8 +77,8 @@
     - {author: IASR 2026 writing team, channel: primary, evidence: argument, qualifier: "section heading and body", doc: bengio-2026-international, loc: "§3.1, Category 4", quote: "When the same model powers many applications, faults in that model can propagate across all applications that depend on it."}
     - {author: IASR 2025 writing team, channel: primary, evidence: argument, qualifier: "concern; 'little research on predicting or mitigating single points of failure'", doc: bengio-2025-international, loc: "§2.3.3, p.126", quote: "flaws, vulnerabilities, bugs, or inherent biases in these widely adopted AI systems could lead to simultaneous failures across multiple industries"}
     - {author: "CSET (Arnold & Toner)", channel: "relay: eu.md", evidence: argument, qualifier: "named risk factor, argued from history", doc: arnold-2021-ai-accidents, loc: "p.17", quote: "When a single AI model is used in many different real-world settings at once, a single error can create havoc on a much larger scale."}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; mp shard)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1", quote: "If multiple agents are built on the same base model or incorporate the same tools, then they may also exhibit correlated failures."}
-    - {author: IASR 2026 writing team, channel: "primary (influx/iasr-2026-full.md; mp shard)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 'Widespread reliance on a small number of models creates single points of failure'", quote: "Even ostensibly independent models may share vulnerabilities due to model convergence, where separately developed systems seem to process information in similar ways."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md; mp shard)", evidence: argument, doc: bengio-2026-international, loc: "§2.2.1", quote: "If multiple agents are built on the same base model or incorporate the same tools, then they may also exhibit correlated failures."}
+    - {author: IASR 2026 writing team, channel: "primary (ref/iasr-2026-full.md; mp shard)", evidence: argument, doc: bengio-2026-international, loc: "§3.1 'Widespread reliance on a small number of models creates single points of failure'", quote: "Even ostensibly independent models may share vulnerabilities due to model convergence, where separately developed systems seem to process information in similar ways."}
 
 
 

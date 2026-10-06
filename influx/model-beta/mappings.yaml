@@ -48,8 +48,8 @@
 - {concept: org-growth-rate, rel: broad, src: icao-2018-doc9859-smm, term: "organizational expansion or contraction", loc: "§9.5.5.1", channel: "relay: absence-claim.md"}
 - {concept: leadership-change, rel: close, src: icao-2018-doc9859-smm, term: "changes in key personnel", loc: "§9.5.5.5", channel: "relay: absence-claim.md"}
 - {concept: staff-turnover, rel: close, src: icao-2018-doc9859-smm, term: "turnover rate of the key personnel", loc: "§8.5.3.8(c)", channel: "relay: absence-claim.md"}
-- {concept: absorption-gap, rel: close, src: safety-and-hypergrowth-report, term: "growth faster than experienced staff can absorb it", loc: "H1", channel: "prior agent report (influx/safety-and-hypergrowth.md)", note: "A hypothesis in a report prepared for Joseph, not a source finding."}
-- {concept: decision-coherence, rel: related, src: safety-and-hypergrowth-report, term: "non-consolidation", loc: "H4", channel: "prior agent report (influx/safety-and-hypergrowth.md)"}
+- {concept: absorption-gap, rel: close, src: safety-and-hypergrowth-report, term: "growth faster than experienced staff can absorb it", loc: "H1", channel: "prior agent report (ref/safety-and-hypergrowth.md)", note: "A hypothesis in a report prepared for Joseph, not a source finding."}
+- {concept: decision-coherence, rel: related, src: safety-and-hypergrowth-report, term: "non-consolidation", loc: "H4", channel: "prior agent report (ref/safety-and-hypergrowth.md)"}
 - {concept: management-of-change, rel: close, src: iaea-2016-gsr-part2, term: "organizational changes … appropriately analysed", loc: "¶4.13", channel: "relay: absence-claim.md"}
 - {concept: management-of-change, rel: exact, src: barrett-2025-stampstpa, term: "management of change procedures", loc: "p.23", channel: "relay: remaining-literature.md"}
 - {concept: management-of-change, rel: narrow, src: aguirre-2026-sl3, term: "policy review on organizational change (PS-1)", channel: "relay: us-security.md", note: "Personnel-security policy only."}
@@ -57,7 +57,7 @@
 - {concept: safety-culture-strength, rel: close, src: hendrycks-2023-overview, term: "safety culture", loc: "p.28", channel: "relay: academic-ngo.md"}
 - {concept: safety-culture-strength, rel: related, src: eu-cop-2025-safety-security, term: "healthy risk culture", loc: "Measure 8.3", channel: "relay: eu.md", note: "Risk-process construct; not the same as safety-as-value."}
 - {concept: safety-culture-strength, rel: related, src: dsit-2025-cyber-governance, term: "cyber security culture", loc: "glossary", channel: "relay: uk-security-frameworks.md"}
-- {concept: ai-led-rnd, rel: exact, src: anthropic-2026-measuring-pace, term: "AI-led AI R&D / Automation Level (AL)", channel: "primary (influx/anthropic-autonomous-dev.md)"}
+- {concept: ai-led-rnd, rel: exact, src: anthropic-2026-measuring-pace, term: "AI-led AI R&D / Automation Level (AL)", channel: "primary (ref/anthropic-autonomous-dev.md)"}
 - {concept: ai-led-rnd, rel: broad, src: anthropic-2026-rsp-v3-4, term: "automated R&D threshold", quote: "fully substitute for our entire set of Research Scientists and Research Engineers", channel: "relay: company-frameworks.md", note: "A threshold on this quantity, not the quantity itself."}
 
 # ---- human cognition

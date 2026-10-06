@@ -75,7 +75,9 @@ Stage in that chain is read as a role relative to a focal event, not as a fixed 
 | `influx/source-atlas/` | a per-family atlas of 212 source documents (TOC, glossary and representative passages), the atlas agents' feedback on the schema, and reading notes |
 | `influx/verification/` | the evidence files from the first verification rounds, with verbatim quotes and locations |
 | `influx/*.md` | smaller inputs: the aligned-to-whom table and diagram, a note on AI welfare framings in the sources, a note setting an in-progress philosophy discussion beside the corpus |
+| `alignment-model/` | the "Aligned to whom?" map: the actors who influence a deployed agent, through what, and what reaches it. Built from `alignment-model/alignment.md`; its README says how |
 | `ref/` | local copies of reference texts. Some are git-ignored (see `ref/.gitignore`), including the IASR 2026 full text. |
+| `bin/extract-text` | regenerates the `pdftotext -layout` extractions that line references point into (see Working notes) |
 | `.archive/` | superseded material |
 
 `influx/` is working material and will move to `.archive/` as its contents are superseded.
@@ -83,7 +85,7 @@ Stage in that chain is read as a role relative to a focal event, not as a fixed 
 ## Working notes
 
 - **Sources live in relata**, Joseph's citation manager (`relata --help`). For a document's text, `relata show <key>` gives its PDF path; extract it with `pdftotext -layout`. Avoid `relata show-markdown` to check conversion state, since it forces the conversion. Avoid `relata ingest --retry`, which re-stages the whole shared review queue.
-- **Line references** in the atlas and source-model files point into `pdftotext -layout` extractions, which aren't kept in the repo; the atlas README says how to regenerate them. PDF pages survive re-extraction; cite both.
+- **Line references** in the atlas and source-model files point into `pdftotext -layout` extractions, which aren't kept in the repo; `bin/extract-text <key>…` regenerates them into `.extract/` (git-ignored). PDF pages survive re-extraction; cite both.
 - **Parallel agents** each need their own scratch directory. Shared helper-script names have collided before.
 - **This repository is public.** Keep private or personal material out of it.
 - **Current Exposures**: influx/ai-welfare-and-release-framings.md, influx/model-beta/notes-sx.md, and influx/perspective-logos-2026-09-28.md -- Joseph may decide to remove at some point, but they are fine for now (- Joseph, 28-Sept-2026)

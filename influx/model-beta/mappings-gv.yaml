@@ -28,7 +28,7 @@
   term: Frontier AI Safety Commitments (Seoul)
   loc: §3.2
   quote: 16 AI developers from multiple countries signed voluntary commitments to publish Frontier AI Safety Frameworks
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: code-commitments
   rel: related
   src: g7-2023-hiroshima-code-of-conduct
@@ -48,7 +48,7 @@
   term: if-then commitments
   loc: §3.2, Table 3.3
   quote: a set of technical and organisational protocols and commitments to manage risks as AI models become more capable
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: self-commitments
   rel: exact
   src: anthropic-2026-rsp-v3-4
@@ -110,7 +110,7 @@
   term: marginal risk (risk tolerance)
   loc: §3.2, Table 3.2
   quote: Some companies describe their risk tolerance in terms of a new model's marginal risk; that is, the extent to which a model counterfactually increases risk beyond that already posed by existing models or other technologies.
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: revision-visibility
   rel: related
   src: zhu-2026-silent
@@ -124,7 +124,7 @@
   src: bengio-2026-international
   term: external assessments of developers' compliance
   loc: §3.2
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: external-verification
   rel: related
   src: williams-2026-anthropic-rsp-v3
@@ -136,14 +136,14 @@
   src: bengio-2026-international
   term: institutional design and coordination challenges
   loc: §3.1, Category 4
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
   note: IASR's category pools capacity, the pace gap (governance-pace-gap), single points of failure and cross-border coordination.
 - concept: governance-pace-gap
   rel: broad
   src: bengio-2026-international
   term: institutional design and coordination challenges
   loc: §3.1, Category 4
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: governance-pace-gap
   rel: close
   src: slattery-2026-risk
@@ -157,14 +157,14 @@
   src: bengio-2026-international
   term: information asymmetries
   loc: §3.1, Category 2
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: harm-externalization
   rel: close
   src: bengio-2026-international
   term: market failures
   loc: §3.1, Category 3
   quote: 'This represents a typical market failure: the cost to develop a product does not represent its total societal cost.'
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: harm-externalization
   rel: close
   src: dsit-2023-capabilities
@@ -177,7 +177,7 @@
   src: bengio-2026-international
   term: liability frameworks
   loc: §3.1
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
 - concept: incident-reporting-duty
   rel: close
   src: eu-cop-2025-safety-security
@@ -288,7 +288,7 @@
   src: bengio-2026-international
   term: risk governance
   loc: §3.2, Table 3.4
-  channel: primary (influx/iasr-2026-full.md)
+  channel: primary (ref/iasr-2026-full.md)
   note: IASR's risk governance pools incident reporting, risk responsibility allocation, whistleblower protection, documentation and transparency reports.
 - concept: risk-governance-independence
   rel: broad

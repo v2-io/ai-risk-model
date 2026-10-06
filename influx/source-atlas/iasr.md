@@ -4,7 +4,7 @@ Five documents: the 2025 full report, its two Key Updates (Oct and Nov 2025), th
 
 **Line and page conventions:**
 
-- **2026 full report:** line numbers are in `influx/iasr-2026-full.md`, as Joseph asked.
+- **2026 full report:** line numbers are in `ref/iasr-2026-full.md`, as Joseph asked.
   - That file has **one paragraph per line**, and every citation is an inline link carrying the full reference title. So a 40-line range here holds roughly as much prose as 200 lines of PDF layout text, and the raw lines are hard to read.
   - **Reading aid:** `…/scratchpad/iasr26.md` is a copy with **identical line numbering**. The footnote link blobs are collapsed to `[n]`. Regenerate it with:
     `perl -pe 's/\[(\d+)\]\(https?:[^ )]*#footnote_[^ )]*\s+"(?:[^"\\]|\\.)*"\)/[$1]/g; s/\[([^\]]*)\]\(https:\/\/internationalaisafetyreport\.org[^)]*\)/$1/g' iasr-2026-full.md`
@@ -17,7 +17,7 @@ Five documents: the 2025 full report, its two Key Updates (Oct and Nov 2025), th
 
 ## 1. `bengio-2026-international`: International AI Safety Report 2026 (Feb 2026, DSIT 2026/001)
 
-**File:** `influx/iasr-2026-full.md` (6946 lines), saved from the publisher's HTML edition.
+**File:** `ref/iasr-2026-full.md` (6946 lines), saved from the publisher's HTML edition.
 
 **Where things are:**
 
@@ -42,7 +42,7 @@ The Notes carry an `[industry]` tag on industry-affiliated references. It is the
 
 **TOC:** 76–115. Lines 56–74 are an unlabeled link-only duplicate of it. The PDF TOC, with page folios, is at `bengio-2026-international.txt` 164–196 (p5).
 
-**Glossary:** 2196–2556 (PDF p147–155), 179 entries. It is identical to `influx/iasr-2026-glossary.md` 1–361: I diffed them, and the only difference is the trailing newline. Offset: glossary-file line = full.md line − 2195.
+**Glossary:** 2196–2556 (PDF p147–155), 179 entries. It was identical to the original repo's separate `iasr-2026-glossary.md` 1–361 (not carried over here): I diffed them, and the only difference was the trailing newline. Offset: glossary-file line = full.md line − 2195.
 
 - **There are no per-section definition boxes** (the 2025 edition had 24; see §2). Instead, definitions are made **inline, inside Key-information bullets and tables**:
   - Loss of control, 1237

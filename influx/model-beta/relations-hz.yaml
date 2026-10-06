@@ -1,6 +1,6 @@
 # Hazards and misuse slice (shard): relations. Prefix hz-. See concepts-hz.yaml for the shape and notes-hz.md for choices.
 # Page conventions for primaries read by this slice (channel: primary):
-#   IASR 2026 (bengio-2026-international): cited by section, read in influx/iasr-2026-full.md (no page numbers there).
+#   IASR 2026 (bengio-2026-international): cited by section, read in ref/iasr-2026-full.md (no page numbers there).
 #   NCSC 2025 (ncsc-2025-impact): PDF pages. AISI Trends (aisi-2025-frontier): printed page = PDF - 2.
 #   NIST 600-1 (nationalinstituteofstandardsandtechnologyus-2024-artificial): printed = PDF - 4.
 #   Anthropic Risk Report Aug 2026: printed page (= PDF page). NCSC / AISI / Five Eyes blogs: PDF page of the relata render.

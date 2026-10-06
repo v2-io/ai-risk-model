@@ -17,7 +17,7 @@
   - **CAIS**: *An Overview of Catastrophic AI Risks* (Hendrycks et al. 2023).
   - **AISI**: UK AISI's four partial models (Research Agenda, Frontier AI Trends, Loss of Oversight, Incident report).
 - **Line references** are to the underlying extractions, exactly as the sections give them:
-  - `md` = `influx/iasr-2026-full.md`;
+  - `md` = `ref/iasr-2026-full.md`;
   - `act` / `cop` / `guid` / `omni` = the EU texts;
   - `<key> L…` = `scratchpad/src-text/<key>.txt`.
 

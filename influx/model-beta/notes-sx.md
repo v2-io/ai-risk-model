@@ -135,7 +135,7 @@ IASR's damping reason (distribution costs) is a moderator placed on `unknown-cau
 ## 8. What I read, and how
 
 - **Read in the primary** (relata PDF via `pdftotext`; extractions in this session's scratchpad `sx/`):
-  - IASR 2026 via `influx/iasr-2026-full.md`: §2.1.2, §2.2.2 (directed and misaligned subsections; deployment environments), §2.3.1, §2.3.2 and §3.1 Categories 3–4, all whole;
+  - IASR 2026 via `ref/iasr-2026-full.md`: §2.1.2, §2.2.2 (directed and misaligned subsections; deployment environments), §2.3.1, §2.3.2 and §3.1 Categories 3–4, all whole;
   - IASR 2025: §2.2.2 key information; §2.2.3 pp.100–102; §§2.3.2–2.3.6 key information; §2.3.3 whole; §3.2.2 whole;
   - Kulveit et al.: pp.1–16;
   - Davidson et al.: Abstract, Summary, Mitigations, §1;

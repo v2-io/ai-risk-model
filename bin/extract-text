@@ -1,0 +1,28 @@
+#!/bin/sh
+# Regenerate the line-stable text extractions that the atlas, source-model and
+# verification files cite as "<key> L…".
+#
+#   bin/extract-text KEY…          one file per relata key, into .extract/KEY.txt
+#   bin/extract-text -o DIR KEY…   into DIR instead
+#
+# Line numbers match the ones cited only with the same poppler (pdftotext)
+# version; PDF pages, counted by form feeds, survive any version. IASR 2026 is
+# cited from ref/iasr-2026-full.md instead (local-only; see ref/.gitignore), and
+# anthropic-autonomous-dev from ref/anthropic-autonomous-dev.md.
+
+set -eu
+out=.extract
+if [ "${1:-}" = "-o" ]; then out=$2; shift 2; fi
+[ $# -gt 0 ] || { sed -n '2,11p' "$0"; exit 2; }
+mkdir -p "$out"
+status=0
+for key in "$@"; do
+  # relata reads stdin when it isn't a terminal; give it nothing to wait on.
+  pdf=$(relata show "$key" < /dev/null | awk '/^pdf:/{print $2; exit}')
+  if [ -z "$pdf" ] || [ ! -f "$pdf" ]; then
+    echo "extract-text: no PDF for $key" >&2; status=1; continue
+  fi
+  pdftotext -layout "$pdf" "$out/$key.txt"
+  echo "$out/$key.txt  $(wc -l < "$out/$key.txt") lines"
+done
+exit $status

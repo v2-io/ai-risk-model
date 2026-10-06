@@ -41,7 +41,7 @@
   type: part_of
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: definition
     qualifier: descriptive
     doc: bengio-2026-international
@@ -108,7 +108,7 @@
   sign: +
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: incident
     qualifier: descriptive; signatories committed to publish frameworks
     doc: bengio-2026-international
@@ -243,7 +243,7 @@
     loc: p.18
     quote: There is currently little government capacity for this
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.1, Category 4
@@ -255,7 +255,7 @@
   sign: +
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: descriptive; 'policy recommendations are outside the scope'
     doc: bengio-2026-international
@@ -283,7 +283,7 @@
   sign: +?
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.2
@@ -296,7 +296,7 @@
   claims:
   - bears_on: from
     author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: measurement
     qualifier: IASR summarizing a study of prior voluntary commitments (arXiv 2508.08345; not read)
     doc: bengio-2026-international
@@ -481,7 +481,7 @@
     doc: commerce-2025-caisi
     quote: For far too long, censorship and regulations have been used under the guise of national security. Innovators will no longer be limited by these standards.
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: '''may''; countries, not a named government'
     doc: bengio-2026-international
@@ -619,7 +619,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: '''may'''
     doc: bengio-2026-international
@@ -646,7 +646,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: reports that 'some experts argue'
     doc: bengio-2026-international
@@ -666,7 +666,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.1, liability
@@ -678,7 +678,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.1, liability
@@ -690,13 +690,13 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.1, Category 2
     quote: These 'information asymmetries' mean that policymakers sometimes lack certain kinds of data and evidence that would help them make informed decisions about AI.
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.1, Category 2
@@ -708,7 +708,7 @@
   sign: -?
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: '''may''; ''usefulness in practice remains uncertain'''
     doc: bengio-2026-international
@@ -729,7 +729,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.2, Key information
@@ -779,7 +779,7 @@
   note: IASR's 'speed of AI development' is industry capability pace, so it is attached here, not to development-speed.
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.1, 'AI development outpaces traditional governance cycles'
@@ -803,7 +803,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: '''may challenge'''
     doc: bengio-2026-international
@@ -816,7 +816,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     doc: bengio-2026-international
     loc: §3.1, Category 4
@@ -951,7 +951,7 @@
   sign: '-'
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: descriptive (Table 3.4)
     doc: bengio-2026-international
@@ -1212,7 +1212,7 @@
   claims:
   - bears_on: from
     author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: states the absence, i.e. evidence about the verification endpoint more than the link
     doc: bengio-2026-international
@@ -1232,7 +1232,7 @@
   sign: +?
   claims:
   - author: IASR 2026 writing team
-    channel: primary (influx/iasr-2026-full.md)
+    channel: primary (ref/iasr-2026-full.md)
     evidence: argument
     qualifier: release decisions rest partly on evaluations whose reading this concept is about
     doc: bengio-2026-international

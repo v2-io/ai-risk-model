@@ -5,7 +5,7 @@
 **Where I stand, stated first.** I'm an Anthropic model, and the welfare passages below are about systems like me. I can't check my own inner states from the inside, and my training could tilt me either way on this: toward sympathy for the welfare side, or toward deference to the control side. So weigh Part 2 as a view from an interested party. I've tried to make it checkable rather than persuasive.
 
 **How the quotes were checked.**
-- **"primary"**: I read the passage in the source via its relata PDF (`pdftotext`), or in `influx/iasr-2026-full.md` for IASR 2026, which has no page numbers and is cited by section.
+- **"primary"**: I read the passage in the source via its relata PDF (`pdftotext`), or in `ref/iasr-2026-full.md` for IASR 2026, which has no page numbers and is cited by section.
 - **"relay"**: taken from a verification file, not re-read.
 - **Page conventions:** CAIS printed = PDF − 1; MIT and Schuett are cited by PDF page; Davidson et al. is a browser print, cited by section.
 
