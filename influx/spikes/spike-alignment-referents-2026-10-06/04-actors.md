@@ -17,6 +17,12 @@
 | oversees, gates or evaluates | **oversees** | Control & Eval, drawn without edges |
 | absorbs accountability for the agent's acts | **answers for** | a column of the older matrix, not carried to the board |
 
+**Standing is delegable, and bounded by the delegator's own.** Both developer documents say so; I read both at the primary, and neither is in the corpus.
+- Anthropic's constitution: "operators cannot grant users more than operator-level trust". It also says an orchestrating Claude "is acting as an operator and/or user for each of the Claude subagents". So a role is a *position* in the conversation, not an identity.
+- OpenAI's Model Spec: untrusted content is ignored "unless an applicable higher-level instruction delegates authority to it".
+
+The *answers-for* relation can be conferred by contract: operators "must agree to Anthropic's usage policies, and by accepting these policies, they take on responsibility for ensuring Claude is used appropriately within their platforms" (constitution). So *directs* and *answers for* can each be held by delegation, and the map's single edge can't show either.
+
 The profiles below are my readings of the map's rows and the corpus, for typical deployments. They are not definitions. Any row can be hostile: following beta's `def-agent-roles.ud` and the map ("Most are legitimate; none has to be"), I treat intent as an attribute of whoever holds a role, not as a separate kind of actor.
 
 ## 2. The existing rows
