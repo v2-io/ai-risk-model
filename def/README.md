@@ -13,7 +13,7 @@ Each term's name carries its namespace, as in `ddd:bounded-context`, and referen
 
 ## What an entry's blocks mean
 
-The address-theory blocks (`|rels`, `|invariants`, `|discussion`, `|examples`, `|working-notes`, `:synonyms`, `:avoid`) keep their meanings. The `ddd:` entries add five blocks, listed here after `|invariants` for contrast, so that what a pattern *is* stays separate from when it is used, what its author recommends, and what this project proposes:
+The address-theory blocks (`|rels`, `|invariants`, `|discussion`, `|examples`, `|working-notes`, `:synonyms`, `:avoid`) keep their meanings. The `ddd:` entries add five blocks, listed below after `|invariants`, which they are read against. They keep what a term *is* apart from when it arises, what its author recommends, and what this project proposes:
 
 - `|invariants`: what holds of every instance, the term's delimiting characteristics;
 - `|conditions`: when the source says the thing arises or is called for, which is not part of what it is;
@@ -31,4 +31,4 @@ Readings are attributed:
 
 ## Attribution
 
-The `ddd:` entries quote and adapt Eric Evans, *Domain-Driven Design Reference: Definitions and Pattern Summaries* (Domain Language, 2015), licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). The local copy is `ref/DDD_Reference_2015-03/`, and page numbers are from its table of contents. Every quotation was checked mechanically against that copy, allowing only for capitalization. Changes are marked term by term in `:source`. Everything not quoted is this project's.
+The `ddd:` entries quote and adapt Eric Evans, *Domain-Driven Design Reference: Definitions and Pattern Summaries* (Domain Language, 2015), licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). The local copy is `ref/DDD_Reference_2015-03/`, and page numbers are from its table of contents. The quotations were checked by script against that copy, allowing only for capitalization. Changes are marked term by term in `:source`. Everything not quoted is this project's.

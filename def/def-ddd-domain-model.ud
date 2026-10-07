@@ -2,13 +2,13 @@
   :status  proposed
   :source  "Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/"
 
-  A **DOMAIN** is what a @{ddd:model} is *of*: a sphere of knowledge, influence or activity, which exists before any model of it and is never exhausted by one. A **MODEL** is a system of abstractions that describes *selected* aspects of a @{ddd:domain} for a use: solving problems related to that domain. Selection is constitutive, so one domain can carry many models, and that plurality is the starting point of everything in the `ddd:` namespace (@{ddd:bounded-context}). A **DEEP-MODEL** is a model that keeps the essential and drops the superficial, judged by the concerns of the people who know the domain best. A model gets deeper through **REFACTORING-TOWARD-DEEPER-INSIGHT**: revision motivated by a new understanding of the domain, not by technical convenience.
+  A **DOMAIN** is what a @{ddd:model} is *of*: a sphere of knowledge, influence or activity. A **MODEL** describes *selected* aspects of a @{ddd:domain}, so that problems in it can be solved. Because a model selects, one domain can have many models, and that is why Evans needs bounded contexts (@{ddd:bounded-context}). A **DEEP-MODEL** keeps the essential and drops the superficial, as judged by the people who know the domain. A model gets deeper through **REFACTORING-TOWARD-DEEPER-INSIGHT**: revision prompted by a new understanding of the domain rather than by technical convenience.
 
   |term[ddd:domain] A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software.
     :source "Evans 2015, Definitions, p. vi — verbatim"
     :avoid  [domain] ; bare: MIT's AI Risk Repository uses "domain" for its seven top-level risk categories, a source term to translate
     |invariants
-      - It is prior to its models and independent of them: a model "describes selected aspects of a domain" (p. vi), so the domain is what is described, not the description. — our reading; Evans does not say this directly
+      - It is what a model describes, not the model: a model "describes selected aspects of a domain" (p. vi).
       - The definition carries two readings in its two sentences. The first is absolute: a domain is any sphere of knowledge, influence or activity. The second is relational: something is *the domain of* a program when a user applies the program to it. — our reading
     |collisions
       - MIT's risk "domains" (seven domains, twenty-four subdomains): categories in one source's taxonomy, not spheres of activity. Evans's own nearest term is *subdomain* ("Generic Subdomains", p. 41), a part of a domain factored into its own model.
@@ -19,23 +19,23 @@
     :avoid  [model] ; bare: in this project's corpus "model" almost always means an AI model
     |rels :of @{ddd:domain} {1,1}
     |invariants
-      - It is selective: it describes "selected aspects of a domain" (p. vi), never the whole, so leaving something out is a property of every model, not a defect of a particular one.
+      - It is selective: it describes "selected aspects of a domain" (p. vi). Leaving things out is part of what a model is, not a defect.
       - It is defined by use, not by completeness: it "can be used to solve problems related to that domain" (p. vi).
       - It is a *system* of abstractions: the abstractions are related to one another. A list of terms is not yet a model. — our reading of "system"
       - Its language and the model change together: "Recognize that a change in the language is a change to the model." (p. 3)
       - "A model is a distillation of knowledge." (p. 39)
       - Many models of one domain are normal: "Multiple models are in play on any large project." (p. 2)
     |collisions
-      - **AI model** (the trained network): the dominant sense in the corpus, and the reason this term is never used bare in this project.
+      - **AI model** (the trained network): the usual sense in the corpus, and the reason this lexicon doesn't use the bare word.
       - **This project's own "Model" row** in `CLAUDE.md`'s five-way table, "an ontology plus claims about how things behave". It differs from Evans's in both directions: it requires claims about behaviour, which Evans does not, and it drops the use ("can be used to solve problems"), which Evans requires. The two should be reconciled or the CLAUDE.md row renamed. — our reading
-      - **Source model** (`influx/source-models/`): Evans's sense applied to one source, so it is consistent with this entry.
+      - **Source model** (`influx/source-models/`): Evans's sense, applied to one source.
       - "Model alpha", "model beta", "model gamma": this project's iterations. Also Evans's sense.
 
   |term[ddd:deep-model] A model that sloughs off the superficial and captures the essential.
     :source "[SOURCE: Evans 2015, Refactoring Toward Deeper Insight, p. 8, modified — 'A model that sloughs off the superficial and captures the essential is a deep model.' restated as a definition]"
     |rels :is-a @{ddd:model} {1,1}
     |invariants
-      - Depth is judged against the domain's own concerns: a deep model "captures subtle concerns of the domain experts" (p. 8), so it is not depth of formalism or detail.
+      - Depth is judged by the domain's own concerns: a deep model "captures subtle concerns of the domain experts" (p. 8).
       - It is reached, not designed in advance: "Sophisticated domain models seldom turn out useful except when developed through an iterative process of refactoring" (p. 8). — our reading; Evans says this of sophisticated domain models, and it is applied here to deep ones
 
   |term[ddd:refactoring-toward-deeper-insight] Refactoring of a model, or of its expression, motivated by an insight into the domain.
@@ -47,8 +47,8 @@
 
   |discussion
     - **What this project's domain is.** `CLAUDE.md` describes two things the project models: the frontier-AI risk landscape, and what the field's documents claim about it. Both are spheres of knowledge or activity in Evans's sense. Whether that is one domain, or two (the risk landscape, and the discourse about it) is open. The plan's two planes, "what was said" and "what it is said about", suggest two. — our reading
-    - **The widening.** Evans's definitions tie a model to software ("the domain of the software"; the model's "expression in code"). This project's models are records and documents, not running software. Using these terms here is a declared scope widening: code becomes the model's expression in whatever form it takes. The widening is ours, and it is marked where it bites (@{ddd:refactoring-toward-deeper-insight}, @{ddd:ubiquitous-language}).
-    - **Resonance, not identity.** Joseph's refinement lesson (the value settles in the last 5–10% of many truthification passes) and Evans's "seldom turn out useful except when developed through an iterative process" make a similar claim from different fields. They are independent observations of a similar pattern, not one source. — our reading
+    - **The widening.** Evans's definitions tie a model to software ("the domain of the software"; the model's "expression in code"). This project's models are records and documents, not running software, so here "code" is read as whatever form the model takes. That widening is ours, and the entries it affects say so (@{ddd:refactoring-toward-deeper-insight}, @{ddd:ubiquitous-language}).
+    - **A similar claim.** Joseph's refinement lesson (the value settles in the last 5–10% of many truthification passes) and Evans's "seldom turn out useful except when developed through an iterative process" say something similar, from different work. — our reading
 
   |examples
     |        Thing                                       |  Term here                                              |
@@ -60,6 +60,6 @@
     | G4's pilot findings feeding back into the lexicon  | @{ddd:refactoring-toward-deeper-insight}               |
 
   |working-notes
-    - Evans's "Definitions" section (p. vi) defines five terms: domain, model, ubiquitous language, context, bounded context. The context-mapping section (p. 28) adds three more: upstream-downstream, mutually dependent, free. Every other `ddd:` term in this lexicon restates one of Evans's patterns as a definition, and its `:source` says so.
+    - Evans's "Definitions" section (p. vi) defines five terms: domain, model, ubiquitous language, context, bounded context. The context-mapping section (p. 28) adds three more: upstream-downstream, mutually dependent, free. Every other `ddd:` term restates a passage of Evans's as a definition, and its `:source` says which.
     - Open: whether "subdomain" and "core domain" earn entries. They matter if this project's risk analysis becomes a separate bounded context built on the lexicon (plan §3.3), which is close to Evans's core and generic subdomains.
     - Open: whether to reconcile `CLAUDE.md`'s "Model" row with this entry or rename the row (see the collision above).

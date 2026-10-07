@@ -44,7 +44,7 @@
 
   |discussion
     - **This project's context map.** In Evans's sense it would hold four things: each source's bounded context, named; this project's own context; the translation between each source and ours; and the relationships among the sources, such as copying, conformity and shared lineage. The plan's version, "the catalog plus lineage" (§3.2), is the first and last of these. The translations are the third. — our reading
-    - **Where this project stands.** This project is downstream of every source: the sources' revisions and wording affect its success, and its work does not affect theirs. Each source is close to free with respect to this project. The translations therefore have to absorb every upstream change, which is why each resolution is recorded *as of* a moment (address theory). — our reading
+    - **Where this project stands.** This project is downstream of every source: the sources' revisions and wording affect its success, and its work does not affect theirs. So the translations have to absorb every upstream change. The *as of* moment that address theory puts on every resolution records which version a translation was made against. — our reading
     - **The widening.** Evans defines these terms for "software development projects" and their delivery. Applied to documents and the organizations that write them, "success" and "delivery" have no fixed meaning. The terms are used here for the shape of the dependency, and that is a widening of Evans's scope. — our reading
 
   |examples
@@ -52,7 +52,6 @@
     |------------------------------------------------------------------------|---------------------------------|
     | This project, relative to IASR 2026 or SB 53                            | @{ddd:upstream-downstream} (sources upstream) |
     | The source catalog, the lineage records, and the per-source translations together | @{ddd:context-map} |
-    | Each source, relative to this project                                   | @{ddd:free} (close to it)       |
 
   |working-notes
     - Open: decision 1 in the plan (§5), what to call the per-source document.

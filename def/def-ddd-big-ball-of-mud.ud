@@ -2,7 +2,7 @@
   :status  proposed
   :source  "Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/"
 
-  A **BIG-BALL-OF-MUD** is what forms where no one has drawn @{ddd:bounded-context} boundaries, or where the choices that drew them have lapsed: several models mixed together, definitions ambiguous or contradictory, held together by logic added piece by piece. In this lexicon the term names that condition. Evans's pattern then says what to do about it: draw one boundary around the whole mess, name it, do no careful modeling inside, and watch that it does not spread. Those are practices, kept apart from what the term means, because this project often needs the condition's name without the response.
+  A **BIG-BALL-OF-MUD** is what forms where no one has drawn @{ddd:bounded-context} boundaries, or where the choices that drew them have lapsed: several models mixed together, definitions ambiguous or contradictory, held together by logic added piece by piece. In this lexicon the term names that condition. Evans's pattern then says what to do about it: draw one boundary around the whole mess, name it, do no careful modeling inside, and watch that it does not spread. Those are practices, kept apart from what the term means, because this project may need the name without the response.
 
   |term[ddd:big-ball-of-mud] A part of a system where models are mixed and boundaries are inconsistent.
     :source "[SOURCE: Evans 2015, Big Ball of Mud, p. 38, modified — 'parts of systems, often large ones, where models are mixed and boundaries are inconsistent' restated as a definition]"
