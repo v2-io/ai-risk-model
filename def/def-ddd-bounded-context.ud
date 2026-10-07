@@ -1,0 +1,64 @@
+|term-group[ddd:context][ddd:bounded-context][ddd:ubiquitous-language]
+  :status  proposed
+  :source  "Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/"
+
+  A **CONTEXT** is the setting that fixes what a word or statement means, so the same words can mean different things in different contexts, and statements about a @{ddd:model} have no meaning outside one. A **BOUNDED-CONTEXT** makes that setting explicit: a boundary within which exactly one model is defined and applies, and inside which its terms are kept strictly consistent. The **UBIQUITOUS-LANGUAGE** is that model spoken: one language, structured around the model, used by everyone working inside the boundary in every medium. The three are defined together because each needs the others. A bounded context is where a ubiquitous language holds, a ubiquitous language is what makes a model usable inside it, and translation, which a ubiquitous language exists to avoid *inside* a context, is what is required *between* contexts (@{ddd:context-map}).
+
+  |term[ddd:context] The setting in which a word or statement appears that determines its meaning. Statements about a model can only be understood in a context.
+    :source "Evans 2015, Definitions, p. vi — verbatim"
+    :avoid  [context] ; bare: the agent part "context" (`alignment-model/alignment.md`) and an LLM's context window share the word
+    |invariants
+      - It attaches to occurrences: it is "the setting in which a word or statement appears" (p. vi), so a word has a context each time it is used, not once.
+      - Meaning is relative to it: "Model expressions, like any other phrase, only have meaning in context." (p. 2)
+      - It may be implicit. Nothing in this definition requires a boundary to be drawn. That is what distinguishes it from @{ddd:bounded-context}. — our reading
+    |collisions
+      - The agent part *context* (`alignment.md`: "experience & agency; the real-time model") and an LLM's *context window*: what an agent has taken in during a run, not a setting that fixes meaning.
+      - "Depending on the context" in IASR's alignment glossary (2025 and 2026): the ordinary sense, close to this entry.
+      - Address theory deliberately avoids "context" for its locality unit ("too loose to carry the locality claim", `def-scope`). This entry is that loose notion; @{ddd:bounded-context} is Evans's bounded counterpart.
+
+  |term[ddd:bounded-context] A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.
+    :source "Evans 2015, Definitions, p. vi (repeated p. 28) — verbatim"
+    |rels :defines   @{ddd:model}               {1,1}  ; "a particular model"
+          :speaks    @{ddd:ubiquitous-language} {1,1}
+          :named-in  @{ddd:context-map}         {0,N}
+    |invariants
+      - One model per bounded context: "within which a particular model is defined and applicable" (p. vi).
+      - Inside, consistency; outside, no claim: "keep model concepts and terms strictly consistent within these bounds, but don't be distracted or confused by issues outside" (p. 2).
+      - The boundary is set by organizational and physical facts as well as conceptual ones: "Explicitly set boundaries in terms of team organization, usage within specific parts of the application, and physical manifestations such as code bases and database schemas." (p. 2)
+      - Several are expected, not exceptional: "Multiple models are inevitable" (p. 2).
+      - Boundaries are made, not found: "Well-defined context boundaries only emerge as a result of intellectual choices and social forces" (p. 38). Where those are absent, there is no boundary to find (@{ddd:big-ball-of-mud}).
+      - Whoever maps can draw it: a context map covers "each model in play on the project … This includes the implicit models of non-object-oriented subsystems" (p. 29). So a bounded context may be drawn by someone outside the team whose model it bounds. — our reading of "implicit models"
+    |ambiguity
+      - **The description, or the region?** The definition says a bounded context is "a description of a boundary". The pattern text uses it as the region itself: "Speak a ubiquitous language within an explicitly bounded context" (p. 1); "Declare a bounded context to have no connection to the others" (p. 37). Both readings are Evans's. This entry leaves the ambiguity declared rather than choosing. If one must be chosen, the region reading fits the relations above, and the description is then the map's record of it. — our reading
+
+  |term[ddd:ubiquitous-language] A language structured around the domain model and used by all team members within a bounded context to connect all the activities of the team with the software.
+    :source "Evans 2015, Definitions, p. vi — verbatim"
+    |rels :structured-around @{ddd:model}           {1,1}
+          :within            @{ddd:bounded-context} {1,1}
+    |invariants
+      - It changes when the model changes, and the reverse: "Recognize that a change in the language is a change to the model." (p. 3)
+      - It holds in every medium: "Within a bounded context, use the same language in diagrams, writing, and especially speech." (p. 3) The code is one of those media (p. 3: "in all communication within the team and in the code").
+      - Translation inside a context is the failure it exists to prevent: "Translation blunts communication and makes knowledge crunching anemic." (p. 3)
+      - No existing dialect qualifies by default: "none of these dialects can be a common language because none serves all needs" (p. 3). It is built, from the model.
+    |practices
+      - "Play with the model as you talk about the system." (p. 3)
+      - "Iron out difficulties by experimenting with alternative expressions, which reflect alternative models." (p. 3)
+
+  |discussion
+    - **This project's sources as bounded contexts.** `CLAUDE.md` treats every source as its own bounded context. In Evans's terms, most sources' models are *implicit*: few declare a boundary or a rule for reading their terms (the EU Code's interpretation clause is one that does; plan §1.3, finding 4). So the boundary of a source's context is drawn by this project when it maps the source. The source is not bound by it, which is consistent with "map the existing terrain" (p. 29). — our reading
+    - **Bounded contexts here are nested.** Evans's bounded contexts sit side by side. This project's sources have scopes inside scopes: SB 53 defines "catastrophic risk" differently in two code sections, and IASR 2026's glossary and body define loss of control differently (plan §1.3, finding 5). The plan proposes defining a bounded context in terms of address theory's @{scope}: a scope whose bindings are one model's terms, kept by one maintainer, under a norm of consistency. Containment edges then give nesting, which Evans's text does not provide. That is a widening of Evans's term, proposed here, not his. — our reading
+    - **Consistency is a norm, not an invariant.** Evans prescribes strict consistency inside a boundary. Address theory keeps collisions representable because real systems have them (`def-binding`). The two fit together if consistency is read as the norm a bounded context's maintainer polices, and a collision inside one is a recordable failure, not an impossibility. Self-inconsistent sources (IASR 2026; Anthropic's August 2026 Risk Report) are then contexts with recorded collisions, or several scopes mapped one at a time. — our reading
+    - **This project's lexicon is its ubiquitous language**, scoped to this project's bounded context. It is a declared widening of Evans's definition: the "software" it connects to is the project's records and computed views, and the "team" is Joseph and the agents working with him. — our reading
+
+  |examples
+    |        Thing                                                              |  Term here                                     |
+    |---------------------------------------------------------------------------|------------------------------------------------|
+    | SB 53, as a whole                                                         | a @{ddd:bounded-context} (its model implicit; boundary drawn by this project) |
+    | SB 53 §22757.11 and Labor Code §1107, each with its own "catastrophic risk" | two scopes inside it (the nested reading above) |
+    | This project's lexicon, records and views                                 | our @{ddd:bounded-context}, whose language is this lexicon |
+    | "Context" in `alignment.md`'s stack                                       | not @{ddd:context}; an agent part              |
+
+  |working-notes
+    - Open: which reading of bounded context (description or region) the lexicon adopts, if any. The ambiguity above is Evans's, not ours, so declaring it may be the honest final state.
+    - Open: the agent part's namespace name (plan §3.2 suggests `agent:context`, name open). Until it exists, this entry's `:avoid` keeps the two senses of the bare word apart.
+    - Open: whether "team" needs a lexicon entry. Evans's bounded contexts, ubiquitous languages and relationship patterns are all relative to teams. In this project the teams are the authors of each source (organizations, legislatures, research groups) and this project.

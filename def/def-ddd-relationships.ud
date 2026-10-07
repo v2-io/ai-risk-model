@@ -1,0 +1,85 @@
+|term-group[ddd:partnership][ddd:shared-kernel][ddd:customer-supplier][ddd:conformist][ddd:separate-ways]
+  :status  proposed
+  :source  "Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/"
+
+  These five are Evans's patterns for how the teams behind two @{ddd:bounded-context}s actually relate, short of building a translation layer (@{ddd:anticorruption-layer}). They differ in four ways: whose success depends on whose, what is shared, whether anything is translated, and who chooses the arrangement. In a **PARTNERSHIP**, two mutually dependent teams coordinate their plans without needing to share models. A **SHARED-KERNEL** is a small, explicitly bounded part of a model that both teams agree to hold in common and change only together. **CUSTOMER-SUPPLIER** is an upstream-downstream relation in which the upstream plans for the downstream's needs. **CONFORMIST** is the same relation when it does not: the downstream gives up its own model and adopts the upstream's, so nothing needs translating. **SEPARATE-WAYS** is the declared decision to have no connection at all.
+
+  |term[ddd:partnership] A relationship between the teams of two mutually dependent contexts, maintained by coordinated planning of development and joint management of integration.
+    :source "[SOURCE: Evans 2015, Partnership, p. 30, modified — the pattern ('forge a partnership between the teams in charge of the two contexts. Institute a process for coordinated planning of development and joint management of integration.') restated as a definition]"
+    |rels :between team {2,2}
+    |conditions
+      - "Where development failure in either of two contexts would result in delivery failure for both" (p. 30), that is, @{ddd:mutually-dependent}.
+    |invariants
+      - It coordinates plans, not models: "It is not necessary, most of the time, for developers to understand the model of the other subsystem in detail, but they must coordinate their project planning." (p. 30)
+      - It is symmetric: "The teams must cooperate on the evolution of their interfaces to accommodate the development needs of both systems." (p. 30)
+    |practices
+      - "Interdependent features should be scheduled so that they are completed for the same release." (p. 30)
+
+  |term[ddd:shared-kernel] An explicitly bounded subset of a domain model, with its associated code or data design, that the teams of two contexts agree to share and change only in consultation with each other.
+    :source "[SOURCE: Evans 2015, Shared Kernel, p. 31, modified — 'Designate with an explicit boundary some subset of the domain model that the teams agree to share … This explicitly shared stuff has special status, and shouldn't be changed without consultation with the other team.' restated as a definition]"
+    |rels :part-of @{ddd:model} {1,1}
+          :shared-by team {2,N}
+    |conditions
+      - "When functional integration is limited, the overhead of continuous integration of a large context may be deemed too high." (p. 31)
+    |invariants
+      - It is agreed: "some subset of the domain model that the teams agree to share" (p. 31). One team adopting another's terms without agreement is not a shared kernel (see @{ddd:conformist}).
+      - It is explicitly bounded: "Designate with an explicit boundary" (p. 31).
+      - It changes only jointly: "shouldn't be changed without consultation with the other team" (p. 31).
+      - It includes what implements the shared model, not only the model: "include, along with this subset of the model, the subset of code or of the database design associated with that part of the model" (p. 31).
+    |practices
+      - "Keep this kernel small." (p. 31)
+
+  |term[ddd:customer-supplier] An upstream-downstream relationship in which the downstream team's priorities factor into the upstream team's planning.
+    :source "[SOURCE: Evans 2015, Customer/Supplier Development, p. 32, modified — 'Establish a clear customer/supplier relationship between the two teams, meaning downstream priorities factor into upstream planning.' restated as a definition]"
+    :synonyms ["customer/supplier development"] ; Evans's pattern name
+    |rels :is-a @{ddd:upstream-downstream} {1,1}
+    |conditions
+      - "When two teams are in an upstream-downstream relationship, where the upstream team may succeed independently of the fate of the downstream team" (p. 32).
+    |invariants
+      - What distinguishes it from @{ddd:conformist} is the upstream's commitment: "downstream priorities factor into upstream planning" (p. 32).
+      - The commitment is explicit: "Negotiate and budget tasks for downstream requirements so that everyone understands the commitment and schedule." (p. 32)
+    |practices
+      - "Jointly developed automated acceptance tests can validate the expected interface from the upstream." (p. 32)
+
+  |term[ddd:conformist] A relationship in which a downstream context adopts the upstream context's model as its own, so that nothing between them needs translating.
+    :source "[SOURCE: Evans 2015, Conformist, p. 33, modified — 'Eliminate the complexity of translation between bounded contexts by slavishly adhering to the model of the upstream team.' restated as a definition]"
+    |rels :is-a @{ddd:upstream-downstream} {1,1}
+    |conditions
+      - "the upstream has no motivation to provide for the downstream team's needs" (p. 33).
+    |invariants
+      - There is no translation: its point is to "eliminate the complexity of translation between bounded contexts" (p. 33).
+      - The downstream inherits the upstream's language with its model: "you will share a ubiquitous language with your upstream team" (p. 33).
+      - It is the downstream's choice: "choosing conformity enormously simplifies integration" (p. 33).
+      - It costs the downstream its own model: it "cramps the style of the downstream designers and probably does not yield the ideal model for the application" (p. 33).
+      - What makes a relation conformist is the adoption without translation. Evans's condition (an unmotivated upstream) is the typical occasion for it, not part of what it is. So a downstream that conforms for other reasons, such as legal compatibility, is still conformist. — our reading, and a widening of Evans's scope
+
+  |term[ddd:separate-ways] A declared absence of any connection between a bounded context and the others.
+    :source "[SOURCE: Evans 2015, Separate Ways, p. 37, modified — 'Declare a bounded context to have no connection to the others at all' restated as a definition]"
+    |conditions
+      - "If two sets of functionality have no significant relationship, they can be completely cut loose from each other." (p. 37)
+      - "Integration is always expensive, and sometimes the benefit is small." (p. 37)
+    |invariants
+      - It is declared: a decision about integration, not an observation that two things happen to be unrelated.
+      - It is total: "no connection to the others at all" (p. 37).
+    |collisions
+      - **Independence between sources**, in this project's lineage sense: no copying, citation or shared authorship. That is an observed absence of derivation between two sources that still share a domain and are both translated into one model. It is not separate ways. — our reading
+      - **A deliberately unbound term** inside a connected document, such as the "plain meaning" sense of "catastrophic" (plan §3.2): one term left undefined, not a context cut loose. — the plan's reading
+
+  |discussion
+    - **The distinctions, side by side.** These are the delimiting characteristics in table form, read from the invariants above (our tabulation, not Evans's):
+      | Pattern          | Success dependence           | What is shared                         | Translation | Who chooses                    |
+      |------------------|------------------------------|----------------------------------------|-------------|--------------------------------|
+      | partnership      | mutual                       | plans (models need not be)             | as needed   | both teams                     |
+      | shared kernel    | any                          | an agreed, bounded part of the model, and its code | none inside the kernel | both teams, by agreement |
+      | customer-supplier| one way (upstream-downstream)| the downstream's priorities, in planning | as needed | negotiated                     |
+      | conformist       | one way (upstream-downstream)| the upstream's whole model and language | none       | the downstream                 |
+      | separate ways    | none                         | nothing                                | none        | declared, by either            |
+    - **Cases among this project's sources** (the plan's readings, §1.2 and §3.2, not re-checked for this entry):
+      - *conformist*: New York's RAISE Act copying SB 53's definitions word for word; xAI adopting the EU Code's terms; the EU Code's interpretation clause, "the AI Act definition applies, and such definition shall prevail". The last is a conformist relation *declared by the downstream* for its defined terms;
+      - *conformist, inside this project*: model beta adopting IASR 2026's definitions ("The first four definitions are IASR 2026's, adopted", `def-risk.ud`), which gamma's translation step is meant to prevent;
+      - *shared kernel*: none found among the sources yet. Importing address theory's terms by reference is one, since Joseph maintains both sides and the terms change only with his agreement (plan §3.2).
+    - **None of these is the relation between a source and this project.** No source plans for this project, shares a kernel with it, or coordinates with it. This project does not conform to any source; it translates every one. That relation is @{ddd:anticorruption-layer}. — our reading
+
+  |working-notes
+    - Open: customer-supplier and partnership have no checked case among the sources. Candidates worth checking: regulators consulting developers while drafting (the EU Code's drafting process); the International AI Safety Report's coordination with its contributing governments. These are unchecked guesses.
+    - Open: whether "team" earns an entry (see `def-ddd-bounded-context`). Every term here is a relation between teams.

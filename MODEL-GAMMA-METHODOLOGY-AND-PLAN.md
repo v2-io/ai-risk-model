@@ -677,7 +677,7 @@ Eight phases. G1–G4 are the third iteration's core; the rest follow from them.
 **G1. `def/`: the method terms, the record formats, and the questions.** *Next:* DDD's definitions first, then the method ("meta") terms the later steps need.
 
 Contents:
-- **(a) DDD terms verbatim** with CC BY 4.0 attribution: domain, model, context, bounded context, ubiquitous language, context map, the relationship patterns, anticorruption layer, published language, big ball of mud. Each in the `ddd:` namespace.
+- **(a) DDD terms verbatim** with CC BY 4.0 attribution: domain, model, context, bounded context, ubiquitous language, context map, the relationship patterns, anticorruption layer, published language, big ball of mud. Each in the `ddd:` namespace. *First draft 2026-10-07*: six term groups in `def/def-ddd-*.ud`, twenty terms, all `proposed` and awaiting Joseph's refinement passes. Evans's own definitions are verbatim where he gives one (eight terms); his patterns are restated as definitions with ISO-style `modified` marks, and their invariants, conditions and practices are kept separate (`def/README.md`).
 - **(b) Address theory** imported by reference, cited at its public commit.
 - **(c) Terminology-work terms**:
   - concept, designation, definition, delimiting characteristic;

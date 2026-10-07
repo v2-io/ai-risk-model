@@ -1,0 +1,59 @@
+|term-group[ddd:context-map][ddd:upstream-downstream][ddd:mutually-dependent][ddd:free]
+  :status  proposed
+  :source  "Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/"
+
+  A **CONTEXT-MAP** is the view across @{ddd:bounded-context}s: every model in play, each context named, and every point of contact between them described. That covers which translations are needed, what is shared, what is kept isolated, and who influences whom. It records the terrain as it is before proposing changes. Evans gives three terms for how much one context's success depends on another's. **UPSTREAM-DOWNSTREAM** is a one-way dependence: the upstream group's actions affect the downstream group's success, and not the reverse. **MUTUALLY-DEPENDENT** projects succeed or fail together. A **FREE** context's delivery is little affected by work anywhere else. The relationship patterns (@{ddd:partnership} through @{ddd:big-ball-of-mud}) are Evans's catalogue of how teams in these situations actually relate.
+
+  |term[ddd:context-map] A description of the bounded contexts in play and of the points of contact between their models.
+    :source "[SOURCE: Evans 2015, Context Map, p. 29, modified — the pattern's instructions ('Identify each model in play on the project and define its bounded context … Describe the points of contact between the models') restated as a definition]"
+    :avoid  [map] ; bare: `alignment-model/` is "A working map", of actors around an agent
+    |rels :contexts      @{ddd:bounded-context} {1,N}
+          :relationships (@{ddd:upstream-downstream} | @{ddd:mutually-dependent} | @{ddd:partnership} | @{ddd:shared-kernel} | @{ddd:customer-supplier} | @{ddd:conformist} | @{ddd:anticorruption-layer} | @{ddd:open-host-service} | @{ddd:published-language} | @{ddd:separate-ways}) {0,N}
+    |invariants
+      - It covers every model in play, stated or not: "Identify each model in play on the project and define its bounded context. This includes the implicit models of non-object-oriented subsystems." (p. 29)
+      - Contexts are named, and the names join the language: "Name each bounded context, and make the names part of the ubiquitous language." (p. 29)
+      - It describes contact, not only membership: "Describe the points of contact between the models, outlining explicit translation for any communication, highlighting any sharing, isolation mechanisms, and levels of influence." (p. 29)
+      - It describes before it prescribes: "Map the existing terrain. Take up transformations later." (p. 29)
+      - It is one map across contexts, not one per context: it is "a realistic, large-scale view of model development extending across our project and others we integrate with" (p. 29).
+    |collisions
+      - **The per-source document in this project's plan.** `CLAUDE.md` called it a "context map". Evans's context map is one map across all contexts. A per-source mapping of terms is one of its parts: the "explicit translation for any communication" between that source's context and ours. Plan §5, decision 1, proposes calling the per-source document a *translation* for this reason; that is Joseph's call.
+      - `alignment-model/` ("A working map"): a map of actors and agent parts, not of contexts.
+
+  |term[ddd:upstream-downstream] A relationship between two groups in which the "upstream" group's actions affect project success of the "downstream" group, but the actions of the downstream do not significantly affect projects upstream.
+    :source "Evans 2015, Context Mapping for Strategic Design, p. 28 — verbatim, without its parenthetical example"
+    |rels :upstream   team {1,1}  ; "team" is not yet a lexicon term; Evans says "group" here and "team" in the patterns
+          :downstream team {1,1}
+    |invariants
+      - It holds between groups, not between models or documents: what flows is influence on "project success".
+      - It is asymmetric: "The upstream team may succeed independently of the fate of the downstream team." (p. 28)
+      - Evans's own example is influence, not supply: "If two cities are along the same river, the upstream city's pollution primarily affects the downstream city." (p. 28)
+    |collisions
+      - **The AI supply chain's upstream and downstream.** The EU AI Act's "downstream provider" (Art. 3(68)) and the GPAI guidelines' "downstream actors" who "may modify a general-purpose AI model", along with the supply-chain literature (Cobbe, Veale & Singh 2023; Hopkins et al. 2025), name positions in a flow of artifacts: who builds on whose model. Evans's relation is about whose success depends on whose actions. The two often coincide, but they have different bases. A translation records which one a source means. — our reading
+      - **Lineage.** A definition copied from an earlier document (RAISE from SB 53) flows from an upstream text. That is derivation, recorded in this project's lineage records, not this relation. — our reading
+
+  |term[ddd:mutually-dependent] A situation in which two software development projects in separate contexts must both be delivered in order for either to be considered a success.
+    :source "Evans 2015, Context Mapping for Strategic Design, p. 28 — verbatim, without its parenthetical"
+    |invariants
+      - It concerns success, not technical dependency. Evans's parenthetical: "there are also mutually dependent projects where system dependencies run only one direction. When the depended-on system has little value without the dependent system … then a failure to deliver the dependent system would be a failure of both projects." (p. 28)
+      - It is the situation in which @{ddd:partnership} is indicated (p. 30).
+
+  |term[ddd:free] A software development context in which the direction, success or failure of development work in other contexts has little effect on delivery.
+    :source "Evans 2015, Context Mapping for Strategic Design, p. 28 — verbatim"
+    |invariants
+      - It describes one context against all others, where the two terms above describe a pair. — our reading
+
+  |discussion
+    - **This project's context map.** In Evans's sense it would hold four things: each source's bounded context, named; this project's own context; the translation between each source and ours; and the relationships among the sources, such as copying, conformity and shared lineage. The plan's version, "the catalog plus lineage" (§3.2), is the first and last of these. The translations are the third. — our reading
+    - **Where this project stands.** This project is downstream of every source: the sources' revisions and wording affect its success, and its work does not affect theirs. Each source is close to free with respect to this project. The translations therefore have to absorb every upstream change, which is why each resolution is recorded *as of* a moment (address theory). — our reading
+    - **The widening.** Evans defines these terms for "software development projects" and their delivery. Applied to documents and the organizations that write them, "success" and "delivery" have no fixed meaning. The terms are used here for the shape of the dependency, and that is a widening of Evans's scope. — our reading
+
+  |examples
+    |   Situation                                                              |  Term                           |
+    |------------------------------------------------------------------------|---------------------------------|
+    | This project, relative to IASR 2026 or SB 53                            | @{ddd:upstream-downstream} (sources upstream) |
+    | The source catalog, the lineage records, and the per-source translations together | @{ddd:context-map} |
+    | Each source, relative to this project                                   | @{ddd:free} (close to it)       |
+
+  |working-notes
+    - Open: decision 1 in the plan (§5), what to call the per-source document.
+    - Open: whether influence between sources (one source's revisions affecting another's) needs recording separately from lineage. Lineage records derivation of text. This relation records dependence of success. No case has yet needed the second.

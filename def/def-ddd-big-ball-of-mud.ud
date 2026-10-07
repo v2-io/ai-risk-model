@@ -1,0 +1,26 @@
+|term-group[ddd:big-ball-of-mud]
+  :status  proposed
+  :source  "Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/"
+
+  A **BIG-BALL-OF-MUD** is what forms where no one has drawn @{ddd:bounded-context} boundaries, or where the choices that drew them have lapsed: several models mixed together, definitions ambiguous or contradictory, held together by logic added piece by piece. Evans's pattern says to bound it, name it, and leave it alone: draw one boundary around the whole mess, do no careful modeling inside, and watch that it does not spread. So the term names two things. One is a condition, models mixed with no consistent boundaries. The other is a designation, the boundary drawn around that condition so the rest of the map can proceed.
+
+  |term[ddd:big-ball-of-mud] A part of a system where models are mixed and boundaries are inconsistent, designated as such by a boundary drawn around the whole of it.
+    :source "[SOURCE: Evans 2015, Big Ball of Mud, p. 38, modified — the description ('parts of systems, often large ones, where models are mixed and boundaries are inconsistent') joined to the pattern ('Draw a boundary around the entire mess and designate it a big ball of mud') as one definition]"
+    |rels :bounded-by @{ddd:bounded-context} {1,1}  ; one boundary around the whole
+    |conditions
+      - "When these factors are absent, or disappear, multiple conceptual systems and mix together, making definitions and rules ambiguous or contradictory." (p. 38) The factors are "intellectual choices and social forces".
+    |invariants
+      - It is the absence of boundaries, not a bad boundary: "It is easy to get bogged down in an attempt to describe the context boundaries of models in systems where there simply are no boundaries." (p. 38)
+      - It forms gradually: "The systems are made to work by contingent logic as features are added … Eventually the software congeals into a big ball of mud." (p. 38)
+      - It is not careful modeling's ground: "Do not try to apply sophisticated modeling within this context." (p. 38)
+      - It spreads: "Be alert to the tendency for such systems to sprawl into other contexts." (p. 38)
+      - It can be practical: it "is actually quite practical for some situations (as described in the original article by Foote and Yoder), but it almost completely prevents the subtlety and precision needed for useful models" (p. 38).
+    |ambiguity
+      - **Condition or designation.** Evans uses the term for the condition ("the software congeals into a big ball of mud") and for the act of naming it ("designate it a big ball of mud"). This entry's definition joins them. A use in this project says which it means.
+
+  |discussion
+    - **Self-inconsistent sources are not big balls of mud in the pattern's sense.** IASR 2026 and Anthropic's August 2026 Risk Report each define some terms more than one way. Evans's prescription, to stop modeling carefully inside, is the opposite of what this project needs from them, which is precision at each place a term is used. The plan maps such sources as several scopes, one at a time (§3.2, finding 5). The *condition* part of the definition can still describe a source honestly; the *designation* would be the wrong response. — the plan's reading, kept here
+    - **Model beta in the condition sense.** The plan says beta's risk analysis "began to read as its own ball of mud" (§1.2): the lexicon and the risk analysis were built together, with no boundary between them. That is the condition. The gamma response is the opposite of Evans's designation: draw the missing boundary (lexicon first; risk analysis as a separate context built on it later, §3.3). — our reading
+
+  |working-notes
+    - The phrase is Brian Foote and Joseph Yoder's (Evans cites http://www.laputan.org/mud/mud.html). From memory, not re-read for this entry: their paper is about software architecture, while Evans's use is about model boundaries. Check before relying on the difference.

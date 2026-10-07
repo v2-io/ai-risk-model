@@ -71,6 +71,7 @@ Claude's leans on these, with reasoning, are in `MODEL-GAMMA-METHODOLOGY-AND-PLA
 | Path | What it is |
 |---|---|
 | `source-catalog.md` | the canonical list of main sources |
+| `def/` | the lexicon's term groups in udon, one file per group; `def/README.md` gives the namespaces and block conventions. First: the `ddd:` method terms, all proposed |
 | `influx/model-alpha.md` | the first compilation: a risk-factor crosswalk across sources (superseded as a structure; its source list seeded the catalog) |
 | `influx/model-beta/` | the second attempt: a claim-backed causal graph (`concepts*`, `relations*`, `mappings*.yaml`, `check.py`), the draft lexicon (`terms/*.ud`), and the schema proposal (`SCHEMA-SYNTHESIS.md`) |
 | `influx/source-models/` | each major source's own model, on its own terms, plus `OVERVIEW.md`: a comparison, cross-model term collisions, lineage and coverage |
