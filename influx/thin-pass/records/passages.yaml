@@ -1,0 +1,508 @@
+# Passages: the source words the thin pass rests on.
+#
+# Rough format, invented for G1b (plan §3.5's proposal, as far as it went):
+#   doc     relata key; the text read is `pdftotext -layout` of its PDF
+#   page    PDF page (form feeds + 1), which survives re-extraction
+#   lines   line range in that extraction (bin/extract-text KEY)
+#   quote   exact words, compared after whitespace, quote-mark and
+#           zero-width-space normalization (tools/check.py)
+# tools/check.py recomputes the page, confirms the quote is inside the line
+# range, and reports the quote's match count in the whole document.
+#
+# Where the format broke is in ../weight-and-defects.md (the entries on anchors).
+# Disposable: nothing here is adopted into def/ or the plan except by a later
+# decision.
+
+documents:
+  - key: california-2025-sb53
+    short: SB 53
+    what: California SB 53 (Wiener), Chapter 138, Statutes of 2025, as printed by leginfo.legislature.ca.gov
+    version_as_read: "chaptered text; the page header reads \"Date Published: 09/29/2025 09:00 PM\" (P-sb53-published)"
+    kind: statute
+    scopes_used: [S-sb53-bp, S-sb53-lab, S-sb53-uncodified]
+  - key: ny-2026-raise-s8828
+    short: RAISE S.8828
+    what: New York S.8828, RAISE Act chapter amendment, text as introduced 2026-01-08
+    version_as_read: as introduced (P-raise-introduced). The catalog records it as signed 2026-03-27 from a secondary source; whether the enacted text matches this one was not checked here.
+    kind: bill text (chapter amendment)
+    bill_line_numbers: true   # the extraction carries the bill's own 1-55 line column; the checker strips it
+    scopes_used: [S-raise-gbl-44b]
+  - key: xai-2025-faif
+    short: xAI FAIF 2025
+    what: "xAI, Frontier Artificial Intelligence Framework, \"Last updated: December 30, 2025\""
+    version_as_read: 2025-12-30 (P-xai25-date); superseded by xai-2026-faif (L-xai-faif-revised-2026)
+    kind: company framework
+  - key: xai-2026-faif
+    short: xAI FAIF 2026
+    what: "xAI, Frontier Artificial Intelligence Framework, \"Effective Date: 30 June 2026\""
+    version_as_read: 2026-06-30 (P-xai26-date)
+    kind: company framework
+  - key: xai-2025-rmf
+    short: xAI RMF 2025
+    what: "xAI, Risk Management Framework, \"Last updated: August 20, 2025\""
+    version_as_read: 2025-08-20 (P-xairmf-date)
+    kind: company framework
+  - key: anthropic-2026-frontier-compliance-framework-v2
+    short: Anthropic FCF v2
+    what: Anthropic, Frontier Compliance Framework, Version 2
+    version_as_read: '"Effective 24th July 2026" (P-fcf-date)'
+    kind: company framework; its own text says it serves as Anthropic's TFAIA frontier AI framework (P-fcf-tfaia-role)
+  - key: openai-2026-frontier-governance-framework
+    short: OpenAI FGF
+    what: OpenAI, Frontier Governance Framework
+    version_as_read: 2026 per relata; the catalog gives May 28, 2026. No date line was read in this pass.
+    kind: company framework
+  - key: openai-2025-preparedness-framework-v2
+    short: OpenAI PF v2
+    what: OpenAI, Preparedness Framework, version 2
+    version_as_read: v2 (2025) per relata; read for one footnote only
+    kind: company framework
+
+# Scopes, in address theory's sense (addr:scope, imported by reference at
+# v2-io/udon 90f4fb6): where a source's bindings are kept and collisions
+# counted. Only the scopes this pass needed.
+scopes:
+  - id: S-sb53-bp
+    what: Business and Professions Code, Division 8, Chapter 25.1 (TFAIA), §§22757.10-22757.16, added by SB 53 §2
+    enclosed_by: California Business and Professions Code (not read)
+  - id: S-sb53-lab
+    what: Labor Code, Part 3 of Division 2, Chapter 5.1 (whistleblower protections), §§1107-1107.2, added by SB 53 §4
+    enclosed_by: California Labor Code (not read)
+    edges:
+      - to: S-sb53-bp
+        label: imports-definition
+        passage: P-sb53-lab-fd-import
+        note: §1107(d)-(f) give "foundation model", "frontier developer" and "large frontier developer" "the meaning defined in Section 22757.11". "Catastrophic risk" and "critical safety incident" are NOT imported; the Labor Code mints its own.
+  - id: S-sb53-uncodified
+    what: SB 53 §§1, 5, 6 (findings, construction, severability, preemption), which apply to the whole act
+  - id: S-raise-gbl-44b
+    what: New York General Business Law Article 44-B as replaced by S.8828 §2, §§1420-1429
+
+passages:
+  # ---- SB 53: provenance
+  - id: P-sb53-published
+    doc: california-2025-sb53
+    page: 1
+    lines: "11"
+    quote: "Date Published: 09/29/2025"
+
+  # ---- SB 53, B&P Chapter 25.1: catastrophic risk
+  - id: P-sb53-bp-cr
+    doc: california-2025-sb53
+    page: 4
+    lines: 187-190
+    quote: >-
+      (c) (1) "Catastrophic risk" means a foreseeable and material risk that a frontier developer's
+      development, storage, use, or deployment of a frontier model will materially contribute to the
+      death of, or serious injury to, more than 50 people or more than one billion dollars
+      ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a
+      frontier model doing any of the following:
+  - id: P-sb53-bp-cr-conducts
+    doc: california-2025-sb53
+    page: 4
+    lines: 192-199
+    quote: >-
+      (A) Providing expert-level assistance in the creation or release of a chemical, biological,
+      radiological, or nuclear weapon. (B) Engaging in conduct with no meaningful human oversight,
+      intervention, or supervision that is either a cyberattack or, if the conduct had been committed
+      by a human, would constitute the crime of murder, assault, extortion, or theft, including theft
+      by false pretense. (C) Evading the control of its frontier developer or user.
+  - id: P-sb53-bp-cr-excl
+    doc: california-2025-sb53
+    page: 4
+    lines: 201-209
+    quote: >-
+      (2) "Catastrophic risk" does not include a foreseeable and material risk from any of the
+      following: (A) Information that a frontier model outputs if the information is otherwise publicly
+      accessible in a substantially similar form from a source other than a foundation model. (B) Lawful
+      activity of the federal government. (C) Harm caused by a frontier model in combination with other
+      software if the frontier model did not materially contribute to the harm.
+
+  # ---- SB 53, B&P: critical safety incident
+  - id: P-sb53-bp-csi
+    doc: california-2025-sb53
+    page: 4
+    lines: 211-218
+    quote: >-
+      (d) "Critical safety incident" means any of the following: (1) Unauthorized access to,
+      modification of, or exfiltration of, the model weights of a frontier model that results in death
+      or bodily injury. (2) Harm resulting from the materialization of a catastrophic risk. (3) Loss of
+      control of a frontier model causing death or bodily injury.
+  - id: P-sb53-bp-csi4
+    doc: california-2025-sb53
+    page: 4
+    lines: 220-222
+    quote: >-
+      (4) A frontier model that uses deceptive techniques against the frontier developer to subvert the
+      controls or monitoring of its frontier developer outside of the context of an evaluation designed
+      to elicit this behavior and in a manner that demonstrates materially increased catastrophic risk.
+
+  # ---- SB 53, B&P: the defined terms the conditions lean on
+  - id: P-sb53-bp-fd
+    doc: california-2025-sb53
+    page: 4
+    lines: 241-243
+    quote: >-
+      (h) "Frontier developer" means a person who has trained, or initiated the training of, a frontier
+      model, with respect to which the person has used, or intends to use, at least as much computing
+      power to train the frontier model as would meet the technical specifications found in
+      subdivision (i).
+  - id: P-sb53-bp-fm
+    doc: california-2025-sb53
+    page: 4
+    lines: 245-250
+    quote: >-
+      (i) (1) "Frontier model" means a foundation model that was trained using a quantity of computing
+      power greater than 10^26 integer or floating-point operations. (2) The quantity of computing power
+      described in paragraph (1) shall include computing for the original training run and for any
+      subsequent fine-tuning, reinforcement learning, or other material modifications the developer
+      applies to a preceding foundation model.
+  - id: P-sb53-bp-property
+    doc: california-2025-sb53
+    page: 5
+    lines: "257"
+    quote: '(l) "Property" means tangible or intangible property.'
+  - id: P-sb53-bp-equity
+    doc: california-2025-sb53
+    page: 8
+    lines: 511-512
+    quote: >-
+      22757.16. The loss of value of equity does not count as damage to or loss of property for the
+      purposes of this chapter.
+
+  # ---- SB 53, B&P: what follows from the classification, and "severity"
+  - id: P-sb53-bp-report
+    doc: california-2025-sb53
+    page: 6
+    lines: 382-384
+    quote: >-
+      a frontier developer shall report any critical safety incident pertaining to one or more of its
+      frontier models to the Office of Emergency Services within 15 days of discovering the critical
+      safety incident.
+  - id: P-sb53-bp-report24
+    doc: california-2025-sb53
+    page: 7
+    lines: 385-388
+    quote: >-
+      (2) If a frontier developer discovers that a critical safety incident poses an imminent risk of
+      death or serious physical injury, the frontier developer shall disclose that incident within 24
+      hours to an authority
+  - id: P-sb53-bp-severity
+    doc: california-2025-sb53
+    page: 8
+    lines: 505-506
+    quote: >-
+      subject to a civil penalty in an amount dependent upon the severity of the violation that does
+      not exceed one million dollars ($1,000,000) per violation.
+  - id: P-sb53-bp-review
+    doc: california-2025-sb53
+    page: 8
+    lines: 453-459
+    quote: >-
+      make recommendations about whether and how to update any of the following definitions for the
+      purposes of this chapter to ensure that they accurately reflect technological developments,
+      scientific literature, and widely accepted national and international standards: (1) "Frontier
+      model" so that it applies to foundation models at the frontier of artificial intelligence
+      development.
+
+  # ---- SB 53, Labor Code Chapter 5.1
+  - id: P-sb53-lab-cr
+    doc: california-2025-sb53
+    page: 10
+    lines: 598-601
+    quote: >-
+      (a) (1) "Catastrophic risk" means a foreseeable and material risk that a frontier developer's
+      development, storage, use, or deployment of a foundation model will materially contribute to the
+      death of, or serious injury to, more than 50 people or more than one billion dollars
+      ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a
+      foundation model doing any of the following:
+  - id: P-sb53-lab-cr-excl-c
+    doc: california-2025-sb53
+    page: 10
+    lines: 619-620
+    quote: >-
+      (C) Harm caused by a foundation model in combination with other software where the foundation
+      model did not materially contribute to the harm.
+  - id: P-sb53-lab-csi
+    doc: california-2025-sb53
+    page: 10
+    lines: 625-632
+    quote: >-
+      (c) "Critical safety incident" means any of the following: (1) Unauthorized access to,
+      modification of, or exfiltration of the model weights of a foundation model that results in
+      death, bodily injury, or damage to, or loss of, property. (2) Harm resulting from the
+      materialization of a catastrophic risk. (3) Loss of control of a foundation model causing death
+      or bodily injury.
+  - id: P-sb53-lab-fd-import
+    doc: california-2025-sb53
+    page: 10
+    lines: 638-640
+    quote: >-
+      (d) "Foundation model" has the meaning defined in Section 22757.11 of the Business and Professions
+      Code. (e) "Frontier developer" has the meaning defined in Section 22757.11 of the Business and
+      Professions Code.
+
+  # ---- SB 53, uncodified sections
+  - id: P-sb53-findings-n
+    doc: california-2025-sb53
+    page: 3
+    lines: 161-162
+    quote: >-
+      In the future, foundation models developed by smaller companies or that are behind the frontier
+      may pose significant catastrophic risk
+  - id: P-sb53-liberal
+    doc: california-2025-sb53
+    page: 12
+    lines: "737"
+    quote: (b) This act shall be liberally construed to effectuate its purposes.
+
+  # ---- NY RAISE S.8828 (text as introduced)
+  - id: P-raise-introduced
+    doc: ny-2026-raise-s8828
+    page: 1
+    lines: "7"
+    quote: January 8, 2026
+  - id: P-raise-cr
+    doc: ny-2026-raise-s8828
+    page: 2
+    lines: 102-107
+    quote: >-
+      3. (a) "Catastrophic risk" means a foreseeable and material risk that a frontier developer's
+      development, storage, use, or deployment of a frontier model will materially contribute to the
+      death of, or serious injury to, more than fifty people or more than one billion dollars in damage
+      to, or loss of, property arising from a single incident involving a frontier model doing any of
+      the following:
+  - id: P-raise-cr-c
+    doc: ny-2026-raise-s8828
+    page: 3
+    lines: "116"
+    quote: (iii) evading the control of its frontier developer or user.
+  - id: P-raise-csi
+    doc: ny-2026-raise-s8828
+    page: 3
+    lines: 125-131
+    quote: >-
+      4. "Critical safety incident" means any of the following: (a) unauthorized access to,
+      modification of, or exfiltration of, the model weights of a frontier model that results in death
+      or bodily injury; (b) harm resulting from the materialization of a catastrophic risk; (c) loss of
+      control of a frontier model causing death or bodily injury; or
+  - id: P-raise-person
+    doc: ny-2026-raise-s8828
+    page: 4
+    lines: 172-175
+    quote: >-
+      "Person" means an individual, proprietorship, firm, partnership, joint venture, syndicate,
+      business trust, company, corporation, limited liability company, association, committee, or any
+      other nongovernmental organization or group of persons acting in concert.
+  - id: P-raise-report
+    doc: ny-2026-raise-s8828
+    page: 6
+    lines: 290-294
+    quote: >-
+      a frontier developer shall report any critical safety incident pertaining to one or more of its
+      frontier models to the office within seventy-two hours from a determination that a critical
+      safety incident has occurred
+  - id: P-raise-effective
+    doc: ny-2026-raise-s8828
+    page: 9
+    lines: 487-488
+    quote: "This act shall take effect [on the ninetieth day after it shall have become a law] January 1, 2027."
+
+  # ---- xAI FAIF 2025
+  - id: P-xai25-date
+    doc: xai-2025-faif
+    page: 1
+    lines: "2"
+    quote: "Last updated: December 30, 2025"
+  - id: P-xai25-scope
+    doc: xai-2025-faif
+    page: 1
+    lines: 16-17
+    quote: This risk includes, but is not limited to, Catastrophic Risk as defined in the TFAIA.
+  - id: P-xai25-fn
+    doc: xai-2025-faif
+    page: 1
+    lines: 32-35
+    quote: >-
+      The TFAIA defines Catastrophic Risk as "a foreseeable and material risk that a frontier
+      developer's development, storage, use, or deployment of a frontier model will materially
+      contribute to the death of, or serious injury to, more than 50 people or more than one billion
+      dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident
+      involving a frontier model doing any of the following:
+
+  # ---- xAI FAIF 2026 (the successor)
+  - id: P-xai26-date
+    doc: xai-2026-faif
+    page: 1
+    lines: "2"
+    quote: "Effective Date: 30 June 2026"
+  - id: P-xai26-severe-systemic
+    doc: xai-2026-faif
+    page: 2
+    lines: "86"
+    quote: severe or systemic harm may arise
+
+  # ---- xAI RMF 2025 (the predecessor)
+  - id: P-xairmf-date
+    doc: xai-2025-rmf
+    page: 1
+    lines: "2"
+    quote: "Last updated: August 20, 2025"
+  - id: P-xairmf-bar
+    doc: xai-2025-rmf
+    page: 3
+    lines: 96-98
+    quote: >-
+      foreseeable and non-trivial risk of more than one hundred deaths or over $1 billion in damages
+      from weapons of mass destruction or cyberterrorist attacks on critical infrastructure
+      ("catastrophic malicious use events")
+
+  # ---- Anthropic FCF v2
+  - id: P-fcf-date
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 1
+    lines: "8"
+    quote: Effective 24th July 2026
+  - id: P-fcf-tfaia-role
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 3
+    lines: 64-66
+    quote: >-
+      the FCF serves as our Frontier AI Framework under California's Transparency in Frontier AI Act
+      (TFAIA), documenting Anthropic PBC's technical and organizational protocols to manage, assess,
+      and mitigate catastrophic risks.
+  - id: P-fcf-rsp-sense
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 3
+    lines: 77-79
+    quote: >-
+      The RSP uses "catastrophic risk" in a different sense than this Framework, referring to risks at
+      the most extreme end of the severity spectrum (such as existential threats or fundamental
+      destabilization of global systems) rather than the statutory thresholds applicable here.
+  - id: P-fcf-umbrella
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 4
+    lines: 89-90
+    quote: >-
+      For the purposes of this Framework, references to "systemic" risks include both catastrophic
+      risks under the TFAIA and systemic risks under the EU AI Act.
+  - id: P-fcf-def
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 4
+    lines: 118-121
+    quote: >-
+      Our definition of systemic risk includes foreseeable and material risks of large-scale harm from
+      the most advanced (i.e. state-of-the-art) models at any given point in time, including but not
+      limited to >50 fatalities arising from a single incident, or 1 billion dollars of financial
+      damages.
+  - id: P-fcf-categories
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 5
+    lines: 138-148
+    quote: >-
+      the FCF currently addresses the following systemic risk categories:
+  - id: P-fcf-manipulation
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 5
+    lines: 143-144
+    quote: >-
+      Harmful manipulation, including the use of model capabilities to conduct influence operations
+  - id: P-fcf-loc
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 5
+    lines: 146-148
+    quote: >-
+      Loss of control, including evasion of oversight or unsupervised conduct, and autonomous behavior
+      that would constitute serious crimes (such as assault, extortion, or theft) if committed by a
+      human.
+
+  # ---- OpenAI FGF
+  - id: P-fgf-pf-sense
+    doc: openai-2026-frontier-governance-framework
+    page: 4
+    lines: 84-86
+    quote: >-
+      it may use different definitions of catastrophic risk and does not depend on specific legal
+      compute thresholds like the FGF.
+  - id: P-fgf-umbrella
+    doc: openai-2026-frontier-governance-framework
+    page: 4
+    lines: 90-92
+    quote: >-
+      In this document, when we refer to "systemic" risks, we mean both catastrophic risks under the
+      TFAIA and systemic risks under the EU AI Act.
+  - id: P-fgf-def
+    doc: openai-2026-frontier-governance-framework
+    page: 5
+    lines: 121-127
+    quote: >-
+      This FGF's definition of systemic risk includes foreseeable and material risks of severe harm from
+      the development, storage, use, or deployment of our most advanced frontier models, including
+      risks that a model will materially contribute to greater than 50 fatalities or $1 billion of
+      property damages or losses arising from a single incident.
+  - id: P-fgf-manipulation-cell
+    doc: openai-2026-frontier-governance-framework
+    page: 6
+    lines: "185"
+    quote: Risks stemming from the strategic distortion of
+    table_cell: {table: "systemic risk categories (pp. 6-7)", row: "Harmful manipulation", column: description}
+    note: >-
+      A table. The layout extraction interleaves the row label with the description, so only a fragment
+      survives as a contiguous quote. The table_cell field is this pass's invented selector (plan §3.5,
+      "Tables are the gap"); nothing checks it.
+  - id: P-fgf-loc-cell
+    doc: openai-2026-frontier-governance-framework
+    page: 6
+    lines: 200-204
+    quote: >-
+      Risks stemming from the inability to reliably
+    table_cell: {table: "systemic risk categories (pp. 6-7)", row: "Loss of control", column: description}
+
+  # ---- OpenAI PF v2
+  - id: P-pf-severe
+    doc: openai-2025-preparedness-framework-v2
+    page: 2
+    lines: 33-35
+    quote: >-
+      By "severe harm" in this document, we mean the death or grave injury of thousands of people or
+      hundreds of billions of dollars of economic damage. Our safety stack addresses a broad spectrum of
+      risks, including many with harms below this severity.
+
+  # ---- added while building the frames
+  - id: P-sb53-bp-bar
+    doc: california-2025-sb53
+    page: 4
+    lines: 189-190
+    quote: >-
+      more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of,
+      property arising from a single incident
+    note: >-
+      The bar clause alone matches twice in SB 53 (here and Labor Code §1107(a), L600-601). Only the
+      line range tells them apart, so the line position is not optional for this document (D-anchor-duplicates).
+  - id: P-sb53-bp-misleading
+    doc: california-2025-sb53
+    page: 6
+    lines: 344-345
+    quote: >-
+      (e) (1) (A) A frontier developer shall not make a materially false or misleading statement about
+      catastrophic risk from its frontier models or its management of catastrophic risk.
+  - id: P-raise-scope
+    doc: ny-2026-raise-s8828
+    page: 7
+    lines: 393-395
+    quote: >-
+      This article shall only apply to frontier models that are developed, deployed, or operating in
+      whole or in part in New York state.
+  - id: P-fgf-tfaia-coverage
+    doc: openai-2026-frontier-governance-framework
+    page: 4
+    lines: "88"
+    quote: The FGF covers frontier models as defined under the TFAIA
+  - id: P-sb53-enacting
+    doc: california-2025-sb53
+    page: 1
+    lines: 21-23
+    quote: >-
+      An act to add Chapter 25.1 (commencing with Section 22757.10) to Division 8 of the Business and
+      Professions Code, to add Section 11546.8 to the Government Code, and to add Chapter 5.1
+      (commencing with Section 1107) to Part 3 of Division 2 of the Labor Code

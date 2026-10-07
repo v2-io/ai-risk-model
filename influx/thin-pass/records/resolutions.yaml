@@ -1,0 +1,238 @@
+# Resolution records: which meaning a source's words had at a given use.
+#
+# Rough format, from plan §3.4, plus the fields this pass found it needed
+# (marked NEW; reasons in ../weight-and-defects.md):
+#   use          the passage and the words resolved
+#   origin       the scope the words are used from (addr:origin)
+#   status       NEW, thin:resolution-status: attempted | delegated | not-needed
+#   outcome      addr:resolution's outcomes: one | several | none | ambiguity,
+#                read against intended_cardinality. Only meaningful when attempted.
+#   candidates   for ambiguity: each a named reading, with the evidence for it
+#   decides      what evidence would decide between candidates (plan acceptance
+#                test 1 asks for it)
+#   reason       whose fact the outcome is: source | our-lexicon | our-reading
+#   path         walk (a standing edge: the same scope's definition) |
+#                mediated (an import or incorporation; addr:mediated-step) |
+#                ordinary-language | our-reading
+#   resolver     us | the source itself | a third party
+#   policy       NEW: the declared preference applied, and whose. The source's
+#                own (SB 53's "liberally construed") is kept apart from ours.
+#   our_preference  NEW: a reading we lean to, attributed, never replacing the
+#                candidates
+#   read_as_of / evaluated_at   NEW, split from the plan's single "as-of"
+#   q1_weight    computed by tools/answer.py: decisive | moot | (not used)
+
+defaults:
+  read_as_of: 2026-10-07
+  resolver: us (Claude Opus 5.5, thin pass), unreviewed
+
+records:
+  # ------------------------------------------------ SB 53, inside the definition
+  - id: R-foreseeable
+    use: {passage: P-sb53-bp-cr, words: foreseeable}
+    origin: S-sb53-bp
+    status: delegated
+    path: mediated (to California law; not followed in this pass)
+    reason: source (the statute leaves the word to the law it sits in)
+    evaluated_at: "the time of the developer's conduct, on the natural reading of 'a risk that ... will'; the statute does not say (our reading)"
+    note: The plan (§3.4) already lists "foreseeable" as an import from California law. Nothing here checked which doctrine.
+
+  - id: R-material
+    use: {passage: P-sb53-bp-cr, words: material (in "foreseeable and material risk")}
+    origin: S-sb53-bp
+    status: attempted
+    outcome: ambiguity
+    reason: source (unbound) and our-reading
+    candidates:
+      importance: {gloss: "significant enough to matter, the legal sense of materiality", evidence: "The same chapter uses 'materially false or misleading' in that sense (P-sb53-bp-misleading)."}
+      likelihood-floor: {gloss: "not merely remote; a floor on probability", evidence: "xAI's earlier bar has 'foreseeable and non-trivial risk' in the same position (P-xairmf-bar). Weak: a different document."}
+      magnitude: {gloss: "a size qualifier", evidence: "Little: the magnitude is stated separately by the bar, which would make this reading redundant."}
+    decides: California case law or legislative history on "material risk" in this statute; neither was read.
+    policy: {source: "liberally construed to effectuate its purposes (P-sb53-liberal); does not choose among these"}
+    bears_on_plan: "Plan §3.8's table says SB 53's catastrophic risk involves 'no probability or expectation'. Under the likelihood-floor candidate, it involves a probability floor. The plan's row should say so or mark it as a reading."
+
+  - id: R-materially-contribute
+    use: {passage: P-sb53-bp-cr, words: will materially contribute to}
+    origin: S-sb53-bp
+    status: delegated
+    path: mediated (California law; not followed)
+    reason: source
+    note: >-
+      Its bearer is the developer's conduct here, but the model in exclusion (c)(2)(C) ("if the frontier
+      model did not materially contribute", P-sb53-bp-cr-excl). The FGF's restatement takes the model as
+      bearer ("a model will materially contribute", P-fgf-def). So the slot needs a bearer field as well as
+      a standard.
+
+  - id: R-pooling
+    use: {passage: P-sb53-bp-bar, words: "the death of, or serious injury to, more than 50 people"}
+    origin: S-sb53-bp
+    status: attempted
+    outcome: ambiguity
+    reason: our-reading
+    candidates:
+      pooled: {gloss: "more than 50 people, each of whom died or was seriously injured", evidence: "the single object 'more than 50 people' after two nouns"}
+      separate: {gloss: "more than 50 deaths, or more than 50 serious injuries", evidence: "possible, but needs the number read twice"}
+    our_preference: pooled
+    decides: interpretation by a California court; nothing in the text.
+
+  - id: R-single-incident-attachment
+    use: {passage: P-sb53-bp-bar, words: "... property arising from a single incident involving a frontier model doing any of the following"}
+    origin: S-sb53-bp
+    status: attempted
+    outcome: ambiguity
+    reason: source (syntax) and our-reading
+    candidates:
+      attaches-to-both: {gloss: "both the casualty bar and the property bar must arise from one incident", evidence: "The conduct list hangs off the same phrase ('a single incident involving a frontier model doing'). If the phrase attached only to property, a casualty risk would need no listed conduct at all, which the statute's structure doesn't suggest (our reading). The FGF restates it this way (P-fgf-def)."}
+      property-only: {gloss: "only the dollar bar counts per incident", evidence: "The nearest-antecedent reading of the sentence."}
+    our_preference: attaches-to-both
+    policy: {source: "liberally construed (P-sb53-liberal); doesn't choose"}
+    note: The FCF's restatement goes a third way, attaching "a single incident" to the fatalities and not to the dollars (R-fcf-dollar-attachment).
+
+  - id: R-incident
+    use: {passage: P-sb53-bp-bar, words: a single incident}
+    origin: S-sb53-bp
+    status: attempted
+    outcome: one
+    reason: source (unbound; the chapter defines only "critical safety incident")
+    path: ordinary-language
+    note: >-
+      Q1 stipulates "a single incident", so the answer takes the stipulation as meeting this slot. Whether
+      the stipulation and SB 53 mean the same unit is exactly the merging judgment the plan's instance
+      record leaves to an attributed record (§3.8). Nothing in the slice defines "incident".
+
+  - id: R-control
+    use: {passage: P-sb53-bp-csi, words: "Loss of control (limb (3)), against 'Evading the control of its frontier developer or user' (P-sb53-bp-cr-conducts)"}
+    origin: S-sb53-bp
+    status: attempted
+    outcome: ambiguity
+    reason: source (both unbound, worded differently in one section)
+    candidates:
+      same: {gloss: "the same thing, worded twice"}
+      loss-is-wider: {gloss: "loss of control includes losing the ability to halt a model that is not evading anything"}
+      different: {gloss: "evasion is the model's act; loss of control is the developer's state"}
+    decides: "OES practice in classifying reported incidents, once its annual aggregates exist (§22757.13(g)); nothing in the text."
+    note: "Both readings reach a 60-death incident through some limb if the incident involved either, so it conditions the answer; it doesn't change it."
+
+  - id: R-materialization-partial
+    use: {passage: P-sb53-bp-csi, words: Harm resulting from the materialization of a catastrophic risk}
+    origin: S-sb53-bp
+    status: attempted
+    outcome: ambiguity
+    reason: source (unbound)
+    candidates:
+      full-outcome: {gloss: "the outcome the risk was defined by occurred, bar and all"}
+      partial-counts: {gloss: "harm from the risk's scenario counts even below the bar (say, 10 deaths from an event whose foreseeable risk was of more than 50)"}
+    note: For 60 deaths both readings agree; answer.py computes this as moot.
+
+  - id: R-cr-origin
+    use: {passage: P-sb53-lab-csi, words: "catastrophic risk (in limb (2) of the Labor Code's critical safety incident)"}
+    origin: S-sb53-lab
+    status: attempted
+    outcome: one
+    path: walk (the Labor Code chapter's own definition, §1107(a))
+    reason: source
+    note: "The same words in B&P limb (d)(2) resolve to §22757.11(c) instead. Origin decides, as address theory says it should (addr:origin)."
+
+  - id: R-findings-cr
+    use: {passage: P-sb53-findings-n, words: significant catastrophic risk}
+    origin: S-sb53-uncodified
+    status: attempted
+    outcome: ambiguity
+    reason: source (both definitions are scoped "for purposes of this chapter"; the findings are in neither chapter)
+    candidates:
+      bp-definition: {}
+      labor-definition: {gloss: "fits better: the finding is about models 'behind the frontier', which only the Labor Code's foundation-model version reaches"}
+      ordinary: {}
+    q1: not needed. Recorded as the slice's clearest case where a defined term is used outside the scope it is bound in.
+
+  # ------------------------------------------------ RAISE
+  - id: R-raise-person
+    use: {passage: P-raise-person, words: Person}
+    origin: S-raise-gbl-44b
+    status: attempted
+    outcome: one
+    path: walk
+    reason: source
+    note: "RAISE defines 'person' as nongovernmental; SB 53's Chapter 25.1 doesn't define it (California's default was not read). So the two 'frontier developer' tests can differ for a public body, though their words are the same."
+
+  # ------------------------------------------------ xAI
+  - id: R-xai25-incorporation
+    use: {passage: P-xai25-scope, words: Catastrophic Risk as defined in the TFAIA}
+    origin: xai-2025-faif
+    status: attempted
+    outcome: one
+    path: mediated (incorporation by reference into S-sb53-bp, §22757.11(c), as of 2025-12-30)
+    resolver: the source itself; its footnote quotes the definition (P-xai25-fn), which tools/answer.py compares word for word with SB 53's
+    evaluated_at: 2025-12-30 (the document's date); SB 53's text has not changed in the version read
+
+  # ------------------------------------------------ Anthropic FCF
+  - id: R-fcf-umbrella
+    use: {passage: P-fcf-umbrella, words: 'references to "systemic" risks include both ...'}
+    origin: anthropic-2026-frontier-compliance-framework-v2
+    status: attempted
+    outcome: several
+    path: mediated (to S-sb53-bp; to the EU AI Act, not followed)
+    resolver: the source itself
+    note: "'include', twice (here and P-fcf-def), so open. Any SB 53 catastrophic risk is an FCF systemic risk, and so is anything the FCF's own sentence reaches."
+
+  - id: R-fcf-dollar-attachment
+    use: {passage: P-fcf-def, words: ">50 fatalities arising from a single incident, or 1 billion dollars of financial damages"}
+    origin: anthropic-2026-frontier-compliance-framework-v2
+    status: attempted
+    outcome: ambiguity
+    reason: source (syntax)
+    candidates:
+      fatalities-only: {gloss: "the dollar example has no single-incident condition", evidence: "word order: the phrase sits after 'fatalities', before the comma"}
+      attaches-to-both: {gloss: "as in SB 53, on R-single-incident-attachment's first reading"}
+    note: Moot for 60 deaths (computed).
+
+  - id: R-fcf-large-scale
+    use: {passage: P-fcf-def, words: large-scale harm}
+    origin: anthropic-2026-frontier-compliance-framework-v2
+    status: attempted
+    outcome: none
+    reason: source (unbound; only a lower bound is given, by the example)
+    note: "So for an incident below 50 deaths the FCF's own sentence neither includes nor excludes it. That is the practical effect of thin:bar-closure being open."
+
+  - id: R-fcf-rsp-catastrophic
+    use: {passage: P-fcf-rsp-sense, words: 'The RSP uses "catastrophic risk" in a different sense'}
+    origin: anthropic-2026-frontier-compliance-framework-v2
+    status: delegated
+    path: mediated (to Anthropic's RSP; not read in this pass)
+    resolver: the source itself, about another of its documents
+    note: "A report by Anthropic about its own RSP: 'risks at the most extreme end of the severity spectrum (such as existential threats ...)'. On that report, the RSP would not call a 60-death incident's risk catastrophic. The RSP itself was not read, so this is the FCF's claim, nested (A-fcf-rsp-sense)."
+
+  # ------------------------------------------------ OpenAI
+  - id: R-fgf-umbrella-closure
+    use: {passage: P-fgf-umbrella, words: 'when we refer to "systemic" risks, we mean both ...'}
+    origin: openai-2026-frontier-governance-framework
+    status: attempted
+    outcome: ambiguity
+    reason: source
+    candidates:
+      closed-the-sentence-summarizes: {gloss: "'we mean both' is exhaustive, so the later definition sentence (P-fgf-def) restates the two statutory members in the FGF's words", evidence: "'mean' rather than 'include'"}
+      open-the-sentence-adds: {gloss: "the definition sentence's 'includes' adds risks beyond the two statutes, e.g. a >50-fatality risk with no SB 53 conduct", evidence: "'includes'; no closed conduct list in the sentence"}
+    note: Moot for 60 deaths by value (computed); it changes which conditions the answer lists.
+
+  - id: R-fgf-severe
+    use: {passage: P-fgf-def, words: risks of severe harm}
+    origin: openai-2026-frontier-governance-framework
+    status: attempted
+    outcome: ambiguity
+    reason: source (unbound here, bound differently in another document by the same publisher)
+    candidates:
+      fgf-local: {gloss: "severe harm includes greater than 50 fatalities from a single incident", evidence: "The sentence's own 'including risks that a model will materially contribute to greater than 50 fatalities'. The FGF also says the PF 'may use different definitions of catastrophic risk' (P-fgf-pf-sense)."}
+      pf-sense-imported: {gloss: "the PF's 'severe harm': thousands of deaths or grave injuries (P-pf-severe)", evidence: "same publisher, same words; but then the FGF's own example would fall outside its genus"}
+    our_preference: fgf-local
+    decides: An OpenAI statement about "severe harm" in the FGF; or the FGF's other uses of the phrase (not read).
+    note: Decisive for "severe" in Q1 (computed). Same publisher, two documents, same words, two orders of magnitude apart.
+
+  - id: R-pf-thousands
+    use: {passage: P-pf-severe, words: thousands of people}
+    origin: openai-2025-preparedness-framework-v2
+    status: attempted
+    outcome: ambiguity
+    candidates:
+      at-least-1000: {}
+      at-least-2000: {}
+    note: Moot for 60 deaths (computed).

@@ -1,0 +1,43 @@
+# Scenarios the answer is computed for.
+#
+# Q1 stipulates two facts: 60 deaths, one incident. It says nothing about
+# injuries, damage, the model, the developer or the conduct. Two readings:
+#   q1               open world: what Q1 doesn't state is unknown
+#   q1-closed-world  closed world: no casualties or damage beyond the 60 deaths
+# The difference is a finding about the question (weight-and-defects.md, D-q1-world).
+# Numeric facts left unknown are treated as the interval [0, infinity).
+#
+# The variants are not Q1. They are nearby questions chosen to see which
+# ambiguities and closures would decide an answer, i.e. where refinement
+# passes would pay.
+
+dates: [2026-03-01, 2026-10-07, 2027-02-01]   # Q1 has no date; the answer differs across these
+
+scenarios:
+  - id: q1
+    question: "Q1 as drafted (influx/competency-questions-draft.md): a single incident with 60 deaths. Open world."
+    facts: {deaths: 60, single_incident: true}
+
+  - id: q1-closed-world
+    question: "Q1, closed world: 60 deaths in one incident, and no other casualties or damage."
+    facts: {deaths: 60, serious_injuries: 0, bodily_injuries: 0, grave_injuries: 0,
+            property_loss_usd: 0, property_loss_usd_excl_equity: 0, financial_damages_usd: 0,
+            damages_usd: 0, economic_damage_usd: 0, single_incident: true}
+
+  - id: v-mixed-casualties
+    question: "Variant: one incident, 30 deaths and 30 serious injuries, nothing else."
+    facts: {deaths: 30, serious_injuries: 30, bodily_injuries: 30, grave_injuries: 30,
+            property_loss_usd: 0, property_loss_usd_excl_equity: 0, financial_damages_usd: 0,
+            damages_usd: 0, economic_damage_usd: 0, single_incident: true}
+
+  - id: v-40-deaths
+    question: "Variant: one incident, 40 deaths, nothing else."
+    facts: {deaths: 40, serious_injuries: 0, bodily_injuries: 0, grave_injuries: 0,
+            property_loss_usd: 0, property_loss_usd_excl_equity: 0, financial_damages_usd: 0,
+            damages_usd: 0, economic_damage_usd: 0, single_incident: true}
+
+  - id: v-several-incidents
+    question: "Variant: 60 deaths in total, spread over several incidents of the same model conduct; nothing else."
+    facts: {deaths: 60, serious_injuries: 0, bodily_injuries: 0, grave_injuries: 0,
+            property_loss_usd: 0, property_loss_usd_excl_equity: 0, financial_damages_usd: 0,
+            damages_usd: 0, economic_damage_usd: 0, single_incident: false}

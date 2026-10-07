@@ -1,0 +1,133 @@
+# Assertion records: what each source said, as acts, with its voice kept.
+#
+# Rough format from plan §3.6:
+#   voice     nested sources, outermost first (FactBank: the author is always
+#             the outermost source)
+#   act       Searle's point (declaration | representative | directive |
+#             commissive); for declarations, institutional or linguistic (plan
+#             §3.6); strength where the words mark it
+#   capacity  "mode of achievement": in what capacity the speaker says it
+#   content   a frame (F-*), or a proposition in our words with the source's words beside it
+#   norm      for directives: plan §3.6's layering, kept to what Q1 needed
+#
+# Q1 needed few of the plan's assertion fields. Nearly every passage it rests on
+# is a definition, and definitions are declarations. The answer used `act` and
+# `content` from these records, and `voice` once. Strength, polarity and the
+# attack relations were not needed (weight-and-defects.md).
+
+records:
+  - id: A-sb53-bp-cr
+    voice: [California Legislature]
+    act: {point: declaration, kind: institutional}
+    capacity: enacting statute, Business and Professions Code Chapter 25.1
+    content: {frame: F-sb53-bp-cr}
+    passages: [P-sb53-bp-cr, P-sb53-bp-cr-conducts, P-sb53-bp-cr-excl]
+
+  - id: A-sb53-bp-csi
+    voice: [California Legislature]
+    act: {point: declaration, kind: institutional}
+    capacity: enacting statute, Chapter 25.1
+    content: {frame: F-sb53-bp-csi}
+    passages: [P-sb53-bp-csi, P-sb53-bp-csi4]
+
+  - id: A-sb53-lab-cr
+    voice: [California Legislature]
+    act: {point: declaration, kind: institutional}
+    capacity: enacting statute, Labor Code Chapter 5.1
+    content: {frame: F-sb53-lab-cr}
+    passages: [P-sb53-lab-cr]
+
+  - id: A-sb53-lab-csi
+    voice: [California Legislature]
+    act: {point: declaration, kind: institutional}
+    capacity: enacting statute, Labor Code Chapter 5.1
+    content: {frame: F-sb53-lab-csi}
+    passages: [P-sb53-lab-csi]
+
+  - id: A-sb53-bp-report
+    voice: [California Legislature]
+    act: {point: directive, strength: "shall"}
+    capacity: enacting statute, Chapter 25.1
+    content: {proposition: "A frontier developer reports any critical safety incident pertaining to its frontier models to OES within 15 days of discovering it; within 24 hours to an appropriate authority if it poses an imminent risk of death or serious physical injury."}
+    norm:
+      bearer: frontier developer
+      trigger: discovering a critical safety incident (F-sb53-bp-csi)
+      deadline: [15 days, 24 hours if imminent risk of death or serious physical injury]
+      sanction: "a civil penalty only for a large frontier developer's failure to report (§22757.15; not anchored in this pass)"
+    passages: [P-sb53-bp-report, P-sb53-bp-report24]
+    note: Not asked by Q1; recorded because it is what SB 53's label does to an incident. Q5 and Q12 would start here.
+
+  - id: A-sb53-liberal
+    voice: [California Legislature]
+    act: {point: declaration, kind: institutional}
+    capacity: enacting statute, uncodified §5
+    content: {proposition: "A resolution preference for the whole act: liberal construction toward its purposes (thin:preference.source-declared)."}
+    passages: [P-sb53-liberal]
+
+  - id: A-raise-cr
+    voice: [New York Senate (sponsor Gounardes), bill as introduced]
+    act: {point: declaration, kind: institutional, status: "as introduced; whether enacted in these words was not checked"}
+    capacity: bill text amending General Business Law Article 44-B
+    content: {frame: F-raise-cr}
+    passages: [P-raise-cr, P-raise-introduced, P-raise-effective]
+    note: "The voice question this record raises: the text read is a bill as introduced, so its definitions are proposed declarations, not yet effective ones. The plan's LegalRuleML statuses (applicable, in force, efficacy, valid) would carry this; the record here just says it."
+
+  - id: A-xai25-incorporation
+    voice: [xAI]
+    act: {point: declaration, kind: linguistic, strength: "'includes, but is not limited to'"}
+    capacity: company framework stating that it complies with the TFAIA
+    content: {frame: F-xai25-cr}
+    passages: [P-xai25-scope]
+
+  - id: A-xai25-report
+    voice: [xAI, California Legislature]
+    act: {point: representative}
+    capacity: footnote
+    content: {proposition: "The TFAIA defines Catastrophic Risk as [verbatim quotation].", nested_content: {frame: F-sb53-bp-cr}}
+    passages: [P-xai25-fn]
+    note: "A report of a declaration: xAI asserts what California declared. The quotation can be checked against the primary, and tools/answer.py does so (L-xai25-quote). FactBank's nesting fits: the definition, according to xAI, according to the author."
+
+  - id: A-fcf-umbrella
+    voice: [Anthropic]
+    act: {point: declaration, kind: "linguistic, with institutional uptake: the FCF serves as Anthropic's TFAIA frontier AI framework (P-fcf-tfaia-role), and a large frontier developer is penalized for failing to comply with its own framework (§22757.15, not anchored here)"}
+    capacity: company compliance document under the TFAIA and the EU Code
+    content: {frame: F-fcf-systemic}
+    passages: [P-fcf-umbrella, P-fcf-def, P-fcf-tfaia-role]
+    note: Whether a declaration is linguistic or institutional here depends on the instrument that takes it up, not on who speaks it. The plan's two-kind split (§3.6) needs that dependency stated.
+
+  - id: A-fcf-rsp-sense
+    voice: [Anthropic (FCF), Anthropic (RSP)]
+    act: {point: representative}
+    capacity: footnote in the FCF about the RSP
+    content: {proposition: "The RSP's 'catastrophic risk' refers to 'risks at the most extreme end of the severity spectrum (such as existential threats or fundamental destabilization of global systems)', not the statutory thresholds."}
+    passages: [P-fcf-rsp-sense]
+    factuality: "reported by the source about itself; not checked against the RSP in this pass"
+
+  - id: A-fgf-umbrella
+    voice: [OpenAI]
+    act: {point: declaration, kind: "linguistic, with institutional uptake (as A-fcf-umbrella)"}
+    capacity: company framework covering "frontier models as defined under the TFAIA" (P-fgf-tfaia-coverage)
+    content: {frame: F-fgf-systemic}
+    passages: [P-fgf-umbrella, P-fgf-def]
+
+  - id: A-fgf-pf-sense
+    voice: [OpenAI (FGF), OpenAI (PF)]
+    act: {point: representative, strength: "hedged: 'may use different definitions'"}
+    capacity: FGF introduction, about the PF
+    content: {proposition: "The PF may use different definitions of catastrophic risk and does not depend on legal compute thresholds."}
+    passages: [P-fgf-pf-sense]
+    note: "It says 'catastrophic risk'; the PF passage read here defines 'severe harm'. Whether the PF also defines 'catastrophic risk' was not checked."
+
+  - id: A-pf-severe
+    voice: [OpenAI]
+    act: {point: declaration, kind: linguistic}
+    capacity: "PF v2, footnote 1: 'in this document'"
+    content: {frame: F-pf-severe}
+    passages: [P-pf-severe]
+
+  - id: A-xairmf-cme
+    voice: [xAI]
+    act: {point: declaration, kind: linguistic}
+    capacity: company framework (RMF, 2025-08-20)
+    content: {frame: F-xairmf-cme}
+    passages: [P-xairmf-bar]

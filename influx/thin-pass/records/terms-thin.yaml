@@ -1,0 +1,200 @@
+# Terms the thin pass needed, in a throwaway namespace.
+#
+# `thin:` marks these as disposable. They are NOT candidates for def/ as
+# written: each one-line gloss is first-pass, and plan §2 says first-pass
+# entries seed confusion until refined. What they are good for is the list
+# itself: which concepts a real question forced into existence, and how much
+# weight the answer put on each (`weight`, computed by tools/answer.py where
+# a test used the term, otherwise judged and marked "judged").
+#
+# kind:        concept | relation | slot (a part of a definition frame) |
+#              attribute | record (a record type or record field)
+# established: an established name for it, if known, and how that was checked
+# weight:      form         judged: without it the question can't be put to the
+#                           sources or the answer can't be stated
+#              decisive     computed: choosing among its readings changes a result
+#                           (the scenario is named)
+#              settled      Q1's facts settle it
+#              conditioning computed: it stays an open condition; the answer
+#                           only needs it named, not resolved
+#              moot         computed: no reading changes a result
+#              Q1 and the variants are in records/scenarios.yaml; the tables are
+#              in ../answer.md. Ranking for refinement: ../weight-and-defects.md.
+
+terms:
+  # ---------------------------------------------------------------- risk side
+  - id: thin:risk.possibility
+    kind: concept
+    gloss: A risk read as the possibility that a stated outcome comes about. No probability or expectation is part of it.
+    established: "The plan's 'risk as a possible event' (§3.8), which it attributes to the SRA Glossary's first qualitative definition. Not re-checked here."
+    weight: "form"
+    why: Every term in the slice that Q1 names classifies a risk, not an incident. Without this concept and thin:materialization, the question cannot be put to the sources at all.
+
+  - id: thin:occurrence
+    kind: concept
+    gloss: A particular event that happened (the plan's instance record, axis M).
+    established: plan G1(e) instance record
+    weight: "form"
+
+  - id: thin:materialization
+    kind: relation
+    gloss: From an occurrence to a risk, read as a possibility; the occurrence is (part of) the outcome that the risk was the possibility of.
+    established: "SB 53's own word (P-sb53-bp-csi). The FGF says risks 'develop or materialize'. No established name checked."
+    weight: "form; its partial reading is decisive in v-40-deaths (R-materialization-partial)"
+    why: SB 53 reaches incidents from "catastrophic risk" only through "Harm resulting from the materialization of a catastrophic risk". Whether a partial outcome counts as materialization is R-materialization-partial (moot for 60 deaths).
+
+  - id: thin:event-status.conferred
+    kind: concept
+    gloss: A status an instrument confers on an occurrence when stated conditions hold ("X counts as Y in C"), with consequences attached to it.
+    established: "Searle's constitutive rules, as the plan uses them for roles (§3.6, §3.9). Applying them to events is this pass's extension."
+    weight: "form"
+    why: SB 53's "critical safety incident" is the only label in the slice that SB 53 applies to an incident, and it is the one with consequences (reporting deadlines). Two of its four limbs reach a fatal incident without any severity bar.
+
+  - id: thin:harm.kind
+    kind: attribute
+    gloss: "Which harm a bar counts, in the source's own words, one value per word, unmerged: death; serious injury; bodily injury; serious physical injury; property damage; property loss; fatalities; financial damages; economic damage; grave injury."
+    weight: "moot for Q1; judged decisive in v-mixed-casualties (SB 53 counts serious injuries, the FCF and FGF sentences count fatalities)"
+    why: Deaths are counted by every source in the slice. A variant with injuries and no deaths, or with equity losses, would split the sources (weight-and-defects.md, Q1 variants).
+
+  - id: thin:magnitude-bar
+    kind: slot
+    gloss: A quantity counted, a comparator, a value and a unit ("more than 50 people").
+    weight: "settled (the one slot Q1's facts settle)"
+
+  - id: thin:aggregation
+    kind: slot
+    gloss: How harms are pooled toward a bar, i.e. which harm kinds add together. Within one thin:counting-unit.
+    weight: "moot for Q1; decisive in v-mixed-casualties (R-pooling)"
+    why: R-pooling (deaths and serious injuries pooled or not) cannot change 60 deaths.
+
+  - id: thin:counting-unit
+    kind: slot
+    gloss: The occurrence within which harms are summed toward a bar ("a single incident"), as against a time window or a scenario.
+    weight: "settled by Q1's stipulation; what it attaches to is decisive in v-several-incidents (R-single-incident-attachment)"
+    why: Q1 stipulates "a single incident"; every bar in the lineage sums within one. The word "incident" is unbound in every source here (R-incident).
+
+  - id: thin:bar-closure
+    kind: attribute
+    gloss: "Whether a definition's bar is necessary (closed: 'means') or a sufficient example inside an open class (open: 'includes', 'including but not limited to')."
+    established: "Legal drafting's exhaustive vs non-exhaustive definitions. From general knowledge; no drafting manual was checked in this pass."
+    weight: "moot for Q1; decisive in v-40-deaths (SB 53 closed: no; FCF and FGF open: open)"
+    why: SB 53's >50 is a floor; the FCF's and FGF's >50 is an example. That decides whether a 40-death incident could be "systemic" while not "catastrophic".
+
+  - id: thin:knowledge-standard
+    kind: slot
+    gloss: The epistemic condition a possibility must meet to count ("foreseeable"), evaluated as of some moment (thin:evaluated-at).
+    weight: conditioning
+
+  - id: thin:materiality
+    kind: slot
+    gloss: A qualifier on the risk ("material") whose dimension (likelihood, importance, magnitude) the source does not state.
+    weight: conditioning
+
+  - id: thin:causal-contribution
+    kind: slot
+    gloss: "Who or what must contribute to the harm (the bearer), and how much (the standard): 'materially contribute', 'from'."
+    weight: conditioning
+    why: Its bearer shifts inside SB 53's own definition (the developer's conduct in (c)(1), the model in exclusion (c)(2)(C)) and between SB 53 and the FGF (the model). The answer lists it as a condition; nothing in Q1 resolves it.
+
+  - id: thin:conduct-bearer
+    kind: slot
+    gloss: "Whose conduct the risk is a risk of, and which activities: 'a frontier developer's development, storage, use, or deployment'."
+    weight: conditioning
+
+  - id: thin:model-conduct-condition
+    kind: slot
+    gloss: The occurrence must involve the model's own conduct of a listed kind (a closed list in SB 53 and RAISE; no list in the FCF and FGF definition sentences).
+    weight: "conditioning (open in every SB 53-lineage row)"
+    why: The closed list is what most often takes a 60-death incident outside SB 53's "catastrophic risk" (for example, deaths caused by a model's medical misinformation).
+
+  - id: thin:uplift.expert-level
+    kind: concept
+    gloss: Model conduct that gives "expert-level assistance" in creating or releasing a CBRN weapon.
+    weight: conditioning
+
+  - id: thin:unsupervised-conduct
+    kind: concept
+    gloss: Model conduct "with no meaningful human oversight, intervention, or supervision".
+    weight: conditioning
+
+  - id: thin:counterfactual-human-actor-test
+    kind: concept
+    gloss: Classifying an AI's conduct by what it would be if a human did it ("would constitute the crime of murder, assault, extortion, or theft").
+    weight: conditioning
+
+  - id: thin:control-evasion
+    kind: concept
+    gloss: Model conduct that evades control by a named holder (its developer or its user).
+    weight: conditioning
+    why: Undefined, and worded differently from SB 53's own "Loss of control" in the incident definition (R-control).
+
+  - id: thin:exclusion.availability-baseline
+    kind: concept
+    gloss: Excludes risks from information "otherwise publicly accessible in a substantially similar form from a source other than a foundation model", a counterfactual baseline.
+    weight: conditioning
+
+  - id: thin:exclusion.actor-legality
+    kind: concept
+    gloss: Excludes risks from one actor's lawful activity ("Lawful activity of the federal government").
+    weight: conditioning
+
+  - id: thin:exclusion.no-material-contribution
+    kind: concept
+    gloss: Excludes harm from a model "in combination with other software" where the model did not materially contribute.
+    weight: conditioning
+
+  - id: thin:coverage.deictic
+    kind: attribute
+    gloss: A coverage condition that is re-run over time ("the most advanced (i.e. state-of-the-art) models at any given point in time").
+    established: "The plan's deictic definitions (§3.3); in address theory, a match (addr:match), whose answer changes as the population changes."
+    weight: conditioning
+
+  # ----------------------------------------------------- source-side structure
+  - id: thin:source-umbrella
+    kind: concept
+    gloss: A source's own declared umbrella over named terms, including terms of other instruments (the FCF's and FGF's "systemic").
+    weight: "form"
+    why: It is how "systemic" comes to name SB 53's bar in two company documents. The FCF's is open ("include"), the FGF's reads as closed ("we mean both"), which changes what their own definition sentences can add (R-fgf-umbrella-closure).
+
+  - id: thin:source-sense-note
+    kind: concept
+    gloss: A source's own statement that a word means something different in another document of the same publisher (FCF footnote 1 on the RSP; the FGF on the PF).
+    weight: "decisive in every scenario (R-fgf-severe)"
+    why: It is the only evidence in the slice for how the RSP uses "catastrophic", and the main evidence for R-fgf-severe.
+
+  # ------------------------------------------------------ records and method
+  - id: thin:definition-frame
+    kind: record
+    gloss: A source definition translated as one of our concepts plus filled slots, one slot per separable clause, with the source's words kept beside each slot.
+    weight: "form"
+    why: Q1's answer is computed from frames. A term-to-term translation row (plan §3.4, SSSOM-shaped) can't carry a definition's clauses.
+
+  - id: thin:read-as-of
+    kind: record
+    gloss: The moment, and the document version, at which we read and resolved a source.
+    weight: "form"
+
+  - id: thin:evaluated-at
+    kind: record
+    gloss: The moment at which a source's test is applied, distinct from thin:read-as-of. Foreseeability is judged as of the conduct; which version of a framework applies depends on the date of the incident.
+    established: "Bitemporal data's valid time vs transaction time (Snodgrass). From general knowledge; not checked in this pass."
+    weight: "form"
+    why: xAI's framework carried SB 53's bar from 2025-12-30 and not from 2026-06-30; RAISE takes effect 2027-01-01. Q1 has no date, so its answer differs by date.
+
+  - id: thin:resolution-status
+    kind: record
+    gloss: "Whether we attempted a resolution, delegated it (an imported binding we did not follow), or skipped it as not needed. Kept separate from the outcome."
+    weight: "form"
+    why: Without it, an unfollowed import ("foreseeable" in California law) reads as zero referents, which is the MIT "Other" mix the plan warns against (§3.3).
+
+  - id: thin:lineage.drift
+    kind: record
+    gloss: Per-slot differences between a definition and the one it derives from. Only computable when both are translated as definition frames.
+    weight: "form"
+
+  - id: thin:preference.source-declared
+    kind: concept
+    gloss: An interpretive preference a source declares for its own terms ("liberally construed to effectuate its purposes").
+    established: "addr:preference (address theory's declared half of resolution policy). The plan already lists source-written resolution policies (§1.3 item 4)."
+    weight: conditioning
+    why: Recorded on the ambiguities SB 53 leaves open. It doesn't settle any of them by itself.

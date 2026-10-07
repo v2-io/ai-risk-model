@@ -1,0 +1,114 @@
+# Lineage records: where the ">50 people or $1B, single incident" bar came from
+# and where it went.
+#
+# Rough format, from plan §3.7:
+#   from, to       frames (so drift can be computed slot by slot)
+#   relation       PROV/CiTO where one fits; ours where none does
+#   acknowledged   does the later document say where it came from, and where
+#   drift          NOT written by hand: tools/answer.py diffs the two frames'
+#                  slots (thin:lineage.drift). `drift_notes` holds only what a
+#                  slot diff can't see.
+#   judgment       who judged the relation, and on what evidence
+#   carries        NEW: which slots of the earlier frame the derivation carries.
+#                  Lineage is per claim, not per document: xAI's 2025 FAIF is a
+#                  revision of its RMF, but its bar comes from SB 53, not the RMF.
+#
+# Q1's "through how many independent lineages" is answered by tools/answer.py:
+# the roots of this graph among the frames that carry the bar.
+
+records:
+  - id: L-sb53-two-codes
+    from: F-sb53-bp-cr
+    to: F-sb53-lab-cr
+    relation: "same enactment, two scopes: one document mints the definition twice"
+    carries: [all]
+    acknowledged: n/a
+    judgment: "ours, from the text: both are in SB 53 (P-sb53-bp-cr, P-sb53-lab-cr)"
+    lineage_effect: one lineage
+
+  - id: L-raise-copy
+    from: F-sb53-bp-cr
+    to: F-raise-cr
+    relation: "prov:wasDerivedFrom; ours: copy (near verbatim)"
+    carries: [all]
+    acknowledged: "no: the text read never names California, the TFAIA or SB 53 (searched)"
+    judgment: "ours, from word-for-word identity of the definitions (P-raise-cr against P-sb53-bp-cr) and of the findings' wording (S.8828 §1, not anchored here, against SB 53 §1). The catalog says the same, citing verification/us-gov-recent.md."
+    lineage_effect: not independent
+
+  - id: L-xai25-quote
+    from: F-sb53-bp-cr
+    to: F-xai25-cr
+    relation: "prov:wasQuotedFrom + incorporation by reference; cito:includesQuotationFrom"
+    carries: [all]
+    acknowledged: "yes: 'as defined in the TFAIA' (P-xai25-scope), with the definition quoted (P-xai25-fn)"
+    judgment: the source's own
+    lineage_effect: not independent
+
+  - id: L-fcf-derived
+    from: F-sb53-bp-cr
+    to: F-fcf-own
+    relation: "prov:wasDerivedFrom with relabel; ours: restatement with drift"
+    carries: [knowledge, materiality, bar]
+    acknowledged: "partly: the FCF names the TFAIA's catastrophic risk as a member of 'systemic' (P-fcf-umbrella), but its own threshold sentence (P-fcf-def) cites nothing"
+    judgment: "ours: the same numbers, the same 'foreseeable and material', the same 'arising from a single incident', in a document that serves as the company's TFAIA framework"
+    drift_notes:
+      - "label: 'catastrophic risk' becomes 'systemic risk'"
+      - "closure: closed ('means') becomes open ('includes ... including but not limited to')"
+      - "harm kind: 'death of, or serious injury to, more than 50 people' becomes '>50 fatalities'; 'damage to, or loss of, property' becomes 'financial damages'"
+      - "comparator: 'more than one billion dollars' becomes '1 billion dollars'"
+      - "counting unit: attached to the fatalities, and on one reading not to the dollars (R-fcf-dollar-attachment)"
+      - "dropped: the developer-conduct bearer, 'materially contribute', the closed conduct list, all three exclusions, the equity exclusion"
+      - "added: a deictic coverage condition, 'the most advanced (i.e. state-of-the-art) models at any given point in time'"
+    lineage_effect: not independent
+
+  - id: L-fgf-derived
+    from: F-sb53-bp-cr
+    to: F-fgf-own
+    relation: "prov:wasDerivedFrom with relabel; ours: restatement with drift"
+    carries: [knowledge, materiality, bearer, contribution, bar]
+    acknowledged: "partly, as for the FCF (P-fgf-umbrella, P-fgf-tfaia-coverage)"
+    judgment: "ours: the same numbers, 'foreseeable and material', 'development, storage, use, or deployment', 'materially contribute', 'arising from a single incident'"
+    drift_notes:
+      - "label: 'catastrophic risk' becomes 'systemic risk', with 'severe harm' as genus"
+      - "closure: closed becomes open ('includes'), unless R-fgf-umbrella-closure's closed reading holds"
+      - "harm kind: 'death of, or serious injury to' becomes 'fatalities'; property 'damage to, or loss of' becomes 'property damages or losses'"
+      - "causal bearer: the developer's conduct becomes 'a model' (as in SB 53's own exclusion (c)(2)(C))"
+      - "dropped: the closed conduct list (the FGF's categories, which include harmful manipulation, follow the sentence), the three exclusions"
+    lineage_effect: not independent
+
+  - id: L-xairmf-revised-2025
+    from: F-xairmf-cme
+    to: F-xai25-cr
+    relation: "prov:wasRevisionOf (ours: inferred)"
+    carries: []   # a document revision; the bar is not carried
+    acknowledged: "no: neither document states the succession (searched for RMF, supersede, replace, previous)"
+    judgment: "ours: same publisher, same genre, later date; the source-model file says the same (influx/source-models/frontier-safety-frameworks.md)"
+    drift_notes: ["the bar: '>100 deaths or over $1 billion' from WMD or cyberterrorism becomes SB 53's '>50 people or $1B' with SB 53's conduct list"]
+    lineage_effect: "a revision of xAI's own bar; the new bar comes from SB 53"
+
+  - id: L-xai-faif-revised-2026
+    from: F-xai25-cr
+    to: null
+    to_document: xai-2026-faif
+    relation: "prov:wasRevisionOf (ours: inferred), with the bar dropped"
+    carries: []   # the bar is dropped
+    acknowledged: no
+    judgment: "ours: same publisher and title, later effective date (P-xai26-date)"
+    absence: "In xai-2026-faif the strings TFAIA, '50 people', 'billion' and 'catastrophic' occur 0 times (grep -i on the extraction, 2026-10-07). It speaks of 'severe or systemic harm' (P-xai26-severe-systemic), undefined in the passage read."
+    lineage_effect: the bar leaves this line as of 2026-06-30
+
+  - id: L-xairmf-vs-sb53
+    from: null
+    to: F-xairmf-cme
+    relation: undetermined
+    carries: []
+    judgment: "ours: the RMF (2025-08-20) predates SB 53's approval (2025-09-29). It shares 'foreseeable' and '$1 billion' with SB 53 but not '>50' or 'material'. SB 53's bill history was not read, so whether either drew on the other's drafts is open."
+    lineage_effect: "undetermined; it doesn't reach 60 deaths in any case"
+
+  - id: L-sb53-upstream
+    from: null
+    to: F-sb53-bp-cr
+    relation: undetermined
+    carries: [bar]   # if an upstream exists, the bar is what it would carry
+    judgment: "not checked. Leads: the HSE's R2P2 (2001), 'an accident killing 50 people or more in a single event' (plan §3.8, unchecked there too; note 'or more' against SB 53's 'more than'); SB 53's own legislative history and its predecessor bills (not read)."
+    lineage_effect: SB 53 is the root of this slice's graph only because nothing upstream was followed
