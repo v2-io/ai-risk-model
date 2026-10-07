@@ -46,7 +46,7 @@
 
 ### 1.2 Model beta (2026-09-27 to 28): a claim-backed causal graph
 
-`influx/model-beta/` has signed quantities, relations between them, and claims anchored to passages, plus a draft lexicon in udon (`terms/*.ud`, 72 terms in 14 groups) and a schema proposal (`SCHEMA-SYNTHESIS.md`, draft 2).
+`influx/model-beta/` has signed quantities, relations between them, and claims anchored to passages, plus a draft lexicon in udon (`terms/*.ud`, 74 terms in 14 files) and a schema proposal (`SCHEMA-SYNTHESIS.md`, draft 2).
 
 - **What held:**
   - the claims ledger;
@@ -54,7 +54,7 @@
   - the address-theory idea that a source's term *resolves* to ours with a recorded outcome, which can be "ambiguous";
   - draft 2's two planes (what was said; what it is said about) joined by resolution.
 - **What broke:**
-  - Relations were chosen first and claims hung on them, so a word like "developer" came to mean "a lab" across about forty concepts.
+  - Relations were chosen first and claims hung on them, so a word like "developer" came to mean "a lab": it appears in 41 of the 287 concept records, 23 of them in the label.
   - Loop enumeration consumed attention (641,083 loops before one edge was recast, about 186,000 after; `notes-mp.md` item 8) without producing findings that outlasted it.
   - The lexicon adopted IASR 2026's definitions directly ("The first four definitions are IASR 2026's, adopted", `def-risk.ud`). That was a reasonable early move. In domain-driven design's terms, though, adopting a source's definitions wholesale is the *conformist* pattern: our lexicon takes one upstream source's model as its own, which the translation step is meant to prevent.
   - Risk analysis was being built at the same time as the lexicon it depended on, without the discipline to keep the two concerns apart. The result began to read as its own ball of mud.
@@ -65,11 +65,13 @@
 These findings shape the method. Each was established in the source models (`influx/source-models/`, summarized in `OVERVIEW.md`) and, where marked, checked again for this draft.
 
 1. **The sources model different objects, not one object differently.** In OVERVIEW's words there are five kinds of model:
-   - a landscape of risks (IASR, MIT, CAIS, the UK Chronic Risks Analysis);
-   - a developer's go/no-go gate (the company frameworks);
-   - an organization's management process (NIST, the EU Code's process layer);
-   - a national scenario set (the UK National Risk Register);
-   - a measurement programme (UK AISI).
+   - *landscape* models say what the risks are (IASR, MIT, CAIS, the UK Chronic Risks Analysis);
+   - *gate* models say what a developer does when a model crosses a line (the Frontier Safety Framework, OpenAI's Preparedness Framework, Anthropic's RSP v2.2, and the EU Code's acceptance loop);
+   - *process* models say what an organization should have in place (NIST's AI RMF, and the EU Code's process layer);
+   - *scenario* models assess one constructed worst plausible instance per risk (the UK National Risk Register);
+   - *measurement* models say what can be observed and how far to trust it (AISI's Trends report, AISI's *Loss of Oversight*, NIST AI 100-2).
+
+   Some documents are hybrids. OVERVIEW calls Anthropic's v3 Risk Reports "a landscape for one company, graded in words", defined *against* gate-shaped safety cases; the August 2026 report, a G4 pilot, is one of them. The EU Code is both a gate and a process model.
 
    A translation has to carry *which kind of model* a claim came from.
 2. **Much apparent agreement is copying.**
@@ -164,7 +166,7 @@ Two vocabularies do two jobs. The seam between them should be explicit in `def/`
 
 DDD's bounded context is flat; the sources' scopes are nested (finding 5), so **bounded context should be defined in terms of scope.**
 
-**Proposed:** import address theory's terms *by reference*, not by copying, so the two stay one vocabulary. Since Joseph maintains both, this is a shared kernel in Evans's sense (agreed, changed only with consultation), not a conformist relation to an outside upstream.
+**Proposed:** import address theory's terms *by reference*, not by copying, so the two stay one vocabulary: each is cited at a pinned commit of the public repository. In Evans's terms this is not a shared kernel, since nothing is held jointly in this repository and no second team's consultation gates a change. The nearest pattern is conformist: the terms are adopted untranslated. The pin is a reference in address theory's own sense. When the udon `def/` entries change, the pin is moved deliberately, by whoever is updating this lexicon, and the affected entries here are re-read against the new version. Until then the pin keeps this lexicon's meaning fixed as of that commit.
 
 **Naming collisions in our own method vocabulary** (from the research reports, §9 and §10 in each):
 
@@ -182,7 +184,7 @@ DDD's bounded context is flat; the sources' scopes are nested (finding 5), so **
 | Word | Method sense | Domain sense | Elsewhere |
 |---|---|---|---|
 | **context** | DDD's context (G1) | the agent part in `alignment.md` ("experience & agency") | Institutional Grammar's and GSN's Context; ordinary use |
-| **model** | DDD's domain model | an AI model | "source model", "model gamma" |
+| **model** | DDD's domain model | an AI model | "source model", "model gamma"; `CLAUDE.md`'s five-way table, where a "Model" is "an ontology plus claims about how things behave" (narrower than Evans's) |
 | **source** | a source document | a *risk source* (SRA, ISO) | FactBank's nested source; SP 800-30's threat source |
 | **role** | Goffman's production roles; "stage is a role relative to a focal event" | actor roles, functional and institutional (section 3.9) | model alpha's role codes |
 | **scope** | address theory: where a binding holds | a source's declared coverage (what it is about) | |
@@ -565,7 +567,7 @@ The disagreement doesn't disappear. It lands where it belongs: in different crit
 
 Two **owed-alignment referents** have no channel in: affected third parties; and society, law, humanity.
 
-**The sources divide roles on several different bases.** My first reading, from the AI Act's Article 3 and NIST's AI RMF Appendix A (read at the primary), found the two in the table below. The alignment-referents spike, sweeping about 210 documents, reports at least five more: task (NIST), responsibility for an asset (ETSI's "data custodians", "system operators"), a training act with a threshold (SB 53), authority to instruct (the companies' "principal" and "chain of command"), and affectedness ("affected individuals/communities", "affected entities", "affected persons"). That is a mid-spike report, not yet verified. The bases are plural, and the table shows two of them.
+**The sources divide roles on several different bases.** My first reading, from the AI Act's Article 3 and NIST's AI RMF Appendix A (read at the primary), found the two in the table below. The alignment-referents spike, sweeping about 210 documents, reports at least five more: task (NIST), responsibility for an asset (ETSI's "data custodians", "system operators"), a training act with a threshold (SB 53), authority to instruct (the companies' "principal" and "chain of command"), and affectedness ("affected individuals/communities", "affected entities", "affected persons"). The finished spike, verified by an independent pass and repaired, found these connect by conferral rather than competing (see the note below). The table shows the first two bases.
 
 > [!NOTE]
 > **Superseded in part by the finished spike (Claude, 2026-10-07).** This section was written mid-spike. Since then the spike has been verified by an independent pass and repaired. Its findings that change this section:
@@ -605,12 +607,7 @@ The lexicon should keep both kinds, and a translation records which kind each so
 4. **Owed-alignment referents.** A role in an alignment claim, not a writer. Beta's "affected party" is a candidate.
 5. **Institutional roles.** One translation per source, plus the umbrella question: does "developer" survive as a declared umbrella containing the precise roles, or is it deprecated? The lexicon shape in section 2 (umbrellas containing precise terms) allows either answer.
 
-**The alignment referent.** `alignment.md` opens: "'Alignment' without saying to whom quietly picks one of them." Whether "alignment" should have a default referent, no default (every alignment claim names its referent from the actor set, or records it as ambiguous), or something else is open. A spike launched 2026-10-06 (`influx/spikes/spike-alignment-referents-2026-10-06/`) is looking at:
-- the implications of an ambiguous alignment definition;
-- established terms for the existing actors;
-- new actors the references suggest.
-
-Its results feed this group directly.
+**The alignment referent.** `alignment.md` opens: "'Alignment' without saying to whom quietly picks one of them." Whether "alignment" should have a default referent is open (decision 10). The alignment-referents spike (`influx/spikes/spike-alignment-referents-2026-10-06/`) has finished. It recommends no single default, and also supplies established names for the existing actors and candidate new ones (`04-actors.md`, `05-candidate-terms.md`). Its results feed this group directly.
 
 > [!NOTE]
 > **Where to start the refinement passes in this group (Claude's lean, 2026-10-07).** Start with the seven agent parts, before the actors:
@@ -651,9 +648,10 @@ Views are computed from the records, never hand-maintained. Which views earn a p
 1. **Round trip.** Each of these definitions can be re-expressed clause by clause in our terms:
    - SB 53 "catastrophic risk" (§22757.11(c));
    - AI Act "systemic risk" (Art. 3(65));
-   - Anthropic's "misalignment risk" (August 2026 Risk Report).
+   - Anthropic's "misalignment risk" (August 2026 Risk Report);
+   - IASR 2026's "loss of control", in its glossary and in its body, which differ: a loose source, so the test also covers declared ambiguity.
 
-   A faithful translation may legitimately end at an imported binding to an outside institution (SB 53's "foreseeable" and "materially contribute" take their content from California law), at a deliberately unbound term ("plain meaning"), or at a declared ambiguity; those outcomes count as passing. The test names the passage under test. Anthropic's report, for example, defines misalignment risk twice: once without "catastrophic" (p. 25), then 25 lines later with it, alongside a narrower "covered risk".
+   A faithful translation may legitimately end at an imported binding to an outside institution (SB 53's "foreseeable" and "materially contribute" take their content from California law), at a deliberately unbound term ("plain meaning"), or at a declared ambiguity; those outcomes count as passing. A declared ambiguity passes only if it names its candidate senses as lexicon terms, cites the passage that supports each, and says what evidence would decide between them. One without those is a gap, not a result. The test names the passage under test. Anthropic's report, for example, defines misalignment risk twice: once without "catastrophic" (p. 25), then 25 lines later with it, alongside a narrower "covered risk".
 2. **Collisions.** Every sense in OVERVIEW §2's collision tables (16 main terms, 12 secondary) is either a resolution target in our lexicon or part of a declared ambiguity.
 3. **No mixed categories.** No term or record field mixes a thing in the world with a fact about our reading (the MIT "Other" test, section 3.3).
 4. **Actors.** The done-test in section 3.9.
@@ -677,7 +675,7 @@ Eight phases, plus an early thin pass (G1b). G1–G4 are the third iteration's c
 **G1. `def/`: the method terms, the record formats, and the questions.** *Next:* DDD's definitions first, then the method ("meta") terms the later steps need.
 
 Contents:
-- **(a) DDD terms verbatim** with CC BY 4.0 attribution: domain, model, context, bounded context, ubiquitous language, context map, the relationship patterns, anticorruption layer, published language, big ball of mud. Each in the `ddd:` namespace. *First draft 2026-10-07*: six term groups in `def/def-ddd-*.ud`, twenty terms, all `proposed` and awaiting Joseph's refinement passes. Evans's own definitions are verbatim where he gives one (eight terms); his patterns are restated as definitions with ISO-style `modified` marks, and their invariants, conditions and practices are kept separate (`def/README.md`).
+- **(a) DDD terms**, verbatim where Evans defines a term and otherwise marked as modified (ISO 704), with CC BY 4.0 attribution: domain, model, context, bounded context, ubiquitous language, context map, the relationship patterns, anticorruption layer, published language, big ball of mud. Each in the `ddd:` namespace. *First draft 2026-10-07*: six term groups in `def/def-ddd-*.ud`, twenty terms, all `proposed` and awaiting Joseph's refinement passes. Evans's own definitions are verbatim where he gives one (eight terms); his patterns are restated as definitions with ISO-style `modified` marks, and their invariants, conditions and practices are kept separate (`def/README.md`).
 - **(b) Address theory** imported by reference, cited at its public commit.
 - **(c) Terminology-work terms**:
   - concept, designation, definition, delimiting characteristic;
@@ -704,7 +702,7 @@ Guard against hardening: everything the pass produces is labelled disposable and
 
 Done when the question has an answer that can be checked against its passages, and there is a list of the terms and record fields the answer depended on, with the defects found. Who reads it: Joseph, to decide where refinement passes go first; then G2 and G3.
 
-**G2. Actors and agent parts.** The groups in section 3.9, drafted from `alignment.md`, informed by the alignment-referents spike, and translated against the sources named there. This can run alongside G1(d)–(e). Done when the section 3.9 done-test passes.
+**G2. Actors and agent parts.** Drafted from `alignment.md` and the finished alignment-referents spike, starting from the spike's `proposed-integration-plan.md`. Actors are drafted as parties × relations (the spike's eight relations, `03-structure.md` §6.1), not on the two-basis table in section 3.9, which the note there marks as superseded. Section 3.9's term groups are the starting list. The groups are translated against the sources named in the done-test. This can run alongside G1(d)–(e). Done when the section 3.9 done-test passes.
 
 **G3. Risk-side core concepts.** Defined at the concept level first:
 - the components (section 3.8);
@@ -713,7 +711,7 @@ Done when the question has an answer that can be checked against its passages, a
 - the intent attribute;
 - the impact-radius components.
 
-Joseph then decides the names (section 5). Done when acceptance tests 1, 2 and 5 pass for the risk-side terms.
+Joseph then decides the names (section 5). Done when acceptance tests 1 and 2 pass for the risk-side terms, and test 5 passes for the risk-side distinctions G5 has found by then. Test 5 for the whole corpus is G5's done-condition, and a distinction G5 finds later reopens G3 if the lexicon cannot express it.
 
 **G4. Pilots: translation as coding, and one pass end to end.**
 
@@ -731,7 +729,7 @@ Joseph then decides the names (section 5). Done when acceptance tests 1, 2 and 5
 
 *End to end again, at full strength.* The early thin pass (G1b) runs before G2. Here, one pilot source and one competency question go all the way through again, with the refined lexicon, the agreed record formats and two translators. This is where defects that survived G1b show up.
 
-Then carry **loss of control** through all eleven models in OVERVIEW: the most collided term, so the hardest test of the method. Findings feed back into G1–G3 before any wider translation (Evans's "refactoring toward deeper insight").
+Then carry **loss of control** through all eleven models in OVERVIEW: the most collided term, so the hardest test of the method. Two points about the slice. Where OVERVIEW bundles several documents into one model (its "FSF" row stands for several companies' frameworks), each document gets its own record, because counting copies separately is what the lineage records exist for. And the UK's two national models, the NRR and the CRA, contain no loss of control (OVERVIEW §1.4); for them the slice records that absence explicitly, with the search that found it, so it does not read as a gap. Findings feed back into G1–G3 before any wider translation (Evans's "refactoring toward deeper insight").
 
 Done when the pilot translations exist with their disagreement data, the end-to-end pass answers its question, the slice is recorded, and the lexicon changes they forced have been made.
 
@@ -742,9 +740,9 @@ Done when the pilot translations exist with their disagreement data, the end-to-
 - the accident / misuse / structure distinction (Zwetsloot & Dafoe);
 - the bases of role division in section 3.9, which the alignment-referents spike is already extending.
 
-This is not "pick the best taxonomy", which would import a source's model. It feeds G3 and the later translations.
+This is not "pick the best taxonomy", which would import a source's model. It feeds G3 and the later translations. Done when the inventory covers the catalog's anchors and major sources, and acceptance test 5 passes for every distinction in it.
 
-**G6. The remaining translations**, in Influence order from `source-catalog.md`: the 11 anchors, then the 26 major sources. Each follows the G4 pattern and codebook. Self-inconsistent sources are mapped scope by scope (section 3.2).
+**G6. The remaining translations**, in Influence order from `source-catalog.md`: the 11 anchor rows, then the 26 major rows, less the four pilots G4 has translated. The unit of translation is one document; a catalog row can bundle several (the RSP series; IASR 2026's full text and extended summary; the AI Act and the Digital Omnibus), and each document in it is translated, or deliberately skipped with the reason stated. The documents the catalog lists as "not listed" still need translation units where the plan's lineage findings depend on them. These are the other companies' frontier safety frameworks and Shanghai AI Lab's, which enter through METR-CE and `influx/source-models/frontier-safety-frameworks.md`. At minimum their copied passages are translated, so that each copy is a record. Each follows the G4 pattern and codebook. Self-inconsistent sources are mapped scope by scope (section 3.2).
 
 *A milestone worth having here: translated editions of the sources.* For each source, its own text with each key term marked in place as our term beside the original, for example `[ns:our-term](original term)` or a footnote form, plus a sidecar document discussing the nuances and translation problems. It makes the translation reviewable by anyone reading the source. Two caveats:
 - **Licensing.** The repository is public. Full translated text can be published only for sources whose licence allows it (statutes, US federal works, UK Open Government Licence material, CC-licensed papers). Others stay local-only, as the IASR 2026 text in `ref/` already does, with their sidecars published.
@@ -806,13 +804,15 @@ Each item has my recommendation and how confident I am in it.
 
     > [!NOTE]
     > **The spike's recommendation, and Claude's lean, 2026-10-07. *Confidence: moderate-high.*** The alignment-referents spike (`influx/spikes/spike-alignment-referents-2026-10-06/`, `03-structure.md` §4 and §8) recommends **no single default referent**. Every single default it tested makes some named risk come out "aligned":
-    > - developer: a head of state directing military AI through the institution;
-    > - user: misuse, and sycophancy;
-    > - operator: an operator turning the agent on its users;
-    > - society: GDM's paternalism scenario;
-    > - law: the harm EO 14365 names;
+    > - developer: a head of state directing military AI through the institution. This holds when "developer" means whoever controls the institution's processes, not under a reading that requires legitimate authority;
+    > - user: misuse, and sycophancy (taking the user's expressed preference as the aspect);
+    > - operator: an operator turning the agent against its own users. This risk is named only outside the corpus, in Anthropic's constitution;
+    > - society: GDM's paternalism scenario. This holds when the aspect is society's interest and the AI's belief about that interest is correct, which the scenario leaves open;
+    > - law: the harm EO 14365 names. This holds if the order's claim about a state law is taken as the named risk;
     > - a published spec: whatever it omits;
     > - the agent: scheming.
+    >
+    > So three defaults are defeated outright (user, published spec, agent), three depend on a stated condition (developer, society, law), and the operator case rests on a risk named only outside the corpus. The spike's debrief puts it the same way: "Three of those depend on stated conditions, and one rests on a risk named only outside the corpus."
     >
     > Choosing a default would therefore decide which risks count, which is adjudication. In its place:
     > - the lexicon defines alignment as a relation with named slots (bearer, mode, claimant set, aspect, time, adjudicating standard, judge, domain, degree);
@@ -852,7 +852,7 @@ Each item has my recommendation and how confident I am in it.
   > **Claude's lean, 2026-10-07: commission that review now, before G4. *Confidence: high.*** Every piece so far comes from one model family: this plan, the research reports, the alignment-referents spike with its two research agents, and both de novo passes. G4's two-translator coding assumes translators from different families. One review of this plan and the spike's debrief by Codex or Gemini would test that assumption cheaply first. It costs one brief.
 - **Lexicon first can still harden too early.** The guards are the early thin pass (G1b), which shows which terms bear weight before most are refined, and G4: the pilot translations are expected to change the lexicon, and the plan sequences them before any wide translation.
 - **First-pass entries can look finished.** Fluently drafted definitions read as settled and get inherited as if they were (model beta's term files are the example). The guards are the refinement passes (section 2), the *supported* status for entries that haven't had them, and the coding disagreement data from G4.
-- **Over-weighting the strict sources.** The round-trip test favours statutes and rigorous company documents. The loose sources (most of the research literature, IASR in places) test something else: whether declared ambiguity stays honest rather than becoming a dumping ground. The MIT "Other" test is the guard there.
+- **Over-weighting the strict sources.** The round-trip test favours statutes and rigorous company documents. The loose sources (most of the research literature, IASR in places) test something else: whether declared ambiguity stays honest rather than becoming a dumping ground. The MIT "Other" test (acceptance test 3) does not guard against that, since a term whose only content is "ambiguous among these candidates" passes it. The guard is the fourth round trip in acceptance test 1, through a loose source, with the rule it states for when a declared ambiguity counts as passing.
 - **Conflict of interest.** Anthropic's August Risk Report is one of the four pilots and the main example of a source with its own defined vocabulary in this document. That is a judgment about its definitions, made by an Anthropic model. The EU Code is now a pilot alongside it, and two-translator coding (G4) from different model families is the structural check.
 
 ---

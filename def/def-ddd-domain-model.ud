@@ -55,7 +55,7 @@
     | The frontier-AI risk landscape                     | a @{ddd:domain}                                         |
     | IASR 2026's account of that landscape              | a @{ddd:model} (implicit; a source's model, in its own context) |
     | The lexicon plus records this project is building  | a @{ddd:model} (ours)                                   |
-    | Model beta's term files                            | a @{ddd:model}; the plan judged it was not a deep one  |
+    | Model beta's term files                            | a @{ddd:model}; conformist to IASR 2026 for its first risk definitions (plan §1.2) |
     | G4's pilot findings feeding back into the lexicon  | @{ddd:refactoring-toward-deeper-insight}               |
 
   |working-notes

@@ -12,12 +12,13 @@ Each term's name carries its namespace, as in `ddd:bounded-context`, and referen
 
 ## What an entry's blocks mean
 
-The address-theory blocks (`|rels`, `|invariants`, `|discussion`, `|examples`, `|working-notes`, `:synonyms`, `:avoid`) keep their meanings. The `ddd:` entries add four blocks, so that what a pattern *is* stays separate from when it is used and what its author recommends:
+The address-theory blocks (`|rels`, `|invariants`, `|discussion`, `|examples`, `|working-notes`, `:synonyms`, `:avoid`) keep their meanings. The `ddd:` entries add five blocks, listed here after `|invariants` for contrast, so that what a pattern *is* stays separate from when it is used, what its author recommends, and what this project proposes:
 
 - `|invariants`: what holds of every instance, the term's delimiting characteristics;
 - `|conditions`: when the source says the thing arises or is called for, which is not part of what it is;
 - `|practices`: the source's advice about it, which is not part of what it is either;
 - `|collisions`: other senses of the same words, in the corpus or in this project;
+- `|proposed-widening`: a widening of the source's scope that this project proposes but has not adopted. It is kept out of `|invariants` so that it cannot be inherited as part of the term;
 - `|ambiguity`: a declared ambiguity in the source's own usage, left unresolved on purpose.
 
 Readings are attributed:

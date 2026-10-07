@@ -29,7 +29,7 @@
       - Evans's own example is influence, not supply: "If two cities are along the same river, the upstream city's pollution primarily affects the downstream city." (p. 28)
     |collisions
       - **The AI supply chain's upstream and downstream.** The EU AI Act's "downstream provider" (Art. 3(68)) and the GPAI guidelines' "downstream actors" who "may modify a general-purpose AI model", along with the supply-chain literature (Cobbe, Veale & Singh 2023; Hopkins et al. 2025), name positions in a flow of artifacts: who builds on whose model. Evans's relation is about whose success depends on whose actions. The two often coincide, but they have different bases. A translation records which one a source means. — our reading
-      - **Lineage.** A definition copied from an earlier document (RAISE from SB 53) flows from an upstream text. That is derivation, recorded in this project's lineage records, not this relation. — our reading
+      - **Lineage.** A definition copied from an earlier document (RAISE from SB 53) flows from an upstream text. The derivation is recorded in this project's lineage records. By itself it does not establish this relation, which is about dependence of success. The same copying may *also* be a context-map relationship (see @{ddd:conformist} and its proposed widening). The two are recorded separately. — our reading
 
   |term[ddd:mutually-dependent] A situation in which two software development projects in separate contexts must both be delivered in order for either to be considered a success.
     :source "Evans 2015, Context Mapping for Strategic Design, p. 28 — verbatim, without its parenthetical"
