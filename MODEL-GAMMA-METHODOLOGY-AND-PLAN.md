@@ -567,6 +567,15 @@ Two **owed-alignment referents** have no channel in: affected third parties; and
 
 **The sources divide roles on several different bases.** My first reading, from the AI Act's Article 3 and NIST's AI RMF Appendix A (read at the primary), found the two in the table below. The alignment-referents spike, sweeping about 210 documents, reports at least five more: task (NIST), responsibility for an asset (ETSI's "data custodians", "system operators"), a training act with a threshold (SB 53), authority to instruct (the companies' "principal" and "chain of command"), and affectedness ("affected individuals/communities", "affected entities", "affected persons"). That is a mid-spike report, not yet verified. The bases are plural, and the table shows two of them.
 
+> [!NOTE]
+> **Superseded in part by the finished spike (Claude, 2026-10-07).** This section was written mid-spike. Since then the spike has been verified by an independent pass and repaired. Its findings that change this section:
+> - **The bases connect by conferral rather than competing.** Instruments confer institutional roles on operative facts of several kinds: training acts (SB 53), modification acts (the EU's "significant change"), market acts, use, and **control of the weights** (EU GPAI guidelines fn 12). So writing acts are already inside the institutional instruments, as operative facts (`04-actors.md` §5).
+> - **"To whom" is several relations, not one.** The spike's list has eight: writes into, has standing to direct, controls in fact, benefits, is owed regard, authors the standard, oversees, answers for (`03-structure.md` §6.1). The map's lines are only the first. The spike and both of its research reports suggest the actor table become parties × relations.
+> - **"Control & Eval" also writes** (see item 3 below and decision 6).
+> - **Established names exist** for most rows, several of them colliding: "operator" has at least four senses in the corpus. There are also candidate new rows; the counterparty is the strongest (`04-actors.md` §2–3).
+>
+> My lean is that a separate agent integrates these into this section, from the spike's `proposed-integration-plan.md`, rather than the spike's author or me. That keeps the spike template's roles separate. *Confidence: high* on the integration, *moderate* on the parties × relations shape until Joseph has looked at it against the map.
+
 | Basis of division | Examples | What a role is |
 |---|---|---|
 | **The AI product's lifecycle or market** | AI Act Art. 3(3): a *provider* "develops … and places it on the market or puts the AI system into service under its own name"; Art. 3(4): a *deployer* is "using an AI system under its authority"; plus authorised representative, importer, distributor and downstream provider, with *operator* as their umbrella (Art. 3(8)). SB 53 §22757.11(h): a *frontier developer* "has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use" the compute threshold. NIST AI RMF: "AI actors" (the OECD's term) defined by *tasks* (design, development, deployment, operation and monitoring, TEVV, …). IASR: "AI developer" = "Any organisation that designs, builds, or adapts AI models or systems". | a position relative to the artifact: who makes it, sells it, runs it |
@@ -592,7 +601,7 @@ The lexicon should keep both kinds, and a translation records which kind each so
 **Proposed for the term groups:**
 1. **Agent parts.** One group. Model beta called the umbrella "surface"; `alignment.md` says "layer" and "what gets influenced". *Naming is Joseph's call.*
 2. **Writer roles.** The functional roles from `alignment.md`, each related to the parts it writes into and the channel it writes through.
-3. **The oversight relation.** "Control & eval" has no lines into the agent in `alignment.md`: it acts "on the agent's actions and on the other actors, not on the agent". That is a different relation from writing, and it needs its own term.
+3. **The oversight relation.** "Control & eval" has no lines into the agent in `alignment.md`: it acts "on the agent's actions and on the other actors, not on the agent". That is a different relation from writing, and it needs its own term. (The spike found two sources where this row also writes into the agent: AISI's evaluators "construct the model's context merely by editing text", and IMDA's human approvers "edit the plan". So the row probably splits; see decision 6.)
 4. **Owed-alignment referents.** A role in an alignment claim, not a writer. Beta's "affected party" is a candidate.
 5. **Institutional roles.** One translation per source, plus the umbrella question: does "developer" survive as a declared umbrella containing the precise roles, or is it deprecated? The lexicon shape in section 2 (umbrellas containing precise terms) allows either answer.
 
@@ -602,6 +611,14 @@ The lexicon should keep both kinds, and a translation records which kind each so
 - new actors the references suggest.
 
 Its results feed this group directly.
+
+> [!NOTE]
+> **Where to start the refinement passes in this group (Claude's lean, 2026-10-07).** Start with the seven agent parts, before the actors:
+> - it is a small set;
+> - the vocabulary is entirely Joseph's;
+> - every actor definition leans on it, since an actor is defined partly by what it writes into.
+>
+> Then the actors, as parties × relations. If the map itself is about to change, the map goes first and the lexicon follows it. *Confidence: moderate-high.*
 
 **Done-test for this group:** every one of these resolves to our terms with nothing left unresolved unless it is declared ambiguous:
 - each actor and part in `alignment.md`;
@@ -628,7 +645,7 @@ Views are computed from the records, never hand-maintained. Which views earn a p
 - For loss of control, which preventive controls do sources name, and which of them are duties with no holder of the correlative claim?
 - Which actors write into which agent part, and which sources' role words resolve to each?
 
-**Proposed:** Joseph writes or approves a short list early, in G1. A first draft is in `influx/competency-questions-draft.md`: an explicit list of the axes the map should be projectable along (from Joseph's chain, bow-tie, and the corpus), then nineteen candidate questions, each tied to its axes and to the machinery it would exercise. A piece of machinery earns its place in the lexicon or the record formats when some competency question needs it; that is the check against importing more than the work needs (section 6).
+**Proposed:** Joseph writes or approves a short list early, in G1. A first draft is in `influx/competency-questions-draft.md`: an explicit list of the axes the map should be projectable along (from Joseph's chain, bow-tie, and the corpus), then twenty candidate questions, each tied to its axes and to the machinery it would exercise. A piece of machinery earns its place in the lexicon or the record formats when some competency question needs it; that is the check against importing more than the work needs (section 6).
 
 **Lexicon acceptance tests**, which sit under the questions and say when the lexicon is ready to translate at scale:
 1. **Round trip.** Each of these definitions can be re-expressed clause by clause in our terms:
@@ -704,6 +721,13 @@ Joseph then decides the names (section 5). Done when acceptance tests 1, 2 and 5
 
 *One thin pass end to end.* Before widening, take one pilot source and one competency question all the way through: translation, resolution records, assertion records, and the answer the question asks for. This is where defects in the record formats show up cheaply.
 
+> [!NOTE]
+> **Claude's lean, 2026-10-07: run the thin pass *before* G2 and G3, not inside G4. *Confidence: moderate.***
+>
+> Section 2 says each lexicon entry costs repeated line-by-line passes before it carries weight. So which entries receive that budget matters more than how fast they are drafted. A rough pass early would show which terms a real question actually leans on. I'd use SB 53, the cleanest pilot, with question 4 or the filing question (decision 12), carried through rough record formats. The plan already treats G1(d)–(e) this way: *supported* until G4 shows what bore weight. This extends the same logic to the domain terms.
+>
+> The risk is that the throwaway formats harden. The guard is to label everything in the early pass as disposable, and to keep it outside `def/`.
+
 Then carry **loss of control** through all eleven models in OVERVIEW: the most collided term, so the hardest test of the method. Findings feed back into G1–G3 before any wider translation (Evans's "refactoring toward deeper insight").
 
 Done when the pilot translations exist with their disagreement data, the thin pass answers its question, the slice is recorded, and the lexicon changes they forced have been made.
@@ -741,18 +765,77 @@ This is not "pick the best taxonomy", which would import a source's model. It fe
 
 Each item has my recommendation and how confident I am in it.
 
+> [!NOTE]
+> **Which to decide first (Claude's lean, 2026-10-07).** Four of these unblock the most work per minute of Joseph's time, and the rest can wait:
+> - **#1, the name of the per-source document.** It ends up inside `def/` and every record format, so it should be settled before G1 is written.
+> - **#9, the record format.** G1(e) can't start without it.
+> - **#12, the competency questions.** They decide which machinery earns a place, so everything after them is better aimed once they exist.
+> - **#10, the misalignment referent.** It now has the spike's recommendation, and only one sub-question needs Joseph.
+>
+> #2 is a quick yes or no. The others can wait until G2 or G3 needs them. *Confidence: high* that this ordering unblocks the most.
+
 1. **"Context map" vs "translation"** for the per-source document. *Recommend* using Evans's sense for the across-sources map and calling the per-source document a translation. *Confidence: moderate.* The cost of keeping "context map" is one recurring explanation to every DDD reader.
 2. **Broad/narrow direction.** *Recommend* adopting SKOS/SSSOM's direction for gamma. *Confidence: high.*
 3. **"Hazard."** *Recommend* H1 (source) for the word, with intent as a separate attribute that carries the NRR distinction. *Confidence: moderate-high*, given the literature, though it departs from the NRR's own usage.
 4. **"Risk."** *Recommend* a declared umbrella with named readings, following the SRA. *Confidence: high* on the structure, open on the names.
 5. **"Developer."** Dissolve it into functional and institutional roles plus an organization term, and keep "developer" either as a declared umbrella or as a deprecated term. *Recommend* the declared umbrella, which matches the lexicon shape in section 2. *Confidence: moderate.*
-6. **Names for the agent-part umbrella and the oversight relation** (section 3.9). *No recommendation*: these are your model's words.
+6. **Names for the agent-part umbrella and the oversight relation** (section 3.9). These are your model's words, so what follows is only a lean.
+
+   > [!NOTE]
+   > **Claude's lean, 2026-10-07. *Confidence: low.***
+   > - **The umbrella: "component".** It is the established word: IMDA's "Core components of an agent" (v1.5, p. 6), CSA/FAR.AI's "Components of Agents" (Fig. 2), and Google's component walk all use it. Its cost is that their components include things that are not influenced (controls, logging), and leave out two of the map's parts, the ephemeral reasoning and the goals. So adopting it means a declared scope narrowing ("the components something writes into"). Both alternatives in use collide:
+   >   - "surface" (model beta) collides with *attack surface*, which the security sources use constantly;
+   >   - "layer" (the map's stack) collides with Chu et al.'s seven LASM layers and with every generic architecture stack.
+   > - **The relation: "oversees"**, after the EU AI Act's *human oversight* (Art. 14) and NIST's oversight roles. The alignment-referents spike found that the "Control & Eval" row also *writes*: evaluators construct contexts for honeypots (AISI *Loss of Oversight*), and IMDA's human approvers edit the plan. So the row probably splits into an *overseer*, related by "oversees", and an *evaluator*, who both oversees and writes into context. The relation then needs no name of its own beyond "oversees".
 7. **STPA.** Adopt STPA's vocabulary for the chain, or keep it as one translated source? *Recommend* keeping it as a source. Bind any terms we do take to the STPA Handbook itself, not to the AI papers' glossaries: the research found Barrett's and Mylius's paraphrases drift ("will" lead to a loss becomes "can"; Mylius drops a scenario type). Whether bow-tie, STPA's control structure or something else frames the analysis is left to the competency questions. *Confidence: moderate.*
 8. **Contest standings.** Record them as attributed assertions or computed views, never as our fields. *Recommend* yes. *Confidence: high.*
 9. **Format for the evidence plane.** udon now, or YAML until a parser exists. This is unchanged from CLAUDE.md, and still yours. G1(e) has to settle the record formats either way.
-10. **The misalignment referent.** A default referent, none (every alignment claim names its referent from the actor set, or records it as ambiguous), or something else. *Recommendation deferred* to the alignment-referents spike.
+
+   > [!NOTE]
+   > **Claude's lean, 2026-10-07. *Confidence: moderate.*** Keep the lexicon in udon, as decided. Keep the evidence-plane records (translation rows, resolution, assertion and instance records) in YAML through the G4 pilots, and revisit once their formats stop changing.
+   >
+   > The premise "until a parser exists" is now only half true. `udon/core` has a working Rust parser, including a `stdin_parse` example that other projects use as a validation gate (`udon/CONSUMERS.md`). Two gaps remain:
+   > - it has no Ruby or Python bindings yet; `udon/core/TODO-PARSER.md` lists them as "[later]";
+   > - its README says the parser implements the pre-0.8 model, behind the spec.
+   >
+   > The records need programs that read them: validators like beta's `check.py`, and the computed views. Those would need a Rust shim or a JSON emitter first. The pilots will also churn the formats, and churn is cheaper in a format the tooling already reads. Writing the formats so they convert mechanically keeps the move to udon cheap later.
+10. **The misalignment referent.** A default referent, none (every alignment claim names its referent from the actor set, or records it as ambiguous), or something else.
+
+    > [!NOTE]
+    > **The spike's recommendation, and Claude's lean, 2026-10-07. *Confidence: moderate-high.*** The alignment-referents spike (`influx/spikes/spike-alignment-referents-2026-10-06/`, `03-structure.md` §4 and §8) recommends **no single default referent**. Every single default it tested makes some named risk come out "aligned":
+    > - developer: a head of state directing military AI through the institution;
+    > - user: misuse, and sycophancy;
+    > - operator: an operator turning the agent on its users;
+    > - society: GDM's paternalism scenario;
+    > - law: the harm EO 14365 names;
+    > - a published spec: whatever it omits;
+    > - the agent: scheming.
+    >
+    > Choosing a default would therefore decide which risks count, which is adjudication. In its place:
+    > - the lexicon defines alignment as a relation with named slots (bearer, mode, claimant set, aspect, time, adjudicating standard, judge, domain, degree);
+    > - translations record the slots once per source *definition*, and a use type per occurrence (relational, anaphoric, absolute, activity, field);
+    > - whether the referent matters (invariant or sensitive) is judged only for asserted claims where the alignment word carries the verdict. Most claims name their harm ("takeover", "deceiving users"), and then the harm is what gets recorded;
+    > - those judgments use a **declared, versioned set of admissible referents**, and views may fix a single referent as their own declared projection.
+    >
+    > I agree with this. **What remains for Joseph:** whether the agent itself is in the declared set. The spike's first pilot left it out without saying so, and with the agent in the set, every takeover and power-seeking claim becomes referent-sensitive. My lean is to include it, because the map treats the agent as a party with interests. The recording rule above keeps the cost low, since those claims name their harm anyway. *Confidence on that sub-question: moderate.* The evidence is all one model family's work; a different-family reader is still open.
 11. **The impact radius** (from `CLAUDE.md`'s open decisions): target (a group of people, or a system or shared good) × degree × recoverability. *Recommend* adopting the three dimensions, with the receiver-side terms in section 3.8 (exposure, vulnerability, capacity) under "target" and the NRR's banded scales as one source vocabulary for "degree". *Confidence: moderate*; "degree" is the least worked-out of the three.
 12. **The competency questions** (section 3.11). Yours to write or approve; *recommend* five to ten to start.
+
+    > [!NOTE]
+    > **Claude's lean on which ones, 2026-10-07. *Confidence: moderate.*** Eight from `influx/competency-questions-draft.md`, chosen to exercise the most distinct machinery with the fewest questions, with the actors first because of their priority:
+    >
+    > | # | Question (short form) | Axes |
+    > |---|---|---|
+    > | 4 | which actors write into which agent part, and which source role words resolve to each | A, H |
+    > | 20 | for a given event, how sources file it (misuse, misalignment, robustness, security), where the cause entered (weights or context), and which writer carried it (added from the alignment spike) | A, C, H |
+    > | 1 | which sources would call a 60-death incident catastrophic, severe or systemic, through how many independent lineages | D, L |
+    > | 3 | for loss of control, which preventive controls, and which are duties with no holder of the correlative claim | B, G |
+    > | 2 | for one focal event, who treats it as an event, who as a cause, who as having happened | A, C, I |
+    > | 12 | once an event has happened, what limits the damage, who is responsible, how fast | E, H, K |
+    > | 17 | which named risks rest on documented instances, which on scenario or argument alone | M, C, J |
+    > | 7 | how many independent lines of evidence support a claim, once copies are counted once | L |
+    >
+    > Together they touch twelve of the thirteen axes. F (control degradation) is the one left out, and K (time) is touched only through question 12's deadlines; both can wait for a second round. Question 6 (collisions) is left out because acceptance test 2 already covers it.
 13. **Translated editions** (G6): whether to produce them, and the in-place marking format. *Recommend* yes, starting with the pilots, using a marking that can't be mistaken for an ordinary link. *Confidence: moderate.*
 
 ---
@@ -761,6 +844,9 @@ Each item has my recommendation and how confident I am in it.
 
 - **The established vocabularies may be heavier than the work needs.** IG 2.0, LegalRuleML, SACM and the rest were built for their own fields. The proposal is to take their *distinctions and names*, not their full machinery. If a lexicon entry starts importing machinery without a corpus case that needs it, that is the failure.
 - **Same-model coherence.** The three research reports and this document are all Claude (Opus 5.5) work from one session's framing, so their agreement with each other is coherence, not independent confirmation. What cuts that is the primaries the reports quote (most marked as read at the source), and Joseph's review. The de novo review (`influx/reviews/gamma-de-novo-review.md`) cuts this session's framing but not same-model coherence; a reviewer or translator from a different model family would.
+
+  > [!NOTE]
+  > **Claude's lean, 2026-10-07: commission that review now, before G4. *Confidence: high.*** Every piece so far comes from one model family: this plan, the research reports, the alignment-referents spike with its two research agents, and both de novo passes. G4's two-translator coding assumes translators from different families. One review of this plan and the spike's debrief by Codex or Gemini would test that assumption cheaply first. It costs one brief.
 - **Lexicon first can still harden too early.** The guard is G4: the pilot translations are expected to change the lexicon, and the plan sequences them before any wide translation.
 - **First-pass entries can look finished.** Fluently drafted definitions read as settled and get inherited as if they were (model beta's term files are the example). The guards are the refinement passes (section 2), the *supported* status for entries that haven't had them, and the coding disagreement data from G4.
 - **Over-weighting the strict sources.** The round-trip test favours statutes and rigorous company documents. The loose sources (most of the research literature, IASR in places) test something else: whether declared ambiguity stays honest rather than becoming a dumping ground. The MIT "Other" test is the guard there.

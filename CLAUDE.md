@@ -59,7 +59,9 @@ Stage in that chain is read as a role relative to a focal event, not as a fixed 
 
 - "Developer": dissolve into roles conferred by instruments (model trainer, inference provider, harness provider, …) plus an organisation term. This is the direction under discussion, not decided.
 - Hazard vs threat: open; the senses in play are laid out in `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` §3.8.
-- Misalignment: a default referent, chosen after the claims show what they are about.
+- Misalignment: whether alignment words get a default referent. The alignment-referents spike recommends none: a relation with named slots, and a declared set of admissible referents. Still open: whether the agent itself is in that set.
+
+Claude's leans on these, with reasoning, are in `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` §5, alongside the plan's other open decisions.
 - The impact radius as target (a group of people, or a system or shared good) × degree × recoverability.
 - Whether STPA's vocabulary is adopted for the chain or kept as one mapped source among several.
 - Format: udon for the lexicon is decided; the rest stays YAML until a udon parser exists.

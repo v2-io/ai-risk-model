@@ -50,7 +50,12 @@ Questions 1, 3 and 4 are the de novo review's examples; the rest are mine.
 | 18 | For a documented instance (for example the TaskRabbit case or AISI's INC-2026-07-28-01), which sources retell it, and where do their accounts disagree on who acted, with what intent, and with what outcome? | M, H, L | thin instance records with accounts as separate, attributed records; identity across accounts as an assertion |
 | 19 | How many distinct instances stand behind a general claim once retellings of the same instance are merged, and out of what population (the denominator)? | M, L, J | report vs incident; merging as an attributed judgment; denominators ("19 events across 10 of 122 runs") |
 
+| 20 | For a given event (a planted instruction obeyed; a jailbreak; poisoned training data), which sources file it as misuse, misalignment, robustness or security, where did the cause enter (weights or context), and which writer carried it? | A, C, H | categories translated with their basis (the referent their definitions use; "misaligned" as a state or as an origin; where the cause enters); from the alignment-referents spike, `03-structure.md` §3 |
+
+> [!NOTE]
+> **Claude's lean on a first set, 2026-10-07.** Eight questions: 4, 20, 1, 3, 2, 12, 17 and 7. Together they touch every axis except F, and K only through deadlines. The reasoning, and a table, are in `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` §5, decision 12.
+
 **Not yet covered, worth deciding whether they should be:**
-- the alignment referent itself (waiting on the alignment-referents spike);
+- the alignment referent itself: question 20 covers how sources *file* events. Whether a given claim depends on the referent is handled by the recording rule in the plan's decision 10, not by a question;
 - benefits and trade-offs, which several sources weigh against risk;
 - the project's own claims, kept separate from the sources'.
