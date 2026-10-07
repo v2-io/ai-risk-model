@@ -100,8 +100,8 @@ records:
     act: {point: representative}
     capacity: footnote in the FCF about the RSP
     content: {proposition: "The RSP's 'catastrophic risk' refers to 'risks at the most extreme end of the severity spectrum (such as existential threats or fundamental destabilization of global systems)', not the statutory thresholds."}
-    passages: [P-fcf-rsp-sense]
-    factuality: "reported by the source about itself; not checked against the RSP in this pass"
+    passages: [P-fcf-rsp-sense, P-rsp34-fn1]
+    factuality: "reported by the source about itself; consistent with RSP v3.4's own footnote 1 (P-rsp34-fn1), which adds that the RSP uses the term 'in its plain meaning rather than adopting any specific statutory definition'. Checked in the repair after de-novo-feedback-1 §2.3."
 
   - id: A-fgf-umbrella
     voice: [OpenAI]

@@ -57,8 +57,10 @@ records:
       - "harm kind: 'death of, or serious injury to, more than 50 people' becomes '>50 fatalities'; 'damage to, or loss of, property' becomes 'financial damages'"
       - "comparator: 'more than one billion dollars' becomes '1 billion dollars'"
       - "counting unit: attached to the fatalities, and on one reading not to the dollars (R-fcf-dollar-attachment)"
-      - "dropped: the developer-conduct bearer, 'materially contribute', the closed conduct list, all three exclusions, the equity exclusion"
+      - "dropped: the developer-conduct bearer, 'materially contribute', all three exclusions, the equity exclusion"
+      - "moved, not dropped: the conduct list, into the FCF's risk categories, opened ('such as') and without murder (P-fcf-loc)"
       - "added: a deictic coverage condition, 'the most advanced (i.e. state-of-the-art) models at any given point in time'"
+    not_independent_of: L-fcf-fgf-template
     lineage_effect: not independent
 
   - id: L-fgf-derived
@@ -73,7 +75,9 @@ records:
       - "closure: closed becomes open ('includes'), unless R-fgf-umbrella-closure's closed reading holds"
       - "harm kind: 'death of, or serious injury to' becomes 'fatalities'; property 'damage to, or loss of' becomes 'property damages or losses'"
       - "causal bearer: the developer's conduct becomes 'a model' (as in SB 53's own exclusion (c)(2)(C))"
-      - "dropped: the closed conduct list (the FGF's categories, which include harmful manipulation, follow the sentence), the three exclusions"
+      - "moved, not dropped: SB 53's (B) and (C), nearly verbatim, into the category table the FGF ties to 'this FGF definition' (P-fgf-categories-intro, P-fgf-loc-cell)"
+      - "dropped: the three exclusions"
+    not_independent_of: L-fcf-fgf-template
     lineage_effect: not independent
 
   - id: L-xairmf-revised-2025
@@ -90,7 +94,8 @@ records:
     from: F-xai25-cr
     to: null
     to_document: xai-2026-faif
-    relation: "prov:wasRevisionOf (ours: inferred), with the bar dropped"
+    relation: "undetermined: a revision that drops the bar, or an EU-facing companion beside a TFAIA framework that stays in force"
+    evidence_against_revision: "The 2026 FAIF's footnote 1 says its terminology is the EU Code's Safety and Security chapter (xai-2026-faif L41-42, not anchored); SB 53 requires a large frontier developer to keep a published frontier AI framework. Repaired after de-novo-feedback-1 §5."
     carries: []   # the bar is dropped
     acknowledged: no
     judgment: "ours: same publisher and title, later effective date (P-xai26-date)"
@@ -112,3 +117,42 @@ records:
     carries: [bar]   # if an upstream exists, the bar is what it would carry
     judgment: "not checked. Leads: the HSE's R2P2 (2001), 'an accident killing 50 people or more in a single event' (plan §3.8, unchecked there too; note 'or more' against SB 53's 'more than'); SB 53's own legislative history and its predecessor bills (not read)."
     lineage_effect: SB 53 is the root of this slice's graph only because nothing upstream was followed
+
+  # ---- added in the repair after de-novo-feedback-1 (§2.1, §2.2)
+  - id: L-fcf-fgf-template
+    from: null
+    to: [F-fcf-own, F-fgf-own]
+    relation: "shared template, direction and authorship undetermined (one company's text reused by the other, or a common third-party draft)"
+    carries: [umbrella sentence, definition-sentence opening, harmful-manipulation category, governance boilerplate]
+    acknowledged: no
+    judgment: >-
+      ours, from verbatim runs (tools/shared_runs.py on the two extractions, 8-token shingles): 37 tokens
+      ("changes in law or regulatory guidance, ..."), 31 (the harmful-manipulation category), 31 and 25
+      (governance), 23 (the umbrella sentence, P-fcf-umbrella / P-fgf-umbrella), and 10 ("definition of
+      systemic risk includes foreseeable and material risks of"). None of these runs is in the EU Code's
+      Safety and Security chapter (longest FCF-Code run: 12 tokens of procedural wording). Found by the
+      verifier (de-novo-feedback-1 §2.1) and re-run here.
+    lineage_effect: >-
+      The FCF's and FGF's restatements of SB 53 are not independent of each other. Their shared drift
+      (fatalities only, an open "includes", the conduct list moved to categories) is plausibly one
+      event, not two. The root count for the bar is unchanged: one.
+
+  - id: L-fgf-pf-reuse
+    from: null
+    from_document: openai-2025-preparedness-framework-v2
+    to: F-fgf-severe
+    relation: "cito:includesQuotationFrom (unattributed): two PF sentences reused in the FGF, both containing 'severe harm'"
+    carries: [the phrase "severe harm", in sentences from the document that defines it]
+    acknowledged: no
+    judgment: "ours: P-fgf-severe-reuse1 = P-pf-severe-reuse1 (30+ tokens), P-fgf-severe-reuse2 = P-pf-severe-reuse2 (31 tokens). Found by the verifier (§2.2), re-run here."
+    lineage_effect: evidence for R-fgf-severe-reused's pf-sense candidate
+
+  - id: L-eu-code-to-fgf-categories
+    from: null
+    from_document: eu-cop-2025-safety-security
+    to: F-fgf-own
+    relation: "cito:includesQuotationFrom (unattributed): the FGF's category descriptions for cyber offense, CBRN and loss of control"
+    carries: [category descriptions]
+    acknowledged: no
+    judgment: "ours: shared runs of 41, 31 and 30 tokens with the EU Code (tools/shared_runs.py), e.g. 'significantly lowering the barriers to entry for malicious actors' and 'humans losing the ability to reliably direct, modify, or shut down a model'. The Code was not anchored in this pass."
+    lineage_effect: none on the bar; it is where the FGF's category wording comes from

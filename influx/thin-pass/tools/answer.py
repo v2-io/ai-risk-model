@@ -71,9 +71,10 @@ def resolve_frames(tr):
 
 # ------------------------------------------------------------ evaluation
 class Ctx:
-    def __init__(self, facts, frames):
-        self.facts, self.frames = facts, frames
-        self.ambig = {}          # R-id -> {"decisive"|"moot", candidate->value}
+    def __init__(self, facts, frames, force=None, closed=False):
+        self.facts, self.frames, self.closed = facts, frames, closed
+        self.force = force or {}  # R-id -> the one candidate to evaluate
+        self.ambig = {}          # R-id -> {"status": node-level "decisive"|"moot", "values": candidate->value}
 
     def num(self, name):
         v = self.facts.get(name)
@@ -98,6 +99,8 @@ def ev(t, c, where):
         return ev(t["test"], c, t["key"])
     lab = t.get("label") if isinstance(t, dict) else None
     if "fact" in t:
+        if t.get("genus") and c.closed:      # closure probe: read the open class as closed
+            return F, set()
         v = c.facts.get(t["fact"])
         if v is None:
             return U, {f"{where}: {t['fact']}"}
@@ -128,7 +131,7 @@ def ev(t, c, where):
         v, o = ev(t["not"], c, where)
         return {T: F, F: T, U: U}[v], o
     if "all" in t or "any" in t:
-        kids = [ev(k, c, where) for k in (t.get("all") or t.get("any"))]
+        kids = [ev(k, c, where) for k in (t["all"] if "all" in t else t["any"])]
         vals = [k[0] for k in kids]
         v = kleene_all(vals) if "all" in t else kleene_any(vals)
         o = set().union(*[k[1] for k in kids if k[0] == U]) if v == U else set()
@@ -137,6 +140,9 @@ def ev(t, c, where):
         return eval_frame(c.frames[t["frame"]], c)
     if "ambiguous" in t:
         rid = t["ambiguous"]
+        if rid in c.force:
+            c.ambig.setdefault(rid, {"status": "forced", "values": {}})
+            return ev(t["candidates"][c.force[rid]], c, where)
         res = {name: ev(cand, c, where) for name, cand in t["candidates"].items()}
         vals = {name: r[0] for name, r in res.items()}
         same = len(set(vals.values())) == 1
@@ -162,6 +168,8 @@ def in_force(f, date):
     fr, to = inf.get("from"), inf.get("to")
     if fr is None:
         return "in force (start not recorded)"
+    if inf.get("end") == "undetermined" and str(date) >= str(fr):
+        return "in force from its date; end undetermined"
     fr = str(fr)
     if len(fr) == 4:
         fr = fr + "-01-01"
@@ -186,7 +194,7 @@ def lineage(rec, frames):
     out.append("Drift, computed slot by slot from the frames (words that differ):")
     for e in edges:
         a, b = e.get("from"), e.get("to")
-        if not (a and b) or a not in frames or b not in frames:
+        if not (a and isinstance(b, str)) or a not in frames or b not in frames:
             continue
         fa, fb = frames[a], frames[b]
         if not any(x in ("all", "bar") for x in (e.get("carries") or [])):
@@ -215,20 +223,26 @@ def lineage(rec, frames):
     ps = {p["id"]: p for p in rec["passages"]["passages"]}
     q_x = norm(ps["P-xai25-fn"]["quote"]).split('"', 1)[1]
     q_s = norm(ps["P-sb53-bp-cr"]["quote"]).split("means ", 1)[1]
-    out.append(f"  L-xai25-quote: xAI's quotation equals SB 53 §22757.11(c)(1)'s words: {q_x == q_s}")
+    out.append(f"  L-xai25-quote: xAI's quotation equals SB 53 §22757.11(c)(1)'s head: {q_x == q_s}")
+    c_x = norm(ps["P-xai25-fn-conducts"]["quote"]).rstrip('"')
+    c_s = norm(ps["P-sb53-bp-cr-conducts"]["quote"])
+    out.append(f"  L-xai25-quote: and its (A)-(C) equal SB 53's: {c_x == c_s}. The footnote does not quote the exclusions in (c)(2).")
 
     # Independent lineages of the bar: roots among bar-carrying frames.
-    carried = [e for e in edges if e.get("from") in bar_frames and e.get("to") in bar_frames
+    carried = [e for e in edges if isinstance(e.get("to"), str) and e.get("from") in bar_frames and e.get("to") in bar_frames
                and any(x in ("all", "bar") for x in (e.get("carries") or []))]
     has_parent = {e["to"] for e in carried}
     roots = sorted(bar_frames - has_parent)
-    upstream = [e for e in edges if e.get("from") is None and e.get("to") in roots and e["relation"] == "undetermined"]
+    upstream = [e for e in edges if e.get("from") is None and isinstance(e.get("to"), str) and e.get("to") in roots and e["relation"] == "undetermined"]
     out.append("")
     out.append(f"Frames carrying the >50 / $1B single-incident bar: {len(bar_frames)} "
                f"in {len({f.split('-')[1] for f in bar_frames})} documents.")
     out.append(f"Roots (independent lineages) within the slice: {len(roots)}: {', '.join(roots)}")
     for e in upstream:
         out.append(f"  upstream of {e['to']}: undetermined ({e['id']})")
+    for e in edges:
+        if e.get("not_independent_of"):
+            out.append(f"  {e['id']} is not independent of {e['not_independent_of']}: shared wording beyond SB 53 (see that record)")
     return out
 
 
@@ -243,10 +257,30 @@ WHAT = [
     ("F-xai25-cr", "xAI FAIF 2025", "Catastrophic Risk (TFAIA's)", "risk"),
     ("F-xairmf-cme", "xAI RMF 2025", "catastrophic malicious use events", "occurrence"),
     ("F-fcf-systemic", "Anthropic FCF v2", "systemic risk", "risk"),
+    ("F-fcf-own", "Anthropic FCF v2, its own sentence", "systemic risk (P-fcf-def)", "risk"),
     ("F-fgf-systemic", "OpenAI FGF", "systemic risk", "risk"),
+    ("F-fgf-own", "OpenAI FGF, its own sentence", "systemic risk (P-fgf-def)", "risk"),
+    ("F-eu-systemic", "EU AI Act Art. 3(65)", "systemic risk", "risk"),
     ("F-fgf-severe", "OpenAI FGF", "severe harm", "harm"),
     ("F-pf-severe", "OpenAI PF v2", "severe harm", "harm"),
 ]
+
+
+def candidate_names(tr, rid):
+    names = []
+    def walk(x):
+        if isinstance(x, dict):
+            if x.get("ambiguous") == rid:
+                for n in x["candidates"]:
+                    if n not in names:
+                        names.append(n)
+            for v in x.values():
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+    walk(tr["frames"])
+    return names
 
 
 def report(rec):
@@ -256,24 +290,40 @@ def report(rec):
     for sc in rec["scenarios"]["scenarios"]:
         lines.append(f"### Scenario `{sc['id']}`: {sc['question']}")
         lines.append("")
-        lines.append("| Document | Its term | Classifies | Result | Still open (facts that could change it) | Ambiguities met |")
+        lines.append("| Document | Its term | Classifies | Result under our frame (unreviewed) | Still open (facts that could change it) | Ambiguities met, and whether choosing changes this row |")
         lines.append("|---|---|---|---|---|---|")
         for fid, doc, term, kind in WHAT:
             c = Ctx(dict(sc["facts"]), frames)
             v, o = eval_frame(frames[fid], c)
+            for rid in list(c.ambig):
+                names = candidate_names(rec["translation"], rid)
+                rowvals = {n: eval_frame(frames[fid], Ctx(dict(sc["facts"]), frames, {rid: n}))[0] for n in names}
+                c.ambig[rid]["row"] = rowvals
+                c.ambig[rid]["row_decisive"] = len(set(rowvals.values())) > 1
+            v_closed = eval_frame(frames[fid], Ctx(dict(sc["facts"]), frames, closed=True))[0]
+            if v_closed != v:
+                amb_closure = f"**closure decides this row** (as written: {v}; read as closed: {v_closed})"
+            else:
+                amb_closure = None
             opens = "<br>".join(sorted(o)) if o else "none"
             for x in o:
                 fact = x.split(": ", 1)[1].split(" ")[0]
                 opens_by.setdefault(fact, {}).setdefault(sc["id"], set()).add(fid)
             amb = []
             for rid, a in sorted(c.ambig.items()):
-                weights.setdefault(sc["id"], {}).setdefault(rid, set()).add(a["status"])
-                if a["status"] == "decisive":
-                    pref = res.get(rid, {}).get("our_preference")
-                    vs = ", ".join(f"{k}: {x}" for k, x in a["values"].items())
-                    amb.append(f"**{rid} decisive** ({vs}{'; our lean: ' + pref if pref else ''})")
+                status = "row" if a["row_decisive"] else ("clause" if a["status"] == "decisive" else "moot")
+                weights.setdefault(sc["id"], {}).setdefault(rid, []).append(status)
+                pref = res.get(rid, {}).get("our_preference")
+                if status == "row":
+                    vs = ", ".join(f"{k}: {x}" for k, x in a["row"].items())
+                    amb.append(f"**{rid} decides this row** ({vs}{'; our lean: ' + pref if pref else ''})")
+                elif status == "clause":
+                    amb.append(f"{rid} decides its clause only; the row stays {v}")
                 else:
                     amb.append(f"{rid} moot")
+            if amb_closure:
+                amb.append(amb_closure)
+                weights.setdefault(sc["id"], {}).setdefault("closure (open bars)", []).append("row")
             lines.append(f"| {doc} | {term} | {kind} | **{v}** | {opens} | {'<br>'.join(amb) or 'none'} |")
         lines.append("")
     lines.append("### In force on which date (Q1 gives none)")
@@ -290,15 +340,25 @@ def report(rec):
     lines.extend(lineage(rec, frames))
     lines.append("```")
     lines.append("")
-    lines.append("### Ambiguity weight across scenarios (computed)")
+    lines.append("### Ambiguity weight across scenarios (computed at the row)")
+    lines.append("")
+    lines.append("Each cell: rows where choosing a reading changes the row's result / rows where it changes only its own clause / rows where the ambiguity is reached at all. Only ambiguities encoded as `ambiguous:` nodes can appear here.")
     lines.append("")
     rids = sorted({r for s in weights.values() for r in s})
     lines.append("| Resolution record | " + " | ".join(f"`{s}`" for s in weights) + " |")
     lines.append("|---|" + "---|" * len(weights))
     for r in rids:
-        lines.append(f"| {r} | " + " | ".join(
-            ("decisive" if "decisive" in weights[s].get(r, set()) else ("moot" if r in weights[s] else "not reached"))
-            for s in weights) + " |")
+        cells = []
+        for s_ in weights:
+            st = weights[s_].get(r, [])
+            cells.append(f"{st.count('row')} / {st.count('clause')} / {len(st)}" if st else "not reached")
+        lines.append(f"| {r} | " + " | ".join(cells) + " |")
+    lines.append("")
+    enc = {m for m in re.findall(r"ambiguous: (R-[a-z0-9-]+)", (HERE / 'records' / 'translation.yaml').read_text())}
+    unenc = [r["id"] for r in rec["resolutions"]["records"] if r.get("candidates") and r["id"] not in enc]
+    deleg = [r["id"] for r in rec["resolutions"]["records"] if r.get("status") == "delegated"]
+    lines.append("Not evaluable, so absent from this table by construction: resolution records with candidates that no test encodes ("
+                 + ", ".join(unenc) + "), and delegated records with no candidates (" + ", ".join(deleg) + ").")
     lines.append("")
     lines.append("### Facts left open (computed): in how many of the rows above each could still change the result")
     lines.append("")

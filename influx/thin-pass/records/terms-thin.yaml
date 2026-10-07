@@ -15,8 +15,10 @@
 #              decisive     computed: choosing among its readings changes a result
 #                           (the scenario is named)
 #              settled      Q1's facts settle it
-#              conditioning computed: it stays an open condition; the answer
-#                           only needs it named, not resolved
+#              conditioning it stays an open condition. For terms tested as a plain
+#                           fact this is by construction (de-novo-feedback-1 §1.1):
+#                           Q1 states no fact they test, so they could not have
+#                           come out any other way
 #              moot         computed: no reading changes a result
 #              Q1 and the variants are in records/scenarios.yaml; the tables are
 #              in ../answer.md. Ranking for refinement: ../weight-and-defects.md.
@@ -40,15 +42,25 @@ terms:
     kind: relation
     gloss: From an occurrence to a risk, read as a possibility; the occurrence is (part of) the outcome that the risk was the possibility of.
     established: "SB 53's own word (P-sb53-bp-csi). The FGF says risks 'develop or materialize'. No established name checked."
-    weight: "form; its partial reading is decisive in v-40-deaths (R-materialization-partial)"
+    weight: "form (judged). Its partial reading decides limb (2)'s clause in v-40-deaths but no row in any scenario (computed at the row)"
     why: SB 53 reaches incidents from "catastrophic risk" only through "Harm resulting from the materialization of a catastrophic risk". Whether a partial outcome counts as materialization is R-materialization-partial (moot for 60 deaths).
+
+  - id: thin:risk-increase-evidenced
+    kind: relation
+    gloss: "From an occurrence to a risk: the occurrence demonstrates that the risk has increased ('in a manner that demonstrates materially increased catastrophic risk', SB 53 limb (4)). Evidential, where thin:materialization is realizing."
+    established: "None checked. Added in the repair after de-novo-feedback-1 §3.1: the pass's first frames dropped the clause."
+    weight: "form (judged): a second relation between occurrences and risks, in the same definition as the first"
 
   - id: thin:event-status.conferred
     kind: concept
     gloss: A status an instrument confers on an occurrence when stated conditions hold ("X counts as Y in C"), with consequences attached to it.
     established: "Searle's constitutive rules, as the plan uses them for roles (§3.6, §3.9). Applying them to events is this pass's extension."
-    weight: "form"
-    why: SB 53's "critical safety incident" is the only label in the slice that SB 53 applies to an incident, and it is the one with consequences (reporting deadlines). Two of its four limbs reach a fatal incident without any severity bar.
+    weight: "form (judged)"
+    why: >-
+      'Critical safety incident' is SB 53's only label for an incident, and its consequences (reporting
+      deadlines) attach to the incident. Three of its four limbs have no >50 bar; limb (4) needs no harm
+      at all. Other incident labels in the slice: the FCF's AI Event / AI Incident / Serious AI Incident
+      ladder and the FGF's graded 'AI safety incident' (FCF §2.6, FGF §2.6; found by the verifier).
 
   - id: thin:harm.kind
     kind: attribute
@@ -64,20 +76,20 @@ terms:
   - id: thin:aggregation
     kind: slot
     gloss: How harms are pooled toward a bar, i.e. which harm kinds add together. Within one thin:counting-unit.
-    weight: "moot for Q1; decisive in v-mixed-casualties (R-pooling)"
+    weight: "moot for Q1; decides 4 rows (the catastrophic-risk rows) in v-mixed-casualties (R-pooling, computed at the row)"
     why: R-pooling (deaths and serious injuries pooled or not) cannot change 60 deaths.
 
   - id: thin:counting-unit
     kind: slot
     gloss: The occurrence within which harms are summed toward a bar ("a single incident"), as against a time window or a scenario.
-    weight: "settled by Q1's stipulation; what it attaches to is decisive in v-several-incidents (R-single-incident-attachment)"
+    weight: "settled by Q1's stipulation; what it attaches to decides 4 rows in v-several-incidents (R-single-incident-attachment, computed at the row)"
     why: Q1 stipulates "a single incident"; every bar in the lineage sums within one. The word "incident" is unbound in every source here (R-incident).
 
   - id: thin:bar-closure
     kind: attribute
     gloss: "Whether a definition's bar is necessary (closed: 'means') or a sufficient example inside an open class (open: 'includes', 'including but not limited to')."
     established: "Legal drafting's exhaustive vs non-exhaustive definitions. From general knowledge; no drafting manual was checked in this pass."
-    weight: "moot for Q1; decisive in v-40-deaths (SB 53 closed: no; FCF and FGF open: open)"
+    weight: "moot for Q1; decides the FCF's and FGF's own-sentence rows in all three variants (closure probe, computed), never their umbrella rows, which the EU member keeps open"
     why: SB 53's >50 is a floor; the FCF's and FGF's >50 is an example. That decides whether a 40-death incident could be "systemic" while not "catastrophic".
 
   - id: thin:knowledge-standard
@@ -104,8 +116,8 @@ terms:
   - id: thin:model-conduct-condition
     kind: slot
     gloss: The occurrence must involve the model's own conduct of a listed kind (a closed list in SB 53 and RAISE; no list in the FCF and FGF definition sentences).
-    weight: "conditioning (open in every SB 53-lineage row)"
-    why: The closed list is what most often takes a 60-death incident outside SB 53's "catastrophic risk" (for example, deaths caused by a model's medical misinformation).
+    weight: "conditioning by construction: encoded as a plain fact, and Q1 states no conduct"
+    why: "Judged, not computed: a closed list, so a 60-death incident caused any other way (for example, through a model's medical advice) is outside SB 53's catastrophic risk. The FCF and FGF move the list into category tables (R-fcf-categories, R-fgf-categories)."
 
   - id: thin:uplift.expert-level
     kind: concept
@@ -159,8 +171,8 @@ terms:
   - id: thin:source-sense-note
     kind: concept
     gloss: A source's own statement that a word means something different in another document of the same publisher (FCF footnote 1 on the RSP; the FGF on the PF).
-    weight: "decisive in every scenario (R-fgf-severe)"
-    why: It is the only evidence in the slice for how the RSP uses "catastrophic", and the main evidence for R-fgf-severe.
+    weight: "form (judged). The FCF's note checks out against the RSP; the FGF's note is about 'catastrophic risk', not 'severe harm'"
+    why: The FCF's note is now checked against the RSP's own footnote. The FGF's note is about 'catastrophic risk'; before the repair it was wrongly cited as evidence for R-fgf-severe.
 
   # ------------------------------------------------------ records and method
   - id: thin:definition-frame

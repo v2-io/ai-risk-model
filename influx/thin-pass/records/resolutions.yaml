@@ -44,13 +44,13 @@ records:
     outcome: ambiguity
     reason: source (unbound) and our-reading
     candidates:
-      importance: {gloss: "significant enough to matter, the legal sense of materiality", evidence: "The same chapter uses 'materially false or misleading' in that sense (P-sb53-bp-misleading)."}
-      likelihood-floor: {gloss: "not merely remote; a floor on probability", evidence: "xAI's earlier bar has 'foreseeable and non-trivial risk' in the same position (P-xairmf-bar). Weak: a different document."}
-      magnitude: {gloss: "a size qualifier", evidence: "Little: the magnitude is stated separately by the bar, which would make this reading redundant."}
+      importance: {gloss: "significant enough to matter, the legal sense of materiality", evidence: "P-sb53-bp-misleading: the same chapter's 'materially false or misleading' uses that sense. Same scope, so the strongest support."}
+      likelihood-floor: {gloss: "not merely remote; a floor on probability", evidence: "P-xairmf-bar: xAI's earlier bar has 'foreseeable and non-trivial risk' in the same position. A different document, so weak support for SB 53's meaning."}
+      magnitude: {gloss: "a size qualifier", evidence: "none: no passage supports it, and the bar states magnitude separately. Kept as a logically available reading; under acceptance test 1's rule (a supporting passage per candidate) it does not count."}
     decides: California case law or legislative history on "material risk" in this statute; neither was read.
     policy: {source: "liberally construed to effectuate its purposes (P-sb53-liberal); does not choose among these"}
+    encoded: "no: the frame tests a single fact, risk_material. Q1 states no fact any candidate would read differently, so encoding the candidates would show them moot by construction (de-novo-feedback-1 §1.1)."
     bears_on_plan: "Plan §3.8's table says SB 53's catastrophic risk involves 'no probability or expectation'. Under the likelihood-floor candidate, it involves a probability floor. The plan's row should say so or mark it as a reading."
-
   - id: R-materially-contribute
     use: {passage: P-sb53-bp-cr, words: will materially contribute to}
     origin: S-sb53-bp
@@ -86,6 +86,7 @@ records:
       property-only: {gloss: "only the dollar bar counts per incident", evidence: "The nearest-antecedent reading of the sentence."}
     our_preference: attaches-to-both
     policy: {source: "liberally construed (P-sb53-liberal); doesn't choose"}
+    encoding: "Repaired after de-novo-feedback-1 §3.4. The conduct list hangs on the same phrase, so under property-only the casualty branch needs no listed conduct. The frame now encodes that; before, it required the conduct list under both readings."
     note: The FCF's restatement goes a third way, attaching "a single incident" to the fatalities and not to the dollars (R-fcf-dollar-attachment).
 
   - id: R-incident
@@ -107,12 +108,11 @@ records:
     outcome: ambiguity
     reason: source (both unbound, worded differently in one section)
     candidates:
-      same: {gloss: "the same thing, worded twice"}
-      loss-is-wider: {gloss: "loss of control includes losing the ability to halt a model that is not evading anything"}
-      different: {gloss: "evasion is the model's act; loss of control is the developer's state"}
-    decides: "OES practice in classifying reported incidents, once its annual aggregates exist (§22757.13(g)); nothing in the text."
-    note: "Both readings reach a 60-death incident through some limb if the incident involved either, so it conditions the answer; it doesn't change it."
-
+      same: {gloss: "the same thing, worded twice", evidence: "none beyond the shared word 'control'"}
+      loss-is-wider: {gloss: "loss of control includes losing the ability to halt a model that is not evading anything", evidence: "Both descendants file evasion under loss of control: 'Loss of control, including evasion of oversight ...' (P-fcf-loc); 'the inability to reliably direct, modify, or shut down a model, including evading the controls of a model developer or user' (P-fgf-loc-cell). Descendants' readings, so weak evidence of SB 53's own meaning. Cited after de-novo-feedback-1 §6; both passages were anchored and uncited before."}
+      different: {gloss: "evasion is the model's act; loss of control is the developer's state", evidence: "the grammar: (C) is something a model does, (3) something that happens to a frontier model"}
+    decides: "OES practice in classifying reported incidents, once its annual aggregates exist (§22757.13(g)); nothing in SB 53's text."
+    encoded: "no: the frames test the facts loss_of_control and model_conduct directly"
   - id: R-materialization-partial
     use: {passage: P-sb53-bp-csi, words: Harm resulting from the materialization of a catastrophic risk}
     origin: S-sb53-bp
@@ -122,7 +122,7 @@ records:
     candidates:
       full-outcome: {gloss: "the outcome the risk was defined by occurred, bar and all"}
       partial-counts: {gloss: "harm from the risk's scenario counts even below the bar (say, 10 deaths from an event whose foreseeable risk was of more than 50)"}
-    note: For 60 deaths both readings agree; answer.py computes this as moot.
+    note: "Computed at the row (repair after de-novo-feedback-1 §1.2): it decides no row in any scenario. In v-40-deaths it decides limb (2)'s clause only, because limbs (1), (3) and (4) stay open. Conditionally decisive: it would decide the incident rows once the other limbs were ruled out."
 
   - id: R-cr-origin
     use: {passage: P-sb53-lab-csi, words: "catastrophic risk (in limb (2) of the Labor Code's critical safety incident)"}
@@ -170,11 +170,13 @@ records:
     use: {passage: P-fcf-umbrella, words: 'references to "systemic" risks include both ...'}
     origin: anthropic-2026-frontier-compliance-framework-v2
     status: attempted
-    outcome: several
-    path: mediated (to S-sb53-bp; to the EU AI Act, not followed)
+    outcome: ambiguity
+    path: mediated (to S-sb53-bp; to the EU AI Act, P-act-3-65)
     resolver: the source itself
-    note: "'include', twice (here and P-fcf-def), so open. Any SB 53 catastrophic risk is an FCF systemic risk, and so is anything the FCF's own sentence reaches."
-
+    candidates:
+      open-the-sentence-adds: {gloss: "'include' is open, so the FCF's own definition sentence (P-fcf-def) adds members", evidence: "'include', and the sentence's 'including but not limited to'"}
+      exhaustive-the-sentence-summarizes: {gloss: "'include both X and Y' names the whole class, so the own sentence restates the two statutes in the FCF's words", evidence: "'include both' is commonly read as exhaustive in drafting"}
+    note: "Before the repair this record treated the FCF's umbrella as plainly open while R-fgf-umbrella-closure gave the FGF's an exhaustive candidate. Same test now for both (de-novo-feedback-1 §2.3). Moot at the row in every scenario: the EU member keeps the umbrella open either way."
   - id: R-fcf-dollar-attachment
     use: {passage: P-fcf-def, words: ">50 fatalities arising from a single incident, or 1 billion dollars of financial damages"}
     origin: anthropic-2026-frontier-compliance-framework-v2
@@ -192,17 +194,23 @@ records:
     status: attempted
     outcome: none
     reason: source (unbound; only a lower bound is given, by the example)
-    note: "So for an incident below 50 deaths the FCF's own sentence neither includes nor excludes it. That is the practical effect of thin:bar-closure being open."
+    note: "So for an incident below 50 deaths the FCF's own sentence neither includes nor excludes it. That is the practical effect of thin:bar-closure being open. No sibling document binds the phrase: RSP v3.4 doesn't use 'large-scale harm' (searched the extraction, 0 occurrences; the verifier's check, re-run in the repair). So, unlike the FGF's 'severe harm', there is no parallel candidate imported from a sibling."
 
   - id: R-fcf-rsp-catastrophic
     use: {passage: P-fcf-rsp-sense, words: 'The RSP uses "catastrophic risk" in a different sense'}
     origin: anthropic-2026-frontier-compliance-framework-v2
-    status: delegated
-    path: mediated (to Anthropic's RSP; not read in this pass)
-    resolver: the source itself, about another of its documents
-    note: "A report by Anthropic about its own RSP: 'risks at the most extreme end of the severity spectrum (such as existential threats ...)'. On that report, the RSP would not call a 60-death incident's risk catastrophic. The RSP itself was not read, so this is the FCF's claim, nested (A-fcf-rsp-sense)."
-
-  # ------------------------------------------------ OpenAI
+    status: attempted
+    outcome: none (deliberately unbound)
+    path: mediated (to Anthropic's RSP v3.4, read for its footnote 1)
+    resolver: the source itself, about another of its documents; checked against that document
+    reason: source
+    note: >-
+      The RSP v3.4's footnote (P-rsp34-fn1) uses "catastrophic risk" "in its plain meaning rather than
+      adopting any specific statutory definition", glossed "risks of the most severe potential harms ...
+      such as existential threats or fundamental destabilization of global systems". So the outcome is
+      deliberately unbound with examples at the extreme end. It is not "no" for a 60-death incident, as
+      answer.md said before the repair. Consistent with the FCF's report. Which RSP version FCF v2
+      refers to is not stated in the passage read; v3.4 (effective 2026-07-08) is the one checked.
   - id: R-fgf-umbrella-closure
     use: {passage: P-fgf-umbrella, words: 'when we refer to "systemic" risks, we mean both ...'}
     origin: openai-2026-frontier-governance-framework
@@ -219,14 +227,34 @@ records:
     origin: openai-2026-frontier-governance-framework
     status: attempted
     outcome: ambiguity
-    reason: source (unbound here, bound differently in another document by the same publisher)
+    reason: source (unbound here; bound by the same publisher in another document)
     candidates:
-      fgf-local: {gloss: "severe harm includes greater than 50 fatalities from a single incident", evidence: "The sentence's own 'including risks that a model will materially contribute to greater than 50 fatalities'. The FGF also says the PF 'may use different definitions of catastrophic risk' (P-fgf-pf-sense)."}
-      pf-sense-imported: {gloss: "the PF's 'severe harm': thousands of deaths or grave injuries (P-pf-severe)", evidence: "same publisher, same words; but then the FGF's own example would fall outside its genus"}
+      fgf-local: {gloss: "severe harm includes greater than 50 fatalities from a single incident", evidence: "The sentence's own 'including risks that a model will materially contribute to greater than 50 fatalities' (P-fgf-def). On the pf reading, the FGF's own example would fall outside its genus."}
+      pf-sense-imported: {gloss: "the PF's 'severe harm': thousands of deaths or grave injuries (P-pf-severe)", evidence: "The FGF reuses two PF sentences that contain 'severe harm', verbatim and unattributed, one of them two lines below this use (L-fgf-pf-reuse: P-fgf-severe-reuse1, P-fgf-severe-reuse2). The FGF also says the PF exists 'to advance the science of managing severe risks' (P-fgf-severe-risks)."}
     our_preference: fgf-local
-    decides: An OpenAI statement about "severe harm" in the FGF; or the FGF's other uses of the phrase (not read).
-    note: Decisive for "severe" in Q1 (computed). Same publisher, two documents, same words, two orders of magnitude apart.
+    preference_confidence: "low-moderate. The definition sentence is the FGF's defining act and states its own example; the reused sentences may carry the phrase without its PF sense. But the reuse is direct evidence the other way, and before the repair this record had not read it."
+    decides: An OpenAI statement about "severe harm" in the FGF; nothing else in the FGF's text (searched).
+    correction: >-
+      Before the repair, this record and answer.md cited the FGF's note on the PF (P-fgf-pf-sense) as
+      evidence about "severe harm", quoting it as "may use different definitions". The note says "may use
+      different definitions of catastrophic risk". It is about "catastrophic risk", not "severe harm", and
+      is not evidence for either candidate here (de-novo-feedback-1 §2.2).
+    note: Decides the FGF severe-harm row in every scenario (computed at the row). For casualties the two candidates are about 20 to 200 times apart (>50 against "thousands"); for dollars, $1B against "hundreds of billions".
 
+  - id: R-fgf-severe-reused
+    use: {passage: P-fgf-severe-reuse1, words: "a risk of severe harm (and P-fgf-severe-reuse2, 'risk of severe harm')"}
+    origin: openai-2026-frontier-governance-framework
+    status: attempted
+    outcome: ambiguity
+    reason: source
+    candidates:
+      pf-sense: {gloss: "as in the PF, where these exact sentences come from and the phrase is defined", evidence: "L-fgf-pf-reuse"}
+      fgf-local: {gloss: "as in the FGF's definition sentence two lines above", evidence: "proximity to P-fgf-def"}
+    note: >-
+      Added in the repair. If R-fgf-severe resolves to fgf-local and this record to pf-sense, the FGF uses
+      one unbound phrase in two senses inside one document. That would be an intra-document divergence of
+      exactly the kind the plan's §3.3 calls a collision candidate, though strictly not a collision in
+      address theory's terms, since nothing is minted. Not encoded: these uses classify nothing in Q1.
   - id: R-pf-thousands
     use: {passage: P-pf-severe, words: thousands of people}
     origin: openai-2025-preparedness-framework-v2
@@ -236,3 +264,27 @@ records:
       at-least-1000: {}
       at-least-2000: {}
     note: Moot for 60 deaths (computed).
+
+  # ------------------------------------------------ added in the repair: the relocated conduct lists
+  - id: R-fcf-categories
+    use: {passage: P-fcf-categories, words: "the FCF currently addresses the following systemic risk categories:"}
+    origin: anthropic-2026-frontier-compliance-framework-v2
+    status: attempted
+    outcome: ambiguity
+    reason: source
+    candidates:
+      restrictive: {gloss: "a systemic risk under the FCF's own sentence must fall in a listed category"}
+      illustrative: {gloss: "the categories describe current coverage, not the definition's extent", evidence: "'currently'"}
+    note: "Its loss-of-control category carries SB 53's (B) and (C), opened ('such as') and without murder (P-fcf-loc). Decides its clause only in every scenario."
+
+  - id: R-fgf-categories
+    use: {passage: P-fgf-categories-intro, words: "this FGF definition currently addresses the following systemic risk categories:"}
+    origin: openai-2026-frontier-governance-framework
+    status: attempted
+    outcome: ambiguity
+    reason: source
+    candidates:
+      restrictive: {gloss: "the categories bound the definition", evidence: "'this FGF definition ... addresses'"}
+      illustrative: {gloss: "they describe current coverage", evidence: "'currently'"}
+    note: "Its loss-of-control cell carries SB 53's (B) and (C) nearly verbatim, with murder (P-fgf-loc-cell). Decides its clause only in every scenario."
+

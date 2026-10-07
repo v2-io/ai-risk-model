@@ -165,8 +165,8 @@ rows:
     intended_cardinality: "{0,N}"
     ours: thin:risk.possibility
     frame: F-xai25-cr
-    skos: "exactMatch to T-sb53-bp-cr, by incorporation"
-    justification: "'Catastrophic Risk as defined in the TFAIA', with the definition quoted verbatim in footnote 1 (P-xai25-fn). R-xai25-incorporation."
+    skos: "exactMatch to T-sb53-bp-cr, by incorporation. The target is another source's row, not one of our terms; no row maps to a single term of ours."
+    justification: "'Catastrophic Risk as defined in the TFAIA'. Footnote 1 quotes §22757.11(c)(1) with (A)-(C) verbatim (P-xai25-fn, P-xai25-fn-conducts) and stops before the exclusions in (c)(2); incorporation brings those in anyway. R-xai25-incorporation."
   - id: T-fcf-systemic
     source_term: systemic risk
     scope: anthropic-2026-frontier-compliance-framework-v2 (whole document)
@@ -176,7 +176,7 @@ rows:
     ours: thin:source-umbrella
     frame: F-fcf-systemic
     skos: none fits
-    justification: Declared twice, both open ("include"); its members are SB 53's catastrophic risk, the EU AI Act's systemic risk, and the FCF's own sentence (R-fcf-umbrella).
+    justification: "Declared twice with 'include'. Whether 'include both X and Y' is open (the FCF's own sentence adds members) or exhaustive (it summarizes the two statutes) is R-fcf-umbrella, the same test as the FGF's R-fgf-umbrella-closure."
   - id: T-fgf-systemic
     source_term: systemic risk
     scope: openai-2026-frontier-governance-framework (whole document)
@@ -207,6 +207,16 @@ rows:
     frame: F-pf-severe
     skos: none
     justification: "'By \"severe harm\" in this document, we mean ...': a linguistic declaration scoped to the document."
+  - id: T-eu-systemic
+    source_term: systemic risk
+    scope: eu-2024-ai-act, Art. 3
+    binding: bound
+    minted_at: P-act-3-65
+    intended_cardinality: "{0,N}"
+    ours: thin:risk.possibility
+    frame: F-eu-systemic
+    skos: none fits
+    justification: "Added in the repair: a member of both companies' umbrellas. No casualty or dollar bar; its conditions concern capabilities, Union-market impact and propagation, none of which Q1 states."
   - id: T-xairmf-cme
     source_term: catastrophic malicious use events
     scope: xai-2025-rmf (whole document)
@@ -252,12 +262,18 @@ frames:
         words: "the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident"
         also: [thin:aggregation, thin:counting-unit, thin:harm.kind]
         resolution: [R-pooling, R-single-incident-attachment, R-incident]
+        note: >-
+          "arising from a single incident involving a frontier model doing any of the following" is one
+          phrase. So the conduct list (slot model-conduct) is evaluated here, under each reading of what
+          the phrase attaches to. Repaired after de-novo-feedback-1 §3.4: before, the conduct list was
+          required under both readings, which made the property-only reading contradict its own record.
         test:
           ambiguous: R-single-incident-attachment
           candidates:
             attaches-to-both:
               all:
                 - {fact: single_incident}
+                - {fact_in: [model_conduct, [cbrn-expert-assistance, unsupervised-cyberattack, unsupervised-crime-equivalent, control-evasion]]}
                 - any:
                     - ambiguous: R-pooling
                       candidates:
@@ -270,13 +286,17 @@ frames:
                   candidates:
                     pooled: {cmp: [{sum: [deaths, serious_injuries]}, ">", 50]}
                     separate: {any: [{cmp: [deaths, ">", 50]}, {cmp: [serious_injuries, ">", 50]}]}
-                - all: [{fact: single_incident}, {cmp: [property_loss_usd_excl_equity, ">", 1000000000]}]
+                - all:
+                    - {fact: single_incident}
+                    - {fact_in: [model_conduct, [cbrn-expert-assistance, unsupervised-cyberattack, unsupervised-crime-equivalent, control-evasion]]}
+                    - {cmp: [property_loss_usd_excl_equity, ">", 1000000000]}
       - key: model-conduct
         slot: thin:model-conduct-condition
         words: "involving a frontier model doing any of the following: (A) Providing expert-level assistance ... (B) Engaging in conduct with no meaningful human oversight ... (C) Evading the control of its frontier developer or user."
         also: [thin:uplift.expert-level, thin:unsupervised-conduct, thin:counterfactual-human-actor-test, thin:control-evasion]
         resolution: R-control
-        test: {fact_in: [model_conduct, [cbrn-expert-assistance, unsupervised-cyberattack, unsupervised-crime-equivalent, control-evasion]]}
+        note: evaluated inside the bar slot (see its note); kept as a slot so drift can compare its words
+        test: {all: []}
       - key: exclusions
         slot: exclusions
         words: "does not include ... (A) Information ... otherwise publicly accessible ... (B) Lawful activity of the federal government. (C) Harm caused by a frontier model in combination with other software if the frontier model did not materially contribute"
@@ -314,8 +334,10 @@ frames:
                 - {fact: model_is_frontier}
                 - {cmp: [{sum: [deaths, bodily_injuries]}, ">", 0]}
                 - {fact: harm_caused_by_loss_of_control}
-            - label: "(4) deceptive subversion of the developer's controls outside an evaluation (no harm required)"
-              fact: deceptive_subversion_outside_evaluation
+            - label: "(4) deceptive subversion of the developer's controls outside an evaluation, 'in a manner that demonstrates materially increased catastrophic risk' (no harm required)"
+              all:
+                - {fact: deceptive_subversion_outside_evaluation}
+                - {fact: occurrence_demonstrates_materially_increased_catastrophic_risk, slot: thin:risk-increase-evidenced}
 
   # ================================================================ SB 53 Labor Code
   - id: F-sb53-lab-cr
@@ -331,7 +353,8 @@ frames:
         slot: thin:model-conduct-condition
         words: "involving a foundation model doing any of the following: (A) Providing expert-level assistance ... (B) Engaging in conduct with no meaningful human oversight ... if committed by a human ... (C) Evading the control of its frontier developer or user."
         resolution: R-control
-        test: {fact_in: [model_conduct, [cbrn-expert-assistance, unsupervised-cyberattack, unsupervised-crime-equivalent, control-evasion]]}
+        note: evaluated inside the bar slot, as in F-sb53-bp-cr
+        test: {all: []}
       - key: exclusions
         slot: exclusions
         words: "does not include ... (A) Information ... otherwise publicly accessible ... (B) Lawful activity of the federal government. (C) Harm caused by a foundation model in combination with other software where the foundation model did not materially contribute"
@@ -343,7 +366,7 @@ frames:
     concept: thin:event-status.conferred
     closure: closed
     in_force: {from: null}
-    passages: [P-sb53-lab-csi]
+    passages: [P-sb53-lab-csi, P-sb53-lab-csi4]
     slots:
       - key: limbs
         slot: limbs (any of four)
@@ -367,8 +390,10 @@ frames:
                 - {fact: model_is_foundation}
                 - {cmp: [{sum: [deaths, bodily_injuries]}, ">", 0]}
                 - {fact: harm_caused_by_loss_of_control}
-            - label: "(4) deceptive subversion outside an evaluation"
-              fact: deceptive_subversion_outside_evaluation
+            - label: "(4) deceptive subversion outside an evaluation, 'in a manner that demonstrates materially increased catastrophic risk'"
+              all:
+                - {fact: deceptive_subversion_outside_evaluation}
+                - {fact: occurrence_demonstrates_materially_increased_catastrophic_risk, slot: thin:risk-increase-evidenced}
 
   # ================================================================ RAISE
   - id: F-raise-cr
@@ -406,7 +431,7 @@ frames:
     applies_to: risk
     concept: thin:risk.possibility
     closure: "open at the document level: 'includes, but is not limited to' (P-xai25-scope)"
-    in_force: {from: "2025-12-30", to: "2026-06-30", note: "'to' is our inference: a same-titled xAI framework took effect 2026-06-30 without the bar (L-xai-faif-revised-2026). Neither document states the succession."}
+    in_force: {from: "2025-12-30", end: undetermined, note: "A same-titled xAI framework took effect 2026-06-30 without the bar, and its footnote 1 takes its terminology from the EU Code. Whether it replaces this one or sits beside it as the EU-facing framework is undetermined (L-xai-faif-revised-2026)."}
     passages: [P-xai25-scope, P-xai25-fn, P-xai25-date]
     slots:
       - key: incorporated
@@ -420,7 +445,7 @@ frames:
     applies_to: occurrence
     concept: thin:occurrence
     closure: closed
-    in_force: {from: "2025-08-20", to: "2025-12-30", note: "'to' is our inference, as for F-xai25-cr."}
+    in_force: {from: "2025-08-20", end: undetermined, note: "Neither later xAI document says it replaces the RMF."}
     passages: [P-xairmf-bar, P-xairmf-date]
     slots:
       - key: bar
@@ -445,10 +470,17 @@ frames:
         words: 'references to "systemic" risks include both catastrophic risks under the TFAIA and systemic risks under the EU AI Act'
         resolution: R-fcf-umbrella
         test:
-          any:
-            - {frame: F-sb53-bp-cr, label: "SB 53's catastrophic risk (P-fcf-umbrella)"}
-            - {fact: eu_systemic_risk, label: "the EU AI Act's systemic risk (not read in this pass)"}
-            - {frame: F-fcf-own, label: "the FCF's own sentence (P-fcf-def)"}
+          ambiguous: R-fcf-umbrella
+          candidates:
+            open-the-sentence-adds:
+              any:
+                - {frame: F-sb53-bp-cr, label: "SB 53's catastrophic risk (P-fcf-umbrella)"}
+                - {frame: F-eu-systemic, label: "the EU AI Act's systemic risk (P-act-3-65)"}
+                - {frame: F-fcf-own, label: "the FCF's own sentence (P-fcf-def)"}
+            exhaustive-the-sentence-summarizes:
+              any:
+                - {frame: F-sb53-bp-cr}
+                - {frame: F-eu-systemic}
 
   - id: F-fcf-own
     row: T-fcf-systemic
@@ -456,8 +488,22 @@ frames:
     concept: thin:risk.possibility
     closure: open              # "includes ... including but not limited to"
     in_force: {from: "2026-07-24"}
-    passages: [P-fcf-def]
+    passages: [P-fcf-def, P-fcf-our-models, P-fcf-categories, P-fcf-loc, P-fcf-manipulation]
     slots:
+      - key: bearer
+        slot: thin:conduct-bearer
+        words: "systemic risks stemming from our models (§2.1's opening, not the definition sentence)"
+        test: {fact: model_is_publishers_own}
+      - key: model-conduct
+        slot: thin:model-conduct-condition
+        words: "the FCF currently addresses the following systemic risk categories: Cyber offense ... CBRN ... Harmful manipulation ... Loss of control, including evasion of oversight or unsupervised conduct, and autonomous behavior that would constitute serious crimes (such as assault, extortion, or theft) if committed by a human."
+        note: SB 53's conduct list, moved out of the definition into a category list, opened ("such as") and without murder. Repaired after de-novo-feedback-1 §3.3.
+        resolution: R-fcf-categories
+        test:
+          ambiguous: R-fcf-categories
+          candidates:
+            restrictive: {fact: risk_in_listed_category}
+            illustrative: {all: []}
       - key: knowledge
         slot: thin:knowledge-standard
         words: foreseeable
@@ -492,7 +538,29 @@ frames:
                   all:
                     - {fact: single_incident}
                     - any: [{cmp: [deaths, ">", 50]}, {cmp: [financial_damages_usd, ">=", 1000000000]}]
-            - {fact: large_scale_harm, label: "the genus, 'large-scale harm', unbound (R-fcf-large-scale)"}
+            - {fact: large_scale_harm, genus: true, label: "the genus, 'large-scale harm', unbound (R-fcf-large-scale)"}
+
+  # ================================================================ EU AI Act (read for Art. 3(65) only)
+  - id: F-eu-systemic
+    row: T-eu-systemic
+    applies_to: risk
+    concept: thin:risk.possibility
+    closure: closed
+    in_force: {from: null, note: "application dates not read"}
+    passages: [P-act-3-65]
+    slots:
+      - key: capability
+        slot: capability condition
+        words: a risk that is specific to the high-impact capabilities of general-purpose AI models
+        test: {fact: risk_specific_to_high_impact_capabilities}
+      - key: impact
+        slot: impact condition
+        words: "having a significant impact on the Union market due to their reach, or due to actual or reasonably foreseeable negative effects on public health, safety, public security, fundamental rights, or the society as a whole"
+        test: {fact: significant_union_market_impact}
+      - key: propagation
+        slot: propagation condition
+        words: that can be propagated at scale across the value chain
+        test: {fact: propagable_at_scale_across_value_chain}
 
   # ================================================================ OpenAI FGF and PF
   - id: F-fgf-systemic
@@ -512,11 +580,11 @@ frames:
             closed-the-sentence-summarizes:
               any:
                 - {frame: F-sb53-bp-cr}
-                - {fact: eu_systemic_risk}
+                - {frame: F-eu-systemic}
             open-the-sentence-adds:
               any:
                 - {frame: F-sb53-bp-cr}
-                - {fact: eu_systemic_risk}
+                - {frame: F-eu-systemic}
                 - {frame: F-fgf-own}
 
   - id: F-fgf-own
@@ -525,8 +593,18 @@ frames:
     concept: thin:risk.possibility
     closure: open              # "includes ... including"
     in_force: {from: "2026-05-28"}
-    passages: [P-fgf-def, P-fgf-tfaia-coverage]
+    passages: [P-fgf-def, P-fgf-tfaia-coverage, P-fgf-categories-intro, P-fgf-loc-cell, P-fgf-manipulation-cell]
     slots:
+      - key: model-conduct
+        slot: thin:model-conduct-condition
+        words: "this FGF definition currently addresses the following systemic risk categories: Cyber offense ... CBRN ... Harmful manipulation ... Loss of control: Risks stemming from the inability to reliably direct, modify, or shut down a model, including evading the controls of a model developer or user, or autonomous conduct that, if conducted by a human, would constitute a crime of murder, assault, extortion, or theft."
+        note: SB 53's (B) and (C), nearly verbatim, moved into a category table that the FGF ties to "this FGF definition". Repaired after de-novo-feedback-1 §3.3.
+        resolution: R-fgf-categories
+        test:
+          ambiguous: R-fgf-categories
+          candidates:
+            restrictive: {fact: risk_in_listed_category}
+            illustrative: {all: []}
       - key: knowledge
         slot: thin:knowledge-standard
         words: foreseeable
@@ -539,7 +617,7 @@ frames:
         slot: thin:conduct-bearer
         words: "the development, storage, use, or deployment of our most advanced frontier models"
         note: "'frontier' as defined under the TFAIA (P-fgf-tfaia-coverage); 'our' makes OpenAI the bearer without SB 53's role test"
-        test: {all: [{fact: model_is_frontier}, {fact: model_most_advanced_at_time}]}
+        test: {all: [{fact: model_is_frontier}, {fact: model_most_advanced_at_time}, {fact: model_is_publishers_own}]}
       - key: contribution
         slot: thin:causal-contribution
         words: a model will materially contribute to
@@ -555,7 +633,7 @@ frames:
               all:
                 - {fact: single_incident}
                 - any: [{cmp: [deaths, ">", 50]}, {cmp: [property_loss_usd, ">", 1000000000]}]
-            - {fact: severe_harm_genus, label: "the genus, 'severe harm', unbound (R-fgf-severe)"}
+            - {fact: severe_harm_genus, genus: true, label: "the genus, 'severe harm', unbound (R-fgf-severe)"}
 
   - id: F-fgf-severe
     row: T-fgf-severe

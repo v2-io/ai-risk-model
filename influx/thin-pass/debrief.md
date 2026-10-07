@@ -1,83 +1,93 @@
 # Debrief: the G1b thin pass
 
-*To Joseph, for after your plan review; then to whoever takes G2 and G3. Claude (Opus 5.5), 2026-10-07. The coordinator briefed it; you decided it ("I agree with your earlier assessment that we run a thin end-to-end pass early on"). One agent, one session, unreviewed. An independent verifier is to follow.*
+*To Joseph, for after your plan review; then to whoever takes G2 and G3. Claude (Opus 5.5), 2026-10-07. The coordinator briefed it; you decided it ("I agree with your earlier assessment that we run a thin end-to-end pass early on"). An independent verifier (same model family) audited the first version. This debrief is rewritten after repairing what the audit found (`de-novo-feedback-1.md`, `response-to-de-novo-feedback-1.md`).*
+
+## A correction first
+
+The first version of this debrief said: *"most of SB 53's precise clauses carried no weight; the structure around them did"*. The coordinator passed that to you as the main finding. **It doesn't hold, and I've withdrawn it.**
+
+Three reasons, each checked:
+- **Q1 stipulates two facts,** 60 deaths and one incident. A clause that tests anything else ("foreseeable", "material", "materially contribute", the conduct list, the exclusions) could only come out "open".
+- **My evaluator could only find an ambiguity decisive if I had encoded it as one,** and I had encoded only the magnitude, aggregation and umbrella side.
+- **I measured "decisive" below the row's result.** Measured at the row, half the labels changed nothing.
+
+What the slice actually supports is narrower. **It can't rank lexicon terms for refinement.** For a two-fact hypothetical like Q1, SB 53's precise clauses can be named but not weighed.
 
 ## What I did
 
-I took SB 53 and candidate Q1 end to end. I read SB 53 whole. Because the question ends in "through how many independent lineages", I also followed SB 53's ">50 people or $1B" bar into the four documents that carry it, at those passages only: RAISE S.8828, xAI's 2025 framework, Anthropic's FCF v2 and OpenAI's FGF.
+I took SB 53 and candidate Q1 end to end. I read SB 53 whole. Because the question ends in "through how many independent lineages", I also followed SB 53's ">50 people or $1B" bar into the four documents that carry it, at those passages:
+- RAISE S.8828, as introduced;
+- xAI's 2025 framework;
+- Anthropic's FCF v2;
+- OpenAI's FGF.
 
-I recorded everything as rough YAML records:
-- 53 anchored passages;
-- translation rows and definition frames;
-- 19 resolution records;
-- assertion records;
-- lineage records.
+In the repair I added single passages from Anthropic's RSP v3.4 and the EU AI Act's Art. 3(65).
 
-I also wrote a small evaluator that computes Q1's answer from them, for Q1 and for four nearby scenarios. A script checks every quote, page and id against the extractions.
+The records are rough YAML: 65 anchored passages, translation rows and definition frames, 22 resolution records, assertion records and lineage records. A small evaluator computes Q1's answer from them for Q1 (open- and closed-world) and three variants. A checker confirms every quote, page and id against the extractions.
 
-The evaluator is the one thing I added beyond the brief, and I should say why. G1b's done-test asks which terms the answer *depended on*. I didn't want that list to be my impression. Running each ambiguity's readings through the frames turned "this term matters" into a checkable claim: choosing between its readings changes this result, in this scenario, or it doesn't. The cost is that the evaluator's test vocabulary looks more finished than it is. That is the hardening risk the plan worries about (§6), applied to formats. Please treat it as scaffolding for this question, not a proposal for G1(e).
+The evaluator is useful only if it is honest about what it can show. It now does three things:
+- it reports each ambiguity's effect at the row;
+- it probes open classes by reading them as closed;
+- it prints the recorded ambiguities it cannot evaluate.
 
-## What came out
+Its test vocabulary is scaffolding for this question, not a proposal for G1(e).
 
-**The answer** (`answer.md`).
-- No document in the slice calls an *incident* catastrophic, severe or systemic. They apply those words to risks or to harm, and SB 53 reaches the incident itself only through "Harm resulting from the materialization of a catastrophic risk".
-- **Ex ante,** 60 deaths in one incident clears SB 53's bar under every reading. The rest is open: model conduct, causal contribution, foreseeability, materiality, exclusions. For Q1 the answer is a list of conditions, which is what "under what conditions" anticipated.
-- **Ex post,** SB 53 calls such an incident a *critical safety incident*. Two of that term's four limbs need no casualty bar at all.
-- **"Systemic"** is the FCF's and FGF's umbrella over SB 53's term. In their own sentences the >50 bar becomes an open example rather than a floor.
-- **"Severe"** splits OpenAI's two documents by two orders of magnitude. That is the one ambiguity that changes Q1's answer.
-- **Lineages:** one, with SB 53's own upstream not followed.
+## The answer, in brief (`answer.md`)
 
-**Where the coordinator's guess landed.** The guess was that SB 53 would translate easily clause by clause, force several risk-side terms into existence early, and that the record formats would hold the surprises. All three held, with corrections.
-- **Translation.** It was easy clause by clause. But a clause-by-clause translation doesn't fit the plan's term-to-term row at all. It needed a new record kind, the definition frame.
-- **Risk-side terms.** The ones it forced were not mainly the components in §3.8, which turned up as slots and were mostly conditioning. They were the *relations and statuses around* the components:
-  - materialization, from a risk to an occurrence;
-  - a status an instrument confers on an event;
+- **No document in the slice calls an incident catastrophic, severe or systemic in those words.** They use the words of risks or of harm, and label incidents with other terms:
+  - SB 53's "critical safety incident";
+  - the FCF's AI Event → AI Incident → Serious AI Incident / Critical Safety Incident ladder;
+  - the FGF's severity-graded "AI safety incident".
+- **Ex ante,** 60 deaths in one incident clears every casualty bar in the lineage. Whether the risk is catastrophic turns on nine facts Q1 doesn't state, so the answer is a list of conditions.
+- **Ex post,** SB 53's critical safety incident is open for Q1. Three of its four limbs have no >50 bar, and one needs no harm, only evidence of "materially increased catastrophic risk".
+- **"Systemic"** in the FCF and FGF is an umbrella over SB 53's catastrophic risk and the EU's systemic risk.
+  - The companies' own sentences turn SB 53's floor into an open example and drop its exclusions.
+  - They share template wording with each other that is in neither SB 53 nor the EU Code.
+- **In Q1 itself, one reading changes a result:** whether the FGF's undefined "severe harm" is its own (60 fatalities qualifies) or the PF's (thousands of deaths).
+  - The FGF reuses two PF sentences containing the phrase, which is evidence for the PF sense.
+  - My lean stays with the FGF's own sentence, at low-moderate confidence.
+  - The FGF may be using the phrase in two senses.
+- **Lineages: one.** Six definitions in five documents trace to SB 53. SB 53's own upstream was not followed.
+- **The answer depends on a date Q1 doesn't give.**
+
+## What it means for your refinement passes
+
+There's no ranking to hand you. What the slice does give is a list, each item with its evidence (`weight-and-defects.md` §1):
+
+- **Needed to state definitions faithfully, whatever the question:**
   - whether a bar is a floor or an example;
-  - umbrellas that sources declare over other instruments' terms.
-- **Surprises.** The formats held many, but the largest defect was in the question. Q1 asks about an object none of these sources classify, gives no date, and doesn't say whether unstated harms are zero.
+  - the counting unit and what it attaches to;
+  - how casualties pool;
+  - which harms are counted;
+  - who must causally contribute;
+  - umbrellas the sources declare themselves.
 
-## What I think it means for your refinement passes
+  Each of these changes a computed row in some variant, or changes what lineage drift detects, and none is in §3.8's component list as an attribute.
+- **Needed only if questions are about incidents:**
+  - two relations between occurrences and risks, both in SB 53 (an incident *realizes* a catastrophic risk; an incident *demonstrates an increase* in one);
+  - statuses conferred on events, which the slice has several of, some staged.
 
-This is the result I'd most want you to weigh, and it is a judgment built on computed evidence.
-
-**Most of SB 53's precise clauses carried no weight for Q1.** "Foreseeable", "material", "materially contribute", the three conduct classes and the three exclusions all stayed *open conditions* in every scenario. Two end at California law and one at a declared ambiguity, which acceptance test 1 already counts as passing. The answer needed them named and slotted, not refined.
-
-**What carried the weight was the structure around them.** For the lexicon:
-- the possibility / occurrence / materialization triangle;
-- conferred event statuses;
-- bar closure;
-- the counting unit and aggregation;
-- source-declared umbrellas.
-
-For the formats:
-- frames;
-- separate status and two times in resolution records;
-- lineage per claim, with drift computed from frames.
-
-`weight-and-defects.md` §1 ranks these. If your passes have to go somewhere first on the risk side, I'd put them on tier A there, ahead of the components list.
-
-Two caveats on that inference:
-- **It comes from one question.** Q1 is about definitions. A norm-shaped question (Q3, Q5) would put weight on the Hohfeld and Institutional Grammar machinery that Q1 never touched, and Q4 would put it on G2's actor terms.
-- **The weights are computed from my frames,** so they inherit my readings. The places a second translator should look first:
-  - what "arising from a single incident" attaches to;
-  - "includes" read as a sufficient example;
-  - my lean on the FGF's "severe harm".
+  Whether these come early depends on decision 12.
+- **SB 53's precise clauses are untested by this slice.** To weigh them, the next pass would need a question that supplies the facts they test. A documented instance is the natural one: Q17–Q19, or AISI's INC-2026-07-28-01.
 
 ## Things worth your attention before G4
 
-- **Write instance facts in our terms.** To evaluate the frames I wrote the scenario's facts partly in SB 53's words (`model_is_frontier`). For several sources at once they need to be in ours, with each source's definitions as tests over them. That makes the instance record's fields depend on the slot vocabulary G2 and G3 produce, a dependency the plan doesn't yet show (D-scenario-in-source-terms).
-- **Address theory's "bound vs match"** is used in §3.3 as one axis where the theory has two. Its §22757.14 example reads at least as naturally as a match drifting with the world as it does as a dangle (D-bound-vs-match). You'll judge that better than I can. It's your theory, and I read it once today.
-- **Publisher-level divergence.** Both Anthropic and OpenAI note, inside their compliance frameworks, that a sibling document uses the same word differently. Under address theory's scope rule these aren't collisions, but they are among the most important divergences in the slice (D-collide-scope).
+- **Where a definition's precision lives** (proposed change 2). This pass kept each source's definition as a *frame* over a slot vocabulary in the translation layer. The verifier pointed out that your stated lexicon shape ("the union of all the most precise, scoped, bounded, and/or specific definitions") reads more naturally as making each one a precise *lexicon* concept whose delimiting characteristics are those slots. The slot structure is needed either way. Which layer holds the precision is your call, and I hadn't flagged it as a choice.
+- **Lineage has to compare descendants with each other.** I modelled the FCF and FGF as two independent restatements of SB 53. They share a template, so their shared drift is probably one event counted twice. This is the error "correlation is not corroboration" is meant to prevent, made inside a pass that was checking lineage.
+- **Instance facts in our terms.** To evaluate the frames, I wrote some facts in SB 53's own words (`model_is_frontier`). For several sources at once they need to be in ours. That ties the instance record's fields to the slot vocabulary G2 and G3 produce (D-scenario-in-source-terms).
+- **Address theory in §3.3.** "Bound vs match" is two axes in the theory: who maintains a name's sense, and how the sense reaches instances. The plan's §22757.14 example takes the dangle reading ("what it was meant to"). It could say that this is one of two readings (D-bound-vs-match). You'll judge this better than I can.
 
 ## Limits
 
-- **One reader, one model family.** Every reading here is mine. No second translator, no different-family check. The plan's §6 concern about same-model coherence applies in full.
-- **Not read:** the EU AI Act's systemic risk, which is a member of both companies' umbrellas and so keeps their rows open in every scenario; Anthropic's RSP (only reported, by the FCF); OpenAI's PF beyond one footnote; Anthropic's FCF v1, which was in force at the earliest date computed and has no relata key I could find.
-- **RAISE was read as introduced.** Its signing date is the catalog's, from a secondary source.
-- **Conflict of interest.** Anthropic's FCF is in the slice. I read its open bar ("includes … including but not limited to") the same way as OpenAI's, and the drift between it and SB 53 was computed by the same diff as everything else. A different-family reader would still be the real check.
+- **One reader's readings, and one model family's audit.** The verifier is the same family, so where we agree, that is coherence. A different-family translator diffing frames slot by slot is still the real check, on the computed results as much as anything.
+- **Not read:**
+  - the EU Code's systemic-risk tests;
+  - xAI's 2026 "systemic risk";
+  - the companies' incident ladders beyond their headings;
+  - Anthropic's FCF v1, which has no relata key I could find.
+- **Partially sourced:** RAISE was read as introduced; its signing date is the catalog's, from a secondary source.
+- **Conflict of interest.** Anthropic's FCF is in the slice, and the one ambiguity that decides Q1 landed on OpenAI. The verifier ran the parallel check on Anthropic (the RSP's footnote; any binding of "large-scale harm") and found no parallel ambiguity. That check is now in the records.
 
-## On the brief, and what I'd do next
+## On the brief
 
-The brief gave me the why, with your words, and left the how open. That made it easy to keep Q1 when it fit badly, because a bad fit was a finding. One suggestion for G4's full-strength end-to-end pass: use Q4 or Q20. Together with this pass that covers both halves of the vocabulary, the definitional risk side here and the actor side there.
-
-If useful, the cheapest next step is to rerun this same slice with a translator from a different model family and diff their frames against mine. The disagreement per slot is exactly G4's measure of where the lexicon is underspecified.
+The brief gave the why and left the how open, which made it easy to keep Q1 when it fit badly. In hindsight, Q1 was a good test of the *formats* and a poor test of *term weight*, and I should have seen the second before writing a ranking. For a weight-finding pass, a question built on a documented instance would do what this one couldn't. For G4's full-strength pass, Q4 or Q20 would cover the actor vocabulary you named as your priority, which Q1 never touches.

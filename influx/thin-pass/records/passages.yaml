@@ -30,7 +30,7 @@ documents:
   - key: xai-2025-faif
     short: xAI FAIF 2025
     what: "xAI, Frontier Artificial Intelligence Framework, \"Last updated: December 30, 2025\""
-    version_as_read: 2025-12-30 (P-xai25-date); superseded by xai-2026-faif (L-xai-faif-revised-2026)
+    version_as_read: 2025-12-30 (P-xai25-date). Whether xai-2026-faif replaces it or sits beside it is undetermined (L-xai-faif-revised-2026)
     kind: company framework
   - key: xai-2026-faif
     short: xAI FAIF 2026
@@ -57,6 +57,18 @@ documents:
     what: OpenAI, Preparedness Framework, version 2
     version_as_read: v2 (2025) per relata; read for one footnote only
     kind: company framework
+
+# (Two documents added in the repair, after de-novo-feedback-1:)
+  - key: anthropic-2026-rsp-v3-4
+    short: Anthropic RSP v3.4
+    what: Anthropic, Responsible Scaling Policy, Version 3.4
+    version_as_read: '"Effective July 8, 2026" (P-rsp34-date). Which RSP version the FCF v2 refers to is not stated in the passage read.'
+    kind: company framework (voluntary); read for footnote 1 only
+  - key: eu-2024-ai-act
+    short: EU AI Act
+    what: Regulation (EU) 2024/1689
+    version_as_read: as published in the relata PDF; read for Art. 3(65) only
+    kind: regulation
 
 # Scopes, in address theory's sense (addr:scope, imported by reference at
 # v2-io/udon 90f4fb6): where a source's bindings are kept and collisions
@@ -241,6 +253,15 @@ passages:
       (d) "Foundation model" has the meaning defined in Section 22757.11 of the Business and Professions
       Code. (e) "Frontier developer" has the meaning defined in Section 22757.11 of the Business and
       Professions Code.
+  - id: P-sb53-lab-csi4
+    doc: california-2025-sb53
+    page: 10
+    lines: 634-636
+    quote: >-
+      (4) A foundation model that uses deceptive techniques against the frontier developer to subvert
+      the controls or monitoring of its frontier developer outside of the context of an evaluation
+      designed to elicit this behavior and in a manner that demonstrates materially increased
+      catastrophic risk.
 
   # ---- SB 53, uncodified sections
   - id: P-sb53-findings-n
@@ -453,9 +474,12 @@ passages:
   - id: P-fgf-loc-cell
     doc: openai-2026-frontier-governance-framework
     page: 6
-    lines: 200-204
+    lines: 200-210
     quote: >-
-      Risks stemming from the inability to reliably
+      Risks stemming from the inability to reliably direct, modify, or shut down a model, including
+      evading the controls of a model developer or user, or autonomous conduct that, if conducted by a
+      human, would constitute a crime of murder, assault, extortion, or theft.
+    note: The whole cell survives as a quote (unlike the manipulation and CBRN cells). Repaired after de-novo-feedback-1 §6.
     table_cell: {table: "systemic risk categories (pp. 6-7)", row: "Loss of control", column: description}
 
   # ---- OpenAI PF v2
@@ -506,3 +530,80 @@ passages:
       An act to add Chapter 25.1 (commencing with Section 22757.10) to Division 8 of the Business and
       Professions Code, to add Section 11546.8 to the Government Code, and to add Chapter 5.1
       (commencing with Section 1107) to Part 3 of Division 2 of the Labor Code
+
+  # ---- added in the repair after de-novo-feedback-1
+  - id: P-xai25-fn-conducts
+    doc: xai-2025-faif
+    page: 1
+    lines: 37-44
+    quote: >-
+      (A) Providing expert-level assistance in the creation or release of a chemical, biological,
+      radiological, or nuclear weapon. (B) Engaging in conduct with no meaningful human oversight,
+      intervention, or supervision that is either a cyberattack or, if the conduct had been committed
+      by a human, would constitute the crime of murder, assault, extortion, or theft, including theft
+      by false pretense. (C) Evading the control of its frontier developer or user."
+    note: The footnote stops here. It does not quote SB 53's exclusions (§22757.11(c)(2)).
+  - id: P-fgf-severe-reuse1
+    doc: openai-2026-frontier-governance-framework
+    page: 5
+    lines: 129-130
+    quote: We evaluate whether frontier capabilities create a risk of severe harm through a holistic risk assessment process.
+  - id: P-pf-severe-reuse1
+    doc: openai-2025-preparedness-framework-v2
+    page: 5
+    lines: 139-140
+    quote: We evaluate whether frontier capabilities create a risk of severe harm through a holistic risk assessment process.
+  - id: P-fgf-severe-reuse2
+    doc: openai-2026-frontier-governance-framework
+    page: 7
+    lines: 246-248
+    quote: >-
+      using risk tiers that concretely describe things an AI system might be able to help someone do or
+      might be able to do on its own that could meaningfully increase risk of severe harm.
+  - id: P-pf-severe-reuse2
+    doc: openai-2025-preparedness-framework-v2
+    page: 5
+    lines: 168-169
+    quote: >-
+      concretely describe things an AI system might be able to help someone do or might be able to do on
+      its own that could meaningfully increase risk of severe harm.
+  - id: P-fgf-severe-risks
+    doc: openai-2026-frontier-governance-framework
+    page: 4
+    lines: 83-84
+    quote: advance the science of managing severe risks of advanced AI systems
+  - id: P-fgf-categories-intro
+    doc: openai-2026-frontier-governance-framework
+    page: 6
+    lines: 142-144
+    quote: "Based on this analysis, this FGF definition currently addresses the following systemic risk categories:"
+  - id: P-fcf-our-models
+    doc: anthropic-2026-frontier-compliance-framework-v2
+    page: 4
+    lines: 115-116
+    quote: Anthropic has developed a range of processes to identify systemic risks stemming from our models
+  - id: P-rsp34-date
+    doc: anthropic-2026-rsp-v3-4
+    page: 1
+    lines: "5"
+    quote: Effective July 8, 2026
+  - id: P-rsp34-fn1
+    doc: anthropic-2026-rsp-v3-4
+    page: 4
+    lines: 142-145
+    quote: >-
+      "Catastrophic risk" as used in our RSP refers generally to risks of the most severe potential harms
+      from advanced AI, such as existential threats or fundamental destabilization of global systems. We
+      use this term in its plain meaning rather than adopting any specific statutory definition. Where
+      laws such as California SB 53 define this or similar terms with specific thresholds, we address
+      those requirements in separate compliance frameworks.
+  - id: P-act-3-65
+    doc: eu-2024-ai-act
+    page: 50
+    lines: 3420-3423
+    quote: >-
+      (65) 'systemic risk' means a risk that is specific to the high-impact capabilities of
+      general-purpose AI models, having a significant impact on the Union market due to their reach, or
+      due to actual or reasonably foreseeable negative effects on public health, safety, public
+      security, fundamental rights, or the society as a whole, that can be propagated at scale across
+      the value chain;
