@@ -14,7 +14,7 @@ The proposal in `03-structure.md` §8 is that the lexicon defines alignment as a
 | what about them counts | **aspect** (my label; "content" in the literature report) | Gabriel 2020's ladder [P]; "preference payload" (Leike 2018 [P]); "outcome ordering" (Askell 2021 [P]) | instructions / intent / desire / interests / values |
 | when | **time index** | initial / real-time / final reward (Carroll 2024 [P]); static / dynamic (Hellrigel-Holderbaum & Dung [P]); `alignment.md`'s initial vs. current goal | the time-instruction incident; goal drift (Chin) |
 | how conflicts are settled, and who is admissible | **adjudicating standard** | Gabriel & Keeling's principles "that specify appropriate conduct for a given domain" [P]; chain of command (OpenAI Model Spec [P]); principal hierarchy (Anthropic constitution [P]); legitimacy qualifier (constitution [P]) | IASR's "depending on the context"; MIT's "especially"; Davidson; NIST AI 100-2 |
-| who judges | **judge** | "a reasonable person with full understanding" (Anthropic Aug); an idealized observer; "would not endorse" (GDM) | CAISI's LLM-as-judge |
+| who would count it as misaligned (normative) | **judge** | "a reasonable person with full understanding" (Anthropic Aug); an idealized observer; "would not endorse" (GDM) | Anthropic Aug; GDM. *Not* a measurement procedure: CAISI's LLM-as-judge belongs under the source's methodology, not in the meaning |
 | over what situations | **domain** | "problem areas" (Kierans [P]); role-appropriate norms (Zhi-Xuan 2024 [P]); "high-stakes distribution" (Anthropic Aug) | context-dependent vs. pervasive misalignment |
 | how much | **degree** | "degree of overlap" (Askell [P]) | Kulveit's "the degree to which" |
 
@@ -22,7 +22,8 @@ The proposal in `03-structure.md` §8 is that the lexicon defines alignment as a
 
 **Use types** (a field on each translated occurrence):
 - *relational* (the complement is stated);
-- *absolute* (the slots are implicit; under-specification, per the SEP *Ambiguity* entry [P via the report]);
+- *anaphoric* (bare, but bound to the source's own stipulation; record a pointer to it);
+- *absolute* (bare and generic; the slots are implicit; under-specification, per the SEP *Ambiguity* entry [P via the report]);
 - *activity* ("alignment training");
 - *field* ("alignment research").
 
@@ -48,14 +49,19 @@ These sit beside the gamma plan's resolution outcomes (§3.4), as reasons with a
 ## C. Actor-side candidates
 
 `04-actors.md` has the row-by-row evidence. In summary, first-pass:
-- **Relations** (§1 there): *writes into* (est. nearest: the Model Spec's message *roles* as channel types [P]), *directs* (est.: *principal*, in the agency sense), *owed regard* (est.: NIST *affected individuals/communities*; the constitution's "those whose interests Claude should give weight to"), *authors a standard* (est.: NIST's "Other AI actors may provide formal or quasi-formal norms"), *oversees*, *answers for*.
+- **Relations**: the list is held in `03-structure.md` §6.1: *writes into* (est. nearest: the Model Spec's message *roles* as channel types [P]), *directs* (est.: *principal*, in the agency sense), *owed regard* (est.: NIST *affected individuals/communities*; the constitution's "those whose interests Claude should give weight to"), *authors a standard* (est.: NIST's "Other AI actors may provide formal or quasi-formal norms"), *oversees*, *answers for*.
 - **Existing rows with est. anchors:**
   - user → *end user* (NIST, ETSI);
   - affected third parties → *affected individuals/communities* (NIST);
   - harness provider → *system operator* (ETSI) / *scaffolding developer* (AISI) / *operator* (constitution [P]) / *developer* (Model Spec [P]): all colliding;
   - model trainer → *original model developer* (AISI) / *frontier developer* (SB 53, by training act).
 - **New rows, with evidence:** fine-tuner or downstream modifier; human feedback providers; evaluator (split from overseer); norm author; state or regulator as a writer through mandated training; data custodian; model host or distributor; general public (split out of "society, law, humanity").
-- **Standing mismatch** (my name): a channel given more standing than its writer has. This is the common form of the map's Notes' vulnerabilities. Nearest est. language: the companies' rules ("information rather than … commands"; "Ignore untrusted data by default") [P].
+- **Three confusions in the map's Notes**, each with established vocabulary (`03-structure.md` §6.2):
+  - *source attribution* (Goffman's author / animator; PROV "quotation");
+  - *illocutionary force* (speech-act force; instruction privilege; the companies' "information rather than … commands");
+  - *epistemic status* (the project's factuality vocabulary).
+
+  The map's own umbrella word is *provenance*. I withdraw my earlier single coinage.
 
 ## D. Additions from the role-vocabulary report (first-pass)
 
@@ -67,5 +73,9 @@ These sit beside the gamma plan's resolution outcomes (§3.4), as reasons with a
   - *beneficiary* (trust law) for a seventh relation, **benefits**, that can come apart from **directs**.
 - **Delegated authority** (Model Spec: "authority may be delegated to these sources"; "users may *implicitly* delegate authority … AGENTS or README files"): the est. name for how the user's environment and tool outputs acquire standing.
 - **Counterparty** (agency law's third party; Chan et al. 2025; AP2's merchant): a new actor candidate, likely the home of the map's "agents embedded in applications".
-- **Confused deputy** (Hardy 1988; OWASP ASI03): the est. security name for a standing mismatch exploited.
+- **Confused deputy** (Hardy 1988; OWASP ASI03): the est. security name for an agent whose own authority is used for another's purpose, the force confusion exploited.
 - **"principal"** now has seven recorded senses. The economic one (common agency) makes an injector a principal. A declared sense is required if the word is adopted.
+
+## E. Granularity (after `de-novo-feedback-1.md`)
+
+Record the slots once per source *definition*. Per occurrence, record the use type only. Record invariance or sensitivity only for occurrences extracted as assertions where the alignment word carries the verdict, judged against a declared, versioned candidate set S (`03-structure.md` §4–§5).

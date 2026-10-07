@@ -9,9 +9,9 @@
 
    A planted web page writes into the context but should direct nothing. An affected third party directs nothing and writes nothing, but is owed regard. (`03-structure.md` §6; `research/lit-alignment-relation.md` §5.1.)
 
-   One low-ink way to show it: a column, *standing to direct*, with values such as *top* (the trainer's spec), *operator*, *user*, *delegated* (other agents, via an orchestrator), *none* (content, tools, the environment). The lines stay as they are. The Notes' vulnerabilities then read as **standing mismatches**: a channel given more standing than its writer has.
+   One low-ink way to show it: a column, *standing to direct*, with values such as *top* (the trainer's spec), *operator*, *user*, *delegated* (other agents, via an orchestrator), *none* (content, tools, the environment). The lines stay as they are. The column also separates the Notes' three confusions. Taking a tool description as an instruction is a confusion of *standing* (force). Taking a harness summary as the user's words is a confusion of *attribution*. Taking an earlier agent's note as fact is a confusion of *epistemic status*. The map's own word for all three, "provenance", is the right umbrella (`03-structure.md` §6.2).
 
-2. **Consider extending the lead sentence.** The corpus supports a stronger version: "'Alignment' without saying to whom quietly picks one of them, *and how to settle it when they disagree*." Most multi-party definitions in the corpus name several parties and no rule for conflicts between them. That gap is demonstrable (`03-structure.md` §2).
+2. **Consider extending the lead sentence.** The corpus supports a stronger version: "'Alignment' without saying to whom quietly picks one of them, *and how to settle it when they disagree*." The corpus's definitions name parties without a conflict rule. Its bodies discuss rules (refusal, the median view, voting), and the developers' documents state operative ones (`03-structure.md` §2).
 
 3. **"Society, law, humanity" is three or four things.** The corpus separates:
    - the *general public* (NIST names it as an actor);
@@ -23,7 +23,7 @@
 4. **Split Control & Eval.** *Overseers* (monitors, approval gates) act on actions, as the map says. *Evaluators* also write into context, deliberately without marking it: "Evaluators can also edit or construct the model's context merely by editing text, for example in order to run an alignment honeypot" (AISI, *Loss of Oversight*). The evaluator then has a line into Context.
 
 5. **Rows the references add** (first-pass, with evidence in `04-actors.md` §3):
-   - **fine-tuner / downstream modifier**: writes into weights; in EU law it becomes a provider above ⅓ of the original training compute;
+   - **fine-tuner / downstream modifier**: writes into weights. In EU law it becomes a provider on a "significant change", with more than a third of the original training compute as an indicative criterion. AISI pools it with the scaffolding developer;
    - **human feedback providers** (raters, labellers): write into weights through reward, with their own judgment and biases;
    - **norm authors / the state**;
    - possibly **model hosts** (open-weight platforms), which were the harmed third party in the OpenAI–Hugging Face incident.
@@ -36,7 +36,7 @@
 
 7. **Where the map is ahead of its sources, keep it marked as the map's own:**
    - the *inference provider* writing into ephemeral state and context: no corpus role is defined this way;
-   - *the agent itself* as a party with interests: the literature's most developed multi-party account explicitly assumes the agent has no moral standing;
+   - *the agent itself* as a party with interests: no corpus *role* definition treats it so, and the literature's most developed multi-party account assumes the agent has no moral standing. The corpus does raise AI welfare as a concern (MIT 7.5; Anthropic's model-welfare evaluations), so the map is ahead as a role, not as a concern;
    - *the user's lack of any obligation of truthfulness toward the agent*: no role definition I found says anything like it.
 
    These are contributions, not errors. The sources simply don't make these points.

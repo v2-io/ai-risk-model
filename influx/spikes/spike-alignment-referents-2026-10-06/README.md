@@ -2,24 +2,27 @@
 
 **The question it started from.** Joseph asked for a look at "the implications of an ambiguous alignment definition", plus established names for the existing actors in `alignment-model/alignment.md` and proposals for new actors from the references. `CLAUDE.md` holds the related open decision: "Misalignment: a default referent, chosen after the claims show what they are about."
 
-**Where it landed** (each item is argued, with its evidence label, in the file named):
-- "Aligned" is used in two ways. *Relational* ("aligned with X") is neutral and can name an attacker. *Absolute* ("misaligned") is evaluative and presupposes which parties count and how their conflicts are settled. The corpus overwhelmingly uses the absolute form. → `03-structure.md` §1
-- Multi-party definitions with no conflict rule fail exactly where the referent matters (demonstrated). → §2
-- The misuse / misalignment partitions move with the referent. Sources file the same event (a planted instruction, a jailbreak, poisoning) differently, depending on which writer carried the intent. → §3
-- Each of the six single default referents tested hides a risk that is named somewhere: five against corpus risks, and one against a company document. A default is a choice about which risks count. → §4
-- Most truth-apt claims are invariant across referents. The referent matters in definitions and category labels. This rests on a single-coder pilot, and needs a blind recode. → §5, `data/`
-- "To whom" is several relations: writes into, directs, controls in fact, is owed regard, authors the standard, oversees, answers for. The map's Notes describe one vulnerability pattern, a channel given more standing than its writer has. → §6
-- Naming the party doesn't fix the referent: instruction, intent, interest and values differ, and so do initial and current goal. → §7
-- The default question, restated, and a proposal: the lexicon defines the slots, not the fillers; translations record use type and invariance; any default lives on a view. → §8
+**Where it landed** (revised after `de-novo-feedback-1.md`; each item is argued, with its evidence label, in the file named):
+- **Use types.** "Aligned" is used *relationally* (neutral; X can be an attacker), *anaphorically* (bound to the source's own stipulation), and *absolutely* (generic and evaluative, with which parties count and how conflicts are settled presupposed). → `03-structure.md` §1
+- **Lists of referents.** Disjunctions inside claims fail under genuine conflict (demonstrated). Glossary lists are sense reports, not failed definitions. The corpus *bodies* discuss conflict rules; its definitions don't. → §2
+- **Filings.** Categories defined against a referent move with it. On adversarial causes the field splits by where the cause enters the stack: weights mostly count as misalignment, context splits between state and origin readings. → §3
+- **Defaults.** Each of seven single defaults tested hides a named risk, three of them conditionally. A declared, versioned candidate *set* is proposed in place of a default. → §4
+- **Where the referent bites.** When a claim names its harm, the referent is idle. The pilot's ratio did not survive review; the recording rule did. → §5, `data/`
+- **Relations.** "To whom" is eight relations (listed once, in §6.1). The map's Notes describe three confusions: attribution, force and epistemic status. → §6
+- **Aspect and time.** Naming the party leaves instruction, intent, interest and values open, and initial vs. current goal. → §7
+- **Proposal.** Slots in the lexicon; three recording levels; categories with their basis; no single-referent default. → §8
+- **Response to the verification.** What changed and what I contest → `response-to-de-novo-feedback-1.md`
 
 **Read in this order**
 1. `debrief.md`: the whole spike for Joseph, in domain terms.
+   - `response-to-de-novo-feedback-1.md`: the verification's corrections, and my responses.
 2. `03-structure.md`: the analysis.
 3. `04-actors.md` and `05-candidate-terms.md`: the vocabulary, all first-pass.
 4. `06-map-suggestions.md`: proposals for the map (nothing in `alignment-model/` was edited).
 5. `proposed-integration-plan.md`: suggestions for integrating, with a do-not-inherit list.
 
 **Supporting files**
+- `de-novo-feedback-1.md`: the independent adversarial pass (not mine).
 - `00-on-the-brief.md`: the coordinator's after-the-fact priming list, and what I re-examined because of it.
 - `01-map.md`: what the repo and corpus said before the analysis, and the live tensions.
 - `02-sense-inventory.md`: every definitional passage found, with slots and locations.

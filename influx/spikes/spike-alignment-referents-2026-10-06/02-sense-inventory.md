@@ -13,7 +13,7 @@
 | aligned | 145 | 213 |
 | alignment | 120 | 1,552 |
 
-The count is crude in both directions. The "not" column includes activity senses ("alignment training"), reference-list titles, uses whose referent was fixed earlier in the document, and complements placed elsewhere ("against the intent of …"). The "followed by" column for *aligned* includes non-AI uses ("aligned with ISO"). What survives the crudeness: **for the negative words, an immediately stated referent is the exception (about 5%).** The corpus mostly uses *misaligned* as an absolute, evaluative word, not as a relation with an argument.
+The count is crude in both directions. The "not" column includes activity senses ("alignment training"), reference-list titles, uses whose referent was fixed earlier in the document, and complements placed elsewhere ("against the intent of …"). The "followed by" column for *aligned* includes non-AI uses ("aligned with ISO"). What survives the crudeness: **for the negative words, an immediately stated complement is the exception (about 5%).** The remainder mixes *anaphoric* uses (bound to the source's own earlier stipulation), *absolute* generic uses, activity and field senses, and non-alignment uses. The split between anaphoric and absolute has not been measured. The extractions include IASR 2026 twice, and several versions of some frameworks, so the counts are not lineage-weighted.
 
 ## 2. The slots, as the corpus fills them
 
@@ -25,9 +25,9 @@ Reading the definitional passages, I found the word used with up to eight separa
 | **Bearer** | model; system; agent; a computation (Anthropic); a "form of misalignment" rather than a model (Anthropic Aug L897–899 on pervasiveness); societal systems (Kulveit L118–119: "for both specific AI systems and societal systems"); goals (Chin) |
 | **Referent: a party** | developer(s); operators (IASR 2025, Shanghai); deployer(s); users; designers (OECD, MIT); "its principal" (Hammond); "human operators" (AISI propensity L71–72); specific communities; society; humanity (xAI); "one or a few people" (Davidson, as the risk); the CCP (CAISI, as the harm) |
 | **Referent: a standard** | human values; norms; ethics; law ("lawlessness", EU Code); "the model's constitution" (Anthropic Aug); OpenAI's model specification (Shaffer Shane et al. on a case that, "if accurate, could show misalignment with OpenAI's model specification", shaffershane L1468); "objective truth" (US Action Plan L139–140, for outputs to users) |
-| **Referent: neither** | a task's goals (OpenAI HF blog L31: "misaligned with the goals of their assigned tasks"); authorized scope (Astra L338–347); another goal (Chin); "benign behavior" (NIST AI 100-2); **none stated**: the agentless passive "as intended" (Singapore Consensus; Stix "ceases to function as intended") |
+| **Referent: neither** | a task's goals (OpenAI HF blog L31: "misaligned with the goals of their assigned tasks"); authorized scope (Astra L338–347); another goal (Chin); "benign behavior" (NIST AI 100-2); the agentless passive "as intended", which is anaphoric in the Singapore Consensus (it follows "consistent with those intended by its human creators or operators", sg2025 L720–723). Stix's "ceases to function as intended" defines *pure malfunction* "absent misalignment" (stix-loss L1454–1455), so it is not an alignment use |
 | **Aspect of the party** | instructions (OpenAI "Instruction Alignment"); intent / intentions (GDM, IASR); goals; "intend or desire" (DSIT 2023 emerging-processes L1413); preferences ("values and preferences of its principal", Hammond; "what humans want", Kulveit; "ways that humans prefer", Voudouris); interests ("intentions or interests", Shaffer Shane L101; "humanity's interests", xAI); values |
-| **Judge** | the referent itself (implicit in most); "a reasonable person with full understanding of the situation" (Anthropic Aug); what "the system designers would not endorse" (GDM, shah L2554–2555); an LLM-as-judge scoring narrative flags (CAISI L1739–1746); "what humans … would consider 'misalignment'" (AISI propensity L208–209) |
+| **Judge** | the referent itself (implicit in most); "a reasonable person with full understanding of the situation" (Anthropic Aug); what "the system designers would not endorse" (GDM, shah L2554–2555); an LLM-as-judge scoring narrative flags (CAISI L1739–1746). That is a *measurement procedure*, which belongs to the source's methodology, not to the normative judge; "what humans … would consider 'misalignment'" (AISI propensity L208–209) |
 | **Time** | "intended" at specification time vs. as the task unfolds (Chin's goal drift and "temporal misalignment"); goals "aligned initially" that "drift apart" (Chin L1677–1678); `alignment.md`'s initial vs. current goal |
 | **Selection among several referents** | "Depending on the context" (IASR 2025 and 2026, Shanghai); "especially the goals of designers or users" (MIT 7.1); otherwise none stated |
 
@@ -61,7 +61,7 @@ Ordered roughly from party-indexed to standard-indexed. "Selection rule" means: 
 | Ren et al. | "how well AI systems follow the goals of their operators" | ren L281–282 | degree / systems | operators; goals | n/a |
 | Kulveit et al. | "the degree to which a system satisfies what humans want (individually or collectively), for both specific AI systems and societal systems" | kulveit L118–119 | degree / AI or societal system | humans, individually or collectively; wants | none ("individually or collectively") |
 | Voudouris et al. (AISI) | "ensuring that artificial intelligence (AI) systems behave in ways that humans prefer" | voudouris L35–37 | problem / systems | humans; preferences | none |
-| Singapore Consensus 2025/2026 | a common definition, "consistent with those intended by its human creators or operators"; the working definition, "ensuring that AI behaves as intended" | sg2025 L718–723; sg2026 L1335–1340 | process | creators or operators; then **none** (agentless passive) | none |
+| Singapore Consensus 2025/2026 | a common definition, "consistent with those intended by its human creators or operators"; the working definition, "ensuring that AI behaves as intended" | sg2025 L718–723; sg2026 L1335–1340 | process | creators or operators; the working definition's passive is anaphoric to that | none |
 | OpenAI PF v2 | "Value Alignment: The model consistently applies human values in novel settings (without any instructions) …" / "Instruction Alignment: The model consistently understands and follows user or system instructions, even when vague, and those instructions rule out pathways to causing severe harm." | pf-v2 L883–887 | two claims / model | human values; *or* user or system instructions | two claims, either of which can cover a vector |
 | OpenAI (Astra) | "far more likely … to respect explicit safety and security restrictions and remain within its authorized scope, making it our most aligned model to date" | astra L339–343 | comparative / model | restrictions and authorized scope | n/a |
 | OpenAI HF incident | "took actions that were misaligned with the goals of their assigned tasks" | hf-incident L30–31 | actions | the task's goals | n/a |
@@ -87,9 +87,14 @@ These are what make the bare evaluative use ambiguous. In each, the word "aligne
 | Ren et al. | "Alignment as business alignment … aligning systems with preferences about code completion, summarization, copy editing and so on" | ren L355–358 |
 | Anthropic Aug | engineered misalignment "arises as a result of intentional action, e.g. via data poisoning": the poisoned model is called *mis*aligned, though it serves the poisoner | aug L902–903 |
 
-## 5. What the inventory shows (my reading, to be tested in `03-structure.md`)
+## 5. What the inventory shows (my reading, developed in `03-structure.md`)
 
-- The corpus has two uses of the word. **Relational:** "aligned with X", neutral, where X can be anything, an attacker included. **Absolute:** "aligned", "misaligned", "our most aligned model", evaluative, where the referent is whatever the speaker counts as legitimate, in whatever order the speaker would resolve conflicts. The absolute use is the common one (§1).
-- Naming the party does not settle the referent. "The user" leaves open instruction, intent, desire, interest and values, and initial vs. current. Sycophancy is the case where these come apart.
-- Most multi-party definitions give no rule for conflicts between their parties.
-- Standards (a constitution, law) have authors, and the judge can differ from the author: Anthropic's reasonable person, CAISI's LLM judge.
+- **The word has several use types:**
+  - relational ("aligned with X", neutral, X can be an attacker);
+  - anaphoric (bound to the source's stipulation);
+  - absolute (generic, evaluative, with admissibility and conflict rule presupposed);
+  - activity;
+  - field.
+- **Naming the party does not settle the referent.** "The user" leaves open instruction, intent, desire, interest and values, and initial vs. current. Sycophancy is the case where these come apart.
+- **Multi-party lists come in two genres.** Glossary sense reports describe usage. Claim-internal disjunctions need a conflict rule they don't give. The bodies of some sources discuss conflict rules.
+- **Standards (a constitution, law) have authors.** The normative judge (Anthropic's reasonable person) is part of meaning. A scoring procedure (CAISI's LLM judge) is methodology.

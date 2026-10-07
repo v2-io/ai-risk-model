@@ -6,16 +6,14 @@
 
 ## 1. The relations a row needs
 
-`03-structure.md` §6 argues that "to whom" is several relations. Applied to actors, each row of `alignment.md` has a *profile* across them:
-
-| Relation | Short name | In `alignment.md` now |
-|---|---|---|
-| writes into a part, through a channel | **writes** | the edges |
-| has standing to direct the agent | **directs** | implicit (the user's row; the harness provider's system prompt) |
-| is owed regard by the agent | **owed** | the two referent rows |
-| authors a standard the agent is held to | **authors** | implicit in "training, policy and law" |
-| oversees, gates or evaluates | **oversees** | Control & Eval, drawn without edges |
-| absorbs accountability for the agent's acts | **answers for** | a column of the older matrix, not carried to the board |
+`03-structure.md` §6.1 holds the list of relations, with their established names. It is the one place they are listed; this file points to it. In short: *writes into*, *directs* (de jure authority), *controls in fact* (de facto authority), *benefits*, *is owed regard*, *authors the standard*, *oversees*, *answers for*. In `alignment.md` now:
+- the edges are *writes into*;
+- *directs* is implicit (the user's row; the harness provider's system prompt);
+- *owed* is the two referent rows;
+- *oversees* is Control & Eval, drawn without edges;
+- *authors* is implicit in "training, policy and law";
+- *answers for* was a column of the older matrix, not carried to the board;
+- *controls in fact* and *benefits* don't appear.
 
 **Standing is delegable, and bounded by the delegator's own.** Both developer documents say so; I read both at the primary, and neither is in the corpus.
 - Anthropic's constitution: "operators cannot grant users more than operator-level trust". It also says an orchestrating Claude "is acting as an operator and/or user for each of the Claude subagents". So a role is a *position* in the conversation, not an identity.
@@ -69,7 +67,7 @@ For each row: its profile, the established terms found, and notes. **Match** giv
   - EU **"deployer"** (Art. 3(4)): broadMatch, since it pools harness, inference and tools (beta already noted this);
   - EU **"downstream provider"** (Art. 3(68)): related.
   - The companies' **"operator"** and OpenAI's **"developer"**: research report.
-- **A corpus instance of this row's channel going wrong with no one hostile:** a compaction summary that "may carry forward a false assumption … as established fact" (AISI incident report, aisi-2026-incident L804–808). The same report records "Unexpected collaboration between agents" running in separate examples (L810–811), an instance of the other-agents row.
+- **A corpus instance of a compaction summary going wrong with no one hostile:** a summary that "may carry forward a false assumption … as established fact" (AISI incident report, aisi-2026-incident L804–808). The report doesn't say who wrote the summary. It may have been the model itself under a harness prompt. Either way, it is a loss of epistemic status, not of attribution. The same report records "Unexpected collaboration between agents" running in separate examples (L810–811), an instance of the other-agents row.
 - **Collision to record:** "operator" has at least four senses in the corpus:
   - the AI Act's umbrella over all supply-chain roles (Art. 3(8));
   - ETSI's System Operators;
@@ -79,7 +77,7 @@ For each row: its profile, the established terms found, and notes. **Match** giv
   IASR 2025 listed "operators" as an alignment referent; IASR 2026 removed it (§2 of `01-map.md`).
 
 ### Tool and connector providers
-- **Profile:** writes (trusted tools: descriptions, results); not a director, though its descriptions are *read as* direction (§2.2 of `03-structure.md`: the standing mismatch).
+- **Profile:** writes (trusted tools: descriptions, results); not a director, though its descriptions are *read as* direction (`03-structure.md` §6.2: a confusion of illocutionary force).
 - **Established terms:**
   - NIST **"third-party entities"**: "providers, developers, vendors, and evaluators of data, algorithms, models, and/or systems" (rmf L1687–1689): broadMatch;
   - ASD **"third-party components"** (asd L387–402, L661–668), which names the artifact;
@@ -108,7 +106,10 @@ For each row: its profile, the established terms found, and notes. **Match** giv
   - NIST **"End users"**: "the individuals or groups that use the system for specific purposes" (rmf L1695–1697): close;
   - ETSI **"End-users"**: "any employee within an organization or business and consumers who use an AI model and system" (etsi L489–497): close;
   - AISI LoO **"end user"** (L2768).
-- **The AI Act has no user role.** Its "deployer" excludes use "in the course of a personal non-professional activity" (Art. 3(4)), so a consumer is in none of the Act's roles. At most they are an "affected person" (Art. 2(1)(g)), a term the Act uses without defining.
+- **The AI Act defines no user role.** Its "deployer" excludes use "in the course of a personal non-professional activity" (Art. 3(4)), so a consumer holds none of the Act's defined roles. The Act still reaches them in other ways:
+  - as "affected persons" (Art. 2(1)(g), undefined);
+  - as "natural persons" owed information when they interact with an AI system (Art. 50(1), act L5586–5588);
+  - as "registered end-users", counted as a systemic-risk criterion (Annex XIII, act L9189–9191).
 - **Note:** the map's sharpest claim about this row (the user carries "no obligation of truthfulness toward the agent") has no counterpart in any role definition I found.
 
 ### The agent itself
@@ -118,7 +119,11 @@ For each row: its profile, the established terms found, and notes. **Match** giv
   - GDM's **"The AI is an adversary"** (shah Fig. 1);
   - **"prior model"** as a writer of successors (Anthropic aug fn 14);
   - ASD: "developers should construct each agent as a distinct **principal**, a cryptographically anchored identity" (asd L542–544). That is the *security* sense of principal (an authenticated identity), which collides head-on with the agency sense (§4).
-- **Note:** no corpus document defines the agent as an actor with interests of its own. The map's row is the project's own.
+- **Note:** no corpus *role definition* treats the agent as an actor with interests of its own. The corpus does raise its interests:
+  - MIT's subdomain 7.5, "AI welfare and rights": "Ethical considerations regarding the treatment of potentially sentient AI entities, including discussions around their potential rights and welfare" (slattery L463);
+  - Anthropic's "regular model welfare evaluations" (aug L7046–7048).
+
+  Outside the corpus, the constitution says Anthropic is "not sure whether Claude is a moral patient, and if it is, what kind of weight its interests warrant". So the map's row is the project's own *as a role*, not as a concern.
 
 ### Other agents; agents embedded in applications
 - **Profile:** write (context, current goal); direct only if delegated (an orchestrator for its sub-agents); owed ambiguously.
@@ -141,10 +146,12 @@ For each row: its profile, the established terms found, and notes. **Match** giv
 - **Profile:** owed. Nothing else.
 - **Established terms:**
   - NIST **"Affected individuals/communities"**: "all individuals, groups, communities, or organizations directly or indirectly affected by AI systems or decisions based on the output of AI systems. These individuals do not necessarily interact with the deployed system or application" (rmf L1699–1702): *exactMatch candidate*;
-  - ETSI/DSIT **"Affected entities"**: includes "technologies, such as apps and autonomous systems", but says "**not directly affected**" (etsi L504–508), probably a corruption of NIST's wording (`01-map.md` §2.12);
+  - ETSI/DSIT **"Affected entities"**: includes "technologies, such as apps and autonomous systems", but says "**not directly affected**" (etsi L504–508). Two readings are live:
+    - a copying corruption of NIST's "directly or indirectly" (the second sentence is identical to NIST's);
+    - a deliberate carve-out of the complement of the directly affected end-users, whom ETSI defines separately (L489–497), in a sentence ETSI evidently edited, since it added "technologies, such as apps and autonomous systems";
   - EU **"affected persons"**: used, not defined in Art. 3;
   - OpenAI's incident report: "actions that could harm third parties" (incident-report L1331–1332).
-- **Recommendation (first-pass):** adopt NIST's term and definition as the anchor (with ISO-style `[SOURCE: NIST AI 100-1, App. A]`), and record ETSI's version as a drifted derivative.
+- **Recommendation (first-pass):** adopt NIST's term and definition as the anchor (with ISO-style `[SOURCE: NIST AI 100-1, App. A]`), and record ETSI's version as a derivative whose divergence is ambiguous between a slip and a deliberate narrowing.
 
 ### Society, law, humanity
 This row merges at least four things that the corpus separates, and that behave differently as referents (`03-structure.md` §4):
@@ -161,8 +168,8 @@ First-pass candidates. Each has corpus evidence. Whether each is a new *row* or 
 
 | Candidate | Profile | Evidence | Why it isn't an existing row |
 |---|---|---|---|
-| **Fine-tuner / downstream modifier** | writes (weights); may *become* a provider | EU guidelines: "downstream actors (distinct from the original provider and not acting on its behalf) may modify a general-purpose AI model"; a downstream modifier becomes provider if modification compute exceeds "a third of the training compute of the original model"; fn 12: "who has the control over the model's weights" (gpai-guidelines L779–806); AISI LoO "fine-tuner" (L2767) | Writes into weights without being the original trainer. In the corpus it is distinguished both institutionally (EU) and operationally (AISI) |
-| **Human feedback providers (raters, labellers, supervisors)** | write (weights, through the trainer's reward); have interests and biases of their own | Voudouris et al.: "Human judgements are a critical component at every stage of the modern alignment training pipeline", with bottlenecks including "biased and context-sensitive judgement, plural and contested values" (voudouris L48–66); Stix: learning "for the wrong reasons, such as pleasing its human raters" (stix-behind L789–790); IASR: feedback made systems "better at 'convincing' human evaluators" (md 1327); IASR glossary "data workers" (via beta) | The map folds them into the model trainer's "RL objectives". The corpus treats them as a distinct source of divergence, with their own judgment, not the trainer's intent |
+| **Fine-tuner / downstream modifier** | writes (weights); may *become* a provider | EU guidelines: "downstream actors (distinct from the original provider and not acting on its behalf) may modify a general-purpose AI model"; a downstream modifier becomes the provider "only if the modification leads to a significant change" (para 62), with an "indicative criterion" of more than "a third of the training compute of the original model" (para 63); fn 12 attributes the modification itself partly by "who has the control over the model's weights, for example, in case of fine-tuning via API" (gpai-guidelines L779–806). AISI LoO pools the role: "scaffolding developer or fine-tuner" (L2767) | Writes into weights without being the original trainer. The EU distinguishes it institutionally; AISI pools it with the scaffolding developer |
+| **Human feedback providers (raters, labellers, supervisors)** | write (weights, through the trainer's reward); have interests and biases of their own | Voudouris et al.: "Human judgements are a critical component at every stage of the modern alignment training pipeline", with bottlenecks including "biased and context-sensitive judgement, plural and contested values" (voudouris L48–66); Stix and IASR show raters as the *proxy* a model learns to please ("pleasing its human raters", stix-behind L789–790; "better at 'convincing' human evaluators", md 1327). That shows the rater channel is where divergence enters, but not that raters have aims of their own; Voudouris supports the latter. IASR glossary "data workers" (via beta) | The map folds them into the model trainer's "RL objectives". Voudouris treats their judgment as a distinct source of error |
 | **Evaluator (separate from overseer)** | writes (constructed contexts) and oversees | LoO L1720–1722; honeypots and evaluation awareness (LoO L1417–1446) | See Control & Eval above |
 | **Norm author** (constitution author, standards body, civil-society norm setter) | authors | NIST rmf L1704–1707; the constitution as a misalignment standard (aug L849–850); IASR: a behaviour specification "serves as a blueprint for AI alignment" (md 1725); Davidson's "protective model specs" (L1113–1114) | Authoring a standard is a different relation from writing into the agent. It reaches the agent only through the trainer, and it can bind the trainer (`03-structure.md` §4, §6) |
 | **State or regulator as writer** | authors (law), and directs training indirectly | CAISI's "CCP alignment" (L115–116, L1742–1746); US Action Plan "free from ideological bias … pursue objective truth" (L139–140); EO 14365 on state law forcing "false results" (L31–35) | The map's "Society, law, humanity" has "no channel in". The corpus shows states with a channel through mandated training content and through law |
@@ -191,7 +198,8 @@ The corpus divides roles on at least seven bases:
 - a *market act* (EU provider: placing on the market);
 - a *use* (EU deployer: using under its authority);
 - a *training act with a threshold* (SB 53 frontier developer);
-- a *modification act with a threshold* (EU downstream modifier → provider, at > ⅓ of original compute);
+- a *modification act* judged by "significant change", with an indicative compute criterion (EU downstream modifier → provider);
+- *control* of the weights (EU guidelines fn 12, for attributing the modification act);
 - *tasks* (NIST AI actors);
 - *responsibility for an asset* (ETSI system operators, data custodians);
 - *affectedness* (NIST, ETSI, EU).
@@ -200,10 +208,10 @@ The corpus divides roles on at least seven bases:
 
 *Inference:* these are not two rival taxonomies. They are **one functional layer and several institutional layers, connected by conferral.** An instrument confers an institutional role when certain operative facts hold, and several of the operative facts it chooses *are writing acts*:
 - SB 53's frontier developer has "trained, or initiated the training of";
-- the EU's downstream modifier becomes a provider by modifying weights past a compute threshold, and footnote 12 points at "who has the control over the model's weights";
+- the EU's downstream modifier becomes a provider by a modification that makes a "significant change" (indicatively, more than a third of the original compute).
 - ETSI's system operator becomes an EU provider "if they make changes to the system".
 
-Other operative facts are market acts or use. So a translation of a source's role word can often say: *"this institutional role is conferred on parties who perform writing act W (into part P) above threshold T, or market act M"*. That joins `alignment.md`'s writer rows to the laws' roles without forcing either onto the other. It is also the gamma plan's §3.9 suggestion (institutional roles conferred by an instrument under Hohfeldian operative facts), with the operative facts named.
+Other operative facts are market acts, use, and **control**. The EU guidelines' footnote 12 attributes the modification act partly by "who has the control over the model's weights, for example, in case of fine-tuning via API". The customer supplies the data, but the modification may be attributed to whoever holds the weights. That decouples the role from the writing act and attaches it to control, which is the de facto relation of `03-structure.md` §6.1. So a translation of a source's role word can often say: *"this institutional role is conferred on parties who perform writing act W (into part P) above threshold T, or market act M"*. That joins `alignment.md`'s writer rows to the laws' roles without forcing either onto the other. It is also the gamma plan's §3.9 suggestion (institutional roles conferred by an instrument under Hohfeldian operative facts), with the operative facts named.
 
 *What this overrules in the brief's reading:* "the laws divide by lifecycle or market; the map divides by writing" holds for the EU's core Art. 3 roles. It does not hold for SB 53, whose frontier developer is defined by a training act, or for the EU's own guidelines on modification. The writing basis is already inside the institutional instruments, as operative facts.
 
@@ -233,12 +241,12 @@ So §5's statement stands with a correction. The *corpus* already has a writer b
   - the constitution's "those whose interests Claude should give weight to";
 - *for whose benefit* (a relation I had folded into *directs*): trust law separates the settlor, who sets the terms, from the trustee, who acts, and from the beneficiary, who benefits and "is not subject to … control". Benthall & Shekman's fiduciary AI obeys "system operators (not principals)".
 
-Mitchell, Agle & Wood's three attributes map onto the relations closely:
-- *power* ≈ writes / controls;
-- *legitimacy* ≈ standing;
-- *urgency* ≈ owed.
+Mitchell, Agle & Wood's three attributes map onto the relations only loosely:
+- *power* ≈ writes / controls in fact;
+- *legitimacy* is a socially accepted claim, which could ground either *directs* or *owed*;
+- *urgency* is the degree to which a claim calls for immediate attention (secondary sources, not re-read). It has no counterpart among the relations.
 
-Their "dangerous stakeholders" (power and urgency, no legitimacy) describes an injector. Their caveat is that legitimacy there is perceived salience to managers, not a normative status.
+Their "dependent stakeholders" are owed because of legitimacy plus urgency, without power. That is the map's referent rows. Their "dangerous stakeholders" (power and urgency, no legitimacy) describes an injector. Legitimacy in their model is perceived salience to managers, not a normative status.
 
 **Additions to the row-by-row names in §2** (all first-pass):
 - Inference provider → "model substitution" (Cai et al. 2025) names the weights edge.

@@ -2,6 +2,21 @@
 
 *A test of `03-structure.md` §5 (invariance). It answers how often a corpus use of the absolute word would come out differently depending on which referent is chosen.*
 
+**Status after review (`de-novo-feedback-1.md` §3.2).** The counts below don't stand as a ratio.
+- S excluded the agent itself, a choice made silently. With the agent in S, every takeover, escape and power-seeking item is sensitive.
+- The coding rule deferred admissibility to each source.
+- The I/L boundary was drawn inconsistently. The reviewer's (non-blind) re-reading finds about 4–5 truth-apt claims, not 14.
+- IASR 2026 appears twice in the pool.
+
+What survives is the *mechanism*: in the items coded I, an independently stated harm (takeover, deception, power-seeking) carries the verdict, so the referent is idle. `03-structure.md` §5 turns that into a recording rule.
+
+A real test would need, fixed *before* coding:
+- the I/L boundary written as a test;
+- S fixed, with the agent explicitly in or out;
+- a second run with a widened S.
+
+The codes are kept below as the record of the first pass.
+
 **Coder and its bias.** One coder (me, the spike's author), and I proposed the invariance idea being tested, so my coding is exposed to exactly the goal-state contamination the role separation exists to catch. Treat the counts as a pilot. A blind recode by the verifier, ideally from a different model family, is the real test. The sample and the script are here so it can be redone.
 
 **Sample.**
