@@ -18,7 +18,7 @@
   |term[ddd:shared-kernel] An explicitly bounded subset of a domain model, with its associated code or data design, that the teams of two contexts agree to share and change only in consultation with each other.
     :source "[SOURCE: Evans 2015, Shared Kernel, p. 31, modified — 'Designate with an explicit boundary some subset of the domain model that the teams agree to share … This explicitly shared stuff has special status, and shouldn't be changed without consultation with the other team.' restated as a definition]"
     |rels :part-of @{ddd:model} {1,1}
-          :shared-by team {2,N}
+          :shared-by team {2,2}  ; Evans writes of "the other team", so two
     |conditions
       - "When functional integration is limited, the overhead of continuous integration of a large context may be deemed too high." (p. 31)
     |invariants
@@ -80,7 +80,7 @@
       - *conformist, inside this project*: model beta adopting IASR 2026's definitions ("The first four definitions are IASR 2026's, adopted", `def-risk.ud`), which gamma's translation step is meant to prevent;
       - *shared kernel*: none found among the sources yet. Importing address theory's terms by reference, pinned to a commit, is not one by this entry's invariants: nothing is held jointly in this repository, and no second team's consultation gates a change. It is closest to conformist, an untranslated adoption (plan §3.2).
     - **A copying can be two records at once.** RAISE copying SB 53's definitions word for word is a lineage fact: one text derived from another (plan §3.7). Whether it is *also* a conformist relationship is a separate question about the two contexts' models: did the downstream adopt the upstream's model untranslated? For RAISE it plausibly did, but under Evans's scope conformist also requires upstream-downstream (dependence of success), which a copying alone does not show. So RAISE counts as conformist only under the proposed widening above. Lineage and context-map relationships are recorded separately, and one event can produce both. — our reading
-    - **None of these is the relation between a source and this project.** No source plans for this project, shares a kernel with it, or coordinates with it. This project does not conform to any source; it translates every one. That relation is @{ddd:anticorruption-layer}. — our reading
+    - **The usual relation between a source and this project.** No source plans for this project, shares a kernel with it, or coordinates with it. This project is not an attempt to conform to any particular source; its default is to translate each one, which is @{ddd:anticorruption-layer}. Adopting a source's terms is still open to it where that serves, and the kind of adoption matters. Conformity in Evans's sense is wholesale: the downstream adopts the upstream's whole model. Adopting one definition verbatim, with its provenance marked, is narrower. This lexicon does that with Evans's own eight definitions (`:source "… verbatim"`); there the translation's output simply equals its input. — our reading
 
   |working-notes
     - Open: customer-supplier and partnership have no checked case among the sources. Candidates worth checking: regulators consulting developers while drafting (the EU Code's drafting process); the International AI Safety Report's coordination with its contributing governments. These are unchecked guesses.

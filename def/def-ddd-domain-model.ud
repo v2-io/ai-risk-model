@@ -8,7 +8,7 @@
     :source "Evans 2015, Definitions, p. vi — verbatim"
     :avoid  [domain] ; bare: MIT's AI Risk Repository uses "domain" for its seven top-level risk categories, a source term to translate
     |invariants
-      - It is prior to its models and independent of them: a model "describes selected aspects of a domain" (p. vi), so the domain is what is described, not the description.
+      - It is prior to its models and independent of them: a model "describes selected aspects of a domain" (p. vi), so the domain is what is described, not the description. — our reading; Evans does not say this directly
       - The definition carries two readings in its two sentences. The first is absolute: a domain is any sphere of knowledge, influence or activity. The second is relational: something is *the domain of* a program when a user applies the program to it. — our reading
     |collisions
       - MIT's risk "domains" (seven domains, twenty-four subdomains): categories in one source's taxonomy, not spheres of activity. Evans's own nearest term is *subdomain* ("Generic Subdomains", p. 41), a part of a domain factored into its own model.
@@ -27,7 +27,7 @@
       - Many models of one domain are normal: "Multiple models are in play on any large project." (p. 2)
     |collisions
       - **AI model** (the trained network): the dominant sense in the corpus, and the reason this term is never used bare in this project.
-      - **This project's own "Model" row** in `CLAUDE.md`'s five-way table, "an ontology plus claims about how things behave". That is narrower than Evans's: an Evans model needs abstractions and a use, not claims about behaviour. The two should be reconciled or the CLAUDE.md row renamed. — our reading
+      - **This project's own "Model" row** in `CLAUDE.md`'s five-way table, "an ontology plus claims about how things behave". It differs from Evans's in both directions: it requires claims about behaviour, which Evans does not, and it drops the use ("can be used to solve problems"), which Evans requires. The two should be reconciled or the CLAUDE.md row renamed. — our reading
       - **Source model** (`influx/source-models/`): Evans's sense applied to one source, so it is consistent with this entry.
       - "Model alpha", "model beta", "model gamma": this project's iterations. Also Evans's sense.
 
@@ -36,13 +36,14 @@
     |rels :is-a @{ddd:model} {1,1}
     |invariants
       - Depth is judged against the domain's own concerns: a deep model "captures subtle concerns of the domain experts" (p. 8), so it is not depth of formalism or detail.
-      - It is reached, not designed in advance: "Sophisticated domain models seldom turn out useful except when developed through an iterative process of refactoring" (p. 8).
+      - It is reached, not designed in advance: "Sophisticated domain models seldom turn out useful except when developed through an iterative process of refactoring" (p. 8). — our reading; Evans says this of sophisticated domain models, and it is applied here to deep ones
 
   |term[ddd:refactoring-toward-deeper-insight] Refactoring of a model, or of its expression, motivated by an insight into the domain.
     :source "[SOURCE: Evans 2015, p. 8, modified — 'Refactoring can also be motivated by an insight into the domain and a corresponding refinement of the model or its expression in code.' restated as a definition; 'in code' widened to 'its expression']"
     |invariants
       - Its motive is domain insight, as distinct from refactoring "described in terms of code transformations with technical motivations" (p. 8).
-      - It is iterative and done with the people who know the domain: "an iterative process of refactoring, including close involvement of the domain experts with developers" (p. 8).
+    |practices
+      - Iterate, with the people who know the domain: "an iterative process of refactoring, including close involvement of the domain experts with developers" (p. 8).
 
   |discussion
     - **What this project's domain is.** `CLAUDE.md` describes two things the project models: the frontier-AI risk landscape, and what the field's documents claim about it. Both are spheres of knowledge or activity in Evans's sense. Whether that is one domain, or two (the risk landscape, and the discourse about it) is open. The plan's two planes, "what was said" and "what it is said about", suggest two. — our reading

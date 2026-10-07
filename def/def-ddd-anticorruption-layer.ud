@@ -2,7 +2,7 @@
   :status  proposed
   :source  "Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/"
 
-  When two @{ddd:bounded-context}s must communicate and neither will conform to the other, someone translates. Evans gives three shapes for where the translation lives. An **ANTICORRUPTION-LAYER** is built by the downstream for itself: it takes the upstream as it is and renders it in the downstream's own model, so the downstream model is not bent toward the upstream's. An **OPEN-HOST-SERVICE** is built by the upstream for everyone: one open protocol that any client can integrate with. A **PUBLISHED-LANGUAGE** is a documented common medium that belongs to neither side's model; each translates into and out of it. The three combine. An open host usually speaks a published language, and its clients either conform to it or build anticorruption layers against it.
+  When two @{ddd:bounded-context}s must communicate and neither will conform to the other, someone translates. Evans gives three shapes for where the translation lives. An **ANTICORRUPTION-LAYER** is built by the downstream for itself: it takes the upstream as it is and renders it in the downstream's own model, so the downstream model is not bent toward the upstream's. An **OPEN-HOST-SERVICE** is built by the upstream for everyone: one open protocol that any client can integrate with. A **PUBLISHED-LANGUAGE** is a documented common medium that each side translates into and out of. Evans advises against making either side's own model that medium. The three combine. An open host often speaks a published language, and its clients either conform to it or build anticorruption layers against it.
 
   |term[ddd:anticorruption-layer] An isolating layer, built by a downstream context, that provides it with the upstream's functionality in terms of its own model, translating between the two models.
     :source "[SOURCE: Evans 2015, Anticorruption Layer, p. 34, modified — 'As a downstream client, create an isolating layer to provide your system with functionality of the upstream system in terms of your own domain model … Internally, the layer translates in one or both directions as necessary between the two models.' restated as a definition]"
@@ -16,7 +16,7 @@
       - It belongs to the downstream: "As a downstream client, create an isolating layer" (p. 34).
       - It leaves the upstream as it is: it "talks to the other system through its existing interface, requiring little or no modification to the other system" (p. 34).
       - It translates in whichever directions are needed: "the layer translates in one or both directions as necessary between the two models" (p. 34).
-      - What it protects against is gradual drift of the downstream model, not a single bad input: "A large interface with an upstream system can eventually overwhelm the intent of the downstream model altogether, causing it to be modified to resemble the other system's model in an ad hoc fashion." (p. 34)
+      - What it protects against is the downstream model drifting toward the upstream's: "A large interface with an upstream system can eventually overwhelm the intent of the downstream model altogether, causing it to be modified to resemble the other system's model in an ad hoc fashion." (p. 34)
 
   |term[ddd:open-host-service] A protocol, opened by a context to all who need to integrate with it, that gives access to that context as a set of services.
     :source "[SOURCE: Evans 2015, Open-host Service, p. 35, modified — 'Define a protocol that gives access to your subsystem as a set of services. Open the protocol so that all who need to integrate with you can use it.' restated as a definition]"
@@ -33,10 +33,13 @@
     |conditions
       - "The translation between the models of two bounded contexts requires a common language." (p. 36)
     |invariants
-      - It is not either side's model. Evans gives the reasons against using a domain model directly: "Those models may be overly complex or poorly factored. They are probably undocumented. If one is used as a data interchange language, it essentially becomes frozen and cannot respond to new development needs." (p. 36)
       - It is documented and shared: "a well-documented shared language" (p. 36).
-      - It is often an industry standard: "Many industries establish published languages in the form of data interchange standards." (p. 36)
-      - It often goes with an open host: "Published language is often combined with open-host service." (p. 36)
+      - It is a medium of translation: each context translates "as necessary into and out of that language" (p. 36).
+    |practices
+      - Don't make either side's own model the medium. Evans's advice is hedged: "Direct translation to and from the existing domain models may not be a good solution." His reasons: "Those models may be overly complex or poorly factored. They are probably undocumented. If one is used as a data interchange language, it essentially becomes frozen and cannot respond to new development needs." (p. 36)
+    |examples
+      - "Many industries establish published languages in the form of data interchange standards. Project teams also develop their own for use within their organization." (p. 36)
+      - "Published language is often combined with open-host service." (p. 36)
 
   |discussion
     - **This project's translations are an anticorruption layer.** Each source is upstream and this project is downstream. The sources are read through their "existing interface", their published text, and never modified, which matches "little or no modification to the other system" and the project's compilation principle. The danger Evans names is the one the plan names in model beta: a downstream model "modified to resemble the other system's model in an ad hoc fashion", which is how beta's terms came to adopt IASR 2026's definitions. The per-source translations are the inside of the layer (plan §3.2). Two widenings, ours: Evans's layer provides an upstream's *functionality*, and ours provides a source's *claims and meanings*; and ours translates in one direction only, from source to us. — our reading

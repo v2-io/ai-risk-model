@@ -184,7 +184,7 @@ DDD's bounded context is flat; the sources' scopes are nested (finding 5), so **
 | Word | Method sense | Domain sense | Elsewhere |
 |---|---|---|---|
 | **context** | DDD's context (G1) | the agent part in `alignment.md` ("experience & agency") | Institutional Grammar's and GSN's Context; ordinary use |
-| **model** | DDD's domain model | an AI model | "source model", "model gamma";<br>`CLAUDE.md`'s five-way table, where a "Model" is "an ontology plus claims about how things behave" (narrower than Evans's) |
+| **model** | DDD's domain model | an AI model | "source model", "model gamma";<br>`CLAUDE.md`'s five-way table, where a "Model" is "an ontology plus claims about how things behave" (it adds claims about behaviour, which Evans doesn't require, and drops his "use") |
 | **source** | a source document | a *risk source* (SRA, ISO) | FactBank's nested source; SP 800-30's threat source |
 | **role** | Goffman's production roles;<br>"stage is a role relative to a focal event" | actor roles, functional and institutional (section 3.9) | model alpha's role codes |
 | **scope** | address theory: where a binding holds | a source's declared coverage (what it is about) | |

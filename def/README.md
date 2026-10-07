@@ -9,6 +9,7 @@ Each term's name carries its namespace, as in `ddd:bounded-context`, and referen
 | Namespace | Files | What it holds |
 |---|---|---|
 | `ddd:` | `def-ddd-*.ud` | Eric Evans's domain-driven design terms: the strategy vocabulary for treating each source as its own bounded context |
+| `addr:` | none here | Joseph's address theory (reference, binding, scope, resolution, …), imported by reference and not defined in this repository. Cited at commit `90f4fb6` of `v2-io/udon`, `v2/references/def/` (plan §3.2). The prefix is provisional |
 
 ## What an entry's blocks mean
 
