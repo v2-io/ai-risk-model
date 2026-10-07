@@ -172,21 +172,21 @@ DDD's bounded context is flat; the sources' scopes are nested (finding 5), so **
 
 | Our word | What it already means elsewhere | Proposed handling |
 |---|---|---|
-| **context map** | Evans: the map *across* all contexts and their relationships | Use Evans's sense for the across-sources map: the catalog plus lineage. Call the per-source document a **translation** (the inside of an anticorruption layer). *Joseph's call.* |
-| **designator** | ISO 1087 lists it as an admitted term for *designation*, a sign for a concept; `def-match.ud` uses it for a reference that reaches its referent through a binding | Keep address theory's sense; record the ISO sense as a collision in the entry |
-| **primary** (source) | W3C PROV: a historian's primary source; the repo's `channel: primary` means "read by us in the source itself, not via a relay" | Rename the channel value; PAV's *retrieved / imported / derived / accessed* ladder fits it (section 3.5) |
+| **context map** | Evans: the map *across* all contexts and their relationships | Use Evans's sense for the across-sources map: the catalog plus lineage.<br>Call the per-source document a **translation** (the inside of an anticorruption layer).<br>*Joseph's call.* |
+| **designator** | ISO 1087 lists it as an admitted term for *designation*, a sign for a concept;<br>`def-match.ud` uses it for a reference that reaches its referent through a binding | Keep address theory's sense; record the ISO sense as a collision in the entry |
+| **primary** (source) | W3C PROV: a historian's primary source;<br>the repo's `channel: primary` means "read by us in the source itself, not via a relay" | Rename the channel value;<br>PAV's *retrieved / imported / derived / accessed* ladder fits it (section 3.5) |
 | **broad / narrow** | SKOS: `<A> skos:broadMatch <B>` means *B* is broader | See section 3.4: model beta's mapping files use the opposite direction |
 | **qualifier** | Toulmin: the force of one inference ("presumably") | Use Toulmin's narrow sense, or a different word for draft 2's bundle |
-| **norm**, **commitment**, **assertion**, **argument**, **declaration**, **exemption**, **rebuttal** | each has several established senses (section 3.6) | each lexicon entry names the sense it takes and lists the others under "not to be confused with" |
+| **norm**,<br>**commitment**,<br>**assertion**,<br>**argument**,<br>**declaration**,<br>**exemption**,<br>**rebuttal** | each has several established senses (section 3.6) | each lexicon entry names the sense it takes and lists the others under "not to be confused with" |
 
 **Namespaces.** Our method words also collide with our own domain words, inside the one lexicon:
 
 | Word | Method sense | Domain sense | Elsewhere |
 |---|---|---|---|
 | **context** | DDD's context (G1) | the agent part in `alignment.md` ("experience & agency") | Institutional Grammar's and GSN's Context; ordinary use |
-| **model** | DDD's domain model | an AI model | "source model", "model gamma"; `CLAUDE.md`'s five-way table, where a "Model" is "an ontology plus claims about how things behave" (narrower than Evans's) |
+| **model** | DDD's domain model | an AI model | "source model", "model gamma";<br>`CLAUDE.md`'s five-way table, where a "Model" is "an ontology plus claims about how things behave" (narrower than Evans's) |
 | **source** | a source document | a *risk source* (SRA, ISO) | FactBank's nested source; SP 800-30's threat source |
-| **role** | Goffman's production roles; "stage is a role relative to a focal event" | actor roles, functional and institutional (section 3.9) | model alpha's role codes |
+| **role** | Goffman's production roles;<br>"stage is a role relative to a focal event" | actor roles, functional and institutional (section 3.9) | model alpha's role codes |
 | **scope** | address theory: where a binding holds | a source's declared coverage (what it is about) | |
 | **agent** | the agent that made a record (PROV, SSSOM) | an AI agent | |
 
@@ -472,10 +472,10 @@ How the corpus's senses sit in that frame (the research report's reading; the SB
 
 | Source | Its "risk", in the literature's terms |
 |---|---|
-| SB 53 "catastrophic risk" | a possibility (SRA definition 1), qualified by a knowledge standard, a materiality bar, a causal-contribution standard and a single-incident severity bar; no probability or expectation involved |
+| SB 53 "catastrophic risk" | a possibility (SRA definition 1), qualified by<br>a knowledge standard,<br>a materiality bar,<br>a causal-contribution standard<br>and a single-incident severity bar;<br>no probability or expectation involved |
 | EU AI Act, IASR | ISO/IEC Guide 51's form (probability and severity of harm); never computed |
 | NIST AI RMF | a probability-and-magnitude core with ISO 31000's positive-or-negative note attached |
-| Anthropic, August Risk Report | an expectation ("the expected total unmitigated harm induced by misaligned computations"); Kaplan & Garrick would call this the mean of the risk curve, not the risk |
+| Anthropic, August Risk Report | an expectation ("the expected total unmitigated harm induced by misaligned computations");<br>Kaplan & Garrick would call this the mean of the risk curve, not the risk |
 | UK NRR | one representative triplet (a reasonable worst case, with banded likelihood and impact) plus a separate confidence rating |
 | MIT | definition = SRA definition 1; unit = a risk description |
 | AISI *Loss of Oversight* "severity" | STAMP's risk: damage to an oversight structure |
@@ -580,8 +580,8 @@ Two **owed-alignment referents** have no channel in: affected third parties; and
 
 | Basis of division | Examples | What a role is |
 |---|---|---|
-| **The AI product's lifecycle or market** | AI Act Art. 3(3): a *provider* "develops … and places it on the market or puts the AI system into service under its own name"; Art. 3(4): a *deployer* is "using an AI system under its authority"; plus authorised representative, importer, distributor and downstream provider, with *operator* as their umbrella (Art. 3(8)). SB 53 §22757.11(h): a *frontier developer* "has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use" the compute threshold. NIST AI RMF: "AI actors" (the OECD's term) defined by *tasks* (design, development, deployment, operation and monitoring, TEVV, …). IASR: "AI developer" = "Any organisation that designs, builds, or adapts AI models or systems". | a position relative to the artifact: who makes it, sells it, runs it |
-| **What writes into a deployed agent** | `alignment.md`: model trainer → weights; inference provider → weights, ephemeral, context; harness provider → system prompt, tools, context, initial goal; tool provider → tools; user → context and goals; content providers → context; the agent itself → ephemeral, context, current goal | a position relative to the agent: what it writes into, through what channel |
+| **The AI product's lifecycle or market** | AI Act Art. 3(3): a *provider* "develops … and places it on the market or puts the AI system into service under its own name";<br>Art. 3(4): a *deployer* is "using an AI system under its authority";<br>plus authorised representative, importer, distributor and downstream provider, with *operator* as their umbrella (Art. 3(8)).<br><br>SB 53 §22757.11(h): a *frontier developer* "has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use" the compute threshold.<br><br>NIST AI RMF: "AI actors" (the OECD's term) defined by *tasks* (design, development, deployment, operation and monitoring, TEVV, …).<br><br>IASR: "AI developer" = "Any organisation that designs, builds, or adapts AI models or systems". | a position relative to the artifact:<br>who makes it, sells it, runs it |
+| **What writes into a deployed agent** | `alignment.md`:<br>model trainer → weights;<br>inference provider → weights, ephemeral, context;<br>harness provider → system prompt, tools, context, initial goal;<br>tool provider → tools;<br>user → context and goals;<br>content providers → context;<br>the agent itself → ephemeral, context, current goal | a position relative to the agent:<br>what it writes into, through what channel |
 
 One organization holds roles on both bases, often several at once, and none of the four sources checked (AI Act, SB 53, NIST, IASR) has the second basis. AISI's *Loss of Oversight* comes closest: its supply-chain list ("original model developer, scaffolding developer or fine-tuner, API deployer, end user") has members that sit near writer roles. That is why "developer" means so many different things. In the corpus it is, at once:
 - a model trainer;
@@ -830,7 +830,7 @@ Each item has my recommendation and how confident I am in it.
     > | # | Question (short form) | Axes |
     > |---|---|---|
     > | 4 | which actors write into which agent part, and which source role words resolve to each | A, H |
-    > | 20 | for a given event, how sources file it (misuse, misalignment, robustness, security), where the cause entered (weights or context), and which writer carried it (added from the alignment spike) | A, C, H |
+    > | 20 | for a given event, how sources file it (misuse, misalignment, robustness, security),<br>where the cause entered (weights or context),<br>and which writer carried it (added from the alignment spike) | A, C, H |
     > | 1 | which sources would call a 60-death incident catastrophic, severe or systemic, through how many independent lineages | D, L |
     > | 3 | for loss of control, which preventive controls, and which are duties with no holder of the correlative claim | B, G |
     > | 2 | for one focal event, who treats it as an event, who as a cause, who as having happened | A, C, I |
