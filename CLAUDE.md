@@ -31,21 +31,25 @@ So the project keeps five things apart:
 
 The plan is:
 1. build our lexicon;
-2. for each source, write a *context map*: a mapping of its terminology into ours, with a rationale for what is *probably* meant. Where it is genuinely unclear, the mapping records "ambiguous among these candidates" rather than forcing one;
+2. for each source, write a *context map* (what to call this document is open: plan §5, decision 1): a mapping of its terminology into ours, with a rationale for what is *probably* meant. Where it is genuinely unclear, the mapping records "ambiguous among these candidates" rather than forcing one;
 3. write each source's assertions in our terms, in the context of the source's own model, with its words kept verbatim beside them.
 
 Precedents in the corpus for this way of working include MIT's AI Risk Repository (a shared governance vocabulary, built by normalising 74 frameworks into two taxonomies). Its costs are a useful caution: interaction coded as "Other", a risk spanning several domains coded to one, a single coder.
 
 ## Current plan (in development)
 
-1. **Source catalog.** `source-catalog.md` is the canonical list of the model's main sources, with a declared *Influence* grouping.
-2. **Distinctions inventory.** Every basis of division and category boundary the corpus draws, so our lexicon can express each. Examples: MIT's entity / intent / timing; the EU Code's capability / propensity / affordance; the UK National Risk Register's hazard / threat; Zwetsloot's accident / misuse / structure.
-3. **Lexicon.** Tighten the term groups against that inventory and against the cross-model term collisions in `influx/source-models/OVERVIEW.md`.
-4. **Context maps,** one per main source.
-5. **Assertions** in our terms, anchored to passages.
-6. **Views,** computed rather than maintained: a causal loop diagram, bow-ties around a chosen event, crosswalks, corroboration counts that respect lineage, and coverage by each source's declared scope.
+The third iteration ("model gamma") is proposed in `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md`. Apart from the decisions marked as Joseph's, nothing in it is ratified yet; its open decisions are in §5. The phases, in short:
 
-The schema for steps 4–6 is a proposal, not yet ratified: `influx/model-beta/SCHEMA-SYNTHESIS.md` (draft 2). The risk side is organised around Joseph's causal chain:
+- **G1. `def/`**: the method terms, the record formats, and the competency questions. The `ddd:` terms have a first draft (2026-10-07).
+- **G1b. An early thin pass**: one source and one competency question carried end to end in rough form, to show which terms and record fields bear weight. Decided by Joseph, 2026-10-07.
+- **G2. Actors and agent parts**, from `alignment-model/` and the alignment-referents spike.
+- **G3. Risk-side core concepts.**
+- **G4. Pilot translations** of four sources (SB 53, the EU Code of Practice, Anthropic's August 2026 Risk Report, IASR 2026), each by two translators.
+- **G5–G8.** The distinctions inventory, the remaining translations, assertions and views, then widening.
+
+`source-catalog.md` is the canonical list of main sources, with a declared *Influence* grouping. Model beta (`influx/model-beta/`, including its schema proposal `SCHEMA-SYNTHESIS.md`) is input for ideation only.
+
+The risk side is organised around Joseph's causal chain:
 
 ```
 (sources & causes tree) → (preventions & controls) →
@@ -60,11 +64,11 @@ Stage in that chain is read as a role relative to a focal event, not as a fixed 
 - "Developer": dissolve into roles conferred by instruments (model trainer, inference provider, harness provider, …) plus an organisation term. This is the direction under discussion, not decided.
 - Hazard vs threat: open; the senses in play are laid out in `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` §3.8.
 - Misalignment: whether alignment words get a default referent. The alignment-referents spike recommends none: a relation with named slots, and a declared set of admissible referents. Still open: whether the agent itself is in that set.
-
-Claude's leans on these, with reasoning, are in `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` §5, alongside the plan's other open decisions.
 - The impact radius as target (a group of people, or a system or shared good) × degree × recoverability.
 - Whether STPA's vocabulary is adopted for the chain or kept as one mapped source among several.
-- Format: udon for the lexicon is decided; the rest stays YAML until a udon parser exists.
+- Format: udon for the lexicon is decided; the rest stays YAML until a udon parser exists. A Rust parser now exists, but it has no Ruby or Python bindings yet (plan §5, decision 9).
+
+Claude's leans on these, with reasoning, are in `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` §5, alongside the plan's other open decisions.
 
 ## Layout
 

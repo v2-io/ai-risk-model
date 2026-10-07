@@ -29,7 +29,7 @@
 - **Competency questions**, written up front, are the model's requirements and its final test. Lexicon acceptance tests sit under them (section 3.11).
 - **Refinement is budgeted.** Lexicon entries get repeated truthification passes before anything downstream relies on them (section 2).
 - **Translation is treated as coding**, with two independent translators per pilot source (section 4, G4).
-- **A plan in eight phases** says who does what, who reads it, and how each phase is known to be done (section 4).
+- **A plan in eight phases, plus an early thin pass end to end**, says who does what, who reads it, and how each phase is known to be done (section 4).
 
 **Decisions for Joseph** are collected in section 5, each with a recommendation and its confidence.
 
@@ -665,7 +665,7 @@ Lineage is not a lexicon test. That the EU Code's loss-of-control formula reappe
 
 ## 4. The plan
 
-Eight phases. G1–G4 are the third iteration's core; the rest follow from them. Phases that don't depend on each other can run in parallel. Throughout, lexicon entries get repeated truthification passes (section 2): a phase's "done" means its entries have been through those passes, not merely drafted.
+Eight phases, plus an early thin pass (G1b). G1–G4 are the third iteration's core; the rest follow from them. Phases that don't depend on each other can run in parallel. Throughout, lexicon entries get repeated truthification passes (section 2): a phase's "done" means its entries have been through those passes, not merely drafted.
 
 **G0. Housekeeping. Done 2026-10-06 (`b6ed3c7`).**
 - 130 stale paths repointed to `ref/`.
@@ -690,9 +690,19 @@ Contents:
 - **(e) The record formats**: a translation row, a resolution record (section 3.4), an assertion record, and an *instance record* for documented occurrences (incidents, near misses, evaluation events). The instance record is thin: what happened, when, anchored to its passages. Who acted, with what intent and outcome, and whether two accounts describe the same instance are attributed assertions *about* it, and each account is a record of its own. Without an owner, the pilots would invent these formats in passing and they would harden by default.
 - **(f) A first list of competency questions** (section 3.11), for Joseph to write or approve.
 
-Status: (a)–(c) and (f) go to Joseph for ratification. (d) and (e) are marked *supported*: agents may work with them, and Joseph ratifies them in batches once G4 has shown which terms and fields actually bore weight.
+Status: (a)–(c) and (f) go to Joseph for ratification. (d) and (e) are marked *supported*: agents may work with them, and Joseph ratifies them in batches once G1b and G4 have shown which terms and fields actually bore weight.
 
 Who reads it: Joseph, to decide senses and names; then the agents writing translations.
+
+**G1b. An early thin pass, end to end.** *Decided by Joseph, 2026-10-07:* "I agree with your earlier assessment that we run a thin end-to-end pass early on."
+
+Take one source and one competency question all the way through, in rough form: translation, resolution records, assertion records, and the answer the question asks for. Suggested: SB 53, the cleanest pilot, with question 4 (actors × agent parts) or question 20 (how sources file an event). It runs after G1's draft and before G2 and G3.
+
+Why early: each lexicon entry costs repeated line-by-line passes before it carries weight (section 2), so which entries get that budget matters more than how fast entries are drafted. A real question carried through shows which terms it leans on, and where the record formats break, while both are still cheap to change. The plan already holds G1(d)–(e) at *supported* until real use shows what bore weight. This applies the same logic to the domain terms.
+
+Guard against hardening: everything the pass produces is labelled disposable and kept outside `def/` (for example under `influx/thin-pass/`). Formats and terms are adopted from it only by a later, deliberate decision.
+
+Done when the question has an answer that can be checked against its passages, and there is a list of the terms and record fields the answer depended on, with the defects found. Who reads it: Joseph, to decide where refinement passes go first; then G2 and G3.
 
 **G2. Actors and agent parts.** The groups in section 3.9, drafted from `alignment.md`, informed by the alignment-referents spike, and translated against the sources named there. This can run alongside G1(d)–(e). Done when the section 3.9 done-test passes.
 
@@ -705,7 +715,7 @@ Who reads it: Joseph, to decide senses and names; then the agents writing transl
 
 Joseph then decides the names (section 5). Done when acceptance tests 1, 2 and 5 pass for the risk-side terms.
 
-**G4. Pilots: translation as coding, and one thin pass end to end.**
+**G4. Pilots: translation as coding, and one pass end to end.**
 
 *Four pilot sources*, chosen to be as different as possible:
 - **SB 53**: a statute, stricter than us;
@@ -719,18 +729,11 @@ Joseph then decides the names (section 5). Done when acceptance tests 1, 2 and 5
 - the per-term disagreement rate is the measure of where the lexicon is underspecified, which is the feedback G4 exists to produce;
 - the guidelines the translators converge on become the codebook that G6 inherits.
 
-*One thin pass end to end.* Before widening, take one pilot source and one competency question all the way through: translation, resolution records, assertion records, and the answer the question asks for. This is where defects in the record formats show up cheaply.
-
-> [!NOTE]
-> **Claude's lean, 2026-10-07: run the thin pass *before* G2 and G3, not inside G4. *Confidence: moderate.***
->
-> Section 2 says each lexicon entry costs repeated line-by-line passes before it carries weight. So which entries receive that budget matters more than how fast they are drafted. A rough pass early would show which terms a real question actually leans on. I'd use SB 53, the cleanest pilot, with question 4 or the filing question (decision 12), carried through rough record formats. The plan already treats G1(d)–(e) this way: *supported* until G4 shows what bore weight. This extends the same logic to the domain terms.
->
-> The risk is that the throwaway formats harden. The guard is to label everything in the early pass as disposable, and to keep it outside `def/`.
+*End to end again, at full strength.* The early thin pass (G1b) runs before G2. Here, one pilot source and one competency question go all the way through again, with the refined lexicon, the agreed record formats and two translators. This is where defects that survived G1b show up.
 
 Then carry **loss of control** through all eleven models in OVERVIEW: the most collided term, so the hardest test of the method. Findings feed back into G1–G3 before any wider translation (Evans's "refactoring toward deeper insight").
 
-Done when the pilot translations exist with their disagreement data, the thin pass answers its question, the slice is recorded, and the lexicon changes they forced have been made.
+Done when the pilot translations exist with their disagreement data, the end-to-end pass answers its question, the slice is recorded, and the lexicon changes they forced have been made.
 
 **G5. Distinctions inventory** (an agent, in parallel with G2–G4). Every basis of division and category boundary the corpus draws, so the lexicon can express each (acceptance test 5). Examples:
 - MIT's entity / intent / timing;
@@ -847,7 +850,7 @@ Each item has my recommendation and how confident I am in it.
 
   > [!NOTE]
   > **Claude's lean, 2026-10-07: commission that review now, before G4. *Confidence: high.*** Every piece so far comes from one model family: this plan, the research reports, the alignment-referents spike with its two research agents, and both de novo passes. G4's two-translator coding assumes translators from different families. One review of this plan and the spike's debrief by Codex or Gemini would test that assumption cheaply first. It costs one brief.
-- **Lexicon first can still harden too early.** The guard is G4: the pilot translations are expected to change the lexicon, and the plan sequences them before any wide translation.
+- **Lexicon first can still harden too early.** The guards are the early thin pass (G1b), which shows which terms bear weight before most are refined, and G4: the pilot translations are expected to change the lexicon, and the plan sequences them before any wide translation.
 - **First-pass entries can look finished.** Fluently drafted definitions read as settled and get inherited as if they were (model beta's term files are the example). The guards are the refinement passes (section 2), the *supported* status for entries that haven't had them, and the coding disagreement data from G4.
 - **Over-weighting the strict sources.** The round-trip test favours statutes and rigorous company documents. The loose sources (most of the research literature, IASR in places) test something else: whether declared ambiguity stays honest rather than becoming a dumping ground. The MIT "Other" test is the guard there.
 - **Conflict of interest.** Anthropic's August Risk Report is one of the four pilots and the main example of a source with its own defined vocabulary in this document. That is a judgment about its definitions, made by an Anthropic model. The EU Code is now a pilot alongside it, and two-translator coding (G4) from different model families is the structural check.
