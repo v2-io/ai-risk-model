@@ -84,7 +84,7 @@ All first-pass, with evidence in `04-actors.md`.
   - *scaffolding developer* (AISI);
   - *operator* (Anthropic);
   - *developer* (OpenAI's Model Spec);
-  - *system deployer* (Shavit et al.).
+  - *system deployer* (Shavit et al.), which also covers running the model, so it spans your inference provider too.
 
   "Operator" has at least four senses across the sources.
 - **Model trainer** → AISI's *original model developer*. SB 53's *frontier developer* is defined by a training act.
