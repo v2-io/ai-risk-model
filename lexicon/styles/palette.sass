@@ -1,0 +1,159 @@
+// ==========================================================================
+// Lexicon — palette (indented Sass)
+// All colour lives here; layout and type are in style.sass.
+//
+// Paper, ink and the ten families are alignment-model's (styles/palette.sass
+// there has how they were fitted), so the two pages read as one project.
+// A namespace takes a family in config.yml (`family: teal`); the family class
+// sets the variables a namespace's headings, ids and definition rules read:
+//     --accent   ink for ids and the namespace prefix
+//     --edge     the definition's rule and links
+//     --c        a pale fill;  --bd  a border
+// Dark mode re-derives those from each family's --edge with color-mix().
+// ==========================================================================
+
+$families: "stone", "rose", "clay", "sand", "sage", "jade", "teal", "slate", "iris", "mauve"
+
+:root
+  color-scheme: light
+  --paper: #F5F3EC
+  --paper-2: #EFECE3
+  // cards: a step lifted off the paper, with a hairline and a soft shadow
+  --card: #FBFAF6
+  --card-bd: #E2DDD1
+  --shadow: 0 1px 2px rgb(40 34 20 / 0.05), 0 10px 30px -12px rgb(40 34 20 / 0.14)
+  --ink: #17191E
+  --ink-2: #33363D
+  --muted: #5A5D64
+  --rule: #DDD8CC
+  --rule-strong: #17191E
+  --rule-dashed: #CFC9BB
+  --link: #1D3557
+  --mark: #F3E7C4
+  // callouts: a declared ambiguity, an unadopted widening
+  --callout-bg: #EFEBDF
+  --callout-edge: #796C2B
+  --callout-ink: #5B4F16
+
+  --stone: #EAE8E1
+  --stone-bd: #BFBBB3
+  --stone-edge: #6F6C62
+  --stone-ink: #525046
+  --rose: #F3E9E4
+  --rose-bd: #DAB9BA
+  --rose-edge: #99545A
+  --rose-ink: #763B40
+  --clay: #F2EAE0
+  --clay-bd: #D4B9A8
+  --clay-edge: #925D35
+  --clay-ink: #704221
+  --sand: #EFEBDF
+  --sand-bd: #C7BFA1
+  --sand-edge: #796C2B
+  --sand-ink: #5B4F16
+  --sage: #EBEDE2
+  --sage-bd: #B6C4AC
+  --sage-edge: #507844
+  --sage-ink: #375A2D
+  --jade: #E9EDE6
+  --jade-bd: #B0C7BE
+  --jade-edge: #2D7C69
+  --jade-ink: #0F5D4D
+  --teal: #EBEDEA
+  --teal-bd: #B5C7CD
+  --teal-edge: #377787
+  --teal-ink: #1B5A68
+  --slate: #EFEEEE
+  --slate-bd: #C0C6D6
+  --slate-edge: #586E97
+  --slate-ink: #3E5176
+  --iris: #F3EEEF
+  --iris-bd: #CDC3D7
+  --iris-edge: #776196
+  --iris-ink: #5A4675
+  --mauve: #F3EBEA
+  --mauve-bd: #D5BCCB
+  --mauve-edge: #8E5780
+  --mauve-ink: #6D3D62
+
+  // what a page without a namespace family falls back to
+  --c: var(--stone)
+  --bd: var(--stone-bd)
+  --edge: var(--stone-edge)
+  --accent: var(--stone-ink)
+
+// the dark set, used by the OS setting unless the toggle chose light, and by the toggle
+=dark
+  color-scheme: dark
+  --paper: #14161A
+  --paper-2: #1B1E23
+  --card: #1A1D22
+  --card-bd: #2B2F36
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -14px rgb(0 0 0 / 0.6)
+  --ink: #E7E4DB
+  --ink-2: #CFCCC3
+  --muted: #9C9A93
+  --rule: #2D3036
+  --rule-strong: #E7E4DB
+  --rule-dashed: #3A3D44
+  --link: #A9C1E6
+  --mark: #4A4120
+  --callout-bg: #22211B
+  --callout-edge: #A89A55
+  --callout-ink: #CDBF7C
+
+@media (prefers-color-scheme: dark)
+  :root:not([data-theme="light"])
+    +dark
+:root[data-theme="dark"]
+  +dark
+
+// one class per family
+@each $f in $families
+  .#{$f}
+    --c: var(--#{$f})
+    --bd: var(--#{$f}-bd)
+    --edge: var(--#{$f}-edge)
+    --accent: var(--#{$f}-ink)
+
+=dark-families
+  @each $f in $families
+    .#{$f}
+      --c: color-mix(in oklab, var(--#{$f}-edge) 16%, var(--paper))
+      --bd: color-mix(in oklab, var(--#{$f}-edge) 45%, var(--paper))
+      --edge: color-mix(in oklab, var(--#{$f}-edge) 70%, white)
+      --accent: color-mix(in oklab, var(--#{$f}-edge) 55%, white)
+
+@media (prefers-color-scheme: dark)
+  :root:not([data-theme="light"])
+    +dark-families
+:root[data-theme="dark"]
+  +dark-families
+
+// source kinds and statuses take a family each
+.source-kind.verbatim
+  --k: var(--jade-ink)
+  --k-bg: var(--jade)
+.source-kind.modified
+  --k: var(--clay-ink)
+  --k-bg: var(--clay)
+.source-kind.cited
+  --k: var(--stone-ink)
+  --k-bg: var(--stone)
+.status
+  --k: var(--sand-ink)
+  --k-bg: var(--sand)
+.status.ratified, .status.steward
+  --k: var(--sage-ink)
+  --k-bg: var(--sage)
+
+=dark-chips
+  .source-kind, .status
+    --k: var(--ink-2)
+    --k-bg: var(--paper-2)
+
+@media (prefers-color-scheme: dark)
+  :root:not([data-theme="light"])
+    +dark-chips
+:root[data-theme="dark"]
+  +dark-chips

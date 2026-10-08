@@ -1,0 +1,24 @@
+/ The whole page. `book` is the parsed lexicon (build.rb: Lexicon::Book) and `config`
+/ is config.yml. md() renders block markdown with @{refs} linked, mdi() one line of it;
+/ partial() renders another template; styles / script are inlined (or linked with --link).
+/
+/ One view at a time: the home view (title and index) unless the URL's #fragment names
+/ a term group or a term, whose group is then shown with that term's card in view
+/ (CSS :target and :has; see style.sass). Printing shows every view.
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title = config["title"]
+    link rel="preconnect" href="https://fonts.googleapis.com"
+    link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    == styles
+  body
+    .shell
+      == partial("nav")
+      main.page
+        == partial("home")
+        - book.groups.each do |g|
+          == partial("group", g: g, family: book.namespace(g.ns)["family"])
+    == script

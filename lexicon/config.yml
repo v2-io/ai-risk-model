@@ -1,0 +1,67 @@
+# What the lexicon page shows, and how. build.rb reads this on every build.
+
+title: Risk Model Lexicon
+kicker: ai-risk-model · def/
+lede: >-
+  This project's words and exactly what each means, built from the udon term
+  groups in def/. Every entry is proposed until Joseph's refinement passes;
+  a term's source line says whether its definition is the source's own words or ours.
+
+# Term files, relative to this directory. Every match is included.
+files:
+  - ../def/*.ud
+
+# Reading order, by file basename. Files not listed follow alphabetically.
+order:
+  - def-ddd-domain-model
+  - def-ddd-bounded-context
+  - def-ddd-context-map
+  - def-ddd-relationships
+  - def-ddd-anticorruption-layer
+  - def-ddd-big-ball-of-mud
+
+# One entry per namespace prefix. `title` shows when hovering the prefix in the
+# sidebar; `family` is a colour family from styles/palette.sass
+# (stone rose clay sand sage jade teal slate iris mauve).
+namespaces:
+  ddd:
+    title: Domain-driven design (Evans 2015)
+    family: teal
+
+# Headwords, where the id's local part with hyphens as spaces is not the name.
+# A term can also carry its own: `:headword "open-host service"` in its udon.
+headwords:
+  ddd:upstream-downstream: upstream-downstream
+  ddd:customer-supplier: customer/supplier
+  ddd:open-host-service: open-host service
+
+# Namespaces defined outside this repository and imported by reference (def/README.md).
+# Their @{refs} link to `href` and are not reported as unresolved.
+external:
+  addr:
+    title: address theory
+    note: imported by reference at v2-io/udon 90f4fb6
+    href: https://github.com/v2-io/udon/tree/90f4fb6/v2/references/def
+
+# Blocks inside a term or group. `kind` picks the treatment in the templates:
+#   plain    — label and body
+#   list     — label and body, set as a ruled list
+#   callout  — set apart (a declared ambiguity, an unadopted widening)
+#   table    — a wide, scrollable table
+# `collapsed: true` folds the block shut; `order` sorts blocks (lower first;
+# blocks without one keep the file's order after those with one).
+# A block not listed here renders as `plain` under a label made from its name.
+blocks:
+  invariants:        { label: Invariants,          kind: list,    order: 10 }
+  conditions:        { label: Conditions,          kind: list,    order: 20 }
+  practices:         { label: Practices,           kind: list,    order: 30 }
+  collisions:        { label: "Not to be confused with", kind: list, order: 40 }
+  ambiguity:         { label: Declared ambiguity,  kind: callout, order: 45 }
+  proposed-widening: { label: "Proposed widening, not adopted", kind: callout, order: 46 }
+  discussion:        { label: Discussion,          kind: list,    order: 60 }
+  examples:          { label: Examples,            kind: table,   order: 70 }
+  lexical-map:       { label: Lexical map,         kind: table,   order: 75, collapsed: true }
+  working-notes:     { label: Working notes,       kind: list,    order: 90, collapsed: true }
+
+# Attributes shown in a term's header line; any others are listed under it.
+term_attrs: [source, synonyms, avoid, status, headword]

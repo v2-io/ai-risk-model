@@ -1,0 +1,11 @@
+/ One block (|invariants, |discussion, …) inside a term or a group. Its treatment
+/ comes from config.yml's `blocks`; whole-line ; comments become notes above the body.
+- kind = block_kind(b.name)
+- if collapsed?(b.name)
+  details.block class=[kind, b.name, scope]
+    summary.label = label(b.name)
+    == partial("block_body", b: b, group: group)
+- else
+  .block class=[kind, b.name, scope]
+    .label = label(b.name)
+    == partial("block_body", b: b, group: group)

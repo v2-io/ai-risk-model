@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "kramdown"              # the markdown inside udon blocks
+gem "kramdown-parser-gfm"   # tables and GitHub-style lists
+gem "rake"
+gem "sass-embedded"         # Dart Sass (bundled binary) for styles/*.sass
+gem "slim"                  # templates/*.slim

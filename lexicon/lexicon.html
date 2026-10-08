@@ -1,0 +1,1499 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta content="width=device-width, initial-scale=1" name="viewport" /><title>Risk Model Lexicon</title><link href="https://fonts.googleapis.com" rel="preconnect" /><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet" /><style>
+:root {
+  color-scheme: light;
+  --paper: #F5F3EC;
+  --paper-2: #EFECE3;
+  --card: #FBFAF6;
+  --card-bd: #E2DDD1;
+  --shadow: 0 1px 2px rgb(40 34 20 / 0.05), 0 10px 30px -12px rgb(40 34 20 / 0.14);
+  --ink: #17191E;
+  --ink-2: #33363D;
+  --muted: #5A5D64;
+  --rule: #DDD8CC;
+  --rule-strong: #17191E;
+  --rule-dashed: #CFC9BB;
+  --link: #1D3557;
+  --mark: #F3E7C4;
+  --callout-bg: #EFEBDF;
+  --callout-edge: #796C2B;
+  --callout-ink: #5B4F16;
+  --stone: #EAE8E1;
+  --stone-bd: #BFBBB3;
+  --stone-edge: #6F6C62;
+  --stone-ink: #525046;
+  --rose: #F3E9E4;
+  --rose-bd: #DAB9BA;
+  --rose-edge: #99545A;
+  --rose-ink: #763B40;
+  --clay: #F2EAE0;
+  --clay-bd: #D4B9A8;
+  --clay-edge: #925D35;
+  --clay-ink: #704221;
+  --sand: #EFEBDF;
+  --sand-bd: #C7BFA1;
+  --sand-edge: #796C2B;
+  --sand-ink: #5B4F16;
+  --sage: #EBEDE2;
+  --sage-bd: #B6C4AC;
+  --sage-edge: #507844;
+  --sage-ink: #375A2D;
+  --jade: #E9EDE6;
+  --jade-bd: #B0C7BE;
+  --jade-edge: #2D7C69;
+  --jade-ink: #0F5D4D;
+  --teal: #EBEDEA;
+  --teal-bd: #B5C7CD;
+  --teal-edge: #377787;
+  --teal-ink: #1B5A68;
+  --slate: #EFEEEE;
+  --slate-bd: #C0C6D6;
+  --slate-edge: #586E97;
+  --slate-ink: #3E5176;
+  --iris: #F3EEEF;
+  --iris-bd: #CDC3D7;
+  --iris-edge: #776196;
+  --iris-ink: #5A4675;
+  --mauve: #F3EBEA;
+  --mauve-bd: #D5BCCB;
+  --mauve-edge: #8E5780;
+  --mauve-ink: #6D3D62;
+  --c: var(--stone);
+  --bd: var(--stone-bd);
+  --edge: var(--stone-edge);
+  --accent: var(--stone-ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) {
+    color-scheme: dark;
+    --paper: #14161A;
+    --paper-2: #1B1E23;
+    --card: #1A1D22;
+    --card-bd: #2B2F36;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -14px rgb(0 0 0 / 0.6);
+    --ink: #E7E4DB;
+    --ink-2: #CFCCC3;
+    --muted: #9C9A93;
+    --rule: #2D3036;
+    --rule-strong: #E7E4DB;
+    --rule-dashed: #3A3D44;
+    --link: #A9C1E6;
+    --mark: #4A4120;
+    --callout-bg: #22211B;
+    --callout-edge: #A89A55;
+    --callout-ink: #CDBF7C;
+  }
+}
+:root[data-theme=dark] {
+  color-scheme: dark;
+  --paper: #14161A;
+  --paper-2: #1B1E23;
+  --card: #1A1D22;
+  --card-bd: #2B2F36;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -14px rgb(0 0 0 / 0.6);
+  --ink: #E7E4DB;
+  --ink-2: #CFCCC3;
+  --muted: #9C9A93;
+  --rule: #2D3036;
+  --rule-strong: #E7E4DB;
+  --rule-dashed: #3A3D44;
+  --link: #A9C1E6;
+  --mark: #4A4120;
+  --callout-bg: #22211B;
+  --callout-edge: #A89A55;
+  --callout-ink: #CDBF7C;
+}
+
+.stone {
+  --c: var(--stone);
+  --bd: var(--stone-bd);
+  --edge: var(--stone-edge);
+  --accent: var(--stone-ink);
+}
+
+.rose {
+  --c: var(--rose);
+  --bd: var(--rose-bd);
+  --edge: var(--rose-edge);
+  --accent: var(--rose-ink);
+}
+
+.clay {
+  --c: var(--clay);
+  --bd: var(--clay-bd);
+  --edge: var(--clay-edge);
+  --accent: var(--clay-ink);
+}
+
+.sand {
+  --c: var(--sand);
+  --bd: var(--sand-bd);
+  --edge: var(--sand-edge);
+  --accent: var(--sand-ink);
+}
+
+.sage {
+  --c: var(--sage);
+  --bd: var(--sage-bd);
+  --edge: var(--sage-edge);
+  --accent: var(--sage-ink);
+}
+
+.jade {
+  --c: var(--jade);
+  --bd: var(--jade-bd);
+  --edge: var(--jade-edge);
+  --accent: var(--jade-ink);
+}
+
+.teal {
+  --c: var(--teal);
+  --bd: var(--teal-bd);
+  --edge: var(--teal-edge);
+  --accent: var(--teal-ink);
+}
+
+.slate {
+  --c: var(--slate);
+  --bd: var(--slate-bd);
+  --edge: var(--slate-edge);
+  --accent: var(--slate-ink);
+}
+
+.iris {
+  --c: var(--iris);
+  --bd: var(--iris-bd);
+  --edge: var(--iris-edge);
+  --accent: var(--iris-ink);
+}
+
+.mauve {
+  --c: var(--mauve);
+  --bd: var(--mauve-bd);
+  --edge: var(--mauve-edge);
+  --accent: var(--mauve-ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) .stone {
+    --c: color-mix(in oklab, var(--stone-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--stone-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--stone-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--stone-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .rose {
+    --c: color-mix(in oklab, var(--rose-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--rose-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--rose-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--rose-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .clay {
+    --c: color-mix(in oklab, var(--clay-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--clay-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--clay-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--clay-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .sand {
+    --c: color-mix(in oklab, var(--sand-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--sand-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--sand-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--sand-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .sage {
+    --c: color-mix(in oklab, var(--sage-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--sage-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--sage-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--sage-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .jade {
+    --c: color-mix(in oklab, var(--jade-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--jade-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--jade-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--jade-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .teal {
+    --c: color-mix(in oklab, var(--teal-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--teal-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--teal-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--teal-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .slate {
+    --c: color-mix(in oklab, var(--slate-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--slate-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--slate-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--slate-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .iris {
+    --c: color-mix(in oklab, var(--iris-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--iris-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--iris-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--iris-edge) 55%, white);
+  }
+  :root:not([data-theme=light]) .mauve {
+    --c: color-mix(in oklab, var(--mauve-edge) 16%, var(--paper));
+    --bd: color-mix(in oklab, var(--mauve-edge) 45%, var(--paper));
+    --edge: color-mix(in oklab, var(--mauve-edge) 70%, white);
+    --accent: color-mix(in oklab, var(--mauve-edge) 55%, white);
+  }
+}
+:root[data-theme=dark] .stone {
+  --c: color-mix(in oklab, var(--stone-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--stone-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--stone-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--stone-edge) 55%, white);
+}
+:root[data-theme=dark] .rose {
+  --c: color-mix(in oklab, var(--rose-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--rose-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--rose-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--rose-edge) 55%, white);
+}
+:root[data-theme=dark] .clay {
+  --c: color-mix(in oklab, var(--clay-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--clay-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--clay-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--clay-edge) 55%, white);
+}
+:root[data-theme=dark] .sand {
+  --c: color-mix(in oklab, var(--sand-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--sand-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--sand-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--sand-edge) 55%, white);
+}
+:root[data-theme=dark] .sage {
+  --c: color-mix(in oklab, var(--sage-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--sage-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--sage-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--sage-edge) 55%, white);
+}
+:root[data-theme=dark] .jade {
+  --c: color-mix(in oklab, var(--jade-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--jade-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--jade-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--jade-edge) 55%, white);
+}
+:root[data-theme=dark] .teal {
+  --c: color-mix(in oklab, var(--teal-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--teal-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--teal-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--teal-edge) 55%, white);
+}
+:root[data-theme=dark] .slate {
+  --c: color-mix(in oklab, var(--slate-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--slate-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--slate-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--slate-edge) 55%, white);
+}
+:root[data-theme=dark] .iris {
+  --c: color-mix(in oklab, var(--iris-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--iris-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--iris-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--iris-edge) 55%, white);
+}
+:root[data-theme=dark] .mauve {
+  --c: color-mix(in oklab, var(--mauve-edge) 16%, var(--paper));
+  --bd: color-mix(in oklab, var(--mauve-edge) 45%, var(--paper));
+  --edge: color-mix(in oklab, var(--mauve-edge) 70%, white);
+  --accent: color-mix(in oklab, var(--mauve-edge) 55%, white);
+}
+
+.source-kind.verbatim {
+  --k: var(--jade-ink);
+  --k-bg: var(--jade);
+}
+
+.source-kind.modified {
+  --k: var(--clay-ink);
+  --k-bg: var(--clay);
+}
+
+.source-kind.cited {
+  --k: var(--stone-ink);
+  --k-bg: var(--stone);
+}
+
+.status {
+  --k: var(--sand-ink);
+  --k-bg: var(--sand);
+}
+
+.status.ratified, .status.steward {
+  --k: var(--sage-ink);
+  --k-bg: var(--sage);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) .source-kind, :root:not([data-theme=light]) .status {
+    --k: var(--ink-2);
+    --k-bg: var(--paper-2);
+  }
+}
+:root[data-theme=dark] .source-kind, :root[data-theme=dark] .status {
+  --k: var(--ink-2);
+  --k-bg: var(--paper-2);
+}
+
+@charset "UTF-8";
+:root {
+  --nav-w: 17.5rem;
+  --card-w: 46rem;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--edge);
+  outline-offset: 2px;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: var(--nav-w) minmax(0, 1fr);
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.view {
+  display: none;
+}
+
+.view:target, .view:has(:target), .view.home {
+  display: block;
+}
+
+main:has(:target) .view.home {
+  display: none;
+}
+
+.toc {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--rule);
+  font-size: 13.5px;
+}
+
+.toc-inner {
+  padding: 40px 22px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.toc-title {
+  font: 500 19px/1.2 var(--serif);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.filter input {
+  width: 100%;
+  font: 14px var(--sans);
+  color: var(--ink);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 7px 10px;
+}
+
+.toc-ns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toc-ns-name {
+  font: 500 15px var(--mono);
+  color: var(--accent);
+}
+
+.toc-group {
+  border-left: 1px solid var(--rule);
+  padding-left: 12px;
+}
+.toc-group ol {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+}
+.toc-group li {
+  padding: 1.5px 0;
+}
+.toc-group li a {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.toc-group li a:hover {
+  color: var(--edge);
+  text-decoration: underline;
+}
+.toc-group li.here a {
+  color: var(--accent);
+  font-weight: 600;
+}
+.toc-group li.hidden {
+  display: none;
+}
+.toc-group.empty {
+  display: none;
+}
+
+.toc-group-name {
+  display: block;
+  font: 11px var(--mono);
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-decoration: none;
+}
+.toc-group-name:hover, .toc-group-name.here {
+  color: var(--accent);
+}
+
+.toc-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+.toc-foot a {
+  color: var(--muted);
+}
+.toc-foot button {
+  margin-left: auto;
+  font: 12px var(--sans);
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.page {
+  min-width: 0;
+  padding: 56px 56px 72px;
+}
+
+.group-view {
+  max-width: var(--card-w);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-bd);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  padding: 26px 34px 24px;
+  scroll-margin-top: 28px;
+}
+
+.card:target {
+  border-color: var(--edge);
+  box-shadow: 0 0 0 1px var(--edge), var(--shadow);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  margin-top: 30px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.crumbs a {
+  color: var(--muted);
+  text-decoration-color: var(--rule);
+}
+.crumbs a:hover {
+  color: var(--edge);
+}
+.crumbs code {
+  font-size: 11.5px;
+}
+
+.crumb-ns {
+  font: 500 12.5px var(--mono);
+  color: var(--accent);
+}
+
+.masthead {
+  max-width: var(--card-w);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 26px;
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.kicker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  font: 12px var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0;
+  font: 500 clamp(2.4rem, 5vw, 3.5rem)/1.05 var(--serif);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.lede {
+  margin: 0;
+  font: 1.18rem/1.5 var(--serif);
+  color: var(--ink-2);
+  max-width: 40rem;
+}
+
+.tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--muted);
+}
+.tally b {
+  font: 600 15px var(--sans);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.index {
+  margin-top: 34px;
+}
+
+.letters {
+  columns: 14rem;
+  column-gap: 36px;
+}
+
+.letter {
+  break-inside: avoid;
+  margin-bottom: 20px;
+}
+.letter h3 {
+  margin: 0 0 4px;
+  font: italic 500 1.35rem var(--serif);
+  color: var(--muted);
+}
+.letter ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14.5px;
+}
+.letter li {
+  padding: 1.5px 0;
+}
+.letter .ns-tag {
+  margin-left: 6px;
+  font: 11px var(--mono);
+  color: var(--muted);
+}
+.letter .word {
+  font-style: italic;
+}
+.letter li.avoid .word {
+  text-decoration: line-through;
+  text-decoration-color: var(--rose-edge);
+}
+.letter .see {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.unresolved {
+  margin-top: 40px;
+}
+.unresolved h2 {
+  margin: 0;
+  font: 500 1.3rem var(--serif);
+}
+.unresolved p, .unresolved li {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.colophon {
+  margin-top: 56px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  font-size: 12.5px;
+  color: var(--muted);
+  max-width: var(--card-w);
+}
+
+.term-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+}
+
+.headword {
+  margin: 0;
+  font: 600 2rem/1.1 var(--serif);
+  letter-spacing: -0.012em;
+}
+
+.term-id {
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.status, .source-kind {
+  font: 600 10.5px/1 var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k);
+  background: var(--k-bg);
+  border-radius: 2px;
+  padding: 4px 6px 3px;
+}
+
+.definition {
+  margin: 12px 0 0;
+  padding: 1px 0 1px 16px;
+  border-left: 3px solid var(--edge);
+  font: 1.24rem/1.45 var(--serif);
+  color: var(--ink);
+}
+
+.facts {
+  margin: 14px 0 0;
+  display: grid;
+  gap: 4px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  gap: 12px;
+}
+.fact dt {
+  font: 600 10.5px/1.9 var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.fact dd {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+}
+.fact s {
+  text-decoration-color: var(--rose-edge);
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+.source-note, .aside {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.label {
+  font: 600 10.5px/1.4 var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rels {
+  margin-top: 14px;
+}
+.rels table {
+  margin-top: 6px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.rels th {
+  text-align: left;
+  font: 500 12.5px var(--mono);
+  color: var(--accent);
+  padding: 3px 14px 3px 0;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.rels td {
+  padding: 3px 14px 3px 0;
+  vertical-align: baseline;
+}
+.rels .targets a {
+  white-space: nowrap;
+}
+.rels .cardinality {
+  font: 12px var(--mono);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.rels .aside {
+  font-size: 12.5px;
+}
+
+.ref {
+  color: var(--edge);
+  text-decoration-color: var(--bd);
+}
+.ref.external::after {
+  content: "↗";
+  font: 0.75em var(--sans);
+  margin-left: 1px;
+  vertical-align: 0.25em;
+}
+.ref.unresolved {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  color: var(--rose-ink);
+  border-bottom: 1px dashed var(--rose-edge);
+}
+
+.backlinks {
+  margin: 18px -34px -24px;
+  padding: 10px 34px 12px;
+  border-top: 1px solid var(--card-bd);
+  border-radius: 0 0 6px 6px;
+  background: var(--paper-2);
+  font-size: 13px;
+  color: var(--muted);
+}
+.backlinks .label {
+  margin-right: 4px;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+.pager a {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-decoration: none;
+  color: var(--ink);
+  font: 1.02rem var(--serif);
+}
+.pager a:hover span:last-child {
+  text-decoration: underline;
+  text-decoration-color: var(--edge);
+}
+.pager .next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.group-name {
+  margin: 10px 0 0;
+  font: italic 400 1.5rem/1.25 var(--serif);
+  text-wrap: balance;
+}
+.group-name a {
+  color: var(--ink);
+  text-decoration-color: var(--bd);
+}
+
+.intro {
+  margin-top: 12px;
+  font: 1.02rem/1.6 var(--serif);
+  color: var(--ink-2);
+}
+.intro p {
+  margin: 0 0 0.7em;
+}
+.intro strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+.intro a.headword-ref {
+  color: inherit;
+  text-decoration-color: var(--bd);
+}
+
+.notes-label {
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+
+.notes .block:first-of-type {
+  margin-top: 10px;
+}
+
+.group-source {
+  margin: 22px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.block {
+  margin-top: 16px;
+  font: 1rem/1.5 var(--serif);
+  color: var(--ink-2);
+}
+.block .block-body > :first-child {
+  margin-top: 6px;
+}
+.block p {
+  margin: 0.4em 0;
+}
+.block ul, .block ol {
+  margin: 6px 0 0;
+  padding-left: 1.1em;
+}
+.block li {
+  margin: 0;
+  padding: 3px 0;
+}
+
+.block.list .block-body > ul {
+  list-style: none;
+  padding-left: 0;
+}
+.block.list .block-body > ul > li {
+  padding: 5px 0 5px 18px;
+  border-top: 1px dashed var(--rule-dashed);
+  position: relative;
+}
+.block.list .block-body > ul > li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+.block.list .block-body > ul > li:first-child {
+  border-top: 0;
+}
+
+.block-note {
+  font: italic 0.9rem/1.45 var(--serif);
+  color: var(--muted);
+}
+
+.block.callout {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--callout-edge);
+  padding: 10px 16px 12px;
+  border-radius: 0 3px 3px 0;
+}
+.block.callout .label {
+  color: var(--callout-ink);
+}
+.block.callout .block-body > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+details.block > summary {
+  cursor: pointer;
+  list-style: none;
+}
+details.block > summary::-webkit-details-marker {
+  display: none;
+}
+details.block > summary::before {
+  content: "+ ";
+  font-family: var(--mono);
+}
+details.block[open] > summary::before {
+  content: "− ";
+}
+
+.block-body table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font: 13.5px/1.4 var(--sans);
+  color: var(--ink);
+}
+.block-body table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.block-body table th, .block-body table td {
+  padding: 6px 14px 6px 0;
+  vertical-align: top;
+}
+.block-body table td {
+  border-bottom: 1px solid var(--rule);
+}
+.block-body table tr:last-child td {
+  border-bottom: 0;
+}
+
+.block.lexical-map table {
+  font-size: 12.5px;
+}
+.block.lexical-map table td:nth-child(5) {
+  min-width: 22rem;
+  font-family: var(--serif);
+}
+
+@media (min-width: 961px) {
+  .group-view:has(.lexical-map[open]) .notes {
+    width: min(1180px, 100vw - var(--nav-w) - 112px);
+  }
+}
+@media (max-width: 960px) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .toc {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .toc-inner {
+    padding: 24px 16px 18px;
+  }
+  .toc-group ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+  }
+  .page {
+    padding: 24px 12px 48px;
+  }
+  .card {
+    padding: 20px 18px 18px;
+  }
+  .backlinks {
+    margin: 16px -18px -18px;
+    padding: 10px 18px 12px;
+  }
+  .cards {
+    gap: 22px;
+  }
+  .fact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
+@media print {
+  .toc {
+    display: none;
+  }
+  .shell {
+    display: block;
+  }
+  .view {
+    display: block;
+    margin-bottom: 32px;
+  }
+  .card {
+    box-shadow: none;
+    break-inside: avoid-page;
+  }
+  .pager {
+    display: none;
+  }
+  details.block {
+    display: block;
+  }
+}
+</style></head><body><div class="shell"><nav aria-label="Contents" class="toc"><div class="toc-inner"><a class="toc-title" href="#">Risk Model Lexicon</a><label class="filter"><span class="sr">Filter terms</span><input autocomplete="off" id="filter" placeholder="Filter terms…" type="search" /></label><div class="toc-ns teal"><div class="toc-ns-name" title="Domain-driven design (Evans 2015)">ddd:</div><div class="toc-group"><a class="toc-group-name" href="#group-def-ddd-domain-model" title="Notes on these terms">domain-model</a><ol><li data-words="domain ddd:domain"><a href="#ddd-domain">domain</a></li><li data-words="model ddd:model"><a href="#ddd-model">model</a></li><li data-words="deep model ddd:deep-model"><a href="#ddd-deep-model">deep model</a></li><li data-words="refactoring toward deeper insight ddd:refactoring-toward-deeper-insight"><a href="#ddd-refactoring-toward-deeper-insight">refactoring toward deeper insight</a></li></ol></div><div class="toc-group"><a class="toc-group-name" href="#group-def-ddd-bounded-context" title="Notes on these terms">bounded-context</a><ol><li data-words="context ddd:context"><a href="#ddd-context">context</a></li><li data-words="bounded context ddd:bounded-context"><a href="#ddd-bounded-context">bounded context</a></li><li data-words="ubiquitous language ddd:ubiquitous-language"><a href="#ddd-ubiquitous-language">ubiquitous language</a></li></ol></div><div class="toc-group"><a class="toc-group-name" href="#group-def-ddd-context-map" title="Notes on these terms">context-map</a><ol><li data-words="context map ddd:context-map"><a href="#ddd-context-map">context map</a></li><li data-words="upstream-downstream ddd:upstream-downstream"><a href="#ddd-upstream-downstream">upstream-downstream</a></li><li data-words="mutually dependent ddd:mutually-dependent"><a href="#ddd-mutually-dependent">mutually dependent</a></li><li data-words="free ddd:free"><a href="#ddd-free">free</a></li></ol></div><div class="toc-group"><a class="toc-group-name" href="#group-def-ddd-relationships" title="Notes on these terms">relationships</a><ol><li data-words="partnership ddd:partnership"><a href="#ddd-partnership">partnership</a></li><li data-words="shared kernel ddd:shared-kernel"><a href="#ddd-shared-kernel">shared kernel</a></li><li data-words="customer/supplier ddd:customer-supplier customer/supplier development"><a href="#ddd-customer-supplier">customer/supplier</a></li><li data-words="conformist ddd:conformist"><a href="#ddd-conformist">conformist</a></li><li data-words="separate ways ddd:separate-ways"><a href="#ddd-separate-ways">separate ways</a></li></ol></div><div class="toc-group"><a class="toc-group-name" href="#group-def-ddd-anticorruption-layer" title="Notes on these terms">anticorruption-layer</a><ol><li data-words="anticorruption layer ddd:anticorruption-layer"><a href="#ddd-anticorruption-layer">anticorruption layer</a></li><li data-words="open-host service ddd:open-host-service"><a href="#ddd-open-host-service">open-host service</a></li><li data-words="published language ddd:published-language"><a href="#ddd-published-language">published language</a></li></ol></div><div class="toc-group"><a class="toc-group-name" href="#group-def-ddd-big-ball-of-mud" title="Notes on these terms">big-ball-of-mud</a><ol><li data-words="big ball of mud ddd:big-ball-of-mud"><a href="#ddd-big-ball-of-mud">big ball of mud</a></li></ol></div></div><div class="toc-foot"><a href="#">Index</a><button aria-label="Switch light or dark" id="theme" type="button">Theme</button></div></div></nav><main class="page"><section class="view home"><header class="masthead"><div class="kicker"><span>ai-risk-model · def/</span><span>built 2026-10-07 at b8749f3</span></div><h1>Risk Model Lexicon</h1><p class="lede">This project&#39;s words and exactly what each means, built from the udon term groups in def/. Every entry is proposed until Joseph&#39;s refinement passes; a term&#39;s source line says whether its definition is the source&#39;s own words or ours.</p><ul class="tally"><li><b>20</b> terms</li><li><b>6</b> term groups</li><li><b>20</b> proposed</li></ul></header><section class="index"><div class="letters"><div class="letter"><h3>A</h3><ul><li class="avoid"><span class="word">adapter</span><span class="see"> avoid; see </span><a href="#ddd-anticorruption-layer">anticorruption layer</a></li><li><a href="#ddd-anticorruption-layer">anticorruption layer</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>B</h3><ul><li><a href="#ddd-big-ball-of-mud">big ball of mud</a><span class="ns-tag">ddd</span></li><li><a href="#ddd-bounded-context">bounded context</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>C</h3><ul><li><a href="#ddd-conformist">conformist</a><span class="ns-tag">ddd</span></li><li><a href="#ddd-context">context</a><span class="ns-tag">ddd</span></li><li class="avoid"><span class="word">context</span><span class="see"> unprefixed: avoid; see </span><a href="#ddd-context">context</a></li><li><a href="#ddd-context-map">context map</a><span class="ns-tag">ddd</span></li><li><a href="#ddd-customer-supplier">customer/supplier</a><span class="ns-tag">ddd</span></li><li class="synonym"><span class="word">customer/supplier development</span><span class="see"> see </span><a href="#ddd-customer-supplier">customer/supplier</a></li></ul></div><div class="letter"><h3>D</h3><ul><li><a href="#ddd-deep-model">deep model</a><span class="ns-tag">ddd</span></li><li><a href="#ddd-domain">domain</a><span class="ns-tag">ddd</span></li><li class="avoid"><span class="word">domain</span><span class="see"> unprefixed: avoid; see </span><a href="#ddd-domain">domain</a></li></ul></div><div class="letter"><h3>F</h3><ul><li><a href="#ddd-free">free</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>M</h3><ul><li class="avoid"><span class="word">map</span><span class="see"> avoid; see </span><a href="#ddd-context-map">context map</a></li><li><a href="#ddd-model">model</a><span class="ns-tag">ddd</span></li><li class="avoid"><span class="word">model</span><span class="see"> unprefixed: avoid; see </span><a href="#ddd-model">model</a></li><li><a href="#ddd-mutually-dependent">mutually dependent</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>O</h3><ul><li><a href="#ddd-open-host-service">open-host service</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>P</h3><ul><li><a href="#ddd-partnership">partnership</a><span class="ns-tag">ddd</span></li><li><a href="#ddd-published-language">published language</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>R</h3><ul><li><a href="#ddd-refactoring-toward-deeper-insight">refactoring toward deeper insight</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>S</h3><ul><li><a href="#ddd-separate-ways">separate ways</a><span class="ns-tag">ddd</span></li><li><a href="#ddd-shared-kernel">shared kernel</a><span class="ns-tag">ddd</span></li></ul></div><div class="letter"><h3>U</h3><ul><li><a href="#ddd-ubiquitous-language">ubiquitous language</a><span class="ns-tag">ddd</span></li><li><a href="#ddd-upstream-downstream">upstream-downstream</a><span class="ns-tag">ddd</span></li></ul></div></div></section><footer class="colophon"><p>Generated by <code>lexicon/build.rb</code> from <code>def/def-ddd-domain-model.ud</code>, <code>def/def-ddd-bounded-context.ud</code>, <code>def/def-ddd-context-map.ud</code>, <code>def/def-ddd-relationships.ud</code>, <code>def/def-ddd-anticorruption-layer.ud</code>, <code>def/def-ddd-big-ball-of-mud.ud</code>.</p></footer></section><section class="view group-view teal" id="group-def-ddd-domain-model"><header class="group-head"><div class="crumbs"><span class="crumb-ns">ddd:</span><code>def/def-ddd-domain-model.ud</code><span class="status proposed">proposed</span></div><h2 class="group-name"><a href="#ddd-domain">domain</a> · <a href="#ddd-model">model</a> · <a href="#ddd-deep-model">deep model</a> · <a href="#ddd-refactoring-toward-deeper-insight">refactoring toward deeper insight</a></h2><div class="intro"><p>A <a class="headword-ref" href="#ddd-domain"><strong>domain</strong></a> is what a <a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a> is <em>of</em>: a sphere of knowledge, influence or activity. A <a class="headword-ref" href="#ddd-model"><strong>model</strong></a> describes <em>selected</em> aspects of a <a class="ref" href="#ddd-domain" title="A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software.">domain</a>, so that problems in it can be solved. Because a model selects, one domain can have many models, and that is why Evans needs bounded contexts (<a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a>). A <a class="headword-ref" href="#ddd-deep-model"><strong>deep model</strong></a> keeps the essential and drops the superficial, as judged by the people who know the domain. A model gets deeper through <a class="headword-ref" href="#ddd-refactoring-toward-deeper-insight"><strong>refactoring toward deeper insight</strong></a>: revision prompted by a new understanding of the domain rather than by technical convenience.</p>
+</div></header><div class="cards"><article class="card term" data-words="domain ddd:domain" id="ddd-domain"><header class="term-head"><h2 class="headword">domain</h2><code class="term-id">ddd:domain</code></header><p class="definition">A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Definitions, p. vi</span></dd></div><div class="fact"><dt>Avoid</dt><dd><s>domain</s><span class="aside">bare: MIT's AI Risk Repository uses "domain" for its seven top-level risk categories, a source term to translate</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It is what a model describes, not the model: a model "describes selected aspects of a domain" (p. vi).</li>
+  <li>The definition carries two readings in its two sentences. The first is absolute: a domain is any sphere of knowledge, influence or activity. The second is relational: something is <em>the domain of</em> a program when a user applies the program to it. — our reading</li>
+</ul>
+</div></div><div class="block list collisions term"><div class="label">Not to be confused with</div><div class="block-body"><ul>
+  <li>MIT's risk "domains" (seven domains, twenty-four subdomains): categories in one source's taxonomy, not spheres of activity. Evans's own nearest term is <em>subdomain</em> ("Generic Subdomains", p. 41), a part of a domain factored into its own model.</li>
+  <li>"For a given domain of interaction" (Gabriel, Keeling et al. 2024) and "problem areas" (Kierans et al.): contexts of use for an alignment judgment, closer to a scope than to a domain in Evans's sense. — our reading</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-domain-model">domain-model notes</a>, <a href="#ddd-model">model</a></footer></article><article class="card term" data-words="model ddd:model" id="ddd-model"><header class="term-head"><h2 class="headword">model</h2><code class="term-id">ddd:model</code></header><p class="definition">A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Definitions, p. vi</span></dd></div><div class="fact"><dt>Avoid</dt><dd><s>model</s><span class="aside">bare: in this project's corpus "model" almost always means an AI model</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>of</th><td class="targets"><a class="ref" href="#ddd-domain" title="A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software.">domain</a></td><td class="cardinality">1..1</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It is selective: it describes "selected aspects of a domain" (p. vi). Leaving things out is part of what a model is, not a defect.</li>
+  <li>It is defined by use, not by completeness: it "can be used to solve problems related to that domain" (p. vi).</li>
+  <li>It is a <em>system</em> of abstractions: the abstractions are related to one another. A list of terms is not yet a model. — our reading of "system"</li>
+  <li>Its language and the model change together: "Recognize that a change in the language is a change to the model." (p. 3)</li>
+  <li>"A model is a distillation of knowledge." (p. 39)</li>
+  <li>Many models of one domain are normal: "Multiple models are in play on any large project." (p. 2)</li>
+</ul>
+</div></div><div class="block list collisions term"><div class="label">Not to be confused with</div><div class="block-body"><ul>
+  <li><strong>AI model</strong> (the trained network): the usual sense in the corpus, and the reason this lexicon doesn't use the bare word.</li>
+  <li><strong>This project's own "Model" row</strong> in <code>CLAUDE.md</code>'s five-way table, "an ontology plus claims about how things behave". It differs from Evans's in both directions: it requires claims about behaviour, which Evans does not, and it drops the use ("can be used to solve problems"), which Evans requires. The two should be reconciled or the CLAUDE.md row renamed. — our reading</li>
+  <li><strong>Source model</strong> (<code>influx/source-models/</code>): Evans's sense, applied to one source.</li>
+  <li>"Model alpha", "model beta", "model gamma": this project's iterations. Also Evans's sense.</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-domain-model">domain-model notes</a>, <a href="#ddd-deep-model">deep model</a>, <a href="#group-def-ddd-bounded-context">bounded-context notes</a>, <a href="#ddd-bounded-context">bounded context</a>, <a href="#ddd-ubiquitous-language">ubiquitous language</a>, <a href="#ddd-shared-kernel">shared kernel</a></footer></article><article class="card term" data-words="deep model ddd:deep-model" id="ddd-deep-model"><header class="term-head"><h2 class="headword">deep model</h2><code class="term-id">ddd:deep-model</code></header><p class="definition">A model that sloughs off the superficial and captures the essential.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Refactoring Toward Deeper Insight, p. 8</span><span class="source-note">'A model that sloughs off the superficial and captures the essential is a deep model.' restated as a definition</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>is-a</th><td class="targets"><a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a></td><td class="cardinality">1..1</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>Depth is judged by the domain's own concerns: a deep model "captures subtle concerns of the domain experts" (p. 8).</li>
+  <li>It is reached, not designed in advance: "Sophisticated domain models seldom turn out useful except when developed through an iterative process of refactoring" (p. 8). — our reading; Evans says this of sophisticated domain models, and it is applied here to deep ones</li>
+</ul>
+</div></div></article><article class="card term" data-words="refactoring toward deeper insight ddd:refactoring-toward-deeper-insight" id="ddd-refactoring-toward-deeper-insight"><header class="term-head"><h2 class="headword">refactoring toward deeper insight</h2><code class="term-id">ddd:refactoring-toward-deeper-insight</code></header><p class="definition">Refactoring of a model, or of its expression, motivated by an insight into the domain.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, p. 8</span><span class="source-note">'Refactoring can also be motivated by an insight into the domain and a corresponding refinement of the model or its expression in code.' restated as a definition; 'in code' widened to 'its expression'</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>Its motive is domain insight, as distinct from refactoring "described in terms of code transformations with technical motivations" (p. 8).</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>Iterate, with the people who know the domain: "an iterative process of refactoring, including close involvement of the domain experts with developers" (p. 8).</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-domain-model">domain-model notes</a></footer></article><article class="card notes"><div class="label notes-label">Notes on this group</div><div class="block list discussion group"><div class="label">Discussion</div><div class="block-body"><ul>
+  <li><strong>What this project's domain is.</strong> <code>CLAUDE.md</code> describes two things the project models: the frontier-AI risk landscape, and what the field's documents claim about it. Both are spheres of knowledge or activity in Evans's sense. Whether that is one domain, or two (the risk landscape, and the discourse about it) is open. The plan's two planes, "what was said" and "what it is said about", suggest two. — our reading</li>
+  <li><strong>The widening.</strong> Evans's definitions tie a model to software ("the domain of the software"; the model's "expression in code"). This project's models are records and documents, not running software, so here "code" is read as whatever form the model takes. That widening is ours, and the entries it affects say so (<a class="ref" href="#ddd-refactoring-toward-deeper-insight" title="Refactoring of a model, or of its expression, motivated by an insight into the domain.">refactoring toward deeper insight</a>, <a class="ref" href="#ddd-ubiquitous-language" title="A language structured around the domain model and used by all team members within a bounded context to connect all the activities of the team with the software.">ubiquitous language</a>).</li>
+  <li><strong>A similar claim.</strong> Joseph's refinement lesson (the value settles in the last 5–10% of many truthification passes) and Evans's "seldom turn out useful except when developed through an iterative process" say something similar, from different work. — our reading</li>
+</ul>
+</div></div><div class="block table examples group"><div class="label">Examples</div><div class="block-body"><table>
+  <thead>
+    <tr>
+      <th>Thing</th>
+      <th>Term here</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The frontier-AI risk landscape</td>
+      <td>a <a class="ref" href="#ddd-domain" title="A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software.">domain</a></td>
+    </tr>
+    <tr>
+      <td>IASR 2026's account of that landscape</td>
+      <td>a <a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a> (implicit; a source's model, in its own context)</td>
+    </tr>
+    <tr>
+      <td>The lexicon plus records this project is building</td>
+      <td>a <a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a> (ours)</td>
+    </tr>
+    <tr>
+      <td>Model beta's term files</td>
+      <td>a <a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a>; conformist to IASR 2026 for its first risk definitions (plan §1.2)</td>
+    </tr>
+    <tr>
+      <td>G4's pilot findings feeding back into the lexicon</td>
+      <td><a class="ref" href="#ddd-refactoring-toward-deeper-insight" title="Refactoring of a model, or of its expression, motivated by an insight into the domain.">refactoring toward deeper insight</a></td>
+    </tr>
+  </tbody>
+</table>
+</div></div><details class="block list working-notes group"><summary class="label">Working notes</summary><div class="block-body"><ul>
+  <li>Evans's "Definitions" section (p. vi) defines five terms: domain, model, ubiquitous language, context, bounded context. The context-mapping section (p. 28) adds three more: upstream-downstream, mutually dependent, free. Every other <code>ddd:</code> term restates a passage of Evans's as a definition, and its <code>:source</code> says which.</li>
+  <li>Open: whether "subdomain" and "core domain" earn entries. They matter if this project's risk analysis becomes a separate bounded context built on the lexicon (plan §3.3), which is close to Evans's core and generic subdomains.</li>
+  <li>Open: whether to reconcile <code>CLAUDE.md</code>'s "Model" row with this entry or rename the row (see the collision above).</li>
+</ul>
+</div></details><p class="group-source">Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/</p></article></div><nav class="pager"><a class="prev" href="#"><span class="label">Back to</span><span>Index</span></a><a class="next" data-key="ArrowRight" href="#group-def-ddd-bounded-context"><span class="label">Next group</span><span>context · bounded context · ubiquitous language</span></a></nav></section><section class="view group-view teal" id="group-def-ddd-bounded-context"><header class="group-head"><div class="crumbs"><span class="crumb-ns">ddd:</span><code>def/def-ddd-bounded-context.ud</code><span class="status proposed">proposed</span></div><h2 class="group-name"><a href="#ddd-context">context</a> · <a href="#ddd-bounded-context">bounded context</a> · <a href="#ddd-ubiquitous-language">ubiquitous language</a></h2><div class="intro"><p>A <a class="headword-ref" href="#ddd-context"><strong>context</strong></a> is the setting that fixes what a word or statement means, so the same words can mean different things in different contexts, and a statement about a <a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a> can only be understood in one. A <a class="headword-ref" href="#ddd-bounded-context"><strong>bounded context</strong></a> makes that setting explicit: a boundary within which one model is defined and applies. The <a class="headword-ref" href="#ddd-ubiquitous-language"><strong>ubiquitous language</strong></a> is that model spoken: one language, built around the model, used by everyone working inside the boundary. The three are defined together because each needs the others. A bounded context is where a ubiquitous language holds, and translation, which a ubiquitous language avoids <em>inside</em> a context, is what is needed <em>between</em> contexts (<a class="ref" href="#ddd-context-map" title="A description of the bounded contexts in play and of the points of contact between their models.">context map</a>).</p>
+</div></header><div class="cards"><article class="card term" data-words="context ddd:context" id="ddd-context"><header class="term-head"><h2 class="headword">context</h2><code class="term-id">ddd:context</code></header><p class="definition">The setting in which a word or statement appears that determines its meaning. Statements about a model can only be understood in a context.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Definitions, p. vi</span></dd></div><div class="fact"><dt>Avoid</dt><dd><s>context</s><span class="aside">bare: the agent part "context" (<code>alignment-model/alignment.md</code>) and an LLM's context window share the word</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It attaches to occurrences: it is "the setting in which a word or statement appears" (p. vi), so a word has a context each time it is used, not once.</li>
+  <li>Meaning is relative to it: "Model expressions, like any other phrase, only have meaning in context." (p. 2)</li>
+  <li>It may be implicit. Nothing in this definition requires a boundary to be drawn. That is what distinguishes it from <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a>. — our reading</li>
+</ul>
+</div></div><div class="block list collisions term"><div class="label">Not to be confused with</div><div class="block-body"><ul>
+  <li>The agent part <em>context</em> (<code>alignment.md</code>: "experience &amp; agency; the real-time model") and an LLM's <em>context window</em>: what an agent has taken in during a run, not a setting that fixes meaning.</li>
+  <li>"Depending on the context" in IASR's alignment glossary (2025 and 2026): the ordinary sense, close to this entry.</li>
+  <li>Address theory deliberately avoids "context" for its locality unit ("too loose to carry the locality claim", <code>def-scope</code>). This entry is that loose notion; <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a> is Evans's bounded counterpart.</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-bounded-context">bounded-context notes</a></footer></article><article class="card term" data-words="bounded context ddd:bounded-context" id="ddd-bounded-context"><header class="term-head"><h2 class="headword">bounded context</h2><code class="term-id">ddd:bounded-context</code></header><p class="definition">A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Definitions, p. vi (repeated p. 28)</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>defines</th><td class="targets"><a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a></td><td class="cardinality">1..1</td><td class="aside">"a particular model"</td></tr><tr><th>speaks</th><td class="targets"><a class="ref" href="#ddd-ubiquitous-language" title="A language structured around the domain model and used by all team members within a bounded context to connect all the activities of the team with the software.">ubiquitous language</a></td><td class="cardinality">1..1</td><td class="aside"></td></tr><tr><th>named-in</th><td class="targets"><a class="ref" href="#ddd-context-map" title="A description of the bounded contexts in play and of the points of contact between their models.">context map</a></td><td class="cardinality">0..N</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>One model per bounded context: "within which a particular model is defined and applicable" (p. vi).</li>
+  <li>Several are expected, not exceptional: "Multiple models are inevitable" (p. 2).</li>
+  <li>Boundaries are made by those who build a model: "Well-defined context boundaries only emerge as a result of intellectual choices and social forces" (p. 38). Where those are absent, there is no boundary to find (<a class="ref" href="#ddd-big-ball-of-mud" title="A part of a system where models are mixed and boundaries are inconsistent.">big ball of mud</a>).</li>
+  <li>Someone mapping finds the boundaries, and draws them where the model is implicit. A context map covers "each model in play on the project … This includes the implicit models of non-object-oriented subsystems" (p. 29). — our reading that "implicit models" lets a mapper draw a boundary its team never drew</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>Keep the model consistent inside, and don't track issues outside: "keep model concepts and terms strictly consistent within these bounds, but don't be distracted or confused by issues outside" (p. 2).</li>
+  <li>Set the boundary by organization and artifacts as well as by concept: "Explicitly set boundaries in terms of team organization, usage within specific parts of the application, and physical manifestations such as code bases and database schemas." (p. 2)</li>
+</ul>
+</div></div><div class="block callout ambiguity term"><div class="label">Declared ambiguity</div><div class="block-body"><ul>
+  <li><strong>The description, or the region?</strong> The definition says a bounded context is "a description of a boundary". The pattern text uses it as the region itself: "Speak a ubiquitous language within an explicitly bounded context" (p. 1); "Declare a bounded context to have no connection to the others" (p. 37). Both readings are Evans's. This entry leaves the ambiguity declared rather than choosing. If one must be chosen, the region reading fits the relations above, and the description is then the map's record of it. — our reading</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-domain-model">domain-model notes</a>, <a href="#group-def-ddd-bounded-context">bounded-context notes</a>, <a href="#ddd-context">context</a>, <a href="#ddd-ubiquitous-language">ubiquitous language</a>, <a href="#group-def-ddd-context-map">context-map notes</a>, <a href="#ddd-context-map">context map</a>, <a href="#group-def-ddd-relationships">relationships notes</a>, <a href="#group-def-ddd-anticorruption-layer">anticorruption-layer notes</a>, <a href="#ddd-anticorruption-layer">anticorruption layer</a>, <a href="#group-def-ddd-big-ball-of-mud">big-ball-of-mud notes</a>, <a href="#ddd-big-ball-of-mud">big ball of mud</a></footer></article><article class="card term" data-words="ubiquitous language ddd:ubiquitous-language" id="ddd-ubiquitous-language"><header class="term-head"><h2 class="headword">ubiquitous language</h2><code class="term-id">ddd:ubiquitous-language</code></header><p class="definition">A language structured around the domain model and used by all team members within a bounded context to connect all the activities of the team with the software.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Definitions, p. vi</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>structured-around</th><td class="targets"><a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a></td><td class="cardinality">1..1</td><td class="aside"></td></tr><tr><th>within</th><td class="targets"><a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a></td><td class="cardinality">1..1</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It changes when the model changes, and the reverse: "Recognize that a change in the language is a change to the model." (p. 3)</li>
+  <li>It is what avoids translation inside a context: "Translation blunts communication and makes knowledge crunching anemic." (p. 3)</li>
+  <li>It is built from the model, not taken from an existing dialect: "none of these dialects can be a common language because none serves all needs" (p. 3).</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>Use it everywhere: "Within a bounded context, use the same language in diagrams, writing, and especially speech." (p. 3) And "in all communication within the team and in the code" (p. 3).</li>
+  <li>"Play with the model as you talk about the system." (p. 3)</li>
+  <li>"Iron out difficulties by experimenting with alternative expressions, which reflect alternative models." (p. 3)</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-domain-model">domain-model notes</a>, <a href="#ddd-bounded-context">bounded context</a></footer></article><article class="card notes"><div class="label notes-label">Notes on this group</div><div class="block list discussion group"><div class="label">Discussion</div><div class="block-body"><ul>
+  <li><strong>This project's sources as bounded contexts.</strong> <code>CLAUDE.md</code> treats every source as its own bounded context. Most sources' models are <em>implicit</em> in Evans's sense: they don't declare a boundary or a rule for reading their terms, though some do (the EU Code's interpretation clause; plan §1.3, finding 4). So this project draws a source's boundary when it maps the source. The source is not bound by it. — our reading</li>
+  <li><strong>Bounded contexts here are nested.</strong> Evans's booklet doesn't nest bounded contexts. This project's sources have scopes inside scopes: SB 53 defines "catastrophic risk" differently in two code sections, and IASR 2026's glossary and body define loss of control differently (plan §1.3, finding 5). The plan proposes defining a bounded context in terms of address theory's <a class="ref external" href="https://github.com/v2-io/udon/tree/90f4fb6/v2/references/def" title="addr:scope: address theory, imported by reference at v2-io/udon 90f4fb6">scope</a>: a scope whose bindings are one model's terms, kept by one maintainer, under a norm of consistency. Containment edges then give nesting. That is a widening of Evans's term, proposed here, not his. — our reading</li>
+  <li><strong>Consistency is a norm, not an invariant.</strong> Evans prescribes strict consistency inside a boundary (see the practices above). Address theory keeps collisions representable because real systems have them (<code>def-binding</code>). The two fit together if a collision inside a bounded context is a recordable failure of that norm, not an impossibility. Self-inconsistent sources (IASR 2026; Anthropic's August 2026 Risk Report) are then contexts with recorded collisions, or several scopes mapped one at a time. — our reading</li>
+  <li><strong>This project's lexicon is its ubiquitous language</strong>, scoped to this project's bounded context. It is a declared widening of Evans's definition: the "software" it connects to is the project's records and computed views, and the "team" is Joseph and the agents working with him. — our reading</li>
+</ul>
+</div></div><div class="block table examples group"><div class="label">Examples</div><div class="block-body"><table>
+  <thead>
+    <tr>
+      <th>Thing</th>
+      <th>Term here</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SB 53, as a whole</td>
+      <td>a <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a> (its model implicit; boundary drawn by this project)</td>
+    </tr>
+    <tr>
+      <td>SB 53 §22757.11 and Labor Code §1107, each with its own "catastrophic risk"</td>
+      <td>two scopes inside it (the nested reading above)</td>
+    </tr>
+    <tr>
+      <td>This project's lexicon, records and views</td>
+      <td>our <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a>, whose language is this lexicon</td>
+    </tr>
+    <tr>
+      <td>"Context" in <code>alignment.md</code>'s stack</td>
+      <td>not <a class="ref" href="#ddd-context" title="The setting in which a word or statement appears that determines its meaning. Statements about a model can only be understood in a context.">context</a>; an agent part</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><details class="block list working-notes group"><summary class="label">Working notes</summary><div class="block-body"><ul>
+  <li>Open: which reading of bounded context (description or region) the lexicon adopts, if any. The ambiguity above is Evans's, not ours, so declaring it may be the honest final state.</li>
+  <li>Open: the agent part's namespace name (plan §3.2 suggests <code>agent:context</code>, name open). Until it exists, this entry's <code>:avoid</code> keeps the two senses of the bare word apart.</li>
+  <li>Open: whether "team" needs a lexicon entry. Evans's bounded contexts, ubiquitous languages and relationship patterns are all relative to teams. In this project the teams are the authors of each source (organizations, legislatures, research groups) and this project.</li>
+</ul>
+</div></details><p class="group-source">Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/</p></article></div><nav class="pager"><a class="prev" data-key="ArrowLeft" href="#group-def-ddd-domain-model"><span class="label">Previous group</span><span>domain · model · deep model · refactoring toward deeper insight</span></a><a class="next" data-key="ArrowRight" href="#group-def-ddd-context-map"><span class="label">Next group</span><span>context map · upstream-downstream · mutually dependent · free</span></a></nav></section><section class="view group-view teal" id="group-def-ddd-context-map"><header class="group-head"><div class="crumbs"><span class="crumb-ns">ddd:</span><code>def/def-ddd-context-map.ud</code><span class="status proposed">proposed</span></div><h2 class="group-name"><a href="#ddd-context-map">context map</a> · <a href="#ddd-upstream-downstream">upstream-downstream</a> · <a href="#ddd-mutually-dependent">mutually dependent</a> · <a href="#ddd-free">free</a></h2><div class="intro"><p>A <a class="headword-ref" href="#ddd-context-map"><strong>context map</strong></a> is the view across <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a>s: every model in play, each context named, and every point of contact between them described. That covers which translations are needed, what is shared, what is kept isolated, and who influences whom. It records the terrain as it is before proposing changes. Evans gives three terms for how much one context's success depends on another's. <a class="headword-ref" href="#ddd-upstream-downstream"><strong>upstream-downstream</strong></a> is a one-way dependence: the upstream group's actions affect the downstream group's success, and not the reverse. <a class="headword-ref" href="#ddd-mutually-dependent"><strong>mutually dependent</strong></a> projects succeed or fail together. A <a class="headword-ref" href="#ddd-free"><strong>free</strong></a> context's delivery is little affected by work anywhere else. The relationship patterns (<a class="ref" href="#ddd-partnership" title="A relationship between the teams of two mutually dependent contexts, maintained by coordinated planning of development and joint management of integration.">partnership</a> through <a class="ref" href="#ddd-separate-ways" title="A declared absence of any connection between a bounded context and the others.">separate ways</a>, and the translation patterns from <a class="ref" href="#ddd-anticorruption-layer" title="An isolating layer, built by a downstream context, that provides it with the upstream's functionality in terms of its own model, translating between the two models.">anticorruption layer</a> on) are Evans's catalogue of how teams in these situations actually relate. <a class="ref" href="#ddd-big-ball-of-mud" title="A part of a system where models are mixed and boundaries are inconsistent.">big ball of mud</a> is in the same section of his booklet, but it describes one context, not a relation between two.</p>
+</div></header><div class="cards"><article class="card term" data-words="context map ddd:context-map" id="ddd-context-map"><header class="term-head"><h2 class="headword">context map</h2><code class="term-id">ddd:context-map</code></header><p class="definition">A description of the bounded contexts in play and of the points of contact between their models.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Context Map, p. 29</span><span class="source-note">the pattern's instructions ('Identify each model in play on the project and define its bounded context … Describe the points of contact between the models') restated as a definition</span></dd></div><div class="fact"><dt>Avoid</dt><dd><s>map</s><span class="aside">bare: <code>alignment-model/</code> is "A working map", of actors around an agent</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>contexts</th><td class="targets"><a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a></td><td class="cardinality">1..N</td><td class="aside"></td></tr><tr><th>relationships</th><td class="targets"><a class="ref" href="#ddd-upstream-downstream" title="A relationship between two groups in which the &quot;upstream&quot; group's actions affect project success of the &quot;downstream&quot; group, but the actions of the downstream do not significantly affect projects upstream.">upstream-downstream</a> | <a class="ref" href="#ddd-mutually-dependent" title="A situation in which two software development projects in separate contexts must both be delivered in order for either to be considered a success.">mutually dependent</a> | <a class="ref" href="#ddd-partnership" title="A relationship between the teams of two mutually dependent contexts, maintained by coordinated planning of development and joint management of integration.">partnership</a> | <a class="ref" href="#ddd-shared-kernel" title="An explicitly bounded subset of a domain model, with its associated code or data design, that the teams of two contexts agree to share and change only in consultation with each other.">shared kernel</a> | <a class="ref" href="#ddd-customer-supplier" title="An upstream-downstream relationship in which the downstream team's priorities factor into the upstream team's planning.">customer/supplier</a> | <a class="ref" href="#ddd-conformist" title="A relationship in which a downstream context adopts the upstream context's model as its own, so that nothing between them needs translating.">conformist</a> | <a class="ref" href="#ddd-anticorruption-layer" title="An isolating layer, built by a downstream context, that provides it with the upstream's functionality in terms of its own model, translating between the two models.">anticorruption layer</a> | <a class="ref" href="#ddd-open-host-service" title="A protocol, opened by a context to all who need to integrate with it, that gives access to that context as a set of services.">open-host service</a> | <a class="ref" href="#ddd-published-language" title="A well-documented shared language that can express the necessary domain information as a common medium of communication, into and out of which each context translates.">published language</a> | <a class="ref" href="#ddd-separate-ways" title="A declared absence of any connection between a bounded context and the others.">separate ways</a></td><td class="cardinality">0..N</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It covers every model in play, stated or not: "Identify each model in play on the project and define its bounded context. This includes the implicit models of non-object-oriented subsystems." (p. 29)</li>
+  <li>Contexts are named, and the names join the language: "Name each bounded context, and make the names part of the ubiquitous language." (p. 29)</li>
+  <li>It describes contact, not only membership: "Describe the points of contact between the models, outlining explicit translation for any communication, highlighting any sharing, isolation mechanisms, and levels of influence." (p. 29)</li>
+  <li>It describes before it prescribes: "Map the existing terrain. Take up transformations later." (p. 29)</li>
+  <li>It is one map across contexts, not one per context: it is "a realistic, large-scale view of model development extending across our project and others we integrate with" (p. 29).</li>
+</ul>
+</div></div><div class="block list collisions term"><div class="label">Not to be confused with</div><div class="block-body"><ul>
+  <li><strong>The per-source document in this project's plan.</strong> <code>CLAUDE.md</code> called it a "context map". Evans's context map is one map across all contexts. A per-source mapping of terms is one of its parts: the "explicit translation for any communication" between that source's context and ours. Plan §5, decision 1, proposes calling the per-source document a <em>translation</em> for this reason; that is Joseph's call.</li>
+  <li><code>alignment-model/</code> ("A working map"): a map of actors and agent parts, not of contexts.</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-bounded-context">bounded-context notes</a>, <a href="#ddd-bounded-context">bounded context</a>, <a href="#group-def-ddd-context-map">context-map notes</a></footer></article><article class="card term" data-words="upstream-downstream ddd:upstream-downstream" id="ddd-upstream-downstream"><header class="term-head"><h2 class="headword">upstream-downstream</h2><code class="term-id">ddd:upstream-downstream</code></header><p class="definition">A relationship between two groups in which the "upstream" group's actions affect project success of the "downstream" group, but the actions of the downstream do not significantly affect projects upstream.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Context Mapping for Strategic Design, p. 28</span><span class="source-note">without its parenthetical example</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>upstream</th><td class="targets">team</td><td class="cardinality">1..1</td><td class="aside">"team" is not yet a lexicon term; Evans says "group" here and "team" in the patterns</td></tr><tr><th>downstream</th><td class="targets">team</td><td class="cardinality">1..1</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It holds between groups, not between models or documents: what flows is influence on "project success".</li>
+  <li>It is asymmetric: "The upstream team may succeed independently of the fate of the downstream team." (p. 28)</li>
+  <li>It is defined by dependence of success. Supply is the usual way that dependence arises, but it is not required: Evans names customer/supplier for it (p. 32), and an open host "places the provider of the service in the upstream position" (p. 35), but his own example involves no supply: "If two cities are along the same river, the upstream city's pollution primarily affects the downstream city." (p. 28)</li>
+</ul>
+</div></div><div class="block list collisions term"><div class="label">Not to be confused with</div><div class="block-body"><ul>
+  <li><strong>The AI supply chain's upstream and downstream.</strong> The EU AI Act's "downstream provider" (Art. 3(68)) and the GPAI guidelines' "downstream actors" who "may modify a general-purpose AI model", along with the supply-chain literature (Cobbe, Veale &amp; Singh 2023; Hopkins et al. 2025), name positions in a flow of artifacts: who builds on whose model. Since supply is the usual way Evans's dependence arises, the two senses usually pick out the same pairs. They come apart where supply and dependence of success separate: an artifact passed to a party whose success doesn't turn on it, or dependence with no supply at all (the river). A translation records which one a source means. — our reading</li>
+  <li><strong>Lineage.</strong> A definition copied from an earlier document (RAISE from SB 53) flows from an upstream text. The derivation is recorded in this project's lineage records. By itself it does not establish this relation, which is about dependence of success. The same copying may <em>also</em> be a context-map relationship (see <a class="ref" href="#ddd-conformist" title="A relationship in which a downstream context adopts the upstream context's model as its own, so that nothing between them needs translating.">conformist</a> and its proposed widening). The two are recorded separately. — our reading</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-context-map">context-map notes</a>, <a href="#ddd-context-map">context map</a>, <a href="#ddd-customer-supplier">customer/supplier</a>, <a href="#ddd-conformist">conformist</a></footer></article><article class="card term" data-words="mutually dependent ddd:mutually-dependent" id="ddd-mutually-dependent"><header class="term-head"><h2 class="headword">mutually dependent</h2><code class="term-id">ddd:mutually-dependent</code></header><p class="definition">A situation in which two software development projects in separate contexts must both be delivered in order for either to be considered a success.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Context Mapping for Strategic Design, p. 28</span><span class="source-note">without its parenthetical</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It concerns success, not technical dependency. Evans's parenthetical: "there are also mutually dependent projects where system dependencies run only one direction. When the depended-on system has little value without the dependent system … then a failure to deliver the dependent system would be a failure of both projects." (p. 28)</li>
+  <li>It is the situation in which <a class="ref" href="#ddd-partnership" title="A relationship between the teams of two mutually dependent contexts, maintained by coordinated planning of development and joint management of integration.">partnership</a> is indicated (p. 30).</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#ddd-context-map">context map</a>, <a href="#ddd-partnership">partnership</a></footer></article><article class="card term" data-words="free ddd:free" id="ddd-free"><header class="term-head"><h2 class="headword">free</h2><code class="term-id">ddd:free</code></header><p class="definition">A software development context in which the direction, success or failure of development work in other contexts has little effect on delivery.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind verbatim">verbatim</span><span>Evans 2015, Context Mapping for Strategic Design, p. 28</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It describes one context against all others, where the two terms above describe a pair. — our reading</li>
+</ul>
+</div></div></article><article class="card notes"><div class="label notes-label">Notes on this group</div><div class="block list discussion group"><div class="label">Discussion</div><div class="block-body"><ul>
+  <li><strong>This project's context map.</strong> In Evans's sense it would hold four things: each source's bounded context, named; this project's own context; the translation between each source and ours; and the relationships among the sources, such as copying, conformity and shared lineage. The plan's version, "the catalog plus lineage" (§3.2), is the first and last of these. The translations are the third. — our reading</li>
+  <li><strong>Where this project stands.</strong> This project is downstream of every source: the sources' revisions and wording affect its success, and its work does not affect theirs. So the translations have to absorb every upstream change. The <em>as of</em> moment that address theory puts on every resolution records which version a translation was made against. — our reading</li>
+  <li><strong>The widening.</strong> Evans defines these terms for "software development projects" and their delivery. Applied to documents and the organizations that write them, "success" and "delivery" have no fixed meaning. The terms are used here for the shape of the dependency, and that is a widening of Evans's scope. — our reading</li>
+</ul>
+</div></div><div class="block table examples group"><div class="label">Examples</div><div class="block-body"><table>
+  <thead>
+    <tr>
+      <th>Situation</th>
+      <th>Term</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>This project, relative to IASR 2026 or SB 53</td>
+      <td><a class="ref" href="#ddd-upstream-downstream" title="A relationship between two groups in which the &quot;upstream&quot; group's actions affect project success of the &quot;downstream&quot; group, but the actions of the downstream do not significantly affect projects upstream.">upstream-downstream</a> (sources upstream)</td>
+    </tr>
+    <tr>
+      <td>The source catalog, the lineage records, and the per-source translations together</td>
+      <td><a class="ref" href="#ddd-context-map" title="A description of the bounded contexts in play and of the points of contact between their models.">context map</a></td>
+    </tr>
+  </tbody>
+</table>
+</div></div><details class="block list working-notes group"><summary class="label">Working notes</summary><div class="block-body"><ul>
+  <li>Open: decision 1 in the plan (§5), what to call the per-source document.</li>
+  <li>Open: whether influence between sources (one source's revisions affecting another's) needs recording separately from lineage. Lineage records derivation of text. This relation records dependence of success. No case has yet needed the second.</li>
+</ul>
+</div></details><p class="group-source">Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/</p></article></div><nav class="pager"><a class="prev" data-key="ArrowLeft" href="#group-def-ddd-bounded-context"><span class="label">Previous group</span><span>context · bounded context · ubiquitous language</span></a><a class="next" data-key="ArrowRight" href="#group-def-ddd-relationships"><span class="label">Next group</span><span>partnership · shared kernel · customer/supplier · conformist · separate ways</span></a></nav></section><section class="view group-view teal" id="group-def-ddd-relationships"><header class="group-head"><div class="crumbs"><span class="crumb-ns">ddd:</span><code>def/def-ddd-relationships.ud</code><span class="status proposed">proposed</span></div><h2 class="group-name"><a href="#ddd-partnership">partnership</a> · <a href="#ddd-shared-kernel">shared kernel</a> · <a href="#ddd-customer-supplier">customer/supplier</a> · <a href="#ddd-conformist">conformist</a> · <a href="#ddd-separate-ways">separate ways</a></h2><div class="intro"><p>These five are Evans's patterns for how the teams behind two <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a>s actually relate, short of building a translation layer (<a class="ref" href="#ddd-anticorruption-layer" title="An isolating layer, built by a downstream context, that provides it with the upstream's functionality in terms of its own model, translating between the two models.">anticorruption layer</a>). They differ in four ways: whose success depends on whose, what is shared, whether anything is translated, and who chooses the arrangement. In a <a class="headword-ref" href="#ddd-partnership"><strong>partnership</strong></a>, two mutually dependent teams coordinate their plans without needing to share models. A <a class="headword-ref" href="#ddd-shared-kernel"><strong>shared kernel</strong></a> is a small, explicitly bounded part of a model that both teams agree to hold in common and change only together. <a class="headword-ref" href="#ddd-customer-supplier"><strong>customer/supplier</strong></a> is an upstream-downstream relation in which the upstream plans for the downstream's needs. <a class="headword-ref" href="#ddd-conformist"><strong>conformist</strong></a> is the same relation when it does not: the downstream gives up its own model and adopts the upstream's, so nothing needs translating. <a class="headword-ref" href="#ddd-separate-ways"><strong>separate ways</strong></a> is the declared decision to have no connection at all.</p>
+</div></header><div class="cards"><article class="card term" data-words="partnership ddd:partnership" id="ddd-partnership"><header class="term-head"><h2 class="headword">partnership</h2><code class="term-id">ddd:partnership</code></header><p class="definition">A relationship between the teams of two mutually dependent contexts, maintained by coordinated planning of development and joint management of integration.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Partnership, p. 30</span><span class="source-note">the pattern ('forge a partnership between the teams in charge of the two contexts. Institute a process for coordinated planning of development and joint management of integration.') restated as a definition</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>between</th><td class="targets">team</td><td class="cardinality">2..2</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It coordinates plans, not models: "It is not necessary, most of the time, for developers to understand the model of the other subsystem in detail, but they must coordinate their project planning." (p. 30)</li>
+  <li>It is symmetric: "The teams must cooperate on the evolution of their interfaces to accommodate the development needs of both systems." (p. 30)</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"Where development failure in either of two contexts would result in delivery failure for both" (p. 30), that is, <a class="ref" href="#ddd-mutually-dependent" title="A situation in which two software development projects in separate contexts must both be delivered in order for either to be considered a success.">mutually dependent</a>.</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>"Interdependent features should be scheduled so that they are completed for the same release." (p. 30)</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-context-map">context-map notes</a>, <a href="#ddd-context-map">context map</a>, <a href="#ddd-mutually-dependent">mutually dependent</a></footer></article><article class="card term" data-words="shared kernel ddd:shared-kernel" id="ddd-shared-kernel"><header class="term-head"><h2 class="headword">shared kernel</h2><code class="term-id">ddd:shared-kernel</code></header><p class="definition">An explicitly bounded subset of a domain model, with its associated code or data design, that the teams of two contexts agree to share and change only in consultation with each other.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Shared Kernel, p. 31</span><span class="source-note">'Designate with an explicit boundary some subset of the domain model that the teams agree to share … This explicitly shared stuff has special status, and shouldn't be changed without consultation with the other team.' restated as a definition</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>part-of</th><td class="targets"><a class="ref" href="#ddd-model" title="A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain.">model</a></td><td class="cardinality">1..1</td><td class="aside"></td></tr><tr><th>shared-by</th><td class="targets">team</td><td class="cardinality">2..2</td><td class="aside">Evans writes of "the other team", so two</td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It is agreed: "some subset of the domain model that the teams agree to share" (p. 31). One team adopting another's terms without agreement is not a shared kernel (see <a class="ref" href="#ddd-conformist" title="A relationship in which a downstream context adopts the upstream context's model as its own, so that nothing between them needs translating.">conformist</a>).</li>
+  <li>It is explicitly bounded: "Designate with an explicit boundary" (p. 31).</li>
+  <li>It changes only jointly: "shouldn't be changed without consultation with the other team" (p. 31).</li>
+  <li>It includes what implements the shared model, not only the model: "include, along with this subset of the model, the subset of code or of the database design associated with that part of the model" (p. 31).</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"When functional integration is limited, the overhead of continuous integration of a large context may be deemed too high." (p. 31)</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>"Keep this kernel small." (p. 31)</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#ddd-context-map">context map</a></footer></article><article class="card term" data-words="customer/supplier ddd:customer-supplier" id="ddd-customer-supplier"><header class="term-head"><h2 class="headword">customer/supplier</h2><code class="term-id">ddd:customer-supplier</code></header><p class="definition">An upstream-downstream relationship in which the downstream team's priorities factor into the upstream team's planning.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Customer/Supplier Development, p. 32</span><span class="source-note">'Establish a clear customer/supplier relationship between the two teams, meaning downstream priorities factor into upstream planning.' restated as a definition</span></dd></div><div class="fact"><dt>Also</dt><dd><em>customer/supplier development</em><span class="aside">Evans's pattern name</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>is-a</th><td class="targets"><a class="ref" href="#ddd-upstream-downstream" title="A relationship between two groups in which the &quot;upstream&quot; group's actions affect project success of the &quot;downstream&quot; group, but the actions of the downstream do not significantly affect projects upstream.">upstream-downstream</a></td><td class="cardinality">1..1</td><td class="aside"></td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>What distinguishes it from <a class="ref" href="#ddd-conformist" title="A relationship in which a downstream context adopts the upstream context's model as its own, so that nothing between them needs translating.">conformist</a> is the upstream's commitment: "downstream priorities factor into upstream planning" (p. 32).</li>
+  <li>The commitment is explicit: "Negotiate and budget tasks for downstream requirements so that everyone understands the commitment and schedule." (p. 32)</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"When two teams are in an upstream-downstream relationship, where the upstream team may succeed independently of the fate of the downstream team" (p. 32).</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>"Jointly developed automated acceptance tests can validate the expected interface from the upstream." (p. 32)</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#ddd-context-map">context map</a></footer></article><article class="card term" data-words="conformist ddd:conformist" id="ddd-conformist"><header class="term-head"><h2 class="headword">conformist</h2><code class="term-id">ddd:conformist</code></header><p class="definition">A relationship in which a downstream context adopts the upstream context's model as its own, so that nothing between them needs translating.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Conformist, p. 33</span><span class="source-note">'Eliminate the complexity of translation between bounded contexts by slavishly adhering to the model of the upstream team.' restated as a definition</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>is-a</th><td class="targets"><a class="ref" href="#ddd-upstream-downstream" title="A relationship between two groups in which the &quot;upstream&quot; group's actions affect project success of the &quot;downstream&quot; group, but the actions of the downstream do not significantly affect projects upstream.">upstream-downstream</a></td><td class="cardinality">0..1</td><td class="aside">always, in Evans's scope; under the proposed widening below, the dependence of success may be absent</td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>There is no translation: its point is to "eliminate the complexity of translation between bounded contexts" (p. 33).</li>
+  <li>The downstream inherits the upstream's language with its model: "you will share a ubiquitous language with your upstream team" (p. 33).</li>
+  <li>It is the downstream's choice: "choosing conformity enormously simplifies integration" (p. 33).</li>
+  <li>It costs the downstream its own model: it "cramps the style of the downstream designers and probably does not yield the ideal model for the application" (p. 33).</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"the upstream has no motivation to provide for the downstream team's needs" (p. 33).</li>
+</ul>
+</div></div><div class="block callout proposed-widening term"><div class="label">Proposed widening, not adopted</div><div class="block-body"><ul>
+  <li><strong>Not yet part of the term.</strong> What makes a relation conformist is adoption without translation. Evans's condition (an unmotivated upstream) is the usual occasion for it, not part of what it is. On this reading, a downstream that conforms for other reasons, such as legal compatibility, is still conformist, and the two sides need not stand in <a class="ref" href="#ddd-upstream-downstream" title="A relationship between two groups in which the &quot;upstream&quot; group's actions affect project success of the &quot;downstream&quot; group, but the actions of the downstream do not significantly affect projects upstream.">upstream-downstream</a> (dependence of success) at all. This is our widening of Evans's scope, for Joseph's decision; until it is adopted, the term means only what the invariants above say.</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#ddd-context-map">context map</a>, <a href="#ddd-upstream-downstream">upstream-downstream</a>, <a href="#ddd-shared-kernel">shared kernel</a>, <a href="#ddd-customer-supplier">customer/supplier</a>, <a href="#group-def-ddd-anticorruption-layer">anticorruption-layer notes</a></footer></article><article class="card term" data-words="separate ways ddd:separate-ways" id="ddd-separate-ways"><header class="term-head"><h2 class="headword">separate ways</h2><code class="term-id">ddd:separate-ways</code></header><p class="definition">A declared absence of any connection between a bounded context and the others.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Separate Ways, p. 37</span><span class="source-note">'Declare a bounded context to have no connection to the others at all' restated as a definition</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It is declared: a decision about integration, not an observation that two things happen to be unrelated.</li>
+  <li>It is total: "no connection to the others at all" (p. 37).</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"If two sets of functionality have no significant relationship, they can be completely cut loose from each other." (p. 37)</li>
+  <li>"Integration is always expensive, and sometimes the benefit is small." (p. 37)</li>
+</ul>
+</div></div><div class="block list collisions term"><div class="label">Not to be confused with</div><div class="block-body"><ul>
+  <li><strong>Independence between sources</strong>, in this project's lineage sense: no copying, citation or shared authorship. That is an observed absence of derivation between two sources that still share a domain and are both translated into one model. It is not separate ways. — our reading</li>
+  <li><strong>A deliberately unbound term</strong> inside a connected document, such as the "plain meaning" sense of "catastrophic" (plan §3.2): one term left undefined, not a context cut loose. — the plan's reading</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-context-map">context-map notes</a>, <a href="#ddd-context-map">context map</a></footer></article><article class="card notes"><div class="label notes-label">Notes on this group</div><div class="block list discussion group"><div class="label">Discussion</div><div class="block-body"><ul>
+  <li><strong>The distinctions, side by side.</strong> These are the delimiting characteristics in table form, read from the invariants above (our tabulation, not Evans's):
+| Pattern          | Success dependence           | What is shared                         | Translation | Who chooses                    |
+|------------------|------------------------------|----------------------------------------|-------------|--------------------------------|
+| partnership      | mutual                       | plans (models need not be)             | as needed   | both teams                     |
+| shared kernel    | any                          | an agreed, bounded part of the model, and its code | none inside the kernel | both teams, by agreement |
+| customer-supplier| one way (upstream-downstream)| the downstream's priorities, in planning | as needed | negotiated                     |
+| conformist       | one way (upstream-downstream)| the upstream's whole model and language | none       | the downstream                 |
+| separate ways    | none                         | nothing                                | none        | declared, by either            |</li>
+  <li><strong>Cases among this project's sources</strong> (the plan's readings, §1.2 and §3.2, not re-checked for this entry):
+    <ul>
+      <li><em>conformist</em>, as candidates: New York's RAISE Act copying SB 53's definitions word for word; xAI adopting the EU Code's terms; the EU Code's interpretation clause, "the AI Act definition applies, and such definition shall prevail". The last is a conformity <em>declared by the downstream</em> for its defined terms. For RAISE and xAI, the label depends on the proposed widening (see the next point);</li>
+      <li><em>conformist, inside this project</em>: model beta adopting IASR 2026's definitions ("The first four definitions are IASR 2026's, adopted", <code>def-risk.ud</code>), which gamma's translation step is meant to prevent;</li>
+      <li><em>shared kernel</em>: none found among the sources yet. Importing address theory's terms by reference, pinned to a commit, is not one by this entry's invariants: nothing is held jointly in this repository, and no second team's consultation gates a change. It is closest to conformist, an untranslated adoption (plan §3.2).</li>
+    </ul>
+  </li>
+  <li><strong>A copying can be two records at once.</strong> RAISE copying SB 53's definitions word for word is a lineage fact: one text derived from another (plan §3.7). Whether it is <em>also</em> a conformist relationship is a separate question about the two contexts' models: did the downstream adopt the upstream's model untranslated? For RAISE it plausibly did, but under Evans's scope conformist also requires upstream-downstream (dependence of success), which a copying alone does not show. So RAISE counts as conformist only under the proposed widening above. Lineage and context-map relationships are recorded separately, and one event can produce both. — our reading</li>
+  <li><strong>The usual relation between a source and this project.</strong> This project is not an attempt to conform to any particular source; its default is to translate each one (<a class="ref" href="#ddd-anticorruption-layer" title="An isolating layer, built by a downstream context, that provides it with the upstream's functionality in terms of its own model, translating between the two models.">anticorruption layer</a>). Where we adopt another source's term, it is unlikely to be a fully "conforming" model adoption, but rather a narrow, verbatim, cited term that is already sufficiently precise, as with Evans's eight definitions in this lexicon (<code>:source "… verbatim"</code>).</li>
+</ul>
+</div></div><details class="block list working-notes group"><summary class="label">Working notes</summary><div class="block-body"><ul>
+  <li>Open: customer-supplier and partnership have no checked case among the sources. Candidates worth checking: regulators consulting developers while drafting (the EU Code's drafting process); the International AI Safety Report's coordination with its contributing governments. These are unchecked guesses.</li>
+  <li>Open: whether "team" earns an entry (see <code>def-ddd-bounded-context</code>). Every term here is a relation between teams.</li>
+</ul>
+</div></details><p class="group-source">Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/</p></article></div><nav class="pager"><a class="prev" data-key="ArrowLeft" href="#group-def-ddd-context-map"><span class="label">Previous group</span><span>context map · upstream-downstream · mutually dependent · free</span></a><a class="next" data-key="ArrowRight" href="#group-def-ddd-anticorruption-layer"><span class="label">Next group</span><span>anticorruption layer · open-host service · published language</span></a></nav></section><section class="view group-view teal" id="group-def-ddd-anticorruption-layer"><header class="group-head"><div class="crumbs"><span class="crumb-ns">ddd:</span><code>def/def-ddd-anticorruption-layer.ud</code><span class="status proposed">proposed</span></div><h2 class="group-name"><a href="#ddd-anticorruption-layer">anticorruption layer</a> · <a href="#ddd-open-host-service">open-host service</a> · <a href="#ddd-published-language">published language</a></h2><div class="intro"><p>When two <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a>s must communicate and neither will conform to the other, someone translates. Evans gives three shapes for where the translation lives. An <a class="headword-ref" href="#ddd-anticorruption-layer"><strong>anticorruption layer</strong></a> is built by the downstream for itself: it takes the upstream as it is and renders it in the downstream's own model, so the downstream model is not bent toward the upstream's. An <a class="headword-ref" href="#ddd-open-host-service"><strong>open-host service</strong></a> is built by the upstream for everyone: one open protocol that any client can integrate with. A <a class="headword-ref" href="#ddd-published-language"><strong>published language</strong></a> is a documented common medium that each side translates into and out of. Evans advises against making either side's own model that medium. The three combine. An open host often speaks a published language, and its clients either conform to it or build anticorruption layers against it.</p>
+</div></header><div class="cards"><article class="card term" data-words="anticorruption layer ddd:anticorruption-layer" id="ddd-anticorruption-layer"><header class="term-head"><h2 class="headword">anticorruption layer</h2><code class="term-id">ddd:anticorruption-layer</code></header><p class="definition">An isolating layer, built by a downstream context, that provides it with the upstream's functionality in terms of its own model, translating between the two models.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Anticorruption Layer, p. 34</span><span class="source-note">'As a downstream client, create an isolating layer to provide your system with functionality of the upstream system in terms of your own domain model … Internally, the layer translates in one or both directions as necessary between the two models.' restated as a definition</span></dd></div><div class="fact"><dt>Avoid</dt><dd><s>adapter</s><span class="aside">one implementation technique, not the pattern</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>built-by</th><td class="targets"><a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a></td><td class="cardinality">1..1</td><td class="aside">the downstream</td></tr><tr><th>isolates-from</th><td class="targets"><a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a></td><td class="cardinality">1..1</td><td class="aside">the upstream</td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It belongs to the downstream: "As a downstream client, create an isolating layer" (p. 34).</li>
+  <li>It leaves the upstream as it is: it "talks to the other system through its existing interface, requiring little or no modification to the other system" (p. 34).</li>
+  <li>It translates in whichever directions are needed: "the layer translates in one or both directions as necessary between the two models" (p. 34).</li>
+  <li>What it protects against is the downstream model drifting toward the upstream's: "A large interface with an upstream system can eventually overwhelm the intent of the downstream model altogether, causing it to be modified to resemble the other system's model in an ad hoc fashion." (p. 34)</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>Cooperation is not available: "when control or communication is not adequate to pull off a shared kernel, partner or customer/supplier relationship, translation becomes more complex. The translation layer takes on a more defensive tone." (p. 34)</li>
+  <li>The upstream's model does not fit: "The models of legacy systems are usually weak (if not big balls of mud), and even the exception that is clearly designed may not fit the needs of the current project, making it impractical to conform to the upstream model." (p. 34)</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#group-def-ddd-context-map">context-map notes</a>, <a href="#ddd-context-map">context map</a>, <a href="#group-def-ddd-relationships">relationships notes</a>, <a href="#group-def-ddd-anticorruption-layer">anticorruption-layer notes</a></footer></article><article class="card term" data-words="open-host service ddd:open-host-service" id="ddd-open-host-service"><header class="term-head"><h2 class="headword">open-host service</h2><code class="term-id">ddd:open-host-service</code></header><p class="definition">A protocol, opened by a context to all who need to integrate with it, that gives access to that context as a set of services.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Open-host Service, p. 35</span><span class="source-note">'Define a protocol that gives access to your subsystem as a set of services. Open the protocol so that all who need to integrate with you can use it.' restated as a definition</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>Its provider is upstream of every client: "This places the provider of the service in the upstream position. Each client is downstream, and typically some of them will be conformist and some will build anticorruption layers." (p. 35)</li>
+  <li>It is one protocol for all, not one per client. Idiosyncratic needs get a one-off translator outside it, "so that the shared protocol can stay simple and coherent" (p. 35).</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"When a subsystem has to be integrated with many others, customizing a translator for each can bog down the team." (p. 35)</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>"Enhance and expand the protocol to handle new integration requirements, except when a single team has idiosyncratic needs." (p. 35)</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#ddd-context-map">context map</a>, <a href="#group-def-ddd-anticorruption-layer">anticorruption-layer notes</a></footer></article><article class="card term" data-words="published language ddd:published-language" id="ddd-published-language"><header class="term-head"><h2 class="headword">published language</h2><code class="term-id">ddd:published-language</code></header><p class="definition">A well-documented shared language that can express the necessary domain information as a common medium of communication, into and out of which each context translates.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Published Language, p. 36</span><span class="source-note">'Use a well-documented shared language that can express the necessary domain information as a common medium of communication, translating as necessary into and out of that language.' restated as a definition</span></dd></div></dl><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>It is documented and shared: "a well-documented shared language" (p. 36).</li>
+  <li>It is a medium of translation: each context translates "as necessary into and out of that language" (p. 36).</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"The translation between the models of two bounded contexts requires a common language." (p. 36)</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>Don't make either side's own model the medium. Evans's advice is hedged: "Direct translation to and from the existing domain models may not be a good solution." His reasons: "Those models may be overly complex or poorly factored. They are probably undocumented. If one is used as a data interchange language, it essentially becomes frozen and cannot respond to new development needs." (p. 36)</li>
+</ul>
+</div></div><div class="block table examples term"><div class="label">Examples</div><div class="block-body"><ul>
+  <li>"Many industries establish published languages in the form of data interchange standards. Project teams also develop their own for use within their organization." (p. 36)</li>
+  <li>"Published language is often combined with open-host service." (p. 36)</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#ddd-context-map">context map</a>, <a href="#group-def-ddd-anticorruption-layer">anticorruption-layer notes</a></footer></article><article class="card notes"><div class="label notes-label">Notes on this group</div><div class="block list discussion group"><div class="label">Discussion</div><div class="block-body"><ul>
+  <li><strong>This project's translations are an anticorruption layer.</strong> Each source is upstream and this project is downstream. The sources are read through their "existing interface", their published text, and never modified, which matches "little or no modification to the other system" and the project's compilation principle. The danger it guards against is a downstream model "modified to resemble the other system's model in an ad hoc fashion". Model beta's adoption of IASR 2026's definitions was a different and deliberate move (conformist, plan §1.2), though it ended in the same place. The per-source translations are the inside of the layer (plan §3.2). Two widenings, ours: Evans's layer provides an upstream's <em>functionality</em>, and ours provides a source's <em>claims and meanings</em>; and ours translates in one direction only, from source to us. — our reading</li>
+  <li><strong>This project's lexicon is not a published language.</strong> It is this project's own ubiquitous language: a model with commitments, not a neutral medium (plan §2: "Neutrality lives in the assertions, not the vocabulary"). Evans's warning applies if it is ever offered as one: a domain model used for interchange "essentially becomes frozen". If others are to integrate with this project's records, a separate published language would be the cleaner route. — our reading</li>
+  <li><strong>Candidates in the corpus</strong>, none checked for this entry. A statute's definitions read like an open-host service, since other instruments integrate with them and some conform (the EU Code to the AI Act). Shared vocabularies built for interchange read like published languages: MIT's AI Risk Repository taxonomies, ISO/IEC 22989's terminology, and NIST's "AI actors" (adopted from the OECD). Whether any of them meets Evans's conditions (documented, shared, nobody's own model) is open. — our reading</li>
+</ul>
+</div></div><div class="block table examples group"><div class="label">Examples</div><div class="block-body"><table>
+  <thead>
+    <tr>
+      <th>Situation</th>
+      <th>Term</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>This project's translation of SB 53 into its lexicon</td>
+      <td>part of an <a class="ref" href="#ddd-anticorruption-layer" title="An isolating layer, built by a downstream context, that provides it with the upstream's functionality in terms of its own model, translating between the two models.">anticorruption layer</a></td>
+    </tr>
+    <tr>
+      <td>The AI Act's definitions, which the EU Code declares will prevail</td>
+      <td>candidate <a class="ref" href="#ddd-open-host-service" title="A protocol, opened by a context to all who need to integrate with it, that gives access to that context as a set of services.">open-host service</a>, with the Code <a class="ref" href="#ddd-conformist" title="A relationship in which a downstream context adopts the upstream context's model as its own, so that nothing between them needs translating.">conformist</a> to it</td>
+    </tr>
+    <tr>
+      <td>A data-interchange standard for incident reports, if one existed</td>
+      <td>a <a class="ref" href="#ddd-published-language" title="A well-documented shared language that can express the necessary domain information as a common medium of communication, into and out of which each context translates.">published language</a></td>
+    </tr>
+  </tbody>
+</table>
+</div></div><details class="block list working-notes group"><summary class="label">Working notes</summary><div class="block-body"><ul>
+  <li>Open: whether a translation that adds attributed readings ("our reading") is still purely a layer, or partly this project's model leaking into the layer. The plan keeps the source's words and our reading side by side, which keeps the two apart.</li>
+  <li>Open: an anticorruption layer usually also protects against the upstream's <em>changes</em>. Here that is the as-of index on every resolution, and the re-resolution a source revision triggers (address theory's dangle, plan §3.3). No entry yet joins the two vocabularies.</li>
+</ul>
+</div></details><p class="group-source">Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/</p></article></div><nav class="pager"><a class="prev" data-key="ArrowLeft" href="#group-def-ddd-relationships"><span class="label">Previous group</span><span>partnership · shared kernel · customer/supplier · conformist · separate ways</span></a><a class="next" data-key="ArrowRight" href="#group-def-ddd-big-ball-of-mud"><span class="label">Next group</span><span>big ball of mud</span></a></nav></section><section class="view group-view teal" id="group-def-ddd-big-ball-of-mud"><header class="group-head"><div class="crumbs"><span class="crumb-ns">ddd:</span><code>def/def-ddd-big-ball-of-mud.ud</code><span class="status proposed">proposed</span></div><h2 class="group-name"><a href="#ddd-big-ball-of-mud">big ball of mud</a></h2><div class="intro"><p>A <a class="headword-ref" href="#ddd-big-ball-of-mud"><strong>big ball of mud</strong></a> is what forms where no one has drawn <a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a> boundaries, or where the choices that drew them have lapsed: several models mixed together, definitions ambiguous or contradictory, held together by logic added piece by piece. In this lexicon the term names that condition. Evans's pattern then says what to do about it: draw one boundary around the whole mess, name it, do no careful modeling inside, and watch that it does not spread. Those are practices, kept apart from what the term means, because this project may need the name without the response.</p>
+</div></header><div class="cards"><article class="card term" data-words="big ball of mud ddd:big-ball-of-mud" id="ddd-big-ball-of-mud"><header class="term-head"><h2 class="headword">big ball of mud</h2><code class="term-id">ddd:big-ball-of-mud</code></header><p class="definition">A part of a system where models are mixed and boundaries are inconsistent.</p><dl class="facts"><div class="fact"><dt>Source</dt><dd><span class="source-kind modified">modified</span><span>Evans 2015, Big Ball of Mud, p. 38</span><span class="source-note">'parts of systems, often large ones, where models are mixed and boundaries are inconsistent' restated as a definition</span></dd></div></dl><div class="rels"><div class="label">Relations</div><table><tr><th>bounded-by</th><td class="targets"><a class="ref" href="#ddd-bounded-context" title="A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.">bounded context</a></td><td class="cardinality">0..1</td><td class="aside">present only once someone has designated it, per the practice below</td></tr></table></div><div class="block list invariants term"><div class="label">Invariants</div><div class="block-body"><ul>
+  <li>Its boundaries are absent or inconsistent. Evans names both: "models are mixed and boundaries are inconsistent", and "systems where there simply are no boundaries" (p. 38).</li>
+  <li>It forms gradually: "The systems are made to work by contingent logic as features are added … Eventually the software congeals into a big ball of mud." (p. 38)</li>
+  <li>It tends to spread into other contexts: "Be alert to the tendency for such systems to sprawl into other contexts." (p. 38)</li>
+  <li>It can be practical: it "is actually quite practical for some situations (as described in the original article by Foote and Yoder), but it almost completely prevents the subtlety and precision needed for useful models" (p. 38).</li>
+</ul>
+</div></div><div class="block list conditions term"><div class="label">Conditions</div><div class="block-body"><ul>
+  <li>"When these factors are absent, or disappear, multiple conceptual systems and mix together, making definitions and rules ambiguous or contradictory." (p. 38; "and mix together" [sic], as in Evans's text) The factors are "intellectual choices and social forces".</li>
+</ul>
+</div></div><div class="block list practices term"><div class="label">Practices</div><div class="block-body"><ul>
+  <li>"Draw a boundary around the entire mess and designate it a big ball of mud." (p. 38)</li>
+  <li>"Do not try to apply sophisticated modeling within this context." (p. 38)</li>
+</ul>
+</div></div><div class="block list collisions term"><div class="label">Not to be confused with</div><div class="block-body"><ul>
+  <li><strong>Evans's designation sense.</strong> Evans also uses the name for the designated region ("designate it a big ball of mud", p. 38). In this lexicon that is a big ball of mud with its boundary drawn, per the practice above, not a second sense of the term.</li>
+</ul>
+</div></div><footer class="backlinks"><span class="label">Referenced by</span> <a href="#ddd-bounded-context">bounded context</a>, <a href="#group-def-ddd-context-map">context-map notes</a></footer></article><article class="card notes"><div class="label notes-label">Notes on this group</div><div class="block list discussion group"><div class="label">Discussion</div><div class="block-body"><ul>
+  <li><strong>The term can describe a self-inconsistent source; the pattern's response does not fit one.</strong> IASR 2026 and Anthropic's August 2026 Risk Report each define some terms more than one way. Evans's prescription, to stop modeling carefully inside, is the opposite of what this project needs from them, which is precision at each place a term is used. The plan maps such sources as several scopes, one at a time (§3.2, finding 5). The term can still describe a source honestly; the designation practice would be the wrong response. — the plan's reading, kept here</li>
+  <li><strong>Model beta in the condition sense.</strong> The plan says beta's risk analysis "began to read as its own ball of mud" (§1.2): the lexicon and the risk analysis were built together, with no boundary between them. That is the condition this term names. The gamma response is the opposite of Evans's designation practice: draw the missing boundary (lexicon first; risk analysis as a separate context built on it later, §3.3). — our reading</li>
+</ul>
+</div></div><details class="block list working-notes group"><summary class="label">Working notes</summary><div class="block-body"><ul>
+  <li>The phrase is Brian Foote and Joseph Yoder's (Evans cites http://www.laputan.org/mud/mud.html). From memory, not re-read for this entry: their paper is about software architecture, while Evans's use is about model boundaries. Check before relying on the difference.</li>
+</ul>
+</div></details><p class="group-source">Eric Evans, Domain-Driven Design Reference: Definitions and Pattern Summaries (Domain Language, 2015), CC BY 4.0 — local copy ref/DDD_Reference_2015-03/</p></article></div><nav class="pager"><a class="prev" data-key="ArrowLeft" href="#group-def-ddd-anticorruption-layer"><span class="label">Previous group</span><span>anticorruption layer · open-host service · published language</span></a></nav></section></main></div><script>
+// Lexicon page behaviour: filter the contents, mark what is open, step between groups
+// with the arrow keys, and switch light/dark. The page works without any of it
+// (views are switched by CSS :target).
+(function () {
+  var input = document.getElementById("filter");
+  var groups = Array.prototype.slice.call(document.querySelectorAll(".toc-group"));
+  var items = Array.prototype.slice.call(document.querySelectorAll(".toc-group li"));
+
+  // filter: hide non-matching terms, and a group whose terms are all hidden
+  if (input) {
+    input.addEventListener("input", function () {
+      var q = input.value.trim().toLowerCase();
+      items.forEach(function (li) {
+        li.classList.toggle("hidden", q !== "" && li.dataset.words.indexOf(q) < 0);
+      });
+      groups.forEach(function (g) {
+        g.classList.toggle("empty", q !== "" && !g.querySelector("li:not(.hidden)"));
+      });
+    });
+    input.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+      var first = items.filter(function (li) { return !li.classList.contains("hidden"); })[0];
+      if (first) location.hash = first.querySelector("a").getAttribute("href");
+    });
+  }
+
+  // mark the open term (or group) in the contents
+  function mark() {
+    var hash = location.hash;
+    document.querySelectorAll(".toc .here").forEach(function (el) { el.classList.remove("here"); });
+    if (!hash) return;
+    var link = document.querySelector('.toc a[href="' + hash + '"]');
+    if (!link) return;
+    (link.parentElement.tagName === "LI" ? link.parentElement : link).classList.add("here");
+    if (link.scrollIntoViewIfNeeded) link.scrollIntoViewIfNeeded(false);
+  }
+  window.addEventListener("hashchange", function () {
+    // a group opens at its top; a term's card is brought into view by the browser
+    var el = location.hash && document.getElementById(location.hash.slice(1));
+    if (!el || el.classList.contains("view")) window.scrollTo(0, 0);
+    mark();
+  });
+  mark();
+
+  // ← and → step to the previous and next group from the open view
+  document.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "INPUT" || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    var target = location.hash && document.getElementById(location.hash.slice(1));
+    var view = target && (target.closest(".view"));
+    var link = view && view.querySelector('.pager a[data-key="' + e.key + '"]');
+    if (link) { e.preventDefault(); location.hash = link.getAttribute("href"); }
+  });
+
+  // theme: the OS setting until the button is used; the choice is remembered if storage allows
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem("lexicon-theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
+  var button = document.getElementById("theme");
+  if (button) {
+    button.addEventListener("click", function () {
+      var dark = root.dataset.theme
+        ? root.dataset.theme === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+      try { localStorage.setItem("lexicon-theme", root.dataset.theme); } catch (e) {}
+    });
+  }
+})();
+
+</script></body></html>

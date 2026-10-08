@@ -1,0 +1,78 @@
+/ One term's card: headword, definition, where the definition comes from, the words it
+/ goes by or avoids, its relations, its blocks, and what points to it.
+article.card.term id=anchor(t.id) data-words=([t.headword, t.id].join(" ").downcase)
+  header.term-head
+    h2.headword = t.headword
+    code.term-id = t.id
+    - if t.status && t.status != t.group.status
+      span.status class=t.status = t.status
+  p.definition == mdi(t.definition)
+
+  - src = source(t.attr("source"))
+  - syn = Array(t.attr("synonyms")&.value)
+  - avoid = t.attr("avoid")
+  - if src || syn.any? || avoid
+    dl.facts
+      - if src
+        .fact
+          dt Source
+          dd
+            span.source-kind class=src.kind = src.kind
+            span == mdi(src.text)
+            - if src.note && !src.note.empty?
+              span.source-note == mdi(src.note)
+      - if syn.any?
+        .fact
+          dt Also
+          dd
+            - syn.each_with_index do |w, i|
+              = i.zero? ? "" : ", "
+              em = w
+            - if t.attr("synonyms").comment
+              span.aside == mdi(t.attr("synonyms").comment)
+      - if avoid
+        .fact
+          dt Avoid
+          dd
+            - Array(avoid.value).each_with_index do |w, i|
+              = i.zero? ? "" : ", "
+              s = w
+            - if avoid.comment
+              span.aside == mdi(avoid.comment)
+      - t.extra_attrs(config["term_attrs"]).each do |a|
+        .fact
+          dt = a.key
+          dd
+            == mdi(Array(a.value).join(", "))
+            - if a.comment
+              span.aside == mdi(a.comment)
+
+  - unless t.rels.empty?
+    .rels
+      .label Relations
+      table
+        - t.rels.each do |r|
+          - targets, card = rel_value(r.raw)
+          tr
+            th = r.key
+            td.targets
+              - targets.each_with_index do |x, i|
+                = i.zero? ? "" : " | "
+                == mdi(x)
+            td.cardinality = card
+            td.aside == r.comment ? mdi(r.comment) : ""
+
+  - ordered(t.blocks).each do |b|
+    == partial("block", b: b, group: t.group, scope: "term")
+
+  - back = book.refs[t.id]
+  - unless back.empty?
+    footer.backlinks
+      span.label Referenced by
+      - back.each_with_index do |o, i|
+        = i.zero? ? " " : ", "
+        - if o.is_a?(Lexicon::Term)
+          a href="##{anchor(o.id)}" = o.headword
+        - else
+          a href="##{o.id}" = "#{o.label} notes"
+

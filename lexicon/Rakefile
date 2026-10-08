@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+# rake          build lexicon.html from the files in config.yml (../def/*.ud)
+# rake link     build with lexicon.css + lexicon.js linked (for tweaking in the browser)
+# rake check    parse only; list unresolved @{refs}
+
+task default: :build
+
+desc "Build lexicon.html"
+task(:build) { ruby "build.rb" }
+
+desc "Build with lexicon.css and lexicon.js linked instead of inlined"
+task(:link) { ruby "build.rb", "--link" }
+
+desc "Parse the term files and list unresolved @{refs}"
+task(:check) { ruby "build.rb", "--check" }

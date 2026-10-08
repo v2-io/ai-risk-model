@@ -1,0 +1,23 @@
+/ The sidebar: a filter box and the contents. Each term group is a short list under a
+/ hairline; its label (the file's name) opens the group's own notes.
+/ lexicon.js filters it as you type and marks the view that is open.
+nav.toc aria-label="Contents"
+  .toc-inner
+    a.toc-title href="#" = config["title"]
+    label.filter
+      span.sr Filter terms
+      input#filter type="search" placeholder="Filter terms…" autocomplete="off"
+    - book.namespaces.each do |ns, groups|
+      - info = book.namespace(ns)
+      .toc-ns class=info["family"]
+        .toc-ns-name title=info["title"] = ns ? "#{ns}:" : "(no namespace)"
+        - groups.each do |g|
+          .toc-group
+            a.toc-group-name href="##{g.id}" title="Notes on these terms" = g.label
+            ol
+              - g.terms.each do |t|
+                li data-words=([t.headword, t.id, *Array(t.attr("synonyms")&.value)].join(" ").downcase)
+                  a href="##{anchor(t.id)}" = t.headword
+    .toc-foot
+      a href="#" Index
+      button#theme type="button" aria-label="Switch light or dark" Theme

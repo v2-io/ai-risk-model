@@ -1,0 +1,6 @@
+/ A block's notes (its ; comments), any text on the block's own line, then its markdown.
+- b.comments.each do |c|
+  p.block-note == mdi(c)
+- if b.text
+  p == mdi(b.text)
+.block-body == md(b.markdown, group: group)

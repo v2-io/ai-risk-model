@@ -1,0 +1,619 @@
+// ==========================================================================
+// Lexicon — layout & type (indented Sass)
+// Colours come from palette.sass; this file only refers to them by name.
+//
+// One view at a time. The home view (title, tally, index) shows by default;
+// a #fragment naming a term or a term group shows that card alone (:target).
+// Each term is set as a card, like a terminology standard's entry: headword,
+// the definition on a ruled line, then the record in a quieter voice.
+// Newsreader carries what is read, IBM Plex Sans what is scanned (labels,
+// chips), Plex Mono the ids.
+// ==========================================================================
+
+:root
+  --nav-w: 17.5rem
+  --card-w: 46rem
+  --serif: 'Newsreader', Georgia, 'Times New Roman', serif
+  --sans: 'IBM Plex Sans', system-ui, sans-serif
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace
+
+*
+  box-sizing: border-box
+
+body
+  margin: 0
+  background: var(--paper)
+  color: var(--ink)
+  font: 16px/1.5 var(--sans)
+  -webkit-font-smoothing: antialiased
+
+a
+  color: var(--link)
+  text-decoration-thickness: 1px
+  text-underline-offset: 2px
+
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible
+  outline: 2px solid var(--edge)
+  outline-offset: 2px
+
+code
+  font-family: var(--mono)
+  font-size: 0.86em
+
+.sr
+  position: absolute
+  width: 1px
+  height: 1px
+  overflow: hidden
+  clip: rect(0 0 0 0)
+
+.shell
+  display: grid
+  grid-template-columns: var(--nav-w) minmax(0, 1fr)
+  max-width: 1360px
+  margin: 0 auto
+
+// ---------------------------------------------------------------- one view at a time
+
+.view
+  display: none
+.view:target, .view:has(:target), .view.home
+  display: block
+main:has(:target) .view.home
+  display: none
+
+// ---------------------------------------------------------------- the sidebar
+
+.toc
+  position: sticky
+  top: 0
+  height: 100vh
+  overflow-y: auto
+  border-right: 1px solid var(--rule)
+  font-size: 13.5px
+
+.toc-inner
+  padding: 40px 22px 32px 24px
+  display: flex
+  flex-direction: column
+  gap: 18px
+
+.toc-title
+  font: 500 19px/1.2 var(--serif)
+  color: var(--ink)
+  text-decoration: none
+
+.filter input
+  width: 100%
+  font: 14px var(--sans)
+  color: var(--ink)
+  background: var(--paper-2)
+  border: 1px solid var(--rule)
+  border-radius: 3px
+  padding: 7px 10px
+
+.toc-ns
+  display: flex
+  flex-direction: column
+  gap: 12px
+
+.toc-ns-name
+  font: 500 15px var(--mono)
+  color: var(--accent)
+
+.toc-group
+  border-left: 1px solid var(--rule)
+  padding-left: 12px
+  ol
+    list-style: none
+    margin: 2px 0 0
+    padding: 0
+  li
+    padding: 1.5px 0
+  li a
+    color: var(--ink-2)
+    text-decoration: none
+    &:hover
+      color: var(--edge)
+      text-decoration: underline
+  li.here a
+    color: var(--accent)
+    font-weight: 600
+  li.hidden
+    display: none
+  &.empty
+    display: none
+
+.toc-group-name
+  display: block
+  font: 11px var(--mono)
+  letter-spacing: 0.02em
+  color: var(--muted)
+  text-decoration: none
+  &:hover, &.here
+    color: var(--accent)
+
+.toc-foot
+  display: flex
+  flex-wrap: wrap
+  gap: 6px 14px
+  padding-top: 12px
+  border-top: 1px solid var(--rule)
+  a
+    color: var(--muted)
+  button
+    margin-left: auto
+    font: 12px var(--sans)
+    color: var(--muted)
+    background: none
+    border: 1px solid var(--rule)
+    border-radius: 3px
+    padding: 2px 8px
+    cursor: pointer
+
+// ---------------------------------------------------------------- page, cards
+
+.page
+  min-width: 0
+  padding: 56px 56px 72px
+
+.group-view
+  max-width: var(--card-w)
+
+.card
+  background: var(--card)
+  border: 1px solid var(--card-bd)
+  border-radius: 6px
+  box-shadow: var(--shadow)
+  padding: 26px 34px 24px
+  scroll-margin-top: 28px
+
+// the card the URL points at
+.card:target
+  border-color: var(--edge)
+  box-shadow: 0 0 0 1px var(--edge), var(--shadow)
+
+// between cards: clearly more room than anything inside one
+.cards
+  display: flex
+  flex-direction: column
+  gap: 34px
+  margin-top: 30px
+
+// a group's quiet top line: namespace, file, status
+.crumbs
+  display: flex
+  flex-wrap: wrap
+  align-items: baseline
+  gap: 4px 10px
+  font-size: 12.5px
+  color: var(--muted)
+  a
+    color: var(--muted)
+    text-decoration-color: var(--rule)
+    &:hover
+      color: var(--edge)
+  code
+    font-size: 11.5px
+
+.crumb-ns
+  font: 500 12.5px var(--mono)
+  color: var(--accent)
+
+// ---------------------------------------------------------------- home
+
+.masthead
+  max-width: var(--card-w)
+  display: flex
+  flex-direction: column
+  gap: 16px
+  padding-bottom: 26px
+  border-bottom: 2px solid var(--rule-strong)
+
+.kicker
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  gap: 4px 16px
+  font: 12px var(--mono)
+  letter-spacing: 0.12em
+  text-transform: uppercase
+  color: var(--muted)
+
+h1
+  margin: 0
+  font: 500 clamp(2.4rem, 5vw, 3.5rem)/1.05 var(--serif)
+  letter-spacing: -0.015em
+  text-wrap: balance
+
+.lede
+  margin: 0
+  font: 1.18rem/1.5 var(--serif)
+  color: var(--ink-2)
+  max-width: 40rem
+
+.tally
+  display: flex
+  flex-wrap: wrap
+  gap: 6px 22px
+  margin: 0
+  padding: 0
+  list-style: none
+  font-size: 13px
+  color: var(--muted)
+  b
+    font: 600 15px var(--sans)
+    color: var(--ink)
+    font-variant-numeric: tabular-nums
+
+.index
+  margin-top: 34px
+
+.letters
+  columns: 14rem
+  column-gap: 36px
+
+.letter
+  break-inside: avoid
+  margin-bottom: 20px
+  h3
+    margin: 0 0 4px
+    font: italic 500 1.35rem var(--serif)
+    color: var(--muted)
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    font-size: 14.5px
+  li
+    padding: 1.5px 0
+  .ns-tag
+    margin-left: 6px
+    font: 11px var(--mono)
+    color: var(--muted)
+  .word
+    font-style: italic
+  li.avoid .word
+    text-decoration: line-through
+    text-decoration-color: var(--rose-edge)
+  .see
+    color: var(--muted)
+    font-size: 13px
+
+.unresolved
+  margin-top: 40px
+  h2
+    margin: 0
+    font: 500 1.3rem var(--serif)
+  p, li
+    font-size: 14px
+    color: var(--ink-2)
+
+.colophon
+  margin-top: 56px
+  padding-top: 14px
+  border-top: 1px solid var(--rule)
+  font-size: 12.5px
+  color: var(--muted)
+  max-width: var(--card-w)
+
+// ---------------------------------------------------------------- term card
+
+.term-head
+  display: flex
+  flex-wrap: wrap
+  align-items: baseline
+  gap: 4px 14px
+
+.headword
+  margin: 0
+  font: 600 2rem/1.1 var(--serif)
+  letter-spacing: -0.012em
+
+.term-id
+  font-size: 13px
+  color: var(--accent)
+
+.status, .source-kind
+  font: 600 10.5px/1 var(--sans)
+  letter-spacing: 0.1em
+  text-transform: uppercase
+  color: var(--k)
+  background: var(--k-bg)
+  border-radius: 2px
+  padding: 4px 6px 3px
+
+.definition
+  margin: 12px 0 0
+  padding: 1px 0 1px 16px
+  border-left: 3px solid var(--edge)
+  font: 1.24rem/1.45 var(--serif)
+  color: var(--ink)
+
+.facts
+  margin: 14px 0 0
+  display: grid
+  gap: 4px
+  font-size: 13.5px
+  color: var(--ink-2)
+
+.fact
+  display: grid
+  grid-template-columns: 4.6rem minmax(0, 1fr)
+  gap: 12px
+  dt
+    font: 600 10.5px/1.9 var(--sans)
+    letter-spacing: 0.12em
+    text-transform: uppercase
+    color: var(--muted)
+  dd
+    margin: 0
+    display: flex
+    flex-wrap: wrap
+    align-items: baseline
+    gap: 2px 8px
+  s
+    text-decoration-color: var(--rose-edge)
+    font-family: var(--mono)
+    font-size: 12.5px
+
+.source-note, .aside
+  color: var(--muted)
+  font-style: italic
+
+.label
+  font: 600 10.5px/1.4 var(--sans)
+  letter-spacing: 0.12em
+  text-transform: uppercase
+  color: var(--muted)
+
+// relations: key → target {m..n}
+.rels
+  margin-top: 14px
+  table
+    margin-top: 6px
+    border-collapse: collapse
+    font-size: 13.5px
+  th
+    text-align: left
+    font: 500 12.5px var(--mono)
+    color: var(--accent)
+    padding: 3px 14px 3px 0
+    white-space: nowrap
+    vertical-align: baseline
+  td
+    padding: 3px 14px 3px 0
+    vertical-align: baseline
+  .targets a
+    white-space: nowrap
+  .cardinality
+    font: 12px var(--mono)
+    color: var(--muted)
+    white-space: nowrap
+  .aside
+    font-size: 12.5px
+
+.ref
+  color: var(--edge)
+  text-decoration-color: var(--bd)
+  &.external::after
+    content: "↗"
+    font: 0.75em var(--sans)
+    margin-left: 1px
+    vertical-align: 0.25em
+  &.unresolved
+    font-family: var(--mono)
+    font-size: 0.86em
+    color: var(--rose-ink)
+    border-bottom: 1px dashed var(--rose-edge)
+
+.backlinks
+  margin: 18px -34px -24px
+  padding: 10px 34px 12px
+  border-top: 1px solid var(--card-bd)
+  border-radius: 0 0 6px 6px
+  background: var(--paper-2)
+  font-size: 13px
+  color: var(--muted)
+  .label
+    margin-right: 4px
+
+// below the cards: previous and next group
+.pager
+  display: flex
+  justify-content: space-between
+  gap: 16px
+  margin-top: 40px
+  padding-top: 14px
+  border-top: 1px solid var(--rule)
+  a
+    display: flex
+    flex-direction: column
+    gap: 1px
+    text-decoration: none
+    color: var(--ink)
+    font: 1.02rem var(--serif)
+    &:hover span:last-child
+      text-decoration: underline
+      text-decoration-color: var(--edge)
+  .next
+    text-align: right
+    margin-left: auto
+
+// ---------------------------------------------------------------- group header & notes card
+
+.group-name
+  margin: 10px 0 0
+  font: italic 400 1.5rem/1.25 var(--serif)
+  text-wrap: balance
+  a
+    color: var(--ink)
+    text-decoration-color: var(--bd)
+
+.intro
+  margin-top: 12px
+  font: 1.02rem/1.6 var(--serif)
+  color: var(--ink-2)
+  p
+    margin: 0 0 0.7em
+  strong
+    font-weight: 600
+    font-variant: small-caps
+    letter-spacing: 0.04em
+  a.headword-ref
+    color: inherit
+    text-decoration-color: var(--bd)
+
+.notes-label
+  font-size: 11.5px
+  color: var(--ink-2)
+
+.notes .block:first-of-type
+  margin-top: 10px
+
+.group-source
+  margin: 22px 0 0
+  padding-top: 12px
+  border-top: 1px solid var(--rule)
+  font-size: 12px
+  color: var(--muted)
+
+// ---------------------------------------------------------------- blocks
+
+.block
+  margin-top: 16px
+  font: 1rem/1.5 var(--serif)
+  color: var(--ink-2)
+  .block-body > :first-child
+    margin-top: 6px
+  p
+    margin: 0.4em 0
+  ul, ol
+    margin: 6px 0 0
+    padding-left: 1.1em
+  li
+    margin: 0
+    padding: 3px 0
+
+.block.list .block-body > ul
+  list-style: none
+  padding-left: 0
+  > li
+    padding: 5px 0 5px 18px
+    border-top: 1px dashed var(--rule-dashed)
+    position: relative
+    &::before
+      content: "—"
+      position: absolute
+      left: 0
+      color: var(--muted)
+  > li:first-child
+    border-top: 0
+
+.block-note
+  font: italic 0.9rem/1.45 var(--serif)
+  color: var(--muted)
+
+.block.callout
+  background: var(--callout-bg)
+  border-left: 3px solid var(--callout-edge)
+  padding: 10px 16px 12px
+  border-radius: 0 3px 3px 0
+  .label
+    color: var(--callout-ink)
+  .block-body > ul
+    list-style: none
+    padding-left: 0
+
+details.block
+  > summary
+    cursor: pointer
+    list-style: none
+    &::-webkit-details-marker
+      display: none
+    &::before
+      content: "+ "
+      font-family: var(--mono)
+  &[open] > summary::before
+    content: "− "
+
+// tables scroll inside their own box, never the page
+.block-body table
+  display: block
+  overflow-x: auto
+  max-width: 100%
+  border-collapse: collapse
+  margin-top: 8px
+  font: 13.5px/1.4 var(--sans)
+  color: var(--ink)
+  th
+    text-align: left
+    font-weight: 600
+    font-size: 11.5px
+    letter-spacing: 0.06em
+    text-transform: uppercase
+    color: var(--muted)
+    border-bottom: 1px solid var(--rule-strong)
+  th, td
+    padding: 6px 14px 6px 0
+    vertical-align: top
+  td
+    border-bottom: 1px solid var(--rule)
+  tr:last-child td
+    border-bottom: 0
+
+.block.lexical-map table
+  font-size: 12.5px
+  td:nth-child(5)
+    min-width: 22rem
+    font-family: var(--serif)
+
+// a group card with a wide table (lexical maps) takes the room to its right
+@media (min-width: 961px)
+  .group-view:has(.lexical-map[open]) .notes
+    width: min(1180px, calc(100vw - var(--nav-w) - 112px))
+
+// ---------------------------------------------------------------- narrow screens
+
+@media (max-width: 960px)
+  .shell
+    grid-template-columns: minmax(0, 1fr)
+  .toc
+    position: static
+    height: auto
+    border-right: 0
+    border-bottom: 1px solid var(--rule)
+  .toc-inner
+    padding: 24px 16px 18px
+  .toc-group ol
+    display: flex
+    flex-wrap: wrap
+    gap: 2px 12px
+  .page
+    padding: 24px 12px 48px
+  .card
+    padding: 20px 18px 18px
+  .backlinks
+    margin: 16px -18px -18px
+    padding: 10px 18px 12px
+  .cards
+    gap: 22px
+  .fact
+    grid-template-columns: minmax(0, 1fr)
+    gap: 0
+
+@media print
+  .toc
+    display: none
+  .shell
+    display: block
+  .view
+    display: block
+    margin-bottom: 32px
+  .card
+    box-shadow: none
+    break-inside: avoid-page
+  .pager
+    display: none
+  details.block
+    display: block

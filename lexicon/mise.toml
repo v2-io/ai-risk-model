@@ -1,0 +1,8 @@
+min_version = "2024.9.5"
+
+[env]
+PROJECT_NAME = "lexicon"
+RUBY_VERSION = "4.0.0"
+
+[tools]
+ruby = "{{ get_env(name='RUBY_VERSION', default='4.0.0') }}"

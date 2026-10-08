@@ -1,0 +1,45 @@
+/ A term group's view: a quiet header (namespace, file, the text that introduces the
+/ terms together), one card per term, then a card for the group's own blocks
+/ (discussion, examples, working notes), then the way to the next group.
+section.view.group-view class=family id=g.id
+  header.group-head
+    .crumbs
+      - if g.ns
+        span.crumb-ns = "#{g.ns}:"
+      code = rel_path(g.file)
+      - if g.status
+        span.status class=g.status = g.status
+    h2.group-name
+      - g.terms.each_with_index do |t, i|
+        = i.zero? ? "" : " · "
+        a href="##{anchor(t.id)}" = t.headword
+    - unless g.intro.empty?
+      .intro == md(g.intro, group: g)
+
+  .cards
+    - g.terms.each do |t|
+      == partial("term", t: t)
+
+    - unless g.blocks.empty? && g.source.nil?
+      article.card.notes
+        .label.notes-label Notes on this group
+        - ordered(g.blocks).each do |b|
+          == partial("block", b: b, group: g, scope: "group")
+        - src = source(g.source)
+        - if src
+          p.group-source == mdi(src.text)
+
+  - prev_g, next_g = neighbors(g)
+  nav.pager
+    - if prev_g
+      a.prev href="##{prev_g.id}" data-key="ArrowLeft"
+        span.label Previous group
+        span = prev_g.title
+    - else
+      a.prev href="#"
+        span.label Back to
+        span Index
+    - if next_g
+      a.next href="##{next_g.id}" data-key="ArrowRight"
+        span.label Next group
+        span = next_g.title
