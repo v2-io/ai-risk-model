@@ -1,0 +1,49 @@
+; xai-faif25: xAI, Frontier AI Framework, "Last updated: December 30, 2025" (relata xai-2025-faif)
+; xai-faif26: xAI, Frontier AI Framework, "Effective Date: 30 June 2026" (relata xai-2026-faif)
+; xai-rmf:    xAI, Risk Management Framework, "Last updated: August 20, 2025" (relata xai-2025-rmf)
+; Two documents with one title get two namespaces, versioned by year (notes.md §3).
+; Disposable (G1b thin pass, notation trial). Marks: README.md.
+
+|term-group[xai-faif25:catastrophic-risk][xai-faif25:this-risk]
+  :status proposed
+  :source "P-xai25-scope, P-xai25-fn, P-xai25-fn-conducts, P-xai25-date"
+
+  The 2025 FAIF adopts SB 53's term by name ("Catastrophic Risk as defined in the TFAIA"), and quotes (c)(1) with (A)–(C) exactly, stopping before the exclusions. Its own scope, **THIS-RISK** ("malicious use and loss of control"), includes SB 53's term and more.
+
+  |term[xai-faif25:catastrophic-risk] Catastrophic Risk as defined in the TFAIA.
+    :binding "incorporated: a mediated step into sb53.bp, as of 2025-12-30"
+    |rels :exact  @{sb53.bp:catastrophic-risk} {1,1}   ; by incorporation; the exclusions come with it though unquoted
+          :quotes @{sb53.bp:catastrophic-risk}         ; L-xai25-quote: (c)(1) and (A)-(C) verbatim, checked by script
+
+  |term[xai-faif25:this-risk] "This risk": the FAIF's two categories, malicious use and loss of control.
+    :closure open                                       ; "includes, but is not limited to"
+    |rels :contains {@{xai-faif25:catastrophic-risk}, ?}
+
+|term-group[xai-faif26:systemic-risk]
+  :status proposed
+  :source "P-xai26-date, P-xai26-severe-systemic; footnote 1 (L41-42, not anchored)"
+
+  |term[xai-faif26:systemic-risk] Systemic risk, in the EU Code's terminology (its footnote 1).
+    :binding "imported: -> eu-code:systemic-risk ?  (the Code's tests weren't read)"
+    |discussion
+      - The 2026 FAIF contains none of "TFAIA", "50 people", "billion" or "catastrophic" (searched). It doesn't carry SB 53's bar.
+      - Whether it *replaces* the 2025 FAIF or sits beside it as the EU-facing framework is undetermined (L-xai-faif-revised-2026). The notation has no mark for "in force, end undetermined", so it is said here in words (notes.md §3).
+
+|term-group[xai-rmf:catastrophic-malicious-use-events]
+  :status proposed
+  :source "P-xairmf-bar, P-xairmf-date"
+
+  |term[xai-rmf:catastrophic-malicious-use-events] More than one hundred deaths or over $1 billion in damages from weapons of mass destruction or cyberterrorist attacks on critical infrastructure.
+    :source "RMF p. 3 — verbatim; used to grade requests by the 'foreseeable and non-trivial risk' they pose"
+    :binding bound
+    :closure closed
+    |rels :is-a         @{arm:occurrence} {1,1}
+          :requires-all {mechanism, harm}
+          :mechanism-any ["weapons of mass destruction" "cyberterrorist attacks on critical infrastructure"]
+          :harm-any      ["more than one hundred deaths" "over $1 billion in damages"]
+    |discussion
+      - It has no counting unit (no "single incident") and its bar is >100 deaths, which only this source draws. By this trial's rule it gets no arm: class. 60 deaths fall below its casualty arm.
+      - Lineage: same publisher and title family, earlier date. Neither later document says it replaces this one (L-xairmf-revised-2025). Whether its "foreseeable" and "$1 billion" came from SB 53's drafts is undetermined (L-xairmf-vs-sb53).
+
+|resolutions[xai]
+  - R-xai25-incorporation  P-xai25-scope  "Catastrophic Risk as defined in the TFAIA" => -> @{sb53.bp:catastrophic-risk}   ; mediated, as of 2025-12-30; followed

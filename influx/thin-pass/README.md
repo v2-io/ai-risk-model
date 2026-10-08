@@ -26,6 +26,7 @@ There are also single passages from xAI's 2025 RMF and 2026 FAIF, OpenAI's PF v2
 | `proposed-changes.md` | Changes to the plan and the competency questions, each pointing to its defect. Change 2 is a decision for Joseph | Joseph |
 | `de-novo-feedback-1.md` | The independent verifier's audit of the first version | Anyone weighing this pass |
 | `response-to-de-novo-feedback-1.md` | What was accepted, changed and contested, with where each finding was checked | Joseph; the coordinator |
+| `notation/` | The same slice rewritten in the namespaced notation Joseph sketched on 2026-10-07, with notes on where it fit and strained. Start at `notation/README.md` | Joseph |
 | `records/` | The records the answer is computed from (below) | Verifiers; whoever drafts G1(e) |
 | `tools/` | The checker, the answer computation, and the shared-wording comparison | Verifiers |
 

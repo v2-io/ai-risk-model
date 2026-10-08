@@ -1,0 +1,103 @@
+; sb53: California SB 53, Chapter 138, Statutes of 2025 (relata california-2025-sb53).
+; Scopes: sb53.bp = Business and Professions Code Ch. 25.1 (§§22757.10-.16);
+;         sb53.lab = Labor Code Ch. 5.1 (§§1107-1107.2).
+; The source mints "catastrophic risk" and "critical safety incident" once in
+; each scope, so each has two entries. A term minted once (frontier developer)
+; lives in sb53.bp, and sb53.lab imports it (§1107(e)).
+; Disposable (G1b thin pass, notation trial). Marks: README.md. Thin-pass ids
+; (P-, R-, F-, L-) point into ../records/.
+
+|term-group[sb53.bp:catastrophic-risk][sb53.lab:catastrophic-risk]
+  :status proposed
+  :source "SB 53 §22757.11(c) and Labor Code §1107(a); P-sb53-bp-cr, P-sb53-bp-cr-conducts, P-sb53-bp-cr-excl, P-sb53-lab-cr"
+
+  SB 53 defines **CATASTROPHIC-RISK** twice, in one sentence each, and the two differ only in which models they reach: frontier models in the Business and Professions Code, foundation models in the Labor Code. Each is an @{arm:risk.possibility} narrowed by eight conditions. Two of them end in California law, one is ambiguous, two hang on one ambiguous phrase, and the closed conduct list and the three exclusions are plain. The sentence is closed ("means"), so its bar is a floor.
+
+  |term[sb53.bp:catastrophic-risk] A foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following: (A) …, (B) …, (C) … — excluding (A) …, (B) …, (C) ….
+    :source "§22757.11(c)(1)-(2), verbatim except the lists, given in the rels"
+    :binding bound
+    :closure closed                                   ; "means"
+    |rels :is-a          @{arm:risk.possibility}  {1,1}
+          :knowledge     -> ca-law:foreseeable ?          ; R-foreseeable: imported, not followed
+          :materiality   {@{arm:materiality=importance} | @{arm:materiality=likelihood-floor} | @{arm:materiality=magnitude}}   ; R-material
+          :bearer        @{sb53.bp:frontier-developer} {1,1}
+          :bearer-conduct-any ["development" "storage" "use" @{sb53.bp:deploy}]
+          :contribution  -> ca-law:materially-contribute ?  ; R-materially-contribute; the contributor here is the developer's conduct
+          :outcome-any   {{@{arm:harm.over-50-dead-or-seriously-injured-one-incident} | @{arm:harm.over-50-dead-or-over-50-seriously-injured-one-incident}}, @{sb53.bp:property-harm-over-1b}}   ; inner: R-pooling, lean pooled
+          :incident-phrase-attaches {both | property-only}  ; R-single-incident-attachment, lean both. Under property-only, the casualty arm needs no single incident and no listed conduct
+          :model-conduct-any {@{arm:conduct.expert-cbrn-uplift}, @{arm:conduct.unsupervised-cyberattack}, @{arm:conduct.unsupervised-crime-equivalent}, @{arm:conduct.evading-control}}   ; closed list; (B)'s crimes: murder, assault, extortion, theft
+          :excludes-any  ["(A) information … otherwise publicly accessible in a substantially similar form from a source other than a foundation model" "(B) lawful activity of the federal government" "(C) harm caused … in combination with other software if the frontier model did not materially contribute"]
+          :not-to-be-confused-with @{ant-rsp:catastrophic-risk}   ; stated by Anthropic in both documents (P-fcf-rsp-sense, P-rsp34-fn1)
+    |discussion
+      - The exclusions stay in quotation. Each is a distinction only SB 53 (and its copies) draws, so by this trial's rule it gets no arm: term (notes.md §1).
+      - "materially contribute" appears twice with different contributors: the developer's conduct in the head, the model in exclusion (C). The rels give the head's; the exclusion keeps its words.
+
+  |term[sb53.lab:catastrophic-risk] As @{sb53.bp:catastrophic-risk}, with "foundation model" for "frontier model" throughout.
+    :source "Labor Code §1107(a), verbatim differences: 'foundation model' ×3; (B) 'if committed by a human'; exclusion (C) 'where' for 'if'"
+    :binding bound
+    :closure closed
+    |rels :broader @{sb53.bp:catastrophic-risk} {1,1}   ; ours: foundation ⊇ frontier, so it also reaches a frontier developer's sub-frontier models
+          :bearer  @{sb53.bp:frontier-developer} {1,1}  ; imported (§1107(e)): a mediated step, P-sb53-lab-fd-import
+    |working-notes
+      - "As X, with Y for Z" is inheritance with an override. The rels can't say it, so it sits in the definition line (notes.md §2).
+
+|term-group[sb53.bp:critical-safety-incident][sb53.lab:critical-safety-incident]
+  :status proposed
+  :source "SB 53 §22757.11(d), Labor Code §1107(c); P-sb53-bp-csi, P-sb53-bp-csi4, P-sb53-lab-csi, P-sb53-lab-csi4"
+
+  A **CRITICAL-SAFETY-INCIDENT** is SB 53's only status for an occurrence, and the one its incident duties attach to: a report to OES within 15 days of discovery, or to an authority within 24 hours if there is an imminent risk of death (P-sb53-bp-report, P-sb53-bp-report24). Four limbs, any one sufficient. Two of them need no >50 bar, and one needs no harm. Two of the limbs relate the occurrence to a catastrophic risk, in two different ways.
+
+  |term[sb53.bp:critical-safety-incident] Any of: (1) unauthorized access to, modification of, or exfiltration of the model weights of a frontier model that results in death or bodily injury; (2) harm resulting from the materialization of a catastrophic risk; (3) loss of control of a frontier model causing death or bodily injury; (4) a frontier model's deceptive subversion of its developer's controls or monitoring, outside an evaluation designed to elicit it, in a manner that demonstrates materially increased catastrophic risk.
+    :source "§22757.11(d), condensed; the limbs are verbatim in P-sb53-bp-csi, P-sb53-bp-csi4"
+    :binding bound
+    :closure closed
+    |rels :is-a          @{arm:event-status} {1,1}
+          :requires-any  {limb-1, limb-2, limb-3, limb-4}
+          ; limb 2:
+          :{materializes-whole | materializes-whole-or-part} @{sb53.bp:catastrophic-risk}   ; R-materialization-partial: the ambiguity is in the relation, not its target
+          ; limb 4:
+          :evidences-increase-in @{sb53.bp:catastrophic-risk}
+          ; limbs 1 and 3: any death or bodily injury; no relation to catastrophic risk
+          :loss-of-control {@{arm:conduct.evading-control} | wider | different}   ; R-control: "Loss of control" (limb 3) against "Evading the control" ((c)(1)(C))
+
+  |term[sb53.lab:critical-safety-incident] As @{sb53.bp:critical-safety-incident}, with "foundation model" for "frontier model", limb (1) adding "or damage to, or loss of, property", and limbs (2) and (4) relating to @{sb53.lab:catastrophic-risk}.
+    :binding bound
+    :closure closed
+    |rels :broader @{sb53.bp:critical-safety-incident} {1,1}   ; ours
+
+|term-group[sb53.bp:frontier-developer][sb53.bp:frontier-model][sb53.bp:deploy][sb53.bp:property-harm-over-1b]
+  :status proposed
+
+  The defined terms the catastrophic-risk conditions lean on. They are G2's material (roles, models), recorded here only as far as Q1 touches them.
+
+  |term[sb53.bp:frontier-developer] A person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications in subdivision (i).
+    :source "§22757.11(h), verbatim (P-sb53-bp-fd)"
+    :binding bound
+    |rels :person -> ca-law:person ?   ; "person" is undefined in the chapter: California law's to fill, not followed
+  |term[sb53.bp:frontier-model] A foundation model trained using more than 10^26 integer or floating-point operations, counting the original run and subsequent fine-tuning, reinforcement learning or other material modifications.
+    :source "§22757.11(i), condensed (P-sb53-bp-fm)"
+    :binding bound
+  |term[sb53.bp:deploy] To make a frontier model available to a third party for use, modification, copying, or combination with other software, other than primarily for developing or evaluating it.
+    :source "§22757.11(e), condensed"
+    :binding bound
+  |term[sb53.bp:property-harm-over-1b] More than one billion dollars in damage to, or loss of, property (tangible or intangible), not counting loss of value of equity.
+    :source "§22757.11(c)(1), (l); §22757.16 (P-sb53-bp-property, P-sb53-bp-equity)"
+    :binding "ours: a name for one arm of the bar, assembled from three provisions"
+    |rels :narrower @{arm:harm.over-1b-usd-property-one-incident} {1,1}   ; the equity exclusion
+
+; ---------------------------------------------------------------- resolutions
+; One line per use: record, passage, the words, => what they resolve to.
+; From the scope of the passage unless marked. "lean" is ours.
+
+|resolutions[sb53]
+  - R-cr-origin           P-sb53-bp-csi    "catastrophic risk" (limb 2)  => @{sb53.bp:catastrophic-risk}                   ; walk, within sb53.bp
+  - R-cr-origin           P-sb53-lab-csi   "catastrophic risk" (limb 2)  => @{sb53.lab:catastrophic-risk}                  ; walk, within sb53.lab: same words, other scope, other referent
+  - R-findings-cr         P-sb53-findings-n "significant catastrophic risk" => {@{sb53.bp:catastrophic-risk} | @{sb53.lab:catastrophic-risk} | ordinary}   ; from the uncodified findings, outside both scopes; lab fits "behind the frontier" best
+  - R-foreseeable         P-sb53-bp-cr     "foreseeable"                 => -> ca-law:foreseeable ?                       ; delegated
+  - R-material            P-sb53-bp-cr     "material"                    => {@{arm:materiality=importance} | @{arm:materiality=likelihood-floor} | @{arm:materiality=magnitude}}
+  - R-materially-contribute P-sb53-bp-cr   "materially contribute"       => -> ca-law:materially-contribute ?             ; delegated
+  - R-pooling             P-sb53-bp-bar    "the death of, or serious injury to, more than 50 people" => {@{arm:harm.over-50-dead-or-seriously-injured-one-incident} | @{arm:harm.over-50-dead-or-over-50-seriously-injured-one-incident}}   lean first
+  - R-single-incident-attachment P-sb53-bp-bar "… arising from a single incident involving a frontier model doing …" => attaches {both | property-only}   lean both
+  - R-incident            P-sb53-bp-bar    "a single incident"           => ordinary-language ?                           ; unbound; Q1 stipulates it
+  - R-control             P-sb53-bp-csi    "Loss of control" (limb 3)    => {= @{arm:conduct.evading-control} | wider | different}   ; the descendants file evasion under loss of control (weak evidence for "wider")
+  - R-materialization-partial P-sb53-bp-csi "the materialization of" (limb 2) => {whole outcome | whole or part}

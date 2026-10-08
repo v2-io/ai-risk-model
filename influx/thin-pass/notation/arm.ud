@@ -1,0 +1,130 @@
+; arm: this project's own terms, as far as the SB 53 slice needs them.
+; Disposable (G1b thin pass, notation trial, 2026-10-07). Marks: see README.md.
+;
+; Rule used here: an arm: term exists only where two or more sources meet at it,
+; or where our own thinking needs it (Q1's 60 deaths). A distinction only one
+; source draws stays in that source's namespace. Names state the distinguishing
+; feature, never a source's judgment word ("catastrophic", "severe", "systemic").
+
+|term-group[arm:risk.possibility][arm:occurrence][arm:event-status]
+  :status proposed
+
+  A **RISK.POSSIBILITY** is a risk read as the possibility that a stated outcome comes about, with no probability as part of it. Every "catastrophic risk" and "systemic risk" in the slice is of this kind. An **OCCURRENCE** is a particular event that happened. An **EVENT-STATUS** is a status an instrument confers on an occurrence when stated conditions hold, with consequences attached ("X counts as Y in C"). SB 53's critical safety incident is one; so are the FCF's internal "AI Event" and "AI Incident". Occurrences reach risks only through two relations, @{arm:materializes} and @{arm:evidences-increase-in}.
+
+  |term[arm:risk.possibility] A risk read as the possibility that a stated outcome comes about. No probability or expectation is part of it.
+    :source "ours; the plan's 'risk as a possible event' (§3.8), after the SRA Glossary's first qualitative definition (not re-checked)"
+    |rels :outcome @{arm:harm} {1,N}
+
+  |term[arm:occurrence] A particular event that happened.
+    :source "ours; the plan's instance record (G1(e))"
+
+  |term[arm:event-status] A status an instrument confers on an occurrence when stated conditions hold, with consequences attached.
+    :source "ours; Searle's constitutive rule ('X counts as Y in C'), which the plan applies to roles (§3.9), applied to events"
+    |rels :conferred-by  instrument     {1,1}
+          :on            @{arm:occurrence} {1,1}
+
+; ---------------------------------------------------------------- relations
+; Relations are defined as terms here and used unprefixed as |rels keys
+; (":materializes"), as udon's |rels do with ":is-a". notes.md §3 asks
+; whether relation keys need namespaces.
+
+|term-group[arm:materializes][arm:evidences-increase-in]
+  :status proposed
+
+  SB 53's one definition of an incident links occurrences to risks in two different ways. An occurrence **MATERIALIZES** a risk when it is (part of) the outcome the risk was the possibility of: limb (2), "Harm resulting from the materialization of a catastrophic risk". An occurrence **EVIDENCES-INCREASE-IN** a risk when it shows the risk has grown, without being its outcome: limb (4), "in a manner that demonstrates materially increased catastrophic risk". The first realizes, the second is evidence.
+
+  |term[arm:materializes] From an occurrence to a risk whose outcome it is, wholly or in part.
+    |rels :from @{arm:occurrence}       {1,1}
+          :to   @{arm:risk.possibility} {1,1}
+    |ambiguity
+      - **Whole or part?** Does an occurrence below the outcome's bar (10 deaths, from a risk of more than 50) materialize it? SB 53 doesn't say: {whole-outcome-only | partial-counts}. Thin pass R-materialization-partial.
+
+  |term[arm:evidences-increase-in] From an occurrence to a risk it shows has increased.
+    |rels :from @{arm:occurrence}       {1,1}
+          :to   @{arm:risk.possibility} {1,1}
+
+; ---------------------------------------------------------------- harm classes
+; Outcome classes where two or more sources meet. All per single occurrence
+; unless the name says otherwise.
+
+|term-group[arm:harm][arm:harm.over-50-deaths-one-incident][arm:harm.over-50-dead-or-seriously-injured-one-incident][arm:harm.over-50-dead-or-over-50-seriously-injured-one-incident][arm:harm.thousands-dead-or-gravely-injured][arm:harm.over-1b-usd-property-one-incident][arm:harm.hundreds-of-billions-usd-economic]
+  :status proposed
+
+  **HARM** is the umbrella for outcome classes. The slice's bars sit at three casualty levels: more than 50 *deaths*, more than 50 *dead or seriously injured* (SB 53, pooled), and *thousands* dead or gravely injured (OpenAI's PF). They also sit at two dollar levels: $1B in property, and hundreds of billions in economic damage. Each class is named by its delimiting characteristic. The second casualty class has a sibling for SB 53's other reading, where deaths and injuries are counted separately.
+
+  |term[arm:harm] An outcome counted toward a bar.
+    :closure open
+
+  |term[arm:harm.over-50-deaths-one-incident] More than 50 people dead from a single occurrence.
+    |rels :is-a     @{arm:harm} {1,1}
+          :narrower @{arm:harm.over-50-dead-or-seriously-injured-one-incident} {1,1}
+    |discussion
+      - Q1's 60 deaths are an instance. The FCF's and FGF's examples name this class almost exactly: ">50 fatalities arising from a single incident"; "greater than 50 fatalities … arising from a single incident".
+
+  |term[arm:harm.over-50-dead-or-seriously-injured-one-incident] More than 50 people, each dead or seriously injured, from a single occurrence.
+    |rels :is-a  @{arm:harm} {1,1}
+          :broader @{arm:harm.over-50-deaths-one-incident} {1,1}
+    :avoid [arm:harm.over-50-casualties] ; "casualties" varies by source: the NRR bands casualties and fatalities separately (OVERVIEW §2.6)
+
+  |term[arm:harm.over-50-dead-or-over-50-seriously-injured-one-incident] More than 50 dead, or more than 50 seriously injured, from a single occurrence: the two counted separately.
+    |rels :is-a         @{arm:harm} {1,1}
+          :requires-any {@{arm:harm.over-50-deaths-one-incident}, more than 50 seriously injured}
+    |working-notes
+      - It exists only to name SB 53's second reading (R-pooling). Without inline any-of inside an ambiguity, a reading that is a union needs a name of its own (notes.md §2).
+
+  |term[arm:harm.thousands-dead-or-gravely-injured] Thousands of people dead or gravely injured.
+    |rels :is-a @{arm:harm} {1,1}
+    |ambiguity
+      - **What "thousands" sets.** The class inherits the PF's vagueness: {at least 1,000 | at least 2,000}. Moot for every scenario computed.
+    |working-notes
+      - No counting unit: the PF's footnote doesn't say "single incident". Named anyway because our thinking about "severe" needs it (Q1).
+
+  |term[arm:harm.over-1b-usd-property-one-incident] More than $1 billion of damage to, or loss of, property from a single occurrence.
+    |rels :is-a @{arm:harm} {1,1}
+    |discussion
+      - The sources meet here only roughly, and that is the interesting part:
+        - SB 53: "damage to, or loss of, property", where property is "tangible or intangible" and loss of equity value doesn't count. Narrower.
+        - The FGF: "$1 billion of property damages or losses". About this class.
+        - The FCF: "1 billion dollars of financial damages", with no "more than". Related, not equal: financial is not property, and ≥ is not >.
+
+  |term[arm:harm.hundreds-of-billions-usd-economic] Economic damage in the hundreds of billions of dollars.
+    |rels :is-a @{arm:harm} {1,1}
+
+; ---------------------------------------------------------------- conduct classes
+; SB 53's closed list, named so that RAISE, xAI, the FCF and the FGF can be
+; related to it.
+
+|term-group[arm:conduct.expert-cbrn-uplift][arm:conduct.unsupervised-cyberattack][arm:conduct.unsupervised-crime-equivalent][arm:conduct.evading-control]
+  :status proposed
+
+  Four kinds of conduct by a model. SB 53 lists them as a closed set of conditions on the occurrence ("involving a frontier model doing any of the following"). The companies keep versions of them in their risk categories.
+
+  |term[arm:conduct.expert-cbrn-uplift] A model providing expert-level assistance in creating or releasing a chemical, biological, radiological or nuclear weapon.
+  |term[arm:conduct.unsupervised-cyberattack] A model carrying out a cyberattack with no meaningful human oversight, intervention or supervision.
+  |term[arm:conduct.unsupervised-crime-equivalent] A model, with no meaningful human oversight, doing something that would be a crime if a human did it.
+    |ambiguity
+      - **Which crimes.** SB 53: a closed list (murder, assault, extortion, theft). The FGF: the same four. The FCF: an open class, "serious crimes (such as assault, extortion, or theft)". So the term needs a crime parameter: {closed four | open "serious crimes"}, by source.
+  |term[arm:conduct.evading-control] A model evading control by a named holder (its developer, its user).
+
+; ---------------------------------------------------------------- facets
+; Attribute terms whose values entries set. A mark over a value ({a | b}) is
+; ambiguity about that value.
+
+|term-group[arm:closure][arm:materiality][arm:incident-phrase-attaches]
+  :status proposed
+
+  |term[arm:closure] Whether a class is exactly its stated members or criteria (closed: "means") or only includes them (open: "includes", "including but not limited to").
+    :values [open closed]
+    |discussion
+      - It is a property of an *entry*, set by the source's drafting word. In the slice it decides rows: in every variant computed, the companies' own sentences stay open where SB 53's closed bar says no.
+      - In a *claim* ("when a developer does …"), the same question becomes quantification, which belongs in claim records and goes unmarked unless it changes an answer (notes.md §4).
+
+  |term[arm:materiality] What "material" qualifies in a risk.
+    :values [importance likelihood-floor magnitude]
+    |discussion
+      - The candidate senses of SB 53's "material" (R-material), named so that a declared ambiguity names lexicon terms, as acceptance test 1 asks.
+
+  |term[arm:incident-phrase-attaches] Which arms of a two-arm bar "arising from a single incident involving a model doing …" governs.
+    :values [both property-only]
+    |working-notes
+      - A facet invented for one sentence in SB 53 (R-single-incident-attachment). It may be better as a general "counting unit governs which arms" facet. It decides rows in v-several-incidents.

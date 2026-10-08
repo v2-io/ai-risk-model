@@ -1,0 +1,41 @@
+; ny-raise: New York S.8828, RAISE Act chapter amendment, text as introduced 2026-01-08
+;           (relata ny-2026-raise-s8828); General Business Law Art. 44-B as replaced
+; Disposable (G1b thin pass, notation trial). Marks: README.md.
+
+|term-group[ny-raise:catastrophic-risk][ny-raise:critical-safety-incident][ny-raise:person]
+  :status proposed
+  :source "P-raise-cr, P-raise-cr-c, P-raise-csi, P-raise-person, P-raise-scope, P-raise-report, P-raise-effective"
+
+  RAISE copies SB 53's Business and Professions definitions word for word, apart from "fifty" for "50" and list formatting, and never names SB 53. The words are the same, but one term embedded in them is not. RAISE defines **PERSON** as nongovernmental; SB 53's chapter leaves "person" to California law. So whether RAISE's catastrophic risk is *exactly* SB 53's, or *narrower*, turns on a California binding nobody here followed. That is an ambiguity in the *relation* between two entries, not in either entry's words.
+
+  |term[ny-raise:catastrophic-risk] SB 53's §22757.11(c), verbatim except "fifty" and list markers.
+    :source "§1420(3) as introduced (P-raise-cr)"
+    :binding bound
+    :closure closed
+    :in-force "from 2027-01-01 (§3 as introduced, P-raise-effective)"
+    |rels :copies @{sb53.bp:catastrophic-risk}                       ; L-raise-copy; ours: unacknowledged
+          :{exact | narrower} @{sb53.bp:catastrophic-risk}           ; via @{ny-raise:person} against -> ca-law:person ?
+    |discussion
+      - The thin pass's frame diff found this as "SAME WORDS, different test" (`answer.py`). The notation shows *why* in one row, by putting the ambiguity on the relation.
+
+  |term[ny-raise:critical-safety-incident] SB 53's §22757.11(d), verbatim; limbs (b) and (d) relate to @{ny-raise:catastrophic-risk}.
+    :source "§1420(4) as introduced (P-raise-csi)"
+    :binding bound
+    :closure closed
+    |rels :copies @{sb53.bp:critical-safety-incident}
+    |discussion
+      - Same words; different consequences. A report "within seventy-two hours from a determination that a critical safety incident has occurred" (P-raise-report), where SB 53 has 15 days "of discovering" it. The trigger differs as well as the window.
+
+  |term[ny-raise:person] An individual, proprietorship, firm, … or any other nongovernmental organization or group of persons acting in concert.
+    :source "§1420(14) — condensed (P-raise-person)"
+    :binding bound
+
+; Coverage, as against definition: §1425 limits the *article* to frontier models
+; "developed, deployed, or operating in whole or in part in New York state"
+; (P-raise-scope). That limits where the instrument applies, not what the term
+; means, so it is an attribute of the namespace, not a rel of the entry.
+|namespace[ny-raise]
+  :coverage "frontier models developed, deployed, or operating in whole or in part in New York state (§1425)"
+
+|resolutions[ny-raise]
+  - R-raise-person  P-raise-cr  "a frontier developer's …" (via "person") => @{ny-raise:person}   ; walk; makes the relation to SB 53 {exact | narrower}

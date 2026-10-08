@@ -58,7 +58,7 @@ records:
       - "comparator: 'more than one billion dollars' becomes '1 billion dollars'"
       - "counting unit: attached to the fatalities, and on one reading not to the dollars (R-fcf-dollar-attachment)"
       - "dropped: the developer-conduct bearer, 'materially contribute', all three exclusions, the equity exclusion"
-      - "moved, not dropped: the conduct list, into the FCF's risk categories, opened ('such as') and without murder (P-fcf-loc)"
+      - "moved, not dropped: the conduct list, into the FCF's risk categories, widened from SB 53's closed list of four crimes to an open class, 'serious crimes (such as assault, extortion, or theft)'. Murder is not among the examples but plausibly falls in the class (P-fcf-loc)"
       - "added: a deictic coverage condition, 'the most advanced (i.e. state-of-the-art) models at any given point in time'"
     not_independent_of: L-fcf-fgf-template
     lineage_effect: not independent

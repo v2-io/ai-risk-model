@@ -275,7 +275,7 @@ records:
     candidates:
       restrictive: {gloss: "a systemic risk under the FCF's own sentence must fall in a listed category"}
       illustrative: {gloss: "the categories describe current coverage, not the definition's extent", evidence: "'currently'"}
-    note: "Its loss-of-control category carries SB 53's (B) and (C), opened ('such as') and without murder (P-fcf-loc). Decides its clause only in every scenario."
+    note: "Its loss-of-control category carries SB 53's (B) and (C), widened to an open class of 'serious crimes (such as assault, extortion, or theft)', whose examples omit murder though the class plausibly includes it (P-fcf-loc). Decides its clause only in every scenario."
 
   - id: R-fgf-categories
     use: {passage: P-fgf-categories-intro, words: "this FGF definition currently addresses the following systemic risk categories:"}

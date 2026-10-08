@@ -1,0 +1,76 @@
+; oai-fgf: OpenAI, Frontier Governance Framework (relata openai-2026-frontier-governance-framework)
+; oai-pf:  OpenAI, Preparedness Framework v2 (relata openai-2025-preparedness-framework-v2), read for three passages
+; Disposable (G1b thin pass, notation trial). Marks: README.md.
+;
+; The slice's one decisive ambiguity is here: the FGF uses "severe harm"
+; undefined, and the same publisher's PF defines it about 20 to 200 times higher
+; (for casualties).
+
+|term-group[oai-pf:severe-harm][oai-fgf:severe-harm#own]
+  :status proposed
+  :source "P-pf-severe; P-fgf-def; P-fgf-severe-reuse1, P-fgf-severe-reuse2; P-pf-severe-reuse1, P-pf-severe-reuse2"
+
+  The PF *binds* **SEVERE-HARM** in a footnote. The FGF *uses* the phrase without defining it, in three places:
+  - once as the genus of its own definition of systemic risk, with an example of more than 50 fatalities;
+  - twice inside sentences copied verbatim from the PF.
+
+  So there are two senses to name. The PF's is the PF's own. The FGF's is our reconstruction from its sentence, so it carries `#own`: a sense we split out of the FGF's word, attributed to us. Each *use* of the FGF's word then resolves to one sense or the other, or stays ambiguous.
+
+  |term[oai-pf:severe-harm] The death or grave injury of thousands of people or hundreds of billions of dollars of economic damage.
+    :source "PF v2, footnote 1: 'By \"severe harm\" in this document, we mean …' — verbatim"
+    :binding bound
+    :closure closed                                         ; "we mean"
+    |rels :contains {@{arm:harm.thousands-dead-or-gravely-injured}, @{arm:harm.hundreds-of-billions-usd-economic}}
+
+  |term[oai-fgf:severe-harm#own] The harm the FGF's systemic-risk sentence calls severe: including greater than 50 fatalities, or $1 billion of property damages or losses, from a single incident.
+    :source "ours, reconstructed from P-fgf-def; the FGF doesn't define the phrase"
+    :binding "ours (a sense we split; the FGF's word is unbound)"
+    :closure open                                           ; "including"
+    |rels :contains {@{arm:harm.over-50-deaths-one-incident}, @{arm:harm.over-1b-usd-property-one-incident}}
+          :not-to-be-confused-with @{oai-pf:severe-harm}      ; ours: the same publisher's same words, an order of magnitude or more apart
+    |discussion
+      - **Joseph's sketch, re-expressed.** He wrote:
+        `arm:thousands-severe-harm (== pf:severe-harm, != (fgf:severe-harm == arm:50-severe-harm))`.
+        The material agrees with its shape and corrects two of its equalities:
+        - The PF's severe harm is not *equal* to a casualty class. It also has a dollar arm. So it `:contains` two classes and is closed.
+        - The FGF's severe harm is not *equal* to the 50-death class. Its sentence says "including", so the 50-death class is a *member* of an open class.
+        - The `!=` survives as `:not-to-be-confused-with`, between two *senses*.
+        - Whether the FGF's word carries one sense or the other is not a relation between terms at all. It is a *resolution* of each use (below).
+      - None of the names carries "severe". The judgment word stays in the sources' namespaces; our classes are named by what they count.
+
+|term-group[oai-fgf:systemic-risk][oai-fgf:systemic-risk#sentence]
+  :status proposed
+  :source "P-fgf-umbrella, P-fgf-def, P-fgf-tfaia-coverage, P-fgf-categories-intro, P-fgf-loc-cell"
+
+  The FGF's **SYSTEMIC-RISK** is an umbrella over two statutes' terms: "when we refer to 'systemic' risks, we mean both catastrophic risks under the TFAIA and systemic risks under the EU AI Act". A few paragraphs later comes a definition sentence of its own, "This FGF's definition of systemic risk includes …". If "we mean both" is exhaustive, the later sentence only restates the two statutes in the FGF's words. If it isn't, the sentence adds a third member. The source doesn't say which. That makes the umbrella's *closure* itself ambiguous, and with it whether `#sentence` is a member.
+
+  |term[oai-fgf:systemic-risk] Systemic risk in the FGF: SB 53's catastrophic risk and the EU AI Act's systemic risk, and on one reading the FGF's own sentence.
+    :binding bound
+    :closure {closed | open}                                ; R-fgf-umbrella-closure; moot at the row in every scenario
+    |rels :contains {{@{sb53.bp:catastrophic-risk}, @{eu-act:systemic-risk}} | {@{sb53.bp:catastrophic-risk}, @{eu-act:systemic-risk}, @{oai-fgf:systemic-risk#sentence}}}
+    |working-notes
+      - The member set depends on the closure. The only way found to say that is an ambiguity between two whole sets (notes.md §2).
+
+  |term[oai-fgf:systemic-risk#sentence] Foreseeable and material risks of severe harm from the development, storage, use, or deployment of OpenAI's most advanced frontier models, including risks that a model will materially contribute to greater than 50 fatalities or $1 billion of property damages or losses arising from a single incident.
+    :source "P-fgf-def, verbatim except 'our' given as 'OpenAI's'"
+    :binding "the FGF's sentence; '#sentence' is our split of the FGF's word"
+    :closure open                                           ; "includes … including"
+    |rels :is-a            @{arm:risk.possibility} {1,1}
+          :outcome-genus   {@{oai-fgf:severe-harm#own} | @{oai-pf:severe-harm}}   ; R-fgf-severe, lean #own (low-moderate)
+          :outcome-example {@{arm:harm.over-50-deaths-one-incident}, @{arm:harm.over-1b-usd-property-one-incident}}   ; one incident governs both arms
+          :bearer          OpenAI                                                 ; "our"; frontier "as defined under the TFAIA" (P-fgf-tfaia-coverage)
+          :contribution    "a model will materially contribute"                   ; the model, not the developer's conduct (cf. SB 53's head)
+          :category-list   {restrictive | illustrative}                           ; R-fgf-categories: "this FGF definition currently addresses …"
+          :model-conduct-in-categories {@{arm:conduct.unsupervised-crime-equivalent}, @{arm:conduct.evading-control}}   ; the loss-of-control cell: SB 53's (B) and (C), murder included
+          :restates        @{sb53.bp:catastrophic-risk}                           ; L-fgf-derived; ours
+          :shares-template-with @{ant-fcf:systemic-risk#sentence}                 ; L-fcf-fgf-template; ours, direction undetermined
+
+|resolutions[oai-fgf]
+  - R-fgf-severe          P-fgf-def          "risks of severe harm"   => {@{oai-fgf:severe-harm#own} | @{oai-pf:severe-harm}}   lean #own, low-moderate
+  - R-fgf-severe-reused   P-fgf-severe-reuse1 "a risk of severe harm" => {@{oai-pf:severe-harm} | @{oai-fgf:severe-harm#own}}   ; the sentence is the PF's, verbatim (L-fgf-pf-reuse); no lean
+  - R-fgf-severe-reused   P-fgf-severe-reuse2 "risk of severe harm"   => {@{oai-pf:severe-harm} | @{oai-fgf:severe-harm#own}}   ; likewise
+  - R-fgf-umbrella-closure P-fgf-umbrella    "we mean both"           => closure {closed | open}
+  - R-pf-thousands        P-pf-severe        "thousands of people"    => {at least 1,000 | at least 2,000}   ; from oai-pf; moot in every scenario; the vagueness is carried into @{arm:harm.thousands-dead-or-gravely-injured}
+  - R-fgf-categories      P-fgf-categories-intro "this FGF definition currently addresses …" => {restrictive | illustrative}
+  - (no record)           P-fgf-pf-sense     "different definitions of catastrophic risk" => -> oai-pf:catastrophic-risk ?   ; not read: no entry. The PF's "catastrophic risk" wasn't read. This note is about that term, not "severe harm"
+  ; If the first resolves to #own and the next two to the PF's sense, the FGF uses one unbound phrase in two senses inside one document.

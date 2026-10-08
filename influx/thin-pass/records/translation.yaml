@@ -497,7 +497,7 @@ frames:
       - key: model-conduct
         slot: thin:model-conduct-condition
         words: "the FCF currently addresses the following systemic risk categories: Cyber offense ... CBRN ... Harmful manipulation ... Loss of control, including evasion of oversight or unsupervised conduct, and autonomous behavior that would constitute serious crimes (such as assault, extortion, or theft) if committed by a human."
-        note: SB 53's conduct list, moved out of the definition into a category list, opened ("such as") and without murder. Repaired after de-novo-feedback-1 §3.3.
+        note: SB 53's conduct list, moved out of the definition into a category list, widened from a closed list of four crimes to an open class, "serious crimes (such as ...)", whose examples omit murder. Repaired after de-novo-feedback-1 §3.3.
         resolution: R-fcf-categories
         test:
           ambiguous: R-fcf-categories

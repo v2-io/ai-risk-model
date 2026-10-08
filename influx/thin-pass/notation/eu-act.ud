@@ -1,0 +1,22 @@
+; eu-act: Regulation (EU) 2024/1689, the AI Act (relata eu-2024-ai-act), read for Art. 3(65) only.
+; It is here because both companies' "systemic" umbrellas contain it.
+; Disposable (G1b thin pass, notation trial). Marks: README.md.
+
+|term-group[eu-act:systemic-risk]
+  :status proposed
+  :source "P-act-3-65"
+
+  |term[eu-act:systemic-risk] A risk that is specific to the high-impact capabilities of general-purpose AI models, having a significant impact on the Union market due to their reach, or due to actual or reasonably foreseeable negative effects on public health, safety, public security, fundamental rights, or the society as a whole, that can be propagated at scale across the value chain.
+    :source "Art. 3(65) — verbatim"
+    :binding bound
+    :closure closed                                         ; "means"
+    |rels :is-a         @{arm:risk.possibility} {1,1}
+          :requires-all {capability, impact, propagation}
+          :capability   "specific to the high-impact capabilities of general-purpose AI models"
+          :impact       "a significant impact on the Union market"
+          :impact-due-to-any ["their reach" "actual or reasonably foreseeable negative effects on public health, safety, public security, fundamental rights, or the society as a whole"]
+          :propagation  "can be propagated at scale across the value chain"
+    |discussion
+      - It has no casualty or dollar bar, so it never relates to an arm:harm class. Q1 states none of its conditions. That is why the companies' umbrella rows stay open in every scenario computed: reading this definition changes why they are open, not whether.
+      - In `:impact-due-to-any`, "due to … or due to …" is a disjunction the source states about the *cause* of the market impact. It is not an ambiguity, so it goes in the relation name (`-any`), never in the `{a | b}` mark (notes.md §2).
+      - "reasonably foreseeable" here is EU law's word (-> eu-law:reasonably-foreseeable ?). It is not SB 53's "foreseeable" (-> ca-law:foreseeable ?). Two delegated bindings with the same word root, kept apart by namespace without anyone having to resolve either.

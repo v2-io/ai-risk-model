@@ -248,7 +248,7 @@ So their shared drift from SB 53 is plausibly one event counted twice, the error
 **What I'd change.** Compute drift per slot from frames, comparing the resolved tests, not only the words.
 
 #### D-frame-boundary
-**What happened.** Drift first reported the FCF and FGF as having "dropped" SB 53's conduct list. It had moved into their category tables, which the FGF ties to "this FGF definition" (P-fgf-categories-intro). The move came with drift of its own: the FCF opens the list ("such as") and drops murder. A frame drawn at the definition sentence can't see a relocation (de-novo-feedback-1 §3.3).
+**What happened.** Drift first reported the FCF and FGF as having "dropped" SB 53's conduct list. It had moved into their category tables, which the FGF ties to "this FGF definition" (P-fgf-categories-intro). The move came with drift of its own: the FCF turns SB 53's closed list of four crimes into an open class, "serious crimes (such as assault, extortion, or theft)". *Corrected:* an earlier version said it "drops murder"; murder is missing only from the examples (found while writing `notation/`). A frame drawn at the definition sentence can't see a relocation (de-novo-feedback-1 §3.3).
 
 **What I'd change.** A frame's boundary follows the source's own tie-ins (category tables, "this definition"), and drift reports moved clauses as moved.
 

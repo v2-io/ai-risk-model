@@ -49,6 +49,8 @@ It doesn't follow from the computation, for three reasons:
 - **§8, the AI Act as "the cheapest single read that would change the answer".** I read Art. 3(65). It has no casualty bar, as the verifier recalled, and its conditions (high-impact capabilities, Union-market impact, propagation) are none of them stated by Q1. So reading it changes *why* the umbrella rows stay open, not *whether* they do.
 - **§1.3, "a judgment about the sentences … not a computation".** That was true of the first version. With the own sentences as rows and the closure probe, the sentence-level contrast is now computed. It remains true that no *umbrella* row shows it, because of the EU member.
 
+- **§3.3, "omits murder".** Accepted at first, then corrected while writing `notation/`. The FCF's class is "serious crimes (such as assault, extortion, or theft)", which is open, so murder is missing from the examples, not excluded from the class. Its list is *wider* than SB 53's closed four, not narrower. The thin-pass files now say so.
+
 ## What remains open
 
 - A different-family translator on the same slice, diffing frames slot by slot. That is still the real check on every reading here, the computed weights included.

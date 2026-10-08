@@ -156,7 +156,7 @@ Its reporting window and trigger differ from SB 53's (short answer 3). It takes 
   | dollar comparator | "more than one billion" | "1 billion" |
   | causal link | "a frontier developer's … materially contribute" | "from" |
   | added | — | "at any given point in time" (coverage that moves with time) |
-  | moved | the conduct list | into the risk categories, opened ("such as") and without murder (P-fcf-loc) |
+  | moved | the conduct list | into the risk categories, widened from a closed list of four crimes to an open class, "serious crimes (such as assault, extortion, or theft)", whose examples omit murder (P-fcf-loc) |
   | dropped | — | all three exclusions |
 - **Its footnote on the RSP** (P-fcf-rsp-sense) is consistent with the RSP v3.4's own footnote 1 (P-rsp34-fn1). The RSP uses "catastrophic risk" "in its plain meaning rather than adopting any specific statutory definition", with "existential threats or fundamental destabilization of global systems" as examples. So the RSP's term is deliberately unbound (R-fcf-rsp-catastrophic). That does not make a 60-death incident "not catastrophic" under the RSP; it means the RSP doesn't decide.
 

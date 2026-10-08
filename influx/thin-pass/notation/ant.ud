@@ -1,0 +1,60 @@
+; ant-fcf: Anthropic, Frontier Compliance Framework v2, effective 2026-07-24 (relata anthropic-2026-frontier-compliance-framework-v2)
+; ant-rsp: Anthropic, Responsible Scaling Policy v3.4, effective 2026-07-08 (relata anthropic-2026-rsp-v3-4), read for footnote 1
+; Disposable (G1b thin pass, notation trial). Marks: README.md.
+;
+; Conflict of interest, as everywhere in this project: Anthropic material read
+; by an Anthropic model. These entries were built by the same procedure as
+; oai.ud's, and the parallel check (does a sibling document bind the genus?)
+; was run on both.
+
+|term-group[ant-fcf:systemic-risk][ant-fcf:systemic-risk#sentence][ant-fcf:large-scale-harm]
+  :status proposed
+  :source "P-fcf-umbrella, P-fcf-def, P-fcf-our-models, P-fcf-categories, P-fcf-loc, P-fcf-tfaia-role"
+
+  The FCF's **SYSTEMIC-RISK** has the same shape as the FGF's, and much of the same wording (L-fcf-fgf-template). It is an umbrella over SB 53's catastrophic risk and the EU AI Act's systemic risk ("include both"), followed by a sentence of its own ("Our definition of systemic risk includes …"). Its genus, **LARGE-SCALE-HARM**, is unbound, and unlike the FGF's no sibling document binds it: the RSP v3.4 doesn't use the phrase.
+
+  |term[ant-fcf:systemic-risk] Systemic risk in the FCF: SB 53's catastrophic risk and the EU AI Act's systemic risk, and on one reading the FCF's own sentence.
+    :binding bound
+    :closure {open | closed}                                ; R-fcf-umbrella: "include both"; moot at the row
+    |rels :contains {{@{sb53.bp:catastrophic-risk}, @{eu-act:systemic-risk}, @{ant-fcf:systemic-risk#sentence}} | {@{sb53.bp:catastrophic-risk}, @{eu-act:systemic-risk}}}
+
+  |term[ant-fcf:systemic-risk#sentence] Foreseeable and material risks of large-scale harm from the most advanced (i.e. state-of-the-art) models at any given point in time, including but not limited to >50 fatalities arising from a single incident, or 1 billion dollars of financial damages.
+    :source "P-fcf-def — verbatim"
+    :binding "the FCF's sentence; '#sentence' is our split of the FCF's word"
+    :closure open                                           ; "includes … including but not limited to"
+    |rels :is-a            @{arm:risk.possibility} {1,1}
+          :outcome-genus   @{ant-fcf:large-scale-harm}
+          :outcome-example {@{arm:harm.over-50-deaths-one-incident}, "1 billion dollars of financial damages"}   ; R-fcf-dollar-attachment: does "a single incident" govern the dollars too? {fatalities-only | both}
+          :coverage        "the most advanced (i.e. state-of-the-art) models at any given point in time"   ; re-run over time: a match, in address theory's terms
+          :bearer          Anthropic                                              ; "systemic risks stemming from our models" (§2.1, P-fcf-our-models), not in the sentence itself
+          :contribution    "from"
+          :category-list   {restrictive | illustrative}                           ; R-fcf-categories
+          :model-conduct-in-categories {@{arm:conduct.evading-control}, @{arm:conduct.unsupervised-crime-equivalent}}   ; with crimes widened to an open class: "serious crimes (such as assault, extortion, or theft)"
+          :restates        @{sb53.bp:catastrophic-risk}                           ; L-fcf-derived; ours
+          :shares-template-with @{oai-fgf:systemic-risk#sentence}                 ; L-fcf-fgf-template; ours
+
+  |term[ant-fcf:large-scale-harm] Harm the FCF counts as large-scale. Unbound: only a lower bound is given, by the example.
+    :binding unbound
+    :closure open
+    |rels :contains {@{arm:harm.over-50-deaths-one-incident}, "1 billion dollars of financial damages", ?}   ; "?" is the rest, unnamed
+    |discussion
+      - Here `?` sits *inside a set* (unnamed further members), where elsewhere it is a resolution outcome (unresolved). Same mark, two jobs (notes.md §2).
+
+|term-group[ant-rsp:catastrophic-risk]
+  :status proposed
+  :source "P-rsp34-fn1, P-fcf-rsp-sense"
+
+  |term[ant-rsp:catastrophic-risk] Risks of the most severe potential harms from advanced AI, such as existential threats or fundamental destabilization of global systems; the term is used in its plain meaning, not any statutory definition.
+    :source "RSP v3.4, footnote 1 — near-verbatim"
+    :binding "deliberately unbound ('plain meaning'), with examples at the extreme end"
+    |rels :not-to-be-confused-with @{sb53.bp:catastrophic-risk}   ; stated by Anthropic in both documents: the FCF (P-fcf-rsp-sense) and the RSP ("we address those requirements in separate compliance frameworks")
+    |discussion
+      - A source-stated `:not-to-be-confused-with`, unlike OpenAI's "severe harm", where the distinction is ours. A relation row needs to say who asserts it (notes.md §3).
+      - For Q1: the RSP doesn't decide a 60-death incident either way. "Plain meaning" with extreme examples resolves to no bar at all, which is a different outcome from "no".
+
+|resolutions[ant-fcf]
+  - R-fcf-umbrella          P-fcf-umbrella     "include both"           => closure {open | closed}
+  - R-fcf-large-scale       P-fcf-def          "large-scale harm"       => @{ant-fcf:large-scale-harm}   ; unbound; lower bound only
+  - R-fcf-dollar-attachment P-fcf-def          "… a single incident, or 1 billion dollars of financial damages" => {fatalities-only | both}
+  - R-fcf-categories        P-fcf-categories   "the FCF currently addresses the following systemic risk categories" => {restrictive | illustrative}
+  - R-fcf-rsp-catastrophic  P-fcf-rsp-sense    "The RSP uses 'catastrophic risk' in a different sense" => @{ant-rsp:catastrophic-risk}   ; checked against the RSP's own footnote
