@@ -51,9 +51,9 @@ module Lexicon
   #   :key value :key2 value ; c      attributes of the element above. A value runs to the
   #                                   next framed ` :label`, ` |name`, ` ; ` or ` \ `, outside
   #                                   quotes and brackets. "string", [list], or raw text.
-  #                                   :{a | b} value  -- a braced label (the notation's
-  #                                   ambiguous relation; not udon 0.10.0, which ends a
-  #                                   label at the first space)
+  #                                   :'a | b' value, :'{a | b}' value -- an ambiguous
+  #                                   relation, quoted (valid udon); :{a | b} value, the
+  #                                   braced form the notation files use, reads the same
   #   :key                            with nothing after it: the deeper lines are its value
   #   ; comment                       a whole-line comment; owns the deeper lines under it
   #   ```                             a fence: everything to the closing ``` is text, verbatim
@@ -427,14 +427,21 @@ module Lexicon
       end
 
       # :label  :'quoted label'  :{braced | label}
+      # An ambiguous relation (one of these relations holds; which is undetermined) is
+      # written quoted, as valid udon -- :'exact | narrower' or :'{exact | narrower}' --
+      # or braced, as the thin-pass notation files do. All three read as {exact | narrower}.
       def label(str, i, n)
         if str[i] == "{"
           j = matching(str, i, "{", "}") || (str.size - 1)
-          note(n, "braced label :#{str[i..j]} (the notation's ambiguous relation; udon 0.10.0 would end the label at the first space)")
+          note(n, "braced label :#{str[i..j]} (an ambiguous relation; valid udon quotes it: :'#{str[i..j]}')")
           [str[i..j], true, j + 1]
         elsif str[i] == "'" || str[i] == '"'
           j = str.index(str[i], i + 1) || str.size
-          [str[(i + 1)...j], false, j + 1]
+          inner = str[(i + 1)...j]
+          if inner.strip =~ /\A\{.*\}\z/m then [inner.strip, true, j + 1]
+          elsif inner.include?("|") then ["{#{inner.strip}}", true, j + 1]
+          else [inner, false, j + 1]
+          end
         else
           j = i
           j += 1 while j < str.size && str[j] !~ /\s/

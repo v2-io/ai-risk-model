@@ -62,7 +62,7 @@ Nothing is dropped. What the builder reads differently from plain udon, carries 
 
 Where these files go beyond udon 0.10.0, the builder follows the files:
 
-- `:{exact | narrower} @{…}`, a braced label, is read as one label: the notation's ambiguous relation. Udon ends a label at the first space.
+- `:{exact | narrower} @{…}`, a braced label, is read as one label: the notation's ambiguous relation (one of these relations holds; which is undetermined). Udon ends a label at the first space; the valid udon spellings are quoted, `:'exact | narrower'` or `:'{exact | narrower}'`, and all three read and render alike. The braced form gets a reading note.
 - A list, set or string left open at the end of a line continues onto the next. Udon leaves this unspecified.
 - A line that starts with `|` and ends with `|` is a markdown table row, not an element.
 - `@{id}` in prose and values is a reference. In udon 0.10.0 the brace form appears only in key brackets; the house style uses it everywhere.
@@ -89,7 +89,7 @@ Where these files go beyond udon 0.10.0, the builder follows the files:
   - `-> ns:x ?` is a path out of the lexicon, not followed;
   - `?` means unresolved;
   - `lean x` is our preference.
-- **Relations.** Comments between relation rows stay where they were written.
+- **Relations.** An ambiguous relation (`:'exact | narrower'`, `:'{exact | narrower}'` or `:{exact | narrower}`) is highlighted like an ambiguous value. Comments between relation rows stay where they were written.
 - **Resolving `@{id}`.** The rules, in order:
   - Exact ids and aliases link.
   - `@{ns:facet=value}` links to the facet's term. If the value isn't among the term's `:values`, the link is listed as approximate.
