@@ -1,7 +1,7 @@
 # What the lexicon page shows, and how. build.rb reads this on every build.
 
 title: Risk Model Lexicon
-kicker: ai-risk-model · def/
+kicker: ai-risk-model
 lede: >-
   This project's words and exactly what each means, built from the udon term
   groups in def/. Every entry is proposed until Joseph's refinement passes;
@@ -11,7 +11,21 @@ lede: >-
 files:
   - ../def/*.ud
 
-# Reading order, by file basename. Files not listed follow alphabetically.
+# Directories that can be read in beside def/ (`./build DIR`), by path from here:
+# a title and note for the page, and a reading order by file basename (files not
+# listed follow alphabetically). A directory not listed here still builds.
+collections:
+  ../def:
+    title: def/
+  ../influx/thin-pass/notation:
+    title: thin-pass notation trial, disposable
+    note: Joseph's namespaced notation, tried on the SB 53 slice (2026-10-07). Nothing here is adopted into def/.
+    order: [oai, sb53, notes, arm, ant, ny-raise, xai, eu-act]
+  ../influx/model-beta/terms:
+    title: model beta's term drafts
+    note: The earlier draft lexicon (superseded by def/), kept in influx/ as working material.
+
+# Reading order of def/, by file basename. Files not listed follow alphabetically.
 order:
   - def-ddd-domain-model
   - def-ddd-bounded-context

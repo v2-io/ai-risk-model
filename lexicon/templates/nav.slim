@@ -1,23 +1,34 @@
-/ The sidebar: a filter box and the contents. Each term group is a short list under a
-/ hairline; its label (the file's name) opens the group's own notes.
-/ lexicon.js filters it as you type and marks the view that is open.
+/ The sidebar: a filter box and the contents, one section per namespace (sb53.bp and
+/ sb53.lab share sb53). Each view is a short list under a hairline; its label (the
+/ file's name) opens the view. A term whose namespace is a scope of the section's shows
+/ the scope. lexicon.js filters it as you type and marks the view that is open.
 nav.toc aria-label="Contents"
   .toc-inner
     a.toc-title href="#" = config["title"]
     label.filter
       span.sr Filter terms
       input#filter type="search" placeholder="Filter terms…" autocomplete="off"
-    - book.namespaces.each do |ns, groups|
+    - book.sections.each do |ns, views|
       - info = book.namespace(ns)
       .toc-ns class=info["family"]
-        .toc-ns-name title=info["title"] = ns ? "#{ns}:" : "(no namespace)"
-        - groups.each do |g|
+        .toc-ns-name title=(info["title"] || info["coverage"])
+          = ns ? "#{ns}:" : "(no namespace)"
+          - colls = views.map(&:collection).uniq.reject(&:primary)
+          - unless colls.empty? || book.primary_only?
+            span.toc-coll title=colls.map(&:rel).join(", ") = colls.map { |c| File.basename(c.dir) }.join(", ")
+        - views.each do |v|
           .toc-group
-            a.toc-group-name href="##{g.id}" title="Notes on these terms" = g.label
-            ol
-              - g.terms.each do |t|
-                li data-words=([t.headword, t.id, *Array(t.attr("synonyms")&.value)].join(" ").downcase)
-                  a href="##{anchor(t.id)}" = t.headword
+            - if v.kind == :group
+              a.toc-group-name href="##{v.id}" title="Open this group" = v.label
+              ol
+                - v.terms.each do |t|
+                  li data-words=([t.headword, t.id, *Array(t.attr("synonyms")&.value)].join(" ").downcase)
+                    a href="##{t.anchor}"
+                      == headword_html(t)
+                      - if t.ns && t.ns != t.ns_root
+                        span.scope = t.scope
+            - else
+              a.toc-group-name.toc-extra href="##{v.id}" title="Open this view" = v.title
     .toc-foot
       a href="#" Index
       button#theme type="button" aria-label="Switch light or dark" Theme

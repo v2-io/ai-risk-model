@@ -1,6 +1,16 @@
-/ A block's notes (its ; comments), any text on the block's own line, then its markdown.
+/ A block's notes (its ; comments), any text or comment on its own line, its attributes,
+/ then its content in order: markdown, and any blocks inside it.
 - b.comments.each do |c|
   p.block-note == mdi(c)
-- if b.text
-  p == mdi(b.text)
-.block-body == md(b.markdown, group: group)
+- if b.text && b.kind != :directive
+  p == mdi(b.text, group: group)
+- if b.comment
+  p.block-note == mdi(b.comment)
+- unless b.attrs.empty?
+  == partial("facts", attrs: b.attrs)
+.block-body
+  - b.runs.each do |kind, x|
+    - if kind == :md
+      == md(x, group: group)
+    - else
+      == partial("block", b: x, group: group, scope: "inner")

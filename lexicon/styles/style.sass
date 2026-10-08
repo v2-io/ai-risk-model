@@ -280,15 +280,6 @@ h1
     color: var(--muted)
     font-size: 13px
 
-.unresolved
-  margin-top: 40px
-  h2
-    margin: 0
-    font: 500 1.3rem var(--serif)
-  p, li
-    font-size: 14px
-    color: var(--ink-2)
-
 .colophon
   margin-top: 56px
   padding-top: 14px
@@ -384,8 +375,8 @@ h1
   td
     padding: 3px 14px 3px 0
     vertical-align: baseline
-  .targets a
-    white-space: nowrap
+  .targets
+    min-width: 12rem
   .cardinality
     font: 12px var(--mono)
     color: var(--muted)
@@ -404,8 +395,12 @@ h1
   &.unresolved
     font-family: var(--mono)
     font-size: 0.86em
-    color: var(--rose-ink)
-    border-bottom: 1px dashed var(--rose-edge)
+    color: var(--warn-ink)
+    border-bottom: 1px dashed var(--warn-edge)
+  // linked to the nearest term, not the one named (a #sense or =value it doesn't define)
+  &.approx
+    text-decoration-style: dotted
+    text-decoration-color: var(--warn-edge)
 
 .backlinks
   margin: 18px -34px -24px
@@ -572,6 +567,212 @@ details.block
 @media (min-width: 961px)
   .group-view:has(.lexical-map[open]) .notes
     width: min(1180px, calc(100vw - var(--nav-w) - 112px))
+
+// ---------------------------------------------------------------- headwords from dotted and #sense ids
+
+.hw-parent
+  color: var(--muted)
+  font-weight: 400
+.hw-sense
+  margin-left: 0.15em
+  font: 500 0.62em var(--mono)
+  color: var(--accent)
+  vertical-align: 0.15em
+.hw-scope
+  margin-left: 0.3em
+  font: 500 0.5em var(--mono)
+  font-style: normal
+  color: var(--muted)
+  vertical-align: 0.2em
+.toc .hw-sense
+  font-size: 0.85em
+  vertical-align: 0
+.toc-group .scope
+  margin-left: 6px
+  font: 10.5px var(--mono)
+  color: var(--muted)
+.toc-coll
+  margin-left: 8px
+  font: 10.5px var(--sans)
+  color: var(--elsewhere-ink)
+.toc-extra
+  font-size: 11.5px
+.term-id.alias
+  color: var(--muted)
+.traits
+  font: 12px var(--mono)
+  color: var(--muted)
+
+// ---------------------------------------------------------------- the notation in values
+// {a | b} one of these, undetermined · {a, b} a set · (a | b) a union · → out of the
+// lexicon · ? unresolved · "words" the source's own
+
+.v-amb
+  background: var(--amb-bg)
+  border-radius: 2px
+  padding: 0 3px
+  box-decoration-break: clone
+  -webkit-box-decoration-break: clone
+  > .v-b, > .v-bar
+    color: var(--amb-edge)
+    font-weight: 600
+.v-set, .v-union, .v-list
+  > .v-b, > .v-bar, > .v-comma
+    color: var(--mark-muted)
+.v-b
+  font-family: var(--mono)
+  font-size: 0.92em
+.v-str
+  font-family: var(--serif)
+  font-size: 1.05em
+  color: var(--ink)
+  quotes: "\201C" "\201D"
+.v-arrow
+  color: var(--deleg-ink)
+  font-weight: 600
+  padding: 0 2px
+.v-id
+  color: var(--deleg-ink)
+.v-unknown
+  font: 600 0.92em var(--mono)
+  color: var(--warn-ink)
+  padding: 0 2px
+.v-lean
+  font: italic 0.92em var(--serif)
+  color: var(--muted)
+.v-lean-note
+  display: block
+  color: var(--muted)
+  font-size: 12.5px
+th.amb-key
+  font-family: var(--mono)
+
+.rels-scroll
+  overflow-x: auto
+.ref-ns
+  margin-left: 0.3em
+  font: 0.78em var(--mono)
+  color: var(--muted)
+  text-decoration: none
+  display: inline-block
+.rel-aside
+  display: block
+  margin-top: 1px
+  font: italic 12.5px/1.4 var(--serif)
+  color: var(--muted)
+.rels tr.rel-note td
+  padding-top: 8px
+  font: italic 12.5px/1.4 var(--serif)
+  color: var(--muted)
+
+// ---------------------------------------------------------------- what came from elsewhere
+
+.crumbs .from
+  font: 500 11.5px var(--sans)
+  color: var(--elsewhere-ink)
+  background: var(--elsewhere-bg)
+  border-radius: 2px
+  padding: 2px 6px
+
+// a file's own comments above a group: the author's notes, as written
+.lead-comments
+  margin: 12px 0 0
+  padding: 8px 12px
+  border-left: 2px solid var(--rule)
+  font: 12px/1.5 var(--mono)
+  color: var(--muted)
+  white-space: pre-wrap
+  overflow-wrap: anywhere
+
+.extra-name
+  font: 500 0.8em var(--mono)
+  font-style: normal
+  color: var(--accent)
+.extra-id
+  margin-left: 4px
+  font-size: 0.65em
+  font-style: normal
+  color: var(--muted)
+
+.resolutions table
+  font-size: 13px
+  td
+    min-width: 6rem
+  td.words
+    min-width: 12rem
+    font-family: var(--serif)
+  td.target
+    min-width: 16rem
+  td.aside
+    min-width: 14rem
+    font-size: 12.5px
+
+@media (min-width: 961px)
+  .extra-view:has(.resolutions) .notes
+    width: min(1180px, calc(100vw - var(--nav-w) - 112px))
+
+// udon's inline forms in prose
+.inline-comment
+  color: var(--muted)
+  font-style: italic
+  font-size: 0.9em
+  &::before
+    content: "; "
+.inline-el
+  border-bottom: 1px dotted var(--rule-dashed)
+
+.block.verbatim pre, .block-body pre
+  margin: 8px 0 0
+  padding: 10px 12px
+  overflow-x: auto
+  background: var(--paper-2)
+  border: 1px solid var(--rule)
+  border-radius: 3px
+  font: 12.5px/1.5 var(--mono)
+  color: var(--ink)
+.block.directive > .label
+  font-family: var(--mono)
+  text-transform: none
+  letter-spacing: 0
+
+// blocks nested in blocks sit indented under a hairline
+.block.inner
+  margin-left: 2px
+  padding-left: 12px
+  border-left: 1px solid var(--rule)
+
+// home: what was read, and what needs attention
+.also
+  font-size: 13.5px
+  color: var(--ink-2)
+  p
+    margin: 0
+  ul
+    margin: 4px 0 0
+    padding-left: 1.1em
+  li
+    padding: 2px 0
+  .also-title
+    margin-left: 8px
+    color: var(--elsewhere-ink)
+  .aside
+    display: block
+
+.attention
+  margin-top: 40px
+  max-width: var(--card-w)
+  h2, summary
+    margin: 0
+    font: 500 1.3rem var(--serif)
+  summary
+    cursor: pointer
+  p, li
+    font-size: 14px
+    color: var(--ink-2)
+  .aside
+    margin-left: 6px
+  code
+    overflow-wrap: anywhere
 
 // ---------------------------------------------------------------- narrow screens
 

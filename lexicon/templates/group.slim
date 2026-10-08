@@ -1,18 +1,17 @@
-/ A term group's view: a quiet header (namespace, file, the text that introduces the
-/ terms together), one card per term, then a card for the group's own blocks
-/ (discussion, examples, working notes), then the way to the next group.
-section.view.group-view class=family id=g.id
+/ A term group's view: a quiet header (namespace, file, the comments above it in the
+/ file, the text that introduces its terms), one card per term, then a card for the
+/ group's own blocks (discussion, examples, working notes), then the way on.
+section.view.group-view class=[family, (g.collection.primary ? nil : "from-elsewhere")] id=g.id
   header.group-head
-    .crumbs
-      - if g.ns
-        span.crumb-ns = "#{g.ns}:"
-      code = rel_path(g.file)
-      - if g.status
-        span.status class=g.status = g.status
+    == partial("crumbs", v: g, ns: g.ns_root)
+    == partial("lead", lead: g.lead)
     h2.group-name
       - g.terms.each_with_index do |t, i|
         = i.zero? ? "" : " · "
-        a href="##{anchor(t.id)}" = t.headword
+        a href="##{t.anchor}"
+          == headword_html(t)
+          - if t.scope
+            span.hw-scope = t.scope
     - unless g.intro.empty?
       .intro == md(g.intro, group: g)
 
@@ -20,26 +19,20 @@ section.view.group-view class=family id=g.id
     - g.terms.each do |t|
       == partial("term", t: t)
 
-    - unless g.blocks.empty? && g.source.nil?
+    - unless g.blocks.empty? && g.group_source.nil? && g.extra_attrs.empty? && g.trailing.empty? && g.comments.empty?
       article.card.notes
         .label.notes-label Notes on this group
+        - g.comments.each do |c|
+          p.block-note == mdi(c)
+        - unless g.extra_attrs.empty?
+          == partial("facts", attrs: g.extra_attrs)
+        - unless g.trailing.empty?
+          .block.plain.group-text
+            .block-body == md(g.trailing, group: g)
         - ordered(g.blocks).each do |b|
           == partial("block", b: b, group: g, scope: "group")
-        - src = source(g.source)
+        - src = source(g.group_source)
         - if src
           p.group-source == mdi(src.text)
 
-  - prev_g, next_g = neighbors(g)
-  nav.pager
-    - if prev_g
-      a.prev href="##{prev_g.id}" data-key="ArrowLeft"
-        span.label Previous group
-        span = prev_g.title
-    - else
-      a.prev href="#"
-        span.label Back to
-        span Index
-    - if next_g
-      a.next href="##{next_g.id}" data-key="ArrowRight"
-        span.label Next group
-        span = next_g.title
+  == partial("pager", v: g)

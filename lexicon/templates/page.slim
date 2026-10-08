@@ -1,9 +1,10 @@
-/ The whole page. `book` is the parsed lexicon (build.rb: Lexicon::Book) and `config`
-/ is config.yml. md() renders block markdown with @{refs} linked, mdi() one line of it;
-/ partial() renders another template; styles / script are inlined (or linked with --link).
+/ The whole page. `book` is the parsed lexicon (build: Lexicon::Book) and `config`
+/ is config.yml. md() renders block markdown with @{refs} linked, mdi() one line of it,
+/ val() a value in the notation; partial() renders another template; styles / script
+/ are inlined (or linked with --link).
 /
 / One view at a time: the home view (title and index) unless the URL's #fragment names
-/ a term group or a term, whose group is then shown with that term's card in view
+/ a view or a term, whose group is then shown with that term's card in view
 / (CSS :target and :has; see style.sass). Printing shows every view.
 doctype html
 html lang="en"
@@ -19,6 +20,9 @@ html lang="en"
       == partial("nav")
       main.page
         == partial("home")
-        - book.groups.each do |g|
-          == partial("group", g: g, family: book.namespace(g.ns)["family"])
+        - book.views.each do |v|
+          - if v.kind == :group
+            == partial("group", g: v, family: family(v))
+          - else
+            == partial("extra", x: v, family: family(v))
     == script

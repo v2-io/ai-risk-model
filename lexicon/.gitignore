@@ -1,0 +1,3 @@
+# pages built with extra directories (./build DIR): views for reading, not the lexicon
+lexicon+*.html
+lexicon.css

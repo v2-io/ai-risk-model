@@ -1,16 +1,22 @@
 # frozen_string_literal: true
 
-# rake          build lexicon.html from the files in config.yml (../def/*.ud)
+# rake          build lexicon.html from def/ (config.yml)
 # rake link     build with lexicon.css + lexicon.js linked (for tweaking in the browser)
-# rake check    parse only; list unresolved @{refs}
+# rake check    parse only; report unresolved and approximate @{refs} and reading notes
+#
+# Each takes more directories to read as if they were in def/, as DIRS:
+#   rake DIRS="../influx/thin-pass/notation ../influx/model-beta/terms"
+# (or call ./build directly: ./build ../influx/thin-pass/notation)
+
+dirs = ENV.fetch("DIRS", "").split
 
 task default: :build
 
-desc "Build lexicon.html"
-task(:build) { ruby "build.rb" }
+desc "Build lexicon.html (or lexicon+<dirs>.html with DIRS=...)"
+task(:build) { ruby "build", *dirs }
 
 desc "Build with lexicon.css and lexicon.js linked instead of inlined"
-task(:link) { ruby "build.rb", "--link" }
+task(:link) { ruby "build", "--link", *dirs }
 
-desc "Parse the term files and list unresolved @{refs}"
-task(:check) { ruby "build.rb", "--check" }
+desc "Parse the term files and report what needs attention"
+task(:check) { ruby "build", "--check", *dirs }

@@ -1,17 +1,31 @@
 / One term's card: headword, definition, where the definition comes from, the words it
-/ goes by or avoids, its relations, its blocks, and what points to it.
-article.card.term id=anchor(t.id) data-words=([t.headword, t.id].join(" ").downcase)
+/ goes by or avoids, its other attributes, its relations, its blocks, and what points to it.
+article.card.term id=t.anchor data-words=([t.headword, t.id].join(" ").downcase)
   header.term-head
-    h2.headword = t.headword
+    h2.headword
+      == headword_html(t)
+      - if t.scope
+        span.hw-scope title="#{t.ns}: a scope the source mints this word in" = t.scope
     code.term-id = t.id
+    - t.aliases.each do |al|
+      code.term-id.alias title="also identified as" = al
     - if t.status && t.status != t.group.status
       span.status class=t.status = t.status
-  p.definition == mdi(t.definition)
+    - unless t.node.traits.empty? && t.node.flags.empty?
+      span.traits = [*t.node.traits.map { |x| ".#{x}" }, *t.node.flags].join(" ")
+  - unless t.definition.empty?
+    p.definition == mdi(t.definition, group: t.group)
+  - if t.node.comment
+    p.block-note == mdi(t.node.comment)
+  - unless t.body.empty?
+    .block.plain.term-body
+      .block-body == md(t.body, group: t.group)
 
   - src = source(t.attr("source"))
   - syn = Array(t.attr("synonyms")&.value)
   - avoid = t.attr("avoid")
-  - if src || syn.any? || avoid
+  - extra = t.extra_attrs(config["term_attrs"])
+  - if src || syn.any? || avoid || extra.any?
     dl.facts
       - if src
         .fact
@@ -39,31 +53,44 @@ article.card.term id=anchor(t.id) data-words=([t.headword, t.id].join(" ").downc
               s = w
             - if avoid.comment
               span.aside == mdi(avoid.comment)
-      - t.extra_attrs(config["term_attrs"]).each do |a|
+      - extra.each do |a|
         .fact
           dt = a.key
           dd
-            == mdi(Array(a.value).join(", "))
+            span == attr_html(a)
             - if a.comment
               span.aside == mdi(a.comment)
 
-  - unless t.rels.empty?
+  - rows = rel_rows(t.rels)
+  - unless rows.empty?
     .rels
       .label Relations
-      table
-        - t.rels.each do |r|
-          - targets, card = rel_value(r.raw)
-          tr
-            th = r.key
-            td.targets
-              - targets.each_with_index do |x, i|
-                = i.zero? ? "" : " | "
-                == mdi(x)
-            td.cardinality = card
-            td.aside == r.comment ? mdi(r.comment) : ""
+      .rels-scroll
+        table
+          - rows.each do |_line, kind, x|
+            - if kind == :rel
+              - target, card = rel_value(x.raw)
+              tr
+                th class=(x.braced ? "amb-key" : nil) == rel_key(x)
+                td.targets
+                  == target
+                  - if x.comment
+                    span.rel-aside == mdi(x.comment)
+                td.cardinality = card
+            - elsif kind == :note
+              tr.rel-note
+                td colspan="3" == mdi(x)
+            - else
+              tr.rel-note
+                td colspan="3"
+                  == partial("block", b: x, group: t.group, scope: "term")
 
   - ordered(t.blocks).each do |b|
     == partial("block", b: b, group: t.group, scope: "term")
+
+  - unless t.trailing.empty?
+    .block.plain.term-body
+      .block-body == md(t.trailing, group: t.group)
 
   - back = book.refs[t.id]
   - unless back.empty?
@@ -72,7 +99,8 @@ article.card.term id=anchor(t.id) data-words=([t.headword, t.id].join(" ").downc
       - back.each_with_index do |o, i|
         = i.zero? ? " " : ", "
         - if o.is_a?(Lexicon::Term)
-          a href="##{anchor(o.id)}" = o.headword
-        - else
+          a href="##{o.anchor}" = book.display_name(o)
+        - elsif o.kind == :group
           a href="##{o.id}" = "#{o.label} notes"
-
+        - else
+          a href="##{o.id}" = o.title

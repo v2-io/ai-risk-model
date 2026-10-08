@@ -1,0 +1,9 @@
+/ A view's quiet top line: namespace, file, status, and the collection when it isn't def/.
+.crumbs
+  - if ns
+    span.crumb-ns = "#{ns}:"
+  code = rel_path(v.file)
+  - if v.status
+    span.status class=v.status = v.status
+  - unless v.collection.primary
+    span.from title=(v.collection.note || "") = v.collection.title || "not in def/"

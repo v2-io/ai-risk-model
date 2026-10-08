@@ -1,0 +1,13 @@
+/ Attributes as label / value lines. A value in the notation ({a | b}, [list], -> x ?)
+/ is set as one; anything else is markdown.
+dl.facts
+  - attrs.each do |a|
+    .fact
+      dt = a.key
+      dd
+        - if a.body && !a.body.children.empty?
+          == partial("block_body", b: a.body, group: nil)
+        - else
+          span == attr_html(a)
+        - if a.comment
+          span.aside == mdi(a.comment)

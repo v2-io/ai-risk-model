@@ -1,26 +1,31 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Build the lexicon page from the udon term groups in def/.
+# Build the lexicon page from udon term groups: def/ (config.yml), plus any
+# directories or files named on the command line, read as if they were in def/.
 #
-#   rake                              # ../def/*.ud -> lexicon.html (same as below)
-#   ruby build.rb                     # files and order from config.yml
-#   ruby build.rb a.ud b.ud -o x.html # any other term files
-#   ruby build.rb --link              # write lexicon.css and link it + lexicon.js instead of inlining
-#   ruby build.rb --check             # parse and report unresolved @{refs}; write nothing
+#   ./build                              # def/ -> lexicon.html
+#   ./build ../influx/thin-pass/notation # def/ + that directory -> lexicon+thin-pass-notation.html
+#   ./build --only DIR_OR_FILE...        # just those, without def/
+#   ./build ... -o somewhere.html        # choose the output file
+#   ./build --link                       # write lexicon.css and link it + lexicon.js instead of inlining
+#   ./build --check [paths...]           # parse and report; write nothing; exit 1 on unresolved @{refs}
 #
 # Structure lives in templates/*.slim, layout and type in styles/style.sass, colour
-# in styles/palette.sass, and labels, order and namespaces in config.yml. Nothing
-# here knows the ddd: terms by name: a new namespace, term group or block type
-# renders without code changes (a new block gets a label made from its name until
-# config.yml gives it one).
+# in styles/palette.sass, and labels, order, namespaces and collections in config.yml.
+# Nothing here knows any term by name: a new namespace, term group, block type or
+# top-level element renders without code changes.
 #
-# The udon read here is the subset def/ uses (see Udon below), not a full parser.
+# The udon read here is the udon these files use, read the way udon 0.10.0's
+# CORE.md describes where the two agree, plus the notation the files add on top
+# (see "Udon" below and the README for the deliberate differences).
 
+ENV["BUNDLE_GEMFILE"] ||= File.join(__dir__, "Gemfile")
 require "bundler/setup"
 require "optparse"
 require "yaml"
 require "time"
+require "fileutils"
 require "slim"
 require "sass-embedded"
 require "kramdown"
@@ -30,182 +35,667 @@ Encoding.default_external = Encoding::UTF_8
 
 module Lexicon
   HERE = __dir__
+  ROOT = File.expand_path("..", HERE)
   STYLES = %w[styles/palette.sass styles/style.sass].freeze
+  FAMILIES = %w[teal clay iris sage rose slate jade mauve sand stone].freeze
 
-  # ------------------------------------------------------------------ udon (the def/ subset)
+  # ------------------------------------------------------------------ udon
   #
-  #   |name[id][id] inline text      an element; ids in brackets (padding inside them is
-  #                                  ignored), then either inline text or inline attributes
-  #   |rels :key value               an element whose line carries attributes; more
-  #         :key value               attributes may follow on deeper-indented lines
-  #   :key value ; comment           an attribute of the element above it. Values: "string",
-  #                                  [list of words or "strings"], or anything else, kept raw
-  #   ; comment                      a whole-line comment, kept (blocks show them as notes)
-  #   anything else                  text of the innermost element above it, by indentation;
-  #                                  markdown, so "| a | b |" lines are tables, not elements
+  # Line by line, by indentation (an element owns every following line indented
+  # deeper than its "|"):
   #
-  # An element owns every following line indented deeper than its own "|".
+  #   |name[id][id].trait? text       an element: name, stacked [ids], .traits, suffix
+  #                                   flags (? ! * +), then sameline material: text (the
+  #                                   element's $main), :attributes, a framed ` ; ` comment,
+  #                                   or another |element (a child, at its column)
+  #   :key value :key2 value ; c      attributes of the element above. A value runs to the
+  #                                   next framed ` :label`, ` |name`, ` ; ` or ` \ `, outside
+  #                                   quotes and brackets. "string", [list], or raw text.
+  #                                   :{a | b} value  -- a braced label (the notation's
+  #                                   ambiguous relation; not udon 0.10.0, which ends a
+  #                                   label at the first space)
+  #   :key                            with nothing after it: the deeper lines are its value
+  #   ; comment                       a whole-line comment; owns the deeper lines under it
+  #   ```                             a fence: everything to the closing ``` is text, verbatim
+  #   !:kind:                         block verbatim: the deeper lines, kept as code
+  #   !name head                      a directive: carried, never run
+  #   \|text  \:text  \;text  \\      a line-initial escape: the line is text
+  #   anything else                   text of the innermost element above it: markdown, so
+  #                                   "| a | b |" lines are tables, not elements. A line
+  #                                   deeper than an element's first text line is text even
+  #                                   if it starts with a marker (udon's content base).
+  #
+  # Nothing is dropped: what isn't understood is kept as text and noted (Parser#notes).
   module Udon
-    Node = Struct.new(:name, :ids, :attrs, :text, :content, :indent, :file, :line, keyword_init: true) do
+    Node = Struct.new(:name, :ids, :traits, :flags, :attrs, :text, :comment, :content,
+                      :indent, :file, :line, :kind, :text_base, keyword_init: true) do
       def children = content.grep(Node)
       def child(name) = children.find { |c| c.name == name }
+      def children_named(name) = children.select { |c| c.name == name }
       def attr(key) = attrs.find { |a| a.key == key }
+      def element? = kind == :element
+      def text_lines = content.grep(Line).reject(&:comment)
 
       # The node's own text lines (not its children's), dedented, as one markdown string.
-      def markdown(only_before_children: false)
+      def markdown(only_before_children: false, only_after_children: false)
         lines = []
+        seen_child = false
         content.each do |c|
-          break if only_before_children && c.is_a?(Node)
-          lines << c if c.is_a?(Line)
+          if c.is_a?(Node)
+            break if only_before_children
+            seen_child = true
+          elsif c.is_a?(Line) && (!only_after_children || seen_child)
+            lines << c
+          end
         end
-        Udon.dedent(lines)
+        Udon.dedent(lines, cut: base_cut)
       end
 
-      def comments = content.grep(Line).select(&:comment).map { |l| l.text.sub(/\A;\s?/, "") }
+      # Own content in order, as [:md, text] runs and [:node, child] items.
+      def runs
+        out = []
+        buf = []
+        flush = lambda do
+          md = Udon.dedent(buf, cut: base_cut)
+          out << [:md, md] unless md.empty?
+          buf = []
+        end
+        content.each do |c|
+          if c.is_a?(Node)
+            flush.call
+            out << [:node, c]
+          elsif !c.comment
+            buf << c
+          end
+        end
+        flush.call
+        out
+      end
+
+      def base_cut = text_lines.reject { |l| l.raw || l.text.empty? }.map(&:indent).compact.min || 0
+      def comments = content.grep(Line).select(&:comment).map { |l| Udon.comment_text(l) }
+      def label_id = ids.first
     end
 
-    Attr = Struct.new(:key, :raw, :value, :comment, keyword_init: true)
-    Line = Struct.new(:indent, :text, :comment, keyword_init: true)
-
-    ELEMENT = /\A\|([a-z][\w-]*)((?:\[[^\]]*\])*)(.*)\z/
-    ATTR = /\A:([a-z][\w-]*)(?:\s+(.*))?\z/
+    Attr = Struct.new(:key, :raw, :value, :comment, :line, :braced, :body, keyword_init: true)
+    Line = Struct.new(:indent, :text, :comment, :line, :raw, keyword_init: true)
+    Note = Struct.new(:file, :line, :message, keyword_init: true)
 
     module_function
 
-    def parse(source, file: nil)
-      root = Node.new(name: "_root", ids: [], attrs: [], text: nil, content: [], indent: -1, file: file, line: 0)
-      stack = [root]
-      source.each_line.with_index(1) do |raw, n|
-        line = raw.chomp.gsub("\t", "  ")
-        if line.strip.empty?
-          stack.last.content << Line.new(indent: nil, text: "")
-          next
-        end
-        indent = line[/\A */].size
-        body = line.strip
-        stack.pop while stack.size > 1 && stack.last.indent >= indent
-        parent = stack.last
+    def comment_text(line) = line.text.sub(/\A;[ \t]?/, "").gsub(/\n[ \t]*;?[ \t]?/, "\n").rstrip
 
-        if (m = ELEMENT.match(body))
-          ids = m[2].scan(/\[([^\]]*)\]/).flatten.map(&:strip)
-          node = Node.new(name: m[1], ids: ids, attrs: [], text: nil, content: [], indent: indent, file: file, line: n)
-          rest = m[3].strip
-          if rest.start_with?(":")
-            node.attrs << attribute(rest)
-          elsif !rest.empty?
-            node.text = rest
-          end
-          parent.content << node
-          stack << node
-        elsif (m = ATTR.match(body))
-          parent.attrs << attribute(body)
-        elsif body.start_with?(";")
-          parent.content << Line.new(indent: indent, text: body, comment: true)
-        else
-          parent.content << Line.new(indent: indent, text: line)
-        end
-      end
-      root
-    end
-
-    # ":key value ; comment" -> Attr. A ";" starts a comment only after whitespace,
-    # outside quotes, brackets and braces.
-    def attribute(text)
-      key, rest = ATTR.match(text).captures
-      raw, comment = split_comment(rest.to_s)
-      Attr.new(key: key, raw: raw, value: value(raw), comment: comment)
-    end
-
-    def split_comment(text)
-      depth = 0
-      quoted = false
-      text.each_char.with_index do |ch, i|
-        if ch == '"' && text[i - 1] != "\\" then quoted = !quoted
-        elsif quoted then next
-        elsif "[{(".include?(ch) then depth += 1
-        elsif "]})".include?(ch) then depth -= 1
-        elsif ch == ";" && depth.zero? && (i.zero? || text[i - 1] =~ /\s/)
-          return [text[0...i].strip, text[(i + 1)..].strip]
-        end
-      end
-      [text.strip, nil]
-    end
-
+    # Values: "string", [list of words or "strings"], or anything else, kept raw.
     def value(raw)
-      if raw =~ /\A"(.*)"\z/m then Regexp.last_match(1).gsub('\"', '"')
-      elsif raw =~ /\A\[(.*)\]\z/m then Regexp.last_match(1).scan(/"((?:[^"\\]|\\.)*)"|(\S+)/).map { |q, w| q || w }
+      raw = raw.to_s
+      if raw =~ /\A"([^"]*)"\z/m || raw =~ /\A'([^']*)'\z/m then Regexp.last_match(1)
+      elsif raw =~ /\A\[(.*)\]\z/m then raw[1..-2].scan(/"((?:[^"\\]|\\.)*)"|(\S+)/).map { |q, w| q || w }
       else raw
       end
     end
 
-    def dedent(lines)
+    # Strip the shared indentation from text lines. Fence and verbatim lines keep theirs,
+    # less as much of the cut as they have.
+    def dedent(lines, cut: nil)
       body = lines.reject(&:comment)
-      body.pop while body.last && body.last.text.empty?
-      body.shift while body.first && body.first.text.empty?
+      body.pop while body.last && body.last.text.strip.empty?
+      body.shift while body.first && body.first.text.strip.empty?
       return "" if body.empty?
 
-      cut = body.map(&:indent).compact.min || 0
-      body.map { |l| l.text.empty? ? "" : l.text[cut..] }.join("\n")
+      cut ||= body.reject { |l| l.raw || l.text.empty? }.map(&:indent).compact.min || 0
+      body.map do |l|
+        next "" if l.text.strip.empty? && !l.raw
+        lead = l.text[/\A */].size
+        l.text[[cut, lead].min..]
+      end.join("\n")
+    end
+
+    def parse(source, file: nil) = Parser.new(source, file: file).parse
+
+    NAME_START = /[\p{L}\[.'?!*+]/
+    SPACE = /[ \t]/
+
+    class Parser
+      attr_reader :notes
+
+      def initialize(source, file:)
+        @source = source
+        @file = file
+        @notes = []
+      end
+
+      def parse
+        @root = Node.new(name: "_root", ids: [], traits: [], flags: [], attrs: [], content: [],
+                         indent: -1, file: @file, line: 0, kind: :root)
+        @stack = [@root]
+        @fence = nil       # [owner, opening line]
+        @verbatim = nil    # the !:kind: node being filled
+        @open_attr = nil   # an attribute whose list or string is still open at end of line
+        tabbed = false
+        @source.each_line.with_index(1) do |raw, n|
+          line = raw.chomp
+          if line.include?("\t") && !@fence
+            note(n, "tab in a line; read as two spaces") unless tabbed
+            tabbed = true
+            line = line.gsub("\t", "  ")
+          end
+          read_line(line, n)
+        end
+        note(@fence[1], "fence opened here is never closed; the rest of the file is its text") if @fence
+        close_open_attr
+        finish(@root)
+        @root
+      end
+
+      private
+
+      def note(n, msg) = @notes << Note.new(file: @file, line: n, message: msg)
+
+      def read_line(line, n)
+        # inside a fence: verbatim until the closing ```
+        if @fence
+          @fence[0].content << Line.new(indent: 0, text: line, line: n, raw: true)
+          @fence = nil if line =~ /\A\s*```\s*\z/
+          return
+        end
+
+        indent = line[/\A */].size
+        body = line.strip
+
+        # inside a !:kind: block: every deeper (or blank) line is its body
+        if @verbatim
+          if body.empty? || indent > @verbatim.indent
+            @verbatim.content << Line.new(indent: indent, text: line, line: n, raw: true)
+            return
+          end
+          @verbatim = nil
+        end
+
+        # a list or string left open at the end of the previous line
+        if @open_attr && !body.empty?
+          attr, = @open_attr
+          attr.raw = "#{attr.raw} #{body}"
+          if unclosed?(attr.raw)
+            return
+          end
+
+          @open_attr = nil
+          attr.value = Udon.value(attr.raw)
+          note(attr.line, ":#{attr.key}'s value spans lines; joined (udon leaves multi-line lists and strings unspecified)")
+          return
+        end
+
+        if body.empty?
+          target = @stack.last
+          if target.is_a?(Line) then target.text << "\n"
+          else target.content << Line.new(indent: nil, text: "", line: n)
+          end
+          return
+        end
+
+        @stack.pop while @stack.size > 1 && @stack.last.indent >= indent
+        top = @stack.last
+
+        # a comment owns everything indented under it
+        if top.is_a?(Line)
+          top.text << "\n" << body
+          return
+        end
+
+        node = top
+        textspace = node.text_base && indent > node.text_base
+
+        if textspace
+          text_line(node, line, indent, n)
+        elsif body.start_with?("```")
+          node.content << Line.new(indent: indent, text: line, line: n, raw: true)
+          @fence = [node, n]
+        elsif body.start_with?("\\")
+          escaped_line(node, body, indent, n)
+        elsif body.start_with?(";")
+          c = Line.new(indent: indent, text: body.dup, comment: true, line: n)
+          node.content << c
+          @stack << c
+        elsif element_line?(body)
+          element(body, indent, node, n)
+        elsif body =~ /\A!:([^:\s]*):[ \t]?(.*)\z/
+          v = Node.new(name: Regexp.last_match(1), ids: [], traits: [], flags: [], attrs: [], content: [],
+                       indent: indent, file: @file, line: n, kind: :verbatim)
+          tail = Regexp.last_match(2)
+          v.content << Line.new(indent: indent + 1, text: (" " * (indent + 1)) + tail, line: n, raw: true) unless tail.empty?
+          node.content << v
+          @verbatim = v
+        elsif body =~ /\A!(\p{L}[\p{L}\p{N}_\-\/]*)[ \t]*(.*)\z/
+          d = Node.new(name: Regexp.last_match(1), ids: [], traits: [], flags: [], attrs: [], content: [],
+                       text: Regexp.last_match(2), indent: indent, file: @file, line: n, kind: :directive)
+          node.content << d
+          @stack << d
+          note(n, "directive !#{d.name} carried as written, not run")
+        elsif body =~ /\A:\S/
+          if node.equal?(@root)
+            note(n, "attribute line with no element above it; kept as text")
+            text_line(node, line, indent, n)
+          else
+            if node.kind == :element && node.content.any? { |c| c.is_a?(Node) || (c.is_a?(Line) && !c.comment && !c.text.strip.empty?) }
+              note(n, "attribute :#{body[/\A:(\S+)/, 1]} comes after |#{node.name}'s content has begun (udon 0.10.0 accepts it, with a warning)")
+            end
+            scan(body, indent, indent, node, n, root: :attr)
+          end
+        else
+          text_line(node, line, indent, n)
+        end
+      end
+
+      def text_line(node, line, indent, n)
+        node.content << Line.new(indent: indent, text: line, line: n)
+        node.text_base = indent if node.text_base.nil? || indent < node.text_base
+      end
+
+      # \|x, \:x, \;x -> text without the backslash; \\x -> \x; "\ " -> the rest is text
+      def escaped_line(node, body, indent, n)
+        rest = body[1..].to_s
+        text =
+          if rest.empty? || rest.start_with?(" ") then rest.sub(/\A /, "")
+          elsif rest.start_with?("\\") || "|:;!@`".include?(rest[0]) then rest
+          else body
+          end
+        text_line(node, (" " * indent) + text, indent, n)
+      end
+
+      # A "|" at a line's start opens an element when a name, [id], .trait, quote or suffix
+      # follows, unless the line is a markdown table row ("|a|b|", ending in "|").
+      def element_line?(body)
+        return false unless body =~ /\A\|#{NAME_START}/o
+        return false if body.end_with?("|") && body.count("|") >= 2
+
+        true
+      end
+
+      # |name[id][id].trait? sameline...
+      def element(str, col, parent, n)
+        i = 1
+        name = nil
+        if str[i] == "'"
+          j = str.index("'", i + 1) || str.size
+          name = str[(i + 1)...j]
+          i = j + 1
+        elsif (m = /\G\p{L}[\p{L}\p{N}_\-\/]*/.match(str, i))
+          name = m[0]
+          i = m.end(0)
+        end
+        ids = []
+        traits = []
+        flags = []
+        loop do
+          c = str[i]
+          if c == "["
+            j = matching(str, i, "[", "]")
+            if j
+              ids << str[(i + 1)...j].strip
+              i = j + 1
+            else
+              ids << str[(i + 1)..].strip
+              note(n, "unclosed [ in an element's id; kept as written")
+              i = str.size
+            end
+          elsif c == "." && str[i + 1] =~ /[\p{L}']/
+            m = /\G\.(?:'([^']*)'|([\p{L}\p{N}_\-?!*+]+))/.match(str, i)
+            traits << (m[1] || m[2])
+            i = m.end(0)
+          elsif c && "?!*+".include?(c)
+            flags << c
+            i += 1
+          else
+            break
+          end
+        end
+        node = Node.new(name: name, ids: ids, traits: traits, flags: flags, attrs: [], content: [],
+                        indent: col, file: @file, line: n, kind: :element)
+        parent.content << node
+        @stack << node
+        rest = str[i..].to_s
+        if !rest.empty? && rest !~ /\A[ \t]/
+          note(n, "|#{name} is followed by #{rest[0].inspect}, not a space; the rest of the line is its text")
+          node.text = rest
+          return node
+        end
+        scan(rest, col + i, col, node, n, root: :element)
+        node
+      end
+
+      # The rest of an element's line, or a block attribute line: values, :attributes,
+      # a ` ; ` comment, a child |element, or a framed ` \ ` (the rest is text).
+      def scan(str, col, line_indent, node, n, root:)
+        i = 0
+        last_attr = nil
+        len = str.size
+        while i < len
+          i += 1 while i < len && str[i] =~ SPACE
+          break if i >= len
+
+          c = str[i]
+          if c == ";" && (i.zero? || str[i - 1] =~ SPACE) && (i + 1 >= len || str[i + 1] =~ SPACE || root == :attr && i.zero?)
+            text = str[(i + 1)..].strip
+            if last_attr then last_attr.comment = [last_attr.comment, text].compact.join(" ")
+            else node.comment = [node.comment, text].compact.join(" ")
+            end
+            break
+          elsif c == ":" && i + 1 < len && str[i + 1] !~ /\s/
+            key, braced, i = label(str, i + 1, n)
+            i += 1 while i < len && str[i] =~ SPACE
+            raw, i = read_value(str, i)
+            attr = Attr.new(key: key, raw: raw, value: Udon.value(raw), line: n, braced: braced)
+            node.attrs << attr
+            last_attr = attr
+            if raw.empty?
+              # nothing after the label: the deeper lines are its value (udon's deferred body)
+              rest_blank = str[i..].to_s.strip.empty?
+              if rest_blank
+                holder = Node.new(name: nil, ids: [], traits: [], flags: [], attrs: [], content: [],
+                                  indent: line_indent, file: @file, line: n, kind: :attr_body)
+                attr.body = holder
+                @stack << holder
+              end
+            elsif unclosed?(raw)
+              @open_attr = [attr, node]
+            end
+          elsif c == "|" && str[i + 1] =~ NAME_START && root
+            element(str[i..], col + i, node, n)
+            break
+          elsif c == "\\" && (i + 1 >= len || str[i + 1] =~ SPACE)
+            text = str[(i + 1)..].to_s.sub(/\A /, "")
+            add_value(node, last_attr, text, root)
+            break
+          else
+            raw, i = read_value(str, i)
+            add_value(node, last_attr, raw, root)
+          end
+        end
+      end
+
+      # Value material with no open label: the element's $main on an element line, or more
+      # of the same attribute on an attribute line (udon stacks it; it is joined here).
+      def add_value(node, last_attr, raw, root)
+        return if raw.empty?
+
+        if root == :attr && last_attr
+          last_attr.raw = [last_attr.raw, raw].reject(&:empty?).join(" ")
+          last_attr.value = Udon.value(last_attr.raw)
+        else
+          node.text = [node.text, raw].compact.join(" ")
+        end
+      end
+
+      # :label  :'quoted label'  :{braced | label}
+      def label(str, i, n)
+        if str[i] == "{"
+          j = matching(str, i, "{", "}") || (str.size - 1)
+          note(n, "braced label :#{str[i..j]} (the notation's ambiguous relation; udon 0.10.0 would end the label at the first space)")
+          [str[i..j], true, j + 1]
+        elsif str[i] == "'" || str[i] == '"'
+          j = str.index(str[i], i + 1) || str.size
+          [str[(i + 1)...j], false, j + 1]
+        else
+          j = i
+          j += 1 while j < str.size && str[j] !~ /\s/
+          [str[i...j], false, j]
+        end
+      end
+
+      # A value runs to the next framed terminator outside quotes and brackets.
+      CLOSERS = { "[" => "]", "{" => "}", "(" => ")" }.freeze
+
+      def read_value(str, i)
+        start = i
+        stack = []
+        quote = nil
+        token_start = true
+        len = str.size
+        while i < len
+          c = str[i]
+          if quote
+            quote = nil if c == quote
+            i += 1
+            token_start = false
+            next
+          end
+          if token_start && (c == '"' || c == "'") && str.index(c, i + 1)
+            quote = c
+          elsif CLOSERS.key?(c)
+            stack << CLOSERS[c]
+          elsif c == stack.last
+            stack.pop
+          elsif c =~ SPACE && stack.empty?
+            k = i
+            k += 1 while k < len && str[k] =~ SPACE
+            break if k >= len
+
+            t = str[k]
+            nxt = str[k + 1]
+            break if t == ";" && (nxt.nil? || nxt =~ SPACE)
+            break if t == ":" && nxt && nxt !~ /\s/
+            break if t == "|" && nxt =~ NAME_START
+            break if t == "\\" && (nxt.nil? || nxt =~ SPACE)
+          end
+          token_start = c =~ /[\s\[{(,]/ ? true : false
+          i += 1
+        end
+        [str[start...i].strip, i]
+      end
+
+      # A list, set or string that opens a value and isn't closed on its line.
+      def unclosed?(raw)
+        return false unless raw =~ /\A["\[{]/
+
+        if raw.start_with?('"') then raw.count('"').odd?
+        else matching(raw, 0, raw[0], CLOSERS[raw[0]]).nil?
+        end
+      end
+
+      def matching(str, i, open, close)
+        depth = 0
+        quote = nil
+        (i...str.size).each do |j|
+          c = str[j]
+          if quote then quote = nil if c == quote
+          elsif c == '"' then quote = c
+          elsif c == open then depth += 1
+          elsif c == close
+            depth -= 1
+            return j if depth.zero?
+          end
+        end
+        nil
+      end
+
+      def close_open_attr
+        return unless @open_attr
+
+        attr, = @open_attr
+        note(attr.line, ":#{attr.key}'s list or string is never closed; kept as written")
+        @open_attr = nil
+      end
+
+      def finish(frame)
+        return unless frame.is_a?(Node)
+
+        frame.content.grep(Node).each { |c| finish(c) }
+        frame.attrs.each do |a|
+          next unless a.body
+
+          finish(a.body)
+          if a.body.content.empty?
+            note(a.line, ":#{a.key} has no value")
+          else
+            a.raw = a.body.markdown
+            a.value = a.raw
+          end
+        end
+      end
     end
   end
 
   # ------------------------------------------------------------------ the lexicon model
 
-  Term = Struct.new(:id, :node, :group, keyword_init: true) do
-    def ns = id.include?(":") ? id.split(":", 2).first : nil
+  # A file and the collection (directory) it was read from.
+  Source = Struct.new(:path, :collection, keyword_init: true)
+  Collection = Struct.new(:dir, :title, :note, :primary, keyword_init: true) do
+    def rel = Lexicon.rel_path(dir) + "/"
+  end
+
+  module Ids
+    def self.ns(id) = id.include?(":") ? id.split(":", 2).first : nil
+    def self.root(ns) = ns&.split(".", 2)&.first
+  end
+
+  Term = Struct.new(:id, :aliases, :node, :group, :anchor, keyword_init: true) do
+    def ns = Ids.ns(id)
+    def ns_root = Ids.root(ns)
+    def scope = ns&.split(".", 2)&.[](1)
     def local = id.split(":", 2).last
+    def local_base = local.sub(/[#=].*\z/, "")
+    def sense = local[/#(.+)\z/, 1]
     # the :headword attribute, else config.yml's `headwords`, else the id's local part
-    def headword = attr("headword")&.value || group.headwords[id] || local.tr("-", " ")
-    def definition = node.text.to_s
+    def own_headword = attr("headword")&.value || group.book.config.dig("headwords", id)
+    def headword_parts
+      return [[], own_headword] if own_headword
+
+      segs = local_base.split(".")
+      [segs[0...-1], segs.last.to_s.tr("-", " ")]
+    end
+    def headword = own_headword || [headword_parts[0].map { |p| "#{p.tr('-', ' ')}." }.join, headword_parts[1], sense && " ##{sense}"].compact.join
+    def definition = node.text.to_s.empty? ? first_paragraph : node.text.to_s
+    def first_paragraph = node.markdown(only_before_children: true).split(/\n\s*\n/).first.to_s
+    # own text below the definition line (or after its first paragraph, when it has no line)
+    def body
+      md = node.markdown(only_before_children: true)
+      md = md.split(/\n\s*\n/, 2)[1].to_s if node.text.to_s.empty?
+      md
+    end
+    def trailing = node.markdown(only_after_children: true)
     def attr(key) = node.attr(key)
     def status = attr("status")&.value || group.status
-    def rels = node.child("rels")&.attrs || []
+    def rels = node.children_named("rels")
     def blocks = node.children.reject { |c| c.name == "rels" }
     def extra_attrs(known) = node.attrs.reject { |a| known.include?(a.key) }
+    def values = Array(attr("values")&.value)
   end
 
-  Group = Struct.new(:node, :file, :terms, :headwords, keyword_init: true) do
-    def id = "group-#{File.basename(file, '.ud')}"
+  # One |term-group (or a run of bare |terms) and its terms.
+  Group = Struct.new(:book, :node, :source, :terms, :lead, :id, :index, :of, :implicit, keyword_init: true) do
+    def kind = :group
+    def file = source.path
+    def collection = source.collection
     def ids = node.ids
     def status = node.attr("status")&.value
-    def source = node.attr("source")
+    def group_source = node.attr("source")
     def ns = terms.first&.ns
-    def intro = node.markdown(only_before_children: true)
-    def blocks = node.children.reject { |c| c.name == "term" }
-    def title = terms.map(&:headword).join(" · ")
-    # the file's name without "def-" and the namespace: "bounded-context"
-    def label = File.basename(file, ".ud").sub(/\Adef-/, "").sub(/\A#{Regexp.escape(ns.to_s)}-/, "")
+    def ns_root = terms.first&.ns_root
+    def intro = implicit ? "" : node.markdown(only_before_children: true)
+    def trailing = implicit ? "" : node.markdown(only_after_children: true)
+    def blocks = implicit ? [] : node.children.reject { |c| %w[term term-group].include?(c.name) }
+    def extra_attrs = implicit ? [] : node.attrs.reject { |a| %w[status source].include?(a.key) }
+    def title = terms.map { |t| book.display_name(t) }.join(" · ")
+    def file_label = File.basename(file, ".ud").sub(/\Adef-/, "").sub(/\A#{Regexp.escape(ns.to_s)}-/, "")
+    # the file's name without "def-" and the namespace ("bounded-context"); "k/n" when a
+    # file holds several groups
+    def label = of > 1 ? "#{file_label} #{index}/#{of}" : file_label
+    def comments = implicit ? [] : node.comments
   end
 
-  # Where a term's :source came from: Evans's words unchanged, or ISO 704's
-  # "[SOURCE: …, modified — …]" marking, or neither.
-  Source = Struct.new(:kind, :text, :note, keyword_init: true)
+  # Any other top-level element (|resolutions, |namespace, …): a view of its own.
+  Extra = Struct.new(:book, :node, :source, :lead, :id, :ns_hint, keyword_init: true) do
+    def kind = :extra
+    def file = source.path
+    def collection = source.collection
+    def name = node.name || "(anonymous)"
+    def ns_root = Ids.root(node.label_id.to_s.split(":").first) || ns_hint
+    def label = name
+    def title = [name, node.label_id].compact.join(" · ")
+    def terms = []
+    def status = node.attr("status")&.value
+  end
+
+  SourceKind = Struct.new(:kind, :text, :note, keyword_init: true)
 
   class Book
-    attr_reader :config, :groups, :terms, :refs, :unresolved
+    attr_reader :config, :views, :groups, :terms, :refs, :unresolved, :approx, :plurals, :notes, :collections, :extras
 
-    def initialize(files, config)
+    def initialize(sources, config)
       @config = config
-      @groups = files.map { |f| load_group(f) }.compact
+      @notes = []
+      @anchors = {}
+      @views = []
+      sources.each { |s| load_file(s) }
+      @collections = sources.map(&:collection).uniq
+      @groups = @views.select { |v| v.kind == :group }
+      @extras = @views.select { |v| v.kind == :extra }
       @terms = @groups.flat_map(&:terms)
-      @by_id = @terms.to_h { |t| [t.id, t] }
-      dupes = @terms.group_by(&:id).select { |_, v| v.size > 1 }.keys
-      warn "lexicon: duplicate term ids: #{dupes.join(', ')}" unless dupes.empty?
+      @by_id = {}
+      @terms.each do |t|
+        [t.id, *t.aliases].each do |id|
+          if @by_id.key?(id)
+            note(t.node, "duplicate term id #{id} (also #{rel(@by_id[id].group.file)}:#{@by_id[id].node.line}); references go to the first")
+          else
+            @by_id[id] = t
+          end
+        end
+      end
+      check_group_ids
+      assign_families
       index_refs
     end
 
     def term(id) = @by_id[id]
 
+    # A headword more than one term on the page shares ("catastrophic risk" in sb53.bp,
+    # sb53.lab, ny-raise, …): links and titles then say whose.
+    def shared_headword?(t)
+      @headword_counts ||= @terms.map(&:headword).tally
+      @headword_counts[t.headword] > 1
+    end
+
+    def display_name(t) = shared_headword?(t) && t.ns ? "#{t.headword} (#{t.ns})" : t.headword
+
+    # Resolve an @{id}: [term, how, detail]. `how` is :exact, or an approximation
+    # (:value, :sense, :plural) that `--check` lists, or nil.
+    def resolve(id)
+      @resolve_cache ||= {}
+      @resolve_cache[id] ||= begin
+        if (t = @by_id[id]) then [t, :exact, nil]
+        elsif id.include?("=") && (t = @by_id[id.split("=", 2).first])
+          v = id.split("=", 2).last
+          [t, :value, t.values.include?(v) ? v : "#{v} (not among its :values)"]
+        elsif id.include?("#") && (t = @by_id[id.split("#", 2).first])
+          [t, :sense, "##{id.split('#', 2).last} is not defined; linked to #{t.id}"]
+        elsif (t = plural_match(id))
+          [t, :plural, "no term #{id}; linked to #{t.id}"]
+        else
+          [nil, nil, nil]
+        end
+      end
+    end
+
+    def plural_match(id)
+      [id.sub(/ies\z/, "y"), id.sub(/s\z/, ""), id.sub(/es\z/, ""), "#{id}s", "#{id}es", id.sub(/y\z/, "ies")].uniq.reject { |c| c == id }.map { |c| @by_id[c] }.compact.first
+    end
+
     # A namespace config.yml lists under `external:` is defined elsewhere and imported
     # by reference: its @{refs} link out and are never "unresolved".
     def external(id)
-      ns = id.include?(":") ? id.split(":", 2).first : nil
+      ns = Ids.ns(id)
       ns && config.dig("external", ns)&.merge("prefix" => ns)
     end
-    def namespaces = @groups.group_by(&:ns)
+
+    # Sidebar sections: one per namespace root, in order of first appearance.
+    def sections = @views.group_by(&:ns_root)
 
     def namespace(ns)
-      (config.dig("namespaces", ns.to_s) || {}).merge("prefix" => ns)
+      info = (config.dig("namespaces", ns.to_s) || {}).dup
+      decl = @extras.find { |e| e.name == "namespace" && e.node.label_id == ns }
+      decl&.node&.attrs&.each { |a| info[a.key] ||= a.value }
+      info["family"] ||= @families[ns]
+      info.merge("prefix" => ns)
     end
 
     # Synonyms and avoided words, alphabetised with the terms, each pointing at its term.
@@ -215,38 +705,161 @@ module Lexicon
         Array(t.attr("synonyms")&.value).each { |w| entries << { word: w, term: t, kind: "synonym" } }
         Array(t.attr("avoid")&.value).each { |w| entries << { word: w, term: t, kind: "avoid" } }
       end
-      entries.sort_by { |e| [e[:word].downcase.sub(/\A[^a-z0-9]+/, ""), e[:kind].to_s] }
-             .group_by { |e| e[:word][/[a-z0-9]/i].to_s.upcase }
+      entries.sort_by { |e| [e[:word].downcase.sub(/\A[^\p{L}\p{N}]+/, ""), e[:kind].to_s, e[:term].id] }
+             .group_by { |e| e[:word][/[\p{L}\p{N}]/].to_s.upcase }
     end
 
     def counts
-      { terms: @terms.size, groups: @groups.size,
-        status: @terms.map(&:status).compact.tally }
+      { terms: @terms.size, groups: @groups.size, status: @terms.map(&:status).compact.tally }
     end
+
+    def primary_only? = @collections.all?(&:primary)
+
+    def anchor_for(id)
+      base = id.gsub(/[^\w-]+/, "-").gsub(/-+/, "-").sub(/\A-/, "").sub(/-\z/, "")
+      base = "t-#{base}" if base.start_with?("group-") || base.empty?
+      a = base
+      k = 2
+      while @anchors.key?(a)
+        a = "#{base}-#{k}"
+        k += 1
+      end
+      @anchors[a] = true
+      a
+    end
+
+    def rel(file) = Lexicon.rel_path(file)
 
     private
 
-    def load_group(file)
-      root = Udon.parse(File.read(file), file: file)
-      group_node = root.children.find { |c| c.name == "term-group" }
-      # A file of bare |term elements becomes a group of its own.
-      group_node ||= Udon::Node.new(name: "term-group", ids: [], attrs: [], content: root.content, indent: -1, file: file, line: 0)
-      group = Group.new(node: group_node, file: file, terms: [], headwords: @config["headwords"] || {})
-      group.terms = group_node.children.select { |c| c.name == "term" }.map { |n| Term.new(id: n.ids.first.to_s, node: n, group: group) }
-      return warn("lexicon: no terms in #{file}") if group.terms.empty?
+    def note(node, msg) = @notes << Udon::Note.new(file: node.file, line: node.line, message: msg)
 
-      group
+    def load_file(source)
+      parser = Udon::Parser.new(File.read(source.path), file: source.path)
+      root = parser.parse
+      @notes.concat(parser.notes)
+      base = "group-#{File.basename(source.path, '.ud')}"
+      items = []
+      lead = []
+      run = nil
+      flush_run = lambda do
+        next unless run
+
+        items << [:run, run[:terms], run[:lead]]
+        run = nil
+      end
+      root.content.each do |c|
+        if c.is_a?(Udon::Line)
+          if c.comment then lead << Udon.comment_text(c)
+          elsif !c.text.strip.empty?
+            lead << c.text.strip
+            note(Udon::Node.new(file: source.path, line: c.line), "text outside any element, at the top level of the file; shown with the file's comments beside it")
+          end
+        elsif c.name == "term"
+          run ||= { terms: [], lead: lead.dup }
+          run[:terms] << c
+          lead = []
+        else
+          flush_run.call
+          items << [c.name == "term-group" ? :group : :extra, c, lead]
+          lead = []
+        end
+      end
+      flush_run.call
+      unless lead.empty?
+        if items.empty? then note(Udon::Node.new(file: source.path, line: 1), "file has comments but no elements")
+        else items.last[2] = items.last[2] + ["(end of file)", *lead]
+        end
+      end
+
+      groups = []
+      items.each do |kind, x, lead_notes|
+        case kind
+        when :group
+          groups << [x, lead_notes, false]
+          # term groups nested inside this one become groups of their own, after it
+          x.children_named("term-group").each { |inner| groups << [inner, [], false] }
+        when :run
+          holder = Udon::Node.new(name: "term-group", ids: [], traits: [], flags: [], attrs: [], content: x,
+                                  indent: -1, file: source.path, line: x.first.line, kind: :element)
+          groups << [holder, lead_notes, true]
+        when :extra
+          groups << [x, lead_notes, :extra]
+        end
+      end
+
+      term_groups = groups.reject { |_, _, imp| imp == :extra }
+      k = 0
+      last_ns = nil
+      groups.each do |node, lead_notes, implicit|
+        if implicit == :extra
+          @views << Extra.new(book: self, node: node, source: source, lead: lead_notes,
+                              id: "x-#{File.basename(source.path, '.ud')}-#{node.name}-#{node.line}".gsub(/[^\w-]+/, "-"),
+                              ns_hint: last_ns)
+          next
+        end
+        k += 1
+        g = Group.new(book: self, node: node, source: source, terms: [], lead: lead_notes,
+                      id: k == 1 ? base : "#{base}-#{k}", index: k, of: term_groups.size, implicit: implicit)
+        g.terms = node.children_named("term").map do |n|
+          id = n.ids.first.to_s
+          if id.empty?
+            id = "(unnamed #{File.basename(source.path)}:#{n.line})"
+            note(n, "|term without an [id]")
+          end
+          Term.new(id: id, aliases: n.ids.drop(1), node: n, group: g, anchor: anchor_for(id))
+        end
+        if g.terms.empty?
+          note(node, "a |term-group with no |term in it; shown with its notes only")
+        end
+        last_ns = g.ns_root || last_ns
+        @views << g
+      end
     end
 
-    # Every @{id} anywhere in a term (or its group's own text), for backlinks and the
-    # unresolved list.
+    # The ids a |term-group declares against the |terms it holds.
+    def check_group_ids
+      @groups.each do |g|
+        next if g.implicit || g.ids.empty?
+
+        nested = g.node.children_named("term-group").flat_map { |n| n.children_named("term").flat_map(&:ids) }
+        held = g.terms.flat_map { |t| [t.id, *t.aliases] } + nested
+        missing = g.ids - held
+        extra = g.terms.map(&:id) - g.ids
+        note(g.node, "group declares #{missing.join(', ')} but holds no such |term") unless missing.empty?
+        note(g.node, "group holds #{extra.join(', ')} but doesn't declare it in its [ids]") unless extra.empty?
+      end
+    end
+
+    # Namespaces config.yml gives no colour family get the next unused one.
+    def assign_families
+      @families = {}
+      used = (config["namespaces"] || {}).values.map { |v| v["family"] }.compact
+      pool = FAMILIES - used
+      pool = FAMILIES.dup if pool.empty?
+      i = 0
+      sections.each_key do |ns|
+        next if ns.nil? || config.dig("namespaces", ns, "family")
+
+        @families[ns] = pool[i % pool.size]
+        i += 1
+      end
+    end
+
+    # Every @{id} anywhere in a term, a group's own text, or an extra view: backlinks,
+    # the unresolved list, and approximate resolutions.
     def index_refs
       @refs = Hash.new { |h, k| h[k] = [] }
       @unresolved = Hash.new { |h, k| h[k] = [] }
+      @approx = Hash.new { |h, k| h[k] = [] }
+      @plurals = Hash.new { |h, k| h[k] = [] }
       scan = lambda do |owner, text|
-        text.to_s.scan(/@\{([^}]+)\}/).flatten.uniq.each do |id|
-          if @by_id.key?(id)
-            @refs[id] << owner unless owner == @by_id[id] || @refs[id].include?(owner)
+        text.to_s.scan(/@\{([^{}]+)\}/).flatten.uniq.each do |id|
+          t, how, detail = resolve(id)
+          if t
+            @refs[t.id] << owner unless owner == t || @refs[t.id].include?(owner)
+            @approx[id] << [owner, how, detail] if how == :sense || (how == :value && detail.to_s.include?("not among"))
+            @plurals[id] << owner if how == :plural && !@plurals[id].include?(owner)
           elsif external(id)
             next
           else
@@ -254,20 +867,133 @@ module Lexicon
           end
         end
       end
-      @groups.each do |g|
-        scan.call(g, all_text(g.node, skip: "term"))
-        g.terms.each { |t| scan.call(t, all_text(t.node)) }
+      @views.each do |v|
+        if v.kind == :group
+          scan.call(v, all_text(v.node, skip: "term") + "\n" + v.lead.join("\n"))
+          v.terms.each { |t| scan.call(t, all_text(t.node)) }
+        else
+          scan.call(v, all_text(v.node) + "\n" + v.lead.join("\n"))
+        end
       end
     end
 
     def all_text(node, skip: nil)
-      parts = [node.text, *node.attrs.map { |a| "#{a.raw} #{a.comment}" }]
+      parts = [node.text, node.comment, *node.attrs.map { |a| "#{a.key} #{a.raw} #{a.comment}" }]
+      node.attrs.each { |a| parts << all_text(a.body) if a.body }
       node.content.each do |c|
         if c.is_a?(Udon::Node) then parts << all_text(c, skip: skip) unless c.name == skip
         else parts << c.text
         end
       end
       parts.compact.join("\n")
+    end
+  end
+
+  # ------------------------------------------------------------------ the notation in values
+  #
+  # Relation targets and attribute values carry marks the page sets apart:
+  #   @{id}          a reference          {a | b}   one of these is meant; undetermined
+  #   {a, b}         a set: all of these  (a | b)   any of these (a type union)
+  #   {1,N}          a cardinality        [a "b"]   a udon list
+  #   "words"        the source's words   -> ns:x   the path goes into another namespace
+  #   ?              unresolved, or further unnamed members        lean x   our preference
+  module Notation
+    module_function
+
+    def parse(str)
+      tokens, = seq(str, 0, nil)
+      tokens
+    end
+
+    # A run of tokens up to `stop` (a closing char), returning [tokens, index after].
+    # Inside a group, top-level "|" and "," come back as [:sep, ch].
+    def seq(s, i, stop)
+      out = []
+      while i < s.size
+        c = s[i]
+        return [out, i + 1] if stop && c == stop
+
+        if c =~ /\s/
+          j = i
+          j += 1 while j < s.size && s[j] =~ /\s/
+          out << [:ws]
+          i = j
+        elsif s[i, 2] == "@{" && (j = close_of(s, i + 1, "{", "}"))
+          out << [:ref, s[(i + 2)...j].strip]
+          i = j + 1
+        elsif c == "{" && (j = close_of(s, i, "{", "}"))
+          inner = s[(i + 1)...j]
+          if inner =~ /\A\s*(\d+|[A-Za-z])\s*,\s*(\d+|[A-Za-z])\s*\z/
+            out << [:card, "#{Regexp.last_match(1)}..#{Regexp.last_match(2)}"]
+          else
+            parts = split(seq(s, i + 1, "}")[0])
+            out << [parts[:sep] == "|" ? :amb : :set, parts[:items]]
+          end
+          i = j + 1
+        elsif c == "(" && (j = close_of(s, i, "(", ")"))
+          parts = split(seq(s, i + 1, ")")[0])
+          out << (parts[:sep] == "|" ? [:union, parts[:items]] : [:paren, parts[:raw]])
+          i = j + 1
+        elsif c == "[" && (j = close_of(s, i, "[", "]"))
+          items = seq(s, i + 1, "]")[0].reject { |t| t[0] == :ws }
+          out << [:list, items]
+          i = j + 1
+        elsif c == '"' && (j = s.index('"', i + 1))
+          out << [:str, s[(i + 1)...j]]
+          i = j + 1
+        elsif s[i, 2] == "->"
+          out << [:arrow]
+          i += 2
+        elsif stop && (c == "|" || c == ",")
+          out << [:sep, c]
+          i += 1
+        elsif c == "?" && (i + 1 >= s.size || s[i + 1] =~ /[\s,|}\])]/)
+          out << [:unknown]
+          i += 1
+        else
+          j = i + 1
+          j += 1 while j < s.size && s[j] !~ /[\s{}()\[\]"]/ && !(stop && ",|".include?(s[j])) && s[j, 2] != "@{"
+          out << [:text, s[i...j]]
+          i = j
+        end
+      end
+      [out, i]
+    end
+
+    def split(tokens)
+      seps = tokens.select { |t| t[0] == :sep }.map { |t| t[1] }.uniq
+      sep = seps.include?("|") ? "|" : seps.first
+      items = [[]]
+      tokens.each do |t|
+        if t[0] == :sep && t[1] == sep then items << []
+        else items.last << (t[0] == :sep ? [:text, t[1]] : t)
+        end
+      end
+      items = items.map { |it| trim(it) }
+      { sep: sep, items: items, raw: trim(tokens.map { |t| t[0] == :sep ? [:text, t[1]] : t }) }
+    end
+
+    def trim(tokens)
+      t = tokens.dup
+      t.shift while t.first && t.first[0] == :ws
+      t.pop while t.last && t.last[0] == :ws
+      t
+    end
+
+    def close_of(s, i, open, close)
+      depth = 0
+      quote = false
+      (i...s.size).each do |j|
+        c = s[j]
+        if c == '"' then quote = !quote
+        elsif quote then next
+        elsif c == open then depth += 1
+        elsif c == close
+          depth -= 1
+          return j if depth.zero?
+        end
+      end
+      nil
     end
   end
 
@@ -294,80 +1020,283 @@ module Lexicon
                              laquo_space: "<< ", raquo_space: " >>" }
     }.freeze
 
-    # Block markdown -> HTML, with @{refs} linked.
+    # Block markdown -> HTML, with udon's inline forms rendered and @{refs} linked.
     def md(text, group: nil)
       return "" if text.to_s.strip.empty?
 
-      html = Kramdown::Document.new(text, **KRAMDOWN).to_html
+      held = []
+      src = inline_forms(text.to_s, held)
+      html = Kramdown::Document.new(src, **KRAMDOWN).to_html
+      html = html.gsub(/\u{E000}(\d+)\u{E001}/) { held[Regexp.last_match(1).to_i] }
       link_headwords(refs(html), group)
     end
 
     # Inline markdown (one line) -> HTML without the <p>.
     def mdi(text, group: nil) = md(text, group: group).strip.sub(%r{\A<p>(.*)</p>\z}m, '\1')
 
-    def refs(html)
-      html.gsub(/@\{([^}]+)\}/) do
-        id = Regexp.last_match(1)
-        t = book.term(id)
-        ext = book.external(id)
-        if t
-          %(<a class="ref" href="##{anchor(id)}" title="#{esc(t.definition)}">#{esc(t.headword)}</a>)
-        elsif ext
-          word = id.split(":", 2).last.tr("-", " ")
-          %(<a class="ref external" href="#{esc(ext['href'])}" title="#{esc("#{id}: #{ext['title']}, #{ext['note']}")}">#{esc(word)}</a>)
-        else
-          %(<span class="ref unresolved" title="not in this lexicon">#{esc(id)}</span>)
+    INLINE_TAGS = { "em" => "em", "strong" => "strong", "b" => "strong", "i" => "em", "code" => "code",
+                    "q" => "q", "sub" => "sub", "sup" => "sup", "s" => "s" }.freeze
+
+    # udon's inline forms in prose, outside `code`: |{name …} ;{comment} !{{expr}}
+    # !{:kind: …} !{name …}. Each becomes a placeholder that survives markdown.
+    def inline_forms(text, held)
+      out = +""
+      i = 0
+      while i < text.size
+        if text[i] == "`"
+          ticks = text[i..][/\A`+/]
+          j = text.index(ticks, i + ticks.size)
+          j = j ? j + ticks.size : text.size
+          out << text[i...j]
+          i = j
+          next
         end
+        two = text[i, 2]
+        if %w[|{ ;{ !{].include?(two) && (j = Notation.close_of(text, i + 1, "{", "}"))
+          inner = text[(i + 2)...j]
+          html =
+            case two
+            when ";{" then %(<span class="inline-comment" title="a udon comment">#{esc(inner.strip)}</span>)
+            when "!{"
+              if inner.start_with?("{") then %(<code class="inline-form" title="interpolation, not evaluated">#{esc("!{#{inner}}")}</code>)
+              elsif inner =~ /\A:([^:\s]*):\s?(.*)\z/m then %(<code class="inline-verbatim" title="inline verbatim#{" (#{Regexp.last_match(1)})" unless Regexp.last_match(1).empty?}">#{esc(Regexp.last_match(2))}</code>)
+              else %(<code class="inline-form" title="directive, not run">#{esc("!{#{inner}}")}</code>)
+              end
+            else
+              name = inner[/\A[\p{L}][\p{L}\p{N}_\-\/]*/].to_s
+              body = inner[name.size..].to_s.sub(/\A\s/, "")
+              inner_html = mdi(body)
+              tag = INLINE_TAGS[name]
+              tag ? "<#{tag}>#{inner_html}</#{tag}>" : %(<span class="inline-el" data-el="#{esc(name)}" title="|{#{esc(name)} …}">#{inner_html}</span>)
+            end
+          held << html
+          out << "\u{E000}#{held.size - 1}\u{E001}"
+          i = j + 1
+        else
+          out << text[i]
+          i += 1
+        end
+      end
+      out
+    end
+
+    # Link @{refs} in HTML, leaving <code> and <pre> alone.
+    def refs(html)
+      html.split(%r{(<(code|pre)\b.*?</\2>)}m).each_slice(3).map do |plain, code, _|
+        plain.gsub(/@\{([^{}]+)\}/) { ref(Regexp.last_match(1)) } + code.to_s
+      end.join
+    end
+
+    def ref(id)
+      t, how, detail = book.resolve(id)
+      ext = book.external(id)
+      if t
+        word = how == :value ? "#{t.headword} = #{id.split('=', 2).last}" : t.headword
+        title = [t.id, detail, t.definition].compact.join(" — ")
+        cls = how == :sense || detail.to_s.include?("not among") ? "ref approx" : "ref"
+        whose = book.shared_headword?(t) && t.ns ? %(<span class="ref-ns">#{esc(t.ns)}</span>) : ""
+        %(<a class="#{cls}" href="##{t.anchor}" title="#{esc(title)}">#{esc(word)}#{whose}</a>)
+      elsif ext
+        word = id.split(":", 2).last.tr("-", " ")
+        %(<a class="ref external" href="#{esc(ext['href'])}" title="#{esc("#{id}: #{ext['title']}, #{ext['note']}")}">#{esc(word)}</a>)
+      else
+        %(<span class="ref unresolved" title="not in this lexicon">#{esc(id)}</span>)
       end
     end
 
     # In a group's opening, **BOUNDED-CONTEXT** introduces a term: link it to its entry.
+    # A plural outside the bold (**REFERENT**s) or inside it (**SURFACES**) still finds it.
     def link_headwords(html, group)
       return html unless group
 
-      html.gsub(%r{<strong>([A-Z][A-Z0-9-]+)</strong>}) do
+      html.gsub(%r{<strong>([A-Z][A-Z0-9.#=-]*)</strong>}) do
         word = Regexp.last_match(1)
-        t = group.terms.find { |x| x.local.upcase == word }
-        t ? %(<a class="headword-ref" href="##{anchor(t.id)}"><strong>#{esc(t.headword)}</strong></a>) : Regexp.last_match(0)
+        cands = [word, word.sub(/ES\z/, ""), word.sub(/S\z/, ""), "#{word}S"]
+        t = cands.lazy.map { |w| group.terms.find { |x| x.local.upcase == w } }.find(&:itself)
+        t ? %(<a class="headword-ref" href="##{t.anchor}"><strong>#{esc(t.headword)}</strong></a>) : Regexp.last_match(0)
       end
     end
 
-    def anchor(id) = id.gsub(/[^\w-]+/, "-")
     def esc(s) = s.to_s.gsub("&", "&amp;").gsub("<", "&lt;").gsub(">", "&gt;").gsub('"', "&quot;")
+
+    def headword_html(t)
+      return esc(t.own_headword) if t.own_headword
+
+      parents, last = t.headword_parts
+      pre = parents.map { |p| %(<span class="hw-parent">#{esc(p.tr('-', ' '))}.</span>) }.join
+      sense = t.sense ? %(<span class="hw-sense">##{esc(t.sense)}</span>) : ""
+      "#{pre}#{esc(last)}#{sense}"
+    end
 
     def source(attr)
       return nil unless attr
 
       text = attr.value.to_s
       if text =~ /\A\[SOURCE:\s*(.*?),\s*modified\s*[—-]+\s*(.*)\]\z/m
-        Source.new(kind: "modified", text: Regexp.last_match(1), note: Regexp.last_match(2))
+        SourceKind.new(kind: "modified", text: Regexp.last_match(1), note: Regexp.last_match(2))
       elsif text =~ /\A(.*?)\s*[—-]+\s*(verbatim.*)\z/m
-        Source.new(kind: "verbatim", text: Regexp.last_match(1), note: Regexp.last_match(2).sub(/\Averbatim,?\s*/, ""))
+        SourceKind.new(kind: "verbatim", text: Regexp.last_match(1), note: Regexp.last_match(2).sub(/\Averbatim,?\s*/, ""))
       else
-        Source.new(kind: "cited", text: text, note: nil)
+        SourceKind.new(kind: "cited", text: text, note: nil)
       end
     end
 
-    # "@{ddd:model} {1,1}" -> linked target plus a cardinality.
-    def rel_value(raw)
-      card = raw[/\{([^}]*)\}\s*\z/, 1]
-      target = raw.sub(/\{[^}]*\}\s*\z/, "").strip
-      target = target.sub(/\A\((.*)\)\z/m, '\1').split(/\s*\|\s*/) if target.start_with?("(")
-      [Array(target), card&.sub(",", "..")]
+    # A value in the notation, as HTML. quote: render "strings" as the source's words.
+    def val(raw, quote: true)
+      render_tokens(Notation.parse(raw.to_s), quote: quote)
     end
 
-    def label(block) = config.dig("blocks", block, "label") || block.tr("-", " ").capitalize
-    def block_kind(block) = config.dig("blocks", block, "kind") || "plain"
+    # A relation's target and cardinality: "@{ddd:model} {1,1}" -> [html, "1..1"]
+    def rel_value(raw)
+      tokens = Notation.trim(Notation.parse(raw.to_s))
+      card = nil
+      if tokens.last && tokens.last[0] == :card
+        card = tokens.pop[1]
+        tokens = Notation.trim(tokens)
+      end
+      [render_tokens(tokens, quote: true), card]
+    end
+
+    # An attribute value outside |rels: plain markdown unless it carries the notation.
+    def attr_html(a)
+      return val(a.raw, quote: false) if a.raw =~ /[{\[]|->|(\A|\s)\?(\s|\z)/
+
+      mdi(Array(a.value).join(", "))
+    end
+
+    def render_tokens(tokens, quote:)
+      out = +""
+      tokens.each_with_index do |(kind, x), i|
+        out <<
+          case kind
+          when :ws then " "
+          when :ref then ref(x)
+          when :str
+            quote ? %(<q class="v-str">#{refs(esc(x))}</q>) : refs(esc(x))
+          when :card then %(<span class="cardinality" title="cardinality">#{esc(x)}</span>)
+          when :amb
+            parts = x.map { |it| render_tokens(it, quote: quote) }
+            %(<span class="v-amb" title="Ambiguous: one of these is meant, and which is undetermined"><span class="v-b">{</span>#{parts.join('<span class="v-bar"> | </span>')}<span class="v-b">}</span></span>)
+          when :set
+            parts = x.map { |it| render_tokens(it, quote: quote) }
+            %(<span class="v-set" title="A set: all of these"><span class="v-b">{</span>#{parts.join('<span class="v-comma">, </span>')}<span class="v-b">}</span></span>)
+          when :union
+            parts = x.map { |it| render_tokens(it, quote: quote) }
+            %(<span class="v-union" title="Any of these (a type union)"><span class="v-b">(</span>#{parts.join('<span class="v-bar"> | </span>')}<span class="v-b">)</span></span>)
+          when :paren then "(#{render_tokens(x, quote: quote)})"
+          when :list
+            items = x.map { |it| render_tokens([it], quote: quote) }
+            %(<span class="v-list" title="a list"><span class="v-b">[</span>#{items.join('<span class="v-comma"> · </span>')}<span class="v-b">]</span></span>)
+          when :arrow then %(<span class="v-arrow" title="the path goes into another namespace">→</span>)
+          when :unknown
+            title = tokens[0...i].any? { |t| t[0] == :arrow } ? "not followed" : "unresolved, or further unnamed members"
+            %(<span class="v-unknown" title="#{title}">?</span>)
+          when :text
+            if x == "lean" then %(<span class="v-lean">lean</span>)
+            elsif x =~ /\A[\w.-]+:[\w.#=-]+\z/ then %(<code class="v-id">#{esc(x)}</code>)
+            else esc(x)
+            end
+          else esc(x.to_s)
+          end
+      end
+      out
+    end
+
+    # |rels attributes and the comments between them, in file order.
+    def rel_rows(rels_nodes)
+      rels_nodes.flat_map do |r|
+        rows = r.attrs.map { |a| [a.line, :rel, a] }
+        rows += r.content.grep(Udon::Line).select(&:comment).map { |l| [l.line, :note, Udon.comment_text(l)] }
+        rows += r.children.map { |c| [c.line, :node, c] }
+        rows.sort_by(&:first)
+      end
+    end
+
+    # A !:kind: block's body, dedented to its first content line (udon's raw base).
+    def verbatim_text(b)
+      lines = b.content.grep(Udon::Line).map(&:text)
+      lines.pop while lines.last && lines.last.strip.empty?
+      base = lines.find { |l| !l.strip.empty? }&.then { |l| l[/\A */].size } || 0
+      lines.map { |l| l[[base, l[/\A */].size].min..] }.join("\n")
+    end
+
+    def rel_key(a) = a.braced ? val(a.key) : esc(a.key)
+
+    def label(block) = config.dig("blocks", block, "label") || block.to_s.tr("-", " ").capitalize
     def collapsed?(block) = config.dig("blocks", block, "collapsed") == true
     def rank(block) = config.dig("blocks", block, "order") || 50
 
-    # The term groups before and after this one, in reading order.
-    def neighbors(group)
-      i = book.groups.index(group)
-      [i.positive? ? book.groups[i - 1] : nil, book.groups[i + 1]]
+    # A block set as a table that holds no table is set as a list (or plain) instead.
+    def block_kind(b)
+      kind = config.dig("blocks", b.name, "kind") || "plain"
+      return kind unless kind == "table"
+      return kind if b.markdown =~ /^\s*\|.*\|\s*$/
+
+      b.markdown =~ /\A\s*[-*] / ? "list" : "plain"
     end
 
     def ordered(blocks) = blocks.each_with_index.sort_by { |b, i| [rank(b.name), i] }.map(&:first)
+
+    # The view before and after this one, in reading order.
+    def neighbors(view)
+      i = book.views.index(view)
+      [i.positive? ? book.views[i - 1] : nil, book.views[i + 1]]
+    end
+
+    def family(view) = book.namespace(view.ns_root)["family"]
+
+    # One |resolutions line: "- R-id P-id "words" (qual) => target lean x ; note"
+    Resolution = Struct.new(:record, :passage, :words, :target, :lean, :note, :raw, keyword_init: true)
+
+    def resolution_rows(node)
+      rows = []
+      node.content.each do |c|
+        if c.is_a?(Udon::Line)
+          if c.comment then rows << [:note, Udon.comment_text(c)]
+          elsif c.text.strip.start_with?("- ") then rows << [:row, parse_resolution(c.text.strip[2..])]
+          elsif !c.text.strip.empty? then rows << [:raw, c.text.strip]
+          end
+        else
+          rows << [:node, c]
+        end
+      end
+      rows
+    end
+
+    def parse_resolution(line)
+      left, right = line.split(/\s=>\s/, 2)
+      return Resolution.new(raw: line) unless right
+
+      m = left.strip.match(/\A(\(no record\)|\S+)\s+(P-\S+)?\s*(.*)\z/m)
+      return Resolution.new(raw: line) unless m
+
+      target, note = split_note(right.strip)
+      lean = nil
+      if (k = top_level_index(target, /\slean\s/))
+        lean = target[k..].strip.sub(/\Alean\s+/, "")
+        target = target[0...k].strip
+      end
+      Resolution.new(record: m[1], passage: m[2], words: m[3].strip, target: target, lean: lean, note: note, raw: line)
+    end
+
+    def split_note(s)
+      k = top_level_index(s, /\s;\s/)
+      k ? [s[0...k].strip, s[k..].sub(/\A\s;\s/, "").strip] : [s, nil]
+    end
+
+    def top_level_index(s, re)
+      depth = 0
+      quote = false
+      s.each_char.with_index do |c, i|
+        if c == '"' then quote = !quote
+        elsif quote then next
+        elsif "{([".include?(c) then depth += 1
+        elsif "})]".include?(c) then depth -= 1
+        elsif depth.zero? && s[i..] =~ /\A#{re.source}/ then return i
+        end
+      end
+      nil
+    end
 
     def css = STYLES.map { |f| Sass.compile(File.join(HERE, f)).css }.join("\n\n")
 
@@ -388,24 +1317,76 @@ module Lexicon
       [Time.now.strftime("%Y-%m-%d"), (sha.empty? ? nil : "at #{sha}")].compact.join(" ")
     end
 
-    def rel_path(file) = file.sub(%r{\A#{Regexp.escape(File.expand_path(File.join(HERE, '..')))}/}, "")
+    def rel_path(file) = Lexicon.rel_path(file)
+    def kicker = [config["kicker"], book.collections.map(&:rel).join(" + ")].compact.join(" · ")
   end
 
   module_function
 
   def config = YAML.safe_load_file(File.join(HERE, "config.yml"))
 
-  # Files from config.yml: `files` globs (relative to this directory), put in
-  # `order` (basenames) first, the rest alphabetically after.
-  def files_from(cfg)
-    found = Array(cfg["files"]).flat_map { |g| Dir.glob(File.expand_path(g, HERE)) }.uniq
-    order = Array(cfg["order"])
-    found.sort_by { |f| [order.index(File.basename(f, ".ud")) || order.size, File.basename(f)] }
+  def rel_path(file) = File.expand_path(file).sub(%r{\A#{Regexp.escape(ROOT)}/}, "")
+
+  # config.yml's `collections` entry for a directory, matched by its path from the repo root.
+  def collection_for(dir, cfg, primary:)
+    entry = (cfg["collections"] || {}).find { |k, _| File.expand_path(k, HERE) == File.expand_path(dir) }&.last || {}
+    Collection.new(dir: File.expand_path(dir), title: entry["title"], note: entry["note"], primary: primary)
   end
 
-  def build(files, out_path, link: false)
-    cfg = config
-    book = Book.new(files.map { |f| File.expand_path(f) }, cfg)
+  # def/ from config.yml: `files` globs, put in `order` (basenames) first.
+  def primary_sources(cfg)
+    found = Array(cfg["files"]).flat_map { |g| Dir.glob(File.expand_path(g, HERE)) }.uniq
+    sources_for(found, cfg, Array(cfg["order"]), primary: true)
+  end
+
+  # Directories (their *.ud), files, or globs from the command line.
+  def extra_sources(args, cfg)
+    args.flat_map do |a|
+      path = File.expand_path(a)
+      files =
+        if File.directory?(path) then Dir.glob(File.join(path, "*.ud"))
+        elsif File.file?(path) then [path]
+        else Dir.glob(path)
+        end
+      abort "lexicon: nothing to read at #{a}" if files.empty?
+      by_dir = files.group_by { |f| File.dirname(f) }
+      by_dir.flat_map do |dir, fs|
+        order = Array((cfg["collections"] || {}).find { |k, _| File.expand_path(k, HERE) == dir }&.last&.dig("order"))
+        sources_for(fs, cfg, order, primary: false)
+      end
+    end
+  end
+
+  def sources_for(files, cfg, order, primary:)
+    files.group_by { |f| File.dirname(f) }.flat_map do |dir, fs|
+      coll = collection_for(dir, cfg, primary: primary)
+      fs.sort_by { |f| [order.index(File.basename(f, ".ud")) || order.size, File.basename(f)] }
+        .map { |f| Source.new(path: f, collection: coll) }
+    end
+  end
+
+  # Collections must be one object per directory, so a file named twice is read once.
+  def dedupe(sources)
+    seen = {}
+    colls = {}
+    sources.filter_map do |s|
+      next if seen[s.path]
+
+      seen[s.path] = true
+      s.collection = (colls[s.collection.dir] ||= s.collection)
+      s
+    end
+  end
+
+  def default_out(args)
+    return File.join(HERE, "lexicon.html") if args.empty?
+
+    slug = args.map { |a| rel_path(a).sub(/\.ud\z/, "").sub(%r{\Ainflux/}, "").tr("/", "-") }.join("+")
+    File.join(HERE, "lexicon+#{slug}.html")
+  end
+
+  def build(sources, out_path, link: false)
+    book = Book.new(sources, config)
     view = View.new(book, link: link)
     if link
       File.write(File.join(File.dirname(out_path), "lexicon.css"), view.css)
@@ -413,38 +1394,48 @@ module Lexicon
     end
     File.write(out_path, view.partial("page"))
     report(book)
-    puts "wrote #{out_path} (#{book.terms.size} terms in #{book.groups.size} groups)"
+    puts "wrote #{rel_path(out_path)} (#{book.terms.size} terms in #{book.groups.size} groups, #{book.extras.size} other views, from #{sources.size} files)"
   end
 
-  def check(files)
-    book = Book.new(files.map { |f| File.expand_path(f) }, config)
-    report(book)
-    puts "#{book.terms.size} terms in #{book.groups.size} groups"
+  def check(sources)
+    book = Book.new(sources, config)
+    report(book, verbose: true)
+    puts "#{book.terms.size} terms in #{book.groups.size} groups, #{book.extras.size} other views, from #{sources.size} files"
     exit(book.unresolved.empty? ? 0 : 1)
   end
 
-  def report(book)
-    book.unresolved.each do |id, owners|
-      where = owners.map { |o| o.is_a?(Term) ? o.id : File.basename(o.file) }.join(", ")
-      warn "unresolved @{#{id}} in #{where}"
+  def owner_name(o) = o.is_a?(Term) ? o.id : "#{o.label} (#{File.basename(o.file)})"
+
+  def report(book, verbose: false)
+    book.unresolved.each { |id, owners| warn "unresolved @{#{id}} in #{owners.map { |o| owner_name(o) }.join(', ')}" }
+    return unless verbose
+
+    book.approx.each do |id, uses|
+      uses.each { |o, _how, detail| warn "approximate @{#{id}} in #{owner_name(o)}: #{detail}" }
     end
+    book.plurals.each { |id, owners| warn "plural @{#{id}} in #{owners.map { |o| owner_name(o) }.join(', ')}: linked to #{book.resolve(id)[0].id}" }
+    book.notes.each { |n| warn "note #{rel_path(n.file)}:#{n.line}: #{n.message}" }
   end
 end
 
 if $PROGRAM_NAME == __FILE__
-  require "fileutils"
-  opts = { link: false, check: false, out: nil }
+  opts = { link: false, check: false, out: nil, only: false }
   OptionParser.new do |o|
-    o.banner = "usage: ruby build.rb [file.ud ...] [-o out.html] [--link] [--check]"
-    o.on("-o", "--out FILE", "output file (default: lexicon.html here)") { |v| opts[:out] = v }
+    o.banner = "usage: build [DIR|FILE ...] [--only] [-o out.html] [--link] [--check]\n" \
+               "  DIR or FILE: more term files, read as if they were in def/"
+    o.on("-o", "--out FILE", "output file (default: lexicon.html, or lexicon+<dirs>.html with extra paths)") { |v| opts[:out] = v }
+    o.on("--only", "read only the paths given, not def/") { opts[:only] = true }
     o.on("--link", "write lexicon.css and link it + lexicon.js instead of inlining them") { opts[:link] = true }
-    o.on("--check", "parse only; list unresolved @{refs}; exit 1 if any") { opts[:check] = true }
+    o.on("--check", "parse only; report unresolved and approximate @{refs} and parser notes; exit 1 if any are unresolved") { opts[:check] = true }
   end.parse!
-  files = ARGV.empty? ? Lexicon.files_from(Lexicon.config) : ARGV
-  abort "lexicon: no .ud files found" if files.empty?
+  cfg = Lexicon.config
+  abort "lexicon: --only needs at least one path" if opts[:only] && ARGV.empty?
+  sources = (opts[:only] ? [] : Lexicon.primary_sources(cfg)) + Lexicon.extra_sources(ARGV, cfg)
+  sources = Lexicon.dedupe(sources)
+  abort "lexicon: no .ud files found" if sources.empty?
   if opts[:check]
-    Lexicon.check(files)
+    Lexicon.check(sources)
   else
-    Lexicon.build(files, opts[:out] || File.join(Lexicon::HERE, "lexicon.html"), link: opts[:link])
+    Lexicon.build(sources, opts[:out] ? File.expand_path(opts[:out]) : Lexicon.default_out(ARGV), link: opts[:link])
   end
 end

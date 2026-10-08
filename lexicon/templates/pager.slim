@@ -1,0 +1,15 @@
+/ Below a view: the views before and after it, in reading order (← and → keys).
+- prev_v, next_v = neighbors(v)
+nav.pager
+  - if prev_v
+    a.prev href="##{prev_v.id}" data-key="ArrowLeft"
+      span.label = prev_v.kind == :group ? "Previous group" : "Previous"
+      span = prev_v.title
+  - else
+    a.prev href="#"
+      span.label Back to
+      span Index
+  - if next_v
+    a.next href="##{next_v.id}" data-key="ArrowRight"
+      span.label = next_v.kind == :group ? "Next group" : "Next"
+      span = next_v.title

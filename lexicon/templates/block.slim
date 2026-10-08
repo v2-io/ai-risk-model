@@ -1,11 +1,23 @@
-/ One block (|invariants, |discussion, …) inside a term or a group. Its treatment
-/ comes from config.yml's `blocks`; whole-line ; comments become notes above the body.
-- kind = block_kind(b.name)
-- if collapsed?(b.name)
-  details.block class=[kind, b.name, scope]
-    summary.label = label(b.name)
+/ One block (|invariants, |discussion, …) inside a term, a group or another block. Its
+/ treatment comes from config.yml's `blocks`; whole-line ; comments become notes above
+/ the body. A directive (!name) or verbatim block (!:kind:) is shown as written.
+- if b.kind == :verbatim
+  .block.verbatim class=scope
+    .label = b.name.to_s.empty? ? "Verbatim" : "Verbatim · #{b.name}"
+    pre
+      code = verbatim_text(b)
+- elsif b.kind == :directive
+  .block.directive class=scope
+    .label title="a udon directive, carried as written and not run" = "!#{b.name} #{b.text}"
     == partial("block_body", b: b, group: group)
 - else
-  .block class=[kind, b.name, scope]
-    .label = label(b.name)
-    == partial("block_body", b: b, group: group)
+  - kind = block_kind(b)
+  - lbl = [label(b.name), *b.ids].join(" · ")
+  - if collapsed?(b.name)
+    details.block class=[kind, b.name, scope]
+      summary.label = lbl
+      == partial("block_body", b: b, group: group)
+  - else
+    .block class=[kind, b.name, scope]
+      .label = lbl
+      == partial("block_body", b: b, group: group)

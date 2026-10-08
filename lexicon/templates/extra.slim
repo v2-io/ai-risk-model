@@ -1,0 +1,58 @@
+/ A top-level element that isn't a term group (|resolutions, |namespace, anything new):
+/ a view of its own. |resolutions lines are set as a table; anything else as a block.
+section.view.extra-view class=[family, (x.collection.primary ? nil : "from-elsewhere")] id=x.id
+  header.group-head
+    == partial("crumbs", v: x, ns: x.ns_root)
+    == partial("lead", lead: x.lead)
+    h2.group-name
+      span.extra-name = "|#{x.name}"
+      - x.node.ids.each do |id|
+        code.extra-id = "[#{id}]"
+
+  .cards
+    article.card.notes
+      - if x.name == "resolutions"
+        .label.notes-label Resolutions: each use of a word, and what it resolves to
+        .block-body.resolutions
+          table
+            thead
+              tr
+                th Record
+                th Passage
+                th Words
+                th Resolves to
+                th Note
+            tbody
+              - resolution_rows(x.node).each do |kind, r|
+                - if kind == :row && r.target
+                  tr
+                    td
+                      code = r.record
+                    td
+                      code = r.passage
+                    td.words == val(r.words)
+                    td.target
+                      == val(r.target)
+                      - if r.lean
+                        span.v-lean-note
+                          span.v-lean lean
+                          |  #{r.lean}
+                    td.aside == r.note ? mdi(r.note) : ""
+                - elsif kind == :row
+                  tr
+                    td colspan="5" == mdi(r.raw)
+                - elsif kind == :note
+                  tr.rel-note
+                    td colspan="5" == mdi(r)
+                - elsif kind == :raw
+                  tr
+                    td colspan="5" == mdi(r)
+                - else
+                  tr
+                    td colspan="5"
+                      == partial("block", b: r, group: nil, scope: "inner")
+      - else
+        .label.notes-label = x.title
+        == partial("block_body", b: x.node, group: nil)
+
+  == partial("pager", v: x)

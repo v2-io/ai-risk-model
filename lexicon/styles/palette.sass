@@ -34,6 +34,17 @@ $families: "stone", "rose", "clay", "sand", "sage", "jade", "teal", "slate", "ir
   --callout-bg: #EFEBDF
   --callout-edge: #796C2B
   --callout-ink: #5B4F16
+  // the notation's marks: an ambiguity reads like a declared-ambiguity callout,
+  // a path out of the lexicon like a link, an unknown like an unresolved reference
+  --amb-bg: #F1E8C9
+  --amb-edge: var(--callout-edge)
+  --amb-ink: var(--callout-ink)
+  --mark-muted: #8B8678
+  --deleg-ink: #3E5176
+  --warn-ink: #763B40
+  --warn-edge: #99545A
+  --elsewhere-bg: #ECE7F0
+  --elsewhere-ink: #5A4675
 
   --stone: #EAE8E1
   --stone-bd: #BFBBB3
@@ -101,6 +112,13 @@ $families: "stone", "rose", "clay", "sand", "sage", "jade", "teal", "slate", "ir
   --callout-bg: #22211B
   --callout-edge: #A89A55
   --callout-ink: #CDBF7C
+  --amb-bg: #2E2A18
+  --mark-muted: #7D7B74
+  --deleg-ink: #A9B8D6
+  --warn-ink: #E3A6AB
+  --warn-edge: #B97A80
+  --elsewhere-bg: #2A2533
+  --elsewhere-ink: #C9B9E0
 
 @media (prefers-color-scheme: dark)
   :root:not([data-theme="light"])
