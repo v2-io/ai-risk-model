@@ -30,8 +30,9 @@ There is deliberately no way to look ahead: the cursor only moves forward by wha
 been read, and `where` shows how far through, not what comes next. Reading again
 what has already been read is always allowed.
 
-The cursor lives in experts/NAME/reading/KEY.cursor.json (git-ignored with the rest
-of experts/*/reading/). The first `next` also saves the text being read to
+The cursor lives in experts/NAME/reading/KEY.cursor.json (git-ignored, by
+experts/.gitignore; the reflections beside it are committed unless the expert
+chooses otherwise). The first `next` also saves the text being read to
 experts/NAME/.prior/KEY.md with its sha256, so a later rebuild of the canonical text
 can be shown to the expert as a diff.
 """
