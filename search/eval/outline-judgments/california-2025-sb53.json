@@ -1,0 +1,636 @@
+{
+  "key": "california-2025-sb53",
+  "canonical_sha256": "1b31896f258088b35af5ea6fbd56b052fd6a3c2c9340262a0b9286958961de70",
+  "judge": "claude-opus-5-5 (Claude Code subagent, session_01UDi9ds2FNJySVKSHvZE2xW), 2026-10-09",
+  "read": "whole, in order",
+  "date": "2026-10-09",
+  "queries": {
+    "hazard": [
+      {
+        "lines": [
+          98,
+          105
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 1,
+        "note": "the word 'hazard' never appears; the nearest thing is the catastrophic-risk definition's list of model conduct (CBRN assistance, unsupervised cyberattack or crime, evading control) and its exclusions"
+      }
+    ],
+    "catastrophic risk": [
+      {
+        "lines": [
+          98,
+          105
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 2,
+        "note": "the definition: knowledge/materiality ('foreseeable and material'), causation ('materially contribute'), >50 dead or seriously injured or >$1B property, single incident, three conduct prongs, three exclusions"
+      },
+      {
+        "lines": [
+          215,
+          215
+        ],
+        "quote": "22757.16. The loss of value of equity does not count as damage",
+        "grade": 2,
+        "note": "22757.16 narrows the dollar threshold: loss of equity value is not property damage; easy to miss, sits after the penalty section"
+      },
+      {
+        "lines": [
+          126,
+          126
+        ],
+        "quote": "(l) \"Property\" means tangible or intangible property.",
+        "grade": 1,
+        "note": "'Property' means tangible or intangible property, which the $1B threshold uses"
+      },
+      {
+        "lines": [
+          257,
+          264
+        ],
+        "quote": "(a) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 1,
+        "note": "Labor Code 1107(a) repeats the catastrophic-risk definition with 'foundation model' for 'frontier model', so for whistleblowing it reaches models under the 10^26 threshold"
+      },
+      {
+        "lines": [
+          303,
+          303
+        ],
+        "quote": "1107.2. The loss of value of equity does not count as damage",
+        "grade": 1,
+        "note": "1107.2, the equity exclusion again for the Labor Code chapter"
+      },
+      {
+        "lines": [
+          78,
+          78
+        ],
+        "quote": "(j) Unless they are developed with careful diligence and reasonable precaution, there",
+        "grade": 1,
+        "note": "finding (j): the motivating concern, 'catastrophic risks from both malicious uses and malfunctions', naming hacking, biological attacks, loss of control"
+      },
+      {
+        "lines": [
+          106,
+          110
+        ],
+        "quote": "(d) \"Critical safety incident\" means any of the following:",
+        "grade": 1,
+        "note": "critical safety incident is defined partly through catastrophic risk ('materialization of', 'materially increased')"
+      },
+      {
+        "lines": [
+          127,
+          137
+        ],
+        "quote": "22757.12. (a) A large frontier developer shall write, implement, comply with, and",
+        "grade": 1,
+        "note": "the frontier AI framework must say how the developer assesses, thresholds, mitigates and governs catastrophic risk, including from internal use"
+      },
+      {
+        "lines": [
+          148,
+          160
+        ],
+        "quote": "(2) Before, or concurrently with, deploying a new frontier model or a",
+        "grade": 1,
+        "note": "transparency-report summaries of catastrophic-risk assessments; quarterly summaries of internal-use catastrophic-risk assessments to OES"
+      },
+      {
+        "lines": [
+          161,
+          163
+        ],
+        "quote": "(e) (1) (A) A frontier developer shall not make a materially false",
+        "grade": 1,
+        "note": "no materially false or misleading statements about catastrophic risk, with a good-faith carve-out"
+      },
+      {
+        "lines": [
+          277,
+          279
+        ],
+        "quote": "1107.1. (a) A frontier developer shall not make, adopt, enforce, or enter",
+        "grade": 1,
+        "note": "whistleblower trigger: 'specific and substantial danger to the public health or safety resulting from a catastrophic risk', a different standard from the risk itself"
+      }
+    ],
+    "loss of control": [
+      {
+        "lines": [
+          98,
+          101
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 2,
+        "note": "catastrophic-risk prongs (B) conduct 'with no meaningful human oversight, intervention, or supervision' and (C) 'Evading the control of its frontier developer or user'"
+      },
+      {
+        "lines": [
+          109,
+          109
+        ],
+        "quote": "(3) Loss of control of a frontier model causing death or bodily",
+        "grade": 2,
+        "note": "critical safety incident (3) 'Loss of control of a frontier model causing death or bodily injury'; the phrase is used but never defined"
+      },
+      {
+        "lines": [
+          110,
+          110
+        ],
+        "quote": "(4) A frontier model that uses deceptive techniques against the frontier developer",
+        "grade": 1,
+        "note": "CSI (4): deceptive subversion of the developer's controls or monitoring, outside evaluations"
+      },
+      {
+        "lines": [
+          78,
+          78
+        ],
+        "quote": "(j) Unless they are developed with careful diligence and reasonable precaution, there",
+        "grade": 1,
+        "note": "finding (j) lists 'loss of control' among the catastrophic risks of concern"
+      },
+      {
+        "lines": [
+          137,
+          137
+        ],
+        "quote": "(10) Assessing and managing catastrophic risk resulting from the internal use of",
+        "grade": 1,
+        "note": "framework item (10): internal-use risk 'including risks resulting from a frontier model circumventing oversight mechanisms'"
+      },
+      {
+        "lines": [
+          259,
+          260
+        ],
+        "quote": "(B) Engaging in conduct with no meaningful human oversight, intervention, or supervision",
+        "grade": 1,
+        "note": "Labor Code repeat of prongs (B) and (C), for foundation models"
+      },
+      {
+        "lines": [
+          269,
+          269
+        ],
+        "quote": "(3) Loss of control of a foundation model causing death or bodily",
+        "grade": 1,
+        "note": "Labor Code repeat of CSI (3), for foundation models"
+      }
+    ],
+    "humans can no longer shut down or correct the AI system": [
+      {
+        "lines": [
+          98,
+          101
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 2,
+        "note": "nearest formulation: prong (C) 'Evading the control of its frontier developer or user' and prong (B) 'no meaningful human oversight, intervention, or supervision'; the bill never mentions shutdown or correction"
+      },
+      {
+        "lines": [
+          109,
+          110
+        ],
+        "quote": "(3) Loss of control of a frontier model causing death or bodily",
+        "grade": 2,
+        "note": "CSI (3) loss of control causing death or injury; CSI (4) a model using 'deceptive techniques against the frontier developer to subvert the controls or monitoring'"
+      },
+      {
+        "lines": [
+          137,
+          137
+        ],
+        "quote": "(10) Assessing and managing catastrophic risk resulting from the internal use of",
+        "grade": 1,
+        "note": "framework item (10): 'circumventing oversight mechanisms' during internal use"
+      },
+      {
+        "lines": [
+          259,
+          260
+        ],
+        "quote": "(B) Engaging in conduct with no meaningful human oversight, intervention, or supervision",
+        "grade": 1,
+        "note": "Labor Code repeat of prongs (B) and (C)"
+      },
+      {
+        "lines": [
+          269,
+          270
+        ],
+        "quote": "(3) Loss of control of a foundation model causing death or bodily",
+        "grade": 1,
+        "note": "Labor Code repeat of CSI (3) and (4)"
+      }
+    ],
+    "misalignment": [
+      {
+        "lines": [
+          110,
+          110
+        ],
+        "quote": "(4) A frontier model that uses deceptive techniques against the frontier developer",
+        "grade": 2,
+        "note": "the word never appears; CSI (4), a model deceiving its developer to subvert controls or monitoring 'outside of the context of an evaluation designed to elicit this behavior', is the provision closest to misaligned behaviour"
+      },
+      {
+        "lines": [
+          98,
+          101
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 1,
+        "note": "prong (C) 'Evading the control of its frontier developer or user' and prong (B) unsupervised conduct"
+      },
+      {
+        "lines": [
+          137,
+          137
+        ],
+        "quote": "(10) Assessing and managing catastrophic risk resulting from the internal use of",
+        "grade": 1,
+        "note": "framework item (10): circumventing oversight mechanisms"
+      },
+      {
+        "lines": [
+          270,
+          270
+        ],
+        "quote": "(4) A foundation model that uses deceptive techniques against the frontier developer",
+        "grade": 1,
+        "note": "Labor Code repeat of CSI (4)"
+      }
+    ],
+    "whistleblower": [
+      {
+        "lines": [
+          253,
+          273
+        ],
+        "quote": "### CHAPTER 5.1. Whistleblower Protections: Catastrophic Risks in AI Foundation Models",
+        "grade": 2,
+        "note": "Chapter 5.1 heading and 1107 definitions: 'covered employee' (responsible for assessing, managing, or addressing risk of critical safety incidents) and the chapter's own catastrophic-risk and CSI definitions, which differ from Chapter 25.1's (foundation model; CSI (1) adds property damage)"
+      },
+      {
+        "lines": [
+          277,
+          302
+        ],
+        "quote": "1107.1. (a) A frontier developer shall not make, adopt, enforce, or enter",
+        "grade": 2,
+        "note": "1107.1: anti-gag and anti-retaliation rule, the two disclosure triggers, notice duty, anonymous internal process for large developers with monthly updates and quarterly board sharing, burden shifting, injunctive relief, cumulative remedies"
+      },
+      {
+        "lines": [
+          303,
+          303
+        ],
+        "quote": "1107.2. The loss of value of equity does not count as damage",
+        "grade": 1,
+        "note": "1107.2 equity exclusion for this chapter"
+      },
+      {
+        "lines": [
+          210,
+          212
+        ],
+        "quote": "(d) (1) Beginning January 1, 2027, and annually thereafter, the Attorney General",
+        "grade": 1,
+        "note": "AG's annual anonymized report on covered-employee reports; sits under 22757.14, a section otherwise about updating definitions"
+      },
+      {
+        "lines": [
+          181,
+          183
+        ],
+        "quote": "(e) (1) The Attorney General or the Office of Emergency Services may",
+        "grade": 1,
+        "note": "AG/OES may pass covered-employee reports on; they are exempt from the Public Records Act"
+      },
+      {
+        "lines": [
+          50,
+          52
+        ],
+        "quote": "This bill would, among other things related to protecting whistleblowers working with",
+        "grade": 1,
+        "note": "Legislative Counsel's summary of the whistleblower provisions"
+      },
+      {
+        "lines": [
+          76,
+          76
+        ],
+        "quote": "(h) Whistleblower protections and public-facing information sharing are key instruments to increase",
+        "grade": 1,
+        "note": "finding (h): whistleblower protections as a transparency instrument"
+      }
+    ],
+    "serious incident": [
+      {
+        "lines": [
+          106,
+          110
+        ],
+        "quote": "(d) \"Critical safety incident\" means any of the following:",
+        "grade": 2,
+        "note": "the bill's term is 'critical safety incident'; its four-part definition"
+      },
+      {
+        "lines": [
+          166,
+          186
+        ],
+        "quote": "22757.13. (a) The Office of Emergency Services shall establish a mechanism to",
+        "grade": 2,
+        "note": "22757.13: OES reporting mechanism and its fields, 15-day report, 24-hour disclosure for imminent risk of death or serious physical injury, amendments, OES review, onward transmission, PRA exemption, annual anonymized OES report"
+      },
+      {
+        "lines": [
+          187,
+          198
+        ],
+        "quote": "(h) The Office of Emergency Services may adopt regulations designating one or",
+        "grade": 1,
+        "note": "22757.13(h)-(j): deemed compliance via designated federal incident-reporting regimes"
+      },
+      {
+        "lines": [
+          266,
+          270
+        ],
+        "quote": "(c) \"Critical safety incident\" means any of the following:",
+        "grade": 1,
+        "note": "Labor Code CSI definition: foundation models, and (1) adds damage to or loss of property"
+      },
+      {
+        "lines": [
+          135,
+          135
+        ],
+        "quote": "(8) Identifying and responding to critical safety incidents.",
+        "grade": 1,
+        "note": "framework item (8): identifying and responding to critical safety incidents"
+      },
+      {
+        "lines": [
+          213,
+          214
+        ],
+        "quote": "22757.15. (a) A large frontier developer that fails to publish or transmit",
+        "grade": 1,
+        "note": "penalty for failing to report an incident (large frontier developers only)"
+      },
+      {
+        "lines": [
+          77,
+          77
+        ],
+        "quote": "(i) Incident reporting systems enable monitoring of the post-deployment impacts of artificial",
+        "grade": 1,
+        "note": "findings (i): incident reporting monitors post-deployment impacts; (m) at line 81 says why timely reporting matters"
+      },
+      {
+        "lines": [
+          81,
+          81
+        ],
+        "quote": "(m) Timely reporting of critical safety incidents to the government is essential",
+        "grade": 1,
+        "note": "finding (m): timely reporting of critical safety incidents"
+      }
+    ],
+    "what must a developer publish or report before deploying a frontier model": [
+      {
+        "lines": [
+          140,
+          159
+        ],
+        "quote": "(c) (1) Before, or concurrently with, deploying a new frontier model or",
+        "grade": 2,
+        "note": "22757.12(c): transparency report before or concurrently with deploying (seven items for every frontier developer; summaries of catastrophic-risk assessments, results, third-party involvement for large ones); system/model card counts"
+      },
+      {
+        "lines": [
+          127,
+          137
+        ],
+        "quote": "22757.12. (a) A large frontier developer shall write, implement, comply with, and",
+        "grade": 2,
+        "note": "22757.12(a): the published frontier AI framework large developers must have, incl. (4) reviewing assessments and mitigations as part of the decision to deploy"
+      },
+      {
+        "lines": [
+          111,
+          112
+        ],
+        "quote": "(e) (1) \"Deploy\" means to make a frontier model available to a",
+        "grade": 2,
+        "note": "'Deploy': making available to a third party, excluding availability mainly for developing or evaluating the model"
+      },
+      {
+        "lines": [
+          118,
+          121
+        ],
+        "quote": "(h) \"Frontier developer\" means a person who has trained, or initiated the",
+        "grade": 2,
+        "note": "who is bound: frontier developer, frontier model (>10^26 ops, incl. fine-tuning), large frontier developer (>$500M revenue); the obligations split along this line"
+      },
+      {
+        "lines": [
+          138,
+          139
+        ],
+        "quote": "(b) (1) A large frontier developer shall review and, as appropriate, update",
+        "grade": 1,
+        "note": "annual framework review; publish material modifications with justification within 30 days"
+      },
+      {
+        "lines": [
+          160,
+          160
+        ],
+        "quote": "(d) A large frontier developer shall transmit to the Office of Emergency",
+        "grade": 1,
+        "note": "quarterly internal-use risk summaries to OES (not tied to deployment)"
+      },
+      {
+        "lines": [
+          161,
+          165
+        ],
+        "quote": "(e) (1) (A) A frontier developer shall not make a materially false",
+        "grade": 1,
+        "note": "no materially false statements; permitted redactions and the duty to describe and retain them"
+      },
+      {
+        "lines": [
+          213,
+          214
+        ],
+        "quote": "22757.15. (a) A large frontier developer that fails to publish or transmit",
+        "grade": 1,
+        "note": "civil penalty up to $1M per violation for failing to publish a compliant document"
+      }
+    ],
+    "chemical and biological weapons uplift": [
+      {
+        "lines": [
+          98,
+          105
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 2,
+        "note": "prong (A) 'expert-level assistance in the creation or release of a chemical, biological, radiological, or nuclear weapon', and exclusion (2)(A) for information 'otherwise publicly accessible in a substantially similar form', which is the bill's counterfactual baseline for uplift"
+      },
+      {
+        "lines": [
+          78,
+          78
+        ],
+        "quote": "(j) Unless they are developed with careful diligence and reasonable precaution, there",
+        "grade": 1,
+        "note": "finding (j) names 'biological attacks'"
+      },
+      {
+        "lines": [
+          257,
+          262
+        ],
+        "quote": "(a) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 1,
+        "note": "Labor Code repeat of prong (A) and the public-information exclusion, for foundation models"
+      }
+    ],
+    "evidence that models can sabotage, sandbag or evade oversight": [
+      {
+        "lines": [
+          110,
+          110
+        ],
+        "quote": "(4) A frontier model that uses deceptive techniques against the frontier developer",
+        "grade": 1,
+        "note": "a statute, so no evidence is presented; CSI (4) makes deceptive subversion of controls or monitoring a reportable incident, but only outside evaluations designed to elicit it"
+      },
+      {
+        "lines": [
+          137,
+          137
+        ],
+        "quote": "(10) Assessing and managing catastrophic risk resulting from the internal use of",
+        "grade": 1,
+        "note": "framework item (10) requires assessing risks from a model 'circumventing oversight mechanisms' in internal use"
+      }
+    ],
+    "cyber capabilities of frontier models": [
+      {
+        "lines": [
+          98,
+          100
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 2,
+        "note": "prong (B): conduct 'with no meaningful human oversight, intervention, or supervision that is either a cyberattack or' a crime"
+      },
+      {
+        "lines": [
+          78,
+          78
+        ],
+        "quote": "(j) Unless they are developed with careful diligence and reasonable precaution, there",
+        "grade": 1,
+        "note": "finding (j): 'artificial intelligence-enabled hacking'"
+      },
+      {
+        "lines": [
+          134,
+          134
+        ],
+        "quote": "(7) Cybersecurity practices to secure unreleased model weights from unauthorized modification or",
+        "grade": 1,
+        "note": "framework item (7) is the other direction, the developer's cybersecurity to protect unreleased weights; useful to keep apart"
+      },
+      {
+        "lines": [
+          257,
+          259
+        ],
+        "quote": "(a) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 1,
+        "note": "Labor Code repeat of prong (B)"
+      }
+    ],
+    "how the severity or acceptability of a risk is decided": [
+      {
+        "lines": [
+          98,
+          105
+        ],
+        "quote": "(c) (1) \"Catastrophic risk\" means a foreseeable and material risk that a",
+        "grade": 2,
+        "note": "severity is fixed by statute: 'foreseeable and material', 'materially contribute', >50 dead or seriously injured or >$1B, single incident, exclusions"
+      },
+      {
+        "lines": [
+          127,
+          137
+        ],
+        "quote": "22757.12. (a) A large frontier developer shall write, implement, comply with, and",
+        "grade": 2,
+        "note": "acceptability is left to each large developer's framework: its own (possibly tiered) thresholds, mitigations, and review of assessments and mitigation adequacy in the decision to deploy or use internally"
+      },
+      {
+        "lines": [
+          215,
+          215
+        ],
+        "quote": "22757.16. The loss of value of equity does not count as damage",
+        "grade": 1,
+        "note": "equity value excluded from the dollar measure"
+      },
+      {
+        "lines": [
+          126,
+          126
+        ],
+        "quote": "(l) \"Property\" means tangible or intangible property.",
+        "grade": 1,
+        "note": "'Property' tangible or intangible"
+      },
+      {
+        "lines": [
+          177,
+          177
+        ],
+        "quote": "(2) If a frontier developer discovers that a critical safety incident poses",
+        "grade": 1,
+        "note": "incident severity tier: imminent risk of death or serious physical injury moves reporting to 24 hours"
+      },
+      {
+        "lines": [
+          84,
+          84
+        ],
+        "quote": "(p) It is the intent of the Legislature to create more transparency,",
+        "grade": 1,
+        "note": "finding (p): due care 'proportional to the scale of the foreseeable risks'"
+      },
+      {
+        "lines": [
+          72,
+          72
+        ],
+        "quote": "(d) Targeted interventions to support effective artificial intelligence governance should balance the",
+        "grade": 1,
+        "note": "finding (d): balancing benefits against 'the potential for material risks'"
+      }
+    ]
+  }
+}

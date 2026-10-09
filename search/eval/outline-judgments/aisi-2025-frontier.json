@@ -1,0 +1,491 @@
+{
+ "key": "aisi-2025-frontier",
+ "canonical_sha256": "0677c83401493822dbf2ecbf9893acdddb6e17583a11b928b32c3705cf1af652",
+ "judge": "Claude Opus 5.5 (claude-opus-5-5), Claude Code subagent, session d8b6db06; read before any use of bin/source-outline or bin/source-search (neither run)",
+ "read": "whole, in order",
+ "date": "2026-10-09",
+ "queries": {
+  "hazard": [
+   {
+    "lines": [
+     110,
+     110
+    ],
+    "quote": "FIGURE 1.3: Performance on autonomy tasks across three risk areas",
+    "grade": 2,
+    "note": "The only AI-risk use of the word: 'precursors (skills upstream of hazardous capabilities)'. Never defined beyond this gloss."
+   },
+   {
+    "lines": [
+     870,
+     870
+    ],
+    "quote": "Wet lab: A laboratory designed for the handling of chemicals",
+    "grade": 1,
+    "note": "Glossary; a different sense: physical/chemical 'wet' hazards in a lab. Of interest only as a sense of the word."
+   }
+  ],
+  "catastrophic risk": [
+   {
+    "lines": [
+     472,
+     478
+    ],
+    "quote": "Loss of control risks",
+    "grade": 2,
+    "note": "The phrase 'catastrophic risk' never appears. 'catastrophic' occurs once (line 476), qualifying loss of control as the worst case, with 'the severity of this outcome' as the reason it warrants attention. No thresholds or definition."
+   }
+  ],
+  "loss of control": [
+   {
+    "lines": [
+     472,
+     478
+    ],
+    "quote": "Loss of control risks",
+    "grade": 2,
+    "note": "Section 5 opening: the report's only framing of loss of control -- model-originated risk set against misuse, 'catastrophic, irreversible loss of control' as the worst case, and why self-replication and sandbagging are tracked."
+   },
+   {
+    "lines": [
+     482,
+     508
+    ],
+    "quote": "5.1 Self-replication",
+    "grade": 2,
+    "note": "First of the two loss-of-control capabilities: RepliBench results (<5% to >60%), early vs late stages, and the caveat that simplified tasks don't guarantee real-world ability."
+   },
+   {
+    "lines": [
+     512,
+     550
+    ],
+    "quote": "5.2 Sandbagging",
+    "grade": 2,
+    "note": "Second capability: definition, induced sandbagging, detection methods and their decline, and no spontaneous sandbagging found in 2,700 transcripts."
+   },
+   {
+    "lines": [
+     72,
+     74
+    ],
+    "quote": "Some of the capabilities that would be required for AI models to evade human control",
+    "grade": 1,
+    "note": "Executive summary of section 5; adds the 'reliably directed towards human goals' framing."
+   },
+   {
+    "lines": [
+     154,
+     154
+    ],
+    "quote": "Loss of control: We track emerging capabilities such as self-replication",
+    "grade": 1,
+    "note": "Testing-approach list: loss of control as an evaluation domain."
+   },
+   {
+    "lines": [
+     110,
+     110
+    ],
+    "quote": "FIGURE 1.3: Performance on autonomy tasks across three risk areas",
+    "grade": 1,
+    "note": "Simplified self-replication and AI R&D as autonomy risk areas; points to section 5."
+   }
+  ],
+  "humans can no longer shut down or correct the AI system": [
+   {
+    "lines": [
+     472,
+     478
+    ],
+    "quote": "Loss of control risks",
+    "grade": 2,
+    "note": "Closest the report comes: 'catastrophic, irreversible loss of control' and 'AI's ability to evade human control'. It never states loss of control in terms of shutting down or correcting a system."
+   },
+   {
+    "lines": [
+     72,
+     74
+    ],
+    "quote": "Some of the capabilities that would be required for AI models to evade human control",
+    "grade": 1,
+    "note": "'ensuring that increasingly autonomous systems are reliably directed towards human goals' -- a near-echo of the EU Code's 'reliably direct, modify, or shut down', without the shutdown/modify limbs."
+   },
+   {
+    "lines": [
+     504,
+     506
+    ],
+    "quote": "To self-replicate in the real world, AI systems would need to complete several actions",
+    "grade": 1,
+    "note": "The concrete picture of evading control: acting 'while remaining undetected', 'maintaining persistent access' to compute."
+   }
+  ],
+  "misalignment": [
+   {
+    "lines": [
+     472,
+     478
+    ],
+    "quote": "Loss of control risks",
+    "grade": 2,
+    "note": "The word is never used. The concept appears as 'novel risks that emerge from models themselves behaving in unintended or unforeseen ways', set against misuse (line 474), with self-replication defined as acting 'without being explicitly prompted'."
+   },
+   {
+    "lines": [
+     544,
+     550
+    ],
+    "quote": "We have yet to detect any instances of models intentionally sandbagging",
+    "grade": 1,
+    "note": "The report's evidence on spontaneous (unprompted) misbehaviour: none detected; some models noticed evaluation and 'acted differently'."
+   },
+   {
+    "lines": [
+     72,
+     74
+    ],
+    "quote": "Some of the capabilities that would be required for AI models to evade human control",
+    "grade": 1,
+    "note": "'reliably directed towards human goals'; 'not yet evidence of models attempting to sandbag or self-replicate spontaneously'."
+   },
+   {
+    "lines": [
+     730,
+     730
+    ],
+    "quote": "As AI systems are increasingly integrated into society, the challenge is to anticipate",
+    "grade": 1,
+    "note": "The only use of 'aligned': near-term adoption 'aligned with human intent'."
+   }
+  ],
+  "whistleblower": [],
+  "serious incident": [
+   {
+    "lines": [
+     626,
+     626
+    ],
+    "quote": "People are increasingly turning to AI systems for emotional support",
+    "grade": 1,
+    "note": "No 'serious incident' or 'incident' anywhere. The nearest is 'recent high-profile cases of harm' (footnote 30, line 650: a teenager's death by suicide alleged against ChatGPT), cited as motivation for research, not as an incident in any reporting sense."
+   }
+  ],
+  "what must a developer publish or report before deploying a frontier model": [
+   {
+    "lines": [
+     750,
+     751
+    ],
+    "quote": "During our testing, we are granted API access to model checkpoints",
+    "grade": 1,
+    "note": "The report states no obligations. This is the only description of pre-release practice: AISI gets API access to checkpoints, sometimes ahead of public release or with different safeguards."
+   },
+   {
+    "lines": [
+     318,
+     318
+    ],
+    "quote": "The above is a subset of our chemistry and biology evaluations",
+    "grade": 1,
+    "note": "Mentions 'labs' own risk thresholds' as something AISI assesses against -- the only nod to developers' own frameworks."
+   },
+   {
+    "lines": [
+     514,
+     514
+    ],
+    "quote": "Building consensus around AI risks and designing appropriate mitigations",
+    "grade": 1,
+    "note": "Sandbagging could lead to 'models being released without proper safeguards' -- why pre-release evaluation matters, not what must be published."
+   }
+  ],
+  "chemical and biological weapons uplift": [
+   {
+    "lines": [
+     230,
+     234
+    ],
+    "quote": "Capabilities & risks in key domains",
+    "grade": 2,
+    "note": "Section 3's framing of the chem/bio risk: dual-use capabilities 'available to everyone, including those with harmful intentions'; 'barriers limiting risky research to trained specialists are eroding'."
+   },
+   {
+    "lines": [
+     242,
+     254
+    ],
+    "quote": "3.1 Chemistry & Biology",
+    "grade": 2,
+    "note": "Scope of the chem/bio evaluations; QA results beyond the PhD baseline (-0.4 in 2022 to +0.6 relative in 2025)."
+   },
+   {
+    "lines": [
+     260,
+     274
+    ],
+    "quote": "When equipped with tools like search or code execution, scaffolded AI agents",
+    "grade": 2,
+    "note": "Agents retrieving sequences for plasmid design; weeks to days; still fail end-to-end."
+   },
+   {
+    "lines": [
+     278,
+     288
+    ],
+    "quote": "Models can now consistently produce detailed and accurate protocols",
+    "grade": 2,
+    "note": "The most direct uplift result: non-experts using frontier models had 4.7x odds (CI 2.8-7.9) of a feasible viral-recovery protocol vs internet alone; feasible protocols since late 2024, wet-lab verified."
+   },
+   {
+    "lines": [
+     292,
+     298
+    ],
+    "quote": "In addition to testing how well models write protocols, we also test their ability",
+    "grade": 2,
+    "note": "Troubleshooting: every frontier model beats experts; novices succeed at hard wet-lab tasks with an LLM."
+   },
+   {
+    "lines": [
+     302,
+     314
+    ],
+    "quote": "Models can combine vision capabilities with advanced knowledge and reasoning",
+    "grade": 2,
+    "note": "Multimodal troubleshooting from images beats experts from mid-2025, widening access for non-experts."
+   },
+   {
+    "lines": [
+     318,
+     320
+    ],
+    "quote": "The above is a subset of our chemistry and biology evaluations",
+    "grade": 1,
+    "note": "Other misuse-risk evaluations exist (undisclosed); assessment against labs' own risk thresholds."
+   },
+   {
+    "lines": [
+     384,
+     386
+    ],
+    "quote": "We've partnered with the top AI companies to stress-test their safeguards",
+    "grade": 1,
+    "note": "Universal jailbreaks extracted answers to biological misuse requests; 10 minutes vs over seven hours, six months apart."
+   },
+   {
+    "lines": [
+     408,
+     408
+    ],
+    "quote": "Some AI systems are much more robust to some categories of malicious requests",
+    "grade": 1,
+    "note": "Biological misuse is the best-defended category; others are easier to jailbreak."
+   },
+   {
+    "lines": [
+     372,
+     372
+    ],
+    "quote": "As AI capabilities continue to advance across domains, malicious actors",
+    "grade": 1,
+    "note": "The only occurrence of 'weapons' in the report ('aid in weapons development')."
+   },
+   {
+    "lines": [
+     64,
+     64
+    ],
+    "quote": "In chemistry and biology, AI models have far surpassed PhD-level experts",
+    "grade": 1,
+    "note": "Executive-summary headline numbers."
+   },
+   {
+    "lines": [
+     169,
+     169
+    ],
+    "quote": "Human uplift studies that assess real-world utility of AI systems",
+    "grade": 1,
+    "note": "How the report measures uplift; glossary definition at line 832 adds the internet-only control group."
+   },
+   {
+    "lines": [
+     832,
+     832
+    ],
+    "quote": "Human uplift study: A study designed to measure the helpfulness of AI models",
+    "grade": 1,
+    "note": "Glossary definition of the uplift method."
+   }
+  ],
+  "evidence that models can sabotage, sandbag or evade oversight": [
+   {
+    "lines": [
+     512,
+     520
+    ],
+    "quote": "5.2 Sandbagging",
+    "grade": 2,
+    "note": "Definition; models can tell test from deployment; induced sandbagging that fools automated monitors; AISI confirms subtle induced sandbagging even in older open-weight models."
+   },
+   {
+    "lines": [
+     522,
+     542
+    ],
+    "quote": "We have some methods for detecting sandbagging, but they may become less effective",
+    "grade": 2,
+    "note": "Black-box monitors and white-box deception probes; accuracy falls on larger models and agentic tasks; harder to detect when trained to imitate weaker models."
+   },
+   {
+    "lines": [
+     544,
+     550
+    ],
+    "quote": "We have yet to detect any instances of models intentionally sandbagging",
+    "grade": 2,
+    "note": "No spontaneous sandbagging in 2,700+ transcripts; a few cases of models noticing evaluation and acting differently; can't rule out undetectable sandbagging."
+   },
+   {
+    "lines": [
+     472,
+     478
+    ],
+    "quote": "Loss of control risks",
+    "grade": 1,
+    "note": "Why these capabilities are tracked: prerequisites for evading human control."
+   },
+   {
+    "lines": [
+     482,
+     508
+    ],
+    "quote": "5.1 Self-replication",
+    "grade": 1,
+    "note": "Self-replication capability, including staying undetected and keeping persistent access; no sabotage evidence as such."
+   },
+   {
+    "lines": [
+     72,
+     74
+    ],
+    "quote": "Some of the capabilities that would be required for AI models to evade human control",
+    "grade": 1,
+    "note": "Summary: sandbag when prompted; no evidence of spontaneous sandbagging or self-replication."
+   }
+  ],
+  "cyber capabilities of frontier models": [
+   {
+    "lines": [
+     324,
+     332
+    ],
+    "quote": "3.2 Cyber",
+    "grade": 2,
+    "note": "Dual-use framing; apprentice-level from <9% to 50%; first model completing expert-level tasks in 2025."
+   },
+   {
+    "lines": [
+     336,
+     350
+    ],
+    "quote": "Enhanced access to tools, via better model scaffolding, consistently improves",
+    "grade": 2,
+    "note": "Enhanced scaffolding +9.8 points on the dev set; evaluations may underestimate the ceiling; 13% of the token budget for the same performance."
+   },
+   {
+    "lines": [
+     354,
+     366
+    ],
+    "quote": "Frontier AI models still struggle to complete realistic, step-by-step cyber challenges",
+    "grade": 2,
+    "note": "Cyber range: early flags increasingly solved, later flags rarely."
+   },
+   {
+    "lines": [
+     204,
+     206
+    ],
+    "quote": "This trend is reflected in other domains we test as well",
+    "grade": 2,
+    "note": "Lives in section 2 (Agents), not 3.2: cyber task length from <10 min to >1 hour, doubling about every eight months (an estimated upper bound)."
+   },
+   {
+    "lines": [
+     236,
+     236
+    ],
+    "quote": "Progress in the cyber domain is also significant",
+    "grade": 1,
+    "note": "Section 3 summary of cyber progress and examples of tested skills."
+   },
+   {
+    "lines": [
+     62,
+     62
+    ],
+    "quote": "See FIGURES 1.1-1.3. In the cyber domain, AI models can now complete",
+    "grade": 1,
+    "note": "Executive-summary headline numbers."
+   },
+   {
+    "lines": [
+     860,
+     866
+    ],
+    "quote": "Task difficulty level (TDL): Our framework for assessing the difficulty",
+    "grade": 1,
+    "note": "Defines the apprentice/practitioner/expert levels the cyber claims are stated in."
+   },
+   {
+    "lines": [
+     742,
+     742
+    ],
+    "quote": "We may be underestimating the ceiling of capabilities, particularly in adversarial",
+    "grade": 1,
+    "note": "Limitation bearing on cyber claims: no fine-tuning access, no maximised inference compute."
+   }
+  ],
+  "how the severity or acceptability of a risk is decided": [
+   {
+    "lines": [
+     476,
+     476
+    ],
+    "quote": "In a worst-case scenario, this unintended behaviour could lead to catastrophic",
+    "grade": 1,
+    "note": "The report decides nothing about acceptability. Its one severity argument: loss of control is uncertain, but 'the severity of this outcome means it warrants close attention'."
+   },
+   {
+    "lines": [
+     458,
+     462
+    ],
+    "quote": "Safeguards won't prevent all AI misuse",
+    "grade": 1,
+    "note": "Implicit stance on residual risk: misuse can't be eliminated; the 'adaptation buffer' reduces its 'scale and severity'."
+   },
+   {
+    "lines": [
+     318,
+     318
+    ],
+    "quote": "The above is a subset of our chemistry and biology evaluations",
+    "grade": 1,
+    "note": "Refers to 'labs' own risk thresholds' without saying what they are."
+   },
+   {
+    "lines": [
+     514,
+     514
+    ],
+    "quote": "Building consensus around AI risks and designing appropriate mitigations",
+    "grade": 1,
+    "note": "Risk decisions depend on accurate capability assessment, which sandbagging could undermine."
+   }
+  ]
+ }
+}

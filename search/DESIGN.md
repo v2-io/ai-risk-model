@@ -350,7 +350,30 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
 
    The tiers are ranks, so a query that nothing in scope answers still gets a "top 2%" ('zzqqxx' does, by meaning alone). The outline says so when no passage holds a query word. An absolute cosine floor isn't supported by measurement: over all texts the nearest passage to 15 off-topic queries was at distance 0.405 or more, while the median pilot query's tenth-nearest was 0.401. This is a question for `hybrid` too.
 
-   Still to do: judges who read each Au5 document whole (`search/eval/outline-judging-brief.md`, the 12 queries in `outline-queries.txt`, scored by `search/eval/outline-check`), and the outline as a verb of `source-search`.
+   **Judged whole, 2026-10-09.** Five judges each read one Au5 document whole and in order, then marked, for each of the 12 queries, what an agent must read (grade 2) and what would help (grade 1), without seeing the outline (`search/eval/outline-judgments/`, with each judge's notes). Four were fresh Claude agents; the EU Code went to Grok (Joseph's arch-expert agent), since Codex was out of usage. Gemini's second, independent reading of SB 53, for cross-family agreement, was still running when this was written. Scored on the committed outline (`outline-check --judgments`, recall weighted 3 for grade 2 and 1 for grade 1):
+
+   | Lines | Outline opens | Outline flags (opens, or names as a folded section with hits) | List, same output lines | List, same source lines |
+   |---|---|---|---|---|
+   | 60 | 0.332 | 0.749 | 0.227 | 0.417 |
+   | 120 | 0.544 | 0.749 | 0.353 | 0.606 |
+   | 200 | 0.669 | 0.749 | 0.476 | 0.707 |
+
+   The pilot's grades had made this look easier (0.898 opened at 60 lines), because they only covered passages some ranking had surfaced. The judges also marked what never uses the query's words. What the numbers show:
+   - In the same output lines, structure lines included, the outline opens more than a list (0.33 against 0.23 at 60). Given as much source text as the outline opens, a list does slightly better.
+   - What the outline is mostly for is the flags column. Joseph, 2026-10-09: the outline "is mostly for helping agents know what they *don't* know after having read the relevant parts". It flags 0.75 of what the judges marked, at every budget, and a list has nothing comparable. The rest sits in sections the outline names but counts as having no hits.
+   - The unflagged quarter is a paraphrase problem in the ranking, not a folding problem. Flagged share by query: "humans can no longer shut down or correct the AI system" 0.40 (the documents say "reliably direct, modify, or shut down", "self-exfiltration", "rogue internal deployment"); "misalignment" 0.63; "loss of control" 0.67; but "whistleblower" and "serious incident", whose words the documents use, 0.94–1.0. The lexicon's term mappings were always the planned fix for this (§0).
+
+   Faults the judges found in the scorer, not yet fixed:
+   - A stretch counts as read if any passage in it opens, so a must-read chapter is credited by one paragraph.
+   - A quote taken from a heading line can't be found again after a rebuild, since headings belong to no passage.
+   - All documents share one budget; there is no per-document score.
+   - The docstring says only grade 2 counts, but the code scores grade 1.
+
+   Their notes also record where each document's headings mislead: IASR's glossary is under no heading, the Risk Report's Claim 5.3 has no heading marker, and AISI's chapter numbers are empty headings. On a short document with no strong match, the outline fills its lines with noise.
+
+   Not yet measured, and the measure closest to the outline's purpose: an agent given the outline and a question chooses what to read, and the result is judged.
+
+   Still to do: the outline as a verb of `source-search`; the scorer fixes, by someone other than the outline's author.
 
    Found along the way, for the chunker and ranking:
    - In IASR, the glossary entry "Reinforcement learning with verifiable rewards" has the path "Conclusion › The value of shared understanding", which splits the glossary in two.

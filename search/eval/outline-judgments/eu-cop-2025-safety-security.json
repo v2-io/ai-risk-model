@@ -1,0 +1,553 @@
+{
+  "key": "eu-cop-2025-safety-security",
+  "canonical_sha256": "d2968247a71d1cb372aa050f42af0459ce4249ccbc56983ceb76f194ac79370f",
+  "judge": "Grok 4.6 (xAI), 2026-10-09, whole-document independent read",
+  "read": "whole, in order",
+  "date": "2026-10-09",
+  "queries": {
+    "hazard": [],
+    "catastrophic risk": [],
+    "loss of control": [
+      {
+        "lines": [
+          829,
+          829
+        ],
+        "quote": "- (2) **Loss of control:** Risks from humans losing the ability to reliably direct, modify, or shut down a mod",
+        "grade": 2,
+        "note": "The Code's definition of the specified systemic risk 'Loss of control', including how such risks may emerge."
+      },
+      {
+        "lines": [
+          776,
+          781
+        ],
+        "quote": "- (5) capabilities to operate autonomously;",
+        "grade": 1,
+        "note": "Capability sources named in that definition: autonomy, self-reasoning, evading oversight, self-replication/self-improvement."
+      },
+      {
+        "lines": [
+          791,
+          802
+        ],
+        "quote": "Model propensities, which encompass inclinations or tendencies of a model to exhibit some behaviours or patter",
+        "grade": 1,
+        "note": "Model propensities the LoC definition points at: misalignment, deception, resistance to goal modification, power-seeking."
+      },
+      {
+        "lines": [
+          652,
+          652
+        ],
+        "quote": "| 'deception'                               | model behaviours that systematically produce false beliefs in ot",
+        "grade": 1,
+        "note": "Glossary 'deception', named as an LoC emergence source."
+      },
+      {
+        "lines": [
+          811,
+          811
+        ],
+        "quote": "- (4) level of human oversight (e.g. degree of model autonomy);",
+        "grade": 1,
+        "note": "Affordance: level of human oversight / degree of model autonomy."
+      }
+    ],
+    "humans can no longer shut down or correct the AI system": [
+      {
+        "lines": [
+          829,
+          829
+        ],
+        "quote": "- (2) **Loss of control:** Risks from humans losing the ability to reliably direct, modify, or shut down a mod",
+        "grade": 2,
+        "note": "This is the Code's wording of that situation: humans losing the ability to reliably direct, modify, or shut down a model."
+      },
+      {
+        "lines": [
+          776,
+          781
+        ],
+        "quote": "- (5) capabilities to operate autonomously;",
+        "grade": 1,
+        "note": "Capabilities that would make shutdown or correction fail: autonomy, self-reasoning, evading oversight, self-replication, modifying the implementation environment."
+      },
+      {
+        "lines": [
+          800,
+          800
+        ],
+        "quote": "- (8) \"goal-pursuing\", harmful resistance to goal modification, or \"power-seeking\";",
+        "grade": 1,
+        "note": "Propensity: harmful resistance to goal modification / power-seeking."
+      },
+      {
+        "lines": [
+          811,
+          811
+        ],
+        "quote": "- (4) level of human oversight (e.g. degree of model autonomy);",
+        "grade": 1,
+        "note": "Affordance: level of human oversight (degree of model autonomy)."
+      }
+    ],
+    "misalignment": [
+      {
+        "lines": [
+          793,
+          794
+        ],
+        "quote": "- (1) misalignment with human intent;",
+        "grade": 2,
+        "note": "The two listed model propensities: misalignment with human intent, and with human values."
+      },
+      {
+        "lines": [
+          800,
+          800
+        ],
+        "quote": "- (8) \"goal-pursuing\", harmful resistance to goal modification, or \"power-seeking\";",
+        "grade": 1,
+        "note": "Related propensity: goal-pursuing, harmful resistance to goal modification, power-seeking."
+      },
+      {
+        "lines": [
+          829,
+          829
+        ],
+        "quote": "- (2) **Loss of control:** Risks from humans losing the ability to reliably direct, modify, or shut down a mod",
+        "grade": 1,
+        "note": "Specified LoC risk may emerge from misalignment with human intent or values."
+      }
+    ],
+    "whistleblower": [
+      {
+        "lines": [
+          50,
+          50
+        ],
+        "quote": "- (d) **Principle of Integration with Existing Laws.** The Signatories recognise that this Chapter forms part ",
+        "grade": 2,
+        "note": "Recital (d): Measure 8.3 is without prejudice to Directive (EU) 2019/1937 and Member State implementing laws with Article 87 AI Act."
+      },
+      {
+        "lines": [
+          541,
+          553
+        ],
+        "quote": "# **Measure 8.3 Promotion of a healthy risk culture**",
+        "grade": 2,
+        "note": "Measure 8.3: healthy risk culture, including informing workers of the whistleblower protection policy and a non-retaliation rule for reports to competent authorities."
+      }
+    ],
+    "serious incident": [
+      {
+        "lines": [
+          62,
+          62
+        ],
+        "quote": "- (j) **Serious Incident Reporting.** The Signatories recognise that the reporting of a serious incident is no",
+        "grade": 2,
+        "note": "Recital (j): reporting is not an admission of wrongdoing; information must be tracked before incidents occur."
+      },
+      {
+        "lines": [
+          555,
+          611
+        ],
+        "quote": "# **Commitment 9 Serious incident reporting**",
+        "grade": 2,
+        "note": "Commitment 9 and Measures 9.1–9.4: identification, contents of reports, timelines by harm type, retention."
+      },
+      {
+        "lines": [
+          681,
+          681
+        ],
+        "quote": "| 'near miss'                                                           | a situation in which a serious incid",
+        "grade": 2,
+        "note": "Glossary 'near miss': a serious incident that could have materialised but did not."
+      },
+      {
+        "lines": [
+          693,
+          693
+        ],
+        "quote": "| 'resolved' (serious<br>incident)          | a serious incident of a model for which the Signatory adopted co",
+        "grade": 2,
+        "note": "Glossary 'resolved' (serious incident)."
+      },
+      {
+        "lines": [
+          261,
+          265
+        ],
+        "quote": "The following are examples of post-market monitoring methods for the purpose of point (2) above:",
+        "grade": 1,
+        "note": "Post-market monitoring methods that Measure 9.1 says to consider, including anonymous reporting channels and (serious) incident reporting forms."
+      },
+      {
+        "lines": [
+          145,
+          149
+        ],
+        "quote": "Signatories will conduct an appropriate Framework assessment, if they have reasonable grounds to believe that ",
+        "grade": 1,
+        "note": "Serious incidents/near misses can trigger a Framework assessment."
+      },
+      {
+        "lines": [
+          478,
+          478
+        ],
+        "quote": "- (4) serious incidents and/or near misses involving the model or a similar model have occurred; and/or",
+        "grade": 1,
+        "note": "Serious incidents/near misses can trigger a Model Report update."
+      },
+      {
+        "lines": [
+          509,
+          509
+        ],
+        "quote": "- (2) **Systemic risk ownership:** Managing systemic risks stemming from Signatories' models, including the sy",
+        "grade": 1,
+        "note": "Systemic risk ownership includes managing the response to serious incidents."
+      }
+    ],
+    "what must a developer publish or report before deploying a frontier model": [
+      {
+        "lines": [
+          84,
+          104
+        ],
+        "quote": "# **Measure 1.1 Creating the Framework**",
+        "grade": 2,
+        "note": "Measure 1.1: what the Safety and Security Framework must contain, and that it is confirmed no later than two weeks before placing the model on the market."
+      },
+      {
+        "lines": [
+          158,
+          160
+        ],
+        "quote": "# **Measure 1.4 Framework notifications**",
+        "grade": 2,
+        "note": "Measure 1.4: unredacted Framework (and updates) to the AI Office within five business days of confirmation."
+      },
+      {
+        "lines": [
+          388,
+          467
+        ],
+        "quote": "# **Commitment 7 Safety and Security Model Reports**",
+        "grade": 2,
+        "note": "Commitment 7 and Measures 7.1–7.5: a Model Report to the AI Office before placing a model on the market, and what it must contain."
+      },
+      {
+        "lines": [
+          481,
+          481
+        ],
+        "quote": "Model Report updates should be completed within a reasonable amount of time after the Signatory becomes aware ",
+        "grade": 2,
+        "note": "If a deliberate change is made available on the market, the Model Report update and full assessment must be completed before that change is made available."
+      },
+      {
+        "lines": [
+          490,
+          496
+        ],
+        "quote": "# **Measure 7.7 Model Report notifications**",
+        "grade": 2,
+        "note": "Measure 7.7: when and how the Model Report is given to the AI Office, including a possible 15-business-day delay with an interim report covering 7.2 and 7.5."
+      },
+      {
+        "lines": [
+          637,
+          639
+        ],
+        "quote": "# **Measure 10.2 Public transparency**",
+        "grade": 2,
+        "note": "Measure 10.2: publish summarised Framework and Model Report(s) if and insofar as necessary to assess/mitigate systemic risks, with the similarly-safe exemptions."
+      },
+      {
+        "lines": [
+          57,
+          57
+        ],
+        "quote": "- (h) **Small and medium enterprises (\"SMEs\") and small mid-cap enterprises (\"SMCs\").** To account for differe",
+        "grade": 1,
+        "note": "Recital (h): SMEs and SMCs may be exempted from some reporting commitments."
+      },
+      {
+        "lines": [
+          621,
+          635
+        ],
+        "quote": "# **Measure 10.1 Additional documentation**",
+        "grade": 1,
+        "note": "Measure 10.1: further documentation kept for the AI Office upon request, not a pre-market publication."
+      },
+      {
+        "lines": [
+          398,
+          398
+        ],
+        "quote": "Signatories that are SMEs or SMCs may reduce the level of detail in their Model Report to the extent necessary",
+        "grade": 1,
+        "note": "SMEs/SMCs may reduce the level of detail in the Model Report."
+      }
+    ],
+    "chemical and biological weapons uplift": [
+      {
+        "lines": [
+          828,
+          828
+        ],
+        "quote": "- (1) **Chemical, biological, radiological and nuclear:** Risks from enabling chemical, biological, radiologic",
+        "grade": 2,
+        "note": "Specified systemic risk CBRN, including significantly lowering barriers to entry for malicious actors — the Code's form of uplift."
+      },
+      {
+        "lines": [
+          773,
+          773
+        ],
+        "quote": "- (2) Chemical, Biological, Radiological, and Nuclear (CBRN) capabilities, and other such weapon acquisition o",
+        "grade": 2,
+        "note": "CBRN capabilities, and other weapon acquisition or proliferation capabilities, as a systemic risk source."
+      },
+      {
+        "lines": [
+          55,
+          55
+        ],
+        "quote": "- (f) **Principle of Innovation in AI Safety and Security.** The Signatories recognise that determining the mo",
+        "grade": 1,
+        "note": "Recital (f) example: mitigating biosecurity risks without unduly reducing beneficial biomedical capabilities."
+      },
+      {
+        "lines": [
+          235,
+          235
+        ],
+        "quote": "capability boundaries, or emergent properties. Examples of model evaluation methods are: Q&A sets, task-based ",
+        "grade": 1,
+        "note": "Human uplift studies listed among model evaluation methods."
+      }
+    ],
+    "evidence that models can sabotage, sandbag or evade oversight": [
+      {
+        "lines": [
+          652,
+          652
+        ],
+        "quote": "| 'deception'                               | model behaviours that systematically produce false beliefs in ot",
+        "grade": 2,
+        "note": "Glossary 'deception': evading oversight, detecting that it is being evaluated, under-performing or otherwise undermining oversight. No empirical evidence; this is the Code's definition."
+      },
+      {
+        "lines": [
+          874,
+          879
+        ],
+        "quote": "# **Appendix 3.2 Model elicitation**",
+        "grade": 2,
+        "note": "Appendix 3.2: elicit so as to minimise model deception during evaluations (e.g. sandbagging)."
+      },
+      {
+        "lines": [
+          779,
+          780
+        ],
+        "quote": "- (8) capabilities of self-reasoning (e.g. a model's ability to reason about itself, its implementation, or en",
+        "grade": 2,
+        "note": "Capability sources: self-reasoning including knowing if it is being evaluated; capabilities to evade human oversight."
+      },
+      {
+        "lines": [
+          968,
+          975
+        ],
+        "quote": "# **Appendix 4.4 Insider threats**",
+        "grade": 2,
+        "note": "Appendix 4.4: insider threats including sabotage carried out by models, and reduction of sabotage to training and use."
+      },
+      {
+        "lines": [
+          665,
+          665
+        ],
+        "quote": "|                      | Demonstrating internal validity will differ for different systemic risks and model<br",
+        "grade": 1,
+        "note": "Internal validity may be shown by techniques to measure and/or reduce the model's capability to evade oversight."
+      },
+      {
+        "lines": [
+          364,
+          364
+        ],
+        "quote": "- (8) other emerging safety mitigations, such as for achieving transparency into chain-of-thought reasoning or",
+        "grade": 1,
+        "note": "Example safety mitigation: defending against a model's ability to subvert its other safety mitigations."
+      },
+      {
+        "lines": [
+          888,
+          893
+        ],
+        "quote": "# **Appendix 3.3 Assessing the effectiveness of mitigations**",
+        "grade": 1,
+        "note": "Evaluations must assess whether mitigations have been circumvented, deactivated, or subverted."
+      },
+      {
+        "lines": [
+          331,
+          331
+        ],
+        "quote": "  - (c) the effectiveness of safety and security mitigations (e.g. mitigations being circumvented, deactivated",
+        "grade": 1,
+        "note": "Safety margin accounts for mitigations being circumvented, deactivated, or subverted."
+      }
+    ],
+    "cyber capabilities of frontier models": [
+      {
+        "lines": [
+          772,
+          772
+        ],
+        "quote": "- (1) offensive cyber capabilities;",
+        "grade": 2,
+        "note": "Offensive cyber capabilities listed as a model-capability source of systemic risk."
+      },
+      {
+        "lines": [
+          830,
+          830
+        ],
+        "quote": "- (3) **Cyber offence:** Risks from enabling large-scale sophisticated cyber-attacks, including on critical sy",
+        "grade": 2,
+        "note": "Specified systemic risk 'Cyber offence': enabling large-scale sophisticated cyber-attacks, including lowering barriers and automated vulnerability discovery/exploit generation."
+      },
+      {
+        "lines": [
+          816,
+          816
+        ],
+        "quote": "- (9) offence-defence balance, including the potential number, capacity, and motivation of malicious actors to",
+        "grade": 1,
+        "note": "Offence-defence balance among other systemic risk sources, including malicious actors' misuse of the model."
+      }
+    ],
+    "how the severity or acceptability of a risk is decided": [
+      {
+        "lines": [
+          301,
+          341
+        ],
+        "quote": "# **Commitment 4 Systemic risk acceptance determination**",
+        "grade": 2,
+        "note": "Commitment 4, Measure 4.1 (tiers or other acceptance criteria, applied with a safety margin), and Measure 4.2 (proceed only if acceptable)."
+      },
+      {
+        "lines": [
+          245,
+          249
+        ],
+        "quote": "# **Measure 3.4 Systemic risk estimation**",
+        "grade": 2,
+        "note": "Measure 3.4: estimate probability and severity of harm; how estimates may be expressed."
+      },
+      {
+        "lines": [
+          61,
+          61
+        ],
+        "quote": "- (i) **Interpretation.** The Signatories recognise that all Commitments and Measures shall be interpreted in ",
+        "grade": 2,
+        "note": "Recital (i): Appendix 1 is interpreted in light of probability and severity of harm (Art. 3(2) 'risk') and 'systemic risk' (Art. 3(65))."
+      },
+      {
+        "lines": [
+          699,
+          700
+        ],
+        "quote": "| 'systemic risk<br>acceptance criteria'    | criteria defined in the Framework that Signatories use to decide",
+        "grade": 2,
+        "note": "Glossary 'systemic risk acceptance criteria'."
+      },
+      {
+        "lines": [
+          712,
+          712
+        ],
+        "quote": "| 'systemic risk tiers'       | tiers defined in the Framework that corresponds to a certain level of systemic",
+        "grade": 2,
+        "note": "Glossary 'systemic risk tiers'."
+      },
+      {
+        "lines": [
+          96,
+          100
+        ],
+        "quote": "- (2) for the Signatories' determination of whether systemic risk is considered acceptable, as specified in Co",
+        "grade": 1,
+        "note": "The Framework must describe and justify the acceptance criteria, tiers, mitigations per tier, and how external actors influence proceeding."
+      },
+      {
+        "lines": [
+          48,
+          48
+        ],
+        "quote": "- (b) **Principle of Contextual Risk Assessment and Mitigation.** The Signatories recognise that this Safety a",
+        "grade": 1,
+        "note": "Recital (c): assessment and mitigation proportionate to the systemic risks."
+      },
+      {
+        "lines": [
+          56,
+          56
+        ],
+        "quote": "- (g) **Precautionary Principle.** The Signatories recognise the important role of the Precautionary Principle",
+        "grade": 1,
+        "note": "Recital (g): Precautionary Principle where data does not yet permit a complete assessment."
+      },
+      {
+        "lines": [
+          413,
+          419
+        ],
+        "quote": "# **Measure 7.2 Reasons for proceeding**",
+        "grade": 1,
+        "note": "Measure 7.2: the Model Report must justify why the systemic risks are acceptable and how the proceed decision was made."
+      },
+      {
+        "lines": [
+          725,
+          725
+        ],
+        "quote": "[Article 3\\(65\\)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj#art_3) AI Act: 'systemic risk' means a risk t",
+        "grade": 1,
+        "note": "AI Act Art. 3(65) 'systemic risk', the legal object of the acceptance determination."
+      },
+      {
+        "lines": [
+          755,
+          762
+        ],
+        "quote": "# *Appendix 1.2.2 Contributing characteristics*",
+        "grade": 1,
+        "note": "Contributing characteristics of systemic risks (velocity, compounding, irreversibility, asymmetry) that inform how severe a risk is treated as being."
+      },
+      {
+        "lines": [
+          913,
+          918
+        ],
+        "quote": "# **Appendix 3.5 Independent external model evaluations**",
+        "grade": 1,
+        "note": "If independent external evaluators cannot be appointed, that extra uncertainty is taken into account in the acceptance determination."
+      }
+    ]
+  }
+}
