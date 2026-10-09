@@ -110,5 +110,5 @@ Joseph:
 **E2. Bibliography years in relata** (proposal §6, F6). Some relata entries carry a year that won't match the key or the year the work is cited by: Yampolskiy prints as 2015, for example. The fix is an edit in relata, not in this repo, so it wasn't applied. Lean: fix them in relata, then re-run `relata emit bib`. *High.*
 Joseph:
 
-**E3. One catalog key relata never queued for conversion** (from the canonicalize session's full build, 2026-10-09). `ieee-7009-2024-fail-safe-autonomous`: relata holds the PDF, but no conversion was ever queued, so it can't be canonicalized. The other 267 unbuilt keys are in relata's queue. Lean: queue it (`relata prep ieee-7009-2024-fail-safe-autonomous --background`); it is one document. *High.* It wasn't forced because conversions can be memory-heavy and your brief said to ask.
-Joseph:
+~~**E3. One catalog key relata never queued for conversion**~~ (from the canonicalize session's full build, 2026-10-09). `ieee-7009-2024-fail-safe-autonomous`: relata holds the PDF, but no conversion was ever queued, so it can't be canonicalized. The other 267 unbuilt keys are in relata's queue. Lean: queue it (`relata prep ieee-7009-2024-fail-safe-autonomous --background`); it is one document. *High.* It wasn't forced because conversions can be memory-heavy and your brief said to ask.
+Joseph: settled 2026-10-09. Queued in relata (it predated relata's prep queue: "Back in may prep wasn't ready"). It is a licensed copy of the standard, so its canonical text stays local, as `ref/canonical/` already is.
