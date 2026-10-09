@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+"""A folded outline of the sources for a query (search/DESIGN.md §12). Temporary:
+it becomes a verb of bin/source-search once §7's command lands.
+
+    bin/source-outline 'hazard' Au5                 the five Au5 documents
+    bin/source-outline 'loss of control' california-2025-sb53 aisi-2025-frontier
+    bin/source-outline 'severe harm'                every indexed document
+    bin/source-outline 'hazard' Au5 --lines 120     a tighter line budget (default 200)
+    bin/source-outline … --json                     for agents (automatic when stdout is not a terminal)
+
+Each document is shown as its outline. Sections stay on the page, folded to one
+line with what they hold (line range, pages, passages, how many the ranking found
+strong or weak), unless they hold a passage good enough to open within the line
+budget. An opened range (▸) gives the lines of ref/canonical/KEY.md to read and an
+anchor (PDF page and a quote bin/check-quote can confirm) to cite. Runs of
+sections with no hits fold into one line (⋯). The column on the left shows how
+near each section's best passage comes to the best overall: █ ▓ ▒ ░.
+
+Scoring is source-search's ranked search (RRF of bge-m3 and BM25, times the priors
+in search/weights.toml), over every passage in scope.
+
+Exit status: 0 with hits, 1 with none, 3 if it failed (nothing on stdout then).
+"""
+import argparse, json, os, sys
+
+sys.dont_write_bytecode = True
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(REPO, 'search'))
+from srcsearch import db, embed, outline, rank  # noqa: E402
+
+# Until §7's sets land in catalog/sets/ (search/DESIGN.md §7.2, §12)
+SETS = {'Au5': ['bengio-2026-international', 'eu-cop-2025-safety-security', 'california-2025-sb53',
+                'anthropic-2026-risk-report-aug', 'aisi-2025-frontier']}
+
+
+def scope(conn, args):
+    if not args:
+        return None
+    keys = []
+    for s in args:
+        if s in SETS:
+            keys += SETS[s]
+            continue
+        rows = conn.execute('select key from src.documents where has_text and (key = %(s)s or key like %(k)s)',
+                            dict(s=s, k=s.rstrip('*') + '%' if s.endswith('*') else s)).fetchall()
+        if not rows:
+            raise SystemExit(f'{s!r} is not an indexed relata key, a key prefix ending in *, or a set ({", ".join(SETS)})')
+        keys += [r[0] for r in rows]
+    return sorted(set(keys))
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0], formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 epilog=__doc__.split('\n\n', 1)[1])
+    ap.add_argument('query')
+    ap.add_argument('scope', nargs='*', help='relata keys, key prefixes ending in *, or a set (Au5)')
+    ap.add_argument('--lines', type=int, default=200, help='the line budget (default 200)')
+    ap.add_argument('--model', default=embed.DEFAULT_MODEL, choices=sorted(embed.MODELS))
+    out_fmt = ap.add_mutually_exclusive_group()
+    out_fmt.add_argument('--json', action='store_true')
+    out_fmt.add_argument('--text', action='store_true', help='readable text even when stdout is not a terminal')
+    ap.add_argument('--db', default=db.DB)
+    a = ap.parse_args()
+    as_json = a.json or (not a.text and not sys.stdout.isatty())
+    try:
+        with db.connect(a.db) as conn:
+            keys = scope(conn, a.scope)
+            qvec = None
+            if rank.has_vectors(conn, a.model):
+                qvec = embed.embed_query(a.model, rank.parse(a.query)['query'])
+            else:
+                print(f'note: no {a.model} vectors yet, so lexical ranking only (run bin/source-index)', file=sys.stderr)
+            o = outline.Outline(conn, a.query, keys=keys, qvec=qvec, model=a.model, budget=a.lines)
+            out = o.as_json() if as_json else o.text()
+    except SystemExit:
+        raise
+    except Exception as e:
+        print(f'source-outline failed: {type(e).__name__}: {e}', file=sys.stderr)
+        sys.exit(3)
+    print(json.dumps(out, ensure_ascii=False, indent=1, default=str) if as_json else out)
+    sys.exit(0 if o.sel else 1)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+"""Score the folded outline (search/srcsearch/outline.py) against a flat ranked list
+given the same room.
+
+    search/eval/outline-check                      the pilot's blind grades, budgets 60 120 200
+    search/eval/outline-check --budgets 40 80      other line budgets
+    search/eval/outline-check --judgments DIR      whole-document judgments (outline-judging-brief.md)
+    search/eval/outline-check --per-query          a row per query too
+
+The question it answers: given the same room, does the outline put an agent onto
+more of what matters than a ranked list does? For each query and line budget B it
+compares four things over the Au5 documents:
+- opened:   the passages the outline opens (▸ ranges) within B lines of output;
+- flagged:  the passages the outline marks strong or weak, so that the census of
+            whatever section line holds them says so, opened or not;
+- list@B:   a ranked list (bin/source-search's ranking, same scope) with as many
+            results as B lines of its output hold, at 4 lines a result;
+- list@R:   a ranked list read to the same number of source lines R as the
+            outline's opened ranges cover.
+
+The score is graded recall: each judged passage with grade 2 or more counts
+2^grade - 1, credited if a passage that holds its quote is among those read.
+
+Two sets of grades:
+- the pilot's (influx/search-pilot-2026-10-09/qrels-pilot.json): 16 queries graded
+  blind by a separate Claude instance, of which 111 grades of 2 or 3 fall in four of
+  the Au5 documents (the Trends Report wasn't in the pilot). They were pooled from
+  ranked lists' top tens, so a relevant passage only the outline reaches was never
+  graded: this comparison leans toward the list. It is an interim check;
+- whole-document judgments (--judgments DIR): a reader who read each document
+  whole marks, per query, what an agent must read. That is the evaluation §12
+  proposes; search/eval/outline-judging-brief.md is the brief for it.
+
+Query vectors are cached in search/eval/.cache/ (git-ignored), so a rerun loads no
+model.
+"""
+import argparse, difflib, glob, hashlib, json, math, os, re, sys
+
+sys.dont_write_bytecode = True
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(REPO, 'search'))
+from srcsearch import anchor, db, embed, outline, rank  # noqa: E402
+from srcsearch.text import fold  # noqa: E402
+
+AU5 = ['bengio-2026-international', 'eu-cop-2025-safety-security', 'california-2025-sb53',
+       'anthropic-2026-risk-report-aug', 'aisi-2025-frontier']
+QRELS = os.path.join(REPO, 'influx', 'search-pilot-2026-10-09', 'qrels-pilot.json')
+CACHE = os.path.join(REPO, 'search', 'eval', '.cache')
+LIST_LINES = 4          # lines a ranked result takes in bin/source-search's text output (anchor, source, path, matches)
+
+
+def letters(s):
+    return re.sub(r'[^0-9a-z]', '', fold(s))
+
+
+def holds(pl, ql):
+    """pilot-check's rule: the quote's letters in the passage, or 80% of them in one run."""
+    if not ql:
+        return False
+    if ql in pl:
+        return True
+    m = difflib.SequenceMatcher(None, pl, ql, autojunk=False)
+    return m.find_longest_match(0, len(pl), 0, len(ql)).size >= 0.8 * len(ql)
+
+
+def qvec(model, query):
+    os.makedirs(CACHE, exist_ok=True)
+    path = os.path.join(CACHE, f'qvec-{model}.json')
+    try:
+        cache = json.load(open(path))
+    except (OSError, ValueError):
+        cache = {}
+    q = rank.parse(query)['query']
+    if q not in cache:
+        cache[q] = embed.embed_query(model, q)
+        json.dump(cache, open(path, 'w'))
+    return cache[q]
+
+
+def pilot_grades():
+    d = json.load(open(QRELS))['queries']
+    return {q: [g for g in gs if g['key'] in AU5 and g['grade'] >= 2] for q, gs in d.items()}
+
+
+def judged_grades(path):
+    """Whole-document judgments, one file per document (outline-judging-brief.md):
+    {"key", "canonical_sha256", "queries": {query: [{"lines": [a, b], "quote", "grade", "note"}]}}.
+    An item names a stretch of the canonical text by its lines and the quote it begins
+    with; if the file has changed since (its sha256 differs), the quote finds it."""
+    out = {}
+    for f in sorted(glob.glob(os.path.join(path, '*.json'))):
+        j = json.load(open(f))
+        raw = anchor.raw_of(j['key'])
+        drift = hashlib.sha256(raw.encode()).hexdigest() != j.get('canonical_sha256')
+        for q, items in j['queries'].items():
+            for it in items:
+                if it['grade'] >= 1:
+                    out.setdefault(q, []).append(dict(it, key=j['key'], drift=drift))
+    return out
+
+
+def passages_of(conn):
+    rows = conn.execute("select id, doc_key, ord, start_off, end_off, page, page_last, text from src.passages "
+                        "where doc_key = any(%s) and layer = 'canonical'", (AU5,)).fetchall()
+    return {r[0]: dict(id=r[0], key=r[1], ord=r[2], start=r[3], end=r[4], page=r[5], page_last=r[6] or r[5], L=letters(r[7]))
+            for r in rows}
+
+
+def resolve(item, ps, nl):
+    """The passages (key, ord) an item is credited by."""
+    key = item['key']
+    if 'lines' in item and not item.get('drift'):
+        a, b = item['lines']
+        lo = nl[key][a - 2] + 1 if a >= 2 else 0
+        hi = nl[key][b - 1] if b - 1 < len(nl[key]) else 10 ** 9
+        return {(p['key'], p['ord']) for p in ps.values() if p['key'] == key and p['start'] < hi and p['end'] > lo}
+    ql = letters(item['quote'])
+    page = item.get('page')
+    near = [p for p in ps.values() if p['key'] == key and (page is None or p['page'] - 1 <= page <= p['page_last'] + 1)]
+    hit = {(p['key'], p['ord']) for p in near if ql in p['L']} or \
+          {(p['key'], p['ord']) for p in near if holds(p['L'], ql)}
+    return hit
+
+
+def gain(g):
+    return 2 ** g['grade'] - 1
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0], formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 epilog=__doc__.split('\n\n', 1)[1])
+    ap.add_argument('--budgets', type=int, nargs='+', default=[60, 120, 200])
+    ap.add_argument('--judgments', help='a directory of whole-document judgments (default: the pilot\'s grades)')
+    ap.add_argument('--per-query', action='store_true')
+    ap.add_argument('--model', default=embed.DEFAULT_MODEL)
+    ap.add_argument('--cost-power', type=float, help='override outline.COST_POWER')
+    ap.add_argument('--quiet', choices=('runs', 'census', 'strong', 'auto'), help='override outline.QUIET')
+    a = ap.parse_args()
+    if a.cost_power is not None:
+        outline.COST_POWER = a.cost_power
+    if a.quiet:
+        outline.QUIET = a.quiet
+    grades = judged_grades(a.judgments) if a.judgments else pilot_grades()
+    conn = db.connect()
+    ps = passages_of(conn)
+    by_ko = {(p['key'], p['ord']): p for p in ps.values()}
+    nl = {k: [i for i, c in enumerate(anchor.raw_of(k)) if c == '\n'] for k in AU5}
+    unresolved, tot = [], {b: dict(opened=0, flagged=0, listB=0, listR=0, lines=0, listR_lines=0, max=0) for b in a.budgets}
+    for q, items in grades.items():
+        if not items:
+            continue
+        targets = []
+        for it in items:
+            r = resolve(it, ps, nl)
+            if r:
+                targets.append((gain(it), r))
+            else:
+                unresolved.append((q, it['key'], it.get('quote', '')[:60]))
+        if not targets:
+            continue
+        mx = sum(g for g, _ in targets)
+        v = qvec(a.model, q)
+        res, _ = rank.search(conn, q, n=10 ** 6, model=a.model, keys=AU5, qvec=v)
+        ranked = [(r[1], r[2]) for r, _s, _e in res]
+        for b in a.budgets:
+            o = outline.Outline(conn, q, keys=AU5, qvec=v, model=a.model, budget=b)
+            opened = o.opened()
+            flagged = {(o.by_id[i]['key'], o.by_id[i]['ord']) for i in o.tier}
+            R = o.opened_lines()
+            listB = set(ranked[:max(1, (b - 1) // LIST_LINES)])
+            listR, rl = set(), 0
+            for ko in ranked:
+                if rl >= R:
+                    break
+                p = by_ko[ko]
+                rl += o.line(ko[0], p['end'] - 1) - o.line(ko[0], p['start']) + 1
+                listR.add(ko)
+            score = lambda S: sum(g for g, r in targets if r & S)
+            row = dict(opened=score(opened), flagged=score(flagged), listB=score(listB), listR=score(listR),
+                       lines=R, listR_lines=rl, max=mx)
+            for k in row:
+                tot[b][k] += row[k]
+            if a.per_query:
+                print(f'{q[:44]:<44} B={b:<4} opened {row["opened"] / mx:.2f}  flagged {row["flagged"] / mx:.2f}  '
+                      f'list@B {row["listB"] / mx:.2f}  list@R {row["listR"] / mx:.2f}   (R={R} lines, max gain {mx})')
+    print(f'\ngrades: {"whole-document judgments in " + a.judgments if a.judgments else "the pilot (pooled from ranked lists: leans toward the list)"}; '
+          f'COST_POWER {outline.COST_POWER}, QUIET {outline.QUIET}')
+    print(f'{"budget":>7} {"opened":>8} {"flagged":>8} {"list@B":>8} {"list@R":>8} {"R lines":>8}')
+    for b in a.budgets:
+        t = tot[b]
+        m = t['max'] or 1
+        print(f'{b:>7} {t["opened"] / m:>8.3f} {t["flagged"] / m:>8.3f} {t["listB"] / m:>8.3f} {t["listR"] / m:>8.3f} {t["lines"]:>8}')
+    if unresolved:
+        print(f'\n{len(unresolved)} graded items found no passage holding their quote (not scored):')
+        for q, k, s in unresolved[:10]:
+            print(f'  {q[:30]!r} {k}: {s!r}')
+
+
+if __name__ == '__main__':
+    main()

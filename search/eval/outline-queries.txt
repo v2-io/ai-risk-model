@@ -1,0 +1,12 @@
+hazard
+catastrophic risk
+loss of control
+humans can no longer shut down or correct the AI system
+misalignment
+whistleblower
+serious incident
+what must a developer publish or report before deploying a frontier model
+chemical and biological weapons uplift
+evidence that models can sabotage, sandbag or evade oversight
+cyber capabilities of frontier models
+how the severity or acceptability of a risk is decided

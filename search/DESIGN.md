@@ -301,6 +301,7 @@ The index should be ready for it. A translated edition keeps the canonical page 
 
 1. Schema, catalog reader, chunker and definitions detector, with no embeddings yet. Check by reading the chunk and definition output for SB 53, the AI Act, IASR 2026 and one OCR'd source. *Built 2026-10-09* (`bin/source-index`, `search/srcsearch/`, `search/schema.sql`); what the reading found is in §5.5. The reconcile part of step 2 came with it: a full build of the 201 texts takes about 20 s, and a second run changes nothing (0.1 s).
 2. Reconcile and embed, with the cache; run twice to show the second run does nothing; touch one canonical file and show only it changes. *Built 2026-10-09.* bge-m3 embedded all 26,617 distinct passage inputs in 12 min 18 s, with relata's queue paused; a rerun embeds nothing. Batches commit as they go, so a stopped run resumes. (The first attempt held its opening read transaction for the whole run, so nothing committed until the end and a concurrent `--rebuild` waited on its locks; the read is now committed before embedding starts.) Changing one canonical file (NVIDIA's, by one byte, then restored) re-chunked that document alone in 0.2 s, and the next run changed nothing; a change to the chunker's own source re-chunks all 201 (about 35 s) and re-embeds only passages whose text changed. `bin/source-index --dry-run` lists what a run would redo.
+   - *Reindexed 2026-10-09, evening,* after relata's new conversions: `bin/canonicalize` built 392 texts (77 keys still await conversion), and the index now holds 392 texts, 48,412 passages (5.47 million words), 20,575 headings and 3,131 definitions. It re-chunked 191 documents and embedded 21,590 new passages in 11 min 41 s, with relata's queue paused.
 3. Search: ranked, `--defs`, `--all`, `--explain`, `--json`. *Built 2026-10-09* (`bin/source-search`), with `--in` and `--verify` (runs every anchor through `bin/check-quote`). Checked two ways:
    - **Against the pilot's blind grades**, narrowed to its 10 sources (`search/eval/pilot-check`): nDCG@10 0.776 with RRF and the priors, against the pilot's 0.786; mix 0.724, lexical alone 0.702. That is the pilot's ordering, and the gap to the pilot is within the noise it warned of (±0.05 on 16 queries). The priors the pilot didn't test (Influence, recency, superseded, restored text) add 0.02 on this set: noise-level, and not harmful. Scoring a built passage against a quote the pilot graded needs a tolerant match (80% of the quote's letters in one run), since the pilot cut passages differently and kept footnote markers.
    - **Anchors**, run through `check-quote` for the pilot's 16 queries over the whole corpus: ranked, 156 of 160 ok; `--defs`, 239 of 241 ok. The six others are one SaferAI page that quotes the same sentence two or four times, and their anchors say the quote isn't unique on its page. `--all` (about 32,300 anchors, since it quotes every occurrence; measured when `--all` matched by substring, as `'*term*'` now does) about 96% ok; most of the rest are table and contents-page text, whose order in the PDF's text layer differs from the canonical text's, so `check-quote` can't confirm the page from the PDF (673 "unconfirmed"), and IASR's web-only text, which isn't in the PDF and is flagged so (106). Quotes keep footnote markers and citation link texts ("including7 the", "(Illinois House Bill 5116 2024)"), which the indexed text drops: `check-quote` matches them. Quotes are widened until unique on their page, counted the way `check-quote` counts (letters only, so SB 53's "(e) 'Frontier developer' has the meaning …" also matches inside "(f) 'Large frontier developer' has the meaning …"), and kept clear of "[…]" and "...", which `check-quote` reads as gaps. Where a passage is genuinely repeated on its page (SaferAI quotes the same OpenAI sentence four times on p. 202), the anchor says so.
@@ -326,7 +327,36 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
 5. Proximity and density in `hybrid`'s lexical side (§6.2), measured on pilot-check before and after.
 6. Inflection in place of the stem leg, and the literal matcher in the phrase factor (§6.2), each measured the same way.
 7. The catalog in yaml, the lock and `ref/canonical-meta/` (§13).
-8. The folded outline on Au5 and the definitions pass (§12), when Joseph gives the go.
+8. The folded outline on Au5 and the definitions pass (§12). Joseph gave the go on 2026-10-09: "The one thing I'm particularly excited to see is the aspectus-like (in spirit) ToC contextual hybrid-- the holy grail here so to speak." *The outline is built, as a prototype* (`search/srcsearch/outline.py`; for now a separate command, `bin/source-outline 'loss of control' Au5 --lines 40`). How it works:
+   - **The tree comes from each passage's heading path**, which is fuller than the headings table: SB 53's "§22757.12" is a path element with no heading row of its own.
+   - A title that recurs after a different section starts a new node, since IASR's many "Key information" boxes would otherwise merge into false ranges. Restored PDF text joins the section of the passage before it.
+   - **Every passage in scope is scored by `hybrid`.** "top" is the best 2% in scope and "near" the next, to 10%.
+   - **Passages open in score order under the line budget.** An exact definition of the term opens first, and adjacent passages merge into one range.
+   - **No fold is silent.** Sections without a top passage are counted on their parent's line ("+9 sections not shown (5 near)"), and lines left over go back to naming them.
+   - Each opened range gives its lines of `ref/canonical/KEY.md`, for reading, and an anchor, for citing. A heat column (█▓▒░) marks a section whose best passage is in the best 1%, 2%, 5% or 10% of the scope.
+
+   Measured against the pilot's blind grades (111 grades of 2 or 3, in four Au5 documents), as recall weighted by grade:
+
+   | Lines | Outline opens | Ranked list, same output lines | Ranked list, same source lines read |
+   |---|---|---|---|
+   | 40 | 0.749 | 0.680 | 0.814 |
+   | 60 | 0.898 | 0.724 | 0.890 |
+   | 120 | 0.922 | 0.853 | 0.949 |
+   | 200 | 0.955 | 0.904 | 0.955 |
+
+   So in the same output space the outline points to more of what matters, while a list read to the same number of source lines does about as well or slightly better. The grades were pooled from ranked lists, which favours the list. Two choices were measured, and both reversed the first guess:
+   - **Opening by score beat opening by value per line.** Opened recall at 120 and 200 lines was 0.85 and 0.92 with no cost weighting, against 0.79 and 0.90 with cost to the power 0.5.
+   - **Counting quiet sections on the parent's line beat giving each a line.** Opened recall at 60 lines was 0.32 with a line per section, 0.71 counting sections without hits, and 0.90 counting sections without a top passage too.
+
+   The tiers are ranks, so a query that nothing in scope answers still gets a "top 2%" ('zzqqxx' does, by meaning alone). The outline says so when no passage holds a query word. An absolute cosine floor isn't supported by measurement: over all texts the nearest passage to 15 off-topic queries was at distance 0.405 or more, while the median pilot query's tenth-nearest was 0.401. This is a question for `hybrid` too.
+
+   Still to do: judges who read each Au5 document whole (`search/eval/outline-judging-brief.md`, the 12 queries in `outline-queries.txt`, scored by `search/eval/outline-check`), and the outline as a verb of `source-search`.
+
+   Found along the way, for the chunker and ranking:
+   - In IASR, the glossary entry "Reinforcement learning with verifiable rewards" has the path "Conclusion › The value of shared understanding", which splits the glossary in two.
+   - In Anthropic's Risk Report, everything after "2.14 Claim 8", §§3–5 included, nests under it (326 passages).
+   - The Risk Report's front-matter contents (L40–69) is indexed as body text, so it ranks high for "hazard".
+   - IASR's Figure 2.1 data text ranks first for "hazard", above IASR's own definition.
 9. The gold queries, now partly reframed by §12's evaluation idea, then `--eval` and tuning.
 10. Grouping, `--history`, and the embedder bake-off.
 
