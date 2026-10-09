@@ -16,6 +16,7 @@ experts:
     started: 2026-10-09
     started_by: ai-risk-search-tool, with experts/BRIEF.md
     state: reading
+    branch: expert/california-2025-sb53, in the worktree .claude/worktrees/expert-sb53 (background sessions can't edit the main checkout); pushing the branch is fine (Joseph)
     priming: the repo's CLAUDE.md describes SB 53; Joseph accepted it (2026-10-09) and the expert records it in its reflections
     read: []
     context_after_preparation: null

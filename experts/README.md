@@ -84,6 +84,8 @@ An expert is a background Claude Code session, started as Joseph starts sessions
 
 Joseph has set Claude Code's session cleanup to ten years, so saved sessions don't disappear after 30 days.
 
+A background session can't edit the main checkout unless the repo's `.claude/settings.json` sets `"worktree": {"bgIsolation": "none"}`. Without that, an expert writes its reflections in a git worktree, on a branch of its own (`expert/KEY`), which it may push; main stays Joseph's to push.
+
 Each use is a fork: the prepared expert stays as it was, and each fork does one task. Joseph: "alas, the experience wouldn't continue to build like it will in the future". A fork's answer, if it's worth keeping, goes into the repository; nothing a fork learns returns to the expert.
 
 ## The registry
