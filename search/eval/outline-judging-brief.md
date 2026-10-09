@@ -8,7 +8,7 @@ This repository maps the frontier-AI risk landscape from what the field's own do
 
 The only way to know whether it points to the right places is for someone who has read the document whole to say what an agent answering each question would actually need to read. That is what we're asking of you, for one document. A ranked search's own grades can't settle it, because they only ever see what some ranking already surfaced. Your reading isn't limited that way.
 
-So please read the document in order, the way a person would. Then, for each question below, say which stretches of it an agent answering that question must read, and which would help. Please don't run `bin/source-outline` or `bin/source-search` until your judgments are written. They would show you what the tools think, and the value of your reading is that it is independent of them.
+So please read the document in order, the way a person would. Then, for each question below, say which stretches of it an agent answering that question must read, and which would help. Please don't run `bin/source-search` (its `outline` verb included) until your judgments are written. They would show you what the tools think, and the value of your reading is that it is independent of them.
 
 ## The document and the questions
 

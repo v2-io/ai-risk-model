@@ -15,6 +15,9 @@ Verbs (default: hybrid):
                 --without-phrase drops passages using the query's words as a phrase,
                 leaving those that say it in other words
   defs          every definition of a term, grouped by source, active versions first
+  outline       each document's outline, with only the sections that matter to the
+                query unfolded, down to line ranges to read: a map of where to look
+                (search/DESIGN.md §12). --lines sets its budget (default 200)
   The concordance: every occurrence, counted by form, at four strictnesses
   lexical       the loosest: the words in order anywhere within one passage
   exact-phrase  the words in order and adjacent, whole words exactly as typed
@@ -42,6 +45,7 @@ Examples:
   source-search lexical 'loss of control' influence:anchor
   source-search exact-phrase 'AI Concierge' 'anthropic-*'
   source-search semantic --without-phrase 'loss of control'
+  source-search outline 'loss of control' Au5 --lines 60
 
 Every result carries an anchor: relata key, physical PDF page, printed page where
 established, and an exact quote bin/check-quote can confirm (--verify runs it).
@@ -56,10 +60,10 @@ import argparse, json, os, subprocess, sys, textwrap
 sys.dont_write_bytecode = True
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, 'search'))
-from srcsearch import anchor, concord, db, embed, match, rank, scope  # noqa: E402
+from srcsearch import anchor, concord, db, embed, match, outline, rank, scope  # noqa: E402
 from srcsearch.text import words  # noqa: E402
 
-VERBS = ('hybrid', 'semantic', 'defs', 'lexical', 'exact-phrase', 'exact-words', 'exact-bytes', 'help')
+VERBS = ('hybrid', 'semantic', 'defs', 'outline', 'lexical', 'exact-phrase', 'exact-words', 'exact-bytes', 'help')
 RETIRED = {'--all': 'the verb "lexical" (or exact-phrase, exact-words, exact-bytes)',
            '--defs': 'the verb "defs"', '--in': 'naming keys, sets or field:value after the query'}
 
@@ -168,10 +172,15 @@ def print_ranked(out, pq, a):
         if a.explain:
             ex = o['explain']
             if 'base' in ex:
+                sig = ''
+                if ex.get('f_signals', 1.0) != 1.0:
+                    pr = ex.get('proximity')
+                    sig = (f" × signals {ex['f_signals']} (proximity {'none' if pr is None else f'{pr:.2f}'}, "
+                           f"density {ex.get('density', 0):.2f})")
                 print(f"    score {o['score']:.5f} = base {ex['base']:.5f} (semantic rank {ex['sem_rank']}, lexical rank "
                       f"{ex['lex_rank']}{', phrase' if ex['phrase'] else ''}{', heading' if ex['heading'] else ''})"
                       f" × defines {ex['f_def']:.2f} × section {ex['f_section']} × status {ex['f_status']}"
-                      f" × influence {ex['f_influence']} × recency {ex['f_recency']}")
+                      f" × influence {ex['f_influence']} × recency {ex['f_recency']}{sig}")
             else:
                 print(f"    score {o['score']:.5f} = 1 − cosine distance {ex['distance']:.5f}")
         print()
@@ -292,6 +301,13 @@ def print_concordance(res, a):
         print('      ' + anchor.fmt(o['anchor']) + ('  (references)' if o['section'] == 'references' else ''))
 
 
+# ------------------------------------------------------------------- outline
+def outline_verb(conn, a, keys):
+    qvec = query_vector(conn, a, required=False)
+    ans = rank.answerability(conn, a.query, qvec, model=a.model, keys=keys) if qvec is not None else None
+    return outline.Outline(conn, a.query, keys=keys, qvec=qvec, model=a.model, budget=a.lines, answer=ans)
+
+
 # ---------------------------------------------------------------------- help
 def print_scopes(conn):
     d = scope.describe(conn)
@@ -328,6 +344,9 @@ def parsers():
         hybrid='Ranked: the semantic and lexical rankings fused by RRF, then the weights in search/weights.toml.',
         semantic='Ranked by cosine similarity alone, over the whole corpus, with none of the weights.',
         defs='Every definition of a term, grouped by source, active versions first.',
+        outline='Each document\'s outline with only what matters to the query unfolded: sections fold to one '
+                'line saying what they hold, and opened ranges (▸) give lines of ref/canonical/KEY.md to read and '
+                'an anchor to cite. Scored by hybrid\'s ranking (search/DESIGN.md §12).',
         lexical='The loosest concordance: the words in order anywhere within one passage, each word able to run on '
                 'a little (see source-search --help).',
         **{'exact-phrase': 'Concordance: the words in order and adjacent, whole words exactly as typed.',
@@ -346,6 +365,9 @@ def parsers():
                                 'allowed lexical\'s run-on): what remains says it in other words')
         if v == 'defs':
             p.add_argument('--exact', action='store_true', help='the term itself only, not terms containing it')
+        if v == 'outline':
+            p.add_argument('--lines', type=int, default=200, help='the line budget for the whole outline (default 200)')
+            p.add_argument('--model', default=embed.DEFAULT_MODEL, choices=sorted(embed.MODELS))
         out[v] = p
     return out
 
@@ -381,6 +403,14 @@ def main():
                 out, pq = defs(conn, a, keys)
                 n = sum(len(g['definitions']) for g in out)
                 payload = dict(verb=verb, query=pq['query'], term=pq['term'], results=out)
+            elif verb == 'outline':
+                o = outline_verb(conn, a, keys)
+                n = len(o.sel)
+                rows = o.render()
+                if a.verify:
+                    verify([r['anchor'] for r in rows if r['kind'] == 'range'])
+                payload = dict(verb=verb, **o.as_json(rows)) if as_json else None
+                text = None if as_json else o.text(rows)
             elif verb in concord.VERB_MODE:
                 res = concordance(conn, a, keys)
                 n = len(res['documents'])
@@ -389,7 +419,7 @@ def main():
                 out, pq = hybrid(conn, a, keys) if verb == 'hybrid' else semantic(conn, a, keys)
                 n = len(out)
                 payload = dict(verb=verb, query=pq['query'], term=pq['term'], results=out)
-            if keys is not None:
+            if keys is not None and payload is not None:
                 payload['scope'] = dict(selectors=a.scope, keys=keys)
     except scope.ScopeError as e:
         print(f'source-search: {e}', file=sys.stderr)
@@ -404,6 +434,8 @@ def main():
             payload = dict(payload, forms={f: dict(body=v[0], references=v[1], headings=v[2])
                                            for f, v in payload['forms'].items()})
         print(json.dumps(payload, ensure_ascii=False, indent=1, default=str))
+    elif verb == 'outline':
+        print(text)
     elif verb == 'defs':
         print_defs(out, pq, a)
     elif verb in concord.VERB_MODE:

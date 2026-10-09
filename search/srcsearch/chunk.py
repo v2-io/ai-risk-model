@@ -19,11 +19,23 @@ behind them (influx/search-pilot-2026-10-09/REPORT.md §5):
 - a statute's section numbers inside list items (`- **22757.12.** (a) …`) act as
   headings;
 - a table of contents covers only its own heading's blocks: IASR nests its front
-  matter under "Table of contents";
+  matter under "Table of contents". A contents page set as a table with no
+  heading (Anthropic's Risk Report) is recognised by its rows: numbered section
+  titles, most with a page number;
+- numbered headings nest by their numbers, not their markdown levels, which
+  conversions get wrong: the Risk Report has chapter 1 at ###, chapter 2 at #,
+  "2.14" at # and chapter 3 at ###, so by level §§3–5 nested under "2.14 Claim 8".
+  "2.15" goes under "2" wherever "2" was; a chapter number set as a heading of its
+  own ("05", then "Loss of control risks") joins the title after it; a heading
+  that reads as a sentence (AISI's findings set as headings) stays inside the
+  numbered section it falls in;
 - restored ```pdf-text blocks sit at the end of their page's section in the
   canonical text, not where they stood on the page, so they carry no heading
   path and have their own section kind (the NRR's carry its risk-matrix legend,
   "140 Catastrophic 5 Significant 4 …", which otherwise matches "catastrophic").
+  Most are chart or table text rather than prose: one that isn't prose is section
+  kind 'figure' (IASR's chart "Number of incidents and hazards 250 Six-month
+  moving average …" ranked first for "hazard").
 """
 import bisect, hashlib, re
 
@@ -55,6 +67,40 @@ LABEL_RANK = dict(part=1, title=2, chapter=3, annex=3, appendix=3, schedule=3, s
 
 def sec_class(text):
     return 'sec' if SEC_HEAD_RE.match(text) else 'code' if CODE_HEAD_RE.match(text) else None
+
+
+# A heading's section number: "2.14 Claim 8: …", "2.1. Risks from malicious use", "05".
+# Up to two digits first, so a year ("2026 report") or a code section ("22757.11.", a
+# statute's, nested by sec_class) isn't one.
+NUM_HEAD_RE = re.compile(r'^(\d{1,2}(?:\.\d{1,3})*)\.?(?:\s+(?=\S)|$)')
+NUM_ONLY_RE = re.compile(r'^\d{1,2}\.?$')
+# A heading that reads as a sentence: it ends with a full stop, or runs to nine words
+# or more ("AI models are improving at cyber range challenges but performance remains
+# patchy"; a section title such as "Notes on limitations to the above argument" is shorter).
+SENTENCE_HEAD_RE = re.compile(r'(?:[.!?]["”’)]*$)|(?:^(?:\S+\s+){8,}\S)')
+
+
+# An appendix lettered like a section number: "A. Method Implementations", "A.1 Glossary
+# of Terms", "G.2. RLHF Interaction". A letter counts as a number above any chapter's,
+# so "A.3" replaces "A.1" rather than nesting under it (chanin-2024's appendix sections
+# fell under "A.1 Glossary of Terms" and became glossary).
+LETTER_HEAD_RE = re.compile(r'^([A-Z])((?:\.\d{1,3})+\.?|\.)\s+(?=\S)')
+
+
+def heading_number(text):
+    """A numbered heading's number as a tuple of ints, or None."""
+    if sec_class(text) or LABEL_RE.match(text):
+        return None
+    lm = LETTER_HEAD_RE.match(text)
+    if lm:
+        return (1000 + ord(lm.group(1)),) + tuple(int(x) for x in lm.group(2).strip('.').split('.') if x)
+    m = NUM_HEAD_RE.match(text)
+    if not m:
+        return None
+    num = tuple(int(x) for x in m.group(1).split('.'))
+    if len(num) == 1 and re.search(r'[.!?]["”’)]*$', text):
+        return None             # a numbered point set as a heading ("2. Our Level 3 classifiers are … robust to BPJ."), not chapter 2
+    return num
 
 
 IMG_ONLY_RE = re.compile(r'^\s*(?:!\[[^\]\n]*\]\([^)\n]*\)\s*)+$')
@@ -118,8 +164,9 @@ def parse(raw):
     lines = [(m.start(), m.group(0)) for m in re.finditer(r'^.*$', raw, re.M)]
     n = len(lines)
     blocks, headings = [], []
-    heads = []                    # [[markdown level, text, statute class, label rank or None]]
+    heads = []                    # [[markdown level, text, statute class, label rank or None, number or None]]
     label_open = [False]          # a label heading was just read, with nothing after it yet
+    numbered = {}                 # number -> the heading path as it stood with that heading on top
     in_comment = False
 
     def path():
@@ -135,20 +182,50 @@ def parse(raw):
             rank = LABEL_RANK[lm.group(1).lower()]
             while heads and not (heads[-1][3] is not None and heads[-1][3] < rank):
                 heads.pop()                              # (a contents heading included)
-            heads.append([lvl, text, None, rank])
+            heads.append([lvl, text, None, rank, None])
             label_open[0] = True
             return True
-        if label_open[0] and heads and heads[-1][3] is not None:
-            heads[-1][1] += ' — ' + text                # the label's title
+        if label_open[0] and heads and (heads[-1][3] is not None or NUM_ONLY_RE.match(heads[-1][1])):
+            heads[-1][1] += ' — ' + text                # the label's title, or a chapter number's
             label_open[0] = False
             return False
-        while heads and heads[-1][3] is None and heads[-1][0] >= lvl:
-            heads.pop()
+        num = heading_number(text)
+        if num:
+            # by number: under the deepest open heading whose number is a prefix of
+            # this one's; failing that, where its parent number's heading stood;
+            # failing that, beside the first numbered heading open
+            k = max((i for i, h in enumerate(heads) if h[4] and len(h[4]) < len(num) and num[:len(h[4])] == h[4]),
+                    default=None)
+            if k is not None:
+                del heads[k + 1:]
+            elif num[:-1] in numbered:
+                heads[:] = list(numbered[num[:-1]])
+            else:
+                # it takes the place of the first numbered heading open, if that is as
+                # shallow as it; if that is deeper ("04" after AISI's "3.2", whose chapter
+                # 3 has no number), it also goes above the unnumbered heading holding it
+                first = next((i for i, h in enumerate(heads) if h[4]), None)
+                deeper = first is None or len(heads[first][4]) > len(num)
+                if first is not None:
+                    del heads[first:]
+                if deeper:
+                    while heads and heads[-1][3] is None and heads[-1][0] >= lvl:
+                        heads.pop()
+        else:
+            # by level, except that a heading reading as a sentence (AISI's findings
+            # set as headings) stays inside the numbered section it falls in
+            sentence = bool(SENTENCE_HEAD_RE.search(text))
+            while heads and heads[-1][3] is None and heads[-1][0] >= lvl and not (sentence and heads[-1][4]):
+                heads.pop()
         # a table of contents holds only itself: IASR and AISI put their whole front
         # matter in headings below "Table of contents"
         while heads and heading_kind(heads[-1][1]) == 'toc':
             heads.pop()
-        heads.append([lvl, text, sec_class(text), None])
+        heads.append([lvl, text, sec_class(text), None, num])
+        if num:
+            numbered[num] = list(heads)
+            if NUM_ONLY_RE.match(text):
+                label_open[0] = True
         return True
 
     def statute_section(line):
@@ -169,7 +246,7 @@ def parse(raw):
             del heads[k:]
         else:
             lvl = heads[-1][0] + 1 if heads else 1
-        heads.append([lvl, label, cls, None])
+        heads.append([lvl, label, cls, None, None])
 
     def starts_block(line):
         return (not line.strip() or corpus.MARK_RE.match(line) or HEAD_RE.match(line) or TABLE_RE.match(line)
@@ -252,14 +329,53 @@ def parse(raw):
     return blocks, headings
 
 
-def _sections(blocks):
+# A contents page set as a table: its last cells are page numbers that run upward
+# (the Risk Report's: "| 1.1 Structure of the report | 8 |"), most of its rows
+# numbered section titles or not. Data tables have numeric columns too, but their
+# numbers don't climb row by row.
+TOC_PAGE_RE = re.compile(r'\|\s*(\d{1,3})\s*\|?\s*$')
+TOC_NUM_RE = re.compile(r'^\s*\|?\s*(?:\d{1,2}(?:\.\d{1,3})*\.?|[IVX]+\.)\s+[A-Za-z(“"\']')
+# Prose: sentences of 30 or more characters, ending in a full stop, covering half the text.
+PROSE_RE = re.compile(r'[A-Z][^.!?\n]{30,}?[.!?](?=["”’)]*(?:\s|$))')
+
+
+def is_toc_table(b):
+    """FLI's score tables have climbing numbers too, but a contents row has at most
+    three cells filled (number, title, page), and its page numbers take several values."""
+    rows = [l for _, l in b['rows'] if not re.fullmatch(r'\s*\|?[\s|:-]+\|?\s*', l)]
+    pages = [int(m.group(1)) for m in (TOC_PAGE_RE.search(l) for l in rows) if m]
+    if len(rows) < 4 or len(pages) < 0.5 * len(rows) or len(set(pages)) < 4:
+        return False
+    cells = [[c.strip() for c in l.strip().strip('|').split('|') if c.strip()] for l in rows]
+    narrow = sum(1 for cs in cells if len(cs) <= 3) / len(rows)
+    titled = sum(1 for cs in cells if cs and len(re.findall(r'[A-Za-z]', cs[0] if len(cs[0]) > 3 else ' '.join(cs[:2]))) >= 3) / len(rows)
+    if titled < 0.8:                            # shaffershane-2026's "| Score out of 9 | Number of incidents |"
+        return False
+    rising = sum(1 for a, c in zip(pages, pages[1:]) if c >= a) / max(1, len(pages) - 1)
+    numbered = sum(1 for l in rows if TOC_NUM_RE.match(l)) / len(rows)
+    return narrow >= 0.8 and rising >= 0.8 and (numbered >= 0.5 or len(pages) >= 5)
+
+
+def is_prose(text):
+    t = ' '.join(text.split())
+    return bool(t) and sum(len(m.group(0)) for m in PROSE_RE.finditer(t)) >= 0.5 * len(t)
+
+
+def _sections(blocks, raw=''):
     for b in blocks:
-        sk = 'restored' if b['kind'] == 'restored' else 'body'
-        if b['kind'] != 'restored':
-            for depth, h in enumerate(b['path']):
-                k = heading_kind(h)
-                if k and (k != 'toc' or depth == len(b['path']) - 1):
-                    sk = k
+        if b['kind'] == 'restored':
+            # most restored text is a chart's or table's labels and numbers; real prose
+            # the conversion dropped (NPSA's account of the Tesla malware attempt) is kept
+            # as 'restored'
+            b['section'] = 'restored' if is_prose(raw[b['start']:b['end']]) else 'figure'
+            continue
+        sk = 'body'
+        for depth, h in enumerate(b['path']):
+            k = heading_kind(h)
+            if k and (k != 'toc' or depth == len(b['path']) - 1):
+                sk = k
+        if b['kind'] == 'table' and sk == 'body' and is_toc_table(b):
+            sk = 'toc'
         b['section'] = sk
 
 
@@ -293,7 +409,7 @@ def passages(raw):
     into raw), text (indexed), pages, path, section, kinds, defs, norm_sha."""
     pages = Pages(raw)
     blocks, headings = parse(raw)
-    _sections(blocks)
+    _sections(blocks, raw)
     for h in headings:
         p, pr, nip = pages.at(h['start'])
         h.update(page=p, printed=pr)
@@ -312,7 +428,7 @@ def passages(raw):
             if u['defs']:
                 u['standalone'] = True
             units.append(u)
-    D.elect_bold_runs(units)
+    D.elect_bold_runs(units, raw)
 
     for u in units:
         u['text'] = _text(raw, u)

@@ -129,8 +129,8 @@ def _score(conn, query, keys, qvec, ps, model):
 
 
 class Outline:
-    def __init__(self, conn, query, keys=None, qvec=None, model='bge-m3', budget=200, quiet=None):
-        self.query, self.budget = query, budget
+    def __init__(self, conn, query, keys=None, qvec=None, model='bge-m3', budget=200, quiet=None, answer=None):
+        self.query, self.budget, self.answer = query, budget, answer
         self.mode = quiet or QUIET
         self.quiet = 'strong' if self.mode == 'auto' else self.mode
         self.docs, self.ps, heads = _load(conn, keys)
@@ -353,8 +353,8 @@ class Outline:
                            fidelity=d['fidelity'], pages_to_check=d['ptc'])
 
     # ------------------------------------------------------------------- text
-    def text(self):
-        rows = self.render()
+    def text(self, rows=None):
+        rows = rows or self.render()
         shown = sum(1 for r in rows if r['kind'] == 'range')
         lines = []
         for r in rows:
@@ -383,7 +383,13 @@ class Outline:
              f'{len(self.ps)} passages; {shown} ranges opened in {n} of {self.budget} lines (L = lines of '
              f'ref/canonical/KEY.md). "top": among the best 2% of passages in scope; "near": the next, to 10%. '
              f'█▓▒░: a section\'s best passage is in the best 1%, 2%, 5% or 10%.')
-        if not self.lexical_hits:
+        a = self.answer
+        if a and a.get('likely_unanswered'):
+            # rank.answerability: a cue, not a gate (weights.toml [answerable])
+            s += (f"\nNothing in scope seems to answer this: no passage holds all of the query's words, and the "
+                  f"nearest passage by meaning is at cosine distance {a['nearest_distance']} (off-topic test queries "
+                  f"fell at {a['threshold']} or more). What follows is the nearest material, ranked relative to itself.")
+        elif not self.lexical_hits:
             s += ('\nNo passage in scope holds any of the query\'s words, so every hit is by meaning alone, and '
                   'the ranks are relative: an off-topic query gets a top 2% too.')
         return s
@@ -438,13 +444,15 @@ class Outline:
             tags.append('/'.join(sorted({p['section'] for p in ps})))
         q = an['quote'] if len(an['quote']) <= QUOTE_W else an['quote'][:QUOTE_W - 1] + '…'
         pr = f' ("{an["printed"]}")' if an.get('printed') else ''
-        flag = ' [check PDF]' if an.get('check_pdf') else ''
+        flag = ' [check PDF]' if an.get('check_pdf') and not an.get('verified') else ''
+        if an.get('verified'):
+            flag = f" [{an['verified']}]"
         return (f"{self.heat(best)} {r['prefix']}▸ L{a}–{b}  p.{an['page']}{pr}{flag}"
                 + (f"  {'; '.join(tags)}" if tags else '') + f'  "{q}"')
 
     # ------------------------------------------------------------------- json
-    def as_json(self):
-        rows = self.render()
+    def as_json(self, rows=None):
+        rows = rows or self.render()
         docs, stack = [], []
         for r in rows:
             k = r['kind']
@@ -480,6 +488,7 @@ class Outline:
         none = next((r['keys'] for r in rows if r['kind'] == 'nohits'), [])
         return dict(query=self.query, term=self.pq['term'], budget=self.budget, lines_used=len(rows),
                     tiers=dict(top='among the best 2% of passages in scope', near='the next, to 10%'),
+                    answerability=self.answer,
                     passages_with_query_words=self.lexical_hits, documents=docs, no_hits=none)
 
     def _node_json(self, n, open_):

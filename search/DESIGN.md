@@ -410,7 +410,19 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
    - Models: Opus, Sonnet and Haiku (Joseph: "It will be interesting also for sonnet and even haiku agents"). Smaller models may lean on a tidy map more, and they are among the agents the outline is meant to help. So the design is two conditions (outline, ranked list) × three models × the five documents, one agent per cell.
    - It would be run once the outline is a `source-search` verb, on the five judged documents.
 
-   Still to do: the outline as a verb of `source-search`; the scorer fixes, by someone other than the outline's author.
+   **The outline became a verb, 2026-10-09:** `source-search outline 'loss of control' Au5 --lines 60`. It takes any scope, `--verify` checks its anchors, and its header says when nothing in scope seems to answer the query (`rank.answerability`). It scores only the candidates `hybrid` gathers (497 for "loss of control" over Au5), and treats the rest as having no hits.
+
+   **The chunker faults, fixed the same day** (in the chunker only; they reach the database at the next reindex):
+   - IASR's glossary is one run of 180 entries under one path. A plain "Term:" paragraph between two bold entries now joins their run.
+   - Numbered headings nest by their numbers, not their markdown level, so the Risk Report has chapters 1–6, each with its sections, and AISI's chapters are in order. Lettered appendices count as numbers, a bare chapter number joins the title after it, and a heading that reads as a sentence stays inside its section.
+   - A table whose last cells are rising page numbers is section `toc`. The Risk Report's contents table now is; FLI's score tables and other data tables aren't.
+   - Restored text that isn't prose is a new section kind, `figure`, weighted 0.3 like a contents page (untested).
+
+   Old chunker against new, over all 392 texts: 48,412 → 48,416 passages, 22 re-cut, 16,620 paths changed. The largest moves of section kind were restored → figure (1,060), annex → body (126) and glossary → body (43). The biggest movers read as real repairs: in africa-2026, a stray "Appendix I." had swallowed §§6–7 and the references; in hammond-2025, "3.4.1 Definition" had swallowed later sections and marked them glossary.
+
+   Open:
+   - **Site navigation ranks first.** `outline whistleblower california-2025-sb53` opens leginfo's navigation bar. The likely cause is that a short passage's embedding is dominated by the document's title, which goes into every embedding input.
+   - **On a short document with no strong match, the outline fills its budget.** Changing that is a change to the outline's own settings, so it waits for held-out queries.
 
    Found along the way, for the chunker and ranking:
    - In IASR, the glossary entry "Reinforcement learning with verifiable rewards" has the path "Conclusion › The value of shared understanding", which splits the glossary in two.

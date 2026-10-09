@@ -95,6 +95,12 @@ index = 0.3
 # "140 Catastrophic 5 Significant 4 …"). The pilot asked for a lower weight;
 # the value is untested.
 restored = 0.7
+# Restored text that isn't prose: figure labels, legends and chart data (IASR's
+# "Number of incidents and hazards 250 …", which ranked first for "hazard", above
+# IASR's own definition). The chunker marks it `figure` since 2026-10-09. It names
+# terms without saying anything about them, like a contents page, so it is set like
+# one. Untested.
+figure = 0.3
 
 [status]
 # A superseded version (RSP v3.3 under v3.4) is history, not the current document.

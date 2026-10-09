@@ -132,11 +132,29 @@ def table_row(raw, cells_first, start, section):
     return [dict(term=m.group(1).strip(), kind='glossary-table-row', conf=0.9 if quoted else 0.75, evidence=ev, at=start)]
 
 
-def elect_bold_runs(blocks):
+def elect_bold_runs(blocks, raw=None):
     """A glossary without a heading: a run of five or more `**Term:**` paragraphs in
     alphabetical order (IASR 2026's). A shorter or unordered run is a set of labelled
     items, such as a key-information box or a list of risks; its labels are recorded
-    as weak definitions, a numbered one less weakly."""
+    as weak definitions, a numbered one less weakly.
+
+    A plain "Term: definition" paragraph between two bold ones belongs to their run:
+    IASR's entry "Reinforcement learning with verifiable rewards (RLVR):" lost its
+    bold, and so was filed under the heading before the glossary ("Conclusion › The
+    value of shared understanding"), and the glossary split in two around it."""
+    if raw is not None:
+        for k in range(1, len(blocks) - 1):
+            b = blocks[k]
+            if (b.get('bold_lead') is None and b['kind'] in ('para', 'item')
+                    and blocks[k - 1].get('bold_lead') is not None and blocks[k + 1].get('bold_lead') is not None):
+                first = raw[b['start']:b['end']].split('\n', 1)[0]
+                m = PLAIN_LEAD_RE.match(first)
+                if m and _ok_term(m.group(1)) and not NOT_A_TERM.match(m.group(1)):
+                    b['bold_lead'] = m.group(1).strip()
+                    b['bold_lead_at'] = b['start'] + m.start(1)
+                    b['plain_lead'] = True
+                    b['path'] = blocks[k - 1]['path']
+                    b['section'] = blocks[k - 1]['section']
     i = 0
     while i < len(blocks):
         if blocks[i].get('bold_lead') is None:
@@ -155,7 +173,8 @@ def elect_bold_runs(blocks):
                     b['path'] = b['path'][:1] + ['Glossary (no heading in the source)']
                 if not any(d['kind'] == 'glossary-entry' for d in b['defs']):
                     b['defs'].insert(0, dict(term=b['bold_lead'], kind='glossary-entry', conf=0.85,
-                                             evidence=f'alphabetical run of {len(run)} **Term:** paragraphs',
+                                             evidence=f'alphabetical run of {len(run)} **Term:** paragraphs'
+                                                      + (' (this one not bold)' if b.get('plain_lead') else ''),
                                              at=b['bold_lead_at']))
         elif len(run) >= 2:
             for b in run:
