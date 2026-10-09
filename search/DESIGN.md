@@ -164,7 +164,12 @@ For a query, the index gathers candidate passages from five signals:
 
 ### 6.2 Combining them
 
-Semantic and lexical stay two rankings, fused by reciprocal rank fusion (RRF): each passage scores `1/(60 + rank)` from each side, summed, so a passage that is best on either side floats up. Memorata's `mix` (the geometric mean of the two rank positions) stays selectable; the pilot found RRF better with priors (§0), and Joseph chose it as the default. Lexical evidence (exact form, stemmed, phrase, proximity, density) is folded into one lexical score so nothing is counted twice. Memorata's proximity and density functions carry over nearly unchanged; they are careful work (exact versus inflected, query order, sentence and paragraph distance).
+Semantic and lexical stay two rankings, fused by reciprocal rank fusion (RRF): each passage scores `1/(60 + rank)` from each side, summed, so a passage that is best on either side floats up. Memorata's `mix` (the geometric mean of the two rank positions) stays selectable; the pilot found RRF better with priors (§0), and Joseph chose it as the default. Lexical evidence (exact form, stemmed, phrase, proximity, density) is folded into one lexical score so nothing is counted twice.
+
+What is built, checked 2026-10-09 against `rank.py`: BM25 on exact word forms, BM25 on Postgres's English stems at half weight, a ×2 phrase factor and a heading factor. Memorata's proximity and density functions were meant to carry over and have not been built. Three changes to the lexical side of `hybrid` (§7), each to be measured on `search/eval/pilot-check` before and after. The first is agreed; the other two are my proposals, which Joseph supported ("possibly influenced by my thoughts on #1", his whole-word preference) without settling them:
+- **Proximity and density, ported from memorata.** *Agreed: Joseph, 2026-10-09, "I agree-- already my lean, from the beginning."* (`memorata3/search.py`). `proximity_score` combines four things: whether each word matched exactly or as an inflection (an inflection counts 0.55); the tightest window covering the matched words, with small penalties for each extra word and large ones for each sentence and paragraph boundary; whether the words are in the query's order (×0.75 if not); and how many of the query's words appear. It abstains on one-word queries. `keyword_density` blends how often the words occur with their rate per word, since RRF keeps only rank.
+- **The phrase factor uses the literal matcher (§7.1)** (my proposal, supported by Joseph), with case and word boundaries, instead of Postgres's lowercased phrase match. Joseph's example: `'AI Concierge'` matches "AI Concierge" and "AI CONCIERGE", since only the capitals are fixed, but not "AI concierge" or "ai concierge". Near misses ("AI-powered concierge", the two words in one sentence) are graded by proximity. A query that must match literally could have a separate flag (`--require`, my suggestion); the default is a boost, never a gate, because a gate would drop the paraphrases that the semantic side exists to find.
+- **Inflections replace the stem leg**, at reduced weight (my proposal, supported by Joseph). Stems merge derivations ("developer", "development"); inflections don't (§7.1). Recall is cheap in a ranking, since a weak match only ranks low, so `hybrid` includes inflections by default where `exact-*` don't.
 
 Then come the query-independent priors, multiplied in. Each is declared in `search/weights.toml` with its rationale, in the spirit of memorata's evidence weights: a weight that can't say why it exists doesn't belong there. The initial set, in rough order of strength:
 
@@ -188,21 +193,63 @@ Memorata's optional reranker (`bge-reranker-v2-m3` in sentence-transformers) pea
 
 ## 7. The command
 
+*Agreed with Joseph in discussion, 2026-10-09; not built yet. Until it is, `bin/source-search --help` describes the built command: ranked search by default, with `--defs`, `--all`, `--in` and `--fusion`. Joseph proposed the verbs (including the three `exact-*` ones) and the positional scope; the names `hybrid` and `semantic` were worked out between us. Where a default below is my proposal rather than something he agreed, it says so.*
+
 ```
-bin/source-search 'hazard'                      ranked: definitions of the term first, then usage
-bin/source-search --defs hazard                 every definition of "hazard", grouped by source, active first
-bin/source-search --all hazard                  every occurrence of the word: counts by document and word form, then keyword-in-context lines
-bin/source-search --all '*hazard*'              every word form containing it
-bin/source-search 'loss of control' --by source grouped by document (also: org, family, lineage)
-bin/source-search 'severe harm' --in oai-pf oai-fgf     narrowed to documents, catalog codes, organisations or families
-bin/source-search 'frontier developer' --history        superseded versions unfolded in lineage order
-bin/source-search … --explain                    the per-factor score behind each result
-bin/source-search … --json                       for agents; automatic when piped
+source-search [verb] [flags] 'query' [scope …]
 ```
 
-Every result carries an anchor in the plan's form (plan §3.5, Claude's proposal, endorsed by Joseph 2026-10-09): relata key, physical PDF page, printed page, and the exact quote. This is a requirement, not a default. Joseph, 2026-10-09: "the search results should always come back with your preferred reference format -- key + pdf-page etc. etc." Every mode, `--all` and `--defs` included, and the JSON, carry it, with a "check against the PDF" flag where the source's fidelity mark calls for it. A quote copied from a result can then be cited as it stands, and checked with `bin/check-quote`, which takes anchors in bulk on stdin (`--batch -`).
+The query is one argument, as for grep and rg. Everything after it says what to search:
+- a relata key;
+- a key prefix (`'anthropic-*'`, quoted so the shell leaves it alone);
+- a named set (`Au5`);
+- a selector over catalog fields (`org:anthropic`, `influence:anchor`).
 
-`--all` matches literally, never by stemming. It follows Joseph's convention (2026-10-09). A lowercase letter matches either case and an uppercase letter only itself: 'ai' finds "AI" and "ai", and 'AI' finds only "AI". Words have implicit boundaries, and a `*` removes the boundary on its side: `'hazard*'` finds `hazards` and `hazardous`, and `'*hazard*'` also finds `infohazard` and `biohazards`, which a list of forms would miss (pilot §6). A whole-word search reports what a `*` on each bounded side would have added, by form ("'*hazard*' would also match 66 more: hazardous 39, hazards 26, biohazards 1"). So a narrow search shows what it left out, and the search that counts everything is one step away. It counts headings, and counts references separately, and it never matches inside link targets. It prints which forms it matched and how many of each, so "did we catch them all" has a checkable answer, including what the pattern didn't cover.
+With no scope, it searches everything indexed. A scope that matches nothing is an error (exit 3), not an empty result. `--in` goes.
+
+**Verbs.** A verb names a common use, so the everyday case needs no flags. It need not name a distinct kind of operation (Joseph: the verb form "is more about usage and not having to remember flags for the sunny-day scenario"). Flags still compose with every verb.
+
+| Verb | What it gives |
+|---|---|
+| `hybrid` | A ranked list: the semantic and lexical rankings fused by RRF, then our weights (§6.2). It is implied when only a query is given. |
+| `semantic` | A ranked list by cosine similarity alone, over the whole corpus rather than a pool of 400, with none of our weights. Set beside `hybrid` on the same query, it shows what the lexical side and the weights change. An exclusion flag drops passages containing the query as a phrase (§7.1), leaving the passages that say it in other words. Joseph proposed the exclusion; matching it as a phrase and calling it `--without-phrase` are my proposals. |
+| `defs` | Every definition of a term, grouped by source, active versions first. `--exact` drops the narrower terms that contain it. |
+| `lexical` | Every occurrence, as a concordance: counts by document and word form, then each occurrence in context. Whole words with their inflections, and several words matched as a phrase (both my proposal; Joseph hasn't ruled on what plain `lexical` adds to `exact-phrase`). |
+| `exact-words` | Each word exactly as typed, as a whole word, counted wherever it occurs. |
+| `exact-phrase` | The words in order, exactly as typed, with no inflections. The separators between them stay flexible. |
+| `exact-bytes` | Those characters, spaces included, with no case folding. |
+| `help` | Implied when there are no arguments; `-h` and `--help` work too. |
+
+The four concordance verbs are one operation at four strictnesses, and `--help` groups them so: otherwise an agent may take `exact-phrase` for a different kind of search from `lexical`.
+
+### 7.1 The literal matcher
+
+One matcher serves the four concordance verbs, the lexical side of `hybrid` (§6.2) and `semantic`'s exclusion flag.
+- **Case.** This is Joseph's convention: a lowercase letter matches either case, and an uppercase letter only itself. `'ai'` finds "AI" and "ai"; `'AI'` finds only "AI". It is applied letter by letter, unlike rg's smart-case, where one capital makes the whole pattern case-sensitive. `exact-bytes` folds nothing.
+- **Word boundaries** on both sides of every word, Joseph's first preference. A `*` removes the boundary on its side: `'hazard*'`, `'*hazard*'`. An open right side by default was tried in discussion and set aside. It catches plurals, but also unrelated words: measured 2026-10-09, `AI` occurs 38,759 times as a whole word in the canonical texts, and an open end would add "AIs" 703 times (wanted), but also "AISI" 655, "AISIs" 21, "AIR" 34 and "AIA" 34 (not wanted).
+- **Separators** between the words of a phrase are any run of non-alphanumerics, so line breaks, hyphens and punctuation match: "loss-of-control" and "loss of" at the end of one line with "control" on the next.
+- **Inflection, derivation and open strings are kept apart:**
+  - *Inflection* (hazard → hazards; define → defined, defining) gives other forms of the same word. Joseph suggested stemmers and pluralizers; keeping inflection apart from derivation is my proposal. `lexical` includes inflections; the `exact-*` verbs don't, and `--no-inflect` turns them off. They are found by expanding the query word into its inflected forms and matching those literally, so the forms table shows exactly which forms counted. No library has been chosen. `lemminflect` generates inflections from a lemma (from memory, not checked); none of the candidates is installed yet.
+  - *Derivation* (hazard → hazardous; develop → developer → development) gives different words, which this project keeps apart. Only `--stem` (Postgres's Snowball stemmer) includes them, and its help says it merges them.
+  - *Open strings* come only from `*`.
+- **What a looser match would add.** Every verb reports, by form, what inflections and a `*` on each bounded side would have added. So a narrow search shows what it left out, and the wider search is one step away. The JSON carries the same as `not_counted`.
+- **Context:** `-C N` for the amount shown around each occurrence. My lean is to count sentences, not lines.
+
+### 7.2 Scopes and sets
+
+Sets live in `catalog/sets/*.yaml` (§13). A set is a list of selectors:
+- keys and key globs;
+- catalog fields (`org: anthropic`, `influence: anchor`, `status: active`, a catalog section, or any field §13 adds, so many sets need no enumerating);
+- other sets;
+- exclusions.
+
+The same selectors work inline on the command line, so a one-off scope needs no file. A set name that collides with a key is an error when the sets are loaded. Joseph first suggested `.source-search/{catalog.yaml,sets/*.yaml}`, then left the placement to me. I put them under `catalog/` because they aren't only search configuration. `bin/canonicalize`, relata's bibliography and the translations read the catalog. Au5 serves the outline work, and G4's pilots are a set too.
+
+### 7.3 Output
+
+Every result carries an anchor in the plan's form (plan §3.5, Claude's proposal, endorsed by Joseph 2026-10-09): relata key, physical PDF page, printed page, and the exact quote. This is a requirement, not a default. Joseph, 2026-10-09: "the search results should always come back with your preferred reference format -- key + pdf-page etc. etc." Every verb and the JSON carry it, with a "check against the PDF" flag where the source's fidelity mark calls for it. A quote copied from a result can then be cited as it stands, and checked with `bin/check-quote`, which takes anchors in bulk on stdin (`--batch -`). The concordance counts headings, and counts references separately, and it never matches inside link targets.
+
+Flags shared across verbs: `-n` (how many results), `--explain` (the factors behind each score), `--verify` (runs every anchor through `bin/check-quote`), `--json` (automatic when piped), and, not built yet, `--by source|org|family|lineage` and `--history` (§6.3).
 
 Memorata's hard-won output rules carry over:
 - an empty result and a failed search are different outcomes (memorata exits 3 and leaves stdout empty on failure);
@@ -238,6 +285,9 @@ The index should be ready for it. A translated edition keeps the canonical page 
 5. **The weights live in the repo** (`search/weights.toml`, each with a rationale), not in the database. This is public and reviewable, and the database stays wholly derived. *Confidence: high.*
 6. **Database name `airisk_sources`, outside the repo; Python in `search/`.** *Confidence: high* on the shape, none on the name.
 7. ~~Share the catalog parser with `bin/canonicalize`.~~ Done: `bin/corpus.py` (2026-10-09).
+8. ~~The command's shape.~~ *Agreed in discussion with Joseph, 2026-10-09* (§7): verbs for the common uses, the query as one argument, keys and sets as scope, whole words by default, `semantic` as cosine alone and `hybrid` as the fused default.
+9. ~~The catalog's format.~~ *Joseph, 2026-10-09: "I would prefer to move it to yaml though one way or another. No problem if this affects canonicalizer and so forth."* Where it, the sets and the lock live he left to me (§13).
+10. **Whether `source-catalog.md` is generated from the yaml** or retired. My lean is generated (§13). *Confidence: moderate.*
 
 ## 11. Build order
 
@@ -247,8 +297,16 @@ The index should be ready for it. A translated edition keeps the canonical page 
    - **Against the pilot's blind grades**, narrowed to its 10 sources (`search/eval/pilot-check`): nDCG@10 0.776 with RRF and the priors, against the pilot's 0.786; mix 0.724, lexical alone 0.702. That is the pilot's ordering, and the gap to the pilot is within the noise it warned of (±0.05 on 16 queries). The priors the pilot didn't test (Influence, recency, superseded, restored text) add 0.02 on this set: noise-level, and not harmful. Scoring a built passage against a quote the pilot graded needs a tolerant match (80% of the quote's letters in one run), since the pilot cut passages differently and kept footnote markers.
    - **Anchors**, run through `check-quote` for the pilot's 16 queries over the whole corpus: ranked, 156 of 160 ok; `--defs`, 239 of 241 ok. The six others are one SaferAI page that quotes the same sentence two or four times, and their anchors say the quote isn't unique on its page. `--all` (about 32,300 anchors, since it quotes every occurrence; measured when `--all` matched by substring, as `'*term*'` now does) about 96% ok; most of the rest are table and contents-page text, whose order in the PDF's text layer differs from the canonical text's, so `check-quote` can't confirm the page from the PDF (673 "unconfirmed"), and IASR's web-only text, which isn't in the PDF and is flagged so (106). Quotes keep footnote markers and citation link texts ("including7 the", "(Illinois House Bill 5116 2024)"), which the indexed text drops: `check-quote` matches them. Quotes are widened until unique on their page, counted the way `check-quote` counts (letters only, so SB 53's "(e) 'Frontier developer' has the meaning …" also matches inside "(f) 'Large frontier developer' has the meaning …"), and kept clear of "[…]" and "...", which `check-quote` reads as gaps. Where a passage is genuinely repeated on its page (SaferAI quotes the same OpenAI sentence four times on p. 202), the anchor says so.
    - Ranked search takes 1–2 s, most of it loading bge-m3 for the query; `--defs` and `--all --counts` well under a second.
-4. The gold queries, with Joseph, then `--eval`, then tuning.
-5. Grouping, `--history`, and the embedder bake-off.
+
+The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09:
+
+4. The verbs, the literal matcher and scopes (§7), with sets resolved against the catalog fields the index already holds, so the switch to yaml doesn't block them.
+5. Proximity and density in `hybrid`'s lexical side (§6.2), measured on pilot-check before and after.
+6. Inflection in place of the stem leg, and the literal matcher in the phrase factor (§6.2), each measured the same way.
+7. The catalog in yaml, the lock and `ref/canonical-meta/` (§13).
+8. The folded outline on Au5 and the definitions pass (§12), when Joseph gives the go.
+9. The gold queries, now partly reframed by §12's evaluation idea, then `--eval` and tuning.
+10. Grouping, `--history`, and the embedder bake-off.
 
 ## 12. Another shape for results: a folded outline (an open idea, 2026-10-09)
 
@@ -282,3 +340,47 @@ My lean, not yet tried:
 The UK government's place for AI was the runner-up. The NRR leaves AI out of its 95 risks ("Chronic risks, such as antimicrobial resistance (AMR), impacts of artificial intelligence (AI), … are not included in this list"). Its other mentions of AI are mostly one repeated sentence about automating cyber-attacks, across its cyber risks. That points to the *Chronic Risks Analysis* (`cabinetoffice-2025-cra`), which has a section on the impacts of AI. Before checking, I had named the NRR, which the NRR's own text contradicts. The Trends Report's headings are uneven (findings set as headings, section numbers in their own headings), which makes it a useful hard case for the outline.
 
 Found while checking that: `--all` matched word forms by substring, so "AI" also counted "rail" and "faith". It now follows Joseph's case and word-boundary convention (§7). The NRR has 33 occurrences of "AI", all of which `check-quote` confirms, and the CRA has 20 of "artificial intelligence". `'*hazard*'` gives the pilot's count for the NRR: 73 in body text and 6 in headings.
+
+## 13. Files beside the index: the catalog, sets, the lock and canonical-meta
+
+*Discussed with Joseph, 2026-10-09; not built yet. He proposed a `canonical-meta/<key>/` that `bin/canonicalize` never overwrites, and moving the catalog to yaml. The lock and sets built from catalog selectors were my suggestions, which he welcomed ("love the lock"; "love that idea"). The anchoring rule and the two dispositions below were my points, to which he replied "sounds good". The placement of the files is mine.*
+
+The aim, in Joseph's words: "to make a lot more of the process part of the repo instead of part of the opaque (from the public's perspective, other than the schema) database -- so if someone clones it and has a legitimate way to populate their own relata / ref/canonical/ -- everything else would work as expected". So everything we write by hand or pay a model to write lives in files, and the database stays wholly derived (§4).
+
+**The catalog moves to yaml: `catalog/sources.yaml`.** Each row keeps today's columns:
+- Date, Code, Document, Kind, Tag, Set, Influence, and the basis note, which is prose;
+- its keys, with the status tags as fields.
+
+More fields can follow for the sets to select on (organisation, jurisdiction, genre), so "every company framework" or "everything Anthropic published" needs no list. `bin/corpus.py` is the one parser `bin/canonicalize` and the index share (§2), so it becomes a yaml reader and both follow.
+
+My lean is that `source-catalog.md` is generated from the yaml, with a header saying so. The README's link and its readable tables then stay, and `relata emit bib`, which reads the `@key`s through `bib/src/source-catalog.md` (a symlink), keeps working unchanged. The conversion is a script, checked by regenerating the markdown and diffing it against today's. Other sessions edit the catalog (the canonicalize session among them), so the switch needs a moment when no one else is.
+
+**Sets: `catalog/sets/*.yaml`** (§7.2).
+
+**The lock: `ref/canonical.lock`, written by `bin/canonicalize`, committed.** (Joseph: "love the lock.") It is a lockfile in the package-manager sense: the catalog says what we want, and the lock records exactly what was built. Per key, it records:
+- the sha256 of the PDF;
+- the sha256 of the markdown the text was built from (relata's conversion or a `canon-text` file);
+- the sha256 of the canonical text;
+- the canonicalizer's source hash.
+
+Canonicalize already writes the first two into each `pages.json` (`pdf_sha256`, `markdown_sha256`); the last two would be new. The lock is what the committed sidecar data below anchors to. Someone who builds their own `ref/canonical/` can compare it document by document, and see where our overrides and summaries describe the same text as theirs.
+
+**`ref/canonical-meta/<key>/`, never written by `bin/canonicalize`.** (The existing sidecar, `ref/canonical/msc/<key>/`, is rewritten on every run: marker's images and metadata, the conversion log, `pages.json`.) It holds:
+1. chunking intermediates;
+2. chunking and indexing overrides and one-off fixes;
+3. labels and tags;
+4. summaries (§12);
+5. anything else better kept as a file than in the database.
+
+Several hand fixes now live in code and would become per-source data here:
+- `SECTION_PATTERNS` in `search/srcsearch/chunk.py`;
+- `INLINE` in `search/srcsearch/defs.py`;
+- `SKIP_REASON` in `bin/canonicalize`;
+- the OCR "Al" fix in `bin/corpus.py`.
+
+Three rules:
+- **Anchoring.** An entry is keyed by the sha256 of its node's normalised text and the node's heading path, never by line numbers or offsets, which change whenever a text is rebuilt. An unchanged section keeps its summary across rebuilds. An entry whose text has changed is reported as stale, never dropped silently. This is the embedding cache's rule (§4) applied to our own writing.
+- **Two dispositions.** Our own words (overrides, tags, summaries) are committed and public, quoting the source briefly at most. Intermediates that contain the source's text are git-ignored, like `ref/canonical/`.
+- **Format:** yaml, to match the catalog. udon is the alternative, matching the lexicon. Joseph named yaml, udon and markdown as all acceptable.
+
+`bin/source-index` reads all of these as inputs, and each gets a fingerprint like the canonical text's (§4), so a changed summary or override redoes only what depends on it. Nothing watches the files. Reconciling is a run of `bin/source-index`, as now.
