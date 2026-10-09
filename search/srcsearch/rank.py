@@ -16,8 +16,8 @@ is evidence here, so it is surfaced, not discarded.
 import math, os, re, tomllib
 from collections import defaultdict
 
-from . import SEARCH
-from .text import fold, norm_term, words
+from . import SEARCH, match
+from .text import fold, norm_term, sentences, words
 import corpus
 
 WEIGHTS_PATH = os.path.join(SEARCH, 'weights.toml')
@@ -95,20 +95,143 @@ def _bm25(conn, col, cfg, lexemes, w, keys):
     return {i: float(s) for i, s in rows}
 
 
+def _forms(conn, word, w, keys):
+    """{passage id: BM25} for a query word's longer forms (DESIGN §6.2, §7.1): the
+    forms `lexical` would match ("hazards", "hazardous"; "capabilities" for
+    "capability"), the word itself excluded, scored as one term. They stand in for
+    Postgres's stems, which also merge words that share only a stem ("developer",
+    "development") and hide which form matched."""
+    if len(word) < 2 or not re.fullmatch(r"[a-z0-9]+", word):
+        return {}
+    if len(word) > 2 and word[-1] == 'e':
+        stem, rx = word[:-1], re.escape(word[:-1]) + '(e|(?=[ie]))'
+    elif len(word) > 2 and word[-1] == 'y' and word[-2] not in 'aeiouy':
+        stem, rx = word[:-1], re.escape(word[:-1]) + '(y|ie)'
+    else:
+        stem, rx = word, re.escape(word)
+    rx = '^' + rx + '[a-z]{0,%d}$' % match.CAP
+    st = _stats(conn)
+    rows = conn.execute(
+        """select p.id, p.nwords, sum(coalesce(array_length(x.positions, 1), 1)) tf
+           from src.passages p, unnest(p.tsv_exact) x
+           where p.tsv_exact @@ to_tsquery('simple', %(pre)s) and x.lexeme ~ %(rx)s and x.lexeme <> %(w)s
+             and (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))
+           group by p.id, p.nwords""", dict(pre=stem + ':*', rx=rx, w=word, keys=keys)).fetchall()
+    if not rows:
+        return {}
+    # df over the whole corpus, as for the other terms, not just the scope
+    n = len(rows) if keys is None else conn.execute(
+        """select count(distinct p.id) from src.passages p, unnest(p.tsv_exact) x
+           where p.tsv_exact @@ to_tsquery('simple', %s) and x.lexeme ~ %s and x.lexeme <> %s""",
+        (stem + ':*', rx, word)).fetchone()[0]
+    idf = math.log(1 + (st['n'] - n + 0.5) / (n + 0.5))
+    k1, b = w['k1'], w['b']
+    return {i: idf * tf * (k1 + 1) / (tf + k1 * (1 - b + b * nw / st['avg'])) for i, nw, tf in rows}
+
+
+_TOK = re.compile(r"[^\W_]+")
+
+
+def _positions(text):
+    """[(word, sentence, paragraph)] for proximity: memorata's _tokenize_positions,
+    with this index's sentence splitter."""
+    out = []
+    for p_i, para in enumerate(text.split('\n\n')):
+        for s_i, (a, b) in enumerate(sentences(para)):
+            for m in _TOK.finditer(para[a:b]):
+                out.append((m.group(0).lower(), (p_i, s_i), p_i))
+    return out
+
+
+def proximity_density(text, terms, form_rx):
+    """(proximity or None, density), ported from memorata (memorata3/search.py
+    proximity_score and keyword_density, read 2026-10-09), with a word's longer forms
+    taken from the literal matcher instead of a bare prefix:
+    - proximity, in [0,1], or None for a one-word query or a passage holding fewer
+      than two of the query's words: coverage × exactness × (0.4 + 0.6 × closeness),
+      where a longer form counts 0.55 as exact, and closeness is 1 − 0.03 per extra
+      word in the tightest window − 0.25 per sentence − 0.6 per paragraph it spans,
+      × 0.75 out of the query's order;
+    - density, in [0,1]: half a saturating count (log, 8 = full) and half the rate
+      (one word in ten = full)."""
+    toks = _positions(text)
+    if not toks or not terms:
+        return None, 0.0
+    pos = {i: [] for i in range(len(terms))}
+    hits = 0
+    for wi, (wd, s, p) in enumerate(toks):
+        hit = False
+        for ti, t in enumerate(terms):
+            if wd == t:
+                pos[ti].append((wi, s, p, True)); hit = True
+            elif form_rx[ti] is not None and form_rx[ti].fullmatch(wd):
+                pos[ti].append((wi, s, p, False)); hit = True
+        hits += hit
+    count_sig = math.log(1 + hits) / math.log(1 + 8)
+    rate_sig = (hits / len(toks)) / 0.10
+    density = min(1.0, 0.5 * min(1.0, count_sig) + 0.5 * min(1.0, rate_sig)) if hits else 0.0
+    present = [ti for ti in pos if pos[ti]]
+    if len(terms) < 2 or len(present) < 2:
+        return None, round(density, 4)
+    coverage = len(present) / len(terms)
+    exactness = sum(1.0 if any(e for *_, e in pos[ti]) else 0.55 for ti in present) / len(present)
+    rarest = min(present, key=lambda ti: len(pos[ti]))
+    best = 0.0
+    for anchor_ in pos[rarest]:
+        chosen = [(ti, min(pos[ti], key=lambda x: abs(x[0] - anchor_[0]))) for ti in present]
+        idx = [c[1][0] for c in chosen]
+        span = max(idx) - min(idx)
+        sents, paras = len({c[1][1] for c in chosen}), len({c[1][2] for c in chosen})
+        order = [ti for ti, _ in sorted(chosen, key=lambda c: c[1][0])]
+        gap = max(0, span - (len(present) - 1))
+        prox = max(0.0, 1.0 - (0.03 * gap + 0.25 * (sents - 1) + 0.6 * (paras - 1)))
+        best = max(best, prox * (1.0 if order == present else 0.75))
+    return round(coverage * exactness * (0.4 + 0.6 * best), 4), round(density, 4)
+
+
+def _form_rx(word):
+    if len(word) < 2 or word in match.FUNCTION_WORDS:
+        return None
+    return re.compile(match.word_rx(match.Term(word), 'loose').replace(f'(?<!{match.WORD_CH})', '').replace(
+        f'(?!{match.WORD_CH})', ''))
+
+
 def lexical(conn, pq, w, keys):
+    """{passage id: lexical score}, the phrase hits, the heading hits, and each scored
+    passage's (proximity, density). The score is BM25 on exact word forms, plus a
+    second leg at lower weight (DESIGN §6.2): Postgres's English stems, or, with
+    `forms_weight`, each word's longer forms; then the phrase, heading, proximity
+    and density factors."""
     text = ' '.join(pq['words'])
     exact = _bm25(conn, 'tsv_exact', 'simple', _lexemes(conn, 'simple', text), w, keys)
-    stem = _bm25(conn, 'tsv_stem', 'english', _lexemes(conn, 'english', text), w, keys)
     score = defaultdict(float)
     for i, s in exact.items():
         score[i] += s
-    for i, s in stem.items():
-        score[i] += w['stem_weight'] * s
+    if w.get('forms_weight'):
+        for word in dict.fromkeys(pq['words']):
+            for i, s in _forms(conn, word, w, keys).items():
+                score[i] += w['forms_weight'] * s
+    if w.get('stem_weight'):
+        stem = _bm25(conn, 'tsv_stem', 'english', _lexemes(conn, 'english', text), w, keys)
+        for i, s in stem.items():
+            score[i] += w['stem_weight'] * s
     if not score:
-        return {}, set(), set()
+        return {}, set(), set(), {}
     ids = list(score)
     phrase, heading = set(), set()
-    if len(pq['words']) > 1:
+    if w.get('phrase') in ('literal', 'forms'):
+        # the query's own words, function words included ("loss of control"), by the
+        # literal matcher: Joseph's case rule, word boundaries, any separators; with
+        # 'forms', each word may also take its longer forms ("information hazards")
+        term = pq['term']
+        mode = 'loose-phrase' if w['phrase'] == 'forms' else 'phrase'
+        if len(match.terms(term, mode)) > 1:
+            pats = match.prefilter(term, mode)
+            where = ' and '.join(['text ~* %s'] * len(pats))
+            for i, t in conn.execute(f"select id, text from src.passages where id = any(%s) and {where}", (ids, *pats)):
+                if match.finditer(term, mode, t):
+                    phrase.add(i)
+    elif len(pq['words']) > 1:
         phrase = {r[0] for r in conn.execute(
             "select id from src.passages where id = any(%s) and tsv_exact @@ phraseto_tsquery('simple', %s)",
             (ids, text))}
@@ -118,7 +241,20 @@ def lexical(conn, pq, w, keys):
         score[i] *= w['phrase_factor']
     for i in heading:
         score[i] *= w['heading_factor']
-    return dict(score), phrase, heading
+    sig = {}
+    pb, db_ = w.get('proximity_boost', 0), w.get('density_boost', 0)
+    if pb or db_:
+        # only the head of the lexical ranking: past a few hundred, RRF's 1/(k + rank)
+        # barely moves, and reading every passage holding "risk" would cost seconds
+        head = sorted(score, key=lambda i: -score[i])[:w.get('signal_pool', 500)]
+        terms = list(dict.fromkeys(pq['words']))
+        frx = [_form_rx(t) for t in terms]
+        for i, t in conn.execute("select id, text from src.passages where id = any(%s)", (head,)):
+            sig[i] = proximity_density(t, terms, frx)
+        if w.get('signals', 'lexical') == 'lexical':
+            for i, (pr, de) in sig.items():
+                score[i] *= (1 + pb * pr if pr is not None else 1.0) * (1 + db_ * de)
+    return dict(score), phrase, heading, sig
 
 
 # ------------------------------------------------------------------ semantic
@@ -132,6 +268,28 @@ def semantic(conn, qvec, model, pool, keys):
            where (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))
            order by d limit %(n)s""", dict(v=v, m=model, n=pool, keys=keys)).fetchall()
     return {i: float(d) for i, d in rows}
+
+
+def answerability(conn, query, qvec, model='bge-m3', keys=None, w=None):
+    """Whether anything in scope seems to answer the query (a cue, not a gate; see
+    weights.toml [answerable]): the nearest passage's cosine distance, how many
+    passages hold all the query's content words, and `likely_unanswered` when none
+    do and the nearest passage is at least the threshold away."""
+    W = (w or weights())['answerable']
+    pq = parse(query)
+    near = None
+    if qvec is not None:
+        v = '[' + ','.join(f'{x:.6g}' for x in qvec) + ']'
+        near = conn.execute(
+            """select min(e.vec <=> %(v)s::halfvec) from src.passages p
+               join cache.embeddings e on e.model = %(m)s and e.input_sha = p.embed_sha
+               where (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))""", dict(v=v, m=model, keys=keys)).fetchone()[0]
+    n_all = conn.execute(
+        """select count(*) from src.passages where tsv_exact @@ plainto_tsquery('simple', %s)
+           and (%s::text[] is null or doc_key = any(%s))""", (' '.join(pq['words']), keys, keys)).fetchone()[0] if pq['words'] else 0
+    unanswered = near is not None and n_all == 0 and near >= W['distance']
+    return dict(nearest_distance=None if near is None else round(float(near), 4), passages_with_all_words=n_all,
+                likely_unanswered=unanswered, threshold=W['distance'])
 
 
 def has_vectors(conn, model):
@@ -233,7 +391,7 @@ def search(conn, query, n=10, model='bge-m3', fusion=None, keys=None, qvec=None,
     W = w or weights()
     pq = parse(query)
     fusion = fusion or W['fusion']['method']
-    lex, phrase, heading = lexical(conn, pq, W['lexical'], keys)
+    lex, phrase, heading, sig = lexical(conn, pq, W['lexical'], keys)
     sem = {}
     if qvec is not None:
         sem = semantic(conn, qvec, model, W['fusion']['semantic_pool'], keys)
@@ -268,11 +426,17 @@ def search(conn, query, n=10, model='bge-m3', fusion=None, keys=None, qvec=None,
         f_status = W['status']['superseded'] if r[13] == 'superseded' else 1.0
         f_inf = W['influence'].get(r[14] or 'corpus', 1.0)
         f_rec = 1 + W['recency']['weight'] * rec.get(r[1], 0.5)
-        score = base * f_def * f_sec * f_status * f_inf * f_rec
+        pr, de = sig.get(i, (None, 0.0))
+        f_sig = 1.0
+        if W['lexical'].get('signals') == 'post':
+            f_sig = (1 + W['lexical'].get('proximity_boost', 0) * pr if pr is not None else 1.0) * \
+                    (1 + W['lexical'].get('density_boost', 0) * de)
+        score = base * f_def * f_sec * f_status * f_inf * f_rec * f_sig
         out.append((r, score, dict(base=base, sem_rank=sr if i in sem_rank else None, lex_rank=lr if i in lex_rank else None,
                                    lexical=lex.get(i), distance=sem.get(i), phrase=i in phrase, heading=i in heading,
                                    defines=dm[1] if dm else None, f_def=f_def, f_section=f_sec, f_status=f_status,
-                                   f_influence=f_inf, f_recency=round(f_rec, 3))))
+                                   f_influence=f_inf, f_recency=round(f_rec, 3), proximity=pr, density=de,
+                                   f_signals=round(f_sig, 3))))
     out.sort(key=lambda x: -x[1])
     return _collapse(out, n), pq
 

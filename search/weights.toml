@@ -25,8 +25,41 @@ semantic_pool = 400
 k1 = 1.2
 b = 0.75
 stem_weight = 0.5
+# Each query word's longer forms, as `lexical` finds them (DESIGN §7.1), as a second
+# leg in place of the stems or beside them (DESIGN §6.2 proposed replacing). Off:
+# measured on pilot-check, 2026-10-09, replacing the stems at 0.5 scored -0.011
+# nDCG@10 (interval -0.036 to +0.007; 7 wins, 6 losses), and adding the forms beside
+# them -0.003. The stems reach forms the run-on can't, because the query word is
+# often itself the derived form: "misalignment" -> "misaligned" (-0.060 without
+# stems), "whistleblower" -> "whistleblowing" (-0.166).
+forms_weight = 0.0
 # A passage holding the query's words adjacent and in order. Pilot value.
 phrase_factor = 2.0
+# How the phrase is found: "forms" is the literal matcher (DESIGN §7.1) on the
+# query's own words, function words included, each allowed its longer forms ("loss of
+# control"; "information hazards"); "literal" the same without the longer forms;
+# "tsquery" Postgres's phrase match on the content words alone, which never matched
+# "loss of control" (it looked for "loss control"). Measured 2026-10-09 with
+# fusion: "literal" +0.000, "forms" +0.001; ranking by the lexical side alone,
+# "forms" +0.045 (information hazard +0.579, systemic risk +0.163).
+phrase = "forms"
+# Memorata's proximity and density (memorata3/search.py), ported in rank.py
+# (proximity_density). Each multiplies the fused score as (1 + boost × signal), as
+# memorata does, over the head of the lexical ranking (signal_pool passages).
+# Measured 2026-10-09 on pilot-check, with phrase = "forms":
+# - proximity 0.6 (memorata's value): +0.026 (interval -0.002 to +0.073; 5 wins,
+#   1 loss). 0.3 and 1.0 scored the same within 0.003, so the value isn't tuned.
+#   Most of the gain is one query, "information hazard" (+0.339): without it the
+#   mean gain is +0.005. Folded into the lexical score instead of the fused one, as
+#   DESIGN §6.2 first had it, proximity changed nothing (-0.002): RRF keeps only
+#   the lexical rank, and the head of that rank barely moved.
+# - density 0.2 (memorata's): off. It cost one-word queries, where it is the only
+#   signal ("whistleblower" -0.084, "definition of risk" -0.024); with proximity,
+#   density 0.1 scored +0.019 against proximity alone's +0.026.
+proximity_boost = 0.6
+density_boost = 0.0
+signals = "post"
+signal_pool = 500
 # A passage whose heading path holds every query word. Untested: the pilot didn't
 # index headings, though it found 6 of the NRR's 79 "hazard" forms in headings only.
 heading_factor = 1.2
@@ -84,3 +117,22 @@ corpus = 1.0
 # document's factor is 1 + weight × its position among that organisation's
 # documents by year, from 0 (oldest) to 1 (newest). Untested.
 weight = 0.05
+
+[answerable]
+# A cue for a query nothing in scope answers (DESIGN §11 step 8: the outline's tiers
+# are ranks, so an off-topic query still gets a "top"). rank.answerability() flags
+# a query as likely unanswered when no passage in scope holds all its content words
+# AND the nearest passage is at least this cosine distance away (bge-m3). Neither
+# signal alone separates: over all texts the nearest passage to "serious incident"
+# is at 0.393 and to "volcanic eruption in Iceland" (the NRR covers eruptions) at
+# 0.398. Measured 2026-10-09 on 21 on-topic queries (the pilot's 16 and the
+# outline's) and 20 off-topic ones (cooking, music, sport, "zzqqxx" …):
+# - over Au5, every on-topic query's nearest passage was at 0.486 or less and every
+#   off-topic one's at 0.512 or more, so 0.50 flags all 20 off-topic queries and no
+#   on-topic one;
+# - over all texts, 0.50 flags 10 of the 20 off-topic queries and no on-topic one;
+#   the nearest distance falls as the scope grows, so the cue is weaker there.
+# 41 queries, one embedder, and off-topic queries chosen far from the corpus: a
+# query near the corpus's subjects that it doesn't answer is untested. So it labels,
+# and never hides results.
+distance = 0.50
