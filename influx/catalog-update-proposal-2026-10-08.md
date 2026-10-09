@@ -112,7 +112,10 @@ On this reading, the corpus as it stands has one candidate for "superseded" (§5
                                         Canonicalized, and citable as history, not as the active document
 `@key` [superseded-by: @next-key] [no-canon: <reason>]
                                         an earlier version that is also not canonicalized
+`@key` [canon-text: <path>]             canonicalize this repo-relative file instead of relata's conversion
 ```
+
+`canon-text` was proposed by the canonicalize agent on 2026-10-09, to move its last hand-kept judgment (which text stands as a key's canonical text, when it isn't relata's conversion) out of its code and into the catalog. It is used for IASR 2026 (`ref/iasr-2026-full.md`, the publisher's web edition) and the CSB report (converted by hand).
 
 **Where tags may appear.** A tag can follow any listed key: in a main-table `relata` cell (including cells that hold several keys), in a list item, or in a table cell elsewhere. It belongs to the one key before it.
 
@@ -120,9 +123,9 @@ On this reading, the corpus as it stands has one candidate for "superseded" (§5
 
 ```python
 KEY  = r'[A-Za-z0-9_](?:[\w:.#$%&+?<>~/-]*[\w])?'
-TAG  = r'\[(?:no-canon|subsumed-by|superseded-by):[^\]\n]*\]'
+TAG  = r'\[(?:no-canon|subsumed-by|superseded-by|canon-text):[^\]\n]*\]'
 ITEM = re.compile(r'(?<![\w@])@(?P<key>' + KEY + r')`?(?P<tags>(?:[ \t]*' + TAG + r')*)')
-TAGS = re.compile(r'\[(?P<status>no-canon|subsumed-by|superseded-by):[ \t]*(?P<arg>[^\]\n]*)\]')
+TAGS = re.compile(r'\[(?P<status>no-canon|subsumed-by|superseded-by|canon-text):[ \t]*(?P<arg>[^\]\n]*)\]')
 ```
 
 `ITEM.finditer` over the file gives each key with its run of tags, and `TAGS.findall` on the `tags` group splits the run. Because `ITEM` consumes the tags, a key named inside a tag is not matched as a separate listing.
@@ -135,10 +138,11 @@ TAGS = re.compile(r'\[(?P<status>no-canon|subsumed-by|superseded-by):[ \t]*(?P<a
 | `no-canon` | in `refs.bib` | skipped | a row giving the reason |
 | `subsumed-by` | in `refs.bib` | skipped | a row naming the copy that is used |
 | `superseded-by` | in `refs.bib` | canonicalized | a row with its fidelity mark, marked "superseded by …" |
+| `canon-text` | in `refs.bib` | canonicalized from the named file | a row with its fidelity mark, naming the file |
 
 **Rules:**
 - **One status per key, per kind.** A key's tags are stated once. Untagged repeats of a key elsewhere are harmless, and two different runs of tags on the same key are an error.
-- **Which combinations are allowed.** `no-canon` combines with `superseded-by`. `subsumed-by` stands alone, because a copy has no status apart from the text it copies.
+- **Which combinations are allowed.** `no-canon` combines with `superseded-by`, and so does `canon-text`. `canon-text` does not combine with `no-canon`. `subsumed-by` stands alone, because a copy has no status apart from the text it copies.
 - **Targets are listed in their own right.** The key a `subsumed-by` or `superseded-by` names is also listed elsewhere in the catalog. The tag doesn't bring it into scope.
 - **`subsumed-by` does not chain.** It names a key that is not itself subsumed.
 - **`superseded-by` names the next version, not the latest.** Chains (v1.0 → v2.0 → … → v3.4) are expected. Following them from any version ends at a key with no `superseded-by`, which is the active one. A cycle is an error.
@@ -158,6 +162,12 @@ TAGS = re.compile(r'\[(?P<status>no-canon|subsumed-by|superseded-by):[ \t]*(?P<a
 2. **Web pages printed to PDF.** 83 of the keys outside the original 84 are web pages rendered to PDF, with a provenance first page. Their page numbers are rendering artefacts, as the renderers note. Should canonicalize recognise them by itself (the provenance page is uniform), or should the catalog say so with a tag of its own?
 3. **Per-source judgments now in code or in INDEX.md.** These include `LOCAL` (a hand-made conversion for the CSB report, and the publisher's web edition for IASR 2026) and the editorial notes Joseph saw in INDEX.md. Should they move into the catalog as tags too, for example a status naming the markdown to use? Or should they stay in code, with INDEX.md generated wholly from the catalog plus measurements?
 4. **INDEX order.** Should it follow catalog order or alphabetical order? With 466 keys, alphabetical order may serve readers better; catalog order keeps families and lineages together.
+
+**Its answers, 2026-10-09** (from the canonicalize session, ai-risk-model-f7):
+1. Keep the inline tag. `bin/canonicalize` reads the catalog through the regex above unchanged, and every rule above is an error that stops the run before anything is built.
+2. No tag needed. Web pages printed to PDF begin with a "PROVENANCE" page saying their page numbers are rendering artefacts; canonicalize detects that, skips printed-page detection for them, and says so in `pages.json` and INDEX.
+3. INDEX.md is now generated wholly from the catalog plus the build's own measurements. The one judgment left, which text stands as a key's canonical text when it isn't relata's conversion, moves into the catalog as `canon-text` (above).
+4. Catalog order, under the catalog's own section headings, so lineages and families stay together.
 
 ## 3. Changes to existing rows
 
