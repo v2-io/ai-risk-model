@@ -84,7 +84,8 @@ Claude's leans on these, with reasoning, are in `MODEL-GAMMA-METHODOLOGY-AND-PLA
 | `influx/*.md` | smaller inputs: the aligned-to-whom table and diagram, a note on AI welfare framings in the sources, a note setting an in-progress philosophy discussion beside the corpus |
 | `alignment-model/` | the "Aligned to whom?" map: the actors who influence a deployed agent, through what, and what reaches it. Built from `alignment-model/alignment.md`; its README says how |
 | `ref/` | local copies of reference texts. Some are git-ignored (see `ref/.gitignore`), including the IASR 2026 full text. |
-| `bin/extract-text` | regenerates the `pdftotext -layout` extractions that line references point into (see Working notes) |
+| `bin/canonicalize` | builds `ref/canonical/<relata-key>.md`: each catalog source's markdown with physical-page markers (git-ignored; rebuild in under a minute) |
+| `bib/` | `relata emit bib` writes `bib/refs.bib` from the `@key`s in `source-catalog.md` (linked in as `bib/src/source-catalog.md`) |
 | `.archive/` | superseded material |
 
 `influx/` is working material and will move to `.archive/` as its contents are superseded.
@@ -92,7 +93,7 @@ Claude's leans on these, with reasoning, are in `MODEL-GAMMA-METHODOLOGY-AND-PLA
 ## Working notes
 
 - **Sources live in relata**, Joseph's citation manager (`relata --help`). For a document's text, `relata show <key>` gives its PDF path; extract it with `pdftotext -layout`. Avoid `relata show-markdown` to check conversion state, since it forces the conversion. Avoid `relata ingest --retry`, which re-stages the whole shared review queue.
-- **Line references** in the atlas and source-model files point into `pdftotext -layout` extractions, which aren't kept in the repo; `bin/extract-text <key>…` regenerates them into `.extract/` (git-ignored). PDF pages survive re-extraction; cite both.
+- **Line references in `influx/`** (the atlas, the source models, the spike, the thin pass and others) are lines of `pdftotext -layout` extractions made before `ref/canonical/` existed; banners there say so. Their page numbers are physical PDF pages and still hold. To regenerate the layout text for one source: `pdftotext -layout "$(relata show KEY | awk '/^pdf:/{print $2}')" KEY.txt`. For new citations, the proposed anchor (plan, G1(e)) is the physical PDF page from `ref/canonical/`'s markers plus the exact quote.
 - **Parallel agents** each need their own scratch directory. Shared helper-script names have collided before.
 - **This repository is public.** Keep private or personal material out of it.
 - **Current Exposures**: influx/ai-welfare-and-release-framings.md, influx/model-beta/notes-sx.md, and influx/perspective-logos-2026-09-28.md -- Joseph may decide to remove at some point, but they are fine for now (- Joseph, 28-Sept-2026)

@@ -11,7 +11,7 @@ Written 2026-09-28 by ten parallel agents, one per family of sources, for the sc
 pdftotext -layout "$(relata show <key> | awk '/^pdf:/{print $2; exit}')" <key>.txt
 ```
 
-The extractions lived in a session scratchpad and weren't kept. `bin/extract-text <key>…` (repo root) re-runs that command into `.extract/`, which gives the same lines on the same poppler version. Pages are PDF pages counted by form feeds, and they survive a re-extraction. For web pages rendered to PDF by earlier agents, pages are rendering artefacts, so cite by heading. Exceptions:
+The extractions lived in a session scratchpad and weren't kept. To regenerate one, run `pdftotext -layout` on the PDF path that `relata show <key>` prints; the same poppler version gives the same lines. Pages are PDF pages counted by form feeds, and they survive a re-extraction. For web pages rendered to PDF by earlier agents, pages are rendering artefacts, so cite by heading. Exceptions:
 - IASR 2026 cites `ref/iasr-2026-full.md` (a local-only copy; see `ref/.gitignore`);
 - `anthropic-autonomous-dev` cites `ref/anthropic-autonomous-dev.md`.
 
