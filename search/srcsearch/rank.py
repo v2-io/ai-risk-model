@@ -12,6 +12,14 @@ Ranked search fuses two rankings, then multiplies in query-independent priors:
 
 Verbatim copies are shown once, with where else they occur (DESIGN §6.3): copying
 is evidence here, so it is surfaced, not discarded.
+
+Every ranking factor is a hypothesis about relevance, registered in
+search/RANKING.md with its impetus, its encoding, how it is checked and its
+status. A factor without a register entry doesn't belong here. When a result
+looks wrong, find which hypothesis's term is mis-specified (--explain) and test
+that hypothesis; don't add a special case (Joseph, 2026-10-09: "it becomes
+spaghetti really quickly"). RANKING.md §3 proposes replacing the fusion and
+multipliers below with one log-odds model; until then this is the model in use.
 """
 import math, os, re, tomllib
 from collections import defaultdict

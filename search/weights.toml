@@ -5,6 +5,11 @@
 # judge's grades on 16 queries, which shows a direction with error bars, not a
 # tuned value. "Untested" means it is a starting guess. Change a weight only with an
 # eval run before and after, recorded in the commit message (DESIGN §8).
+#
+# Every weight belongs to a hypothesis about relevance in search/RANKING.md, which
+# records why it was proposed, how it is checked and whether it has held up. A new
+# weight needs a register entry, a fixture and an ablation before it gets any value
+# but neutral (RANKING.md §3.3).
 
 [fusion]
 # Reciprocal rank fusion: score = 1/(k + semantic rank) + 1/(k + lexical rank).

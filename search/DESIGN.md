@@ -153,6 +153,8 @@ Read against SB 53, the AI Act, IASR 2026 and AISI's OCR'd *Frontier AI Trends R
 
 ## 6. Ranking
 
+*Since 2026-10-09 the ranking's factors are registered as hypotheses in `search/RANKING.md`, which also proposes one log-odds model to replace the fusion and multipliers described below. This section is the original design. RANKING.md §2 describes what is built now.*
+
 ### 6.1 Candidates
 
 For a query, the index gathers candidate passages from five signals:
@@ -441,8 +443,9 @@ The rest of the pooled gap (0.278 against 0.291) is a trade-off, not a fault. Co
    - In Anthropic's Risk Report, everything after "2.14 Claim 8", §§3–5 included, nests under it (326 passages).
    - The Risk Report's front-matter contents (L40–69) is indexed as body text, so it ranks high for "hazard".
    - IASR's Figure 2.1 data text ranks first for "hazard", above IASR's own definition.
-9. The gold queries, now partly reframed by §12's evaluation idea, then `--eval` and tuning.
-10. Grouping, `--history`, and the embedder bake-off.
+9. The ranking as one model of evidence (`search/RANKING.md`, proposed 2026-10-09 at Joseph's request): every factor a registered hypothesis, with fixtures, ablations and equal weights until measured. It waits on Joseph's decisions in RANKING.md §8.
+10. The gold queries, now partly reframed by §12's evaluation idea, then `--eval` and tuning.
+11. Grouping, `--history`, and the embedder bake-off.
 
 ## 12. Another shape for results: a folded outline (an open idea, 2026-10-09)
 
