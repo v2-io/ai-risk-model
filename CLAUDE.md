@@ -103,6 +103,8 @@ The plan is a proposal. Apart from decisions marked as Joseph's, nothing in it i
 | `gamma-presentation/` | a guided tour of the plan, and the questions its builder put to the plan's author |
 | `ref/` | local copies of reference texts. Some are git-ignored (see `ref/.gitignore`), including the IASR 2026 full text |
 | `bin/canonicalize` | builds `ref/canonical/<relata-key>.md`: each catalog source's text with physical-page markers (git-ignored; rebuilt locally) |
+| `bin/source-index`, `bin/source-search` | a local search index over the canonical texts (Postgres database `airisk_sources`): ranked search with definitions first, every definition of a term (`--defs`), and every occurrence (`--all`). Each result carries a relata key, PDF page, printed page and exact quote |
+| `search/` | the index's design (`DESIGN.md`, with what is built and what isn't), schema, ranking weights (`weights.toml`, each with its reason) and code |
 | `bib/` | `relata emit bib` writes `bib/refs.bib` from the `@key`s in `source-catalog.md` |
 | `.archive/` | superseded material |
 
@@ -112,6 +114,7 @@ The plan is a proposal. Apart from decisions marked as Joseph's, nothing in it i
 
 - **Sources live in relata**, Joseph's citation manager (`relata --help`). For a document's text, `relata show <key>` gives its PDF path; extract it with `pdftotext -layout`. Avoid `relata show-markdown` to check conversion state, since it forces the conversion. Avoid `relata ingest --retry`, which re-stages the whole shared review queue.
 - **Line references in `influx/`** (the atlas, the source models, the spike, the thin pass and others) are lines of `pdftotext -layout` extractions made before `ref/canonical/` existed; banners there say so. Their page numbers are physical PDF pages and still hold. To regenerate the layout text for one source: `pdftotext -layout "$(relata show KEY | awk '/^pdf:/{print $2}')" KEY.txt`. For new citations, the proposed anchor (plan, G1(e)) is the physical PDF page from `ref/canonical/`'s markers plus the exact quote.
+- **Searching the sources.** `bin/source-search 'hazard'`, `--defs hazard`, `--all hazard`; `--in` narrows to documents, `--verify` runs the anchors through `bin/check-quote`. `bin/source-index` brings the database up to date after the catalog or the canonical texts change (about 20 s, plus embedding any new passages with bge-m3 through ollama).
 - **Parallel agents** each need their own scratch directory. Shared helper-script names have collided before.
 - **This repository is public.** Keep private or personal material out of it.
 - **Current Exposures**: influx/ai-welfare-and-release-framings.md, influx/model-beta/notes-sx.md, and influx/perspective-logos-2026-09-28.md -- Joseph may decide to remove at some point, but they are fine for now (- Joseph, 28-Sept-2026)

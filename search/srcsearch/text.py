@@ -101,18 +101,23 @@ LINE_EDGE_RE = re.compile(r' ?\n ?')
 BLANKS_RE = re.compile(r'\n{3,}')
 
 
-def clean(raw, start=0, end=None, emphasis=False):
+def clean(raw, start=0, end=None, emphasis=False, refs=False):
     """Indexed text of raw[start:end], as a Mapped. With emphasis=True, markdown
-    bold and italics are kept: definition detection reads `**Term:**` and `*term*`."""
+    bold and italics are kept: definition detection reads `**Term:**` and `*term*`.
+    With refs=True, footnote markers and citation link texts are kept ("including<sup>7</sup>
+    the" gives "including7 the"; "[2024\\)](#page-63-7)" gives "2024)"): they aren't
+    words for ranking, but they are in the text a quote must match (bin/check-quote
+    matches letters and digits, so "including the" is a near miss)."""
     m = Mapped.of(raw, start, end)
     m = m.sub(COMMENT_RE, lambda _: ' ')
     m = m.sub(MARK_LINE_RE, lambda _: ' ')
     m = m.sub(IMG_RE, lambda _: ' ')
-    m = m.sub(LINK_RE, lambda x: ' ' if CITE_TEXT_RE.fullmatch(x.group(1)) else (1,))
+    m = m.sub(LINK_RE, lambda x: ' ' if CITE_TEXT_RE.fullmatch(x.group(1)) and not refs else (1,))
     m = m.sub(AUTOLINK_RE, lambda _: ' ')
     m = m.sub(BARE_URL_RE, lambda _: ' ')
     m = m.sub(BR_RE, lambda _: ' ')
-    m = m.sub(SUP_NUM_RE, lambda _: ' ')
+    if not refs:
+        m = m.sub(SUP_NUM_RE, lambda _: ' ')
     m = m.sub(TAG_RE, lambda _: '')
     m = m.sub(ENTITY_RE, lambda x: html.unescape(x.group(0)))
     m = m.sub(ESCAPE_RE, lambda _: (1,))

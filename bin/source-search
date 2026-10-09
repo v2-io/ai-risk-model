@@ -1,0 +1,285 @@
+#!/usr/bin/env python3
+"""Search the catalog's sources (search/DESIGN.md §7). Build the index first with
+bin/source-index.
+
+    bin/source-search 'hazard'                 ranked: definitions of the term first, then usage
+    bin/source-search --defs hazard            every definition of "hazard" (and of terms
+                                               containing it), grouped by source, active first
+    bin/source-search --all hazard             every occurrence of every word form containing
+                                               "hazard": counts by document and form, then each
+                                               occurrence in context
+    bin/source-search 'severe harm' --in OAI-PF xai-2026-faif     narrowed to documents
+    bin/source-search … --explain              the factors behind each result's score
+    bin/source-search … --json                 for agents (automatic when stdout is not a terminal)
+    bin/source-search … --verify               run each anchor through bin/check-quote
+
+--in takes relata keys (a trailing * matches a prefix), catalog Codes ("SB 53",
+"OAI-PF"), organisations ("Anthropic"), or catalog sections ("UK AI Security
+Institute"); several are joined.
+
+Every result carries an anchor: relata key, physical PDF page, printed page where
+established, and an exact quote that bin/check-quote can confirm. Where the
+source's fidelity record says its pages need the PDF (check-all, or one of its
+pages_to_check), the anchor says so; --verify settles them.
+
+Ranking is reciprocal rank fusion of lexical (BM25, exact forms over stems) and
+semantic (bge-m3) rankings, with the priors in search/weights.toml, each of which
+gives its reason there. --fusion mix, lexical or semantic selects another.
+
+Exit status: 0 with results, 1 with none, 3 if the search itself failed (nothing
+on stdout then).
+"""
+import argparse, json, os, subprocess, sys, textwrap
+
+sys.dont_write_bytecode = True
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(REPO, 'search'))
+from srcsearch import anchor, db, embed, rank  # noqa: E402
+from srcsearch.text import clean, words  # noqa: E402
+
+
+def wrap(s, indent='    ', width=100):
+    return textwrap.fill(s, width=width, initial_indent=indent, subsequent_indent=indent)
+
+
+def short_path(path, width=130):
+    """A heading path, its outer headings elided if it is too long."""
+    parts = list(path)
+    while len(parts) > 1 and len(' › '.join(parts)) > width:
+        parts.pop(0)
+    s = ' › '.join(parts)
+    return ('… › ' if len(parts) < len(path) else '') + (s if len(s) <= width else s[:width - 1] + '…')
+
+
+def verify(anchors):
+    """Run anchors through bin/check-quote; attach its status and settled page."""
+    if not anchors:
+        return
+    batch = [dict(id=str(i), key=a['key'], anchors=[dict(quote=a['quote'], page=a['page'])])
+             for i, a in enumerate(anchors)]
+    out = subprocess.run([os.path.join(REPO, 'bin', 'check-quote'), '--batch', '-', '--jsonl'],
+                         input='\n'.join(json.dumps(b) for b in batch), capture_output=True, text=True)
+    recs = [json.loads(l) for l in out.stdout.splitlines() if l.strip()]
+    for r in recs:
+        a = anchors[int(r.get('id', -1))]
+        x = (r.get('anchors') or [{}])[0]
+        a['check_quote'] = {k: x[k] for k in ('status', 'page', 'page_from', 'printed', 'exact', 'note') if k in x}
+        settled = x.get('page')
+        a['verified'] = f"check-quote: {x.get('status')}" + (
+            f", page {settled} from the {x.get('page_from')}" if settled is not None and settled != a['page'] else '')
+    if out.returncode == 2 or not recs:
+        print(f'bin/check-quote failed: {out.stderr.strip()[:300]}', file=sys.stderr)
+
+
+# --------------------------------------------------------------------- ranked
+def ranked(conn, a, keys):
+    qvec = None
+    if a.fusion not in ('lexical',):
+        if rank.has_vectors(conn, a.model):
+            qvec = embed.embed_query(a.model, rank.parse(a.query)['query'])
+        elif a.fusion == 'semantic':
+            raise SystemExit(f'no {a.model} vectors yet: run bin/source-index')
+        else:
+            print(f'note: no {a.model} vectors yet, so lexical ranking only (run bin/source-index)', file=sys.stderr)
+    res, pq = rank.search(conn, a.query, n=a.n, model=a.model, fusion=a.fusion, keys=keys, qvec=qvec)
+    out = []
+    for r, score, ex in res:
+        (pid, key, ord_, start, end, page, printed, page_last, section, path, text, norm_sha, nip, status, influence,
+         title, code, fidelity, ptc, active) = r
+        at = ex['defines']['at'] if ex['defines'] else None
+        an = anchor.make(key, start, end, pq['words'], at=at, fidelity=fidelity, pages_to_check=ptc)
+        out.append(dict(rank=len(out) + 1, score=round(score, 6), anchor=an, title=title, code=code, status=status,
+                        active_key=active, section=section, path=path, passage=f'{key}#{ord_}',
+                        pages=[page, page_last], defines=ex['defines'],
+                        copies=[dict(key=k, page=p) for k, p in ex.get('copies', [])],
+                        matches=sorted({w for w in words(text) if any(w == q or len(q) >= 4 and q in w for q in pq['words'])}),
+                        text=text if a.full else None, explain=ex if a.explain else None))
+    if a.verify:
+        verify([o['anchor'] for o in out])
+    return out, pq
+
+
+def print_ranked(out, pq, a):
+    for o in out:
+        an = o['anchor']
+        print(f"{o['rank']:>2}. {anchor.fmt(an)}")
+        bits = [o['code'] or o['title'] or '']
+        if o['status'] != 'active':
+            bits.append(f"{o['status']}, active version {o['active_key']}" if o['active_key'] else o['status'])
+        if o['defines']:
+            d = o['defines']
+            bits.append(f"defines {d['term']!r} ({d['kind']}, {d['conf']:.2f})")
+        if o['section'] != 'body':
+            bits.append(o['section'])
+        print('    ' + ' · '.join(b for b in bits if b))
+        if o['path']:
+            print('    ' + short_path(o['path']))
+        if o['copies']:
+            print('    also verbatim in: ' + ', '.join(f"{c['key']} p.{c['page']}" for c in o['copies']))
+        if o['matches']:
+            print('    matches: ' + ', '.join(o['matches']))
+        if a.full:
+            print(wrap(o['text']))
+        if a.explain:
+            ex = o['explain']
+            print(f"    score {o['score']:.5f} = base {ex['base']:.5f} (semantic rank {ex['sem_rank']}, lexical rank "
+                  f"{ex['lex_rank']}{', phrase' if ex['phrase'] else ''}{', heading' if ex['heading'] else ''})"
+                  f" × defines {ex['f_def']:.2f} × section {ex['f_section']} × status {ex['f_status']}"
+                  f" × influence {ex['f_influence']} × recency {ex['f_recency']}")
+        print()
+
+
+# ---------------------------------------------------------------- definitions
+def defs(conn, a, keys):
+    groups, pq = rank.definitions(conn, a.query, keys=keys, narrower=not a.exact)
+    out = []
+    for key, rows in groups:
+        r0 = rows[0]
+        g = dict(key=key, title=r0[13], code=r0[14], status=r0[11], active_key=r0[18], influence=r0[12], definitions=[])
+        for (k, term, norm, kind, conf, ev, at, page, printed, start, end, *_rest) in rows:
+            an = anchor.make(k, start, end, pq['words'], at=at, fidelity=r0[16], pages_to_check=r0[17])
+            g['definitions'].append(dict(term=term, kind=kind, conf=conf, evidence=ev, exact=norm == pq['norm'], anchor=an))
+        out.append(g)
+    if a.verify:
+        verify([d['anchor'] for g in out for d in g['definitions']])
+    return out, pq
+
+
+def print_defs(out, pq):
+    n = sum(len(g['definitions']) for g in out)
+    print(f'{n} definitions of "{pq["term"]}" (and of terms containing it) in {len(out)} documents\n')
+    for g in out:
+        st = '' if g['status'] == 'active' else f"  [{g['status']}" + (f", active version {g['active_key']}]" if g['active_key'] else ']')
+        print(f"== {g['key']}  {g['code'] or ''}  {g['title'] or ''}{st}")
+        for d in g['definitions']:
+            print(f"  {d['term']!r}  ({d['kind']}, {d['conf']:.2f}{'' if d['exact'] else ', narrower term'})")
+            print('    ' + anchor.fmt(d['anchor']))
+        print()
+
+
+# ---------------------------------------------------------------- concordance
+def concordance(conn, a, keys):
+    pq, rx, ps, hs = rank.concordance_rows(conn, a.query, keys=keys)
+    seen, occ = set(), []
+    for pid, key, section, start, end, text in ps:
+        m = clean(anchor.raw_of(key), start, end)
+        for mm in rx.finditer(m.s):
+            off = m.pos[mm.start()]
+            if (key, off) in seen:            # overlapping pieces of one long block
+                continue
+            seen.add((key, off))
+            occ.append(dict(key=key, form=mm.group(0).lower(), section=section, offset=off, start=start, end=end))
+    heads = []
+    for key, start, text, title, page, printed in hs:
+        for mm in rx.finditer(text + ' ' + (title or '')):
+            heads.append(dict(key=key, form=mm.group(0).lower(), page=page, printed=printed, heading=text))
+    by = {}
+    for o in occ:
+        g = by.setdefault(o['key'], dict(key=o['key'], body={}, references={}, headings={}, occurrences=[]))
+        part = 'references' if o['section'] == 'references' else 'body'
+        g[part][o['form']] = g[part].get(o['form'], 0) + 1
+        g['occurrences'].append(o)
+    for h in heads:
+        g = by.setdefault(h['key'], dict(key=h['key'], body={}, references={}, headings={}, occurrences=[]))
+        g['headings'][h['form']] = g['headings'].get(h['form'], 0) + 1
+    info = {r[0]: r[1:] for r in conn.execute('select key, code, title, status, fidelity_mark, pages_to_check from src.documents')}
+    out = []
+    for key in sorted(by, key=lambda k: -sum(by[k]['body'].values())):
+        g = by[key]
+        code, title, status, fid, ptc = info.get(key, (None,) * 5)
+        g.update(code=code, title=title, status=status)
+        if not a.counts:
+            for o in g['occurrences']:
+                p = anchor.pages_of(key).at(o['offset'])
+                o['anchor'] = anchor.make(key, o['start'], o['end'], [o['form']], at=o['offset'], fidelity=fid, pages_to_check=ptc)
+                o['page'] = p[0]
+        else:
+            g['occurrences'] = []
+        out.append(g)
+    forms = {}
+    for g in out:
+        for part in ('body', 'references', 'headings'):
+            for f, c in g[part].items():
+                forms.setdefault(f, [0, 0, 0])[('body', 'references', 'headings').index(part)] += c
+    if a.verify:
+        verify([o['anchor'] for g in out for o in g['occurrences']])
+    return out, pq, forms
+
+
+def print_concordance(out, pq, forms, a):
+    tb = sum(v[0] for v in forms.values())
+    print(f'"{pq["term"]}": {tb} occurrences in body text, {sum(v[1] for v in forms.values())} in references, '
+          f'{sum(v[2] for v in forms.values())} in headings, across {len(out)} documents')
+    print('word forms matched (body / references / headings):')
+    for f, (b, r, h) in sorted(forms.items(), key=lambda x: -sum(x[1])):
+        print(f'  {f:<30} {b:>6} {r:>6} {h:>6}')
+    print()
+    for g in out:
+        b, r, h = sum(g['body'].values()), sum(g['references'].values()), sum(g['headings'].values())
+        print(f"== {g['key']}  {g['code'] or ''}  body {b}" + (f', references {r}' if r else '') + (f', headings {h}' if h else '')
+              + ('' if g['status'] == 'active' else f"  [{g['status']}]"))
+        print('   ' + ', '.join(f'{f} {c}' for f, c in sorted(g['body'].items(), key=lambda x: -x[1])))
+        for o in g['occurrences']:
+            print(f"   {o['form']:<16} " + anchor.fmt(o['anchor']) + ('  (references)' if o['section'] == 'references' else ''))
+        print()
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0], formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 epilog=__doc__.split('\n\n', 1)[1])
+    ap.add_argument('query', nargs='+')
+    mode = ap.add_mutually_exclusive_group()
+    mode.add_argument('--defs', action='store_true', help='every definition of the term')
+    mode.add_argument('--all', action='store_true', help='every occurrence: a concordance')
+    ap.add_argument('--in', dest='within', nargs='+', metavar='DOC', help='narrow to these documents')
+    ap.add_argument('-n', type=int, default=10, help='ranked: how many results (default 10)')
+    ap.add_argument('--exact', action='store_true', help='--defs: the term itself only, not terms containing it')
+    ap.add_argument('--counts', action='store_true', help='--all: counts only, no occurrence lines')
+    ap.add_argument('--full', action='store_true', help='ranked: print each passage whole')
+    ap.add_argument('--explain', action='store_true')
+    ap.add_argument('--verify', action='store_true', help='run every anchor through bin/check-quote')
+    ap.add_argument('--fusion', choices=('rrf', 'mix', 'lexical', 'semantic'))
+    ap.add_argument('--model', default=embed.DEFAULT_MODEL, choices=sorted(embed.MODELS))
+    out_fmt = ap.add_mutually_exclusive_group()
+    out_fmt.add_argument('--json', action='store_true')
+    out_fmt.add_argument('--text', action='store_true', help='readable text even when stdout is not a terminal')
+    ap.add_argument('--db', default=db.DB)
+    a = ap.parse_args()
+    a.query = ' '.join(a.query)
+    as_json = a.json or (not a.text and not sys.stdout.isatty())
+    try:
+        with db.connect(a.db) as conn:
+            keys = rank.doc_filter(conn, a.within)
+            if a.defs:
+                out, pq = defs(conn, a, keys)
+                n = sum(len(g['definitions']) for g in out)
+            elif a.all:
+                out, pq, forms = concordance(conn, a, keys)
+                n = len(out)
+            else:
+                out, pq = ranked(conn, a, keys)
+                n = len(out)
+    except SystemExit:
+        raise
+    except Exception as e:
+        print(f'source-search failed: {type(e).__name__}: {e}', file=sys.stderr)
+        sys.exit(3)
+    if as_json:
+        payload = dict(query=pq['query'], term=pq['term'], mode='defs' if a.defs else 'all' if a.all else 'ranked',
+                       results=out)
+        if a.all:
+            payload['forms'] = {f: dict(body=v[0], references=v[1], headings=v[2]) for f, v in forms.items()}
+        print(json.dumps(payload, ensure_ascii=False, indent=1, default=str))
+    elif a.defs:
+        print_defs(out, pq)
+    elif a.all:
+        print_concordance(out, pq, forms, a)
+    else:
+        print_ranked(out, pq, a)
+    if not n:
+        print(f'no results for {a.query!r}', file=sys.stderr)
+    sys.exit(0 if n else 1)
+
+
+if __name__ == '__main__':
+    main()

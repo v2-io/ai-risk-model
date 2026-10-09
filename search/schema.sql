@@ -108,6 +108,7 @@ create table src.passages (
     section     text not null,           -- body | glossary | toc | references | abbreviations | index | annex | restored
     kinds       text[] not null,         -- the block kinds it holds; 'cut' if it is a piece of a longer block
     text        text not null,           -- indexed text: links, tags, images and emphasis removed
+    nwords      int  not null,           -- its length in words, for BM25's length normalisation
     norm_sha    text not null,           -- sha256 of its words, for collapsing duplicates (DESIGN §6.3)
     embed_sha   text not null,           -- sha256 of its embedding input; joins cache.embeddings
     tsv_exact   tsvector generated always as (to_tsvector('simple', text)) stored,

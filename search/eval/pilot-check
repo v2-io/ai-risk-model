@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+"""Score the built index against the search pilot's blind relevance grades.
+
+    search/eval/pilot-check [--fusion rrf|mix|lexical|semantic] [--per-query]
+
+The pilot (influx/search-pilot-2026-10-09/) had a separate Claude instance grade,
+blind, the pooled top 10s of every configuration it ran, on 16 queries over 10
+sources (qrels-pilot.json). This runs the same 16 queries through
+bin/source-search's ranking, narrowed to those 10 sources, and scores nDCG@10 the
+pilot's way: gain 2^grade - 1, each graded passage credited once, at the rank of
+the first result holding its quote (letters and digits, casefolded).
+
+It is a regression check, not the eval DESIGN §8 asks for: the grades come from one
+judge of the same model family, recall is recall within the pilot's pool, and a
+passage the pilot never pooled counts as 0 here whatever its worth. The pilot's
+own best configuration (bge-m3, rrf+p, v2 definition rule) scored 0.786.
+"""
+import argparse, difflib, json, math, os, re, sys
+
+sys.dont_write_bytecode = True
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(REPO, 'search'))
+from srcsearch import db, embed, rank  # noqa: E402
+from srcsearch.text import fold  # noqa: E402
+
+QRELS = os.path.join(REPO, 'influx', 'search-pilot-2026-10-09', 'qrels-pilot.json')
+PILOT_KEYS = ['california-2025-sb53', 'openai-2025-preparedness-framework-v2', 'eu-cop-2025-safety-security',
+              'nvidia-2025-frontier', 'nist-2023-ai-rmf', 'cabinetoffice-2026-nrr', 'eu-2024-ai-act',
+              'bengio-2026-international', 'anthropic-2026-risk-report-aug', 'bengio-2026-international-extended']
+
+
+def letters(s):
+    return re.sub(r'[^0-9a-z]', '', fold(s))
+
+
+def holds(passage_letters, quote_letters):
+    """Whether a passage holds a graded quote: 80% of the quote's letters in one run.
+    Exact containment undercounts, because the pilot cut its passages differently and
+    kept some markup the index drops (OpenAI's footnote 1 was graded as "1 By 'severe
+    harm' …", and the index's text has no "1")."""
+    if not quote_letters:
+        return False
+    if quote_letters in passage_letters:
+        return True
+    m = difflib.SequenceMatcher(None, passage_letters, quote_letters, autojunk=False)
+    return m.find_longest_match(0, len(passage_letters), 0, len(quote_letters)).size >= 0.8 * len(quote_letters)
+
+
+def ndcg(results, qrels, k=10):
+    items = [dict(q, L=letters(q['quote'])) for q in qrels if q['grade'] > 0]
+    credited, dcg = set(), 0.0
+    for r, (row, _score, _ex) in enumerate(results[:k], 1):
+        key, L = row[1], letters(row[10])
+        best = None
+        for j, q in enumerate(items):
+            if j not in credited and q['key'] == key and holds(L, q['L']):
+                if best is None or q['grade'] > items[best]['grade']:
+                    best = j
+        if best is not None:
+            credited.add(best)
+            dcg += (2 ** items[best]['grade'] - 1) / math.log2(r + 1)
+    ideal = sorted((2 ** q['grade'] - 1 for q in items), reverse=True)[:k]
+    idcg = sum(g / math.log2(i + 2) for i, g in enumerate(ideal))
+    return dcg / idcg if idcg else 0.0
+
+
+def judged(results, qrels, k=10):
+    """How many of the top k hold a quote the judge graded (0 included): the share of
+    the ranking the grades can speak to. An unjudged passage scores 0 above."""
+    Ls = [(q['key'], letters(q['quote'])) for q in qrels]
+    return sum(1 for row, _s, _e in results[:k] if any(key == row[1] and holds(letters(row[10]), L) for key, L in Ls))
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
+    ap.add_argument('--fusion', default=None)
+    ap.add_argument('--per-query', action='store_true')
+    a = ap.parse_args()
+    qrels = json.load(open(QRELS))['queries']
+    scores, cover = [], []
+    with db.connect() as conn:
+        for q, rels in qrels.items():
+            qvec = embed.embed_query(embed.DEFAULT_MODEL, rank.parse(q)['query']) if a.fusion != 'lexical' else None
+            res, _ = rank.search(conn, q, n=10, fusion=a.fusion, keys=PILOT_KEYS, qvec=qvec)
+            s, j = ndcg(res, rels), judged(res, rels)
+            scores.append(s)
+            cover.append(j)
+            if a.per_query:
+                print(f'{s:.3f}  judged {j:>2}/10  {q}')
+    embed.unload(embed.DEFAULT_MODEL)
+    print(f'mean nDCG@10 over {len(scores)} queries: {sum(scores) / len(scores):.3f}  (fusion {a.fusion or "default"}); '
+          f'{sum(cover)} of {10 * len(cover)} results were judged by the pilot')
+
+
+if __name__ == '__main__':
+    main()

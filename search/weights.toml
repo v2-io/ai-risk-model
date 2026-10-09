@@ -1,0 +1,86 @@
+# Every ranking weight bin/source-search uses, each with why it is there (DESIGN §6).
+#
+# A weight that can't say why it exists doesn't belong here. "Measured" means the
+# search pilot (influx/search-pilot-2026-10-09/REPORT.md) tested it against a blind
+# judge's grades on 16 queries, which shows a direction with error bars, not a
+# tuned value. "Untested" means it is a starting guess. Change a weight only with an
+# eval run before and after, recorded in the commit message (DESIGN §8).
+
+[fusion]
+# Reciprocal rank fusion: score = 1/(k + semantic rank) + 1/(k + lexical rank).
+# Measured: with priors it beat memorata's geometric-mean mix by +0.036 nDCG@10
+# (interval -0.008 to +0.090). Joseph chose it as the default, 2026-10-09:
+# "RRF is fine." mix stays available with --fusion mix.
+method = "rrf"
+k = 60
+# How many semantic neighbours to take before fusing. Lexical candidates are every
+# passage that matches a query word.
+semantic_pool = 400
+
+[lexical]
+# BM25 on exact word forms, plus BM25 on Postgres's English stems at half weight:
+# stemming joins words this project keeps apart ("developer" and "development" both
+# stem to "develop"), so an exact-form match counts for more. Measured (pilot): the
+# exact-over-stem weighting behaved as intended.
+k1 = 1.2
+b = 0.75
+stem_weight = 0.5
+# A passage holding the query's words adjacent and in order. Pilot value.
+phrase_factor = 2.0
+# A passage whose heading path holds every query word. Untested: the pilot didn't
+# index headings, though it found 6 of the NRR's 79 "hazard" forms in headings only.
+heading_factor = 1.2
+
+[defines]
+# The strongest single lever the pilot found: lexical search alone went from 0.540
+# to 0.697 nDCG@10 with it. Joseph, 2026-10-09: "Whether a chunk is part of
+# something specifically designated as a glossary or definition or something might
+# be very high factor". A passage that defines the queried term is multiplied by
+# 1 + boost × match × the detection's confidence.
+boost = 2.0
+# match: the defined term is the query's term (exact), a narrower term containing it
+# ("loss of control scenario" for "loss of control"), or a broader one ("risk" for
+# "catastrophic risk"). Measured: boosting broader terms put bare "risk" definitions
+# above "catastrophic risk" ones, which the judge graded 0; a narrower boost of 0.5
+# flooded "definition of risk" with the Code of Practice's twenty "systemic risk …"
+# rows. The v2 rule below scored +0.024 over v1 (interval +0.001 to +0.061), fitted
+# to the judged misses, so optimistic.
+exact = 1.0
+narrower = 0.25
+broader = 0.0
+
+[section]
+# Contents pages, reference lists, abbreviation lists and indexes mention every term
+# and say nothing about it. Pilot value 0.3 for contents and references, 0.5 for
+# abbreviations; index untested, set like contents.
+toc = 0.3
+references = 0.3
+abbreviations = 0.5
+index = 0.3
+# Text restored from a PDF's text layer sits at the end of its page's section, out
+# of place, and is often figure labels and legends (the NRR's risk matrix,
+# "140 Catastrophic 5 Significant 4 …"). The pilot asked for a lower weight;
+# the value is untested.
+restored = 0.7
+
+[status]
+# A superseded version (RSP v3.3 under v3.4) is history, not the current document.
+# Untested. DESIGN §6.3 folds versions under the active one; until that is built
+# (step 5), they are ranked lower.
+superseded = 0.8
+
+[influence]
+# The catalog's declared reach in the field (source-catalog.md, Influence). Mild,
+# and untested: reach is not relevance.
+anchor = 1.10
+major = 1.05
+supporting = 1.0
+context = 0.95
+corpus = 1.0
+
+[recency]
+# Newer documents mildly up, measured within each organisation (DESIGN §6.2; Joseph:
+# "Freshness of document, freshness within a source (company, institute)"). A
+# document's factor is 1 + weight × its position among that organisation's
+# documents by year, from 0 (oldest) to 1 (newest). Untested.
+weight = 0.05

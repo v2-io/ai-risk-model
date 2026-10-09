@@ -6,6 +6,8 @@ cut into passages, with the terms they define (search/DESIGN.md).
     bin/source-index --dry-run       say what would change, and change nothing
     bin/source-index --rebuild       drop the derived tables and rebuild them (the
                                      embedding cache is kept)
+    bin/source-index --no-embed      reconcile only; leave embedding for later
+    bin/source-index --gc            also delete cached vectors no passage uses
     bin/source-index --show KEY      print KEY's passages and definitions as the
                                      chunker cuts them now, without the database
     bin/source-index --defs KEY      the same, definitions only
@@ -16,13 +18,17 @@ directory, decides what is indexed. Running it twice changes nothing the second
 time; after an input changes, only what changed is redone.
 
 The database is AIRISK_SOURCES_DB, by default airisk_sources, on the local
-Postgres; it is created if missing. Embeddings are not built yet (DESIGN §11, step 2).
+Postgres; it is created if missing. Embeddings come from a local ollama (bge-m3 by
+default, about 1 GB loaded; --model to choose another) and are cached by model and
+input, so only new or changed passages are embedded. A first full run embeds every
+passage (about 27,000 in October 2026; roughly 10-15 minutes on an idle laptop);
+it can be stopped at any point and resumes where it stopped.
 """
 import argparse, os, sys
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'search'))
-from srcsearch import CANON, chunk, db  # noqa: E402
+from srcsearch import CANON, chunk, db, embed  # noqa: E402
 
 
 def show(key, defs_only=False):
@@ -56,6 +62,9 @@ def main():
     ap.add_argument('--show', metavar='KEY')
     ap.add_argument('--defs', metavar='KEY')
     ap.add_argument('--db', default=db.DB)
+    ap.add_argument('--no-embed', action='store_true')
+    ap.add_argument('--model', default=embed.DEFAULT_MODEL, choices=sorted(embed.MODELS))
+    ap.add_argument('--gc', action='store_true')
     a = ap.parse_args()
     if a.show or a.defs:
         return show(a.show or a.defs, defs_only=bool(a.defs))
@@ -64,6 +73,13 @@ def main():
         if msg:
             sys.exit(msg)
         counts, warnings = db.reconcile(conn, dry_run=a.dry_run)
+        if a.dry_run:
+            todo = len(embed.missing(conn, a.model)) if not a.no_embed else 0
+            counts['to_embed'] = todo
+        elif not a.no_embed:
+            counts['embedded'] = embed.embed_missing(conn, a.model)
+        if a.gc and not a.dry_run:
+            counts['vectors_removed'] = embed.gc(conn)
     for w in warnings:
         print(f'warning: {w}', file=sys.stderr)
     print(('would change: ' if a.dry_run else '') +

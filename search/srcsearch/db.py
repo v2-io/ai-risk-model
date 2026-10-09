@@ -18,6 +18,7 @@ import hashlib, json, os, time
 import psycopg
 
 from . import SEARCH, catalog, chunk
+from .text import words
 
 DB = os.environ.get('AIRISK_SOURCES_DB', 'airisk_sources')
 SCHEMA = os.path.join(SEARCH, 'schema.sql')
@@ -108,12 +109,12 @@ def _write_text(conn, d, passages, headings):
              for k, h in enumerate(headings)])
         cur.executemany(
             'insert into src.passages (doc_key, ord, start_off, end_off, page, printed, page_last, printed_last, pages, '
-            'not_in_pdf, path, heading, section, kinds, text, norm_sha, embed_sha) '
-            'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) returning id',
+            'not_in_pdf, path, heading, section, kinds, text, nwords, norm_sha, embed_sha) '
+            'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) returning id',
             [(d['key'], p['ord'], p['start'], p['end'], p['page'], p['printed'], p['page_last'], p['printed_last'],
               p['pages'] if p['pages'] != [None] else None, p['not_in_pdf'], p['path'], ' › '.join(p['path']),
               p['section'], p['kinds'],
-              p['text'], p['norm_sha'], hashlib.sha256(embed_input(d, p).encode()).hexdigest())
+              p['text'], len(words(p['text'])), p['norm_sha'], hashlib.sha256(embed_input(d, p).encode()).hexdigest())
              for p in passages], returning=True)
         ids = []
         while passages:
