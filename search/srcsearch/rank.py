@@ -200,6 +200,8 @@ def search(conn, query, n=10, model='bge-m3', fusion=None, keys=None, qvec=None,
     k = W['fusion']['k']
     out = []
     for i in ids:
+        if i not in rows:           # re-chunked by a concurrent bin/source-index run
+            continue
         sr, lr = sem_rank.get(i, N + 1), lex_rank.get(i, N + 1)
         if fusion == 'mix':
             base = 1 / math.sqrt(sr * lr)
