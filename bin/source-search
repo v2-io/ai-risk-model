@@ -400,7 +400,7 @@ def main():
                 payload = dict(verb=verb, query=pq['query'], term=pq['term'], results=out)
             elif verb == 'outline':
                 o = outline_verb(conn, a, keys)
-                n = len(o.sel)
+                n = len(o.tier)             # hits, opened or not: a budget too small to open any is not "no results"
                 rows = o.render()
                 verify([r['anchor'] for r in rows if r['kind'] == 'range'], a.verify)
                 payload = dict(verb=verb, **o.as_json(rows)) if as_json else None

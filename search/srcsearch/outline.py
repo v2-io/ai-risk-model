@@ -383,6 +383,9 @@ class Outline:
              f'{len(self.ps)} passages; {shown} ranges opened in {n} of {self.budget} lines (L = lines of '
              f'ref/canonical/KEY.md). "top": among the best 2% of passages in scope; "near": the next, to 10%. '
              f'█▓▒░: a section\'s best passage is in the best 1%, 2%, 5% or 10%.')
+        if self.tier and not self.sel:
+            s += (f'\nThe budget of {self.budget} lines is too small to open anything: the outline\'s skeleton alone '
+                  f'takes {n}. About {self.lines_to_open_best()} would open the best passage (--lines).')
         a = self.answer
         if a and a.get('likely_unanswered'):
             # rank.answerability: a cue, not a gate (weights.toml [answerable])
@@ -393,6 +396,18 @@ class Outline:
             s += ('\nNo passage in scope holds any of the query\'s words, so every hit is by meaning alone, and '
                   'the ranks are relative: an off-topic query gets a top 2% too.')
         return s
+
+    def lines_to_open_best(self):
+        """How many lines the outline would take with its best passage opened: the
+        budget to ask for when the skeleton alone has used it up."""
+        if not self.order:
+            return None
+        keep = set(self.sel)
+        self.sel.add(self.order[0])
+        try:
+            return self.count()
+        finally:
+            self.sel = keep
 
     def _doc_line(self, n):
         d = self.docs[n.key]
@@ -488,7 +503,10 @@ class Outline:
                         defines=next((self.scores[p['id']][1]['defines'] for p in ps if self.scores[p['id']][1].get('defines')), None),
                         anchor=r['anchor']))
         none = next((r['keys'] for r in rows if r['kind'] == 'nohits'), [])
+        too_small = bool(self.tier) and not self.sel
         return dict(query=self.query, term=self.pq['term'], budget=self.budget, lines_used=len(rows),
+                    hits=len(self.tier), budget_too_small=too_small,
+                    lines_to_open_best=self.lines_to_open_best() if too_small else None,
                     tiers=dict(top='among the best 2% of passages in scope', near='the next, to 10%'),
                     answerability=self.answer,
                     passages_with_query_words=self.lexical_hits, documents=docs, no_hits=none)
