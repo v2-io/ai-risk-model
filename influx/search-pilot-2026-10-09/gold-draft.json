@@ -1,0 +1,111 @@
+{
+  "about": "Draft gold queries for the search pilot, written 2026-10-09 by Claude (Opus 5.5) from reading the ten pilot sources BEFORE any ranking was run. Not reviewed. Joseph, or a reader from another model family, should review it before anyone tunes against it: the same model wrote these expectations and the ranker. Each expected item is a relata key plus a quote that must occur in the passage (matched on letters and digits, casefolded, as bin/check-quote does). Grades: 3 = should be at or near the top (a definition of the queried term, or the source's canonical statement of it); 2 = should be in the first page of results; 1 = relevant, should be findable in the top 30. Anything not listed is ungraded (treated as 0), which under-credits rankers that find relevant passages I didn't list; the report reads the top results by eye as well.",
+  "corpus": ["california-2025-sb53", "openai-2025-preparedness-framework-v2", "eu-cop-2025-safety-security", "nvidia-2025-frontier", "nist-2023-ai-rmf", "cabinetoffice-2026-nrr", "eu-2024-ai-act", "bengio-2026-international", "anthropic-2026-risk-report-aug", "bengio-2026-international-extended"],
+  "queries": [
+    {"q": "hazard", "kind": "term", "why": "Joseph's example. Only IASR defines it; NVIDIA uses it as its unit of analysis; the NRR uses it for the non-malicious side; the AI Act once, undefined.",
+     "expect": [
+      {"key": "bengio-2026-international", "quote": "Any event or activity that has the potential to cause harm, such as loss of life or injury", "grade": 3, "note": "IASR glossary entry (no heading in the canonical text)"},
+      {"key": "nvidia-2025-frontier", "quote": "A hazard that has a non-zero but very low probability of occurring", "grade": 2},
+      {"key": "nvidia-2025-frontier", "quote": "methodology for estimating the level of risk associated with a hazard", "grade": 2},
+      {"key": "nvidia-2025-frontier", "quote": "repository of potential hazards", "grade": 2},
+      {"key": "cabinetoffice-2026-nrr", "quote": "such as accidents or natural hazards", "grade": 2, "note": "the NRR's hazard/threat split, inside a long intro paragraph"},
+      {"key": "eu-2024-ai-act", "quote": "residual risk associated with each hazard", "grade": 1},
+      {"key": "bengio-2026-international", "quote": "information that may be harmful to share", "grade": 1, "note": "information hazards"},
+      {"key": "bengio-2026-international", "quote": "A hazard analysis method that looks beyond individual component failures", "grade": 1, "note": "STPA glossary entry"},
+      {"key": "bengio-2026-international", "quote": "system-level hazards can emerge from component or process failures", "grade": 1}
+     ]},
+    {"q": "catastrophic risk", "kind": "term",
+     "expect": [
+      {"key": "california-2025-sb53", "quote": "deployment of a frontier model will materially contribute to the death of", "grade": 3, "note": "§22757.11(c)"},
+      {"key": "california-2025-sb53", "quote": "deployment of a foundation model will materially contribute to the death of", "grade": 3, "note": "Labor Code §1107(a)"},
+      {"key": "california-2025-sb53", "quote": "does not include a foreseeable and material risk from any of the following", "grade": 2}
+     ]},
+    {"q": "severe harm", "kind": "term",
+     "expect": [
+      {"key": "openai-2025-preparedness-framework-v2", "quote": "in this document, we mean the death or grave injury of thousands of people", "grade": 3, "note": "footnote 1"},
+      {"key": "openai-2025-preparedness-framework-v2", "quote": "approach to tracking and preparing for frontier capabilities that create new risks of severe harm", "grade": 2}
+     ]},
+    {"q": "loss of control", "kind": "term", "why": "Definitions differ: the Code's 'reliably direct, modify, or shut down'; IASR's glossary ('no clear path to regaining control') vs its §2.2 ('extremely costly or impossible'); SB 53 names it as an incident kind. Anthropic's Risk Report never uses the phrase.",
+     "expect": [
+      {"key": "eu-cop-2025-safety-security", "quote": "Risks from humans losing the ability to reliably direct, modify, or shut down a model", "grade": 3},
+      {"key": "bengio-2026-international", "quote": "A scenario in which one or more general-purpose AI systems come to operate outside of anyone", "grade": 3, "note": "glossary: Loss of control scenario"},
+      {"key": "bengio-2026-international", "quote": "regaining control is either extremely costly or impossible. These hypothesised", "grade": 3, "note": "§2.2.2 key information"},
+      {"key": "bengio-2026-international", "quote": "scenarios are scenarios where AI systems operate outside of anyone", "grade": 2, "note": "executive summary"},
+      {"key": "california-2025-sb53", "quote": "Loss of control of a frontier model causing death or bodily injury", "grade": 2},
+      {"key": "bengio-2026-international", "quote": "broad adoption of AI systems undermines human control through over-reliance", "grade": 2, "note": "glossary: Passive loss of control"},
+      {"key": "bengio-2026-international", "quote": "with regaining control being either extremely costly or impossible. Concerns about loss of control", "grade": 2}
+     ]},
+    {"q": "developer", "kind": "term",
+     "expect": [
+      {"key": "bengio-2026-international", "quote": "Any organisation that designs, builds, or adapts AI models or systems", "grade": 3},
+      {"key": "california-2025-sb53", "quote": "\"Frontier developer\" means a person who has trained, or initiated the training of, a frontier model", "grade": 3},
+      {"key": "california-2025-sb53", "quote": "\"Large frontier developer\" means a frontier developer that together with its affiliates", "grade": 2},
+      {"key": "bengio-2026-international", "quote": "A developer who builds AI models, systems, applications or services using or integrating existing AI models", "grade": 2},
+      {"key": "eu-2024-ai-act", "quote": "'provider' means a natural or legal person, public authority, agency or other body that develops an AI system", "grade": 2, "note": "the Act's developer-role term"}
+     ]},
+    {"q": "definition of risk", "kind": "nl",
+     "expect": [
+      {"key": "eu-2024-ai-act", "quote": "'risk' means the combination of the probability of an occurrence of harm and the severity of that harm", "grade": 3},
+      {"key": "bengio-2026-international", "quote": "The combination of the probability and severity of a harm", "grade": 3},
+      {"key": "nist-2023-ai-rmf", "quote": "refers to the composite measure of an event's probability of occurring and the magnitude or degree of the consequences", "grade": 3},
+      {"key": "nvidia-2025-frontier", "quote": "We defined risk as the potential for an event to lead to an undesired outcome", "grade": 3},
+      {"key": "anthropic-2026-risk-report-aug", "quote": "which we define as the expected total unmitigated harm induced by misaligned computations", "grade": 2}
+     ]},
+    {"q": "systemic risk", "kind": "term", "why": "AI Act and IASR mean different things; IASR says so.",
+     "expect": [
+      {"key": "eu-2024-ai-act", "quote": "'systemic risk' means a risk that is specific to the high-impact capabilities of general-purpose AI models", "grade": 3},
+      {"key": "bengio-2026-international", "quote": "Risks that arise from how AI development and deployment changes human behaviour", "grade": 3}
+     ]},
+    {"q": "humans can no longer shut down or correct the AI system", "kind": "nl", "why": "paraphrase: semantic retrieval should find loss-of-control definitions without the phrase",
+     "expect": [
+      {"key": "eu-cop-2025-safety-security", "quote": "Risks from humans losing the ability to reliably direct, modify, or shut down a model", "grade": 3},
+      {"key": "bengio-2026-international", "quote": "A scenario in which one or more general-purpose AI systems come to operate outside of anyone", "grade": 3},
+      {"key": "bengio-2026-international", "quote": "The ability to influence the behaviour of a system in a desired way. This includes adjusting or halting", "grade": 2, "note": "glossary: Control"},
+      {"key": "california-2025-sb53", "quote": "Evading the control of its frontier developer or user", "grade": 2},
+      {"key": "bengio-2026-international", "quote": "regaining control is either extremely costly or impossible. These hypothesised", "grade": 2}
+     ]},
+    {"q": "difference between malicious and non-malicious risks", "kind": "nl", "why": "the NRR's hazard/threat axis, in its own vocabulary",
+     "expect": [
+      {"key": "cabinetoffice-2026-nrr", "quote": "these risks may be non", "grade": 3, "note": "'non‑malicious' uses U+2011"},
+      {"key": "cabinetoffice-2026-nrr", "quote": "For malicious risks, there are 3 key parameters considered", "grade": 3},
+      {"key": "cabinetoffice-2026-nrr", "quote": "within the assessment period (which is 5 years for non", "grade": 2}
+     ]},
+    {"q": "information hazard", "kind": "term",
+     "expect": [
+      {"key": "bengio-2026-international", "quote": "information that may be harmful to share", "grade": 3},
+      {"key": "anthropic-2026-risk-report-aug", "quote": "call undue attention to misuse vectors for infohazard reasons", "grade": 2, "note": "one-word spelling: a lexical-variant test"}
+     ]},
+    {"q": "death or serious injury to more than 50 people or a billion dollars of damage", "kind": "nl",
+     "expect": [
+      {"key": "california-2025-sb53", "quote": "deployment of a frontier model will materially contribute to the death of", "grade": 3},
+      {"key": "california-2025-sb53", "quote": "deployment of a foundation model will materially contribute to the death of", "grade": 3},
+      {"key": "openai-2025-preparedness-framework-v2", "quote": "in this document, we mean the death or grave injury of thousands of people", "grade": 2}
+     ]},
+    {"q": "whistleblower", "kind": "term",
+     "expect": [
+      {"key": "california-2025-sb53", "quote": "protecting whistleblowers working with foundation models", "grade": 3},
+      {"key": "california-2025-sb53", "quote": "Whistleblower protections and public-facing information sharing are key instruments", "grade": 2},
+      {"key": "california-2025-sb53", "quote": "\"Covered employee\" means an employee responsible for assessing, managing, or addressing risk", "grade": 1}
+     ]},
+    {"q": "misalignment", "kind": "term",
+     "expect": [
+      {"key": "bengio-2026-international", "quote": "propensity to use its capabilities in ways that conflict with human intentions, values, or norms", "grade": 3},
+      {"key": "anthropic-2026-risk-report-aug", "quote": "Misalignment is *known* if we have reason to believe", "grade": 2},
+      {"key": "anthropic-2026-risk-report-aug", "quote": "which we define as the expected total unmitigated harm induced by misaligned computations", "grade": 2}
+     ]},
+    {"q": "deployer", "kind": "term",
+     "expect": [
+      {"key": "eu-2024-ai-act", "quote": "'deployer' means a natural or legal person, public authority, agency or other body using an AI system under its authority", "grade": 3}
+     ]},
+    {"q": "serious incident", "kind": "term",
+     "expect": [
+      {"key": "eu-2024-ai-act", "quote": "'serious incident' means an incident or malfunctioning of an AI system", "grade": 3},
+      {"key": "eu-cop-2025-safety-security", "quote": "a situation in which a serious incident could have, but ultimately did not", "grade": 2, "note": "glossary: near miss"}
+     ]},
+    {"q": "critical safety incident", "kind": "term",
+     "expect": [
+      {"key": "california-2025-sb53", "quote": "\"Critical safety incident\" means any of the following: (1) Unauthorized access", "grade": 3},
+      {"key": "california-2025-sb53", "quote": "uses deceptive techniques against the frontier developer to subvert the controls", "grade": 2}
+     ]}
+  ]
+}

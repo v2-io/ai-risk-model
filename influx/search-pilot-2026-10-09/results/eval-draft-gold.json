@@ -1,0 +1,6398 @@
+[
+ {
+  "model": "bge-m3",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6873258535326858,
+  "ndcg_term": 0.7210347455325931,
+  "ndcg_nl": 0.5861991775329638,
+  "r10": 0.6764880952380952,
+  "r30": 0.7785714285714286,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.562,
+    "first3": 1,
+    "ranks": [
+     1,
+     8,
+     29,
+     322,
+     1749,
+     1440,
+     139,
+     386,
+     1442
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.693,
+    "first3": 2,
+    "ranks": [
+     2,
+     3
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.931,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     4,
+     3,
+     42,
+     7,
+     5
+    ]
+   },
+   "developer": {
+    "ndcg": 0.84,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     13,
+     3,
+     20
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.886,
+    "first3": 1,
+    "ranks": [
+     6,
+     1,
+     4,
+     2,
+     14
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.92,
+    "first3": 1,
+    "ranks": [
+     1,
+     3
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 121,
+    "ranks": [
+     121,
+     472,
+     458,
+     954,
+     64
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     92,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.339,
+    "first3": 4,
+    "ranks": [
+     4,
+     119
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.265,
+    "first3": 6,
+    "ranks": [
+     6,
+     26,
+     14
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.528,
+    "first3": 2,
+    "ranks": [
+     2,
+     6,
+     23
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     140
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "-",
+  "mode": "lex",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.3236264862669438,
+  "ndcg_term": 0.2700073985498782,
+  "ndcg_nl": 0.48448374941814043,
+  "r10": 0.5342261904761905,
+  "r30": 0.6916666666666667,
+  "first3_top3": 0.25,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.621,
+    "first3": 1,
+    "ranks": [
+     1,
+     4,
+     14,
+     40,
+     84,
+     27,
+     91,
+     3,
+     88
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.0,
+    "first3": 13,
+    "ranks": [
+     13,
+     13
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.0,
+    "first3": 13,
+    "ranks": [
+     13,
+     42
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.601,
+    "first3": 3,
+    "ranks": [
+     19,
+     4,
+     3,
+     5,
+     26,
+     1,
+     7
+    ]
+   },
+   "developer": {
+    "ndcg": 0.167,
+    "first3": 14,
+    "ranks": [
+     14,
+     34,
+     6,
+     3,
+     112
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.0,
+    "first3": 83,
+    "ranks": [
+     335,
+     269,
+     232,
+     83,
+     146
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.0,
+    "first3": 43,
+    "ranks": [
+     73,
+     43
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     234,
+     1168,
+     1046,
+     1395
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.482,
+    "first3": 4,
+    "ranks": [
+     6,
+     4
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.339,
+    "first3": 4,
+    "ranks": [
+     4,
+     346
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     3
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.384,
+    "first3": 9,
+    "ranks": [
+     9,
+     3,
+     null
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.112,
+    "first3": 68,
+    "ranks": [
+     68,
+     5,
+     11
+    ]
+   },
+   "deployer": {
+    "ndcg": 0.301,
+    "first3": 9,
+    "ranks": [
+     9
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.382,
+    "first3": 6,
+    "ranks": [
+     6,
+     9
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 0.333,
+    "first3": 7,
+    "ranks": [
+     7
+    ]
+   }
+  }
+ },
+ {
+  "model": "-",
+  "mode": "lex+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6738754905299253,
+  "ndcg_term": 0.7370060709005203,
+  "ndcg_nl": 0.48448374941814043,
+  "r10": 0.7660714285714285,
+  "r30": 0.7875,
+  "first3_top3": 0.625,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.621,
+    "first3": 1,
+    "ranks": [
+     1,
+     4,
+     13,
+     37,
+     83,
+     24,
+     90,
+     3,
+     86
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.226,
+    "first3": 1,
+    "ranks": [
+     1,
+     1
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     41
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.67,
+    "first3": 2,
+    "ranks": [
+     5,
+     2,
+     8,
+     4,
+     26,
+     3,
+     9
+    ]
+   },
+   "developer": {
+    "ndcg": 0.657,
+    "first3": 5,
+    "ranks": [
+     5,
+     6,
+     1,
+     2,
+     111
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.0,
+    "first3": 52,
+    "ranks": [
+     52,
+     54,
+     59,
+     58,
+     145
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.832,
+    "first3": 1,
+    "ranks": [
+     6,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     234,
+     1130,
+     1016,
+     1328
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.482,
+    "first3": 4,
+    "ranks": [
+     6,
+     4
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.339,
+    "first3": 4,
+    "ranks": [
+     4,
+     332
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     3
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.384,
+    "first3": 9,
+    "ranks": [
+     9,
+     3,
+     null
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.439,
+    "first3": 7,
+    "ranks": [
+     7,
+     5,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.889,
+    "first3": 1,
+    "ranks": [
+     1,
+     9
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "mix",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6084038306153607,
+  "ndcg_term": 0.6363846773219194,
+  "ndcg_nl": 0.5244612904956851,
+  "r10": 0.7410714285714286,
+  "r30": 0.85,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.65,
+    "first3": 1,
+    "ranks": [
+     1,
+     4,
+     9,
+     50,
+     113,
+     77,
+     49,
+     18,
+     109
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     241
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.934,
+    "first3": 1,
+    "ranks": [
+     4,
+     1,
+     2,
+     3,
+     25,
+     5,
+     6
+    ]
+   },
+   "developer": {
+    "ndcg": 0.664,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     7,
+     1,
+     31
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.238,
+    "first3": 7,
+    "ranks": [
+     27,
+     8,
+     16,
+     7,
+     28
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.396,
+    "first3": 6,
+    "ranks": [
+     6,
+     10
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.287,
+    "first3": 2,
+    "ranks": [
+     2,
+     251,
+     698,
+     988,
+     216
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     13,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     82
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.959,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     2
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.51,
+    "first3": 3,
+    "ranks": [
+     3,
+     4,
+     22
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.44,
+    "first3": 8,
+    "ranks": [
+     8,
+     3,
+     10
+    ]
+   },
+   "deployer": {
+    "ndcg": 0.631,
+    "first3": 2,
+    "ranks": [
+     2
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     15
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 0.631,
+    "first3": 2,
+    "ranks": [
+     2
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.7040361702643887,
+  "ndcg_term": 0.7460842088172054,
+  "ndcg_nl": 0.5778920546059388,
+  "r10": 0.7535714285714286,
+  "r30": 0.8625,
+  "first3_top3": 0.9375,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.65,
+    "first3": 1,
+    "ranks": [
+     1,
+     4,
+     9,
+     48,
+     110,
+     75,
+     47,
+     17,
+     106
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     234
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.901,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     6,
+     3,
+     26,
+     5,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.754,
+    "first3": 2,
+    "ranks": [
+     2,
+     4,
+     5,
+     1,
+     30
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.452,
+    "first3": 3,
+    "ranks": [
+     14,
+     4,
+     9,
+     3,
+     28
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.624,
+    "first3": 2,
+    "ranks": [
+     2,
+     5
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.287,
+    "first3": 2,
+    "ranks": [
+     2,
+     249,
+     670,
+     931,
+     215
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     13,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     79
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.959,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     2
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.51,
+    "first3": 3,
+    "ranks": [
+     3,
+     4,
+     22
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.443,
+    "first3": 6,
+    "ranks": [
+     6,
+     5,
+     8
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     15
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "rrf",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.5325152992396487,
+  "ndcg_term": 0.5591667750982382,
+  "ndcg_nl": 0.45256087166388015,
+  "r10": 0.6452380952380953,
+  "r30": 0.8375,
+  "first3_top3": 0.6875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.664,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     9,
+     60,
+     141,
+     70,
+     73,
+     28,
+     144
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.92,
+    "first3": 1,
+    "ranks": [
+     1,
+     3
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     111
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.904,
+    "first3": 1,
+    "ranks": [
+     8,
+     1,
+     2,
+     3,
+     24,
+     5,
+     4
+    ]
+   },
+   "developer": {
+    "ndcg": 0.593,
+    "first3": 4,
+    "ranks": [
+     4,
+     10,
+     6,
+     1,
+     31
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.106,
+    "first3": 10,
+    "ranks": [
+     33,
+     21,
+     25,
+     10,
+     29
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.0,
+    "first3": 15,
+    "ranks": [
+     21,
+     15
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.132,
+    "first3": 10,
+    "ranks": [
+     10,
+     321,
+     757,
+     1130,
+     148
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     12,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     150
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.959,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     2
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.486,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     22
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.231,
+    "first3": 15,
+    "ranks": [
+     15,
+     3,
+     9
+    ]
+   },
+   "deployer": {
+    "ndcg": 0.631,
+    "first3": 2,
+    "ranks": [
+     2
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     15
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 0.5,
+    "first3": 3,
+    "ranks": [
+     3
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.7352872465947247,
+  "ndcg_term": 0.7600938537567837,
+  "ndcg_nl": 0.6608674251085476,
+  "r10": 0.7660714285714286,
+  "r30": 0.8625,
+  "first3_top3": 0.875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.664,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     9,
+     57,
+     135,
+     66,
+     69,
+     25,
+     137
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     110
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.688,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     7,
+     5,
+     25,
+     3,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.722,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     2,
+     1,
+     30
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     4,
+     3,
+     30
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.132,
+    "first3": 10,
+    "ranks": [
+     10,
+     318,
+     726,
+     1049,
+     150
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     15,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     140
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.959,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     2
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.486,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     21
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.489,
+    "first3": 4,
+    "ranks": [
+     4,
+     6,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     15
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "sem",
+  "target": 1200,
+  "input": "raw",
+  "ndcg": 0.6472112061035145,
+  "ndcg_term": 0.6644940816892737,
+  "ndcg_nl": 0.5953625793462367,
+  "r10": 0.6681547619047619,
+  "r30": 0.7660714285714285,
+  "first3_top3": 0.875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.479,
+    "first3": 2,
+    "ranks": [
+     2,
+     3,
+     10,
+     61,
+     1751,
+     818,
+     57,
+     44,
+     1220
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.715,
+    "first3": 2,
+    "ranks": [
+     7,
+     2,
+     8,
+     1,
+     83,
+     10,
+     6
+    ]
+   },
+   "developer": {
+    "ndcg": 0.84,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     22,
+     3,
+     19
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.923,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     5,
+     3,
+     58
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.807,
+    "first3": 1,
+    "ranks": [
+     1,
+     8
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 213,
+    "ranks": [
+     213,
+     226,
+     1150,
+     null,
+     51
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     39,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.394,
+    "first3": 3,
+    "ranks": [
+     3,
+     522
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     2,
+     3,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.321,
+    "first3": 4,
+    "ranks": [
+     4,
+     28,
+     1661
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.425,
+    "first3": 2,
+    "ranks": [
+     2,
+     13,
+     27
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     264
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "raw",
+  "ndcg": 0.6810071925343163,
+  "ndcg_term": 0.7360984599093179,
+  "ndcg_nl": 0.5157333904093113,
+  "r10": 0.7848214285714286,
+  "r30": 0.8500000000000001,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.724,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     7,
+     18,
+     120,
+     62,
+     31,
+     6,
+     104
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     241
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.764,
+    "first3": 2,
+    "ranks": [
+     6,
+     2,
+     5,
+     1,
+     26,
+     4,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.748,
+    "first3": 2,
+    "ranks": [
+     2,
+     4,
+     6,
+     1,
+     33
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.363,
+    "first3": 6,
+    "ranks": [
+     9,
+     6,
+     14,
+     7,
+     70
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.591,
+    "first3": 2,
+    "ranks": [
+     2,
+     7
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.176,
+    "first3": 5,
+    "ranks": [
+     5,
+     154,
+     1106,
+     1577,
+     182
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.564,
+    "first3": 2,
+    "ranks": [
+     10,
+     2
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     232
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.959,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     2
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.486,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     1402
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.448,
+    "first3": 6,
+    "ranks": [
+     6,
+     5,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     20
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "raw",
+  "ndcg": 0.7076622691016087,
+  "ndcg_term": 0.7597797920830042,
+  "ndcg_nl": 0.551309700157422,
+  "r10": 0.7535714285714286,
+  "r30": 0.8500000000000001,
+  "first3_top3": 0.875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.743,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     4,
+     17,
+     143,
+     55,
+     34,
+     7,
+     141
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     116
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.688,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     7,
+     5,
+     25,
+     3,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.669,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     4,
+     1,
+     34
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     4,
+     3,
+     75
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 13,
+    "ranks": [
+     13,
+     224,
+     1212,
+     1526,
+     122
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.307,
+    "first3": 3,
+    "ranks": [
+     14,
+     3
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     379
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.959,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     2
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.486,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     1492
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.46,
+    "first3": 5,
+    "ranks": [
+     5,
+     6,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     20
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "sem",
+  "target": 600,
+  "input": "ctx",
+  "ndcg": 0.6805022427012656,
+  "ndcg_term": 0.7178703530311522,
+  "ndcg_nl": 0.568397911711606,
+  "r10": 0.6660714285714285,
+  "r30": 0.7369047619047618,
+  "first3_top3": 0.875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.577,
+    "first3": 1,
+    "ranks": [
+     1,
+     5,
+     29,
+     421,
+     189,
+     1572,
+     78,
+     546,
+     null
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.571,
+    "first3": 3,
+    "ranks": [
+     3,
+     4
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.922,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     5,
+     3,
+     51,
+     7,
+     4
+    ]
+   },
+   "developer": {
+    "ndcg": 0.84,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     12,
+     3,
+     18
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.886,
+    "first3": 1,
+    "ranks": [
+     6,
+     1,
+     4,
+     2,
+     19
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.877,
+    "first3": 1,
+    "ranks": [
+     1,
+     4
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 142,
+    "ranks": [
+     142,
+     554,
+     533,
+     1232,
+     273
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.542,
+    "first3": 1,
+    "ranks": [
+     12,
+     1,
+     46
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     208
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.248,
+    "first3": 7,
+    "ranks": [
+     7,
+     40,
+     20
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.508,
+    "first3": 2,
+    "ranks": [
+     2,
+     10,
+     33
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     171
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "-",
+  "mode": "lex+p",
+  "target": 600,
+  "input": "ctx",
+  "ndcg": 0.6306028179755422,
+  "ndcg_term": 0.6974732116112897,
+  "ndcg_nl": 0.4299916370682996,
+  "r10": 0.7086309523809524,
+  "r30": 0.7577380952380952,
+  "first3_top3": 0.75,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.674,
+    "first3": 1,
+    "ranks": [
+     1,
+     5,
+     8,
+     89,
+     43,
+     21,
+     63,
+     4,
+     65
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.226,
+    "first3": 1,
+    "ranks": [
+     1,
+     1
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     45
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.51,
+    "first3": 2,
+    "ranks": [
+     5,
+     2,
+     13,
+     4,
+     38,
+     3,
+     14
+    ]
+   },
+   "developer": {
+    "ndcg": 0.657,
+    "first3": 5,
+    "ranks": [
+     5,
+     6,
+     1,
+     2,
+     172
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.0,
+    "first3": 56,
+    "ranks": [
+     57,
+     56,
+     64,
+     58,
+     159
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.571,
+    "first3": 2,
+    "ranks": [
+     9,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     233,
+     1326,
+     1512,
+     1655
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.419,
+    "first3": 2,
+    "ranks": [
+     2,
+     46,
+     7
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     482
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.124,
+    "first3": 11,
+    "ranks": [
+     11,
+     5,
+     null
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.439,
+    "first3": 7,
+    "ranks": [
+     7,
+     5,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.885,
+    "first3": 1,
+    "ranks": [
+     1,
+     10
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "mix+p",
+  "target": 600,
+  "input": "ctx",
+  "ndcg": 0.6936297118237547,
+  "ndcg_term": 0.7488141174089007,
+  "ndcg_nl": 0.5280764950683159,
+  "r10": 0.7723214285714286,
+  "r30": 0.8375,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.668,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     8,
+     67,
+     40,
+     69,
+     35,
+     29,
+     104
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.92,
+    "first3": 1,
+    "ranks": [
+     1,
+     3
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     300
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.864,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     9,
+     2,
+     30,
+     4,
+     7
+    ]
+   },
+   "developer": {
+    "ndcg": 0.743,
+    "first3": 2,
+    "ranks": [
+     2,
+     5,
+     4,
+     1,
+     38
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.3,
+    "first3": 4,
+    "ranks": [
+     12,
+     4,
+     19,
+     5,
+     35
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.58,
+    "first3": 2,
+    "ranks": [
+     2,
+     8
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.287,
+    "first3": 2,
+    "ranks": [
+     2,
+     243,
+     733,
+     1253,
+     552
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.68,
+    "first3": 2,
+    "ranks": [
+     2,
+     3,
+     10
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     121
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.395,
+    "first3": 5,
+    "ranks": [
+     5,
+     7,
+     28
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.455,
+    "first3": 6,
+    "ranks": [
+     6,
+     4,
+     8
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     22
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "rrf+p",
+  "target": 600,
+  "input": "ctx",
+  "ndcg": 0.71531952972512,
+  "ndcg_term": 0.7520013199882004,
+  "ndcg_nl": 0.6052741589358783,
+  "r10": 0.7764880952380953,
+  "r30": 0.8375,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.671,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     7,
+     108,
+     47,
+     59,
+     34,
+     28,
+     117
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     123
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.684,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     8,
+     5,
+     29,
+     3,
+     7
+    ]
+   },
+   "developer": {
+    "ndcg": 0.722,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     2,
+     1,
+     37
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     4,
+     3,
+     35
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.132,
+    "first3": 10,
+    "ranks": [
+     10,
+     352,
+     847,
+     1479,
+     523
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.505,
+    "first3": 2,
+    "ranks": [
+     2,
+     9,
+     12
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     263
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.427,
+    "first3": 4,
+    "ranks": [
+     4,
+     7,
+     27
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.448,
+    "first3": 6,
+    "ranks": [
+     6,
+     5,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     22
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "sem",
+  "target": 2000,
+  "input": "ctx",
+  "ndcg": 0.6486547478796303,
+  "ndcg_term": 0.6872108230447408,
+  "ndcg_nl": 0.5329865223842986,
+  "r10": 0.6462797619047619,
+  "r30": 0.7046130952380952,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.535,
+    "first3": 1,
+    "ranks": [
+     1,
+     137,
+     75,
+     1469,
+     1676,
+     126,
+     343,
+     666
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.651,
+    "first3": 2,
+    "ranks": [
+     2,
+     4
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.262,
+    "first3": 7,
+    "ranks": [
+     7,
+     1759
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.922,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     5,
+     3,
+     38,
+     7,
+     4
+    ]
+   },
+   "developer": {
+    "ndcg": 0.905,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     7,
+     3,
+     11
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.635,
+    "first3": 1,
+    "ranks": [
+     4,
+     1,
+     9,
+     25,
+     13
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.92,
+    "first3": 1,
+    "ranks": [
+     1,
+     3
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 105,
+    "ranks": [
+     105,
+     406,
+     387,
+     779,
+     48
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     230,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.394,
+    "first3": 3,
+    "ranks": [
+     3,
+     100
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.884,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     43
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.321,
+    "first3": 4,
+    "ranks": [
+     4,
+     291,
+     12
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.549,
+    "first3": 2,
+    "ranks": [
+     2,
+     4,
+     21
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     133
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "-",
+  "mode": "lex+p",
+  "target": 2000,
+  "input": "ctx",
+  "ndcg": 0.704017450936968,
+  "ndcg_term": 0.7698481714795301,
+  "ndcg_nl": 0.5065252893092816,
+  "r10": 0.7723214285714286,
+  "r30": 0.828125,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.672,
+    "first3": 1,
+    "ranks": [
+     1,
+     5,
+     22,
+     86,
+     23,
+     78,
+     2,
+     85
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.226,
+    "first3": 1,
+    "ranks": [
+     1,
+     1
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     21
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.667,
+    "first3": 2,
+    "ranks": [
+     5,
+     2,
+     9,
+     4,
+     24,
+     3,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.657,
+    "first3": 5,
+    "ranks": [
+     5,
+     6,
+     1,
+     2,
+     90
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.0,
+    "first3": 49,
+    "ranks": [
+     49,
+     50,
+     53,
+     52,
+     135
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     247,
+     982,
+     836,
+     891
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.571,
+    "first3": 3,
+    "ranks": [
+     4,
+     3
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.394,
+    "first3": 3,
+    "ranks": [
+     3,
+     241
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     3
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.496,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     1899
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.439,
+    "first3": 7,
+    "ranks": [
+     7,
+     5,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.9,
+    "first3": 1,
+    "ranks": [
+     1,
+     7
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "mix+p",
+  "target": 2000,
+  "input": "ctx",
+  "ndcg": 0.6979265902056155,
+  "ndcg_term": 0.7559134525832607,
+  "ndcg_nl": 0.5239660030726802,
+  "r10": 0.7191964285714286,
+  "r30": 0.871875,
+  "first3_top3": 0.9375,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.535,
+    "first3": 1,
+    "ranks": [
+     1,
+     11,
+     25,
+     110,
+     82,
+     45,
+     12,
+     88
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     124
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.866,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     8,
+     2,
+     24,
+     6,
+     5
+    ]
+   },
+   "developer": {
+    "ndcg": 0.743,
+    "first3": 2,
+    "ranks": [
+     2,
+     5,
+     4,
+     1,
+     19
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.294,
+    "first3": 3,
+    "ranks": [
+     9,
+     3,
+     15,
+     18,
+     26
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.832,
+    "first3": 1,
+    "ranks": [
+     1,
+     6
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.228,
+    "first3": 3,
+    "ranks": [
+     3,
+     270,
+     609,
+     771,
+     153
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     15,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     67
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.961,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     7
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.577,
+    "first3": 2,
+    "ranks": [
+     2,
+     7,
+     20
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.448,
+    "first3": 6,
+    "ranks": [
+     6,
+     5,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     12
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-m3",
+  "mode": "rrf+p",
+  "target": 2000,
+  "input": "ctx",
+  "ndcg": 0.7426363084889085,
+  "ndcg_term": 0.781336250683061,
+  "ndcg_nl": 0.626536481906451,
+  "r10": 0.7316964285714286,
+  "r30": 0.871875,
+  "first3_top3": 0.875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.535,
+    "first3": 1,
+    "ranks": [
+     1,
+     19,
+     24,
+     136,
+     63,
+     58,
+     26,
+     121
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     57
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.684,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     8,
+     5,
+     24,
+     3,
+     7
+    ]
+   },
+   "developer": {
+    "ndcg": 0.691,
+    "first3": 4,
+    "ranks": [
+     4,
+     5,
+     1,
+     2,
+     18
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     3,
+     4,
+     27
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 11,
+    "ranks": [
+     11,
+     323,
+     617,
+     860,
+     117
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     20,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     106
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.954,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     9
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.859,
+    "first3": 1,
+    "ranks": [
+     1,
+     6,
+     19
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.536,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     12
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "nomic-embed-text-v2-moe",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.5929808741328091,
+  "ndcg_term": 0.6612803435057569,
+  "ndcg_nl": 0.38808246601396557,
+  "r10": 0.5848214285714286,
+  "r30": 0.7848214285714286,
+  "first3_top3": 0.625,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.577,
+    "first3": 1,
+    "ranks": [
+     1,
+     5,
+     34,
+     32,
+     524,
+     888,
+     420,
+     268,
+     464
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.264,
+    "first3": 4,
+    "ranks": [
+     4,
+     11
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.91,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     5,
+     6,
+     75,
+     3,
+     7
+    ]
+   },
+   "developer": {
+    "ndcg": 0.89,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     4,
+     2,
+     37
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.912,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     6,
+     2,
+     13
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 63,
+    "ranks": [
+     63,
+     1124,
+     1419,
+     1901,
+     276
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.237,
+    "first3": 5,
+    "ranks": [
+     23,
+     5
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.228,
+    "first3": 10,
+    "ranks": [
+     10,
+     1301
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.403,
+    "first3": 8,
+    "ranks": [
+     15,
+     8,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.067,
+    "first3": 18,
+    "ranks": [
+     18,
+     19,
+     2
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.425,
+    "first3": 2,
+    "ranks": [
+     2,
+     15,
+     11
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     80
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "nomic-embed-text-v2-moe",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6791098384588574,
+  "ndcg_term": 0.7085817666236442,
+  "ndcg_nl": 0.5906940539644975,
+  "r10": 0.7723214285714286,
+  "r30": 0.8535714285714285,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.628,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     11,
+     24,
+     85,
+     72,
+     81,
+     16,
+     83
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     273
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.834,
+    "first3": 1,
+    "ranks": [
+     4,
+     1,
+     7,
+     6,
+     32,
+     2,
+     9
+    ]
+   },
+   "developer": {
+    "ndcg": 0.756,
+    "first3": 2,
+    "ranks": [
+     2,
+     5,
+     3,
+     1,
+     43
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.457,
+    "first3": 3,
+    "ranks": [
+     8,
+     4,
+     11,
+     3,
+     26
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.482,
+    "first3": 4,
+    "ranks": [
+     4,
+     6
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     354,
+     1207,
+     1352,
+     451
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.605,
+    "first3": 2,
+    "ranks": [
+     6,
+     2
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.394,
+    "first3": 3,
+    "ranks": [
+     3,
+     420
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.386,
+    "first3": 7,
+    "ranks": [
+     7,
+     4,
+     13
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.448,
+    "first3": 6,
+    "ranks": [
+     6,
+     5,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     11
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "nomic-embed-text-v2-moe",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.7207930727071803,
+  "ndcg_term": 0.7460747843858707,
+  "ndcg_nl": 0.6449479376711083,
+  "r10": 0.7848214285714286,
+  "r30": 0.8625,
+  "first3_top3": 0.875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.628,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     11,
+     20,
+     114,
+     67,
+     113,
+     26,
+     116
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     131
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.686,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     7,
+     5,
+     30,
+     3,
+     9
+    ]
+   },
+   "developer": {
+    "ndcg": 0.722,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     1,
+     2,
+     43
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     4,
+     3,
+     25
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.228,
+    "first3": 3,
+    "ranks": [
+     3,
+     350,
+     1327,
+     1412,
+     426
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.605,
+    "first3": 2,
+    "ranks": [
+     6,
+     2
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     545
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.808,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.386,
+    "first3": 7,
+    "ranks": [
+     7,
+     4,
+     12
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.46,
+    "first3": 5,
+    "ranks": [
+     5,
+     6,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     11
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "embeddinggemma:300m",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.5710102780369283,
+  "ndcg_term": 0.5716895251286832,
+  "ndcg_nl": 0.5689725367616633,
+  "r10": 0.5446428571428572,
+  "r30": 0.6848214285714286,
+  "first3_top3": 0.6875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.601,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     26,
+     51,
+     162,
+     184,
+     562,
+     699,
+     541
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.0,
+    "first3": 256,
+    "ranks": [
+     256,
+     448
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     750
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.771,
+    "first3": 1,
+    "ranks": [
+     14,
+     2,
+     1,
+     6,
+     137,
+     7,
+     3
+    ]
+   },
+   "developer": {
+    "ndcg": 0.882,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     5,
+     2,
+     23
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.781,
+    "first3": 1,
+    "ranks": [
+     39,
+     2,
+     1,
+     3,
+     28
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.818,
+    "first3": 1,
+    "ranks": [
+     7,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.098,
+    "first3": 214,
+    "ranks": [
+     214,
+     635,
+     184,
+     1704,
+     3
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     67,
+     1
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.0,
+    "first3": 50,
+    "ranks": [
+     50,
+     388
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.784,
+    "first3": 2,
+    "ranks": [
+     2,
+     5,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.352,
+    "first3": 4,
+    "ranks": [
+     4,
+     22,
+     10
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.863,
+    "first3": 1,
+    "ranks": [
+     1,
+     9,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     110
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 0.0,
+    "first3": 21,
+    "ranks": [
+     21
+    ]
+   }
+  }
+ },
+ {
+  "model": "embeddinggemma:300m",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6388140963016453,
+  "ndcg_term": 0.6502283328211688,
+  "ndcg_nl": 0.6045713867430749,
+  "r10": 0.7535714285714286,
+  "r30": 0.8410714285714286,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.699,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     7,
+     25,
+     72,
+     52,
+     89,
+     27,
+     88
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.185,
+    "first3": 9,
+    "ranks": [
+     9,
+     14
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     100
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.869,
+    "first3": 1,
+    "ranks": [
+     10,
+     1,
+     2,
+     5,
+     40,
+     4,
+     7
+    ]
+   },
+   "developer": {
+    "ndcg": 0.756,
+    "first3": 2,
+    "ranks": [
+     2,
+     5,
+     3,
+     1,
+     33
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.781,
+    "first3": 1,
+    "ranks": [
+     25,
+     3,
+     1,
+     2,
+     35
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.511,
+    "first3": 3,
+    "ranks": [
+     7,
+     3
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.228,
+    "first3": 3,
+    "ranks": [
+     3,
+     273,
+     349,
+     1241,
+     31
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.564,
+    "first3": 2,
+    "ranks": [
+     10,
+     2
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.262,
+    "first3": 7,
+    "ranks": [
+     7,
+     207
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     2,
+     3,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.395,
+    "first3": 5,
+    "ranks": [
+     5,
+     7,
+     18
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.551,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     12
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "embeddinggemma:300m",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.693744974641284,
+  "ndcg_term": 0.7440579754828823,
+  "ndcg_nl": 0.5428059721164891,
+  "r10": 0.7535714285714286,
+  "r30": 0.8535714285714285,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.699,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     7,
+     24,
+     83,
+     51,
+     118,
+     35,
+     115
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     88
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.688,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     7,
+     5,
+     40,
+     3,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.708,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     1,
+     2,
+     33
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     4,
+     1,
+     3,
+     2,
+     34
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 17,
+    "ranks": [
+     17,
+     339,
+     337,
+     1316,
+     30
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.387,
+    "first3": 2,
+    "ranks": [
+     14,
+     2
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.28,
+    "first3": 6,
+    "ranks": [
+     6,
+     351
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     2,
+     3,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.427,
+    "first3": 4,
+    "ranks": [
+     4,
+     7,
+     17
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.551,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     15
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "snowflake-arctic-embed2",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6322298234181749,
+  "ndcg_term": 0.704575992601816,
+  "ndcg_nl": 0.4151913158672513,
+  "r10": 0.6764880952380952,
+  "r30": 0.7535714285714286,
+  "first3_top3": 0.8125,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.562,
+    "first3": 1,
+    "ranks": [
+     1,
+     8,
+     195,
+     37,
+     364,
+     1972,
+     102,
+     216,
+     1762
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.571,
+    "first3": 3,
+    "ranks": [
+     3,
+     4
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.694,
+    "first3": 2,
+    "ranks": [
+     7,
+     2,
+     4,
+     3,
+     91,
+     5,
+     6
+    ]
+   },
+   "developer": {
+    "ndcg": 0.871,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     7,
+     2,
+     58
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.708,
+    "first3": 1,
+    "ranks": [
+     3,
+     1,
+     4,
+     12,
+     15
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 36,
+    "ranks": [
+     36,
+     794,
+     655,
+     1780,
+     84
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.307,
+    "first3": 3,
+    "ranks": [
+     120,
+     3
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.248,
+    "first3": 8,
+    "ranks": [
+     8,
+     36
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.646,
+    "first3": 4,
+    "ranks": [
+     4,
+     7,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.418,
+    "first3": 3,
+    "ranks": [
+     3,
+     21,
+     4
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.516,
+    "first3": 2,
+    "ranks": [
+     2,
+     8,
+     14
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     77
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "snowflake-arctic-embed2",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6535259860609033,
+  "ndcg_term": 0.71234235430791,
+  "ndcg_nl": 0.47707688131988324,
+  "r10": 0.7410714285714286,
+  "r30": 0.8535714285714285,
+  "first3_top3": 0.9375,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.628,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     27,
+     23,
+     66,
+     83,
+     43,
+     14,
+     108
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     242
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.679,
+    "first3": 2,
+    "ranks": [
+     7,
+     2,
+     5,
+     3,
+     35,
+     4,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.776,
+    "first3": 2,
+    "ranks": [
+     2,
+     4,
+     3,
+     1,
+     46
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.469,
+    "first3": 2,
+    "ranks": [
+     7,
+     2,
+     8,
+     11,
+     30
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.544,
+    "first3": 3,
+    "ranks": [
+     3,
+     5
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.287,
+    "first3": 2,
+    "ranks": [
+     2,
+     330,
+     781,
+     1332,
+     243
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.307,
+    "first3": 3,
+    "ranks": [
+     12,
+     3
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.394,
+    "first3": 3,
+    "ranks": [
+     3,
+     42
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.51,
+    "first3": 3,
+    "ranks": [
+     3,
+     4,
+     13
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.443,
+    "first3": 6,
+    "ranks": [
+     6,
+     5,
+     8
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     14
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "snowflake-arctic-embed2",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.706039044511374,
+  "ndcg_term": 0.7507936942788825,
+  "ndcg_nl": 0.5717750952088483,
+  "r10": 0.7535714285714286,
+  "r30": 0.8535714285714285,
+  "first3_top3": 0.875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.628,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     27,
+     21,
+     99,
+     59,
+     54,
+     23,
+     141
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     111
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.686,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     7,
+     5,
+     35,
+     3,
+     9
+    ]
+   },
+   "developer": {
+    "ndcg": 0.742,
+    "first3": 3,
+    "ranks": [
+     3,
+     4,
+     2,
+     1,
+     49
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     3,
+     4,
+     30
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.196,
+    "first3": 4,
+    "ranks": [
+     4,
+     375,
+     888,
+     1387,
+     182
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.307,
+    "first3": 3,
+    "ranks": [
+     14,
+     3
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.394,
+    "first3": 3,
+    "ranks": [
+     3,
+     48
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.845,
+    "first3": 2,
+    "ranks": [
+     2,
+     3,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.496,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     11
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.489,
+    "first3": 4,
+    "ranks": [
+     4,
+     6,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     15
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "mxbai-embed-large",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.562170874783887,
+  "ndcg_term": 0.6364811650986489,
+  "ndcg_nl": 0.33924000383960146,
+  "r10": 0.5764880952380953,
+  "r30": 0.6619047619047619,
+  "first3_top3": 0.625,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.586,
+    "first3": 1,
+    "ranks": [
+     1,
+     4,
+     42,
+     117,
+     505,
+     516,
+     651,
+     295,
+     233
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.456,
+    "first3": 5,
+    "ranks": [
+     5,
+     6
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.879,
+    "first3": 1,
+    "ranks": [
+     1,
+     3,
+     6,
+     4,
+     48,
+     2,
+     9
+    ]
+   },
+   "developer": {
+    "ndcg": 0.91,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     6,
+     3,
+     60
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.897,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     8,
+     3,
+     33
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.798,
+    "first3": 1,
+    "ranks": [
+     1,
+     9
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.228,
+    "first3": 3,
+    "ranks": [
+     3,
+     214,
+     92,
+     1519,
+     18
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.0,
+    "first3": 31,
+    "ranks": [
+     611,
+     31
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.0,
+    "first3": 66,
+    "ranks": [
+     66,
+     12
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.232,
+    "first3": 248,
+    "ranks": [
+     248,
+     355,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.324,
+    "first3": 5,
+    "ranks": [
+     5,
+     55,
+     7
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.112,
+    "first3": 19,
+    "ranks": [
+     19,
+     5,
+     18
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     42
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "mxbai-embed-large",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6345108721790259,
+  "ndcg_term": 0.6685542206321132,
+  "ndcg_nl": 0.5323808268197643,
+  "r10": 0.6889880952380953,
+  "r30": 0.86875,
+  "first3_top3": 0.6875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.628,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     14,
+     41,
+     80,
+     64,
+     87,
+     18,
+     69
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     199
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.786,
+    "first3": 2,
+    "ranks": [
+     3,
+     2,
+     7,
+     5,
+     28,
+     1,
+     10
+    ]
+   },
+   "developer": {
+    "ndcg": 0.776,
+    "first3": 2,
+    "ranks": [
+     2,
+     4,
+     3,
+     1,
+     49
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.655,
+    "first3": 1,
+    "ranks": [
+     6,
+     1,
+     13,
+     4,
+     45
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.264,
+    "first3": 4,
+    "ranks": [
+     4,
+     11
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     138,
+     215,
+     1236,
+     89
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.264,
+    "first3": 4,
+    "ranks": [
+     28,
+     4
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.339,
+    "first3": 4,
+    "ranks": [
+     4,
+     19
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.755,
+    "first3": 2,
+    "ranks": [
+     7,
+     2,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.427,
+    "first3": 4,
+    "ranks": [
+     4,
+     7,
+     16
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.227,
+    "first3": 15,
+    "ranks": [
+     15,
+     4,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     11
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "mxbai-embed-large",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6652465451275937,
+  "ndcg_term": 0.7316512473918184,
+  "ndcg_nl": 0.46603243833491986,
+  "r10": 0.7029761904761905,
+  "r30": 0.86875,
+  "first3_top3": 0.75,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.628,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     12,
+     41,
+     108,
+     64,
+     120,
+     29,
+     91
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     107
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.639,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     7,
+     5,
+     28,
+     3,
+     11
+    ]
+   },
+   "developer": {
+    "ndcg": 0.708,
+    "first3": 3,
+    "ranks": [
+     3,
+     6,
+     1,
+     2,
+     52
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     4,
+     3,
+     46
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     211,
+     193,
+     1320,
+     58
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.237,
+    "first3": 5,
+    "ranks": [
+     28,
+     5
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.305,
+    "first3": 5,
+    "ranks": [
+     5,
+     19
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.232,
+    "first3": 12,
+    "ranks": [
+     12,
+     17,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.473,
+    "first3": 3,
+    "ranks": [
+     3,
+     8,
+     15
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.452,
+    "first3": 7,
+    "ranks": [
+     7,
+     4,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     12
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "granite-embedding:30m",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.3334282172282719,
+  "ndcg_term": 0.36356429859632505,
+  "ndcg_nl": 0.24301997312411214,
+  "r10": 0.3508928571428571,
+  "r30": 0.5660714285714286,
+  "first3_top3": 0.4375,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.495,
+    "first3": 1,
+    "ranks": [
+     1,
+     112,
+     366,
+     507,
+     462,
+     749,
+     636,
+     93,
+     697
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.0,
+    "first3": 111,
+    "ranks": [
+     111,
+     113
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.539,
+    "first3": 2,
+    "ranks": [
+     11,
+     2,
+     5,
+     6,
+     858,
+     7,
+     4
+    ]
+   },
+   "developer": {
+    "ndcg": 0.619,
+    "first3": 3,
+    "ranks": [
+     3,
+     4,
+     22,
+     1,
+     17
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.74,
+    "first3": 1,
+    "ranks": [
+     1,
+     5,
+     2,
+     19,
+     53
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.177,
+    "first3": 10,
+    "ranks": [
+     15,
+     10
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.0,
+    "first3": 37,
+    "ranks": [
+     44,
+     37,
+     436,
+     null,
+     16
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.0,
+    "first3": 21,
+    "ranks": [
+     142,
+     21
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.0,
+    "first3": 107,
+    "ranks": [
+     107,
+     192
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.232,
+    "first3": 1028,
+    "ranks": [
+     1028,
+     1232,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.046,
+    "first3": 16,
+    "ranks": [
+     16,
+     74,
+     4
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.203,
+    "first3": 45,
+    "ranks": [
+     45,
+     8,
+     5
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.497,
+    "first3": 2,
+    "ranks": [
+     2,
+     45
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 0.0,
+    "first3": 21,
+    "ranks": [
+     21
+    ]
+   }
+  }
+ },
+ {
+  "model": "granite-embedding:30m",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.5054537646023127,
+  "ndcg_term": 0.5809793820339358,
+  "ndcg_nl": 0.27887691230744316,
+  "r10": 0.5910714285714286,
+  "r30": 0.8410714285714286,
+  "first3_top3": 0.625,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.516,
+    "first3": 1,
+    "ranks": [
+     1,
+     12,
+     29,
+     56,
+     80,
+     55,
+     88,
+     9,
+     90
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.409,
+    "first3": 7,
+    "ranks": [
+     7,
+     7
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     206
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.785,
+    "first3": 1,
+    "ranks": [
+     10,
+     1,
+     6,
+     4,
+     69,
+     3,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.776,
+    "first3": 2,
+    "ranks": [
+     2,
+     4,
+     3,
+     1,
+     19
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.289,
+    "first3": 3,
+    "ranks": [
+     3,
+     12,
+     10,
+     16,
+     65
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.0,
+    "first3": 12,
+    "ranks": [
+     16,
+     12
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.287,
+    "first3": 2,
+    "ranks": [
+     2,
+     47,
+     642,
+     1499,
+     83
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.307,
+    "first3": 3,
+    "ranks": [
+     11,
+     3
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.262,
+    "first3": 7,
+    "ranks": [
+     7,
+     119
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.232,
+    "first3": 14,
+    "ranks": [
+     21,
+     14,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.435,
+    "first3": 4,
+    "ranks": [
+     4,
+     6,
+     15
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.214,
+    "first3": 18,
+    "ranks": [
+     18,
+     5,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     12
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "granite-embedding:30m",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.654239517015827,
+  "ndcg_term": 0.737518542833799,
+  "ndcg_nl": 0.404402439561911,
+  "r10": 0.699404761904762,
+  "r30": 0.8285714285714285,
+  "first3_top3": 0.6875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.495,
+    "first3": 1,
+    "ranks": [
+     1,
+     16,
+     31,
+     59,
+     116,
+     53,
+     131,
+     14,
+     129
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.226,
+    "first3": 1,
+    "ranks": [
+     1,
+     1
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     99
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.688,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     7,
+     5,
+     54,
+     3,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.756,
+    "first3": 2,
+    "ranks": [
+     2,
+     5,
+     3,
+     1,
+     17
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     3,
+     4,
+     69
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.228,
+    "first3": 3,
+    "ranks": [
+     3,
+     57,
+     730,
+     1505,
+     55
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.218,
+    "first3": 6,
+    "ranks": [
+     21,
+     6
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.237,
+    "first3": 9,
+    "ranks": [
+     9,
+     214
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.232,
+    "first3": 28,
+    "ranks": [
+     29,
+     28,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.435,
+    "first3": 4,
+    "ranks": [
+     4,
+     6,
+     11
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.439,
+    "first3": 7,
+    "ranks": [
+     7,
+     5,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     12
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-large",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.5992458119746453,
+  "ndcg_term": 0.6944445673906303,
+  "ndcg_nl": 0.31364954572669024,
+  "r10": 0.5973214285714286,
+  "r30": 0.705654761904762,
+  "first3_top3": 0.6875,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.628,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     14,
+     24,
+     356,
+     378,
+     352,
+     242,
+     137
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.651,
+    "first3": 2,
+    "ranks": [
+     2,
+     4
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     null
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.838,
+    "first3": 1,
+    "ranks": [
+     1,
+     5,
+     6,
+     4,
+     39,
+     2,
+     9
+    ]
+   },
+   "developer": {
+    "ndcg": 0.924,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     4,
+     3,
+     42
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.826,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     10,
+     7,
+     42
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.92,
+    "first3": 1,
+    "ranks": [
+     1,
+     3
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.196,
+    "first3": 4,
+    "ranks": [
+     4,
+     563,
+     73,
+     1251,
+     43
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.0,
+    "first3": 34,
+    "ranks": [
+     111,
+     34
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.0,
+    "first3": 39,
+    "ranks": [
+     39,
+     28
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.232,
+    "first3": 40,
+    "ranks": [
+     40,
+     170,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.276,
+    "first3": 8,
+    "ranks": [
+     8,
+     41,
+     5
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.521,
+    "first3": 2,
+    "ranks": [
+     2,
+     7,
+     20
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     29
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-large",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6531003526518042,
+  "ndcg_term": 0.7110232620881844,
+  "ndcg_nl": 0.47933162434266363,
+  "r10": 0.7535714285714286,
+  "r30": 0.8812500000000001,
+  "first3_top3": 0.75,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.695,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     8,
+     20,
+     76,
+     51,
+     78,
+     16,
+     58
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     206
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.716,
+    "first3": 3,
+    "ranks": [
+     3,
+     4,
+     7,
+     5,
+     28,
+     1,
+     9
+    ]
+   },
+   "developer": {
+    "ndcg": 0.776,
+    "first3": 2,
+    "ranks": [
+     2,
+     4,
+     3,
+     1,
+     40
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.441,
+    "first3": 3,
+    "ranks": [
+     5,
+     3,
+     16,
+     8,
+     49
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.544,
+    "first3": 3,
+    "ranks": [
+     3,
+     5
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     232,
+     183,
+     1061,
+     135
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.237,
+    "first3": 5,
+    "ranks": [
+     12,
+     5
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.339,
+    "first3": 4,
+    "ranks": [
+     4,
+     28
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.784,
+    "first3": 2,
+    "ranks": [
+     2,
+     5,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.427,
+    "first3": 4,
+    "ranks": [
+     4,
+     7,
+     16
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.46,
+    "first3": 6,
+    "ranks": [
+     6,
+     4,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     13
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "bge-large",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6889714673341886,
+  "ndcg_term": 0.7474819385133283,
+  "ndcg_nl": 0.5134400537967693,
+  "r10": 0.7452380952380953,
+  "r30": 0.8500000000000001,
+  "first3_top3": 0.75,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.699,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     7,
+     17,
+     98,
+     52,
+     103,
+     24,
+     73
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     110
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.657,
+    "first3": 3,
+    "ranks": [
+     4,
+     3,
+     7,
+     5,
+     28,
+     2,
+     10
+    ]
+   },
+   "developer": {
+    "ndcg": 0.677,
+    "first3": 4,
+    "ranks": [
+     4,
+     6,
+     1,
+     2,
+     40
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     4,
+     3,
+     50
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     293,
+     144,
+     1199,
+     97
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.193,
+    "first3": 8,
+    "ranks": [
+     16,
+     8
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.339,
+    "first3": 4,
+    "ranks": [
+     4,
+     36
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 0.466,
+    "first3": 4,
+    "ranks": [
+     4,
+     19,
+     1
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.479,
+    "first3": 3,
+    "ranks": [
+     3,
+     7,
+     14
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.545,
+    "first3": 3,
+    "ranks": [
+     3,
+     5,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     13
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "qwen3-embedding:0.6b",
+  "mode": "sem",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.5472489704564673,
+  "ndcg_term": 0.5779638967620636,
+  "ndcg_nl": 0.4551041915396784,
+  "r10": 0.5425595238095239,
+  "r30": 0.6577380952380952,
+  "first3_top3": 0.75,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.661,
+    "first3": 1,
+    "ranks": [
+     1,
+     4,
+     46,
+     6,
+     1353,
+     766,
+     549,
+     230,
+     145
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 0.693,
+    "first3": 2,
+    "ranks": [
+     2,
+     3
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     178
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.525,
+    "first3": 7,
+    "ranks": [
+     11,
+     7,
+     10,
+     8,
+     80,
+     1,
+     2
+    ]
+   },
+   "developer": {
+    "ndcg": 0.553,
+    "first3": 1,
+    "ranks": [
+     1,
+     78,
+     295,
+     3,
+     453
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.593,
+    "first3": 1,
+    "ranks": [
+     11,
+     1,
+     8,
+     9,
+     64
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.613,
+    "first3": 1,
+    "ranks": [
+     11,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.228,
+    "first3": 3,
+    "ranks": [
+     3,
+     74,
+     77,
+     462,
+     137
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.0,
+    "first3": 105,
+    "ranks": [
+     1022,
+     105
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.0,
+    "first3": 309,
+    "ranks": [
+     309,
+     22
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     3
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.046,
+    "first3": 16,
+    "ranks": [
+     16,
+     35,
+     4
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.77,
+    "first3": 1,
+    "ranks": [
+     1,
+     41,
+     7
+    ]
+   },
+   "deployer": {
+    "ndcg": 0.5,
+    "first3": 3,
+    "ranks": [
+     3
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     40
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "qwen3-embedding:0.6b",
+  "mode": "mix+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6428113111924437,
+  "ndcg_term": 0.6750485241191496,
+  "ndcg_nl": 0.5460996724123259,
+  "r10": 0.7098214285714286,
+  "r30": 0.8410714285714286,
+  "first3_top3": 0.75,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.799,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     8,
+     5,
+     95,
+     32,
+     59,
+     9,
+     26
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     64
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.662,
+    "first3": 3,
+    "ranks": [
+     10,
+     3,
+     9,
+     5,
+     33,
+     1,
+     6
+    ]
+   },
+   "developer": {
+    "ndcg": 0.541,
+    "first3": 2,
+    "ranks": [
+     2,
+     11,
+     9,
+     1,
+     151
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.525,
+    "first3": 1,
+    "ranks": [
+     16,
+     1,
+     11,
+     4,
+     54
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.387,
+    "first3": 2,
+    "ranks": [
+     12,
+     2
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     74,
+     178,
+     537,
+     286
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.204,
+    "first3": 7,
+    "ranks": [
+     32,
+     7
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.237,
+    "first3": 9,
+    "ranks": [
+     9,
+     27
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     3
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.403,
+    "first3": 6,
+    "ranks": [
+     6,
+     4,
+     14
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.498,
+    "first3": 4,
+    "ranks": [
+     4,
+     7,
+     5
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     13
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ },
+ {
+  "model": "qwen3-embedding:0.6b",
+  "mode": "rrf+p",
+  "target": 1200,
+  "input": "ctx",
+  "ndcg": 0.6936100390102133,
+  "ndcg_term": 0.7104875174536066,
+  "ndcg_nl": 0.6429776036800334,
+  "r10": 0.7473214285714286,
+  "r30": 0.8410714285714286,
+  "first3_top3": 0.75,
+  "per_query": {
+   "hazard": {
+    "ndcg": 0.795,
+    "first3": 1,
+    "ranks": [
+     1,
+     2,
+     7,
+     6,
+     135,
+     43,
+     121,
+     10,
+     54
+    ]
+   },
+   "catastrophic risk": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1,
+     2
+    ]
+   },
+   "severe harm": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     67
+    ]
+   },
+   "loss of control": {
+    "ndcg": 0.672,
+    "first3": 2,
+    "ranks": [
+     4,
+     2,
+     10,
+     5,
+     33,
+     3,
+     8
+    ]
+   },
+   "developer": {
+    "ndcg": 0.72,
+    "first3": 2,
+    "ranks": [
+     2,
+     6,
+     5,
+     1,
+     173
+    ]
+   },
+   "definition of risk": {
+    "ndcg": 0.939,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     4,
+     3,
+     67
+    ]
+   },
+   "systemic risk": {
+    "ndcg": 0.877,
+    "first3": 1,
+    "ranks": [
+     4,
+     1
+    ]
+   },
+   "humans can no longer shut down or correct the AI system": {
+    "ndcg": 0.455,
+    "first3": 1,
+    "ranks": [
+     1,
+     95,
+     162,
+     646,
+     257
+    ]
+   },
+   "difference between malicious and non-malicious risks": {
+    "ndcg": 0.177,
+    "first3": 10,
+    "ranks": [
+     28,
+     10
+    ]
+   },
+   "information hazard": {
+    "ndcg": 0.0,
+    "first3": 11,
+    "ranks": [
+     11,
+     34
+    ]
+   },
+   "death or serious injury to more than 50 people or a billion dollars of damage": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     2,
+     1,
+     3
+    ]
+   },
+   "whistleblower": {
+    "ndcg": 0.427,
+    "first3": 4,
+    "ranks": [
+     4,
+     7,
+     12
+    ]
+   },
+   "misalignment": {
+    "ndcg": 0.46,
+    "first3": 5,
+    "ranks": [
+     5,
+     7,
+     6
+    ]
+   },
+   "deployer": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   },
+   "serious incident": {
+    "ndcg": 0.787,
+    "first3": 1,
+    "ranks": [
+     1,
+     12
+    ]
+   },
+   "critical safety incident": {
+    "ndcg": 1.0,
+    "first3": 1,
+    "ranks": [
+     1
+    ]
+   }
+  }
+ }
+]

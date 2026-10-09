@@ -1,0 +1,12 @@
+bge-large__t1200__ctx.json {"model": "bge-large", "target": 1200, "input": "ctx", "n": 3714, "seconds": 92.7, "tokens": 667416, "dims": 1024, "ctx": 512}
+bge-m3__t1200__ctx.json {"model": "bge-m3", "target": 1200, "input": "ctx", "n": 3714, "seconds": 218.0, "tokens": 736208, "dims": 1024, "ctx": 8192}
+embeddinggemma_300m__t1200__ctx.json {"model": "embeddinggemma:300m", "target": 1200, "input": "ctx", "n": 3714, "seconds": 78.2, "tokens": 789675, "dims": 768, "ctx": 2048}
+granite-embedding_30m__t1200__ctx.json {"model": "granite-embedding:30m", "target": 1200, "input": "ctx", "n": 3714, "seconds": 40.9, "tokens": 693876, "dims": 384, "ctx": 512}
+hf-qwen3-0.6b__t1200__ctx.json {"model": "Qwen/Qwen3-Embedding-0.6B", "n": 3714, "seconds": 242.6, "device": "mps"}
+mxbai-embed-large__t1200__ctx.json {"model": "mxbai-embed-large", "target": 1200, "input": "ctx", "n": 3714, "seconds": 101.9, "tokens": 667416, "dims": 1024, "ctx": 512}
+nomic-embed-text-v2-moe__t1200__ctx.json {"model": "nomic-embed-text-v2-moe", "target": 1200, "input": "ctx", "n": 3714, "seconds": 70.7, "tokens": 750735, "dims": 768, "ctx": 512}
+qwen3-embedding__t1200__ctx.json {"model": "qwen3-embedding", "target": 1200, "input": "ctx", "n": 3714, "seconds": 1542.9, "tokens": 707876, "dims": 4096, "ctx": 8192}
+qwen3-embedding_0.6b__t1200__ctx.json {"model": "qwen3-embedding:0.6b", "target": 1200, "input": "ctx", "n": 3714, "seconds": 152.7, "tokens": 707876, "dims": 1024, "ctx": 8192}
+snowflake-arctic-embed2__t1200__ctx.json {"model": "snowflake-arctic-embed2", "target": 1200, "input": "ctx", "n": 3714, "seconds": 102.1, "tokens": 736208, "dims": 1024, "ctx": 8192}
+bge-m3__t1200__ctx.json {"model": "bge-m3", "target": 1200, "input": "ctx", "n": 3714, "seconds": 94.9, "tokens": 736208, "dims": 1024, "ctx": 8192}
+snowflake-arctic-embed2__t1200__ctx.json {"model": "snowflake-arctic-embed2", "target": 1200, "input": "ctx", "n": 3714, "seconds": 97.2, "tokens": 736208, "dims": 1024, "ctx": 8192}
