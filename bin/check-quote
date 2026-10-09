@@ -19,9 +19,12 @@ emphasis don't matter. "…", "..." and bracketed insertions ("repeal[s]",
 GAP letters of the one before. Whether the quote also matches the text
 character for character is reported separately.
 
-Cardinality. An anchor intends exactly one match. Every record carries the
-match count; one match is ok, none is a defect in the citation, several mean
-the quote doesn't narrow enough.
+Cardinality. An anchor intends exactly one match, counted where it points:
+within the cited page when one is given (the page, refined by the quote), else
+in the whole text. One match there is ok, and any other occurrences are listed
+(`elsewhere`); several there mean the quote doesn't narrow enough (ambiguous);
+a cited page holding none of the matches is page-mismatch. Every record
+carries the document-wide match count too.
 
 The PDF. The canonical text settles the page unless its fidelity record
 (ref/canonical/msc/KEY/pages.json) says not to trust it there: the source is
@@ -216,7 +219,17 @@ def canonical(key):
         _canon_cache[key] = Canonical(key) if os.path.isfile(p) else None
     return _canon_cache[key]
 
+def pages_of(pg):
+    return pg if isinstance(pg, list) else [pg]
+
+def on_page(spans, page):
+    """Indices of the spans whose pages include the cited page."""
+    return [k for k, sp in enumerate(spans) if page in pages_of(sp)]
+
 def check_anchor(key, quote, page=None, entry=None):
+    """One anchor. Cardinality is counted where the anchor points: within the
+    cited page when one is given (plan §3.5: the page, refined by the quote),
+    else in the whole text. Matches elsewhere are kept in the record."""
     rec = dict(key=key, quote=quote, page_cited=page)
     parts = pieces(quote)
     if not parts:
@@ -232,37 +245,46 @@ def check_anchor(key, quote, page=None, entry=None):
         rec['active'] = (entry or {}).get('active')
     fid = (cn.pages_json.get('fidelity') if cn else None) or {}
     rec['source_mark'] = fid.get('mark')
+
+    # The canonical text.
     matches = find_all(cn.S, parts) if cn else []
     rec['match_count'] = len(matches)
-    rec['matches'] = []
-    for a, b in matches[:20]:
+    info = []
+    for a, b in matches:
         p0, pr0, l0 = cn.at(a)
         p1, _, _ = cn.at(b - 1)
-        rec['matches'].append(dict(page=p0 if p0 == p1 else [p0, p1], printed=pr0, line=l0,
-                                   restored_pdf_text=cn.in_supp(a)))
-    if len(matches) == 1:
-        # Exact: every piece of the quote, quote marks and spacing normalized
-        # and markdown emphasis removed, occurs character for character in the
-        # matched text. If not, the record carries the text's own characters.
-        found = cn.span_text(*matches[0])
+        info.append(dict(page=p0 if p0 == p1 else [p0, p1], printed=pr0, line=l0,
+                         restored_pdf_text=cn.in_supp(a)))
+    rec['matches'] = info[:20]
+    sel = list(range(len(matches)))
+    if page is not None and len(matches) > 1:
+        here = on_page([m['page'] for m in info], page)
+        rec['match_count_on_cited_page'] = len(here)
+        if here:
+            sel = here
+    if len(sel) == 1:
+        k = sel[0]
+        found = cn.span_text(*matches[k])
         cf = collapse(found)
         edge = lambda x: re.sub(r'^\W+|\W+$', '', collapse(x))   # the span starts and ends at a letter or digit
         rec['exact'] = all(edge(x) in cf for x in GAP_RE.split(quote) if edge(x))
         if not rec['exact']:
             rec['found_text'] = found if len(found) <= 1500 else found[:1500] + '…'
+        if len(matches) > 1:
+            rec['elsewhere'] = [m['page'] for n, m in enumerate(info) if n != k][:20]
+
     # Does the PDF have to settle it?
     reasons = []
     if not cn:
         reasons.append('no canonical text')
-    elif len(matches) == 0:
+    elif not matches:
         reasons.append('not in the canonical text')
     elif fid.get('mark') == 'check-all':
         reasons.append('source marked check-all')
-    if len(matches) == 1:
-        a, b = matches[0]
-        m = rec['matches'][0]
-        pg = m['page'] if isinstance(m['page'], list) else [m['page']]
-        if isinstance(m['page'], list):
+    if len(sel) == 1:
+        a, b = matches[sel[0]]
+        pg = pages_of(info[sel[0]]['page'])
+        if len(pg) > 1:
             reasons.append('the quote crosses a page marker')
         if set(pg) & set(fid.get('pages_to_check', [])):
             reasons.append('on a page the fidelity record lists')
@@ -272,21 +294,35 @@ def check_anchor(key, quote, page=None, entry=None):
             rec['break_window'] = nb
         if page is not None and page not in pg:
             reasons.append('the cited page differs')
+    elif matches and page is not None and not on_page([m['page'] for m in info], page):
+        reasons.append('the cited page holds none of the matches')
     rec['pdf_checked_because'] = reasons
-    pdf_pages = None
+
+    # The PDF, where needed: the same counting, on its own pages.
+    pdf_sel = None
     if reasons:
         pt = pdf_text(key)
         if pt:
             P, starts, stray, pdf = pt
             rec['stray_form_feeds'] = stray
             pm = find_all(P, parts)
+            pp = [[bisect.bisect_right(starts, a), bisect.bisect_right(starts, b - 1)] for a, b in pm]
+            pp = [x[0] if x[0] == x[1] else x for x in pp]
             rec['pdf_match_count'] = len(pm)
-            pdf_pages = [[bisect.bisect_right(starts, a), bisect.bisect_right(starts, b - 1)] for a, b in pm[:20]]
-            rec['pdf_pages'] = [p[0] if p[0] == p[1] else p for p in pdf_pages]
+            rec['pdf_pages'] = pp[:20]
+            pdf_sel = list(range(len(pm)))
+            if page is not None and len(pm) > 1:
+                here = on_page(pp, page)
+                rec['pdf_match_count_on_cited_page'] = len(here)
+                if here:
+                    pdf_sel = here
+            pdf_sel = [pp[k] for k in pdf_sel]
         else:
             rec['pdf_match_count'] = None
+
     # Settle status and page.
-    canon_n, pdf_n = len(matches), rec.get('pdf_match_count')
+    canon_n = len(sel) if matches else 0
+    pdf_n = len(pdf_sel) if pdf_sel is not None else None
     unordered = (cn.pages_json.get('mode') == 'unordered') if cn else False
     if not cn and not pdf_n:
         status = 'no-text' if pdf_n is None else 'not-found'
@@ -299,20 +335,21 @@ def check_anchor(key, quote, page=None, entry=None):
     elif unordered and canon_n == 1 and pdf_n == 0:
         status = 'not-in-pdf'
     else:
-        n = pdf_n if (pdf_n is not None and (canon_n != 1 or reasons)) else canon_n
+        n = pdf_n if (pdf_n is not None and (canon_n != 1 or reasons) and pdf_n > 0) else canon_n
         if n > 1:
             status = 'ambiguous'
+            if page is not None and not on_page(
+                    pdf_sel if (pdf_n and pdf_n > 1) else [m['page'] for m in info], page):
+                status = 'page-mismatch'
         else:
             if pdf_n == 1:
-                pp = rec['pdf_pages'][0]
-                rec['page'], rec['page_from'] = pp, 'pdf'
+                rec['page'], rec['page_from'] = pdf_sel[0], 'pdf'
             else:
-                rec['page'], rec['page_from'] = rec['matches'][0]['page'], 'canonical text'
+                rec['page'], rec['page_from'] = info[sel[0]]['page'], 'canonical text'
             if canon_n == 1:
-                rec['printed'] = rec['matches'][0]['printed']
-                rec['line'] = rec['matches'][0]['line']
-            got = rec['page'] if isinstance(rec['page'], list) else [rec['page']]
-            status = 'page-mismatch' if page is not None and page not in got else 'ok'
+                rec['printed'] = info[sel[0]]['printed']
+                rec['line'] = info[sel[0]]['line']
+            status = 'page-mismatch' if page is not None and page not in pages_of(rec['page']) else 'ok'
             if status == 'ok' and reasons and pdf_n == 0:
                 # The PDF was needed to settle it and doesn't have the words
                 # (for OCR'd sources its text layer is usually what failed).
@@ -343,7 +380,9 @@ def line_for(rec):
     extra = []
     if rec.get('page_from') == 'pdf':
         extra.append('page settled by the PDF: ' + '; '.join(rec['pdf_checked_because']))
-    if rec['status'] == 'ambiguous':
+    if rec.get('elsewhere'):
+        extra.append(f'also occurs on: {", ".join(str(x) for x in rec["elsewhere"][:8])}')
+    if rec['status'] in ('ambiguous', 'page-mismatch') and rec['match_count'] > 1:
         extra.append(f'{rec["match_count"]} matches in the canonical text'
                      + (f', {rec.get("pdf_match_count")} in the PDF' if rec.get('pdf_match_count') is not None else '')
                      + ': ' + ', '.join(str(m['page']) for m in rec['matches'][:8]))
