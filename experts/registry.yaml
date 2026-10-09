@@ -21,3 +21,14 @@ experts:
     read: []
     context_after_preparation: null
     note: the pilot expert (README, Open)
+  - key: eu-cop-2025-safety-security
+    lineage: [eu-cop-2025-safety-security, eu-cop-chairs-2025-statement]
+    name: expert-eu-cop-2025-safety-security
+    session: 7354940e-6bd5-44cc-86a2-bd1b61638fd6
+    model: Opus 5.5 (Claude Code 2.1.296)
+    started: 2026-10-09
+    started_by: ai-risk-search-tool, with experts/BRIEF.md (as revised after the SB 53 expert's start)
+    state: asked
+    read: []
+    context_after_preparation: null
+    note: the second expert; Grok judged this source whole for the outline evaluation, so its gold can be compared across model families
