@@ -337,7 +337,7 @@ The fidelity atom is the passage. The W3C Web Annotation Data Model (Recommendat
 > - the exact quote;
 > - optionally the printed page label, as a display field only (NIST AI 100-2's Fig. 6 is printed page 39, physical page 52).
 >
-> `ref/canonical/INDEX.md` grades each source's page fidelity (trusted, check-pages, check-all), and each source's `pages.json` records its uncertain page breaks with their exact text. Near one of those, check the page with `pdftotext -f N -l N`. A quote checker is planned next. It will search the canonical text, check against the PDF only where a source's grade or a break calls for it, and report match counts as intended cardinality (above). Two consequences:
+> `ref/canonical/INDEX.md` grades each source's page fidelity (trusted, check-pages, check-all), and each source's `pages.json` records its uncertain page breaks with their exact text. Near one of those, check the page with `pdftotext -f N -l N`. The quote checker exists: `bin/check-quote` (2026-10-09). It searches the canonical text, checks against the PDF only where a source's mark, a page marker or an uncertain break calls for it, and reports match counts, a status per quote (ok, unconfirmed, not-found, near-miss, ambiguous, page-mismatch, not-in-pdf, no-text) and whether the quote's characters are exact. Two consequences:
 > - `def/` cites Evans by printed page, so those citations should be marked as printed or get the physical page added;
 > - a definition can span several passages (section 3.11, test 1), so the passage record holds a list of anchors.
 >
