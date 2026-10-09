@@ -93,6 +93,7 @@ the page they are marked with, 2396 are found there, 8 belong to another page
 """
 import bisect, datetime, difflib, hashlib, json, os, re, shutil, subprocess, sys, unicodedata
 
+sys.dont_write_bytecode = True   # importing corpus.py shouldn't leave bin/__pycache__ behind
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from corpus import (MARK, MARK_PRINTED, MARK_RE, NOT_IN_PDF, SUPP_OPEN, SUPP_CLOSE,  # noqa: E402
                     SUPP_RE, read_catalog, in_scope)
