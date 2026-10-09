@@ -44,6 +44,12 @@ PDF to search). Separately, `exact` says whether the quote matches the text
 character for character (quote marks, spacing and markdown emphasis aside);
 when it doesn't, `found_text` gives the text's own characters.
 
+OCR's "Al" for "AI". The canonical texts have it corrected (bin/corpus.py
+fix_ocr_ai, recorded in pages.json), so the same correction is applied to the
+PDF's page text before matching (IASR 2026's own text layer has the error) and
+to the quote (one copied before the fix still matches, and is reported with
+exact: false and the corrected found_text).
+
 Every PDF opened is also checked for stray form feeds: pdftotext's plain
 output should have exactly one per page, and a PDF whose text contains others
 would have shifted any page number counted by form feeds.
@@ -72,7 +78,7 @@ GAP_RE = re.compile(r'\s*(?:…|\.\s?\.\s?\.|\[[^\]]*\])\s*')
 
 def pieces(quote):
     """The quote's pieces between gaps, each reduced to letters and digits."""
-    return [p for p in (C.norm(x) for x in GAP_RE.split(quote)) if p]
+    return [p for p in (C.norm(x) for x in GAP_RE.split(corpus.fix_ocr_ai(quote)[0])) if p]
 
 def find_all(S, parts):
     """Every (start, end) in S where the parts occur in order, each within GAP
@@ -203,6 +209,7 @@ def pdf_text(key):
         _pdf_cache[key] = None
         return None
     pages, _ = C.pdf_tsv(pdf)
+    pages = [corpus.fix_ocr_ai(t)[0] for t in pages]   # as bin/canonicalize does
     P, starts = C.pdf_stream(pages)
     plain = subprocess.run(['pdftotext', pdf, '-'], capture_output=True).stdout
     ff = plain.count(b'\f')

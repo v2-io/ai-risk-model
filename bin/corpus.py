@@ -98,3 +98,45 @@ def read_catalog(path=None):
 def in_scope(e):
     return not ({'no-canon', 'subsumed-by'} & set(e['tags']))
 
+
+# ------------------------------------------------- OCR's "Al" for "AI"
+#
+# Joseph, 2026-10-09: "look for instances where OCR wrote AI as "Al" and fix
+# them". OCR (and at least one PDF's own text layer, IASR 2026's foreword)
+# reads "AI" as "Al". Measured on the 195 texts built that day: 781 `\bAl\b`,
+# all "AI" except surnames in reference lists. The five worst sources had none
+# in their PDFs' text layers, so the error is OCR's, and correcting it brings
+# the canonical text closer to the PDF.
+#
+# Every "Al" becomes "AI" except: a listed surname (AL_SURNAMES, found in the
+# corpus; add new ones here), and an unlisted one shaped like a name in a
+# reference list: after an initial or an author separator, "Al" and a
+# capitalised word, then a comma ("M. A. Al Mamun, Y. Fu"; "Iqbal, F., Al-Room,
+# K."). Either test alone catches real "AI" phrases ("U.S. Al Safety Institute";
+# "Security of Al Research, NCSC"); together they don't, on this corpus. The second kind is left alone and reported, so a new surname
+# is never silently "corrected"; list it here once checked.
+
+AL_SURNAMES = ('Al-Dahle', 'Al-Dhaqm', 'Al-Kharusi', 'Al-Muhanna', 'Al-Nuaimi',
+               'Al-Onaizan', 'Al-Reedy', 'Al-Rimy', 'Al-Room', 'Al-Shedivat',
+               'Al-Shehri', 'Al Kuwaiti', 'Al Lelah', 'Al Mamun', 'Al Muhanna')
+_AL = re.compile(r'\bAl\b')
+_NAME_SHAPED = re.compile(r'[- ][A-Z][\w\'’-]*[a-z],')
+_NAME_BEFORE = re.compile(r'(?:\b[A-Z]\.|,)\s?$')
+
+def fix_ocr_ai(text):
+    """(text with OCR's "Al" for "AI" corrected, [(offset, before, after)],
+    [(offset, context)] left alone as possible surnames). Offsets are into
+    the input text."""
+    out, fixes, held, last = [], [], [], 0
+    for m in _AL.finditer(text):
+        i = m.start()
+        rest = text[i:i + 40]
+        if any(rest.startswith(s) and not rest[len(s):len(s) + 1].isalpha() for s in AL_SURNAMES):
+            continue
+        if _NAME_SHAPED.match(text, i + 2) and _NAME_BEFORE.search(text[max(0, i - 6):i]):
+            held.append((i, text[max(0, i - 30):i + 30].replace('\n', ' ')))
+            continue
+        out.append(text[last:i]); out.append('AI'); last = i + 2
+        fixes.append((i, text[max(0, i - 30):i + 32].replace('\n', ' ')))
+    out.append(text[last:])
+    return ''.join(out), fixes, held

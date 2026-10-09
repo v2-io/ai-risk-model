@@ -33,7 +33,7 @@ What the canonicalize session reports as stable, and what the index has to allow
 - `pages.json`'s `fidelity.mark`, `pages_to_check`, `differences`, and each break's `page`, `line`, `printed`, `unlocated_letters` and `window_text` are stable; newer fields include `ocr_pages`, `web_render` and `edition_check`;
 - `ref/canonical/skipped.json` lists keys not built, and why;
 - a key that leaves the catalog keeps its old output on disk, so **the catalog, not the directory, decides what is indexed**;
-- IASR's link tooltips stay in the canonical text (canonicalize never edits a text's characters), so the chunker drops them from the indexed text (§5.2).
+- IASR's link tooltips stay in the canonical text (canonicalize edits a text's characters only for the recorded OCR "Al"→"AI" correction, `corpus.fix_ocr_ai`), so the chunker drops them from the indexed text (§5.2). The index should apply `fix_ocr_ai` to queries as well, so a query typed from an uncorrected copy still matches.
 
 Who gets indexed: every catalog key with a canonical text, except `subsumed-by` keys, whose text is a copy of another key's. `superseded-by` keys are indexed and marked inactive. `no-canon` keys have no text, so they appear only as metadata.
 

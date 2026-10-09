@@ -72,8 +72,11 @@ reflowed, math as LaTeX, garbled OCR text, or text not in the PDF's text
 layer (captions read from the image, marker's escaped markup); and page
 breaks whose position isn't determined, with the pages either side (pages.json
 gives each break's line and window). The
-conversion's own text is never edited; garbled lines stay where marker put
-them and are listed. A break whose undetermined window holds 12 or more
+conversion's own text is never edited, with one exception, recorded: OCR's
+"Al" for "AI" is corrected (bin/corpus.py fix_ocr_ai; Joseph, 2026-10-09), in
+the markdown and in the PDF's page text it is aligned with, and every
+correction is listed in pages.json (`corrections`). Garbled lines otherwise
+stay where marker put them and are listed. A break whose undetermined window holds 12 or more
 letters puts the pages either side on the list; every window is recorded
 with its text (`window_text`) so a quote can be tested against it. On
 2026-10-08: 36 trusted, 45 check-pages (234 pages), 6 check-all.
@@ -96,7 +99,7 @@ import bisect, datetime, difflib, hashlib, json, os, re, shutil, subprocess, sys
 sys.dont_write_bytecode = True   # importing corpus.py shouldn't leave bin/__pycache__ behind
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from corpus import (MARK, MARK_PRINTED, MARK_RE, NOT_IN_PDF, SUPP_OPEN, SUPP_CLOSE,  # noqa: E402
-                    SUPP_RE, read_catalog, in_scope)
+                    SUPP_RE, read_catalog, in_scope, fix_ocr_ai)
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 K = 24        # anchor length, in letters and digits
@@ -794,6 +797,11 @@ def write_index(outdir, order, entries, skipped):
         diffs = '; '.join(f'{k} ({v["lines"]} {"breaks" if k.startswith("page break") else "pages" if k.startswith("OCR pages") else "lines"})'
                           for k, v in fi.get('differences', {}).items())
         notes = '; '.join(fi.get('why', []))
+        cor = ((r or {}).get('corrections') or {})
+        if cor.get('count'):
+            notes = (notes + '; ' if notes else '') + f'"Al" corrected to "AI" ×{cor["count"]}'
+        if cor.get('held_as_possible_surnames'):
+            notes += f'; {len(cor["held_as_possible_surnames"])} "Al" left as possible surnames (check, and list in corpus.py)'
         notes = notes + (' — ' if notes and diffs else '') + diffs
         pc = fi.get('pages_to_check', [])
         npc = {'check-pages': len(pc), 'check-all': 'all', 'trusted': 0}.get(fi.get('mark'), '')
@@ -958,8 +966,17 @@ def canonicalize(key, outdir, entry=None):
     src = source(key, entry)
     if src['state'] != 'ok':
         return dict(key=key, skipped=src['state'], path=src.get('path'))
-    md = open(src['md'], encoding='utf-8').read()
+    md_orig = open(src['md'], encoding='utf-8').read()
+    # OCR's "Al" for "AI", corrected in the markdown and in the PDF's page text
+    # alike (IASR 2026's own text layer has it too), so alignment, restored
+    # text and the fidelity measures all compare like with like.
+    md, al_fix, al_held = fix_ocr_ai(md_orig)
     pages, cands = pdf_tsv(src['pdf'])
+    pdf_al = {}
+    for n, t in enumerate(pages, 1):
+        t2, fx, _ = fix_ocr_ai(t)
+        if fx:
+            pages[n - 1], pdf_al[str(n)] = t2, len(fx)
     # A web page printed to PDF says so on its first page; its page numbers
     # are the rendering's, and any it prints are too.
     render_note = None
@@ -976,6 +993,13 @@ def canonicalize(key, outdir, entry=None):
     report = dict(key=key, mode='marker' if src['marker'] else 'unordered',
                   pdf_pages=len(pages), pdfinfo_pages=info_pages,
                   ocr_pages=sorted(ocr), web_render=render_note)
+    line_of = lambda off: md_orig.count('\n', 0, off) + 1
+    report['corrections'] = dict(
+        rule='OCR\'s "Al" for "AI" (bin/corpus.py fix_ocr_ai); line = line of the source markdown',
+        count=len(al_fix),
+        items=[dict(line=line_of(o), context=c) for o, c in al_fix],
+        held_as_possible_surnames=[dict(line=line_of(o), context=c) for o, c in al_held],
+        pdf_text_layer=pdf_al)
     if src['marker']:
         page_of, matched = align_ordered(M, P, pstarts)
         brk, conflicts, windows = breaks_ordered(md, moff, page_of, len(pages))
@@ -1001,7 +1025,7 @@ def canonicalize(key, outdir, entry=None):
     if src['marker']:
         stripped = stripped.replace('](' + rel + '/_page_', '](_page_')
     ws = lambda s: re.sub(r'\s+', ' ', s).strip()
-    report['roundtrip'] = ws(stripped) == ws(md)
+    report['roundtrip'] = ws(stripped) == ws(md)   # md: the source text with the recorded corrections
     if src['marker'] and src['dir']:
         report['headings_vs_marker_metadata'] = heading_check(md, brk, src['dir'])
 
@@ -1087,6 +1111,8 @@ def header(key, src, r):
             '     ' + how + '.\n'
             '     ```pdf-text blocks: text on that page in the PDF\'s own text layer that the converted\n'
             '     markdown lacks (often text inside a figure or box), in pdftotext\'s reading order.\n'
+            + (f'     OCR\'s "Al" for "AI" corrected {r["corrections"]["count"]} times; each one is listed in pages.json.\n'
+               if r.get('corrections', {}).get('count') else '') +
             '     Source: ' + src['note'] + '. Breaks, their certainty and self-checks: msc/' + key + '/pages.json -->\n\n')
 
 # ------------------------------------------------------------------------ main
