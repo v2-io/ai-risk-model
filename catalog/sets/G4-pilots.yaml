@@ -1,0 +1,8 @@
+# The four sources of the plan's G4 pilot translations, each to be translated by two
+# independent translators (MODEL-GAMMA-METHODOLOGY-AND-PLAN.md, G4; CLAUDE.md).
+description: The four very different sources of the plan's G4 pilot translations
+select:
+  - california-2025-sb53
+  - eu-cop-2025-safety-security
+  - anthropic-2026-risk-report-aug
+  - bengio-2026-international

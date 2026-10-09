@@ -2,46 +2,66 @@
 """Search the catalog's sources (search/DESIGN.md §7). Build the index first with
 bin/source-index.
 
-    bin/source-search 'hazard'                 ranked: definitions of the term first, then usage
-    bin/source-search --defs hazard            every definition of "hazard" (and of terms
-                                               containing it), grouped by source, active first
-    bin/source-search --all hazard             every occurrence of the word "hazard": counts by
-                                               document and form, then each occurrence in context
-    bin/source-search --all '*hazard*'         every word form containing it ("hazards",
-                                               "infohazard"); 'hazard*' for prefixes only
+    source-search [verb] [flags] 'query' [scope …]
 
---all matches literally. A lowercase letter matches either case and an uppercase
-letter only itself ('ai' finds "AI" and "ai"; 'AI' only "AI"). Words have
-implicit boundaries, which a '*' removes on its side. The count says what a '*' on
-each side would have added.
-    bin/source-search 'severe harm' --in OAI-PF xai-2026-faif     narrowed to documents
-    bin/source-search … --explain              the factors behind each result's score
-    bin/source-search … --json                 for agents (automatic when stdout is not a terminal)
-    bin/source-search … --verify               run each anchor through bin/check-quote
+The query is one argument, as for grep and rg: quote a phrase. What follows it says
+what to search (default: everything indexed). See "source-search help scopes".
 
---in takes relata keys (a trailing * matches a prefix), catalog Codes ("SB 53",
-"OAI-PF"), organisations ("Anthropic"), or catalog sections ("UK AI Security
-Institute"); several are joined.
+Verbs (default: hybrid):
+  hybrid        ranked: semantic and lexical rankings fused by RRF, then the weights
+                in search/weights.toml (definitions of the term first, contents pages
+                and references down, superseded versions down, …)
+  semantic      ranked by cosine similarity alone: no lexical ranking, no weights.
+                --without-phrase drops passages using the query's words as a phrase,
+                leaving those that say it in other words
+  defs          every definition of a term, grouped by source, active versions first
+  The concordance: every occurrence, counted by form, at four strictnesses
+  lexical       the loosest: the words in order anywhere within one passage
+  exact-phrase  the words in order and adjacent, whole words exactly as typed
+  exact-words   each word exactly as typed, counted on its own
+  exact-bytes   those characters exactly, spaces and case included
+  help          this; "help VERB" for a verb's flags; "help scopes" for sets and fields
+
+Matching, for every concordance verb but exact-bytes (DESIGN §7.1):
+- a lowercase letter matches either case, an uppercase letter only itself: 'ai'
+  finds "AI" and "ai", 'AI' only "AI" (letter by letter, unlike rg's smart-case);
+- words have boundaries; a '*' removes the one on its side: 'hazard*', '*hazard';
+- the words of a phrase may be separated by any spaces, line breaks, hyphens or
+  punctuation ('loss of control' finds "loss-of-control");
+- lexical lets each word run on a little: a final e may drop before i or e ('use'
+  finds "using"), a final y may become ie ('policy' finds "policies"), then up to
+  four more letters and a plural or possessive ('assess' finds "assessments", not
+  "reassess"; 'define' doesn't find "definition"). Function words ('of', 'the')
+  stay whole.
+Each concordance reports what the next looser verb would add, so a narrow search
+says what it left out. Its matches come tightest first.
+
+Examples:
+  source-search 'catastrophic risk'
+  source-search defs hazard Au5
+  source-search lexical 'loss of control' influence:anchor
+  source-search exact-phrase 'AI Concierge' 'anthropic-*'
+  source-search semantic --without-phrase 'loss of control'
 
 Every result carries an anchor: relata key, physical PDF page, printed page where
-established, and an exact quote that bin/check-quote can confirm. Where the
-source's fidelity record says its pages need the PDF (check-all, or one of its
-pages_to_check), the anchor says so; --verify settles them.
+established, and an exact quote bin/check-quote can confirm (--verify runs it).
+Where the source's fidelity record says its pages need the PDF, the anchor says so.
 
-Ranking is reciprocal rank fusion of lexical (BM25, exact forms over stems) and
-semantic (bge-m3) rankings, with the priors in search/weights.toml, each of which
-gives its reason there. --fusion mix, lexical or semantic selects another.
-
-Exit status: 0 with results, 1 with none, 3 if the search itself failed (nothing
-on stdout then).
+Output is JSON when stdout is not a terminal (--text to override).
+Exit status: 0 with results, 1 with none, 2 for a usage error, 3 if the search
+itself failed or a scope matched nothing (nothing on stdout then).
 """
 import argparse, json, os, subprocess, sys, textwrap
 
 sys.dont_write_bytecode = True
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, 'search'))
-from srcsearch import anchor, db, embed, rank  # noqa: E402
-from srcsearch.text import clean, words  # noqa: E402
+from srcsearch import anchor, concord, db, embed, match, rank, scope  # noqa: E402
+from srcsearch.text import words  # noqa: E402
+
+VERBS = ('hybrid', 'semantic', 'defs', 'lexical', 'exact-phrase', 'exact-words', 'exact-bytes', 'help')
+RETIRED = {'--all': 'the verb "lexical" (or exact-phrase, exact-words, exact-bytes)',
+           '--defs': 'the verb "defs"', '--in': 'naming keys, sets or field:value after the query'}
 
 
 def wrap(s, indent='    ', width=100):
@@ -78,34 +98,53 @@ def verify(anchors):
 
 
 # --------------------------------------------------------------------- ranked
-def ranked(conn, a, keys):
-    qvec = None
-    if a.fusion not in ('lexical',):
-        if rank.has_vectors(conn, a.model):
-            qvec = embed.embed_query(a.model, rank.parse(a.query)['query'])
-        elif a.fusion == 'semantic':
-            raise SystemExit(f'no {a.model} vectors yet: run bin/source-index')
-        else:
-            print(f'note: no {a.model} vectors yet, so lexical ranking only (run bin/source-index)', file=sys.stderr)
-    res, pq = rank.search(conn, a.query, n=a.n, model=a.model, fusion=a.fusion, keys=keys, qvec=qvec)
+def result_rows(res, pq, a):
     out = []
     for r, score, ex in res:
         (pid, key, ord_, start, end, page, printed, page_last, section, path, text, norm_sha, nip, status, influence,
          title, code, fidelity, ptc, active) = r
-        at = ex['defines']['at'] if ex['defines'] else None
+        dm = ex.get('defines')
+        at = dm['at'] if dm else None
         an = anchor.make(key, start, end, pq['words'], at=at, fidelity=fidelity, pages_to_check=ptc)
         out.append(dict(rank=len(out) + 1, score=round(score, 6), anchor=an, title=title, code=code, status=status,
                         active_key=active, section=section, path=path, passage=f'{key}#{ord_}',
-                        pages=[page, page_last], defines=ex['defines'],
+                        pages=[page, page_last], defines=dm,
                         copies=[dict(key=k, page=p) for k, p in ex.get('copies', [])],
                         matches=sorted({w for w in words(text) if any(w == q or len(q) >= 4 and q in w for q in pq['words'])}),
                         text=text if a.full else None, explain=ex if a.explain else None))
     if a.verify:
         verify([o['anchor'] for o in out])
-    return out, pq
+    return out
+
+
+def query_vector(conn, a, required):
+    if rank.has_vectors(conn, a.model):
+        return embed.embed_query(a.model, rank.parse(a.query)['query'])
+    if required:
+        raise SystemExit(f'no {a.model} vectors yet: run bin/source-index')
+    print(f'note: no {a.model} vectors yet, so lexical ranking only (run bin/source-index)', file=sys.stderr)
+    return None
+
+
+def hybrid(conn, a, keys):
+    qvec = None if a.fusion == 'lexical' else query_vector(conn, a, required=a.fusion == 'semantic')
+    res, pq = rank.search(conn, a.query, n=a.n, model=a.model, fusion=a.fusion, keys=keys, qvec=qvec)
+    return result_rows(res, pq, a), pq
+
+
+def semantic(conn, a, keys):
+    qvec = query_vector(conn, a, required=True)
+    exclude = None
+    if a.without_phrase:
+        exclude = lambda r: bool(match.finditer(a.query, 'loose-phrase', r[10]))  # noqa: E731
+    res, pq = rank.semantic_search(conn, a.query, qvec, n=a.n, model=a.model, keys=keys, exclude=exclude)
+    pq['without_phrase'] = a.query if a.without_phrase else None
+    return result_rows(res, pq, a), pq
 
 
 def print_ranked(out, pq, a):
+    if pq.get('without_phrase'):
+        print(f"(passages using {pq['without_phrase']!r} as a phrase left out)\n")
     for o in out:
         an = o['anchor']
         print(f"{o['rank']:>2}. {anchor.fmt(an)}")
@@ -128,10 +167,13 @@ def print_ranked(out, pq, a):
             print(wrap(o['text']))
         if a.explain:
             ex = o['explain']
-            print(f"    score {o['score']:.5f} = base {ex['base']:.5f} (semantic rank {ex['sem_rank']}, lexical rank "
-                  f"{ex['lex_rank']}{', phrase' if ex['phrase'] else ''}{', heading' if ex['heading'] else ''})"
-                  f" × defines {ex['f_def']:.2f} × section {ex['f_section']} × status {ex['f_status']}"
-                  f" × influence {ex['f_influence']} × recency {ex['f_recency']}")
+            if 'base' in ex:
+                print(f"    score {o['score']:.5f} = base {ex['base']:.5f} (semantic rank {ex['sem_rank']}, lexical rank "
+                      f"{ex['lex_rank']}{', phrase' if ex['phrase'] else ''}{', heading' if ex['heading'] else ''})"
+                      f" × defines {ex['f_def']:.2f} × section {ex['f_section']} × status {ex['f_status']}"
+                      f" × influence {ex['f_influence']} × recency {ex['f_recency']}")
+            else:
+                print(f"    score {o['score']:.5f} = 1 − cosine distance {ex['distance']:.5f}")
         print()
 
 
@@ -151,9 +193,10 @@ def defs(conn, a, keys):
     return out, pq
 
 
-def print_defs(out, pq):
+def print_defs(out, pq, a):
     n = sum(len(g['definitions']) for g in out)
-    print(f'{n} definitions of "{pq["term"]}" (and of terms containing it) in {len(out)} documents\n')
+    also = '' if a.exact else ' (and of terms containing it)'
+    print(f'{n} definitions of "{pq["term"]}"{also} in {len(out)} documents\n')
     for g in out:
         st = '' if g['status'] == 'active' else f"  [{g['status']}" + (f", active version {g['active_key']}]" if g['active_key'] else ']')
         print(f"== {g['key']}  {g['code'] or ''}  {g['title'] or ''}{st}")
@@ -164,142 +207,207 @@ def print_defs(out, pq):
 
 
 # ---------------------------------------------------------------- concordance
+def show(form, most=10):
+    """A long span shortened for the terminal: its first and last words."""
+    ws = form.split()
+    return form if len(ws) <= most else f"{' '.join(ws[:4])} … {' '.join(ws[-3:])} ({len(ws)} words)"
+
+
 def concordance(conn, a, keys):
-    pq, rx, ps, hs = rank.concordance_rows(conn, a.query, keys=keys)
-    seen, occ = set(), []
-    for pid, key, section, start, end, text in ps:
-        m = clean(anchor.raw_of(key), start, end)
-        for mm in rx.finditer(m.s):
-            off = m.pos[mm.start()]
-            if (key, off) in seen:            # overlapping pieces of one long block
-                continue
-            seen.add((key, off))
-            occ.append(dict(key=key, form=mm.group(0).lower(), section=section, offset=off, start=start, end=end))
-    heads = []
-    for key, start, text, title, page, printed in hs:
-        for mm in rx.finditer(text + ' ' + (title or '')):
-            heads.append(dict(key=key, form=mm.group(0).lower(), page=page, printed=printed, heading=text))
-    by = {}
+    mode = concord.VERB_MODE[a.verb]
+    try:
+        match.pattern(a.query, mode)
+    except ValueError as e:
+        raise SystemExit(f'{a.verb}: {e}')
+    occ, heads = concord.find(conn, a.query, mode, keys)
+    more = concord.not_counted(conn, a.query, mode, keys, occ, heads)
+    forms, docs = concord.counts(occ, heads)
+    occ = concord.order(occ, docs)
+    info = {r[0]: r[1:] for r in conn.execute(
+        'select key, code, title, status, fidelity_mark, pages_to_check, influence from src.documents')}
+    if not a.counts:
+        concord.attach_anchors(occ, {k: (v[3], v[4]) for k, v in info.items()})
+        if a.verify:
+            verify([o['anchor'] for o in occ])
+    else:
+        occ = []
+    doc_rows = []
+    for key in sorted(docs, key=lambda k: (-docs[k][0], -docs[k][1], k)):
+        code, title, status, _fid, _ptc, influence = info.get(key, (None,) * 6)
+        b, r, h = docs[key]
+        doc_rows.append(dict(key=key, code=code, title=title, status=status, influence=influence,
+                             body=b, references=r, headings=h))
     for o in occ:
-        g = by.setdefault(o['key'], dict(key=o['key'], body={}, references={}, headings={}, occurrences=[]))
-        part = 'references' if o['section'] == 'references' else 'body'
-        g[part][o['form']] = g[part].get(o['form'], 0) + 1
-        g['occurrences'].append(o)
-    for h in heads:
-        g = by.setdefault(h['key'], dict(key=h['key'], body={}, references={}, headings={}, occurrences=[]))
-        g['headings'][h['form']] = g['headings'].get(h['form'], 0) + 1
-    info = {r[0]: r[1:] for r in conn.execute('select key, code, title, status, fidelity_mark, pages_to_check from src.documents')}
-    out = []
-    for key in sorted(by, key=lambda k: -sum(by[k]['body'].values())):
-        g = by[key]
-        code, title, status, fid, ptc = info.get(key, (None,) * 5)
-        g.update(code=code, title=title, status=status)
-        if not a.counts:
-            for o in g['occurrences']:
-                p = anchor.pages_of(key).at(o['offset'])
-                o['anchor'] = anchor.make(key, o['start'], o['end'], [o['form']], at=o['offset'], fidelity=fid, pages_to_check=ptc)
-                o['page'] = p[0]
-        else:
-            g['occurrences'] = []
-        out.append(g)
-    forms = {}
-    for g in out:
-        for part in ('body', 'references', 'headings'):
-            for f, c in g[part].items():
-                forms.setdefault(f, [0, 0, 0])[('body', 'references', 'headings').index(part)] += c
-    # What the boundaries left out: the forms the term matches with a '*' on each
-    # bounded side, so a whole-word count shows what it didn't count ("hazard" leaves
-    # out "hazards"). Counted over passages' indexed text, so a rough guide.
-    wt = rank.wildcard_term(pq['term'])
-    others = {}
-    if wt != pq['term'].strip():
-        _, wrx, wps, _ = rank.concordance_rows(conn, a.query, keys=keys, term=wt)
-        for _pid, _key, _sec, _s, _e, text in wps:
-            for mm in wrx.finditer(text):
-                f = mm.group(0).lower()
-                if f not in forms:
-                    others[f] = others.get(f, 0) + 1
-    pq['wildcard'] = dict(term=wt, other_forms=dict(sorted(others.items(), key=lambda x: -x[1])))
-    if a.verify:
-        verify([o['anchor'] for g in out for o in g['occurrences']])
-    return out, pq, forms
+        o.pop('start', None), o.pop('end', None)
+    return dict(verb=a.verb, query=a.query, mode=mode, forms=forms, documents=doc_rows, occurrences=occ,
+                headings=heads, not_counted=more)
 
 
-def print_concordance(out, pq, forms, a):
-    tb = sum(v[0] for v in forms.values())
-    print(f'"{pq["term"]}": {tb} occurrences in body text, {sum(v[1] for v in forms.values())} in references, '
-          f'{sum(v[2] for v in forms.values())} in headings, across {len(out)} documents')
-    print('word forms matched (body / references / headings):')
-    for f, (b, r, h) in sorted(forms.items(), key=lambda x: -sum(x[1])):
-        print(f'  {f:<30} {b:>6} {r:>6} {h:>6}')
-    w = pq.get('wildcard') or {}
-    if w.get('other_forms'):
-        of = w['other_forms']
-        shown = ', '.join(f'{f} {c}' for f, c in list(of.items())[:12])
-        more = f', and {len(of) - 12} more forms' if len(of) > 12 else ''
-        print(f"not counted: {w['term']!r} would also match {sum(of.values())} more in passages: {shown}{more}")
-    print()
-    for g in out:
-        b, r, h = sum(g['body'].values()), sum(g['references'].values()), sum(g['headings'].values())
-        print(f"== {g['key']}  {g['code'] or ''}  body {b}" + (f', references {r}' if r else '') + (f', headings {h}' if h else '')
-              + ('' if g['status'] == 'active' else f"  [{g['status']}]"))
-        print('   ' + ', '.join(f'{f} {c}' for f, c in sorted(g['body'].items(), key=lambda x: -x[1])))
-        for o in g['occurrences']:
-            print(f"   {o['form']:<16} " + anchor.fmt(o['anchor']) + ('  (references)' if o['section'] == 'references' else ''))
+def print_concordance(res, a):
+    forms, docs = res['forms'], res['documents']
+    tb, tr, th = (sum(v[i] for v in forms.values()) for i in range(3))
+    kind = 'spans' if res['mode'] == 'loose' and len(match.terms(res['query'], 'loose')) > 1 else 'forms'
+    print(f"{res['verb']} {res['query']!r}: {tb} in body text, {tr} in references, {th} in headings, "
+          f"across {len(docs)} documents")
+    if not forms:
+        if res['not_counted'] and res['not_counted']['total']:
+            w = res['not_counted']
+            print(f"not counted: {w['verb']} {w['query']!r} would add {w['total']}: "
+                  + ', '.join(f'{show(f)} {c}' for f, c in list(w['forms'].items())[:12]))
+        return
+    print(f'{kind} (body, references, headings):')
+    for f, (b, r, h) in sorted(forms.items(), key=lambda x: (-sum(x[1]), len(x[0].split()), x[0]))[:a.forms]:
+        print(f'  {b:>6} {r:>5} {h:>5}  {show(f)}')
+    if len(forms) > a.forms:
+        print(f'  … and {len(forms) - a.forms} more {kind} (--forms N shows more)')
+    w = res['not_counted']
+    if w and w['total']:
+        shown = ', '.join(f'{show(f)} {c}' for f, c in list(w['forms'].items())[:12])
+        rest = f', and {len(w["forms"]) - 12} more' if len(w['forms']) > 12 else ''
+        print(f"not counted: {w['verb']} {w['query']!r} would add {w['total']}: {shown}{rest}")
+    elif w:
+        print(f"not counted: {w['verb']} {w['query']!r} would add nothing")
+    print('\nby document:')
+    for d in docs:
+        st = '' if d['status'] == 'active' else f"  [{d['status']}]"
+        print(f"  {d['key']:<52} {d['code'] or '':<10} body {d['body']}"
+              + (f", references {d['references']}" if d['references'] else '')
+              + (f", headings {d['headings']}" if d['headings'] else '') + st)
+    if a.counts:
+        return
+    occ = res['occurrences']
+    if a.by == 'source':
         print()
+        cur = None
+        for o in sorted(occ, key=lambda o: ([d['key'] for d in docs].index(o['key']), o['offset'])):
+            if o['key'] != cur:
+                cur = o['key']
+                print(f'== {cur}')
+            print(f"   {show(o['form']):<24} " + anchor.fmt(o['anchor']) + ('  (references)' if o['section'] == 'references' else ''))
+        return
+    print('\noccurrences, tightest first:' if kind == 'spans' else '\noccurrences:')
+    for i, o in enumerate(occ, 1):
+        prox = f'  [proximity {o["proximity"]:.2f}]' if kind == 'spans' and o['proximity'] < 1 else ''
+        print(f"{i:>4}. {show(o['form'])}{prox}")
+        print('      ' + anchor.fmt(o['anchor']) + ('  (references)' if o['section'] == 'references' else ''))
+
+
+# ---------------------------------------------------------------------- help
+def print_scopes(conn):
+    d = scope.describe(conn)
+    print(scope.__doc__)
+    print('Sets (catalog/sets/):')
+    for n, s in sorted(d['sets'].items()):
+        size = f"{s['documents']} documents" if 'documents' in s else f"ERROR: {s['error']}"
+        print(f"  {n:<14} {size:<14} {s['description']}")
+    for f, vals in d['fields'].items():
+        print(f'\n{f}:')
+        for v, c in list(vals.items())[:20]:
+            print(f'  {c:>4}  {v}')
+
+
+def parsers():
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument('query', help='one argument; quote a phrase')
+    common.add_argument('scope', nargs='*', help='relata keys, key globs, sets, field:value (default: everything)')
+    common.add_argument('--verify', action='store_true', help='run every anchor through bin/check-quote')
+    fmt = common.add_mutually_exclusive_group()
+    fmt.add_argument('--json', action='store_true')
+    fmt.add_argument('--text', action='store_true', help='readable text even when stdout is not a terminal')
+    common.add_argument('--db', default=db.DB, help=argparse.SUPPRESS)
+    ranked = argparse.ArgumentParser(add_help=False)
+    ranked.add_argument('-n', type=int, default=10, help='how many results (default 10)')
+    ranked.add_argument('--full', action='store_true', help='print each passage whole')
+    ranked.add_argument('--explain', action='store_true', help='the factors behind each score')
+    ranked.add_argument('--model', default=embed.DEFAULT_MODEL, choices=sorted(embed.MODELS))
+    conc = argparse.ArgumentParser(add_help=False)
+    conc.add_argument('--counts', action='store_true', help='counts only, no occurrence lines')
+    conc.add_argument('--forms', type=int, default=30, metavar='N', help='how many forms or spans to list (default 30)')
+    conc.add_argument('--by', choices=('source',), help='group the occurrences by document')
+    desc = dict(
+        hybrid='Ranked: the semantic and lexical rankings fused by RRF, then the weights in search/weights.toml.',
+        semantic='Ranked by cosine similarity alone, over the whole corpus, with none of the weights.',
+        defs='Every definition of a term, grouped by source, active versions first.',
+        lexical='The loosest concordance: the words in order anywhere within one passage, each word able to run on '
+                'a little (see source-search --help).',
+        **{'exact-phrase': 'Concordance: the words in order and adjacent, whole words exactly as typed.',
+           'exact-words': 'Concordance: each word exactly as typed, as a whole word, counted on its own.',
+           'exact-bytes': 'Concordance: those characters exactly, spaces and case included, in the indexed text '
+                          '(markup removed, runs of spaces made one).'})
+    out = {}
+    for v in VERBS[:-1]:
+        parents = [common] + ([ranked] if v in ('hybrid', 'semantic') else []) + ([conc] if v in concord.VERB_MODE else [])
+        p = argparse.ArgumentParser(prog=f'source-search {v}', description=desc[v], parents=parents)
+        if v == 'hybrid':
+            p.add_argument('--fusion', choices=('rrf', 'mix', 'lexical', 'semantic'), help=argparse.SUPPRESS)
+        if v == 'semantic':
+            p.add_argument('--without-phrase', action='store_true',
+                           help='leave out passages using the query as a phrase (its words adjacent, each '
+                                'allowed lexical\'s run-on): what remains says it in other words')
+        if v == 'defs':
+            p.add_argument('--exact', action='store_true', help='the term itself only, not terms containing it')
+        out[v] = p
+    return out
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0], formatter_class=argparse.RawDescriptionHelpFormatter,
-                                 epilog=__doc__.split('\n\n', 1)[1])
-    ap.add_argument('query', nargs='+')
-    mode = ap.add_mutually_exclusive_group()
-    mode.add_argument('--defs', action='store_true', help='every definition of the term')
-    mode.add_argument('--all', action='store_true', help='every occurrence: a concordance')
-    ap.add_argument('--in', dest='within', nargs='+', metavar='DOC', help='narrow to these documents')
-    ap.add_argument('-n', type=int, default=10, help='ranked: how many results (default 10)')
-    ap.add_argument('--exact', action='store_true', help='--defs: the term itself only, not terms containing it')
-    ap.add_argument('--counts', action='store_true', help='--all: counts only, no occurrence lines')
-    ap.add_argument('--full', action='store_true', help='ranked: print each passage whole')
-    ap.add_argument('--explain', action='store_true')
-    ap.add_argument('--verify', action='store_true', help='run every anchor through bin/check-quote')
-    ap.add_argument('--fusion', choices=('rrf', 'mix', 'lexical', 'semantic'))
-    ap.add_argument('--model', default=embed.DEFAULT_MODEL, choices=sorted(embed.MODELS))
-    out_fmt = ap.add_mutually_exclusive_group()
-    out_fmt.add_argument('--json', action='store_true')
-    out_fmt.add_argument('--text', action='store_true', help='readable text even when stdout is not a terminal')
-    ap.add_argument('--db', default=db.DB)
-    a = ap.parse_args()
-    a.query = ' '.join(a.query)
+    argv = sys.argv[1:]
+    ps = parsers()
+    if not argv or argv[0] in ('-h', '--help'):
+        print(__doc__)
+        sys.exit(0)
+    for old, new in RETIRED.items():
+        if old in argv:
+            print(f'source-search: {old} is retired; use {new}. See source-search --help.', file=sys.stderr)
+            sys.exit(2)
+    verb = argv.pop(0) if argv[0] in VERBS else 'hybrid'
+    if verb == 'help':
+        topic = argv[0] if argv else None
+        if topic in ps:
+            ps[topic].print_help()
+        elif topic == 'scopes':
+            with db.connect(db.DB) as conn:
+                print_scopes(conn)
+        else:
+            print(__doc__)
+        sys.exit(0)
+    a = ps[verb].parse_intermixed_args(argv)
+    a.verb = verb
     as_json = a.json or (not a.text and not sys.stdout.isatty())
     try:
         with db.connect(a.db) as conn:
-            keys = rank.doc_filter(conn, a.within)
-            if a.defs:
+            keys = scope.resolve(conn, a.scope)
+            if verb == 'defs':
                 out, pq = defs(conn, a, keys)
                 n = sum(len(g['definitions']) for g in out)
-            elif a.all:
-                out, pq, forms = concordance(conn, a, keys)
-                n = len(out)
+                payload = dict(verb=verb, query=pq['query'], term=pq['term'], results=out)
+            elif verb in concord.VERB_MODE:
+                res = concordance(conn, a, keys)
+                n = len(res['documents'])
+                payload = res
             else:
-                out, pq = ranked(conn, a, keys)
+                out, pq = hybrid(conn, a, keys) if verb == 'hybrid' else semantic(conn, a, keys)
                 n = len(out)
+                payload = dict(verb=verb, query=pq['query'], term=pq['term'], results=out)
+            if keys is not None:
+                payload['scope'] = dict(selectors=a.scope, keys=keys)
+    except scope.ScopeError as e:
+        print(f'source-search: {e}', file=sys.stderr)
+        sys.exit(3)
     except SystemExit:
         raise
     except Exception as e:
         print(f'source-search failed: {type(e).__name__}: {e}', file=sys.stderr)
         sys.exit(3)
     if as_json:
-        payload = dict(query=pq['query'], term=pq['term'], mode='defs' if a.defs else 'all' if a.all else 'ranked',
-                       results=out)
-        if a.all:
-            payload['forms'] = {f: dict(body=v[0], references=v[1], headings=v[2]) for f, v in forms.items()}
-            payload['not_counted'] = pq.get('wildcard')
+        if verb in concord.VERB_MODE:
+            payload = dict(payload, forms={f: dict(body=v[0], references=v[1], headings=v[2])
+                                           for f, v in payload['forms'].items()})
         print(json.dumps(payload, ensure_ascii=False, indent=1, default=str))
-    elif a.defs:
-        print_defs(out, pq)
-    elif a.all:
-        print_concordance(out, pq, forms, a)
+    elif verb == 'defs':
+        print_defs(out, pq, a)
+    elif verb in concord.VERB_MODE:
+        print_concordance(res, a)
     else:
         print_ranked(out, pq, a)
     if not n:

@@ -1,0 +1,6 @@
+# Every active document the catalog marks Influence "anchor": ones the repo shows
+# other documents taking wording, definitions, thresholds, lists or structure from
+# (source-catalog.md, Influence). Defined by a selector, so it follows the catalog.
+description: The catalog's active anchor documents (Influence "anchor"), following the catalog
+select:
+  - influence:anchor+status:active

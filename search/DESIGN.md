@@ -193,7 +193,7 @@ Memorata's optional reranker (`bge-reranker-v2-m3` in sentence-transformers) pea
 
 ## 7. The command
 
-*Agreed with Joseph in discussion, 2026-10-09; not built yet. Until it is, `bin/source-search --help` describes the built command: ranked search by default, with `--defs`, `--all`, `--in` and `--fusion`. Joseph proposed the verbs (including the three `exact-*` ones), the positional scope, and `lexical` as the loosest verb, matching words in order within a chunk; the names `hybrid` and `semantic` were worked out between us. He then left the rest of the design of the concordance verbs to me ("this *is* a tool primarily for agents"), so the details below are mine unless marked as his.*
+*Agreed with Joseph in discussion, 2026-10-09, and built the same day (§11 step 4): `bin/source-search help` is the live description. Joseph proposed the verbs (including the three `exact-*` ones), the positional scope, and `lexical` as the loosest verb, matching words in order within a chunk; the names `hybrid` and `semantic` were worked out between us. He then left the rest of the design of the concordance verbs to me ("this *is* a tool primarily for agents"), so the details below are mine unless marked as his.*
 
 ```
 source-search [verb] [flags] 'query' [scope …]
@@ -308,7 +308,21 @@ The index should be ready for it. A translated edition keeps the canonical page 
 
 The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09:
 
-4. The verbs, the literal matcher and scopes (§7), with sets resolved against the catalog fields the index already holds, so the switch to yaml doesn't block them.
+4. The verbs, the literal matcher and scopes (§7), with sets resolved against the catalog fields the index already holds, so the switch to yaml doesn't block them. *Built 2026-10-09* (`search/srcsearch/match.py`, `concord.py`, `scope.py`; `catalog/sets/` holds Au5, G4-pilots and Anchors, the last by selector). Checked:
+   - `hybrid` gave identical top tens to the previous code on 6 queries (lexical-only fusion, on one database state), and `pilot-check` scores 0.777, against 0.776 before the reindex of 2026-10-09.
+   - `exact-phrase 'loss of control'` agrees with rg on SB 53, the AISI report and the EU Code; on IASR it finds 49 against rg's 55, the difference being link markup the index strips. `exact-words AI` on the NRR finds 33, as before.
+   - An unknown scope exits 3; a retired flag (`--all`, `--defs`, `--in`) exits 2 and names its replacement.
+
+   Decisions §7 didn't settle, mine:
+   - function words (of, the, to …) stay whole words in `lexical`, or 'of' would find "often";
+   - a query with a capital keeps case in the forms table ("AISI" apart from "AIs");
+   - `exact-bytes` matches the indexed text (markup removed, runs of spaces made one);
+   - `--without-phrase` drops passages whose words are adjacent, each with `lexical`'s run-on;
+   - in selectors, `,` means any of these values and `+` means all of these fields; `year:` takes N, N..M, >=N or <=N; `set:Name` is explicit, set names are case-insensitive, and only set files can exclude;
+   - concordance matches are ordered by memorata's in-order proximity weights (0.03 a word between, 0.25 a sentence break, 0.6 a paragraph break) until step 5 ports the full function; an anchor quotes the sentence where a span starts;
+   - `--fusion` stays on `hybrid`, hidden, for `pilot-check`.
+
+   Found: the cap still admits short derivations ("severity" for `severe`, "harmful" and "harmless" for `harm`, "users" for `use`), all shown in the forms table; and `lexical` spans across table cells are noisy ("loss of gas supply … heating controls", 138 words), sorting to the bottom. The concordance verbs have no `-n`; `--counts` gives the tables alone. A full `lexical 'loss of control'` over the corpus (1,095 occurrences) takes about 8 s, mostly building anchors.
 5. Proximity and density in `hybrid`'s lexical side (§6.2), measured on pilot-check before and after.
 6. Inflection in place of the stem leg, and the literal matcher in the phrase factor (§6.2), each measured the same way.
 7. The catalog in yaml, the lock and `ref/canonical-meta/` (§13).

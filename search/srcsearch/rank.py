@@ -174,6 +174,60 @@ def _recency(conn):
 
 
 # --------------------------------------------------------------------- search
+ROW_SQL = """select p.id, p.doc_key, p.ord, p.start_off, p.end_off, p.page, p.printed, p.page_last, p.section, p.path,
+                    p.text, p.norm_sha, p.not_in_pdf, d.status, d.influence, d.title, d.code, d.fidelity_mark,
+                    d.pages_to_check, d.active_key
+             from src.passages p join src.documents d on d.key = p.doc_key where p.id = any(%s)"""
+
+
+def details(conn, ids):
+    """{passage id: row} for ids, in the row shape search() returns."""
+    return {r[0]: r for r in conn.execute(ROW_SQL, (list(ids),))}
+
+
+def _collapse(out, n):
+    """Verbatim copies shown once, with where else they occur (§6.3)."""
+    seen, results = {}, []
+    for r, score, ex in out:
+        h = r[11]
+        if h in seen:
+            seen[h][2].setdefault('copies', []).append((r[1], r[5]))
+            continue
+        seen[h] = (r, score, ex)
+        results.append(seen[h])
+    return results[:n]
+
+
+def semantic_search(conn, query, qvec, n=10, model='bge-m3', keys=None, exclude=None):
+    """[(passage row, score, explain)] by cosine similarity alone (DESIGN §7: the
+    `semantic` verb): the whole corpus, none of the weights, verbatim copies
+    collapsed. exclude(text) -> bool drops a passage (`--without-phrase`). Score is
+    1 - cosine distance."""
+    pq = parse(query)
+    v = '[' + ','.join(f'{x:.6g}' for x in qvec) + ']'
+    out, offset, batch = [], 0, max(4 * n, 200)
+    while True:
+        hits = conn.execute(
+            """select p.id, e.vec <=> %(v)s::halfvec d from src.passages p
+               join cache.embeddings e on e.model = %(m)s and e.input_sha = p.embed_sha
+               where (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))
+               order by d limit %(n)s offset %(o)s""", dict(v=v, m=model, n=batch, o=offset, keys=keys)).fetchall()
+        if not hits:
+            break
+        rows = details(conn, [i for i, _ in hits])
+        for i, d in hits:
+            r = rows.get(i)
+            if r is None or (exclude and exclude(r)):
+                continue
+            out.append((r, 1 - float(d), dict(distance=float(d))))
+        if len({r[11] for r, _, _ in out}) >= n:      # enough once copies are collapsed
+            break
+        offset += batch
+    for k, (r, score, ex) in enumerate(out, 1):
+        ex['sem_rank'] = k
+    return _collapse(out, n), pq
+
+
 def search(conn, query, n=10, model='bge-m3', fusion=None, keys=None, qvec=None, w=None):
     """[(passage row, score, explain)] best first, verbatim copies collapsed."""
     W = w or weights()
@@ -191,11 +245,7 @@ def search(conn, query, n=10, model='bge-m3', fusion=None, keys=None, qvec=None,
     sem_rank = {i: r for r, i in enumerate(sorted(sem, key=lambda i: sem[i]), 1)}
     # lexical ties (all the zeros) broken by semantic distance
     lex_rank = {i: r for r, i in enumerate(sorted(lex, key=lambda i: (-lex[i], sem.get(i, 9))), 1)}
-    rows = {r[0]: r for r in conn.execute(
-        """select p.id, p.doc_key, p.ord, p.start_off, p.end_off, p.page, p.printed, p.page_last, p.section, p.path,
-                  p.text, p.norm_sha, p.not_in_pdf, d.status, d.influence, d.title, d.code, d.fidelity_mark,
-                  d.pages_to_check, d.active_key
-           from src.passages p join src.documents d on d.key = p.doc_key where p.id = any(%s)""", (list(ids),))}
+    rows = details(conn, ids)
     rec = _recency(conn)
     k = W['fusion']['k']
     out = []
@@ -224,16 +274,7 @@ def search(conn, query, n=10, model='bge-m3', fusion=None, keys=None, qvec=None,
                                    defines=dm[1] if dm else None, f_def=f_def, f_section=f_sec, f_status=f_status,
                                    f_influence=f_inf, f_recency=round(f_rec, 3))))
     out.sort(key=lambda x: -x[1])
-    # collapse verbatim copies: keep the best, list the others
-    seen, results = {}, []
-    for r, score, ex in out:
-        h = r[11]
-        if h in seen:
-            seen[h][2].setdefault('copies', []).append((r[1], r[5]))
-            continue
-        seen[h] = (r, score, ex)
-        results.append(seen[h])
-    return results[:n], pq
+    return _collapse(out, n), pq
 
 
 # ------------------------------------------------------------------ definitions

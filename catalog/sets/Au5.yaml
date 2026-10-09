@@ -1,0 +1,11 @@
+# Au5: Joseph's name (2026-10-09) for the "golden" sources of the outline work
+# (search/DESIGN.md §12). Asked which four sources mattered most if everything else
+# were lost, Claude chose the first four; Joseph then asked for the source most
+# important to AISI, which made five. DESIGN §12 gives the reasons for each.
+description: The five "golden" sources the folded outline is first built and judged on (DESIGN §12)
+select:
+  - bengio-2026-international
+  - eu-cop-2025-safety-security
+  - california-2025-sb53
+  - anthropic-2026-risk-report-aug
+  - aisi-2025-frontier
