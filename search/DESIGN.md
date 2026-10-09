@@ -2,6 +2,17 @@
 
 *A proposal for a local semantic and lexical index over the corpus, drafted 2026-10-09 by Claude (Opus 5.5) at Joseph's request. Nothing here is built yet. The decisions for Joseph are collected in §10, each with a lean and a confidence. It draws on memorata (`~/src/memorata/memorata3/`, read whole: `schema.sql`, `search.py`, the embedder and the CLI) and on `bin/canonicalize`'s output contract (read whole).*
 
+## 0. What the pilot changed (2026-10-09)
+
+A pilot on 10 sources and 16 queries, graded by a blind judge, tested this design: `influx/search-pilot-2026-10-09/REPORT.md`. Its numbers are directions with error bars (16 queries; one judge, same model family). What it changes here:
+- **Structure matters more than the embedder.** Fused lexical and semantic ranking with the definition prior beats semantic search alone by +0.107 nDCG@10 (95% interval +0.054 to +0.155; 14 of 16 queries). Inside the fused ranking, bge-m3, snowflake-arctic-embed2, qwen3-8B, bge-large and nomic are indistinguishable (0.77–0.79).
+- **The embedder stays bge-m3**, as good enough, not as best. It needs `num_ctx` and `num_batch` raised: by default ollama truncates it at 2,048 tokens without saying so. Two of §5.4's arguments didn't hold and are corrected there.
+- **The definition prior is the strongest lever,** with one rule change: boost a definition of the exact queried term fully, a narrower term containing it at a quarter, a broader term never; and parse "definition of / what is X" to X (§6.2).
+- **Fusion:** RRF with priors scored better than memorata's geometric-mean mix (+0.036; interval −0.008 to +0.090). The pilot leans to RRF as the default with mix selectable. *Joseph's call: mix is his design.*
+- **A reranker on CPU costs 2.7–2.9 GB, not 18–21** (that was memorata's figure on Metal). It helps paraphrase queries and hurts definitions-first ordering. So it becomes an opt-in `--rerank` that reorders only the results that aren't definitions (§6.4).
+- **Chunking and anchors need the changes in §5.2 and §7**: one passage per numbered or bold-labelled item as well as per glossary entry; headings indexed as a lexical field; definitions never split; duplicates collapsed within a document too; quotes built with links masked, widened until unique, and paged by the quoted sentence.
+- **Some gaps belong to the lexicon, not the ranker.** Only the reranker connected "developer" to the AI Act's "provider". Query expansion through the per-source term mappings is the real fix, which argues for the translated layer (§9) coming early.
+
 ## 1. What it is for
 
 Joseph's words, 2026-10-09: "at the very least it would be nice to be able to say 'I wonder if we've caught all of the mentions of "hazard"' and do a quick `bin/source-search 'hazard'` and get just what you'd expect in exactly the priority order you'd hope, also pulling in the nuance and allowing for narrowing into specific documents/sources or grouping them so you can see how internally consistent they are or if they've been properly translated when we get to that."
@@ -122,7 +133,9 @@ Measured on 2026-10-09, on 21 SB 53 passages averaging 2,100 characters, warm:
 | nomic-embed-text-v2-moe (memorata's) | 768 | **512 tokens** | 0.7 s | 0.6 GB |
 | qwen3-embedding | 4096 | 32,768 tokens | 21.3 s | 8.6 GB |
 
-Lean: **bge-m3**. It is fast, small, multilingual (the corpus includes Chinese and EU material), and its context covers any passage whole. nomic's 512-token context would truncate most passages. qwen3-embedding is probably the strongest, but it is about 24 times slower and holds 8.6 GB, the kind of memory cost Joseph wants to avoid. The choice should be confirmed on the gold queries (§8), not taken from these timings alone. That is a short bake-off once the index exists, because the cache is keyed by model.
+Lean: **bge-m3**. It is fast, small and multilingual (the corpus includes Chinese and EU material), and its context covers any passage whole, but only once `num_ctx` and `num_batch` are raised; by default ollama truncates it at 2,048 tokens. qwen3-embedding is about 16 times slower and holds 10 GB, the kind of memory cost Joseph wants to avoid, and in the pilot it bought nothing.
+
+*Corrected by the pilot (§0):* two arguments here didn't hold. At the designed passage size (about 1,200 characters, median 199 tokens) only 5 of 3,714 passages exceed nomic's 512 tokens, so truncation is no argument against it; it lags on quality instead. And the 0.9 s vs 4.1 s gap to snowflake-arctic-embed2 came from 2,100-character passages; at 1,200 characters they run at the same speed (95 s vs 97 s for 3,714 passages), and arctic2 is an equally good choice.
 
 **Embedding input:** the document's title and the passage's heading path, then the passage text. Context like this makes a bare clause such as "(c) 'Catastrophic risk' means…" findable as SB 53's. Changing a title re-embeds that document's passages, and nothing else.
 
@@ -178,7 +191,7 @@ bin/source-search … --json                       for agents; automatic when pi
 
 Every result carries an anchor in the plan's form (plan §3.5, Claude's proposal, endorsed by Joseph 2026-10-09): relata key, physical PDF page, printed page, and the exact quote. This is a requirement, not a default. Joseph, 2026-10-09: "the search results should always come back with your preferred reference format -- key + pdf-page etc. etc." Every mode, `--all` and `--defs` included, and the JSON, carry it, with a "check against the PDF" flag where the source's fidelity mark calls for it. A quote copied from a result can then be cited as it stands, and checked with `bin/check-quote`, which takes anchors in bulk on stdin (`--batch -`).
 
-`--all` matches word forms explicitly, never by stemming alone: `hazard`, `hazards`, `hazardous`, `AI hazard`. It prints which forms it matched and how many of each, so "did we catch them all" has a checkable answer, including what the pattern didn't cover.
+`--all` matches word forms by substring, never by stemming alone, so it catches `hazard`, `hazards`, `hazardous`, and also `infohazard` and `biohazards`, which a list of forms would miss (pilot §6). It counts headings, and counts references separately, and it never matches inside link targets. It prints which forms it matched and how many of each, so "did we catch them all" has a checkable answer, including what the pattern didn't cover.
 
 Memorata's hard-won output rules carry over:
 - an empty result and a failed search are different outcomes (memorata exits 3 and leaves stdout empty on failure);
