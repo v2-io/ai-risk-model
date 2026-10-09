@@ -223,7 +223,13 @@ Most are cited by `influx/spikes/spike-alignment-referents-2026-10-06/`.
 
 Most are cited by `influx/gamma-research/risk-formalisms.md`. The precedents from other high-hazard industries are in the table above.
 
-- 16 keys: `@bommasani-2021-opportunities`, `@caa-2026-hydrogen-bowtie`, `@chu-2026-systematic`, `@cobbe-2023-understanding`, `@hopkins-2025-supply`, `@hse-2001-r2p2`, `@ieee-7009-2024-fail-safe-autonomous`, `@ipcc-2022-ar6-wg2-annex-ii`, `@kaplan-garrick-1981-quantitative`, `@koessler-2023-risk`, `@nist-2012-sp800-30r1`, `@nolte-2025-review`, `@reason-2000-human`, `@salem-2024-risk`, `@schnitzer-2023-hazard`, `@un-2016-a71644`
+- 15 keys: `@bommasani-2021-opportunities`, `@caa-2026-hydrogen-bowtie`, `@chu-2026-systematic`, `@cobbe-2023-understanding`, `@hopkins-2025-supply`, `@hse-2001-r2p2`, `@ipcc-2022-ar6-wg2-annex-ii`, `@kaplan-garrick-1981-quantitative`, `@koessler-2023-risk`, `@nist-2012-sp800-30r1`, `@nolte-2025-review`, `@reason-2000-human`, `@salem-2024-risk`, `@schnitzer-2023-hazard`, `@un-2016-a71644`
+
+### IEEE standards
+
+The 7000 series on ethics in system design. These are licensed copies from IEEE Xplore: each page is stamped "Authorized licensed use limited to: Joseph Wecker", so their canonical texts stay local, and quotations should be short. 7009 is cited by `influx/gamma-research/risk-formalisms.md`; the others were added to the catalog on 2026-10-09 and are not yet cited.
+
+- 7 keys: `@ieee-7000-2021-ethical-design`, `@ieee-7001-2021-transparency-autonomous`, `@ieee-7003-2024-algorithmic-bias`, `@ieee-7007-2021-ontological-robotics`, `@ieee-7009-2024-fail-safe-autonomous`, `@ieee-7010-2020-well-being-impact`, `@ieee-7014-2024-emulated-empathy`
 
 ### Press
 
