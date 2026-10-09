@@ -82,7 +82,7 @@ search/
 ### 5.1 Blocks
 
 The chunker parses each canonical file into blocks and carries state through it:
-- **page:** from `[pdf-page N, printed "X"]` markers. A passage records its first and last physical page, and the printed labels. `[not in pdf]` stretches (IASR's web edition) are flagged.
+- **page:** from `[pdf-page N, printed "X"]` markers. A passage records its first and last physical page, and the printed labels. `[not in pdf]` stretches (IASR's web edition) are flagged. For a source marked check-all, the marker's page is approximate: IASR 2026's web edition has no page breaks of its own, so its pages are assigned a line at a time, and a paragraph straddling two pages carries one of them (the pilot found 25 such mismatches in 711 anchors, 2026-10-09). For those sources, the page a result reports is settled by `bin/check-quote`, which checks against the PDF, and it is cached with the passage.
 - **heading path:** from markdown headings, cleaned of `<span id=…>` noise, e.g. `2. Risks › 2.2 Risks from malfunctions › 2.2.2 Loss of control`.
 - **block kind:** paragraph, list item, table, ```` ```pdf-text ```` (restored text), image (dropped from indexed text), heading.
 - **section kind**, elected per section from its heading and its contents: body, glossary, definitions, key-information box, table of contents, references, index, abbreviations, annex, front matter.

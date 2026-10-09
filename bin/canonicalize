@@ -284,7 +284,15 @@ def pdfinfo_pages(pdf):
     m = re.search(r'^Pages:\s+(\d+)', out, re.M)
     return int(m.group(1)) if m else None
 
-URL = r'\((?:[^()\n]|\([^()\n]*\))*\)'        # link target, with any title; balanced parentheses allowed
+# A link target: a URL (balanced parentheses allowed) and an optional quoted
+# title, matched as a string so that parentheses inside it can nest to any
+# depth. IASR 2026's web edition puts each reference's full text in a link
+# title; titles like "(Model Evaluation & Threat Research (METR), 2025)" used
+# to defeat the old pattern, leaving reference text in the alignment stream,
+# where it matched the endnote pages and pulled body paragraphs onto them.
+URL = (r'\((?:[^()\n\s]|\([^()\n\s]*\))*\s+"[^"\n]*"\)'    # url "title"
+       r'|\((?:[^()\n]|\([^()\n]*\))*\)')                   # url, or anything else balanced
+URL = '(?:' + URL + ')'
 SKIP = re.compile(r'!\[[^\]]*\]' + URL +       # images
                   r'|\]' + URL +               # link targets (the link text stays)
                   r'|<[^>\n]{1,200}>')       # html tags

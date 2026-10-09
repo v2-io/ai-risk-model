@@ -356,6 +356,12 @@ def check_anchor(key, quote, page=None, entry=None):
             if canon_n == 1:
                 rec['printed'] = info[sel[0]]['printed']
                 rec['line'] = info[sel[0]]['line']
+            if rec.get('page_from') == 'pdf' and cn:
+                # The printed label belongs with the physical page that settled
+                # it, not with where the canonical text put the passage.
+                labels = {b['page']: b.get('printed') for b in cn.pages_json.get('breaks', []) if b.get('page')}
+                pg = rec['page'] if not isinstance(rec['page'], list) else rec['page'][0]
+                rec['printed'] = labels.get(pg)
             status = 'page-mismatch' if page is not None and page not in pages_of(rec['page']) else 'ok'
             if status == 'ok' and reasons and pdf_n == 0:
                 # The PDF was needed to settle it and doesn't have the words
