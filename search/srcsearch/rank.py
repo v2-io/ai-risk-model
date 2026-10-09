@@ -263,29 +263,58 @@ def definitions(conn, query, keys=None, narrower=True):
 
 
 # ------------------------------------------------------------------ concordance
-def concordance_rows(conn, query, keys=None, exact=False):
-    """Passages and headings holding a word form that contains the query (by
-    substring, so "infohazard" and "biohazards" count for "hazard"), or, for a
-    phrase, the words in order. With exact, the word or phrase itself only, as
-    whole words: an acronym such as "AI" otherwise matches inside "rail" and
-    "faith"."""
+def literal_patterns(term):
+    """A literal search term as (Postgres ARE, Python regex), by Joseph's convention
+    (2026-10-09): a lowercase letter matches either case and an uppercase letter only
+    itself; words have implicit boundaries, and a '*' matches any letters or digits,
+    so it removes the boundary on its side. 'ai' finds "AI" and "ai" but not "rail";
+    'AI' finds only "AI"; '*ai*' finds "rail"; 'hazard*' finds "hazards" and
+    "hazardous"; '*hazard' finds "infohazard". The words of a phrase are separated by
+    any run of non-alphanumerics (spaces, line breaks, hyphens)."""
+    pg_toks, py_toks = [], []
+    for tok in term.split():
+        pg, py = [], []
+        for c in tok:
+            if c == '*':
+                pg.append('[[:alnum:]]*')
+                py.append(r'[^\W_]*')
+            elif c.islower() and len(c.upper()) == 1 and c.upper() != c:
+                pg.append(f'[{c}{c.upper()}]')
+                py.append(f'[{c}{c.upper()}]')
+            else:
+                pg.append(re.escape(c))
+                py.append(re.escape(c))
+        pg_toks.append(''.join(pg))
+        py_toks.append(''.join(py))
+    pg = '[^[:alnum:]]+'.join(pg_toks)
+    py = r'[\W_]+'.join(py_toks)
+    t = term.strip()
+    if not t.startswith('*'):
+        pg, py = '(?<![[:alnum:]])' + pg, r'(?<![^\W_])' + py
+    if not t.endswith('*'):
+        pg, py = pg + '(?![[:alnum:]])', py + r'(?![^\W_])'
+    return pg, re.compile(py)
+
+
+def wildcard_term(term):
+    """The term with a '*' on each side that has a boundary: what it would match
+    with no boundaries at all."""
+    t = term.strip()
+    return ('' if t.startswith('*') else '*') + t + ('' if t.endswith('*') else '*')
+
+
+def concordance_rows(conn, query, keys=None, term=None):
+    """Passages and headings holding the term, matched literally by
+    literal_patterns' convention."""
     pq = parse(query)
-    ws = words(pq['term']) or words(query)
-    if exact:
-        pg = r'\m' + r'[^[:alnum:]]+'.join(re.escape(w) for w in ws) + r'\M'
-        py = re.compile(r'(?<![^\W_])' + r'[\W_]+'.join(re.escape(w) for w in ws) + r'(?![^\W_])', re.I)
-    elif len(ws) == 1:
-        pg = r'[[:alnum:]]*' + re.escape(ws[0]) + r'[[:alnum:]]*'
-        py = re.compile(r'[^\W_]*' + re.escape(ws[0]) + r'[^\W_]*', re.I)
-    else:
-        pg = r'\m' + r'[^[:alnum:]]+'.join(re.escape(w) for w in ws) + r'[[:alnum:]]*'
-        py = re.compile(r'\b' + r'[\W_]+'.join(re.escape(w) for w in ws) + r'[^\W_]*', re.I)
+    term = term or pq['term']
+    pg, py = literal_patterns(term)
     ps = conn.execute(
         """select p.id, p.doc_key, p.section, p.start_off, p.end_off, p.text from src.passages p
-           where p.text ~* %(re)s and (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))
+           where p.text ~ %(re)s and (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))
            order by p.doc_key, p.start_off""", dict(re=pg, keys=keys)).fetchall()
     hs = conn.execute(
         """select h.doc_key, h.start_off, h.text, h.title, h.page, h.printed from src.headings h
-           where (h.text || ' ' || coalesce(h.title, '')) ~* %(re)s and (%(keys)s::text[] is null or h.doc_key = any(%(keys)s))
+           where (h.text || ' ' || coalesce(h.title, '')) ~ %(re)s and (%(keys)s::text[] is null or h.doc_key = any(%(keys)s))
            order by h.doc_key, h.start_off""", dict(re=pg, keys=keys)).fetchall()
     return pq, py, ps, hs

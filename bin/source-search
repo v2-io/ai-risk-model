@@ -5,9 +5,15 @@ bin/source-index.
     bin/source-search 'hazard'                 ranked: definitions of the term first, then usage
     bin/source-search --defs hazard            every definition of "hazard" (and of terms
                                                containing it), grouped by source, active first
-    bin/source-search --all hazard             every occurrence of every word form containing
-                                               "hazard": counts by document and form, then each
-                                               occurrence in context
+    bin/source-search --all hazard             every occurrence of the word "hazard": counts by
+                                               document and form, then each occurrence in context
+    bin/source-search --all '*hazard*'         every word form containing it ("hazards",
+                                               "infohazard"); 'hazard*' for prefixes only
+
+--all matches literally. A lowercase letter matches either case and an uppercase
+letter only itself ('ai' finds "AI" and "ai"; 'AI' only "AI"). Words have
+implicit boundaries, which a '*' removes on its side. The count says what a '*' on
+each side would have added.
     bin/source-search 'severe harm' --in OAI-PF xai-2026-faif     narrowed to documents
     bin/source-search … --explain              the factors behind each result's score
     bin/source-search … --json                 for agents (automatic when stdout is not a terminal)
@@ -159,7 +165,7 @@ def print_defs(out, pq):
 
 # ---------------------------------------------------------------- concordance
 def concordance(conn, a, keys):
-    pq, rx, ps, hs = rank.concordance_rows(conn, a.query, keys=keys, exact=a.exact)
+    pq, rx, ps, hs = rank.concordance_rows(conn, a.query, keys=keys)
     seen, occ = set(), []
     for pid, key, section, start, end, text in ps:
         m = clean(anchor.raw_of(key), start, end)
@@ -201,6 +207,19 @@ def concordance(conn, a, keys):
         for part in ('body', 'references', 'headings'):
             for f, c in g[part].items():
                 forms.setdefault(f, [0, 0, 0])[('body', 'references', 'headings').index(part)] += c
+    # What the boundaries left out: the forms the term matches with a '*' on each
+    # bounded side, so a whole-word count shows what it didn't count ("hazard" leaves
+    # out "hazards"). Counted over passages' indexed text, so a rough guide.
+    wt = rank.wildcard_term(pq['term'])
+    others = {}
+    if wt != pq['term'].strip():
+        _, wrx, wps, _ = rank.concordance_rows(conn, a.query, keys=keys, term=wt)
+        for _pid, _key, _sec, _s, _e, text in wps:
+            for mm in wrx.finditer(text):
+                f = mm.group(0).lower()
+                if f not in forms:
+                    others[f] = others.get(f, 0) + 1
+    pq['wildcard'] = dict(term=wt, other_forms=dict(sorted(others.items(), key=lambda x: -x[1])))
     if a.verify:
         verify([o['anchor'] for g in out for o in g['occurrences']])
     return out, pq, forms
@@ -213,6 +232,12 @@ def print_concordance(out, pq, forms, a):
     print('word forms matched (body / references / headings):')
     for f, (b, r, h) in sorted(forms.items(), key=lambda x: -sum(x[1])):
         print(f'  {f:<30} {b:>6} {r:>6} {h:>6}')
+    w = pq.get('wildcard') or {}
+    if w.get('other_forms'):
+        of = w['other_forms']
+        shown = ', '.join(f'{f} {c}' for f, c in list(of.items())[:12])
+        more = f', and {len(of) - 12} more forms' if len(of) > 12 else ''
+        print(f"not counted: {w['term']!r} would also match {sum(of.values())} more in passages: {shown}{more}")
     print()
     for g in out:
         b, r, h = sum(g['body'].values()), sum(g['references'].values()), sum(g['headings'].values())
@@ -233,7 +258,7 @@ def main():
     mode.add_argument('--all', action='store_true', help='every occurrence: a concordance')
     ap.add_argument('--in', dest='within', nargs='+', metavar='DOC', help='narrow to these documents')
     ap.add_argument('-n', type=int, default=10, help='ranked: how many results (default 10)')
-    ap.add_argument('--exact', action='store_true', help='--defs: the term itself only, not terms containing it; --all: whole words only')
+    ap.add_argument('--exact', action='store_true', help='--defs: the term itself only, not terms containing it')
     ap.add_argument('--counts', action='store_true', help='--all: counts only, no occurrence lines')
     ap.add_argument('--full', action='store_true', help='ranked: print each passage whole')
     ap.add_argument('--explain', action='store_true')
@@ -269,6 +294,7 @@ def main():
                        results=out)
         if a.all:
             payload['forms'] = {f: dict(body=v[0], references=v[1], headings=v[2]) for f, v in forms.items()}
+            payload['not_counted'] = pq.get('wildcard')
         print(json.dumps(payload, ensure_ascii=False, indent=1, default=str))
     elif a.defs:
         print_defs(out, pq)
