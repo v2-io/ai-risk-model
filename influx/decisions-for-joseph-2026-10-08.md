@@ -98,4 +98,14 @@ Joseph:
 ## D. Open, without a lean of mine yet
 
 - The thin pass's other proposals (`influx/thin-pass/proposed-changes.md` items 3–7 and 10–13): resolution-record fields, lineage changes, splitting bound/match into two axes, publisher-level divergence, anchor details, instance facts in our terms, and the Q1 rewrites. Each has the thin pass's own reasoning. I haven't weighed them one by one; most land in G1(e), so A2 and A4 come first.
-- From the catalog proposal, now being drafted (`influx/catalog-update-proposal-2026-10-08.md`): what "superseded" means for canonicalize. Its draft, which I agree with, uses it only for duplicates of the same text, so earlier framework versions get canonicalized as evidence.
+- ~~What "superseded" means for canonicalize.~~ Decided by Joseph, 2026-10-09: `subsumed-by` for a duplicate of the same text, `superseded-by` for an earlier version that is kept but not active. Applied in `source-catalog.md` (commit `4849e10`).
+
+## E. Left over from the catalog update (`influx/catalog-update-proposal-2026-10-08.md`)
+
+**E1. Two candidate rows not added** (proposal §4, B26 and B27; both stay in the catalog's corpus section).
+- B26, AISI's labour-market assessment: not added because the repo doesn't use it yet.
+- B27, the vocabulary sources (the SRA glossary, ISO terminology standards and others): should the catalog list the lexicon's sources at all, as well as models of risk?
+Joseph:
+
+**E2. Bibliography years in relata** (proposal §6, F6). Some relata entries carry a year that won't match the key or the year the work is cited by: Yampolskiy prints as 2015, for example. The fix is an edit in relata, not in this repo, so it wasn't applied. Lean: fix them in relata, then re-run `relata emit bib`. *High.*
+Joseph:
