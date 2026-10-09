@@ -41,11 +41,23 @@ is not in PDF order, so no order is imposed: each passage gets the page its
 anchors point to, page markers may go backwards, and text that matches nothing
 in the PDF is marked `----------[not in pdf]----------`.
 
+Text the conversion lacks. marker turns some text blocks into pictures (a
+screenshot-like figure, a styled box, a glossary laid out as a graphic) and
+keeps only the image. Such text is still in the PDF's own text layer, so it is
+added back at the end of its page, fenced as ```pdf-text, in pdftotext's
+reading order: on the catalog, 112,000 letters on 372 pages of 49 sources.
+Not attempted where relata had to OCR the PDF, because its text layer is what
+failed (5 sources).
+
 How well it works (2026-10-08). On the 84 catalog sources, 3948 of 3960
 headings land on the page marker's own metadata records for them; about 6% of
 breaks fall in a window of text no anchor covers (median width 3 letters), and
 pages.json lists each one. Two documents re-run through marker with page
 separators, as answer keys: 233 of 233 and 451 of 451 lines on the right page.
+Completeness (share of each PDF's text found in the canonical text, median
+over sources): 0.976; pages below 60% fell from 123 to 56 with the pdf-text
+blocks, and what remains is the scanned aisi-2025-frontier (24 pages), tables
+whose cells marker reordered, contents pages and covers.
 IASR (unordered): of 2408 lines of 60+ letters checked against the PDF text of
 the page they are marked with, 2396 are found there, 8 belong to another page
 (rows of a table that recurs later), and 4 are web-only text.
@@ -59,16 +71,22 @@ BLK = 4       # smallest local match used to settle a window between pages
 MARK = '----------[pdf-page {}]----------'
 MARK_PRINTED = '----------[pdf-page {}, printed "{}"]----------'
 NOT_IN_PDF = '----------[not in pdf]----------'
+SUPP_OPEN, SUPP_CLOSE = '```pdf-text', '```'
+SUPP_RE = re.compile(r'\n*^```pdf-text\n.*?\n```$\n*', re.S | re.M)
+SUPP_MIN = 60    # letters actually missing: shorter runs are not inserted
+SUPP_GAP = 6     # words: missing runs this close are joined, with the words between
+PRESENT_ANY = 40   # letters: a run this long anywhere in the markdown = present
+PRESENT_NEAR = 16  # letters: or this long in the markdown of this page or a neighbour
 MARK_RE = re.compile(r'^----------\[(?:pdf-page (\d+)(?:, printed "([^"]*)")?|not in pdf)\]----------$')
 
 # Sources whose markdown was made outside relata (relata timed out on them).
 LOCAL = {
     'csb-2007-bp-texas-city': dict(
         md='ref/csb-2007-bp-texas-city/csb-2007-bp-texas-city.md',
-        dir='ref/csb-2007-bp-texas-city', marker=True,
+        dir='ref/csb-2007-bp-texas-city', marker=True, ocr=False,
         note='marker_single run by hand; relata timed out'),
     'bengio-2026-international': dict(
-        md='ref/iasr-2026-full.md', dir=None, marker=False,
+        md='ref/iasr-2026-full.md', dir=None, marker=False, ocr=False,
         note="the publisher's web edition saved as markdown, aligned to the PDF edition; "
              'marker_single could not convert the PDF'),
 }
@@ -510,26 +528,92 @@ def run_list(page_of):
             runs.append((page_of[a], a, i)); a = i
     return runs
 
+# ----------------------------------------------------- text the markdown lacks
+
+def missing_text(md, brk, pages, M):
+    """Per page, the runs of the PDF's text that the markdown lacks: text
+    marker turned into a picture (a screenshot-like figure, a styled box, a
+    glossary laid out as a graphic) or dropped. A word is present if a run of
+    PRESENT_ANY letters through it occurs anywhere in the markdown (a phrase
+    shared with other passages is not enough), or a run of PRESENT_NEAR in the
+    markdown of this page or its neighbours (table cells reordered). Missing
+    runs within SUPP_GAP words of each other are joined; a run is kept if it
+    has SUPP_MIN missing letters and does not recur on 3+ pages (running
+    headers and footers)."""
+    A, B = PRESENT_ANY, PRESENT_NEAR
+    big = {M[i:i+A] for i in range(len(M) - A + 1)}
+    local = {}
+    for k, (p, at, _) in enumerate(brk):
+        if p is not None:
+            end = brk[k+1][1] if k + 1 < len(brk) else len(md)
+            local.setdefault(p, []).append(md_stream(md[at:end])[0])
+    norm_pages = [norm(t) for t in pages]
+    out = {}
+    for p, text in enumerate(pages, 1):
+        words = text.split(' ')
+        nw = [norm(w) for w in words]
+        nt = ''.join(nw)
+        if len(nt) < SUPP_MIN:
+            continue
+        cov = bytearray(len(nt))
+        for i in range(len(nt) - A + 1):
+            if nt[i:i+A] in big:
+                cov[i:i+A] = b'\x01' * A
+        near = ''.join(''.join(local.get(q, [])) for q in (p - 1, p, p + 1))
+        small = {near[i:i+B] for i in range(len(near) - B + 1)}
+        for i in range(len(nt) - B + 1):
+            if nt[i:i+B] in small:
+                cov[i:i+B] = b'\x01' * B
+        miss, k = [], 0
+        for n in nw:
+            miss.append(bool(n) and not all(cov[k:k+len(n)]))
+            k += len(n)
+        idx = [i for i, m in enumerate(miss) if m]
+        groups = []
+        for i in idx:
+            if groups and i - groups[-1][-1] <= SUPP_GAP + 1:
+                groups[-1].append(i)
+            else:
+                groups.append([i])
+        keep = []
+        for g in groups:
+            letters = sum(len(nw[i]) for i in g)
+            run = ' '.join(words[g[0]:g[-1] + 1]).strip()
+            if letters < SUPP_MIN:
+                continue
+            if sum(1 for q in norm_pages if norm(run) in q) >= 3:
+                continue
+            keep.append(run)
+        if keep:
+            out[p] = keep
+    return out
+
 # ------------------------------------------------------------------- rendering
 
-def render(md, brk, printed):
-    """Insert a marker line at each break. Between breaks the text is untouched,
-    except that the blank lines framing each marker are normalised."""
-    out, last = [], 0
-    for page, at, _ in brk:
-        chunk = md[last:at].strip('\n')
-        if chunk.strip():
-            out.append(chunk)
+def render(md, brk, printed, supp=None):
+    """Insert a marker line at each break, and after the last stretch of each
+    page any text the markdown lacks for that page, fenced as ```pdf-text.
+    Between breaks the markdown is untouched, except that the blank lines
+    framing each marker are normalised."""
+    supp = supp or {}
+    last_of = {p: k for k, (p, _, _) in enumerate(brk)}
+    out = []
+    head = md[:brk[0][1]].strip('\n') if brk else md.strip('\n')
+    if head.strip():
+        out.append(head)
+    for k, (page, at, _) in enumerate(brk):
         if page is None:
             out.append(NOT_IN_PDF)
         elif page in printed:
             out.append(MARK_PRINTED.format(page, printed[page][0]))
         else:
             out.append(MARK.format(page))
-        last = at
-    tail = md[last:].strip('\n')
-    if tail.strip():
-        out.append(tail)
+        end = brk[k+1][1] if k + 1 < len(brk) else len(md)
+        chunk = md[at:end].strip('\n')
+        if chunk.strip():
+            out.append(chunk)
+        if page is not None and last_of.get(page) == k and page in supp:
+            out.append(SUPP_OPEN + '\n' + '\n\n'.join(supp[page]) + '\n' + SUPP_CLOSE)
     return '\n\n'.join(out) + '\n'
 
 # ------------------------------------------------------------------ the sources
@@ -566,10 +650,13 @@ def source(key):
         s = LOCAL[key]
         d = os.path.join(REPO, s['dir']) if s['dir'] else None
         return dict(pdf=pdf, md=os.path.join(REPO, s['md']), dir=d,
-                    marker=s['marker'], note=s['note'])
+                    marker=s['marker'], ocr=s['ocr'], note=s['note'])
     if mddir and os.path.isfile(os.path.join(mddir, 'content.md')):
+        conv = os.path.join(mddir, 'relata-conversion.yml')
+        ocr = os.path.isfile(conv) and bool(re.search(
+            r'^force_ocr:\n(?:  .*\n)*?  applied: true', open(conv).read(), re.M))
         return dict(pdf=pdf, md=os.path.join(mddir, 'content.md'), dir=mddir,
-                    marker=True, note='relata conversion')
+                    marker=True, ocr=ocr, note='relata conversion' + (', OCR' if ocr else ''))
     return dict(pdf=pdf, md=None)
 
 # --------------------------------------------------------------------- one key
@@ -600,12 +687,16 @@ def canonicalize(key, outdir):
 
     msc = os.path.join(outdir, 'msc', key)
     rel = os.path.relpath(msc, outdir)
-    body = render(md, brk, printed)
+    supp = {} if src.get('ocr') else missing_text(md, brk, pages, M)
+    report['pdf_text_added'] = ('not attempted: OCR conversion, the PDF\'s text layer is not trusted'
+                                if src.get('ocr') else
+                                {str(p): sum(len(norm(r)) for r in rs) for p, rs in supp.items()})
+    body = render(md, brk, printed, supp)
     if src['marker']:   # point marker's image links at the copies in msc/
         body = re.sub(r'(!\[[^\]]*\]\()(_page_\d+_[^)]*\))', lambda m: m.group(1) + rel + '/' + m.group(2), body)
 
     # Self-checks. Round trip: removing the markers gives back the source text.
-    stripped = '\n'.join(l for l in body.split('\n') if not MARK_RE.match(l))
+    stripped = '\n'.join(l for l in SUPP_RE.sub('\n\n', body).split('\n') if not MARK_RE.match(l))
     if src['marker']:
         stripped = stripped.replace('](' + rel + '/_page_', '](_page_')
     ws = lambda s: re.sub(r'\s+', ' ', s).strip()
@@ -685,6 +776,8 @@ def header(key, src, r):
             '     number printed on it, where one is established (pages.json says whether it was seen\n'
             '     on that page, inferred from its run, or taken from the PDF\'s page labels).\n'
             '     ' + how + '.\n'
+            '     ```pdf-text blocks: text on that page in the PDF\'s own text layer that the converted\n'
+            '     markdown lacks (often text inside a figure or box), in pdftotext\'s reading order.\n'
             '     Source: ' + src['note'] + '. Breaks, their certainty and self-checks: msc/' + key + '/pages.json -->\n\n')
 
 # ------------------------------------------------------------------------ main
