@@ -227,7 +227,7 @@ Most are cited by `influx/gamma-research/risk-formalisms.md`. The precedents fro
 
 ### IEEE standards
 
-The 7000 series on ethics in system design. These are licensed copies from IEEE Xplore: each page is stamped "Authorized licensed use limited to: Joseph Wecker", so their canonical texts stay local, and quotations should be short. 7009 is cited by `influx/gamma-research/risk-formalisms.md`; the others were added to the catalog on 2026-10-09 and are not yet cited.
+The 7000 series on ethics in system design. These are licensed copies from IEEE Xplore, so their canonical texts stay local, and quotations should be short. 7009 is cited by `influx/gamma-research/risk-formalisms.md`; the others were added to the catalog on 2026-10-09 and are not yet cited.
 
 - 7 keys: `@ieee-7000-2021-ethical-design`, `@ieee-7001-2021-transparency-autonomous`, `@ieee-7003-2024-algorithmic-bias`, `@ieee-7007-2021-ontological-robotics`, `@ieee-7009-2024-fail-safe-autonomous`, `@ieee-7010-2020-well-being-impact`, `@ieee-7014-2024-emulated-empathy`
 
