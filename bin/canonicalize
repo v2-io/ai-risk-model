@@ -58,10 +58,14 @@ conversion, or another edition). Behind the mark: the share of the markdown's
 prose found in the PDF's text, the share of the PDF's text found in the
 canonical text, and the markdown lines that don't match, by kind: tables
 reflowed, math as LaTeX, garbled OCR text, or text not in the PDF's text
-layer (captions read from the image, marker's escaped markup). The
+layer (captions read from the image, marker's escaped markup); and page
+breaks whose position isn't determined, with the pages either side (pages.json
+gives each break's line and window). The
 conversion's own text is never edited; garbled lines stay where marker put
-them and are listed. On 2026-10-08: 40 trusted, 41 check-pages (149 pages),
-6 check-all.
+them and are listed. A break whose undetermined window holds 12 or more
+letters puts the pages either side on the list; every window is recorded
+with its text (`window_text`) so a quote can be tested against it. On
+2026-10-08: 36 trusted, 45 check-pages (234 pages), 6 check-all.
 
 How well it works (2026-10-08). On the 84 catalog sources, 3948 of 3960
 headings land on the page marker's own metadata records for them; about 6% of
@@ -425,7 +429,7 @@ def breaks_ordered(md, moff, page_of, npages):
     def count(a, b, test):
         k0, k1 = bisect.bisect_left(locpos, a), bisect.bisect_left(locpos, b)
         return sum(1 for _, p in clean[k0:k1] if test(p))
-    out = [(1, 0, 0)]
+    out, windows = [(1, 0, 0)], [None]
     prev_o, prev_p = 0, 1
     for o, p in clean:
         if p > prev_p:
@@ -434,11 +438,13 @@ def breaks_ordered(md, moff, page_of, npages):
             gap = bisect.bisect_left(unloc, o) - bisect.bisect_right(unloc, prev_o)
             for q in range(prev_p + 1, p + 1):
                 out.append((q, at, gap))
+                windows.append((prev_o + 1, o) if gap else None)
             prev_p = p
         prev_o = o
     for q in range(prev_p + 1, npages + 1):
         out.append((q, len(md), -1))
-    return out, conflicts
+        windows.append((prev_o + 1, len(md)))
+    return out, conflicts, windows
 
 def place(md, b, before, after):
     """Break position for a page change first seen at offset b: at a line start,
@@ -658,6 +664,14 @@ def fidelity(md, brk, body, pages, P, ocr, mode):
             weak.append(i)
     faithful = prose_in / max(1, prose_all)
     complete = tot_in / max(1, tot)
+    # A break whose position isn't determined: a quote near it could get the
+    # neighbouring page, so both pages are checked, unless the undetermined
+    # stretch is a fragment (under T letters: a word ending, a list opener).
+    # Every window, however small, is in pages.json for the quote checker.
+    unsure = [(p, gap) for p, _, gap in brk if p is not None and (gap >= T or gap < 0)]
+    if unsure:
+        kinds['page break position uncertain'] = dict(
+            lines=len(unsure), pages={q for p, _ in unsure for q in (p - 1, p) if q >= 1})
     check = set(weak)
     for k in kinds.values():
         check |= k['pages']
@@ -689,7 +703,8 @@ def write_index(outdir):
         fi = r.get('fidelity') or {}
         add = r.get('pdf_text_added')
         added = (len(add) if isinstance(add, dict) else 0)
-        diffs = '; '.join(f'{k} ({v["lines"]} lines)' for k, v in fi.get('differences', {}).items())
+        diffs = '; '.join(f'{k} ({v["lines"]} {"breaks" if k.startswith("page break") else "lines"})'
+                          for k, v in fi.get('differences', {}).items())
         pc = fi.get('pages_to_check', [])
         rows.append(f"| `{d}` | {fi.get('mark', '?')} | {fi.get('faithful_prose', '')} | {fi.get('complete', '')} | "
                     f"{len(pc) if fi.get('mark') == 'check-pages' else ('all' if fi.get('mark') == 'check-all' else 0)} | "
@@ -796,10 +811,11 @@ def canonicalize(key, outdir):
                   pdf_pages=len(pages), pdfinfo_pages=info_pages)
     if src['marker']:
         page_of, matched = align_ordered(M, P, pstarts)
-        brk, conflicts = breaks_ordered(md, moff, page_of, len(pages))
+        brk, conflicts, windows = breaks_ordered(md, moff, page_of, len(pages))
         report['conflicts_with_marker_facts'] = conflicts
     else:
         brk, page_of, matched, repeated = breaks_unordered(md, moff, M, P, pstarts)
+        windows = [None] * len(brk)
         report['passages_repeated_in_pdf_placed_by_context'] = repeated
     report['matched'] = round(matched / max(1, len(M)), 3)
 
@@ -826,10 +842,15 @@ def canonicalize(key, outdir):
     marks = [i + 1 for i, l in enumerate((head + body).split('\n')) if MARK_RE.match(l)]
     assert len(marks) == len(brk), 'marker lines and breaks disagree'
     blist = []
-    for (page, at, gap), ln in zip(brk, marks):
+    for (page, at, gap), ln, win in zip(brk, marks, windows):
         b = dict(page=page, line=ln)
         if src['marker']:
             b['unlocated_letters'] = gap   # 0: position determined; -1: nothing located
+        if win:
+            # The text that could be on either side of this break: a quote that
+            # overlaps it needs its page checked against the PDF.
+            w = md[win[0]:win[1]].strip()
+            b['window_text'] = w if len(w) <= 2000 else w[:1000] + ' […] ' + w[-1000:]
         blist.append(b)
     for b in blist:
         if b['page'] in printed:
