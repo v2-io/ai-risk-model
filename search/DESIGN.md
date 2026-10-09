@@ -176,7 +176,7 @@ bin/source-search … --explain                    the per-factor score behind e
 bin/source-search … --json                       for agents; automatic when piped
 ```
 
-Every result carries an anchor in the plan's proposed form (plan §3.5): relata key, physical PDF page, printed page, and the exact quote, with a "check against the PDF" flag where the source's fidelity mark calls for it. A quote copied from a result can then be cited as it stands, and checked with `bin/check-quote`, which takes anchors in bulk on stdin (`--batch -`).
+Every result carries an anchor in the plan's proposed form (plan §3.5): relata key, physical PDF page, printed page, and the exact quote. This is a requirement, not a default. Joseph, 2026-10-09: "the search results should always come back with your preferred reference format -- key + pdf-page etc. etc." Every mode, `--all` and `--defs` included, and the JSON, carry it, with a "check against the PDF" flag where the source's fidelity mark calls for it. A quote copied from a result can then be cited as it stands, and checked with `bin/check-quote`, which takes anchors in bulk on stdin (`--batch -`).
 
 `--all` matches word forms explicitly, never by stemming alone: `hazard`, `hazards`, `hazardous`, `AI hazard`. It prints which forms it matched and how many of each, so "did we catch them all" has a checkable answer, including what the pattern didn't cover.
 
