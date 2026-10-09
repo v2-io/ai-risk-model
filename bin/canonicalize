@@ -2,7 +2,7 @@
 """Build ref/canonical/: each source's best markdown, with the physical PDF page
 marked in it.
 
-    bin/canonicalize                 every catalog source that has markdown
+    bin/canonicalize                 every source cited (@key) in source-catalog.md
     bin/canonicalize KEY…            just these relata keys
     bin/canonicalize --out DIR KEY…  write somewhere other than ref/canonical
 
@@ -542,11 +542,15 @@ def relata_show(key):
     return (pdf.group(1) if pdf else None), (md.group(1) if md else None)
 
 def catalog_keys():
+    """The relata keys in source-catalog.md, in order: written as citations,
+    `@key`, the form `relata emit` reads to build bib/refs.bib (pandoc's
+    citation-key syntax: a letter, digit or _ first; internal punctuation
+    allowed, trailing punctuation not)."""
     text = open(os.path.join(REPO, 'source-catalog.md')).read()
     keys = []
-    for k in re.findall(r'`([a-z0-9][a-z0-9_.-]+)`', text):
-        if not k.endswith('.md') and k not in keys:
-            keys.append(k)
+    for m in re.finditer(r'(?<![\w@])@([A-Za-z0-9_](?:[\w:.#$%&+?<>~/-]*[\w])?)', text):
+        if m.group(1) not in keys:
+            keys.append(m.group(1))
     return keys
 
 def sha256(path):
@@ -692,6 +696,9 @@ def main(argv):
     if argv[:1] in (['-h'], ['--help']):
         print(__doc__.split('\n\nHow the pages')[0]); return 0
     keys = argv or catalog_keys()
+    if not keys:
+        print('canonicalize: no @keys found in source-catalog.md', file=sys.stderr)
+        return 2
     os.makedirs(outdir, exist_ok=True)
     status = 0
     for key in keys:
