@@ -60,7 +60,7 @@ Udon is read as udon 0.10.0's `CORE.md` describes it (`~/src/arch/firmatum/udon/
 
 Nothing is dropped. What the builder reads differently from plain udon, carries without running, or finds inconsistent is listed by `--check` and under "Reading notes" on the home page.
 
-Where these files go beyond udon 0.10.0, the builder follows the files:
+Where these files go beyond udon 0.10.0, the builder follows the files. It reads these forms so that drafts can be read; reading a form is not endorsing it. The thin-pass notation's syntax is still open (plan §5, decision 14), and what is decided there goes to the udon team as a needs list, not into this builder by default.
 
 - `:{exact | narrower} @{…}`, a braced label, is read as one label: the notation's ambiguous relation (one of these relations holds; which is undetermined). Udon ends a label at the first space; the valid udon spellings are quoted, `:'exact | narrower'` or `:'{exact | narrower}'`, and all three read and render alike. The braced form gets a reading note.
 - A list, set or string left open at the end of a line continues onto the next. Udon leaves this unspecified.

@@ -199,7 +199,7 @@ The corpus divides roles on at least seven bases:
 - a *use* (EU deployer: using under its authority);
 - a *training act with a threshold* (SB 53 frontier developer);
 - a *modification act* judged by "significant change", with an indicative compute criterion (EU downstream modifier → provider);
-- *control* of the weights (EU guidelines fn 12, for attributing the modification act);
+- *control* of the weights (EU guidelines fn 12, for attributing the modification act; evidential, not operative: see the correction below);
 - *tasks* (NIST AI actors);
 - *responsibility for an asset* (ETSI system operators, data custodians);
 - *affectedness* (NIST, ETSI, EU).
@@ -211,7 +211,10 @@ The corpus divides roles on at least seven bases:
 - the EU's downstream modifier becomes a provider by a modification that makes a "significant change" (indicatively, more than a third of the original compute).
 - ETSI's system operator becomes an EU provider "if they make changes to the system".
 
-Other operative facts are market acts, use, and **control**. The EU guidelines' footnote 12 attributes the modification act partly by "who has the control over the model's weights, for example, in case of fine-tuning via API". The customer supplies the data, but the modification may be attributed to whoever holds the weights. That decouples the role from the writing act and attaches it to control, which is the de facto relation of `03-structure.md` §6.1. So a translation of a source's role word can often say: *"this institutional role is conferred on parties who perform writing act W (into part P) above threshold T, or market act M"*. That joins `alignment.md`'s writer rows to the laws' roles without forcing either onto the other. It is also the gamma plan's §3.9 suggestion (institutional roles conferred by an instrument under Hohfeldian operative facts), with the operative facts named.
+Other operative facts are market acts, use, and **control**. The EU guidelines' footnote 12 attributes the modification act partly by "who has the control over the model's weights, for example, in case of fine-tuning via API". The customer supplies the data, but the modification may be attributed to whoever holds the weights. That decouples the role from the writing act and attaches it to control, which is the de facto relation of `03-structure.md` §6.1.
+
+> [!NOTE]
+> **Correction, 2026-10-08 (from `influx/reviews/citation-check-2026-10-07.md`, §3.9).** Fn 12 says control over the weights "may be" an important factor in deciding *who* performed the modification act. That makes control *evidential* about the operative fact (the modification, judged by "significant change"), not an operative fact itself, and the guidelines are non-binding by their own statement (para 9). So control does not confer the role, and it does not decouple the role from the writing act. The conferral picture stands on its other operative facts. "Controls in fact" (`03-structure.md` §6.1) stands on its own evidence (the legitimacy qualifier; stolen weights), not on fn 12. So a translation of a source's role word can often say: *"this institutional role is conferred on parties who perform writing act W (into part P) above threshold T, or market act M"*. That joins `alignment.md`'s writer rows to the laws' roles without forcing either onto the other. It is also the gamma plan's §3.9 suggestion (institutional roles conferred by an instrument under Hohfeldian operative facts), with the operative facts named.
 
 *What this overrules in the brief's reading:* "the laws divide by lifecycle or market; the map divides by writing" holds for the EU's core Art. 3 roles. It does not hold for SB 53, whose frontier developer is defined by a training act, or for the EU's own guidelines on modification. The writing basis is already inside the institutional instruments, as operative facts.
 

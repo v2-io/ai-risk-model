@@ -17,6 +17,8 @@ There are also single passages from xAI's 2025 RMF and 2026 FAIF, OpenAI's PF v2
 
 **Why Q1.** The coordinator chose it. The plan's G1b text suggested Q4 or Q20, and SB 53's catastrophic-risk definition is acceptance test 1's first case. Q1 turned out to be a good test of the record formats and a poor test of term weight. It stipulates two facts, so most clauses can only be named, not weighed (`weight-and-defects.md` §1). It also never touches the actor vocabulary that Joseph named as his priority.
 
+**A correction from the citation check, 2026-10-08.** The records treat SB 53's "foreseeable" and "materially contribute" as *delegated* to California law (`-> ca-law:… ?` in the notation). SB 53 neither defines them nor points anywhere for them, so that California law fills them is our reading, not an import the statute declares. Read *delegated* on those two resolutions as "left to the reader; our reading is California law". The plan's §3.4 now records it that way.
+
 **The main result, corrected.** The slice can't rank lexicon terms for refinement. The first version said it could; `response-to-de-novo-feedback-1.md` explains why that was withdrawn.
 
 ## Read in this order

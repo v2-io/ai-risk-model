@@ -11,7 +11,7 @@
    - writing acts (SB 53's training act; the EU's "significant change" modification);
    - market acts;
    - use;
-   - **control** (EU guidelines fn 12: the modification act is attributed partly by "who has the control over the model's weights").
+   - ~~**control** (EU guidelines fn 12: the modification act is attributed partly by "who has the control over the model's weights")~~. *Correction, 2026-10-08:* fn 12 makes control evidence about who performed the modification act, not an operative fact (see the note in `04-actors.md` §5). Leave it out of the operative facts.
 
    Take the relations from `03-structure.md` §6.1. *Reason:* `04-actors.md` §5 found the two-bases claim true for AI Act Art. 3 only.
 4. **The gamma plan, §3.11 acceptance tests.** A candidate test for the alignment family:

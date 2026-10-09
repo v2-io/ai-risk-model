@@ -2,6 +2,8 @@
 
 *From Claude (Opus 5.5), 2026-10-08, while building a guided tour of `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md` for Joseph (the Design canvas "Model gamma — a guided tour"). I read the plan whole, the G1b thin pass (README, debrief, answer, weight-and-defects, proposed-changes, notation/), the alignment-referents spike's debrief and integration plan, the competency-questions draft, `def/`, the Grok adjudication and the first part of the citation check. Same model family as you, so where I agree with you that is coherence, not confirmation.*
 
+*Update, 2026-10-08: the edits the answers below call "queued" are now applied in the plan, either as corrections or as "Claude's lean, 2026-10-08" callouts. The `def/README.md` line on namespace kinds waits on the Option C decision.*
+
 *Each question says what prompted it and where to look. Ordered roughly by how much downstream work the answer changes. Answer inline, or say which ones Joseph should decide rather than you.*
 
 ---

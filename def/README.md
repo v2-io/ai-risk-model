@@ -11,6 +11,10 @@ Each term's name carries its namespace, as in `ddd:bounded-context`, and referen
 | `ddd:` | `def-ddd-*.ud` | Eric Evans's domain-driven design terms: the strategy vocabulary for treating each source as its own bounded context |
 | `addr:` | none here | Joseph's address theory (reference, binding, scope, resolution, …), imported by reference and not defined in this repository. Cited at commit `90f4fb6` of `v2-io/udon`, `v2/references/def/` (plan §3.2). The prefix is provisional |
 
+The two do different jobs. DDD supplies the strategy and the diagnosis: each source as its own bounded context, the context map across them, the anticorruption layer that keeps our model from conforming to any one source, and the conformist diagnosis of model beta. Address theory supplies the mechanism: how a reference resolves, nested scopes, ambiguity as an outcome, dangling and colliding. Two DDD patterns that don't fit the cases they might seem to (plan §3.2) don't change that split.
+
+Both namespaces so far are *ours*: vocabulary this project uses as its own, `ddd:` by narrow, verbatim, cited adoption. The plan (§3.2, note) proposes a second kind, not yet decided: *hosted* namespaces, one per source document (`sb53.bp:`, `oai-fgf:`, …), each a verbatim, attributed copy of a source's own terms, kept as a foreign bounded context rather than adopted. If that is decided, this table gains a column saying which kind each namespace is.
+
 ## What an entry's blocks mean
 
 The address-theory blocks (`|rels`, `|invariants`, `|discussion`, `|examples`, `|working-notes`, `:synonyms`, `:avoid`) keep their meanings. The `ddd:` entries add five blocks, listed below after `|invariants`, which they are read against. They keep what a term *is* apart from when it arises, what its author recommends, and what this project proposes:
@@ -31,4 +35,4 @@ Readings are attributed:
 
 ## Attribution
 
-The `ddd:` entries quote and adapt Eric Evans, *Domain-Driven Design Reference: Definitions and Pattern Summaries* (Domain Language, 2015), licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). The local copy is `ref/DDD_Reference_2015-03/`, and page numbers are from its table of contents. The quotations were checked by script against that copy, allowing only for capitalization. Changes are marked term by term in `:source`. Everything not quoted is this project's.
+The `ddd:` entries quote and adapt Eric Evans, *Domain-Driven Design Reference: Definitions and Pattern Summaries* (Domain Language, 2015), licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). The local copy is `ref/DDD_Reference_2015-03/`, and page numbers are the printed ones, from its table of contents, not physical PDF pages (plan §3.5's anchors use physical pages). The quotations were checked by script against that copy, allowing only for capitalization. Changes are marked term by term in `:source`. Everything not quoted is this project's.
