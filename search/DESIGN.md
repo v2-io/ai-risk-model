@@ -420,6 +420,8 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
 
    Old chunker against new, over all 392 texts: 48,412 → 48,416 passages, 22 re-cut, 16,620 paths changed. The largest moves of section kind were restored → figure (1,060), annex → body (126) and glossary → body (43). The biggest movers read as real repairs: in africa-2026, a stray "Appendix I." had swallowed §§6–7 and the references; in hammond-2025, "3.4.1 Definition" had swallowed later sections and marked them glossary.
 
+   **After the reindex with the new chunker** (2026-10-09; 17,632 passages re-embedded in 9 min 16 s): pilot-check 0.802, from 0.803. The outline, pooled at 60 lines, opens a little less than before (0.262 covered, from 0.291) and flags the same (0.752). The lists given the same output lines are unchanged; read to the same source lines they fall slightly (0.294, from 0.322). Per document the drop is almost all IASR at 60 lines (0.53 covered, from 0.63), with fewer source lines opened overall (1,582, from 1,848). So the chunker fixes put the structure right without improving the score. Why IASR fell isn't known yet; the new 180-entry glossary run and the `figure` weight are the obvious suspects.
+
    Open:
    - **Site navigation ranks first.** `outline whistleblower california-2025-sb53` opens leginfo's navigation bar. The likely cause is that a short passage's embedding is dominated by the document's title, which goes into every embedding input.
    - **On a short document with no strong match, the outline fills its budget.** Changing that is a change to the outline's own settings, so it waits for held-out queries.
