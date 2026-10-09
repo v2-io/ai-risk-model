@@ -1,6 +1,6 @@
 # Ranking: the hypotheses, and the model that combines them
 
-*A proposal, drafted 2026-10-09 by Claude (Opus 5.5) at Joseph's request. Nothing here is built yet. It describes how `hybrid` ranks today (§2), proposes a model to replace it (§3–§5), and sets rules so the model keeps being re-examined (§6). The decisions for Joseph are in §8.*
+*Drafted 2026-10-09 by Claude (Opus 5.5) at Joseph's request, then revised the same day after reviews by Fable and Gemini (`influx/reviews/ranking-*-2026-10-09.md`). Nothing here is built yet. It describes how `hybrid` ranks today (§2), the model to replace it (§3–§5), and the rules that keep the model re-examined (§6). The decisions are in §8: Claude's, supported by Joseph, each with what should cause it to be revisited.*
 
 ## 1. Why
 
@@ -33,7 +33,7 @@ As read from `search/srcsearch/rank.py` (`search`, `lexical`, `proximity_density
    - superseded: $0.8$;
    - Influence: $1.10$ for anchor, $1.05$ for major, $0.95$ for context;
    - recency within the organisation: $1 + 0.05\,y$, where $y \in [0, 1]$ is the document's position among its organisation's documents by year;
-   - proximity: $1 + 0.6\,\pi(p)$, with $\pi$ the proximity score of H-W4;
+   - proximity: $1 + 0.6\,\pi(p)$, with $\pi$ the proximity score of H-W4, computed only for the top 500 passages of the lexical ranking (others get 1, so being outside that head is never a penalty, and nothing past it is rescued by proximity);
    - density: off (weight 0).
 
 That makes 13 factors with 27 tunable values, in three different places: inside the lexical score, inside the fusion, and multiplied on top. The fused score has no meaning of its own: a sum of reciprocal ranks, times priors stated on another scale.
@@ -70,23 +70,32 @@ Within a group, hypotheses compose by the group's own rule, stated in the group'
 
 The groups aren't fully independent either: a passage that uses the query's words also tends to be close in meaning. This is the main assumption the model rests on, and §6 says how it is checked.
 
-### 3.2 Each group's evidence on one scale
+### 3.2 It is a logistic regression
 
-To add, each group's raw signal must become a log likelihood ratio. There are two ways, and the choice is open (§8):
+Fable's review (`influx/reviews/ranking-fable-2026-10-09.md`) named what §3's model is: a logistic regression. Gemini's review (`ranking-gemini-2026-10-09.md`) reached the same place by another road, that BM25 already approximates a log-odds and cosine similarity can be calibrated to one. Joseph, 2026-10-09: "It's interesting how often properly framing the problem in the first place helps clarify. It's also interesting how many otherwise adhoc heuristic-evolving 'solutions' turn out to have forgotten to treat it as a regression / prediction problem."
 
-- **From ranks**, which is what RRF does. Each group ranks the candidates, and a passage's rank becomes evidence through one declared curve shared by all groups: the top of a ranking is strong evidence, and the evidence falls away with rank. This keeps RRF's robustness, since raw scores are never compared across groups. It makes the shape of the curve a stated hypothesis (H-F1), not a constant.
-- **From calibrated scores.** Each group's raw score (a BM25 value, a cosine distance) is mapped to a log likelihood ratio by a monotone curve fitted to judged data. This uses more information, since a much better match counts for more than a slightly better one. But BM25's scale moves with the query, and the judged data are small (§5.3).
+So the model predicts the probability that a passage is relevant from a vector of features $\mathbf{x}(p, q)$:
 
-My lean is to start from ranks, with one shared curve and equal weights, and to try calibrated scores later, group by group, where the data allow. *Confidence: moderate.*
+$$P(R \mid \mathbf{x}) = \sigma\Bigl(\beta_0 + \sum_{j} \beta_j \, x_j(p, q)\Bigr), \qquad \sigma(z) = \frac{1}{1 + e^{-z}}$$
 
-### 3.3 Equal opportunity
+Its log-odds is §3's sum, with each group's $\log \Lambda_g$ linear in that group's features. What the framing settles:
+- **"Ranks or scores" stops being a dichotomy.** A feature can be a rank or a score; either way its coefficient is fitted. The earlier draft of this section leaned towards a fixed rank curve (H-F1). Both reviews argued against that, for a reason it had not weighed: rank evidence is relative to the scope and has no floor, so it can't say that nothing in scope is relevant. The outline and the answerability cue need exactly that.
+- **"Equal weights" gets a meaning.** It was undefined while the features' scales differed. Fable's example: under an RRF-shaped curve a group's whole top ten spans $\ln(70/61) \approx 0.14$ nats, about the same as the Influence multiplier's $\ln 1.10 \approx 0.10$, so Influence alone could reorder it. With every feature standardised over the candidates, equal opportunity is a prior on the coefficients, pulling them towards each other until the data say otherwise.
+- **The probability is testable.** The model claims a probability, not just an order, so its calibration can be checked: of passages it puts at $P = 0.7$, about 70% should be judged relevant.
+- **Absence is a value, not a gap.** Every candidate gets every feature. Cosine is computed for all candidates, not just the 400 nearest, which is an exact scan and cheap. A passage with no query word has BM25 0, a real value whose coefficient is fitted. A non-candidate is the one remaining absence (H-C1).
+- **Today's multipliers are measured again, not translated.** They were measured on RRF's scale, so their register statuses drop back to *proposed* when the combiner changes, with the old measurements kept as impetus. The definition factor $1 + 2\,m\,c$ is the exception in form: it is exactly a mixture over whether the detection is right, so its shape survives and only its size is refitted.
 
-Every group enters with weight 1 on the same scale, until a measurement justifies something else. Joseph's principle, and memorata's "co-equal common factors" (Joseph, 2026-07-09), is the same rule. A weight other than 1 needs:
-- an entry in the register saying why;
-- a fixture showing the factor does what its hypothesis says;
-- an ablation on both evaluations, recorded with its interval.
+### 3.3 Equal opportunity, fitting and testing
 
-Weights fitted to the judged data are marked as fitted, with the data they were fitted on (§5.3).
+Features are standardised over each query's candidates. Coefficients start from a shared prior (ridge regression towards their common mean), so no feature gets more say than another until the judged data justify it. Joseph's principle, and memorata's "co-equal common factors" (Joseph, 2026-07-09), is that rule.
+
+The two judged sets differ in kind (Fable's point):
+- **The pilot's grades** cover only passages some ranking surfaced. They can't teach the model anything about what the ranker missed.
+- **The whole-document judgments** cover everything their judges read, which is what fitting needs.
+
+So the model is fitted on the whole-document judgments, by leave-one-document-out: five fits, each tested on the document it didn't see. The pilot's grades are the out-of-sample test. A feature that matters must hold its sign across the five fits. One whose coefficient changes sign is reported as unsupported, not tuned.
+
+Any coefficient that ends up away from the shared prior needs its register entry, a fixture and a recorded fit, as in §5.
 
 ## 4. The hypothesis register
 
@@ -184,7 +193,7 @@ These come before any evidence is scored. They decide what the query is and what
 - Impetus: pilot.
 - Encoding: $\ell(p) \times 2$, the phrase found by the literal matcher. Before 2026-10-09 it never fired for "loss of control" (a bug).
 - Status: measured, +0.001 fused and +0.045 by the lexical side alone.
-- Note: H-W3 is the zero-gap case of H-W4. The model should say so, not count both.
+- Note: H-W3 is nearly the zero-gap case of H-W4, and the model shouldn't count both. Not exactly, though (Fable): proximity runs on the content words, so for "loss of control" its window is "loss … control" with "of" as a one-word gap, while the phrase runs on the full term. A passage reading "loss control" gets full proximity and no phrase factor. Which word list each uses is an H-Q1 decision showing up in two places.
 
 **H-W4 Proximity.**
 - Feature: for a passage holding at least two of the query's words, a window $W$ of $p$ that covers one occurrence of each word present. Its cost is
@@ -286,8 +295,8 @@ These come before any evidence is scored. They decide what the query is and what
 
 **H-F1 The rank curve.**
 - Feature: a passage's rank $r$ within a group.
-- Hypothesis: the evidence $\lambda(r)$ falls with rank. RRF's $\lambda(r) = 1/(60 + r)$ says it falls slowly: $\lambda(1)/\lambda(10) = 70/61 \approx 1.15$, so ranks 1 and 10 differ by 15%. That may undervalue the top of a ranking. Since RRF sums $\lambda$ rather than its logarithm, it also isn't a log likelihood ratio.
-- Status: proposed; its shape is the main open choice (§3.2).
+- Hypothesis: the evidence $\lambda(r)$, taken as a log likelihood ratio, falls with rank. RRF's $\lambda(r) = 1/(60 + r)$ says it falls slowly: $\lambda(1)/\lambda(10) = 70/61 \approx 1.15$. Read as a likelihood ratio, its top ten span $\ln(70/61) \approx 0.14$ nats, close to the Influence multiplier's $\ln 1.10 \approx 0.10$ (Fable's comparison). Read as a log likelihood ratio itself, they span only $1/61 - 1/70 \approx 0.002$. Either way the curve's scale, not any weight, decides how much a group can say.
+- Status: *superseded* by §3.2. Rank evidence is relative to the scope and has no floor, so the model uses features with fitted coefficients instead. A rank can still be a feature if the fit supports it.
 
 **H-C1 The candidate pool.**
 - Feature: p is a candidate if it holds any query word, is among the 400 nearest, or defines the term.
@@ -351,9 +360,29 @@ search/srcsearch/rank/
 
 Each module's pure functions take text and corpus statistics, and its fixture tests import them directly. The database code fetches inputs and nothing else. `rank.py`'s concordance, definitions and answerability functions aren't ranking and would move out of it.
 
-## 8. Decisions for Joseph
+## 8. Decisions
 
-1. **Rank-based evidence or calibrated scores** (§3.2). My lean: ranks first, with one shared curve, equal weights. *Confidence: moderate.*
-2. **Whether status, Influence and recency are relevance at all** (H-D1–D3), or preferences that belong to scope, ties or presentation. My lean: Influence out of ranking, used only to order ties. Superseded becomes scope (`--history` unfolds versions; by default only the active version is scored, with a note that older versions exist). Recency stays as a weak prior until measured. *Confidence: moderate-low.*
-3. **The migration.** My lean: build the new model beside today's as `--fusion evidence`, and run both evaluations and the ablations. If it is no worse beyond noise, switch the default and delete the old path. If it is worse, record where before deciding. *Confidence: high on the method.*
-4. **The fixtures' corpus is ours to write**, and could also serve the outline. My lean: yes, and it starts with one case per hypothesis.
+*Joseph, 2026-10-09: "I'm happy to go with your lean on anything-- I'm not going to be able to choose a better curve or priors or anything than you here. Mark your decisions as yours and supported by me and, if possible, what should cause someone to revisit it." So each decision below is Claude's, supported by Joseph. Each says what should cause someone to revisit it. They were made after Fable's and Gemini's reviews; Grok's review was still running, and if it raises something against one, that decision is revisited.*
+
+1. **The model is a logistic regression on standardised features** (§3.2), not a fixed rank curve. Words gets BM25 on exact forms and on stems, headings as a BM25F field, and phrase and proximity as additive features (Gemini's point that the Words group was still multipliers inside). Meaning gets cosine, computed for every candidate. Role gets the definition match times its confidence, and section-kind indicators.
+   - Revisit if coefficients change sign across the leave-one-document-out fits, which means too little data for that many features: drop to fewer.
+   - Revisit if the predicted probabilities are poorly calibrated, which means the independence or linearity assumption is wrong: consider monotone non-linear terms per feature, or interactions.
+   - Revisit if the judged data roughly double, or the embedder or chunker changes.
+2. **Fit on the whole-document judgments by leave-one-document-out; test on the pilot's grades** (§3.3).
+   - Revisit when more judged data exist, or if the two sets disagree on a feature's direction. That would mean one of them is biased in a way not yet understood.
+3. **Influence is out of relevance, and orders ties only.** Superseded versions become scope: by default only the active version is scored, with a note that older ones exist, and `--history` brings them in. Recency is out of relevance; a sort option can come later if someone asks.
+   - Revisit Influence or recency if a study of what agents actually look for (the hallucination test's logs, DESIGN §11 step 8) shows them preferring anchor or newer documents beyond what relevance explains.
+   - Revisit superseded if an agent misses content that exists only in an older version, for example text a later version dropped. That would call for a "dropped later" note rather than ranking.
+4. **Built beside today's model as `--fusion evidence`; it becomes the default only if it passes**, and the old path is then deleted. To pass:
+   - pilot-check no worse than 0.802 beyond its interval;
+   - definitions still first on term queries;
+   - outline-check no worse at 60, 120 and 200 lines;
+   - `--explain`'s terms summing exactly to the score;
+   - the predicted probabilities calibrated.
+
+   The first four criteria are Gemini's, the last Fable's.
+   - Revisit if it fails: record where and why before deciding anything.
+5. **Fixtures are ours to write**, in `search/fixtures/`, one case per hypothesis to start. Each states an order the hypothesis predicts (for H-W4, adjacent before a sentence apart, a sentence apart before a paragraph apart) and tests the pure function directly.
+   - Revisit when a hypothesis is added or its encoding changes; its fixture comes with it.
+6. **The first step is Fable's, before any restructuring:** fit the logistic model to the features today's `--explain` already prints, over the judged data, and read the coefficients. That measures what the earlier draft could only lean on.
+   - Revisit this plan if that fit shows the features as they stand already separate relevant from irrelevant well. Then the restructuring is about clarity, not quality, and can go at its own pace.
