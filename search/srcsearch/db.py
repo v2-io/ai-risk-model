@@ -52,6 +52,15 @@ def connect(db=DB, create=False):
     return psycopg.connect(dbname=db)
 
 
+CACHE_SQL = os.path.join(SEARCH, 'cache.sql')
+
+
+def ensure_cache(conn):
+    """Create the cache tables beyond the embeddings if missing (search/cache.sql)."""
+    with conn.transaction():
+        conn.execute(open(CACHE_SQL, encoding='utf-8').read())
+
+
 def ensure_schema(conn, rebuild=False):
     """Create schema src if missing, or drop and recreate it with rebuild. Returns
     a message if the database was built from a different schema.sql."""
@@ -63,6 +72,7 @@ def ensure_schema(conn, rebuild=False):
         if not has:
             conn.execute(open(SCHEMA, encoding='utf-8').read())
             conn.execute("insert into src.meta values ('schema_sha', %s)", (schema_sha(),))
+            conn.execute(open(CACHE_SQL, encoding='utf-8').read())
             return None
         built = conn.execute("select value from src.meta where name = 'schema_sha'").fetchone()
         if not built or built[0] != schema_sha():

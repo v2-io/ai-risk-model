@@ -257,6 +257,14 @@ The same selectors work inline on the command line, so a one-off scope needs no 
 
 Every result carries an anchor in the plan's form (plan §3.5, Claude's proposal, endorsed by Joseph 2026-10-09): relata key, physical PDF page, printed page, and the exact quote. This is a requirement, not a default. Joseph, 2026-10-09: "the search results should always come back with your preferred reference format -- key + pdf-page etc. etc." Every verb and the JSON carry it, with a "check against the PDF" flag where the source's fidelity mark calls for it. A quote copied from a result can then be cited as it stands, and checked with `bin/check-quote`, which takes anchors in bulk on stdin (`--batch -`). The concordance counts headings, and counts references separately, and it never matches inside link targets.
 
+**Pages are settled for the reader, 2026-10-09.** Joseph: "check PDF is going to be a big buzz-kill here-- the whole point of canonicalizing them was so that no agent will have to worry about filling up their context with the pdf..." So no result tells the reader to check the PDF. Every verb settles a doubtful page itself: where the source is marked check-all, the page is one of its pages_to_check, or the text is web-only, `bin/check-quote` is run on the anchor. Its verdict is cached in `cache.quote_checks`, keyed by key, quote, cited page, the canonical file's sha256 and the checker's own hash, so a rebuilt text or a changed checker is checked afresh. `--rebuild` keeps the cache. What the reader sees:
+- confirmed: the page from the PDF, with no label;
+- otherwise one exact label: "page not confirmed against the PDF" (mostly tables and contents pages, whose PDF text runs in another order), "not in the PDF: from the web edition only" (IASR's web-only text; the wording will need to change if another web-only source appears), "page not confirmed", or "quote occurs more than once on the page".
+
+A first whole-corpus `lexical 'loss of control'` checked 121 anchors in 31 s; with the cache the same search takes about 1 s.
+
+**Quotes are marked «⟨…⟩»** in all text output (Joseph's choice, 2026-10-09: "a little clunky maybe but looks great in the terminal (fwiw) and no ambiguity or confusion"). The pair never occurs in the 392 canonical texts, while the sources' own quote marks often do. A quote cut short ends `⟩»…`, with the ellipsis outside the marks, since `check-quote` reads an ellipsis inside a quote as a gap. JSON keeps quotes as plain strings.
+
 Flags shared across verbs: `-n` (how many results), `--explain` (the factors behind each score), `--verify` (runs every anchor through `bin/check-quote`), `--json` (automatic when piped), and, not built yet, `--by source|org|family|lineage` and `--history` (§6.3).
 
 Memorata's hard-won output rules carry over:

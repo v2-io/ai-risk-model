@@ -158,15 +158,138 @@ def make(key, start, end, qwords=(), at=None, fidelity=None, pages_to_check=()):
                 check_pdf=bool(check), unique_on_page=unique, offset=raw_off)
 
 
+OPEN, CLOSE = '«⟨', '⟩»'
+# A verbatim quote is shown between these in text output (Joseph, 2026-10-09: "«⟨   ⟩»
+# let's do this- a little clunky maybe but looks great in the terminal (fwiw) and no
+# ambiguity or confusion"). The pair occurs in none of the canonical texts, so a quote
+# can hold any quotation marks of its own. JSON keeps the quote as a plain string.
+
+
+def show_quote(q):
+    return f'{OPEN}{q}{CLOSE}'
+
+
 def fmt(a):
     pr = f', printed "{a["printed"]}"' if a.get('printed') else ''
     flags = []
-    if a.get('not_in_pdf'):
+    if a.get('page_label'):
+        flags.append(a['page_label'])
+    elif a.get('not_in_pdf'):
         flags.append('not in the PDF')
-    if a.get('check_pdf'):
-        flags.append('check the page against the PDF')
-    if a.get('unique_on_page') is False:
+    elif a.get('check_pdf'):
+        flags.append('page not yet confirmed')
+    if a.get('unique_on_page') is False and not (a.get('page_check') or {}).get('status') == 'ambiguous':
         flags.append('quote occurs more than once on the page')
-    if a.get('verified'):
-        flags.append(a['verified'])
-    return f'{a["key"]} p.{a["page"]}{pr}: "{a["quote"]}"' + (f'  [{"; ".join(flags)}]' if flags else '')
+    return f'{a["key"]} p.{a["page"]}{pr}: {show_quote(a["quote"])}' + (f'  [{"; ".join(flags)}]' if flags else '')
+
+
+# ------------------------------------------------------------- settling pages
+# An anchor's page comes from the canonical text's page markers. Where the source's
+# fidelity record says not to trust them there (check-all, or one of its
+# pages_to_check), bin/check-quote settles the page against the PDF's own text
+# (DESIGN §5.1). It runs once per anchor: its verdict is cached in
+# cache.quote_checks, keyed by the canonical text's and the checker's sha256 (see
+# search/cache.sql). The reader then gets the settled page, and a label only where
+# the page truly can't be confirmed, never an instruction to go and read the PDF.
+LABELS = {
+    'ok': None,
+    'unconfirmed': 'page not confirmed against the PDF',
+    'not-in-pdf': 'not in the PDF: from the web edition only',
+    'ambiguous': 'quote occurs more than once on the page',
+    'page-mismatch': 'page not confirmed',
+    'near-miss': 'quote not confirmed',
+    'not-found': 'quote not confirmed',
+    'no-text': 'page not confirmed',
+}
+_CANON_SHA, _CHECKER_SHA = {}, []
+
+
+def _canon_sha(key):
+    if key not in _CANON_SHA:
+        import hashlib
+        _CANON_SHA[key] = hashlib.sha256(raw_of(key).encode('utf-8')).hexdigest()
+    return _CANON_SHA[key]
+
+
+def _checker_sha():
+    if not _CHECKER_SHA:
+        import hashlib
+        from . import REPO
+        h = hashlib.sha256()
+        for f in ('check-quote', 'canonicalize'):
+            h.update(open(f'{REPO}/bin/{f}', 'rb').read())
+        _CHECKER_SHA.append(h.hexdigest())
+    return _CHECKER_SHA[0]
+
+
+def needs_check(a):
+    return bool(a.get('check_pdf') or a.get('not_in_pdf'))
+
+
+def _apply(a, rec):
+    status = rec.get('status')
+    a['page_check'] = dict(status=status, page_from=rec.get('page_from'), cited=a['page'])
+    if rec.get('page') is not None and status in ('ok', 'unconfirmed', 'ambiguous'):
+        a['page'] = rec['page']
+        if rec.get('printed'):
+            a['printed'] = rec['printed']
+    a['check_pdf'] = False
+    a['page_label'] = LABELS.get(status, f'check-quote: {status}')
+    if status == 'not-in-pdf':
+        a['not_in_pdf'] = True
+
+
+def settle(conn, anchors, every=False):
+    """Settle the page of each anchor that needs the PDF (or of every anchor, with
+    every=True: --verify), from the cache or by one run of bin/check-quote over all
+    the misses. Returns how many were checked afresh."""
+    import hashlib, json, os, subprocess, sys
+    from . import REPO, db
+    todo = [a for a in anchors if every or needs_check(a)]
+    if not todo:
+        return 0
+    if not getattr(settle, '_ready', False):
+        db.ensure_cache(conn)
+        settle._ready = True
+    ck = _checker_sha()
+    keyed = [(a, a['key'], hashlib.sha256(a['quote'].encode('utf-8')).hexdigest(), int(a['page']), _canon_sha(a['key']))
+             for a in todo]
+    have = {}
+    for k in {x[1] for x in keyed}:
+        rows = conn.execute(
+            """select quote_sha, page_cited, record from cache.quote_checks
+               where doc_key = %s and canon_sha = %s and checker_sha = %s and quote_sha = any(%s)""",
+            (k, _canon_sha(k), ck, [x[2] for x in keyed if x[1] == k])).fetchall()
+        for qs, pc, rec in rows:
+            have[(k, qs, pc)] = rec
+    miss, seen = [], set()
+    for a, k, qs, pc, cs in keyed:
+        rec = have.get((k, qs, pc))
+        if rec is not None:
+            _apply(a, rec)
+        elif (k, qs, pc) not in seen:
+            seen.add((k, qs, pc))
+            miss.append((k, qs, pc, cs, a['quote']))
+    if miss:
+        batch = [dict(id=str(i), key=k, anchors=[dict(quote=q, page=pc)]) for i, (k, qs, pc, cs, q) in enumerate(miss)]
+        out = subprocess.run([os.path.join(REPO, 'bin', 'check-quote'), '--batch', '-', '--jsonl'],
+                             input='\n'.join(json.dumps(b) for b in batch), capture_output=True, text=True)
+        recs = [json.loads(l) for l in out.stdout.splitlines() if l.strip()]
+        if out.returncode == 2 or len(recs) != len(miss):
+            print(f'bin/check-quote failed: {out.stderr.strip()[:300]}', file=sys.stderr)
+        got = {}
+        with conn.transaction():
+            for r in recs:
+                k, qs, pc, cs, q = miss[int(r['id'])]
+                x = (r.get('anchors') or [{}])[0]
+                got[(k, qs, pc)] = x
+                conn.execute(
+                    """insert into cache.quote_checks (doc_key, quote_sha, page_cited, canon_sha, checker_sha, quote,
+                                                       status, page, page_from, printed, record)
+                       values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) on conflict do nothing""",
+                    (k, qs, pc, cs, ck, q, x.get('status') or 'unknown', x.get('page'), x.get('page_from'),
+                     x.get('printed'), json.dumps(x)))
+        for a, k, qs, pc, cs in keyed:
+            if (k, qs, pc) in got:
+                _apply(a, got[(k, qs, pc)])
+    return len(miss)

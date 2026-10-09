@@ -442,13 +442,15 @@ class Outline:
                 break
         if any(p['section'] not in ('body', 'restored') for p in ps):
             tags.append('/'.join(sorted({p['section'] for p in ps})))
-        q = an['quote'] if len(an['quote']) <= QUOTE_W else an['quote'][:QUOTE_W - 1] + '…'
+        # cut short, the quote stays verbatim inside the marks and the '…' goes outside
+        # them: inside, bin/check-quote would read it as a gap in the quote
+        q, cut = (an['quote'], '') if len(an['quote']) <= QUOTE_W else (an['quote'][:QUOTE_W - 1].rstrip(), '…')
         pr = f' ("{an["printed"]}")' if an.get('printed') else ''
-        flag = ' [check PDF]' if an.get('check_pdf') and not an.get('verified') else ''
-        if an.get('verified'):
-            flag = f" [{an['verified']}]"
+        label = an.get('page_label') or ('not in the PDF' if an.get('not_in_pdf') else
+                                         'page not yet confirmed' if an.get('check_pdf') else None)
+        flag = f' [{label}]' if label else ''
         return (f"{self.heat(best)} {r['prefix']}▸ L{a}–{b}  p.{an['page']}{pr}{flag}"
-                + (f"  {'; '.join(tags)}" if tags else '') + f'  "{q}"')
+                + (f"  {'; '.join(tags)}" if tags else '') + f'  {anchor.show_quote(q)}{cut}')
 
     # ------------------------------------------------------------------- json
     def as_json(self, rows=None):

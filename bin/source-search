@@ -48,8 +48,12 @@ Examples:
   source-search outline 'loss of control' Au5 --lines 60
 
 Every result carries an anchor: relata key, physical PDF page, printed page where
-established, and an exact quote bin/check-quote can confirm (--verify runs it).
-Where the source's fidelity record says its pages need the PDF, the anchor says so.
+established, and the exact quote, shown «⟨like this⟩» (JSON keeps it a plain
+string). Where the source's fidelity record says the canonical text's page can't be
+trusted, the page is settled against the PDF by bin/check-quote, once: the verdict
+is cached. An anchor whose page still can't be confirmed says so exactly ("page not
+confirmed", "not in the PDF"); there is no need to open the PDF. --verify runs
+every anchor through bin/check-quote.
 
 Output is JSON when stdout is not a terminal (--text to override).
 Exit status: 0 with results, 1 with none, 2 for a usage error, 3 if the search
@@ -81,24 +85,15 @@ def short_path(path, width=130):
     return ('… › ' if len(parts) < len(path) else '') + (s if len(s) <= width else s[:width - 1] + '…')
 
 
-def verify(anchors):
-    """Run anchors through bin/check-quote; attach its status and settled page."""
-    if not anchors:
-        return
-    batch = [dict(id=str(i), key=a['key'], anchors=[dict(quote=a['quote'], page=a['page'])])
-             for i, a in enumerate(anchors)]
-    out = subprocess.run([os.path.join(REPO, 'bin', 'check-quote'), '--batch', '-', '--jsonl'],
-                         input='\n'.join(json.dumps(b) for b in batch), capture_output=True, text=True)
-    recs = [json.loads(l) for l in out.stdout.splitlines() if l.strip()]
-    for r in recs:
-        a = anchors[int(r.get('id', -1))]
-        x = (r.get('anchors') or [{}])[0]
-        a['check_quote'] = {k: x[k] for k in ('status', 'page', 'page_from', 'printed', 'exact', 'note') if k in x}
-        settled = x.get('page')
-        a['verified'] = f"check-quote: {x.get('status')}" + (
-            f", page {settled} from the {x.get('page_from')}" if settled is not None and settled != a['page'] else '')
-    if out.returncode == 2 or not recs:
-        print(f'bin/check-quote failed: {out.stderr.strip()[:300]}', file=sys.stderr)
+CONN = None      # the open connection, for settling anchors' pages from the cache
+
+
+def verify(anchors, every=False):
+    """Settle the pages of anchors that need the PDF (every anchor with --verify),
+    by bin/check-quote, once per anchor: verdicts are cached (anchor.settle)."""
+    n = anchor.settle(CONN, anchors, every=every)
+    if n > 20:
+        print(f'note: checked {n} quotes against the PDF; next time they come from the cache', file=sys.stderr)
 
 
 # --------------------------------------------------------------------- ranked
@@ -116,8 +111,7 @@ def result_rows(res, pq, a):
                         copies=[dict(key=k, page=p) for k, p in ex.get('copies', [])],
                         matches=sorted({w for w in words(text) if any(w == q or len(q) >= 4 and q in w for q in pq['words'])}),
                         text=text if a.full else None, explain=ex if a.explain else None))
-    if a.verify:
-        verify([o['anchor'] for o in out])
+    verify([o['anchor'] for o in out], a.verify)
     return out
 
 
@@ -197,8 +191,7 @@ def defs(conn, a, keys):
             an = anchor.make(k, start, end, pq['words'], at=at, fidelity=r0[16], pages_to_check=r0[17])
             g['definitions'].append(dict(term=term, kind=kind, conf=conf, evidence=ev, exact=norm == pq['norm'], anchor=an))
         out.append(g)
-    if a.verify:
-        verify([d['anchor'] for g in out for d in g['definitions']])
+    verify([d['anchor'] for g in out for d in g['definitions']], a.verify)
     return out, pq
 
 
@@ -236,8 +229,7 @@ def concordance(conn, a, keys):
         'select key, code, title, status, fidelity_mark, pages_to_check, influence from src.documents')}
     if not a.counts:
         concord.attach_anchors(occ, {k: (v[3], v[4]) for k, v in info.items()})
-        if a.verify:
-            verify([o['anchor'] for o in occ])
+        verify([o['anchor'] for o in occ], a.verify)
     else:
         occ = []
     doc_rows = []
@@ -326,7 +318,8 @@ def parsers():
     common = argparse.ArgumentParser(add_help=False)
     common.add_argument('query', help='one argument; quote a phrase')
     common.add_argument('scope', nargs='*', help='relata keys, key globs, sets, field:value (default: everything)')
-    common.add_argument('--verify', action='store_true', help='run every anchor through bin/check-quote')
+    common.add_argument('--verify', action='store_true',
+                        help='run every anchor through bin/check-quote (anchors whose page needs the PDF always are)')
     fmt = common.add_mutually_exclusive_group()
     fmt.add_argument('--json', action='store_true')
     fmt.add_argument('--text', action='store_true', help='readable text even when stdout is not a terminal')
@@ -398,6 +391,8 @@ def main():
     as_json = a.json or (not a.text and not sys.stdout.isatty())
     try:
         with db.connect(a.db) as conn:
+            global CONN
+            CONN = conn
             keys = scope.resolve(conn, a.scope)
             if verb == 'defs':
                 out, pq = defs(conn, a, keys)
@@ -407,8 +402,7 @@ def main():
                 o = outline_verb(conn, a, keys)
                 n = len(o.sel)
                 rows = o.render()
-                if a.verify:
-                    verify([r['anchor'] for r in rows if r['kind'] == 'range'])
+                verify([r['anchor'] for r in rows if r['kind'] == 'range'], a.verify)
                 payload = dict(verb=verb, **o.as_json(rows)) if as_json else None
                 text = None if as_json else o.text(rows)
             elif verb in concord.VERB_MODE:
