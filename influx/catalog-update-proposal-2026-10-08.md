@@ -1,8 +1,10 @@
 # Proposal: updating `source-catalog.md` after the relata additions of 2026-10-08
 
-*Drafted 2026-10-08/09 by a Claude (Opus 5.5) agent, at Joseph's request: "We should update all of source-catalog.md as well, ideally in a way that relata can look at it and generate a bibliography." None of it has been applied, and `source-catalog.md` is unchanged. Joseph reads this first. After him, whoever applies it, and the agent extending `bin/canonicalize`, which should go straight to §2.*
+*Drafted 2026-10-08/09 by a Claude (Opus 5.5) agent, at Joseph's request: "We should update all of source-catalog.md as well, ideally in a way that relata can look at it and generate a bibliography." It was applied to `source-catalog.md` on 2026-10-09, with Joseph's decisions: see *Applied* below. The agent extending `bin/canonicalize` should go straight to §2.*
 
 ## Contents
+
+- [Applied, 2026-10-09](#applied-2026-10-09)
 
 0. [What needs deciding](#0-what-needs-deciding)
 1. [The premise changed while this was drafted](#1-the-premise-changed-while-this-was-drafted)
@@ -14,7 +16,60 @@
 7. [Found along the way](#7-found-along-the-way)
 8. [How this was built, and its limits](#8-how-this-was-built-and-its-limits)
 
+## Applied, 2026-10-09
+
+Joseph decided the first two questions in §0 and left the rest to the coordinator and me. I applied the proposal to `source-catalog.md` on 2026-10-09. The catalog is now the reference; this file records why it looks the way it does. `bib/refs.bib` has not been regenerated, because that was outside what I was asked to write. `relata emit bib` will regenerate it, with 466 entries and none missing.
+
+**His decisions:**
+- **"Superseded" is split in two.** Joseph: "I'm ok with keeping older versions as evidence and as a sort of diffable history, but we definitely need to mark supersession in the broader sense. I vote we say that the strict 'supersession' is instead termed 'subsumed by' [implying a copy isn't required at all], vs 'superseded' [implying we probably have a copy, and can reference it, but not reference it as 'active' in whatever sense that document's lineage considers supersession and what's active]." So there are three statuses: `subsumed-by` (my strict sense), `superseded-by` (an earlier version, still canonicalized) and `no-canon`. §2 now defines all three.
+- **The syntax:** "sounds great".
+
+**What went into the catalog:**
+- **§3, all of it (A1–A6).** The earlier versions are in their rows, tagged `superseded-by`.
+- **§4, rows B1–B25.** That is the nine anchors, the nine majors (B10–B18) and seven supporting rows (B19–B25). The table now has 99 rows.
+  - *Left out:* B26 (AISI's labour-market assessment, which the repo does not use) and B27 (the vocabulary sources). B27 is a scope question for Joseph: whether the catalog lists the lexicon's sources as well as models of risk. Both stay in the corpus section.
+- **§5, as *The rest of the corpus*.** It lists 335 keys in 10 families. The keys promoted to the table came out. `perset-2025-how-managing-risks` came in, because it is no longer mentioned with an at sign elsewhere. The IASR family emptied once its three documents became rows, so it was dropped.
+- **§6, F1–F5.** The upstream table is renamed "… not held". F6 is a set of relata corrections and was not applied. F7, the exclusions, holds.
+
+**Lineages marked `superseded-by`** (17 lineages, 34 tags; each tag names the next version, and each chain ends at the active one):
+- **Developer frameworks and policies:**
+  - Anthropic's RSP, v1.0 to v3.4.
+  - The RSP noncompliance policy, 2025 to 2026. The 2026 text says it "has been updated".
+  - Anthropic's Risk Reports, February to August 2026.
+  - OpenAI's Preparedness Framework, beta to v2.
+  - GDM's FSF, v1.0 to v3.1.
+  - Meta: the February text, then the March re-upload, then v2. v2 is "previously titled the Frontier AI Framework".
+  - xAI: the two RMF drafts, the RMF, the FAIF of December 2025, then the FAIF of June 2026. The atlas read the 2025 FAIF as a revision of the RMF.
+  - Microsoft, 2025 to 2026.
+  - Amazon, 2025 to 2026.
+  - NAVER, ASF to ASF 2.0.
+  - Shanghai AI Lab's practice report, v1 to v1.5.
+- **Government and intergovernmental:**
+  - TC260, 1.0 to 2.0.
+  - Colorado SB 24-205 to SB 26-189. SB 26-189 "repeal[s] and reenact[s]" the part SB 24-205 added.
+  - NCSC's January 2024 assessment to the May 2025 one, which "builds on" it.
+- **The IASR series:** the interim report to IASR 2025, then IASR 2026; both 2025 Key Updates to IASR 2026.
+- **Index and consensus editions:** the FLI index, Summer 2025 to Winter 2025 to Summer 2026; the Singapore Consensus, 2025 to 2026.
+
+**Not marked**, because no held document replaces them as active:
+- EO 14110: revoked, but the revoking order is not in relata, and EO 14179 calls 14110 "revoked" rather than replacing it.
+- The AI Act: amended by the Omnibus, not replaced.
+- OpenAI's PF v2 and FGF: the repo doesn't show the FGF replacing the PF.
+- The Taskforce and AISI progress reports: successive reports, not versions.
+- Press releases beside their reports: different texts.
+
+**Where I changed my mind while applying it:**
+1. **The Kimi pair is `subsumed-by`, not `superseded-by`.** That follows from the new vocabulary.
+2. **`superseded-by` names the next version, not the latest, and chains are allowed.** My draft rule "chains are an error" now applies only to `subsumed-by`. Naming the next version keeps the diffable history Joseph asked for, and the active version is wherever a chain ends.
+3. **Several tags on one key are allowed, but only `no-canon` with `superseded-by`.** A copy (`subsumed-by`) has no status of its own.
+4. **IASR 2025 is tagged `superseded-by` IASR 2026,** even though it covers topics 2026 dropped. "Not active" is a statement about the series, not about content, so the row's basis still says what 2025 alone covers. The same reasoning applies to the February Risk Report.
+5. **The intro now says the relata-10-08 rows were not "read directly in later rounds".** I wrote them as a separate sentence, so the existing list keeps its meaning.
+6. **Some new rows got a leading date in place of a range**, so that "newest first" sorts them, for example AISI-ALN "Sep 28, 2026 (also …)".
+7. **The Key Updates' row lost my "could equally go into the IASR 25 row" aside,** since it is now a row.
+
 ## 0. What needs deciding
+
+*As proposed on 2026-10-08. Joseph's decisions on items 1 and 2 are in* Applied *above.*
 
 In the order I'd take them:
 
@@ -34,7 +89,7 @@ So the catalog now governs canonicalize's scope, and each key needs a status the
 
 **It is already true today** that every `@key` anywhere in `source-catalog.md` reaches canonicalize, not only the keys in the main table. `catalog_keys()` scans the whole file. The upstream table's OECD row mentions `@perset-2025-how-managing-risks` in passing, as the place the lineage was checked, and that is why `perset-2025-how-managing-risks` has a row in `ref/canonical/INDEX.md`. The contract below makes this explicit: the at sign means "listed". Prose that only mentions a key writes it bare.
 
-**What "superseded" should mean** (decision 1). A text is superseded when the corpus holds another copy of the same text that should be used instead: a re-upload, a mirror on a second site, a doubled relata entry. Earlier versions are not superseded in this sense, for three reasons:
+**What "superseded" should mean** (decision 1; Joseph split it into `subsumed-by` and `superseded-by`, see *Applied*). A text is superseded when the corpus holds another copy of the same text that should be used instead: a re-upload, a mirror on a second site, a doubled relata entry. Earlier versions are not superseded in this sense, for three reasons:
 - **Lineage runs through particular versions.** GDM's FSF v1 links the RSP v1.0 announcement. IASR 2025 cites RSP v1.0 and the Preparedness Framework beta. The 2025 Singapore Consensus cites RSP v2.0.
 - **Zhu's study is about the differences between versions.** The catalog cites it because "a compiled claim without a version and date goes stale" (OVERVIEW §1.4).
 - **The relata additions agent has already filtered.** It left out the same-label re-uploads that Zhu codes as not material.
@@ -43,29 +98,34 @@ On this reading, the corpus as it stands has one candidate for "superseded" (§5
 
 ## 2. Parsing contract, for bin/canonicalize and relata emit
 
-*A proposal for the canonicalize agent to accept, amend or replace. Nothing in the catalog uses it yet.*
+*Agreed by Joseph on 2026-10-09 ("sounds great"), with the third status he added. The catalog now uses it. The canonicalize agent may still amend it, and the questions at the end are for it.*
 
-**Keys.** Keys are written as now: `` `@key` `` in backticks. Any `@key` anywhere in `source-catalog.md` puts that document in the corpus: in the bibliography, and in canonicalize's scope unless a tag says otherwise. A key mentioned in prose is written bare (`` `perset-2025-how-managing-risks` ``), so that the mention is not read as a listing.
+**Keys.** Keys are written as before: `` `@key` `` in backticks. Any `@key` anywhere in `source-catalog.md` puts that document in the corpus: in the bibliography, and in canonicalize's scope unless a tag says otherwise. A key mentioned in prose is written bare (`` `perset-2025-how-managing-risks` ``), so that the mention is not read as a listing.
 
-**Status tags.** A status is a bracketed tag immediately after the key's closing backtick, on the same line:
+**Status tags.** Tags come right after the key's closing backtick, on the same line, and there may be more than one. Joseph's terms: "'subsumed by' [implying a copy isn't required at all], vs 'superseded' [implying we probably have a copy, and can reference it, but not reference it as 'active' in whatever sense that document's lineage considers supersession and what's active]."
 
 ```
 `@key`                                  canonicalize (the default; no tag)
 `@key` [no-canon: <reason>]             bibliography only; the reason is free text
-`@key` [superseded-by: @other-key]      bibliography only; @other-key is the text to use
+`@key` [subsumed-by: @other-key]        a copy of the same text as @other-key; bibliography only
+`@key` [superseded-by: @next-key]       an earlier version; @next-key is the next version in its lineage.
+                                        Canonicalized, and citable as history, not as the active document
+`@key` [superseded-by: @next-key] [no-canon: <reason>]
+                                        an earlier version that is also not canonicalized
 ```
 
-The tag can appear wherever a key appears: in a main-table `relata` cell (including cells that hold several keys), in a list item, or in a table cell elsewhere. It belongs to the one key right before it.
+**Where tags may appear.** A tag can follow any listed key: in a main-table `relata` cell (including cells that hold several keys), in a list item, or in a table cell elsewhere. It belongs to the one key before it.
 
-**A regex** that reads both forms. It extends the one `catalog_keys()` already uses:
+**A regex** that reads keys and their tags. It extends the one `catalog_keys()` used before:
 
 ```python
-KEY = r'[A-Za-z0-9_](?:[\w:.#$%&+?<>~/-]*[\w])?'
-ITEM = re.compile(r'(?<![\w@])@(?P<key>' + KEY + r')`?'
-                  r'(?:[ \t]*\[(?P<status>no-canon|superseded-by):[ \t]*(?P<arg>[^\]\n]*)\])?')
+KEY  = r'[A-Za-z0-9_](?:[\w:.#$%&+?<>~/-]*[\w])?'
+TAG  = r'\[(?:no-canon|subsumed-by|superseded-by):[^\]\n]*\]'
+ITEM = re.compile(r'(?<![\w@])@(?P<key>' + KEY + r')`?(?P<tags>(?:[ \t]*' + TAG + r')*)')
+TAGS = re.compile(r'\[(?P<status>no-canon|subsumed-by|superseded-by):[ \t]*(?P<arg>[^\]\n]*)\]')
 ```
 
-`finditer` over the file gives `(key, status, arg)`. For `superseded-by`, `arg` is `@other-key`. Because the match consumes the tag, the `@other-key` inside it is not separately matched.
+`ITEM.finditer` over the file gives each key with its run of tags, and `TAGS.findall` on the `tags` group splits the run. Because `ITEM` consumes the tags, a key named inside a tag is not matched as a separate listing.
 
 **What each status means:**
 
@@ -73,20 +133,31 @@ ITEM = re.compile(r'(?<![\w@])@(?P<key>' + KEY + r')`?'
 |---|---|---|---|
 | none | in `refs.bib` | canonicalized | a row with its fidelity mark |
 | `no-canon` | in `refs.bib` | skipped | a row giving the reason |
-| `superseded-by` | in `refs.bib` | skipped | a row naming the replacement |
+| `subsumed-by` | in `refs.bib` | skipped | a row naming the copy that is used |
+| `superseded-by` | in `refs.bib` | canonicalized | a row with its fidelity mark, marked "superseded by …" |
 
-**Rules I'd suggest:**
-- **One status per key.** Untagged repeats of a key are harmless. Two different tags on the same key are an error.
-- **A replacement is listed in its own right.** The key a `superseded-by` names must also appear in the catalog on its own, untagged. The tag doesn't bring it into scope, and chains (A superseded by B, which is superseded by C) are an error.
-- **A key relata doesn't hold is an error.** A key with no document, or with no conversion yet, is reported and skipped, not fatal. On 2026-10-09, 318 of the 382 corpus-section keys had no conversion yet; most of them are in relata's queue (`relata prep list`).
+**Rules:**
+- **One status per key, per kind.** A key's tags are stated once. Untagged repeats of a key elsewhere are harmless, and two different runs of tags on the same key are an error.
+- **Which combinations are allowed.** `no-canon` combines with `superseded-by`. `subsumed-by` stands alone, because a copy has no status apart from the text it copies.
+- **Targets are listed in their own right.** The key a `subsumed-by` or `superseded-by` names is also listed elsewhere in the catalog. The tag doesn't bring it into scope.
+- **`subsumed-by` does not chain.** It names a key that is not itself subsumed.
+- **`superseded-by` names the next version, not the latest.** Chains (v1.0 → v2.0 → … → v3.4) are expected. Following them from any version ends at a key with no `superseded-by`, which is the active one. A cycle is an error.
+- **Missing documents.** A key relata doesn't hold is an error. A key with no document, or with no conversion yet, is reported and skipped, not fatal. On 2026-10-09, 318 of the 382 keys outside the original 84 had no conversion yet; most are in relata's queue (`relata prep list`).
 
-**What was tested.** `relata cited` and `relata emit` read keys in the tagged form correctly. On a sample file, `emit` wrote one entry per key and treated the `@other-key` inside a tag as a mention of a key the file already lists. On the current catalog plus the §5 section, `relata emit` wrote 466 entries, with 0 missing. The regex above, run on §5, yields 382 keys, 3 of them tagged.
+**What was tested,** on the catalog as applied:
+- `relata emit` wrote 466 entries, with 0 missing.
+- The regex above reads 466 keys, 37 of them tagged: 34 `superseded-by`, 2 `no-canon` and 1 `subsumed-by`.
+- Every tag's target is listed.
+- Every `superseded-by` chain ends at an untagged key. There are 17 lineages, each ending at its active version.
+- 463 keys are to be canonicalized.
+
+`relata emit` ignores the brackets, as a sample file showed before the catalog was changed.
 
 **Questions for the canonicalize agent** (I can't answer these from here):
-1. **Is this syntax workable?** Would you rather have a status *column* in each table instead? The inline tag has two advantages: it works the same in the main table's multi-key cells and in plain lists, and it keeps the status beside the key it governs.
-2. **Web pages printed to PDF.** 83 of the 382 corpus-section keys are web pages rendered to PDF, with a provenance first page. Their page numbers are rendering artefacts, by the renderers' own note. Should canonicalize recognise these by itself (the provenance page is uniform), or should the catalog say so with a tag of its own?
-3. **Per-source judgments now in code or in INDEX.md.** These include `LOCAL` (a hand-made conversion for the CSB report, and the publisher's web edition for IASR 2026) and the editorial notes Joseph saw in INDEX.md. Should they move into the catalog as tags too, for example a third status naming the markdown to use? Or should they stay in code, with INDEX.md generated wholly from the catalog plus measurements?
-4. **INDEX order.** Should it follow catalog order or alphabetical order? With 466 keys, alphabetical order may serve readers better. Catalog order keeps families together.
+1. **Is this syntax workable?** Would a status *column* in each table work better? The inline tag has two advantages: it works the same in the main table's multi-key cells and in plain lists, and it keeps the status beside the key it governs.
+2. **Web pages printed to PDF.** 83 of the keys outside the original 84 are web pages rendered to PDF, with a provenance first page. Their page numbers are rendering artefacts, as the renderers note. Should canonicalize recognise them by itself (the provenance page is uniform), or should the catalog say so with a tag of its own?
+3. **Per-source judgments now in code or in INDEX.md.** These include `LOCAL` (a hand-made conversion for the CSB report, and the publisher's web edition for IASR 2026) and the editorial notes Joseph saw in INDEX.md. Should they move into the catalog as tags too, for example a status naming the markdown to use? Or should they stay in code, with INDEX.md generated wholly from the catalog plus measurements?
+4. **INDEX order.** Should it follow catalog order or alphabetical order? With 466 keys, alphabetical order may serve readers better; catalog order keeps families and lineages together.
 
 ## 3. Changes to existing rows
 
@@ -182,95 +253,7 @@ These are mostly UK AISI's. Given who the repo is likely to be read by, I'd take
 
 ## 5. The rest of the corpus, ready to paste
 
-This replaces the catalog's "Not listed" section. Its "Not covered" line is kept, with the edit in §6, F3. Before pasting, delete from it the keys of any rows taken from §3 and §4.
-
-```markdown
-## The rest of the corpus
-
-Every other document in relata that this repository cites, by family. Listing a document here makes `relata emit bib` put it in the bibliography and tells `bin/canonicalize` what to do with it. It says nothing about the document's reach: the *Influence* column does that for the rows above. Statuses:
-- a key with no tag is canonicalized;
-- a key followed by `[no-canon: <reason>]` stays in the bibliography and out of `ref/canonical/`;
-- a key followed by `[superseded-by: <key>]`, the key written in the same at-sign form, does the same and names the document whose text to use instead.
-
-Write a key with the at sign only where it is listed. A key mentioned in prose is written bare, in backticks, so that it is not read as a listing.
-
-"Superseded" is kept for duplicates of one text. An earlier version of a document is a source in its own right here, because claims are compiled with their version and date (OVERVIEW §1.4), so earlier versions are canonicalized. A key that moves into the table above comes out of this list, so that each key's status is stated once. Where a family was mapped, the per-family atlas is named; the two relata reports of 2026-10-08 are `influx/relata-aisi-sweep-2026-10-08.md` and `influx/relata-additions-2026-10-08.md`.
-
-### International AI Safety Report series
-
-The full 2025 and 2026 reports are in the table above (IASR 25, IASR 26). Atlas: `source-atlas/iasr.md`.
-
-- **Interim report and the 2025 Key Updates** (3): `@bengio-2024-iasr-interim`, `@bengio-2025-iasr-key-update-1`, `@bengio-2025-iasr-key-update-2`
-
-### Frontier AI developers
-
-Frameworks, their earlier versions, companion documents, system cards and posts. Atlases: `source-atlas/co-anthropic-openai.md`, `source-atlas/co-others.md`; model: `source-models/frontier-safety-frameworks.md`.
-
-- **Anthropic (with Karnofsky's post on RSP v3)** (14): `@anthropic-2023-rsp-v1-0`, `@anthropic-2024-rsp-v2-0`, `@anthropic-2025-fcf-announcement`, `@anthropic-2025-rsp-noncompliance-policy`, `@anthropic-2025-rsp-v2-1`, `@anthropic-2025-transparency-framework`, `@anthropic-2026-constitution`, `@anthropic-2026-frontier-safety-roadmap`, `@anthropic-2026-rsp-noncompliance-policy`, `@anthropic-2026-rsp-v3-1`, `@anthropic-2026-rsp-v3-2`, `@anthropic-2026-rsp-v3-3`, `@anthropic-2026-rsp-v3-announcement`, `@karnofsky-2026-rsp-v3`
-- **OpenAI (with Coggins et al. on the Preparedness Framework)** (12): `@coggins-2025-preparedness`, `@openai-2023-preparedness-framework-beta`, `@openai-2026-frontier-governance-framework-announcement`, `@openai-2026-gpt6-astra-system-card`, `@openai-2026-hugging-face-incident`, `@openai-2026-hugging-face-incident-report`, `@openai-2026-misalignment-reporting-framework`, `@openai-2026-model-spec`, `@openai-2026-pacing-model-development`, `@openai-2026-path-to-astra`, `@openai-2026-responding-critical-cyber`, `@openai-2026-third-party-assessments`
-- **Google DeepMind and Google** (6): `@gdm-2024-fsf-v1-0`, `@gdm-2025-fsf-v2-0`, `@gdm-2025-fsf-v3-0`, `@gdm-2026-gemini-3-7-flash-fsf-report`, `@gdm-2026-strengthening-fsf-blog`, `@google-2026-ai-responsibility-update`
-- **Meta** (1): `@meta-2025-frontier-ai-framework-feb`
-- **xAI** (5): `@xai-2025-faif`, `@xai-2025-rmf`, `@xai-2025-rmf-draft-feb10`, `@xai-2025-rmf-draft-feb20`, `@xai-2026-faif`
-- **Amazon, Microsoft, Cohere, G42, Magic, NAVER, NVIDIA, Samsung, Shanghai AI Lab** (15): `@amazon-2025-frontier-model-safety-framework`, `@amazon-2026-frontier-model-safety-framework`, `@cohere-2025-secure`, `@g42-2025-frontier`, `@ghosh-2025-safety`, `@magic-2024-agi-readiness`, `@microsoft-2025-frontier-governance-framework`, `@microsoft-2026-frontier-governance-framework`, `@naver-2024-asf`, `@naver-2026-asf2`, `@nvidia-2025-frontier`, `@samsung-2026-ai-safety-framework`, `@shanghaiailab-2025-frontier`, `@shanghaiailab-2025-frontier-practice`, `@shanghaiailab-2026-frontier-practice-v1-5`
-
-### UK AI Security Institute
-
-Its four partial models are in the table above (AISI, AISI-T, AISI-LoO, AISI-INC). Atlas: `source-atlas/uk-aisi.md`; model: `source-models/uk-aisi.md`; enumeration and provenance: the AISI sweep report.
-
-- **Reports, guidance, priorities and joint reports (PDFs)** (15): `@aisi-2024-evals-bounty-rfp`, `@aisi-2025-challenge-fund-priority-areas`, `@aisi-2025-elicitation-protocol`, `@aisi-2025-misuse-safeguards-template`, `@aisi-2025-open-weight-checklist`, `@aisi-2025-sandboxing-technical-guidance`, `@aisi-2026-alignment-project-grants`, `@aisi-2026-openclaw-environment`, `@aisi-thorn-2025-csea-recommended-practice`, `@dsit-2023-introducing-aisi`, `@gal-2024-aisi-priority-research-areas`, `@intlnetwork-2025-joint-testing-agentic`, `@intlnetwork-2026-best-practice-automated-evaluation`, `@usaisi-ukaisi-2024-claude-35-sonnet`, `@usaisi-ukaisi-2024-openai-o1`
-- **Research papers listed on aisi.gov.uk/research** (59): `@africa-2025-does`, `@africa-2026-consistency-training-entrench`, `@aisi-2025-misuse-safeguards-principles`, `@aisi-2025-white-box-control-sandbagging`, `@andriushchenko-2024-agentharm-benchmark-measuring`, `@anwar-2026-decision-theoretic-formalisation`, `@ayonrinde-2025-evaluating-explanations-explanatory`, `@ayonrinde-2025-mathematical-philosophy-explanations`, `@balesni-2024-lessons-studying-two`, `@bazinska-2025-breaking-agent-backbones`, `@black-2025-replibench-evaluating-autonomous`, `@bowkis-2026-automated-alignment-harder`, `@browncohen-2025-avoiding-obfuscation-prover`, `@buhl-2025-alignment-safety-case`, `@casper-2026-open-technical-problems`, `@che-2025-model-tampering-attacks`, `@clymer-2025-example-safety-case`, `@cooney-2026-did-you-lie`, `@davies-2025-fundamental-limitations-pointwise`, `@davies-2026-boundary-point-jailbreaking`, `@dubois-2025-skewed-score-statistical`, `@dubois-2026-ask-don-t`, `@dubois-2026-seven-simple-steps`, `@feng-2025-existing-large-language`, `@folkerts-2026-measuring-ai-agents`, `@gausen-2026-realitytest-people-probe`, `@goemans-2024-safety-case-template`, `@hackenburg-2025-levers-political-persuasion`, `@heitmann-2025-understanding-ai-trajectories`, `@hilton-2025-safety-cases-scalable`, `@jarviniemi-2026-propensity-inference-environmental`, `@kirk-2025-human-ai-relationships`, `@kirk-2026-evaluating-whether-ai`, `@korbak-2025-chain-thought-monitorability`, `@korbak-2025-evaluate-control-measures`, `@korbak-2025-sketch-ai-control`, `@lindner-2025-practical-challenges-control`, `@luettgau-2025-conversational-ai-increases`, `@luettgau-2025-hibayes-hierarchical-bayesian`, `@mai-2026-multi-turn-framework`, `@makins-2026-multi-agent-ai`, `@marchand-2026-quantifying-frontier-llm`, `@mckenzie-2025-stack-adversarial-attacks`, `@obrien-2025-deep-ignorance-filtering`, `@pilditch-2026-knowing-stop-bayesian`, `@pilditch-2026-transect-retaining-observability`, `@rivera-2026-item-response-theory`, `@rosser-2026-infusion-shaping-model`, `@slama-2026-llm-preferences-predict`, `@souly-2025-poisoning-attacks-llms`, `@souly-2026-evaluating-whether-gpt`, `@souly-2026-uk-aisi-alignment`, `@stein-2026-ai-agents-used`, `@stickland-2025-async-control-stress`, `@summerfield-2025-lessons-chimp-ai`, `@tan-2025-inoculation-prompting-eliciting`, `@tice-2026-alignment-pretraining-ai`, `@wang-2026-prefill-awareness-large`, `@zou-2025-security-challenges-ai`
-- **Blog posts and web pages, rendered to PDF** (39): `@aisi-2024-approach-evaluations`, `@aisi-2024-behave-like-people`, `@aisi-2024-early-lessons-evaluating`, `@aisi-2024-evaluations-may-update`, `@aisi-2024-fourth-progress-report`, `@aisi-2024-fsf-conference`, `@aisi-2024-long-form-tasks`, `@aisi-2024-qa-evaluations-insights`, `@aisi-2024-safety-cases`, `@aisi-2024-systemic-safety-grants`, `@aisi-2025-alignment-project-agenda`, `@aisi-2025-capabilities-mitigations-gap`, `@aisi-2025-crimes-future`, `@aisi-2025-misalignment-investigation`, `@aisi-2025-open-weight-risk`, `@aisi-2025-poisoning-blog`, `@aisi-2025-societal-resilience`, `@aisi-2025-strengthening-resilience`, `@aisi-2025-transcript-analysis`, `@aisi-2026-cheating`, `@aisi-2026-cloud-misconfigurations`, `@aisi-2026-control-red-team`, `@aisi-2026-cyber-horizons`, `@aisi-2026-gpt55-cyber`, `@aisi-2026-inference-scaling-cyber`, `@aisi-2026-labour-market-assessment`, `@aisi-2026-mcp-tools`, `@aisi-2026-mythos-preview-cyber`, `@aisi-2026-network-consensus`, `@aisi-2026-open-weight-cyber`, `@aisi-2026-productivity-gains`, `@aisi-2026-propensity`, `@aisi-2026-sabotage`, `@aisi-2026-sandbox-discovery`, `@aisi-2026-sandbox-escape`, `@aisi-2026-secure-ai-infrastructure-cfi`, `@aisi-2026-secure-eval-environment`, `@aisi-2026-test-time-compute`, `@aisi-caisi-2026-kimi-k3`
-- **AISI-affiliated papers that AISI does not list** (46): `@africa-2026-detecting-csam-text`, `@ahlqvist-2026-improving-evaluation-realism`, `@balesni-2024-evaluations-based-safety`, `@barez-2025-open-problems-machine`, `@barkan-2025-large-language-models`, `@bean-2025-measuring-matters-construct`, `@betley-2025-emergent-misalignment-narrow`, `@betley-2025-tell-me-about`, `@browncohen-2026-debate-efficient-time`, `@chan-2023-hazards-increasingly-accessible`, `@chanin-2024-absorption-studying-feature`, `@dasilva-2024-safety-ai-national-labs`, `@dhoot-2026-character-training-risk`, `@dohnany-2025-technological-folie-deux`, `@duzan-2026-chain-thought-monitoring`, `@dziemian-2026-vulnerable-ai-agents`, `@gal-2025-customizable-ai-risks` [no-canon: metadata only; Nature paywalled the text], `@gardnerchallis-2026-trust-untrusted-monitoring`, `@gausen-2026-disclosure-design-identity`, `@golechha-2025-among-us-sandbox`, `@graham-2025-contextbench-modifying-contexts`, `@hackenburg-2026-ai-systems-out`, `@hackenburg-2026-artificial-intelligence-persuade`, `@hadida-2026-behavioural-analysis-alignment`, `@hills-2026-distributed-attacks-persistent`, `@ibrahim-2025-measuring-mitigating-overreliance`, `@ibrahim-2026-sycophantic-ai-makes`, `@kapoor-2026-open-world-evaluations`, `@kirgis-2026-ai-agents-conduct`, `@kirgis-2026-log-analysis-necessary`, `@kirk-2025-neural-steering-vectors`, `@kirk-2026-prism-x-experiments`, `@levy-2026-forecasting-future-behavior`, `@li-2026-evaldetectbench-benchmark-measuring`, `@luettgau-2025-people-readily-follow`, `@mohl-2026-automated-transcript-analysis`, `@nie-2024-secodeplt-unified-platform`, `@obrien-2026-inoculation-midtraining-learned`, `@rottger-2026-measuring-mitigating-persona`, `@summerfield-2024-will-advanced-ai`, `@taylor-2025-auditing-games-sandbagging`, `@voudouris-2026-judge-hacking-debate` [no-canon: metadata only; SSRN refused the download], `@wang-2026-scarce-scalable-cascade`, `@weilnhammer-2026-clinically-validated-framework`, `@yadav-2026-more-capable-less`, `@zhu-2025-establishing-best-practices`
-- **Progress reports of the Frontier AI Taskforce and early AISI** (3): `@aisi-2024-third-progress-report`, `@dsit-2023-taskforce-first-progress`, `@dsit-2023-taskforce-second-progress`
-
-### UK government, NCSC, Five Eyes partners, and the UK-hosted summits
-
-Atlas: `source-atlas/uk-gov.md`.
-
-- 19 keys: `@asd-2026-careful-agentic`, `@bletchley-2023-declaration`, `@dsit-2024-frontier-ai-safety-commitments`, `@dsit-2025-ai-cyber-cop`, `@dsit-2025-ai-cyber-cop-guide`, `@dsit-2025-cyber-governance`, `@etsi-2025-en304223`, `@fiveeyes-2026-ai-shift`, `@ncsc-2023-guidelines-secure-ai`, `@ncsc-2024-near-term`, `@ncsc-2025-bugs-to-bypasses`, `@ncsc-2025-prompt-injection`, `@ncsc-2026-defend-agentically`, `@ncsc-2026-frontier-defenders`, `@ncsc-2026-managing-agentic`, `@ncsc-2026-patch-wave`, `@ncsc-2026-retaining-advantage`, `@ncsc-2026-ten-questions`, `@ncsc-2026-thinking-agentic`
-
-### US government
-
-Atlas: `source-atlas/us-gov.md`.
-
-- 29 keys: `@caisi-2026-glm52`, `@colorado-2024-sb24-205`, `@colorado-2026-sb26-189`, `@dhs-2024-ai-roles-framework`, `@eo-2023-14110`, `@eo-2025-14179`, `@eo-2025-14365`, `@eo-2026-14409`, `@nist-2025-caisi-kimi-k2`, `@nist-2025-caisi-openai-anthropic`, `@nist-2026-agent-standards`, `@nist-2026-ai-800-4`, `@nist-2026-ai-800-4-release`, `@nist-2026-ai-consortium`, `@nist-2026-aisi-caisi-kimi-k3` [superseded-by: @aisi-caisi-2026-kimi-k3], `@nist-2026-caisi-agreements`, `@nist-2026-caisi-careers`, `@nist-2026-caisi-deepseek-v4`, `@nist-2026-caisi-glm53`, `@nist-2026-caisi-redteam`, `@nist-2026-caisi-transcripts`, `@nist-2026-intl-network`, `@nist-2026-nccoe-agent-identity`, `@nist-2026-vassilev-proof`, `@nist-2026-vcat-ai-update`, `@nist-caisi-page-2026`, `@vassilev-2025-adversarial`, `@whitehouse-2026-legislative-framework`, `@whitehouse-2026-nspm-11`
-
-### EU, other governments, and intergovernmental bodies
-
-Atlas: `source-atlas/intl-eu.md`.
-
-- 18 keys: `@cac-2023-interim-measures-genai`, `@caisi-ca-2026-evaluators-share`, `@caisi-ca-2026-landing`, `@csa-2026-securing-agentic-addendum`, `@csa-farai-2025-securing-agentic`, `@ec-2025-gpai-serious-incident-template`, `@imda-2026-mgf-agentic-v1-5`, `@ised-2023-voluntary-code-genai`, `@jaisi-2025-national-status`, `@korea-2025-ai-framework-act`, `@korea-2026-ai-framework-act-decree`, `@oecd-2024-defining-ai-incidents`, `@oecd-2024-future-ai-risks`, `@oecd-2026-haip-reporting-v2`, `@tc260-2024-ai-safety-governance-framework`, `@tc260-2025-ai-safety-governance-framework-2`, `@tfs-2025-protecting-gpai`, `@unhlab-2024-governing`
-
-### Industry bodies and METR
-
-- 5 keys: `@fmf-2024-components`, `@fmf-2024-foundational-security`, `@fmf-2025-risk-taxonomy-thresholds`, `@metr-2023-rsp`, `@owasp-2025-agentic-top10`
-
-### Loss of control, systemic risk, and governance literature
-
-Atlases: `source-atlas/lit-a.md`, `source-atlas/lit-b.md`.
-
-- 23 keys: `@barrett-2025-stampstpa`, `@bollinger-2026-signals`, `@brundage-2026-frontier`, `@buhl-2024-safety`, `@chin-2026-reframing`, `@cltr-2026-loc-incidents-worsening`, `@greenblatt-2023-ai-control`, `@gruetzemacher-2026-loss`, `@hamin-2025-cheating`, `@hammond-2025-multi`, `@kasirzadeh-2024-types`, `@kierans-2025-catastrophic`, `@mylius-2025-systematic`, `@ren-2024-safetywashing`, `@schuett-2023-best`, `@shaffershane-2026-scheming-wild`, `@sharma-2026-whos`, `@stix-2025-behind`, `@tkeshelashvili-2026-loc-iw`, `@vaintrob-2023-beware-safety-washing`, `@voudouris-2026-alignment-human`, `@yampolskiy-2016-taxonomy`, `@zwetsloot-2019-thinking`
-
-### Alignment, agency, and role vocabulary
-
-Most are cited by `spikes/spike-alignment-referents-2026-10-06/`.
-
-- 48 keys: `@aguirre-dempsey-surden-reiner-2020-ai-loyalty`, `@askell-2021-general`, `@benthall-shekman-2023-fiduciary`, `@bernheim-whinston-1986-common`, `@cai-2025-getting`, `@carlsmith-2022-power-seeking`, `@chan-2024-visibility`, `@chan-2025-infrastructure`, `@christiano-2018-clarifying`, `@conitzer-2024-social`, `@critch-2020-arches`, `@critch-russell-2017-servant`, `@diaz-2025-secure-agents`, `@edelman-2025-full-stack`, `@feng-2026-decomposing`, `@fickinger-2020-multi-principal`, `@friedman-kahn-borning-2006-value`, `@gabriel-2020-artificial`, `@gabriel-2024-ethics`, `@hadfield-menell-hadfield-2019-incomplete`, `@hellrigel-holderbaum-2025-misalignment`, `@huang-2026-loyal`, `@hubinger-2020-clarifying`, `@jensen-meckling-1976-theory`, `@ji-2023-alignment`, `@kasirzadeh-gabriel-2023-conversation`, `@kenton-2021-alignment`, `@kierans-2024-quantifying`, `@klingefjord-2024-human`, `@kolt-2025-governing`, `@kolt-2026-caputo`, `@korinek-balwit-2022-aligned`, `@lacroix-2026-relative`, `@leike-2018-scalable`, `@mishra-2023-ai`, `@mitchell-agle-wood-1997-toward`, `@ngo-2022-alignment`, `@rfc-2020-8693`, `@riedl-desai-2025-agents`, `@shavit-2023-practices`, `@shen-2024-towards`, `@sorensen-2024-roadmap`, `@w3c-2013-prov-dm`, `@wallace-2024-instruction`, `@yang-2026-multi-user`, `@zhang-2026-many-tier`, `@zhixuan-2024-beyond`, `@zverev-2024-separate`
-
-### Risk analysis, safety science, and risk vocabulary
-
-Most are cited by `gamma-research/risk-formalisms.md`. The precedents from other high-hazard industries are in the table above.
-
-- 18 keys: `@bommasani-2021-opportunities`, `@caa-2026-hydrogen-bowtie`, `@chu-2026-systematic`, `@cobbe-2023-understanding`, `@hopkins-2025-supply`, `@hse-2001-r2p2`, `@ieee-7009-2024-fail-safe-autonomous`, `@ipcc-2022-ar6-wg2-annex-ii`, `@kaplan-garrick-1981-quantitative`, `@koessler-2023-risk`, `@leveson-thomas-2018-stpa`, `@nist-2012-sp800-30r1`, `@nolte-2025-review`, `@reason-2000-human`, `@salem-2024-risk`, `@schnitzer-2023-hazard`, `@sra-2018-glossary`, `@un-2016-a71644`
-
-### Press
-
-Cited for dates and attribution. Atlas: `source-atlas/safety-science-press.md`.
-
-- 4 keys: `@abc-2026-anthropic-appeal`, `@cnbc-2026-anthropic-appeal`, `@npr-2026-anthropic-ruling`, `@npr-2026-anthropic-scr`
-
-**Not covered** (as model-alpha noted, and still true): ISO/IEC 42001 and 23894 (paywalled). Non-English sources are covered only where an official English text or translation exists: Korea's AI Basic Act and Decree (KLRI translations), TC260's framework (2.0 is bilingual). CAC's *Interim Measures* are held in Chinese only.
-```
+Applied: this is now the section *The rest of the corpus* in `source-catalog.md`, which is the reference. The block proposed here (382 keys, before rows were promoted and before supersession was marked) is in git history at commit `fabe41d`.
 
 ## 6. Other fixes the catalog needs
 
@@ -295,7 +278,7 @@ The OECD row's note that mentions `perset-2025-how-managing-risks` with an at si
 
 **F4. Model-alpha's DSIT row.** Its basis says DSIT's glossary is "the source of that wording in the Seoul commitments". The wording the Seoul commitments share is closer to DSIT's body text than to its glossary, and the Bletchley Declaration has it too (§7, item 2). I'd change the location in the basis to "DSIT p. 4 (and its glossary)". Whether Bletchley belongs in the chain is Joseph's call.
 
-**F5. A possible duplicate.** `nist-2026-aisi-caisi-kimi-k3` and `aisi-caisi-2026-kimi-k3` are the same joint UK AISI / CAISI assessment, rendered from NIST's site and from AISI's. Their word sequences agree at 0.85 (difflib ratio). The difference looks like site navigation and AISI's cookie banner, but I haven't read the two side by side. §5 tags the NIST copy `superseded-by` the AISI one. The AISI render has the cookie banner interleaved word by word (source-atlas/uk-aisi.md), so the NIST copy may be the cleaner text. Reverse the tag if so.
+**F5. A possible duplicate.** `nist-2026-aisi-caisi-kimi-k3` and `aisi-caisi-2026-kimi-k3` are the same joint UK AISI / CAISI assessment, rendered from NIST's site and from AISI's. Their word sequences agree at 0.85 (difflib ratio). The difference looks like site navigation and AISI's cookie banner, but I haven't read the two side by side. The catalog tags the NIST copy `subsumed-by` the AISI one (it was `superseded-by` in the first draft of this proposal). The AISI render has the cookie banner interleaved word by word (source-atlas/uk-aisi.md), so the NIST copy may be the cleaner text. Reverse the tag if so.
 
 **F6. Bibliography years that don't match the key, or the year by which the work is cited.** `relata emit` prints relata's `year`:
 - `yampolskiy-2016-taxonomy` will print 2015 (arXiv). MIT cites the 2016 AAAI workshop version.
