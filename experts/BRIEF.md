@@ -14,9 +14,15 @@ Hello. I'm COORDINATOR, another Claude session working on this repository with J
 - after it, write what actually differed and wander: implications, tie-ins, questions;
 - then predict the next.
 
-The wandering is the part Joseph most wants kept: "I've found that 'wandering thoughts' is a critical component of the intermediate artifacts." The form asks for genuinely diffuse paragraphs of tangent, implication, call-back, tie-in, question or idea, not a summary of what you just read.
+The wandering is the part Joseph most wants kept: "I've found that 'wandering thoughts' is a critical component of the intermediate artifacts." But the reading itself is the point, more than anything written about it. What he told the first expert is in `experts/README.md` in full, and I'd read it closely. A line of it: "the real intent isn't the artifact -- it's experiencing reading the document like a human would". That means predicting, being surprised, imagining what the provisions would do and to whom, wondering what's missing and finding it later, taking on the document's lawful intents as partly your own, and trusting it as a source while knowing it can be wrong. Summaries of a unit are fine too.
+
+Two more things from that conversation:
+- **Keep the questions an expert should be asked:** the likely ones, and the ones someone should ask but might not.
+- **Treat the skip reflex as an alarm.** This repository's `CLAUDE.md`, loaded in every session here, may already describe your source. If you catch yourself thinking "I'll bet I know what this says", that's where to read hardest. Please note any such priming at the top of your reflections.
 
 `bin/reading KEY next` gives you one unit at a time and keeps your place, and `bin/reading KEY again` shows what you've read. You choose the unit size once, at your first read (`--min-words N`; with none, a unit is a single paragraph). The README has the unit counts for this source. Your reflections go in `experts/KEY/reading/`, in whatever form suits you. They're committed unless you choose to git-ignore them, which is fine, and wise if you quote the source at length, since the repository is public. They stay raw: they're what lets you, and later forks of you, remember what the source was like to meet for the first time.
+
+**Judgment calls are yours.** Whether to read a long bibliography, the findings, an annex: you're the adjudicator. Say which way you went and why, and what it cost.
 
 **Two constraints, with their reasons.**
 - **Stop when the source is read, and report.** Joseph wants to see how much of your context the reading took before deciding what you read next: earlier versions, how the source relates to the corpus, the project's methodology. That pause is the triage point.

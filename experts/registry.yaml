@@ -15,7 +15,8 @@ experts:
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
     started_by: ai-risk-search-tool, with experts/BRIEF.md
-    state: asked
+    state: reading
+    priming: the repo's CLAUDE.md describes SB 53; Joseph accepted it (2026-10-09) and the expert records it in its reflections
     read: []
     context_after_preparation: null
     note: the pilot expert (README, Open)
