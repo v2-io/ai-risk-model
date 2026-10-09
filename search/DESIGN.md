@@ -381,6 +381,8 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
    - Each answers, citing where. Every claim is graded against the judges' readings, which already say what each document holds and where.
    - Three things are counted: claims about parts the agent never opened; false "the document doesn't cover this" answers; and whether the agent says what it hasn't read.
    - The paraphrase questions are where a difference should show. An agent without the outline would answer from what it found, as if that were the whole document.
+   - Joseph's refinement, 2026-10-09: the agents "should be allowed to request to look at the document again", and his prediction is that "the outline-exposed ones [will] make the request more often, assuming you are asking about something obviously covered, than the ones who didn't see the outline". The request rate is then itself a measure of knowing what one hasn't read.
+   - My addition: a control of questions the document doesn't cover at all (every judge left them empty, as "hazard" in SB 53). There the outline should let an agent answer "not covered" without asking, so asking only where something is there to find separates calibration from mere caution.
    - It would be run once the outline is a `source-search` verb, on the five judged documents.
 
    Still to do: the outline as a verb of `source-search`; the scorer fixes, by someone other than the outline's author.
