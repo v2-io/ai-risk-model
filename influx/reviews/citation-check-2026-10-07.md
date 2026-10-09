@@ -1,7 +1,7 @@
 # Citation check: model gamma plan, against its outside sources
 
 > [!NOTE]
-> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages as pdftotext counted them (by form feeds). For the 84 catalog PDFs that count was checked and holds; for other documents a PDF with stray form feeds would shift it, so check before relying on a page. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
 
 *2026-10-07. Claude (Opus 5.5), at Joseph's request (relayed by the session agent), so that Joseph can consult it while reading `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md`. The question was whether each quoted or cited claim says what the plan, or the research reports under it (`influx/gamma-research/`), says it says. Line numbers are the plan's as of commit `b8749f3`.*
 

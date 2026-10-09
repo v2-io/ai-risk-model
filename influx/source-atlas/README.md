@@ -1,7 +1,7 @@
 # Source atlas
 
 > [!NOTE]
-> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages as pdftotext counted them (by form feeds). For the 84 catalog PDFs that count was checked and holds; for other documents a PDF with stray form feeds would shift it, so check before relying on a page. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
 
 Written 2026-09-28 by ten parallel agents, one per family of sources, for the schema relitigation with Joseph. Each file gives, for each document, its table of contents, its glossary or definition ranges, and 2–6 representative passages, with a one-line note on each saying what drew the agent to it. The notes are signposts, not summaries. `SCHEMA-READING-NOTES.md` holds the coordinator's notes from reading the passages, with line references.
 

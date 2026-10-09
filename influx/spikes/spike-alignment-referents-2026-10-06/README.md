@@ -1,7 +1,7 @@
 # Spike: alignment referents and the actor vocabulary (2026-10-06)
 
 > [!NOTE]
-> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages as pdftotext counted them (by form feeds). For the 84 catalog PDFs that count was checked and holds; for other documents a PDF with stray form feeds would shift it, so check before relying on a page. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
 
 **The question it started from.** Joseph asked for a look at "the implications of an ambiguous alignment definition", plus established names for the existing actors in `alignment-model/alignment.md` and proposals for new actors from the references. `CLAUDE.md` holds the related open decision: "Misalignment: a default referent, chosen after the claims show what they are about."
 
