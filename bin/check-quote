@@ -1,0 +1,416 @@
+#!/usr/bin/env python3
+"""Check quote anchors against the canonical texts, and the PDF where needed.
+
+    bin/check-quote KEY [-p PAGE] QUOTE [[-p PAGE] QUOTE …]
+    bin/check-quote --batch FILE [--json]      FILE: JSON list, or JSON lines, of
+                                                {"id": …, "key": …, "anchors": [{"quote": …, "page": N}, …]}
+    bin/check-quote … --json | --jsonl         records as JSON (or one JSON object per citation per line)
+                                                instead of one readable line per anchor
+
+An anchor is a relata key, the physical PDF page (1-based, from the canonical
+text's markers) and the exact quote; the printed page is a display field
+(MODEL-GAMMA-METHODOLOGY-AND-PLAN.md §3.5). A citation can hold several anchors,
+when one definition is assembled from several provisions.
+
+Matching. A quote is found in ref/canonical/KEY.md on its letters and digits
+alone, casefolded, so line wraps, hyphenation, quote marks and markdown
+emphasis don't matter. "…", "..." and bracketed insertions ("repeal[s]",
+"[the developer]") are gaps: each piece must occur, in order, within
+GAP letters of the one before. Whether the quote also matches the text
+character for character is reported separately.
+
+Cardinality. An anchor intends exactly one match. Every record carries the
+match count; one match is ok, none is a defect in the citation, several mean
+the quote doesn't narrow enough.
+
+The PDF. The canonical text settles the page unless its fidelity record
+(ref/canonical/msc/KEY/pages.json) says not to trust it there: the source is
+marked check-all, the match is on one of its pages_to_check, the match crosses
+a page marker or touches an uncertain break's window, or the cited page
+disagrees. Then the quote is also found in the PDF's own per-page text
+(pdftotext -tsv) and the PDF's page wins; the record says which settled it.
+A quote found in a canonical text that isn't a conversion of the PDF (IASR
+2026's web edition) but not in the PDF is reported as not-in-pdf.
+
+Statuses: ok, unconfirmed (found once in the canonical text, but the PDF
+check it needed found no match, so the page rests on the canonical text
+alone), not-found, near-miss (no match, but a passage at least 80%
+alike: a changed word, or paraphrase presented as quotation; the record gives
+it), ambiguous, page-mismatch, not-in-pdf, no-text (no canonical text and no
+PDF to search). Separately, `exact` says whether the quote matches the text
+character for character (quote marks, spacing and markdown emphasis aside);
+when it doesn't, `found_text` gives the text's own characters.
+
+Every PDF opened is also checked for stray form feeds: pdftotext's plain
+output should have exactly one per page, and a PDF whose text contains others
+would have shifted any page number counted by form feeds.
+
+Exit status: 0 if every anchor is ok, 1 otherwise, 2 on bad input.
+"""
+import argparse, bisect, importlib.machinery, importlib.util, json, os, re, subprocess, sys
+
+sys.dont_write_bytecode = True
+BIN = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BIN)
+import corpus  # noqa: E402
+
+_loader = importlib.machinery.SourceFileLoader('canonicalize', os.path.join(BIN, 'canonicalize'))
+_spec = importlib.util.spec_from_loader('canonicalize', _loader)
+C = importlib.util.module_from_spec(_spec)
+_loader.exec_module(C)
+
+REPO = corpus.REPO
+CANON = os.path.join(REPO, 'ref', 'canonical')
+GAP = 600          # letters allowed between the pieces of an elided quote
+NEAR = 12          # letters shared with an uncertain break's window to count as touching it
+GAP_RE = re.compile(r'\s*(?:…|\.\s?\.\s?\.|\[[^\]]*\])\s*')
+
+# ------------------------------------------------------------------ matching
+
+def pieces(quote):
+    """The quote's pieces between gaps, each reduced to letters and digits."""
+    return [p for p in (C.norm(x) for x in GAP_RE.split(quote)) if p]
+
+def find_all(S, parts):
+    """Every (start, end) in S where the parts occur in order, each within GAP
+    letters of the one before. Start positions are distinct matches."""
+    out, i = [], S.find(parts[0])
+    while i != -1:
+        end, ok = i + len(parts[0]), True
+        for p in parts[1:]:
+            j = S.find(p, end, end + GAP + len(p))
+            if j == -1:
+                ok = False
+                break
+            end = j + len(p)
+        if ok:
+            out.append((i, end))
+        i = S.find(parts[0], i + 1)
+    return out
+
+def collapse(s):
+    s = s.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"')
+    s = re.sub(r'[*_]{1,3}', '', s)
+    return re.sub(r'\s+', ' ', s).strip()
+
+NEAR_MISS = 0.8    # similarity (letters and digits) at or above which an unmatched quote is a near miss
+
+def nearest(S, cn, parts, k=16):
+    """The passage most like an unmatched quote: the stretch of S sharing the
+    most 16-letter runs with it, scored by difflib's ratio on letters and
+    digits. Catches a changed word, or paraphrase presented as quotation."""
+    import difflib
+    q = ''.join(parts)
+    if len(q) < k:
+        return None
+    hits = {}
+    for i in range(0, len(q) - k + 1, 4):
+        g, j = q[i:i+k], S.find(q[i:i+k])
+        while j != -1:
+            hits[(j - i) // 50] = hits.get((j - i) // 50, 0) + 1
+            j = S.find(g, j + 1)
+    if not hits:
+        return None
+    best = max(hits, key=hits.get) * 50
+    lo, hi = max(0, best - 50), min(len(S), best + len(q) + 100)
+    sm = difflib.SequenceMatcher(None, q, S[lo:hi], autojunk=False)
+    blocks = [b for b in sm.get_matching_blocks() if b.size]
+    a, b = lo + blocks[0].b, lo + blocks[-1].b + blocks[-1].size
+    ratio = difflib.SequenceMatcher(None, q, S[a:b], autojunk=False).ratio()
+    page, printed, line = cn.at(a)
+    return dict(similarity=round(ratio, 3), page=page, printed=printed, line=line,
+                text=cn.span_text(a, b)[:1500])
+
+# ---------------------------------------------------------- canonical texts
+
+class Canonical:
+    """A canonical text, streamed to letters and digits, with each letter's
+    offset, line, physical page and printed label, and whether it is restored
+    PDF text."""
+    def __init__(self, key):
+        self.key = key
+        self.path = os.path.join(CANON, key + '.md')
+        body = open(self.path, encoding='utf-8').read()
+        self.body = body
+        blank = list(body)
+        def wipe(a, b):
+            for k in range(a, b):
+                if blank[k] != '\n':
+                    blank[k] = ' '
+        if body.startswith('<!--'):                       # the provenance header
+            wipe(0, body.find('-->') + 3)
+        self.marks, self.supp = [], []                    # (offset, page, printed)
+        off, in_supp = 0, None
+        for line in body.split('\n'):
+            m = corpus.MARK_RE.match(line)
+            if m:
+                self.marks.append((off, int(m.group(1)) if m.group(1) else None, m.group(2)))
+                wipe(off, off + len(line))
+            elif line == corpus.SUPP_OPEN:
+                in_supp = off
+                wipe(off, off + len(line))
+            elif line == corpus.SUPP_CLOSE and in_supp is not None:
+                self.supp.append((in_supp, off))
+                in_supp = None
+                wipe(off, off + len(line))
+            off += len(line) + 1
+        self.S, self.offs = C.md_stream(''.join(blank))
+        self.mark_offs = [o for o, _, _ in self.marks]
+        self.line_starts = [0] + [m.end() for m in re.finditer('\n', body)]
+        self.collapsed = collapse(re.sub(r'^----------\[.*\]----------$', ' ', body, flags=re.M))
+        pj = os.path.join(CANON, 'msc', key, 'pages.json')
+        self.pages_json = json.load(open(pj)) if os.path.isfile(pj) else {}
+
+    def at(self, i):
+        """(page, printed, line) of normalized position i."""
+        o = self.offs[min(i, len(self.offs) - 1)]
+        k = bisect.bisect_right(self.mark_offs, o) - 1
+        page, printed = (self.marks[k][1], self.marks[k][2]) if k >= 0 else (None, None)
+        return page, printed, bisect.bisect_right(self.line_starts, o)
+
+    def in_supp(self, i):
+        o = self.offs[min(i, len(self.offs) - 1)]
+        return any(a <= o < b for a, b in self.supp)
+
+    def near_uncertain_break(self, norm_match, pages):
+        """The uncertain break whose window the match shares letters with, if any."""
+        for b in self.pages_json.get('breaks', []):
+            w = b.get('window_text')
+            if not w or b.get('page') not in {p for p in pages if p} | {p + 1 for p in pages if p}:
+                continue
+            nw = C.norm(w)
+            if any(norm_match[k:k+NEAR] in nw for k in range(0, max(1, len(norm_match) - NEAR + 1))):
+                return dict(page=b['page'], line=b['line'], window_text=w[:200])
+        return None
+
+    def span_text(self, a, b):
+        """The canonical file's own characters for normalized span [a, b)."""
+        return self.body[self.offs[a]:self.offs[b - 1] + 1]
+
+# --------------------------------------------------------------------- PDFs
+
+_pdf_cache = {}
+
+def pdf_text(key):
+    """(pages normalized, page starts, stray form feeds, pdf path) for a key's PDF."""
+    if key in _pdf_cache:
+        return _pdf_cache[key]
+    state, pdf, _ = C.relata_show(key)
+    if not pdf:
+        _pdf_cache[key] = None
+        return None
+    pages, _ = C.pdf_tsv(pdf)
+    P, starts = C.pdf_stream(pages)
+    plain = subprocess.run(['pdftotext', pdf, '-'], capture_output=True).stdout
+    ff = plain.count(b'\f')
+    _pdf_cache[key] = (P, starts, ff - len(pages), pdf)
+    return _pdf_cache[key]
+
+# -------------------------------------------------------------- one anchor
+
+_canon_cache = {}
+
+def canonical(key):
+    if key not in _canon_cache:
+        p = os.path.join(CANON, key + '.md')
+        _canon_cache[key] = Canonical(key) if os.path.isfile(p) else None
+    return _canon_cache[key]
+
+def check_anchor(key, quote, page=None, entry=None):
+    rec = dict(key=key, quote=quote, page_cited=page)
+    parts = pieces(quote)
+    if not parts:
+        return dict(rec, status='not-found', note='the quote has no letters or digits')
+    text_key = key
+    tags = (entry or {}).get('tags', {})
+    if 'subsumed-by' in tags:
+        text_key = tags['subsumed-by']
+        rec['text_from'] = f'{text_key} (catalog: subsumed-by)'
+    cn = canonical(text_key)
+    if 'superseded-by' in tags:
+        rec['superseded_by'] = tags['superseded-by']
+        rec['active'] = (entry or {}).get('active')
+    fid = (cn.pages_json.get('fidelity') if cn else None) or {}
+    rec['source_mark'] = fid.get('mark')
+    matches = find_all(cn.S, parts) if cn else []
+    rec['match_count'] = len(matches)
+    rec['matches'] = []
+    for a, b in matches[:20]:
+        p0, pr0, l0 = cn.at(a)
+        p1, _, _ = cn.at(b - 1)
+        rec['matches'].append(dict(page=p0 if p0 == p1 else [p0, p1], printed=pr0, line=l0,
+                                   restored_pdf_text=cn.in_supp(a)))
+    if len(matches) == 1:
+        # Exact: every piece of the quote, quote marks and spacing normalized
+        # and markdown emphasis removed, occurs character for character in the
+        # matched text. If not, the record carries the text's own characters.
+        found = cn.span_text(*matches[0])
+        cf = collapse(found)
+        edge = lambda x: re.sub(r'^\W+|\W+$', '', collapse(x))   # the span starts and ends at a letter or digit
+        rec['exact'] = all(edge(x) in cf for x in GAP_RE.split(quote) if edge(x))
+        if not rec['exact']:
+            rec['found_text'] = found if len(found) <= 1500 else found[:1500] + '…'
+    # Does the PDF have to settle it?
+    reasons = []
+    if not cn:
+        reasons.append('no canonical text')
+    elif len(matches) == 0:
+        reasons.append('not in the canonical text')
+    elif fid.get('mark') == 'check-all':
+        reasons.append('source marked check-all')
+    if len(matches) == 1:
+        a, b = matches[0]
+        m = rec['matches'][0]
+        pg = m['page'] if isinstance(m['page'], list) else [m['page']]
+        if isinstance(m['page'], list):
+            reasons.append('the quote crosses a page marker')
+        if set(pg) & set(fid.get('pages_to_check', [])):
+            reasons.append('on a page the fidelity record lists')
+        nb = cn.near_uncertain_break(cn.S[a:b], pg)
+        if nb:
+            reasons.append("touches an uncertain page break's window")
+            rec['break_window'] = nb
+        if page is not None and page not in pg:
+            reasons.append('the cited page differs')
+    rec['pdf_checked_because'] = reasons
+    pdf_pages = None
+    if reasons:
+        pt = pdf_text(key)
+        if pt:
+            P, starts, stray, pdf = pt
+            rec['stray_form_feeds'] = stray
+            pm = find_all(P, parts)
+            rec['pdf_match_count'] = len(pm)
+            pdf_pages = [[bisect.bisect_right(starts, a), bisect.bisect_right(starts, b - 1)] for a, b in pm[:20]]
+            rec['pdf_pages'] = [p[0] if p[0] == p[1] else p for p in pdf_pages]
+        else:
+            rec['pdf_match_count'] = None
+    # Settle status and page.
+    canon_n, pdf_n = len(matches), rec.get('pdf_match_count')
+    unordered = (cn.pages_json.get('mode') == 'unordered') if cn else False
+    if not cn and not pdf_n:
+        status = 'no-text' if pdf_n is None else 'not-found'
+    elif canon_n == 0 and not pdf_n:
+        status = 'not-found'
+        nm = nearest(cn.S, cn, parts) if cn else None
+        if nm and nm['similarity'] >= NEAR_MISS:
+            status = 'near-miss'
+            rec['nearest'] = nm
+    elif unordered and canon_n == 1 and pdf_n == 0:
+        status = 'not-in-pdf'
+    else:
+        n = pdf_n if (pdf_n is not None and (canon_n != 1 or reasons)) else canon_n
+        if n > 1:
+            status = 'ambiguous'
+        else:
+            if pdf_n == 1:
+                pp = rec['pdf_pages'][0]
+                rec['page'], rec['page_from'] = pp, 'pdf'
+            else:
+                rec['page'], rec['page_from'] = rec['matches'][0]['page'], 'canonical text'
+            if canon_n == 1:
+                rec['printed'] = rec['matches'][0]['printed']
+                rec['line'] = rec['matches'][0]['line']
+            got = rec['page'] if isinstance(rec['page'], list) else [rec['page']]
+            status = 'page-mismatch' if page is not None and page not in got else 'ok'
+            if status == 'ok' and reasons and pdf_n == 0:
+                # The PDF was needed to settle it and doesn't have the words
+                # (for OCR'd sources its text layer is usually what failed).
+                status = 'unconfirmed'
+                rec['note'] = 'the page is the canonical text\'s; the PDF check it needed found no match'
+            if canon_n == 0 and pdf_n == 1:
+                rec['note'] = 'found in the PDF text but not in the canonical text'
+    rec['status'] = status
+    return rec
+
+def check_citation(cit, entries):
+    key = str(cit.get('key', '')).lstrip('@')
+    entry = entries.get(key)
+    out = dict(id=cit.get('id'), key=key, listed=entry is not None)
+    if entry and 'no-canon' in entry['tags']:
+        out['no_canon'] = entry['tags']['no-canon']
+    out['anchors'] = [check_anchor(key, a['quote'], a.get('page'), entry) for a in cit.get('anchors', [])]
+    out['status'] = 'ok' if out['anchors'] and all(a['status'] == 'ok' for a in out['anchors']) else \
+        next((a['status'] for a in out['anchors'] if a['status'] != 'ok'), 'not-found')
+    return out
+
+# --------------------------------------------------------------------- main
+
+def line_for(rec):
+    pg = rec.get('page')
+    pg = (f'p. {pg[0]}–{pg[1]}' if isinstance(pg, list) else f'p. {pg}') if pg is not None else 'p. ?'
+    pr = f' (printed "{rec["printed"]}")' if rec.get('printed') else ''
+    extra = []
+    if rec.get('page_from') == 'pdf':
+        extra.append('page settled by the PDF: ' + '; '.join(rec['pdf_checked_because']))
+    if rec['status'] == 'ambiguous':
+        extra.append(f'{rec["match_count"]} matches in the canonical text'
+                     + (f', {rec.get("pdf_match_count")} in the PDF' if rec.get('pdf_match_count') is not None else '')
+                     + ': ' + ', '.join(str(m['page']) for m in rec['matches'][:8]))
+    if rec.get('page_cited') is not None and rec['status'] == 'page-mismatch':
+        extra.append(f'cited p. {rec["page_cited"]}')
+    if rec.get('exact') is False:
+        extra.append('matches on letters and digits, not character for character; the text reads: '
+                     + collapse(rec.get('found_text', ''))[:160])
+    if rec.get('nearest'):
+        n = rec['nearest']
+        extra.append(f'nearest passage ({n["similarity"]:.0%} alike), p. {n["page"]} line {n["line"]}: '
+                     + collapse(n['text'])[:160])
+    if rec.get('break_window'):
+        extra.append(f'near the uncertain break before p. {rec["break_window"]["page"]} (line {rec["break_window"]["line"]})')
+    if rec.get('stray_form_feeds'):
+        extra.append(f'{rec["stray_form_feeds"]} stray form feeds in the PDF')
+    if rec.get('superseded_by'):
+        extra.append(f'superseded by {rec["superseded_by"]} (active: {rec.get("active")})')
+    if rec.get('note'):
+        extra.append(rec['note'])
+    q = rec['quote'] if len(rec['quote']) <= 70 else rec['quote'][:67] + '…'
+    return f'{rec["status"]:13} {rec["key"]} {pg}{pr} line {rec.get("line", "?")}  “{q}”' + \
+           (''.join('\n              ' + e for e in extra))
+
+def main(argv):
+    ap = argparse.ArgumentParser(add_help=False)
+    ap.add_argument('-h', '--help', action='store_true')
+    ap.add_argument('--batch')
+    ap.add_argument('--json', action='store_true')
+    ap.add_argument('--jsonl', action='store_true')
+    a, rest = ap.parse_known_args(argv)
+    if a.help or (not a.batch and not rest):
+        print(__doc__); return 0 if a.help else 2
+    order, entries, errors = corpus.read_catalog()
+    if errors:
+        for e in errors:
+            print('check-quote: source-catalog.md:', e, file=sys.stderr)
+        return 2
+    if a.batch:
+        raw = open(a.batch).read() if a.batch != '-' else sys.stdin.read()
+        try:
+            cits = json.loads(raw)
+            cits = cits if isinstance(cits, list) else [cits]
+        except json.JSONDecodeError:
+            cits = [json.loads(l) for l in raw.splitlines() if l.strip()]
+    else:
+        key, anchors, page, i = rest[0], [], None, 1
+        while i < len(rest):
+            if rest[i] in ('-p', '--page'):
+                page = int(rest[i + 1]); i += 2; continue
+            anchors.append(dict(quote=rest[i], page=page)); page = None; i += 1
+        cits = [dict(key=key, anchors=anchors)]
+    results = [check_citation(c, entries) for c in cits]
+    if a.jsonl:
+        for r in results:
+            print(json.dumps(r, ensure_ascii=False))
+    elif a.json:
+        print(json.dumps(results if a.batch else results[0], indent=1, ensure_ascii=False))
+    else:
+        for r in results:
+            if not r['listed']:
+                print(f'note: {r["key"]} is not listed in source-catalog.md')
+            if r.get('no_canon'):
+                print(f'note: {r["key"]} is no-canon in the catalog ({r["no_canon"]})')
+            for rec in r['anchors']:
+                print(line_for(rec))
+    return 0 if all(r['status'] == 'ok' for r in results) else 1
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

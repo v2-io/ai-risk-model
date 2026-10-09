@@ -737,7 +737,8 @@ def fidelity(md, brk, body, pages, P, ocr, report):
         ec = report.get('edition_check') or {}
         for r in ec.get('other_page_lines', []):
             check.add(r['marked'])
-    if len(ocr) > npages / 2 or mode == 'unordered' or faithful < 0.9:
+    unmatched_ocr = len(kinds.get('OCR pages not matching the PDF text', {}).get('pages', ()))
+    if unmatched_ocr > npages / 2 or mode == 'unordered' or faithful < 0.9:
         mark = 'check-all'
     elif check:
         mark = 'check-pages'
@@ -747,7 +748,8 @@ def fidelity(md, brk, body, pages, P, ocr, report):
     # documents state; decisions belong to the catalog.
     why = []
     if ocr:
-        why.append(f'marker read {len(ocr)} of {len(pages)} pages by OCR')
+        why.append(f'marker read {len(ocr)} of {len(pages)} pages by OCR; {unmatched_ocr} of them '
+                   f'match the PDF\'s text layer below {OCR_OK:.0%}')
     if mode == 'unordered':
         ec = report.get('edition_check') or {}
         why.append(f'not a conversion of this PDF but a text of the same document, aligned to it; '
@@ -831,8 +833,9 @@ def write_index(outdir, order, entries, skipped):
                 f'{scope - len(built)} not built.\n\n'
                 '- **trusted**: no differences found; quote from the canonical text.\n'
                 '- **check-pages**: check quotes from the listed pages (`pages_to_check`) against the PDF.\n'
-                '- **check-all**: check every quote against the PDF: most pages were read by OCR, the text is '
-                'not a conversion of this PDF, or much of its prose does not match the PDF\'s text.\n\n'
+                '- **check-all**: check every quote against the PDF: most pages are OCR that doesn\'t match the '
+                'PDF\'s text layer, the text is not a conversion of this PDF, or much of its prose does not '
+                'match the PDF\'s text.\n\n'
                 '*Faithful*: share of the markdown\'s prose found in the PDF\'s text. *Complete*: share of the '
                 'PDF\'s text found in the canonical text. *Restored*: pages with text added back from the PDF '
                 '(```pdf-text blocks). Sections and order follow the catalog.\n\n' + '\n'.join(out))
