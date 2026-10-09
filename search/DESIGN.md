@@ -24,7 +24,16 @@ It is local and specialised: one corpus (the catalog's sources), one database, o
 | `ref/canonical/KEY.md` | the text, with physical-page markers, printed page labels, and ```` ```pdf-text ```` restored blocks | canonicalizer fixes, new conversions |
 | `ref/canonical/msc/KEY/pages.json` | per-source fidelity mark, pages to check, uncertain-break windows | same |
 
-The catalog's parsing contract is §2 of `influx/catalog-update-proposal-2026-10-08.md`. The index reads it through the same parser `bin/canonicalize` will use, ideally a shared module, so the two can't disagree about which keys are in scope.
+The catalog's parsing contract is §2 of `influx/catalog-update-proposal-2026-10-08.md`. Both contracts, the catalog's and the canonical text's, now live in one module, `bin/corpus.py` (from the canonicalize session, 2026-10-09). It provides `read_catalog()`, `in_scope()`, each entry's `active` key, and the marker constants and regexes. The index imports it, as `bin/canonicalize` does, so the two can't disagree about scope, status or format.
+
+What the canonicalize session reports as stable, and what the index has to allow for (2026-10-09):
+- the marker lines and `MARK_RE` are stable;
+- page markers can go *backwards*, in texts that aren't conversions of their PDF (today only IASR 2026, with 307 markers), and only those texts have `[not in pdf]`;
+- a ```` ```pdf-text ```` block sits at the end of its page's section, in pdftotext's reading order, not where the text stood on the page. A passage from one has the right page but no heading context of its own;
+- `pages.json`'s `fidelity.mark`, `pages_to_check`, `differences`, and each break's `page`, `line`, `printed`, `unlocated_letters` and `window_text` are stable; newer fields include `ocr_pages`, `web_render` and `edition_check`;
+- `ref/canonical/skipped.json` lists keys not built, and why;
+- a key that leaves the catalog keeps its old output on disk, so **the catalog, not the directory, decides what is indexed**;
+- IASR's link tooltips stay in the canonical text (canonicalize never edits a text's characters), so the chunker drops them from the indexed text (§5.2).
 
 Who gets indexed: every catalog key with a canonical text, except `subsumed-by` keys, whose text is a copy of another key's. `superseded-by` keys are indexed and marked inactive. `no-canon` keys have no text, so they appear only as metadata.
 
@@ -41,7 +50,7 @@ search/
   srcsearch/            the Python package: catalog, chunk, index, rank, cli
 ```
 
-- **Language:** Python. psycopg and pgvector are mature there, `bin/canonicalize` is Python, and memorata's mise Python 3.11 already has the dependencies installed.
+- **Language:** Python. psycopg and pgvector are mature there, `bin/canonicalize` and `bin/corpus.py` are Python, and memorata's mise Python 3.11 already has the dependencies installed.
 - **Database:** a local Postgres 18 database, `airisk_sources` (a lean; any name works), with pgvector (0.8.x is installed; `halfvec` needs 0.7 or later), `pg_trgm` and `unaccent`. It is not in the repository; `bin/source-index` builds it from scratch on a new machine.
 - **Embedder:** ollama, `bge-m3` (§5.4).
 
@@ -204,7 +213,7 @@ The index should be ready for it. A translated edition keeps the canonical page 
 4. **Recency favours newer**, within each organisation, mildly. This is the opposite of memorata. *Confidence: moderate.* An older document can matter more as a lineage root, which the lineage views handle rather than a weight.
 5. **The weights live in the repo** (`search/weights.toml`, each with a rationale), not in the database. This is public and reviewable, and the database stays wholly derived. *Confidence: high.*
 6. **Database name `airisk_sources`, outside the repo; Python in `search/`.** *Confidence: high* on the shape, none on the name.
-7. **Share the catalog parser with `bin/canonicalize`.** That means coordinating with the canonicalize agent, which is about to write it. *Confidence: high.*
+7. ~~Share the catalog parser with `bin/canonicalize`.~~ Done: `bin/corpus.py` (2026-10-09).
 
 ## 11. Build order
 
