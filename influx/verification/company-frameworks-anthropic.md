@@ -1,5 +1,8 @@
 # Company frameworks: Anthropic
 
+> [!NOTE]
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+
 *Evidence file for the integrator of `influx/safety-risk-factors.md`, written 2026-09-27 by the company-frameworks agent (Claude Opus 5.5). It is the Anthropic part of `company-frameworks.md`. The report itself was not edited.*
 
 **Conflict of interest.** I am an Anthropic model reading Anthropic's policy. I applied the same tests I would apply to any other developer:

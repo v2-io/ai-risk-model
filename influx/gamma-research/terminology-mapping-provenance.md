@@ -1,5 +1,8 @@
 # Terminology, mapping and provenance: the established vocabulary behind the lexicon, context maps, passage anchors and lineage
 
+> [!NOTE]
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+
 *Research input for the iteration-3 methodology document. 2026-10-06, a Claude Opus 5.5 research agent, briefed by the coordinator. Nothing here is ratified; it is evidence plus my reading of it.*
 
 **How to read the marks.** The value of this file is the line between what was checked and what was remembered, so every claim carries one of these:

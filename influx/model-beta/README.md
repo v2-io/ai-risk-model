@@ -1,5 +1,8 @@
 # Risk census model
 
+> [!NOTE]
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+
 To Joseph, and to whoever extends this next.
 
 This is a model of the frontier-AI risk landscape, built for Joseph's own understanding. It started on 2026-09-27 as a response to a table-shaped report (`influx/safety-risk-factors.md`) and fourteen verification files (`influx/verification/`). Its job is to hold everything those sources say, **including what they merely assert and what we merely suspect**, in a form where the structure of the risk (what drives what, what dampens what, where the loops are) can be seen and interrogated.

@@ -1,5 +1,8 @@
 # De novo review of `MODEL-GAMMA-METHODOLOGY-AND-PLAN.md`
 
+> [!NOTE]
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+
 *2026-10-06. Claude (Opus 5.5), given a bare brief ("a de novo review … form your own view however you see fit") and the whole repository. Written for Joseph and for the session that drafted the plan. Uncommitted.*
 
 *Which version: I reviewed `eaf1ccb`. The plan was amended in `cd9b2ab` while I worked. I read that diff: it replaces "Decided/Leaning (Joseph)" labels with Joseph's quoted words, and it moves no lines or sections. Section references below hold for both versions. Where the amendment bears on a finding, I say so.*

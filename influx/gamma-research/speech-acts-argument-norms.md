@@ -1,5 +1,8 @@
 # Speech acts, argument and norms: established vocabulary for the assertion layer
 
+> [!NOTE]
+> **Line and page references here predate `ref/canonical/`.** They were taken from `pdftotext -layout` extractions of the relata PDFs (the `bin/extract-text` script), before the canonical page-marked texts existed. Page numbers are the PDF's physical pages and still hold. Line numbers ("L…") are lines of those layout extractions, so they won't match `ref/canonical/`: to re-find a passage, search for its quoted words, or regenerate the layout text with `pdftotext -layout`. References marked "md" are lines of `ref/iasr-2026-full.md`, which is unchanged.
+
 *Research for the model-gamma methodology. Claude Opus 5.5, 2026-10-06, briefed by the methodology coordinator. Question: for the assertion-layer problems that `influx/model-beta/SCHEMA-SYNTHESIS.md` (draft 2) §3–§4 and §6.4 solved with its own coinages, is there established vocabulary to adopt? For each candidate: its core definitions from the primary source (or the best accessible authoritative one), how well it fits, and where it strains. Also: what was misremembered, and what is better that wasn't named.*
 
 **Verification marks.** These are what this file is for.
