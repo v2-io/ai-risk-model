@@ -1,0 +1,5 @@
+# The canonical text each expert read, kept for diffs when the text is rebuilt.
+# Most sources can't be republished (ref/.gitignore), so these stay local.
+*/.prior/
+# The reading tool's cursors: local state, not the reading itself.
+*/reading/*.cursor.json

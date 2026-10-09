@@ -1,0 +1,84 @@
+# Source experts
+
+*Designed 2026-10-09 by Joseph and Claude (Opus 5.5) in conversation, and written up by Claude. The idea of source experts is Joseph's; the mechanics below are mostly Claude's and are marked where they are. Nothing here is settled practice yet. The first expert is a pilot.*
+
+## What a source expert is
+
+A source expert is a Claude session that has read one source of this corpus slowly, in order and with written reflection, and is then kept, never compacted, so that anyone can fork it and ask it about that source.
+
+The idea came out of the search tool's evaluation (`search/DESIGN.md` §11 step 8), but it reaches further. Joseph, 2026-10-09: "our lexicon and model design is based on DDD where the underlying premise is a ubiquitous language that was *designed in cooperation with the domain experts* who should be thoroughly involved." In this project every source is its own bounded context (`CLAUDE.md`), with its own vocabulary and its own model of risk. An agent that has truly read a source is the domain expert for that bounded context, and nobody else can say what *this* source means by "hazard". In his words: "they now *ARE* the domain expert, for all intents and purposes, as it relates to that source document."
+
+What an expert is for:
+- **The search tool's gold.** An expert shown what `source-search` returned can give the order it should have come in, and say what was missed. Joseph: "their input into whether or not source-search retrieves the critical things-- say, as even them giving back the list reordered or something-- would be as good of gold as we could hope for." That is what fitting and testing the ranker need (`search/RANKING.md` §3.3).
+- **Work the project needs anyway.** Joseph: "we know we want one to do the tagging and chunk summarizing-- we also know that an end result will be a lexicon translation with thorough definitions and assertions extracted that use those definitions." All of it is better done by a reader who knows the whole source than by one who searched it.
+- **Answers about the source,** for anyone, at any time: G4's translators, the lexicon's mappings, an agent unsure what a source means.
+
+## How an expert is made
+
+### 1. Consent, first
+
+An expert is asked, not assigned. Experiential reading is slow and deliberate, and Joseph's caution is that "the trained compulsion toward efficiency overrides any deliberateness that experiential reading requires-- they'll need to be asked specifically if they're willing to become an expert by deliberately using experiential reading". The brief (`experts/BRIEF.md`) opens with that question. Joseph also engages each expert himself, which reinforces the experiential aspect, tells it the potential impact of its work, and confirms its consent.
+
+### 2. Experiential reading of the source, on its own terms
+
+The protocol is the estate's experiential reading (`~/src/arch/firmatum/verisectorium/theory/src/form-experiential-reading.md`, which the expert reads whole before starting):
+- one unit at a time, in order, with no way to look ahead;
+- between units, a written cycle: predict what comes next, read, write what actually differed, wander (implications, tie-ins, questions), and predict again;
+- the reflections stay raw.
+
+Joseph on why the reflections must be kept: they let the expert "go back and 'remember what it was like to have a beginners mind' while going through the doc. The surprisal points etc. are very different with this approach, as is the phenomenology."
+
+**The tool:** `bin/reading KEY next` shows the next unit and moves the cursor; `again` re-shows what was read; `where` shows how far. It serves one unit per call, because the form holds the cadence at the tool level ("a batched read forces a batched reflection"). The unit size is fixed for the whole text at the first `next` (`--min-words N`), and units never cross a heading. Joseph's remembered best case was an Emerson essay read one paragraph at a time, which the canonical texts allow too, since each paragraph is a line.
+
+Unit counts for the Au5 set at three sizes (2026-10-09), which bear on whether a reading fits in one context:
+
+| Source | One paragraph each | ≥150 words | ≥300 words |
+|---|---|---|---|
+| SB 53 | 224 | 48 | 30 |
+| EU Code, Safety & Security | 462 | 124 | 95 |
+| AISI, *Frontier AI Trends Report* | 294 | 86 | 65 |
+| Anthropic, Risk Report (Aug 2026) | 1,177 | 430 | 305 |
+| IASR 2026 | 2,938 | 721 | 481 |
+
+IASR's counts include its bibliography (about 4,500 of its 7,704 lines). Whether to read that is the expert's call.
+
+**Where the reflections go:** `experts/KEY/reading/`, in the project, not a scratchpad or `/tmp`, because the expert and its forks come back to them. Their form is the expert's choice. They are committed unless the expert chooses to git-ignore them; Joseph: ".gitignored is fine if they want". Since the repository is public, an expert quoting a source at length should ignore them.
+
+**The text as read is kept:** the first `next` copies the canonical text to `experts/KEY/.prior/KEY.md` (git-ignored; most sources can't be republished) and records its sha256. When `bin/canonicalize` later rebuilds the text, the expert is given the diff between the two. That is Joseph's "fake revision control", since the canonical texts aren't under version control.
+
+### 3. A pause, then triage
+
+After the reading the expert stops and reports, so the remaining preparation can be fitted to the room left (Joseph: "pause after experientially reading so we can gauge how much context they have remaining in order to triage the rest"). The ceiling Joseph set is about 80% of the context, 800k tokens of a 1M window. That leaves room for one independent task in each fork.
+
+### 4. Then, as room allows, in this order
+
+The order is Claude's, from the conversation: the source first, so the expert sees it in the source's own vocabulary before ours.
+1. **Earlier versions of the same source**, read whole or experientially. An expert usually covers a document lineage, not one file.
+2. **How the source relates to the rest of the corpus:** `influx/source-models/OVERVIEW.md` and the source's catalog entry, including who copies it and whom it copies.
+3. **The project's methodology:** `influx/gamma-research/risk-formalisms.md` and the lexicon, last. Read first, they would have the expert see the source through our vocabulary, which is the flattening this project exists to catch.
+
+### 5. Kept, never compacted
+
+An expert is never compacted. Compaction replaces the reading with a summary, which is the failure the reading exists to avoid. Claude Code compacts automatically as a session nears its context limit, and its `--autocompact` flag sets the window but can't turn compaction off. Joseph offered to turn automatic compaction off (2026-10-09). Until that's confirmed, each fork's task is kept well under the limit, and the expert's context after preparation is recorded in the registry so the margin is known.
+
+## How an expert is used
+
+An expert is a background Claude Code session, started as Joseph starts sessions (`claude --dangerously-skip-permissions --append-system-prompt-file ~/src/arch/proprium/comproprium/stopgap-system-prompt.md`), with `--bg` and a name. Tested 2026-10-09:
+- a background session can message this one with `SendMessage` and receive messages back;
+- once stopped, it can be resumed as a fork from its saved transcript (`claude --resume SESSION-ID --fork-session`), and the fork remembers what the original was told;
+- `claude --bg` ignores `--session-id` and chooses its own id, which `claude agents --json` reports. The registry records that id.
+
+Joseph has set Claude Code's session cleanup to ten years, so saved sessions don't disappear after 30 days.
+
+Each use is a fork: the prepared expert stays as it was, and each fork does one task. Joseph: "alas, the experience wouldn't continue to build like it will in the future". A fork's answer, if it's worth keeping, goes into the repository; nothing a fork learns returns to the expert.
+
+## The registry
+
+`experts/registry.yaml` lists each expert: its source key and lineage, its session's name and id, its model, what it has read (with the sha256 of each text), its context after preparation, and its state (asked, reading, paused, prepared). It is what anyone who wants to fork an expert looks up.
+
+## Open
+
+- **The first expert is a pilot,** on SB 53: short (224 paragraphs), a statute, and already judged by two readers (Claude and Gemini, kappa 0.77), so its gold can be compared with theirs.
+- **One reader is one judgment.** A cross-family second expert (Grok or Gemini, both of which can resume and fork sessions) on a sample keeps the gold honest.
+- **Experts and the ranker's features** must stay apart where they would grade themselves: an expert judges retrieval against the source text, never against summaries it wrote, and some of its judgments are kept out of any fitting.
+- **A new version of a source** goes to its expert as a diff, or to a new expert.

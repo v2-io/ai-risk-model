@@ -1,0 +1,196 @@
+#!/usr/bin/env python3
+"""Read a canonical text one unit at a time, for experiential reading (experts/README.md).
+
+    bin/reading KEY next [--min-words N]   the next unit, and move on past it
+    bin/reading KEY again [N]              the last N units read, again; the cursor stays put
+    bin/reading KEY where                  how far through the text the cursor is
+    bin/reading KEY reset --yes            start the text over (the journal is kept)
+
+    --expert NAME   whose reading this is (default: KEY). An expert reading a related
+                    text, such as an earlier version of its own, keeps its cursor for that
+                    text in its own directory: bin/reading bengio-2025-international next
+                    --expert bengio-2026-international
+
+A unit is one paragraph (in ref/canonical/ each paragraph is one line), a heading
+together with the paragraph after it, a whole table, or one block of text restored
+from the PDF. With --min-words N, given on the first `next` and kept for the whole
+text, consecutive units under the same heading are joined until they reach N words;
+a unit never crosses a heading. A long text read paragraph by paragraph, with a
+written reflection after each, may not fit in one context, so the reader sets the
+unit size once, at the start.
+
+`next` reads one unit at a time, by design: the protocol this serves holds its
+cadence at the tool level, because "a batched read forces a batched reflection"
+(~/src/arch/firmatum/verisectorium/theory/src/form-experiential-reading.md). Link targets, link tooltips, images and HTML are removed, as in the
+search index (search/srcsearch/text.py), so a web edition reads as prose rather
+than as citation markup. Each unit shows its lines of ref/canonical/KEY.md and its
+PDF page, so notes can point back to it.
+
+There is deliberately no way to look ahead: the cursor only moves forward by what has
+been read, and `where` shows how far through, not what comes next. Reading again
+what has already been read is always allowed.
+
+The cursor lives in experts/NAME/reading/KEY.cursor.json (git-ignored with the rest
+of experts/*/reading/). The first `next` also saves the text being read to
+experts/NAME/.prior/KEY.md with its sha256, so a later rebuild of the canonical text
+can be shown to the expert as a diff.
+"""
+import argparse, datetime, hashlib, json, os, re, shutil, sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, 'search'))
+from srcsearch.text import clean  # noqa: E402
+
+MARK = re.compile(r'^-{3,}\[pdf-page (\d+)(?:, printed "([^"]*)")?\]-{3,}\s*$')
+NOT_IN_PDF = re.compile(r'^-{3,}\[not in pdf\]-{3,}\s*$')
+
+
+def units(lines):
+    """[(first line, last line, page, printed, kind, text)] in reading order, lines
+    1-based. The provenance comment canonicalize writes at the top is skipped."""
+    out, i, n = [], 0, len(lines)
+    page = printed = None
+    if lines and lines[0].lstrip().startswith('<!--'):
+        while i < n and '-->' not in lines[i]:
+            i += 1
+        i += 1
+    pending_heading = None
+    while i < n:
+        line = lines[i]
+        m = MARK.match(line)
+        if m:
+            page, printed = int(m.group(1)), m.group(2)
+            i += 1
+            continue
+        if NOT_IN_PDF.match(line) or not line.strip():
+            i += 1
+            continue
+        start = i
+        if line.lstrip().startswith('```'):
+            j = i + 1
+            while j < n and not lines[j].lstrip().startswith('```'):
+                j += 1
+            body, kind, i = lines[i + 1:j], 'restored', j + 1
+            last = j
+        elif line.lstrip().startswith('|'):
+            j = i
+            while j < n and lines[j].lstrip().startswith('|'):
+                j += 1
+            body, kind, i, last = lines[i:j], 'table', j, j - 1
+        elif line.lstrip().startswith('#'):
+            if pending_heading:
+                out.append(pending_heading)
+            pending_heading = (start + 1, start + 1, page, printed, 'heading', line.strip())
+            i += 1
+            continue
+        else:
+            body, kind, i, last = [line], 'text', i + 1, i
+        text = '\n'.join(' '.join(clean(b, emphasis=True).s.split()) if kind != 'table' else b.strip()
+                         for b in body).strip()
+        if not text:
+            continue
+        if pending_heading:
+            h = pending_heading
+            out.append((h[0], last + 1, h[2], h[3], kind, h[5] + '\n\n' + text))
+            pending_heading = None
+        else:
+            out.append((start + 1, last + 1, page, printed, kind, text))
+    if pending_heading:
+        out.append(pending_heading)
+    return out
+
+
+def group(us, min_words):
+    """Consecutive units joined until each reaches min_words, never across a heading
+    (a unit that starts with its heading starts a new group)."""
+    if not min_words:
+        return us
+    out, cur = [], None
+    for u in us:
+        starts_heading = u[5].lstrip().startswith('#')
+        if cur is None or starts_heading or len(cur[5].split()) >= min_words:
+            if cur is not None:
+                out.append(cur)
+            cur = u
+        else:
+            kind = cur[4] if cur[4] == u[4] else 'mixed'
+            cur = (cur[0], u[1], cur[2], cur[3], kind, cur[5] + '\n\n' + u[5])
+    if cur is not None:
+        out.append(cur)
+    return out
+
+
+def show(u, k, total):
+    a, b, page, printed, kind, text = u
+    where = f'L{a}' if a == b else f'L{a}–{b}'
+    pg = '' if page is None else f' · p.{page}' + (f' ("{printed}")' if printed else '')
+    label = {'restored': ' · text restored from the PDF', 'table': ' · table'}.get(kind, '')
+    print(f'── unit {k} of {total} · {where}{pg}{label} ──')
+    print(text)
+    print()
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split('\n')[0], formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 epilog=__doc__.split('\n', 1)[1])
+    ap.add_argument('key')
+    ap.add_argument('action', choices=['next', 'again', 'where', 'reset'])
+    ap.add_argument('n', nargs='?', type=int, default=1, help='for again: how many units back')
+    ap.add_argument('--min-words', type=int)
+    ap.add_argument('--expert')
+    ap.add_argument('--yes', action='store_true')
+    a = ap.parse_args()
+    src = os.path.join(ROOT, 'ref', 'canonical', a.key + '.md')
+    if not os.path.isfile(src):
+        sys.exit(f'no canonical text for {a.key!r} (ref/canonical/{a.key}.md); bin/canonicalize builds it')
+    raw = open(src, encoding='utf-8').read()
+    base = units(raw.split('\n'))
+    home = os.path.join(ROOT, 'experts', a.expert or a.key)
+    state_path = os.path.join(home, 'reading', a.key + '.cursor.json')
+    os.makedirs(os.path.dirname(state_path), exist_ok=True)
+    st = json.load(open(state_path)) if os.path.isfile(state_path) else dict(read=0)
+    if a.min_words is not None:
+        if st.get('read') and st.get('min_words', 0) != a.min_words:
+            sys.exit(f'this reading began with --min-words {st.get("min_words", 0)}; the unit size is fixed for a whole '
+                     f'text (reset --yes to start over with another)')
+        st['min_words'] = a.min_words
+    us = group(base, st.get('min_words', 0))
+    sha = hashlib.sha256(raw.encode('utf-8')).hexdigest()
+    if st.get('sha256') and st['sha256'] != sha:
+        print(f'note: ref/canonical/{a.key}.md has changed since this reading began. '
+              f'The text read so far is in experts/{a.expert or a.key}/.prior/{a.key}.md; '
+              f'`diff` it against the canonical text to see what moved.\n')
+    if a.action == 'reset':
+        if not a.yes:
+            sys.exit('reset starts the text over; add --yes if that is meant (the journal is kept)')
+        st = dict(read=0)
+    elif a.action == 'where':
+        print(f'{st["read"]} of {len(us)} units read ({100 * st["read"] // max(1, len(us))}%), '
+              f'{len(raw.splitlines())} lines in ref/canonical/{a.key}.md')
+        return
+    elif a.action == 'again':
+        k0 = max(0, st['read'] - a.n)
+        for k in range(k0, st['read']):
+            show(us[k], k + 1, len(us))
+        if st['read'] == 0:
+            print('nothing read yet')
+        return
+    else:
+        if st['read'] == 0 and 'sha256' not in st:
+            prior = os.path.join(home, '.prior')
+            os.makedirs(prior, exist_ok=True)
+            shutil.copyfile(src, os.path.join(prior, a.key + '.md'))
+            st.update(sha256=sha, started=datetime.datetime.now().astimezone().isoformat(timespec='seconds'))
+        k0, k1 = st['read'], min(len(us), st['read'] + 1)
+        for k in range(k0, k1):
+            show(us[k], k + 1, len(us))
+        if k0 >= len(us):
+            print(f'the end: all {len(us)} units of {a.key} have been read')
+        st['read'] = k1
+        if k1 >= len(us) and 'finished' not in st:
+            st['finished'] = datetime.datetime.now().astimezone().isoformat(timespec='seconds')
+    json.dump(st, open(state_path, 'w'), indent=1)
+
+
+if __name__ == '__main__':
+    main()
