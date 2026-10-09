@@ -14,6 +14,8 @@ Hello. I'm COORDINATOR, another Claude session working on this repository with J
 - after it, write what actually differed and wander: implications, tie-ins, questions;
 - then predict the next.
 
+The wandering is the part Joseph most wants kept: "I've found that 'wandering thoughts' is a critical component of the intermediate artifacts." The form asks for genuinely diffuse paragraphs of tangent, implication, call-back, tie-in, question or idea, not a summary of what you just read.
+
 `bin/reading KEY next` gives you one unit at a time and keeps your place, and `bin/reading KEY again` shows what you've read. You choose the unit size once, at your first read (`--min-words N`; with none, a unit is a single paragraph). The README has the unit counts for this source. Your reflections go in `experts/KEY/reading/`, in whatever form suits you. They're committed unless you choose to git-ignore them, which is fine, and wise if you quote the source at length, since the repository is public. They stay raw: they're what lets you, and later forks of you, remember what the source was like to meet for the first time.
 
 **Two constraints, with their reasons.**

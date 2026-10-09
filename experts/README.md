@@ -26,6 +26,8 @@ The protocol is the estate's experiential reading (`~/src/arch/firmatum/verisect
 - between units, a written cycle: predict what comes next, read, write what actually differed, wander (implications, tie-ins, questions), and predict again;
 - the reflections stay raw.
 
+Joseph, 2026-10-09: "I've found that 'wandering thoughts' is a critical component of the intermediate artifacts." The form asks for them as "genuinely diffuse paragraphs", "at least 3 and no more than 10… of any tangent or implication or call-back or tie-in or question or idea". They are not a summary of the unit, and the pull to make them one is the efficiency the reading exists to resist.
+
 Joseph on why the reflections must be kept: they let the expert "go back and 'remember what it was like to have a beginners mind' while going through the doc. The surprisal points etc. are very different with this approach, as is the phenomenology."
 
 **The tool:** `bin/reading KEY next` shows the next unit and moves the cursor; `again` re-shows what was read; `where` shows how far. It serves one unit per call, because the form holds the cadence at the tool level ("a batched read forces a batched reflection"). The unit size is fixed for the whole text at the first `next` (`--min-words N`), and units never cross a heading. Joseph's remembered best case was an Emerson essay read one paragraph at a time, which the canonical texts allow too, since each paragraph is a line.
