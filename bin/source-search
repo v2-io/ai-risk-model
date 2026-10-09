@@ -159,7 +159,7 @@ def print_defs(out, pq):
 
 # ---------------------------------------------------------------- concordance
 def concordance(conn, a, keys):
-    pq, rx, ps, hs = rank.concordance_rows(conn, a.query, keys=keys)
+    pq, rx, ps, hs = rank.concordance_rows(conn, a.query, keys=keys, exact=a.exact)
     seen, occ = set(), []
     for pid, key, section, start, end, text in ps:
         m = clean(anchor.raw_of(key), start, end)
@@ -233,7 +233,7 @@ def main():
     mode.add_argument('--all', action='store_true', help='every occurrence: a concordance')
     ap.add_argument('--in', dest='within', nargs='+', metavar='DOC', help='narrow to these documents')
     ap.add_argument('-n', type=int, default=10, help='ranked: how many results (default 10)')
-    ap.add_argument('--exact', action='store_true', help='--defs: the term itself only, not terms containing it')
+    ap.add_argument('--exact', action='store_true', help='--defs: the term itself only, not terms containing it; --all: whole words only')
     ap.add_argument('--counts', action='store_true', help='--all: counts only, no occurrence lines')
     ap.add_argument('--full', action='store_true', help='ranked: print each passage whole')
     ap.add_argument('--explain', action='store_true')

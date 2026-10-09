@@ -263,13 +263,18 @@ def definitions(conn, query, keys=None, narrower=True):
 
 
 # ------------------------------------------------------------------ concordance
-def concordance_rows(conn, query, keys=None):
+def concordance_rows(conn, query, keys=None, exact=False):
     """Passages and headings holding a word form that contains the query (by
     substring, so "infohazard" and "biohazards" count for "hazard"), or, for a
-    phrase, the words in order."""
+    phrase, the words in order. With exact, the word or phrase itself only, as
+    whole words: an acronym such as "AI" otherwise matches inside "rail" and
+    "faith"."""
     pq = parse(query)
     ws = words(pq['term']) or words(query)
-    if len(ws) == 1:
+    if exact:
+        pg = r'\m' + r'[^[:alnum:]]+'.join(re.escape(w) for w in ws) + r'\M'
+        py = re.compile(r'(?<![^\W_])' + r'[\W_]+'.join(re.escape(w) for w in ws) + r'(?![^\W_])', re.I)
+    elif len(ws) == 1:
         pg = r'[[:alnum:]]*' + re.escape(ws[0]) + r'[[:alnum:]]*'
         py = re.compile(r'[^\W_]*' + re.escape(ws[0]) + r'[^\W_]*', re.I)
     else:
