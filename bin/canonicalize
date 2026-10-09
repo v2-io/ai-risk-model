@@ -11,7 +11,9 @@ For each KEY it writes
                                          `----------[pdf-page N]----------`
                                          where physical PDF page N begins
     ref/canonical/msc/KEY/pages.json     where each page break went, how sure
-                                         that is, and the self-checks
+                                         that is, the self-checks, and
+                                         `fidelity` (below)
+    ref/canonical/INDEX.md               every source's fidelity mark
     ref/canonical/msc/KEY/…              the conversion's images and metadata,
                                          which KEY.md links to
 
@@ -48,6 +50,18 @@ added back at the end of its page, fenced as ```pdf-text, in pdftotext's
 reading order: on the catalog, 112,000 letters on 372 pages of 49 sources.
 Not attempted where relata had to OCR the PDF, because its text layer is what
 failed (5 sources).
+
+Fidelity. Each source gets a mark saying how far its canonical text can stand
+in for the PDF when quoting: `trusted` (no differences found), `check-pages`
+(check quotes from the listed pages against the PDF) or `check-all` (an OCR
+conversion, or another edition). Behind the mark: the share of the markdown's
+prose found in the PDF's text, the share of the PDF's text found in the
+canonical text, and the markdown lines that don't match, by kind: tables
+reflowed, math as LaTeX, garbled OCR text, or text not in the PDF's text
+layer (captions read from the image, marker's escaped markup). The
+conversion's own text is never edited; garbled lines stay where marker put
+them and are listed. On 2026-10-08: 40 trusted, 41 check-pages (149 pages),
+6 check-all.
 
 How well it works (2026-10-08). On the 84 catalog sources, 3948 of 3960
 headings land on the page marker's own metadata records for them; about 6% of
@@ -265,8 +279,9 @@ def pdfinfo_pages(pdf):
     m = re.search(r'^Pages:\s+(\d+)', out, re.M)
     return int(m.group(1)) if m else None
 
-SKIP = re.compile(r'!\[[^\]]*\]\([^)]*\)'    # images
-                  r'|\]\([^)]*\)'            # link targets (the link text stays)
+URL = r'\((?:[^()\s]|\([^()\s]*\))*\)'        # link target; balanced parentheses allowed
+SKIP = re.compile(r'!\[[^\]]*\]' + URL +       # images
+                  r'|\]' + URL +               # link targets (the link text stays)
                   r'|<[^>\n]{1,200}>')       # html tags
 
 def md_stream(md):
@@ -588,6 +603,109 @@ def missing_text(md, brk, pages, M):
             out[p] = keep
     return out
 
+# ----------------------------------------------------------------- fidelity
+
+FID_N = 16          # letters per run when comparing the two texts
+WEAK = 0.6          # a PDF page with less of its text than this in the canonical text
+JUNK = re.compile(r'[<>=~^]|[a-z][0-9][a-z]', re.I)
+
+def fidelity(md, brk, body, pages, P, ocr, mode):
+    """How far the canonical text can stand in for the PDF, and why not where
+    it can't. Faithful: share of the markdown's prose (not tables or math) whose
+    16-letter runs occur in the PDF's text. Complete: share of the PDF's text
+    found in the canonical text, pdf-text blocks included. Markdown lines whose
+    text is mostly not in the PDF are sorted into kinds, with their pages."""
+    N = FID_N
+    pset = {P[i:i+N] for i in range(len(P) - N + 1)}
+    ats = [a for _, a, _ in brk]
+    page_at = lambda off: brk[max(0, bisect.bisect_right(ats, off) - 1)][0]
+    kinds = {}
+    prose_in = prose_all = 0
+    off = 0
+    for line in md.split('\n'):
+        start, off = off, off + len(line) + 1
+        n = md_stream(line)[0]
+        if len(n) < 40:
+            continue
+        g = [n[i:i+N] for i in range(0, len(n) - N + 1, 4)]
+        found = sum(x in pset for x in g)
+        is_table = line.lstrip().startswith('|')
+        is_math = '$$' in line or '\\frac' in line or bool(re.search(r'\$[^$\s][^$]*\$', line))
+        if not (is_table or is_math):
+            prose_in += found; prose_all += len(g)
+        if found >= 0.5 * len(g):
+            continue
+        kind = ('table reflowed' if is_table else 'math as LaTeX' if is_math else
+                'garbled OCR text' if len(JUNK.findall(line)) >= max(3, len(n) / 40) else
+                "not in the PDF's text layer")
+        k = kinds.setdefault(kind, dict(lines=0, pages=set()))
+        k['lines'] += 1
+        pg = page_at(start)
+        if pg is not None:
+            k['pages'].add(pg)
+    clean = '\n'.join(l for l in body.split('\n') if not MARK_RE.match(l))
+    C, _ = md_stream(clean.replace(SUPP_OPEN, '').replace(SUPP_CLOSE, ''))
+    cset = {C[i:i+N] for i in range(len(C) - N + 1)}
+    weak, tot_in, tot = [], 0, 0
+    for i, t in enumerate(pages, 1):
+        nt = norm(t)
+        g = [nt[k:k+N] for k in range(0, len(nt) - N + 1, 4)]
+        if len(g) < 25:
+            continue
+        f = sum(x in cset for x in g)
+        tot_in += f; tot += len(g)
+        if f < WEAK * len(g):
+            weak.append(i)
+    faithful = prose_in / max(1, prose_all)
+    complete = tot_in / max(1, tot)
+    check = set(weak)
+    for k in kinds.values():
+        check |= k['pages']
+    if ocr or mode == 'unordered' or faithful < 0.9:
+        mark = 'check-all'
+    elif check:
+        mark = 'check-pages'
+    else:
+        mark = 'trusted'
+    why = []
+    if ocr:
+        why.append("OCR conversion: relata's probe judged the PDF's text layer insufficient, so this text is marker's OCR")
+    if mode == 'unordered':
+        why.append("another edition (the publisher's web edition), aligned to the PDF; its wording matched "
+                   "the PDF in 2396 of 2408 lines checked on 2026-10-08")
+    if faithful < 0.9:
+        why.append('much of the prose does not match the PDF text')
+    return dict(mark=mark, why=why, faithful_prose=round(faithful, 3), complete=round(complete, 3),
+                pages_to_check=sorted(check), pdf_pages_mostly_absent=weak,
+                differences={k: dict(lines=v['lines'], pages=sorted(v['pages'])) for k, v in kinds.items()})
+
+def write_index(outdir):
+    rows = []
+    for d in sorted(os.listdir(os.path.join(outdir, 'msc'))):
+        f = os.path.join(outdir, 'msc', d, 'pages.json')
+        if not os.path.isfile(f):
+            continue
+        r = json.load(open(f))
+        fi = r.get('fidelity') or {}
+        add = r.get('pdf_text_added')
+        added = (len(add) if isinstance(add, dict) else 0)
+        diffs = '; '.join(f'{k} ({v["lines"]} lines)' for k, v in fi.get('differences', {}).items())
+        pc = fi.get('pages_to_check', [])
+        rows.append(f"| `{d}` | {fi.get('mark', '?')} | {fi.get('faithful_prose', '')} | {fi.get('complete', '')} | "
+                    f"{len(pc) if fi.get('mark') == 'check-pages' else ('all' if fi.get('mark') == 'check-all' else 0)} | "
+                    f"{added} | {'; '.join(fi.get('why', [])) or ''}{(' — ' if fi.get('why') and diffs else '') + diffs} |")
+    with open(os.path.join(outdir, 'INDEX.md'), 'w') as f:
+        f.write('# ref/canonical: how far each text can stand in for its PDF\n\n'
+                'Made by `bin/canonicalize`; details per source in `msc/<key>/pages.json` (`fidelity`).\n\n'
+                '- **trusted**: no differences found; quote from the canonical text.\n'
+                '- **check-pages**: check quotes from the listed pages (`pages_to_check`) against the PDF.\n'
+                '- **check-all**: check every quote against the PDF (OCR conversion, or another edition).\n\n'
+                '*Faithful*: share of the markdown\'s prose found in the PDF\'s text. *Complete*: share of the '
+                'PDF\'s text found in the canonical text. *Restored*: pages with text added back from the PDF '
+                '(```pdf-text blocks).\n\n'
+                '| Source | Mark | Faithful | Complete | Pages to check | Restored | Differences |\n'
+                '|---|---|---|---|---|---|---|\n' + '\n'.join(rows) + '\n')
+
 # ------------------------------------------------------------------- rendering
 
 def render(md, brk, printed, supp=None):
@@ -733,6 +851,7 @@ def canonicalize(key, outdir):
                 shutil.copy2(fp, os.path.join(msc, f))
     with open(os.path.join(outdir, key + '.md'), 'w', encoding='utf-8') as f:
         f.write(head + body)
+    report['fidelity'] = fidelity(md, brk, body, pages, P, src.get('ocr'), report['mode'])
     report['sources'] = dict(pdf=src['pdf'], pdf_sha256=sha256(src['pdf']),
                              markdown=src['md'], markdown_sha256=sha256(src['md']),
                              note=src['note'])
@@ -808,10 +927,11 @@ def main(argv):
             flags.append('ROUND TRIP FAILED'); status = 1
         h = r.get('headings_vs_marker_metadata')
         hs = f'  headings {h["right"]}/{h["right"] + h["wrong"]}' if h else ''
-        print(f'{key}: {r["pdf_pages"]} pages, {r["mode"]}, matched {r["matched"]}, '
+        print(f'{key}: {r["fidelity"]["mark"]}, {r["pdf_pages"]} pages, {r["mode"]}, matched {r["matched"]}, '
               f'{len(r["breaks"])} markers ({r["breaks_uncertain"]} uncertain), '
               f'{len(r["pages_without_text_located"])} pages unlocated{hs}'
               + (' — ' + '; '.join(flags) if flags else ''))
+    write_index(outdir)
     return status
 
 if __name__ == '__main__':
