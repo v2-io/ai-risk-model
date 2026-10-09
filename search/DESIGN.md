@@ -376,7 +376,12 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
 
    Their notes also record where each document's headings mislead: IASR's glossary is under no heading, the Risk Report's Claim 5.3 has no heading marker, and AISI's chapter numbers are empty headings. On a short document with no strong match, the outline fills its lines with noise.
 
-   Not yet measured, and the measure closest to the outline's purpose: an agent given the outline and a question chooses what to read, and the result is judged.
+   Not yet measured, and the measure closest to the outline's purpose. Joseph, 2026-10-09: "the real test would be seeing if ones without the outline end up hallucinating about other parts of the doc etc." My lean, untried:
+   - Pairs of fresh agents get the same document and question. One gets the outline; the other gets a ranked list, or search alone.
+   - Each answers, citing where. Every claim is graded against the judges' readings, which already say what each document holds and where.
+   - Three things are counted: claims about parts the agent never opened; false "the document doesn't cover this" answers; and whether the agent says what it hasn't read.
+   - The paraphrase questions are where a difference should show. An agent without the outline would answer from what it found, as if that were the whole document.
+   - It would be run once the outline is a `source-search` verb, on the five judged documents.
 
    Still to do: the outline as a verb of `source-search`; the scorer fixes, by someone other than the outline's author.
 
