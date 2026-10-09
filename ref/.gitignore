@@ -4,3 +4,7 @@ DDD_*/
 
 # Prior-art figures for the alignment map: copyrighted page renders, local only.
 prior-art-figures/
+
+# Canonical page-marked texts made by bin/canonicalize: copies of copyrighted
+# documents, local only. Rebuild with bin/canonicalize.
+canonical/

@@ -1,0 +1,718 @@
+#!/usr/bin/env python3
+"""Build ref/canonical/: each source's best markdown, with the physical PDF page
+marked in it.
+
+    bin/canonicalize                 every catalog source that has markdown
+    bin/canonicalize KEY…            just these relata keys
+    bin/canonicalize --out DIR KEY…  write somewhere other than ref/canonical
+
+For each KEY it writes
+    ref/canonical/KEY.md                 the markdown, with a line
+                                         `----------[pdf-page N]----------`
+                                         where physical PDF page N begins
+    ref/canonical/msc/KEY/pages.json     where each page break went, how sure
+                                         that is, and the self-checks
+    ref/canonical/msc/KEY/…              the conversion's images and metadata,
+                                         which KEY.md links to
+
+Page N is the physical page index in the PDF, counting from 1. Where the page
+also has a printed number, the marker carries it too —
+`----------[pdf-page 12, printed "10"]----------` — found from folios (lone
+numbers, roman numerals, "21/144" or chapter-page "2-6" in the page's header or
+footer lines that keep a fixed offset from the physical page over a run of
+pages) and, for pages the folios leave unlabelled, from the PDF's own
+/PageLabels when those agree with the folios.
+
+How the pages are found: marker (which made the markdown) was run without its
+page separators, so the breaks are recovered by aligning the markdown with
+pdftotext's text of each page. Both texts are reduced to casefolded letters and
+digits, so hyphenation, spacing, punctuation and markdown syntax drop out; runs
+of 24 that occur exactly once in each text are anchors, and an anchor gives the
+markdown around it the page of the PDF text it matched. Page text comes from
+`pdftotext -tsv`, which labels every word with its page: splitting ordinary
+pdftotext output on form feeds is not safe, because text extracted from some
+figures contains stray form feeds.
+
+Marker output is in page order by construction, so for it the anchors are held
+to a page order that never decreases, and marker's own page facts (image file
+names `_page_N_…` and `<span id="page-N-…">` link targets) outrank the text
+anchors. Other markdown — IASR 2026, scraped from the publisher's web edition —
+is not in PDF order, so no order is imposed: each passage gets the page its
+anchors point to, page markers may go backwards, and text that matches nothing
+in the PDF is marked `----------[not in pdf]----------`.
+
+How well it works (2026-10-08). On the 84 catalog sources, 3948 of 3960
+headings land on the page marker's own metadata records for them; about 6% of
+breaks fall in a window of text no anchor covers (median width 3 letters), and
+pages.json lists each one. Two documents re-run through marker with page
+separators, as answer keys: 233 of 233 and 451 of 451 lines on the right page.
+IASR (unordered): of 2408 lines of 60+ letters checked against the PDF text of
+the page they are marked with, 2396 are found there, 8 belong to another page
+(rows of a table that recurs later), and 4 are web-only text.
+"""
+import bisect, datetime, difflib, hashlib, json, os, re, shutil, subprocess, sys, unicodedata
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+K = 24        # anchor length, in letters and digits
+T = 12        # fewer letters than this on one side of a line: not a real mid-line break
+BLK = 4       # smallest local match used to settle a window between pages
+MARK = '----------[pdf-page {}]----------'
+MARK_PRINTED = '----------[pdf-page {}, printed "{}"]----------'
+NOT_IN_PDF = '----------[not in pdf]----------'
+MARK_RE = re.compile(r'^----------\[(?:pdf-page (\d+)(?:, printed "([^"]*)")?|not in pdf)\]----------$')
+
+# Sources whose markdown was made outside relata (relata timed out on them).
+LOCAL = {
+    'csb-2007-bp-texas-city': dict(
+        md='ref/csb-2007-bp-texas-city/csb-2007-bp-texas-city.md',
+        dir='ref/csb-2007-bp-texas-city', marker=True,
+        note='marker_single run by hand; relata timed out'),
+    'bengio-2026-international': dict(
+        md='ref/iasr-2026-full.md', dir=None, marker=False,
+        note="the publisher's web edition saved as markdown, aligned to the PDF edition; "
+             'marker_single could not convert the PDF'),
+}
+
+# ---------------------------------------------------------------- text streams
+
+def norm_chars(s):
+    for ch in unicodedata.normalize('NFKC', s).casefold():
+        if ch.isalnum():
+            yield ch
+
+def norm(s):
+    return ''.join(norm_chars(s))
+
+def pdf_tsv(pdf):
+    """Text of each physical page, and the candidate printed page numbers on
+    each, from one run of pdftotext -tsv (which gives every word its page and
+    position)."""
+    out = subprocess.run(['pdftotext', '-tsv', '-enc', 'UTF-8', pdf, '-'],
+                         capture_output=True, check=True).stdout.decode('utf-8', 'replace')
+    words, dims, lines = {}, {}, {}
+    for row in out.split('\n')[1:]:
+        f = row.split('\t')
+        if len(f) < 12:
+            continue
+        pn = int(f[1])
+        words.setdefault(pn, [])
+        if f[0] == '1':
+            dims[pn] = float(f[9])
+        elif f[0] == '5':
+            words[pn].append(f[11])
+            lines.setdefault((pn, f[2], f[3], f[4]), []).append(
+                (float(f[7]), float(f[9]), f[11]))      # top, height, text
+    n = max(words) if words else 0
+    pages = [' '.join(words.get(k, [])) for k in range(1, n + 1)]
+    return pages, folio_candidates(lines, dims)
+
+# ------------------------------------------------------- printed page numbers
+
+ROMAN = (('m', 1000), ('cm', 900), ('d', 500), ('cd', 400), ('c', 100), ('xc', 90),
+         ('l', 50), ('xl', 40), ('x', 10), ('ix', 9), ('v', 5), ('iv', 4), ('i', 1))
+
+def to_roman(n):
+    out = ''
+    for r, v in ROMAN:
+        while n >= v:
+            out += r; n -= v
+    return out
+
+def roman_value(s):
+    s = s.lower()
+    if not s or len(s) > 6 or set(s) - set('ivxlcdm'):
+        return None
+    vals = dict((r, v) for r, v in ROMAN if len(r) == 1)
+    total = 0
+    for k, a in enumerate(s):
+        v = vals[a]
+        total += -v if k + 1 < len(s) and vals[s[k+1]] > v else v
+    return total if to_roman(total) == s else None
+
+FOLIO_BAND = 0.12   # header/footer band, as a fraction of page height
+
+def folio_candidates(lines, dims):
+    """Page numbers as printed: lone numbers (1-4 digits, roman, "21/144",
+    chapter-page "2-6") on short lines at the top or bottom of the page — in a
+    fixed band, or within three line-heights of the page's first or last text."""
+    ext = {}
+    for (pn, *_), ws in lines.items():
+        t = min(w[0] for w in ws); b = max(w[0] + w[1] for w in ws)
+        e = ext.setdefault(pn, [1e9, -1e9, []])
+        e[0] = min(e[0], t); e[1] = max(e[1], b); e[2].append(sorted(w[1] for w in ws)[len(ws) // 2])
+    cands = {}
+    for (pn, *_), ws in lines.items():
+        H = dims.get(pn)
+        if not H:
+            continue
+        top = min(w[0] for w in ws); bot = max(w[0] + w[1] for w in ws)
+        etop, ebot, hs = ext[pn]; lh = sorted(hs)[len(hs) // 2]
+        if not (bot < FOLIO_BAND * H or top > (1 - FOLIO_BAND) * H
+                or top <= etop + 3 * lh or bot >= ebot - 3 * lh):
+            continue
+        toks = [''.join(c for c in w[2] if unicodedata.category(c) != 'Cf') for w in ws]
+        toks = [t for t in toks if t]
+        if not toks or len(toks) > 8:
+            continue
+        for t in toks:
+            core = t.strip('-–—|.()[]')
+            m = re.fullmatch(r'(\d{1,4})/(\d{1,4})', core)
+            if m and int(m.group(1)) <= int(m.group(2)):
+                cands.setdefault(pn, set()).add(('arabic', int(m.group(1)))); continue
+            m = re.fullmatch(r'([A-Z]?\d{1,2})-(\d{1,3})', core)
+            if m:
+                cands.setdefault(pn, set()).add(('chapter ' + m.group(1), int(m.group(2)))); continue
+            if re.fullmatch(r'\d{1,4}', core):
+                cands.setdefault(pn, set()).add(('arabic', int(core))); continue
+            rv = roman_value(core)
+            if rv:
+                cands.setdefault(pn, set()).add(('roman', rv))
+    return cands
+
+def label(style, value):
+    if style == 'roman':
+        return to_roman(value)
+    if style.startswith('chapter '):
+        return style.split(' ', 1)[1] + '-' + str(value)
+    return str(value)
+
+def printed_numbering(cands, min_support=3):
+    """Runs of pages whose printed number keeps a fixed offset from the
+    physical page, per numbering style. Returns the runs, and for each page in
+    a run its printed label and whether that number was seen on the page."""
+    from collections import Counter
+    votes = Counter((k, p - v) for p, cs in cands.items() for k, v in cs)
+    runs, claimed = [], set()
+    for (kind, d), n in votes.most_common():
+        if n < min_support:
+            break
+        sup = sorted(p for p, cs in cands.items() if (kind, p - d) in cs and p not in claimed)
+        if len(sup) < min_support:
+            continue
+        if len(sup) < 0.35 * (sup[-1] - sup[0] + 1):     # too sparse: keep the densest stretch
+            best = None
+            for a in range(len(sup)):
+                for b in range(a + min_support - 1, len(sup)):
+                    if b - a + 1 >= 0.5 * (sup[b] - sup[a] + 1) and (best is None or b - a > best[1] - best[0]):
+                        best = (a, b)
+            if not best:
+                continue
+            sup = sup[best[0]:best[1] + 1]
+        lo, hi = sup[0], sup[-1]
+        if any(not (hi < r['from'] or lo > r['to']) for r in runs):
+            continue
+        runs.append({'style': kind, 'from': lo, 'to': hi, 'first_printed': label(kind, lo - d),
+                     'offset': d, 'seen_on': len(sup)})
+        claimed.update(range(lo, hi + 1))
+    runs.sort(key=lambda r: r['from'])
+    pages = {}
+    for r in runs:
+        for p in range(r['from'], r['to'] + 1):
+            v = p - r['offset']
+            if v > 0:
+                seen = (r['style'], v) in cands.get(p, ())
+                pages[p] = (label(r['style'], v), 'seen on page' if seen else 'inferred from run')
+    return runs, pages
+
+def merge_page_labels(printed, pl):
+    """Fill pages the folios leave unlabelled from the PDF's /PageLabels, but
+    only when those agree with the folios where both exist (or there are no
+    folios): producers sometimes write labels that match nothing printed."""
+    if not pl:
+        return None
+    both = [p for p in printed if p <= len(pl)]
+    agree = sum(1 for p in both if pl[p-1] == printed[p][0])
+    trusted = not both or agree >= 0.9 * len(both)
+    if trusted:
+        for p, lab in enumerate(pl, 1):
+            if p not in printed and lab:
+                printed[p] = (lab, 'PDF page labels')
+    return dict(agree_with_folios=agree, compared=len(both), used_to_fill=trusted,
+                labels=pl)
+
+def pdf_page_labels(pdf):
+    """The PDF's own /PageLabels, when it declares them (needs pypdf)."""
+    try:
+        import logging, pypdf
+        logging.getLogger('pypdf').setLevel(logging.ERROR)
+        r = pypdf.PdfReader(pdf)
+        if '/PageLabels' not in r.trailer['/Root']:
+            return None
+        return list(r.page_labels)
+    except Exception:
+        return None
+
+def pdfinfo_pages(pdf):
+    out = subprocess.run(['pdfinfo', pdf], capture_output=True, text=True).stdout
+    m = re.search(r'^Pages:\s+(\d+)', out, re.M)
+    return int(m.group(1)) if m else None
+
+SKIP = re.compile(r'!\[[^\]]*\]\([^)]*\)'    # images
+                  r'|\]\([^)]*\)'            # link targets (the link text stays)
+                  r'|<[^>\n]{1,200}>')       # html tags
+
+def md_stream(md):
+    keep = bytearray(b'\x01') * len(md)
+    for m in SKIP.finditer(md):
+        a, b = m.span()
+        if m.group().startswith(']('):
+            a += 1
+        keep[a:b] = b'\x00' * (b - a)
+    chars, offs = [], []
+    for i, ch in enumerate(md):
+        if keep[i]:
+            for c in norm_chars(ch):
+                chars.append(c); offs.append(i)
+    return ''.join(chars), offs
+
+def pdf_stream(pages):
+    starts, parts, n = [], [], 0
+    for p in pages:
+        starts.append(n)
+        s = norm(p); parts.append(s); n += len(s)
+    return ''.join(parts), starts
+
+def unique_kgrams(s):
+    seen = {}
+    for i in range(len(s) - K + 1):
+        g = s[i:i+K]
+        seen[g] = -1 if g in seen else i
+    return seen
+
+def anchor_pairs(M, P):
+    um, up = unique_kgrams(M), unique_kgrams(P)
+    return sorted((i, up[g]) for g, i in um.items() if i >= 0 and up.get(g, -1) >= 0)
+
+# ------------------------------------------------------- alignment: marker mode
+
+def chain_nondecreasing(trip):
+    """Longest subsequence (in markdown order) whose pages never decrease."""
+    tails, tails_i, prev = [], [], [None] * len(trip)
+    for idx, (_, _, p) in enumerate(trip):
+        k = bisect.bisect_right(tails, p)
+        if k == len(tails):
+            tails.append(p); tails_i.append(idx)
+        else:
+            tails[k] = p; tails_i[k] = idx
+        prev[idx] = tails_i[k-1] if k else None
+    out, idx = [], (tails_i[-1] if tails_i else None)
+    while idx is not None:
+        out.append(trip[idx][:2]); idx = prev[idx]
+    return out[::-1]
+
+def align_ordered(M, P, pstarts):
+    page = lambda j: bisect.bisect_right(pstarts, j)
+    chain = chain_nondecreasing([(i, j, page(j)) for i, j in anchor_pairs(M, P)])
+    page_of, pos_of = [None] * len(M), [None] * len(M)
+    for i, j in chain:
+        for d in range(K):
+            if page_of[i+d] is None:
+                pos_of[i+d] = j + d
+                page_of[i+d] = page(j + d)
+    matched = sum(p is not None for p in page_of)
+    fill_ordered(M, P, pstarts, page_of, pos_of)
+    return page_of, matched
+
+def fill_ordered(M, P, pstarts, page_of, pos_of):
+    """Unanchored runs: between two anchored letters on the same page the run is
+    on that page; where the page changes across the run, align it locally with
+    the PDF text between the two anchors and keep what matches."""
+    n, i = len(M), 0
+    while i < n:
+        if page_of[i] is not None:
+            i += 1; continue
+        j = i
+        while j < n and page_of[j] is None:
+            j += 1
+        a, b = i - 1, j
+        pa = page_of[a] if a >= 0 else None
+        pb = page_of[b] if b < n else None
+        if pa is not None and pa == pb:
+            for x in range(i, j):
+                page_of[x] = pa
+        elif pa is not None and pb is not None:
+            lo, hi = pos_of[a] + 1, pos_of[b]
+            if 0 < hi - lo < 200000 and j - i < 200000:
+                sm = difflib.SequenceMatcher(None, M[i:j], P[lo:hi], autojunk=False)
+                for blk in sm.get_matching_blocks():
+                    if blk.size >= BLK:
+                        for d in range(blk.size):
+                            q = lo + blk.b + d
+                            pos_of[i + blk.a + d] = q
+                            page_of[i + blk.a + d] = bisect.bisect_right(pstarts, q)
+                k = i
+                while k < j:
+                    if page_of[k] is not None:
+                        k += 1; continue
+                    m = k
+                    while m < j and page_of[m] is None:
+                        m += 1
+                    left = page_of[k-1] if k > 0 else None
+                    right = page_of[m] if m < n else None
+                    if left is not None and left == right:
+                        for x in range(k, m):
+                            page_of[x] = left
+                    k = m
+        i = j
+
+IMG = re.compile(r'!\[[^\]]*\]\(_page_(\d+)_[^)]*\)')
+SPAN = re.compile(r'<span id="page-(\d+)-\d+"')
+
+def marker_facts(md):
+    """Pages marker wrote into its own output (0-based there, 1-based here)."""
+    pts = [(m.start(), int(m.group(1)) + 1) for m in IMG.finditer(md)]
+    pts += [(m.start(), int(m.group(1)) + 1) for m in SPAN.finditer(md)]
+    return sorted(pts)
+
+def breaks_ordered(md, moff, page_of, npages):
+    """[(page, offset, unlocated)]: marker for `page` goes at `offset`; unlocated
+    counts letters no anchor placed in the window the break could fall in
+    (0: determined; -1: nothing on or after that page was located)."""
+    facts = marker_facts(md)
+    fo = [o for o, _ in facts]
+    pts, conflicts = list(facts), 0
+    for o, p in zip(moff, page_of):
+        if p is None:
+            continue
+        k = bisect.bisect_right(fo, o)
+        lo = facts[k-1][1] if k else 1
+        hi = facts[k][1] if k < len(facts) else npages
+        if lo <= p <= hi:
+            pts.append((o, p))
+        else:
+            conflicts += 1
+    pts.sort()
+    clean, mx = [], 0
+    for o, p in pts:
+        if p < mx:
+            conflicts += 1; continue
+        mx = p; clean.append((o, p))
+    unloc = sorted(moff[i] for i, p in enumerate(page_of) if p is None)
+    locpos = [o for o, _ in clean]
+    def count(a, b, test):
+        k0, k1 = bisect.bisect_left(locpos, a), bisect.bisect_left(locpos, b)
+        return sum(1 for _, p in clean[k0:k1] if test(p))
+    out = [(1, 0, 0)]
+    prev_o, prev_p = 0, 1
+    for o, p in clean:
+        if p > prev_p:
+            at = max(place(md, o, lambda a, b: count(a, b, lambda x: x < p),
+                                  lambda a, b: count(a, b, lambda x: x >= p)), out[-1][1])
+            gap = bisect.bisect_left(unloc, o) - bisect.bisect_right(unloc, prev_o)
+            for q in range(prev_p + 1, p + 1):
+                out.append((q, at, gap))
+            prev_p = p
+        prev_o = o
+    for q in range(prev_p + 1, npages + 1):
+        out.append((q, len(md), -1))
+    return out, conflicts
+
+def place(md, b, before, after):
+    """Break position for a page change first seen at offset b: at a line start,
+    unless both sides of the line carry real text (a paragraph marker joined
+    across the page), then at the word boundary."""
+    ls = md.rfind('\n', 0, b) + 1
+    le = md.find('\n', b)
+    le = len(md) if le < 0 else le
+    if before(ls, b) < T:
+        return ls
+    if after(b, le) < T:
+        return min(le + 1, len(md))
+    x = b
+    while x > ls and not md[x-1].isspace():
+        x -= 1
+    return x
+
+# ------------------------------------------------------ alignment: foreign mode
+
+def breaks_unordered(md, moff, M, P, pstarts):
+    """Each letter gets the page its anchors point to (letters claimed by two
+    pages get none); runs shorter than two anchors' worth, set between text of
+    another page, are dropped as noise; short same-page gaps are filled. Every
+    change of page — either direction — gets a marker, and runs of text with no
+    page get the not-in-pdf marker."""
+    page = lambda j: bisect.bisect_right(pstarts, j)
+    page_of = [None] * len(M)
+    clash = bytearray(len(M))
+    for i, j in anchor_pairs(M, P):
+        for d in range(K):
+            q = page(j + d)
+            if page_of[i+d] is None and not clash[i+d]:
+                page_of[i+d] = q
+            elif page_of[i+d] != q:
+                page_of[i+d] = None; clash[i+d] = 1
+    matched = sum(p is not None for p in page_of)
+    runs = run_list(page_of)                       # [(page or None, start, end)]
+    for k, (p, a, b) in enumerate(runs):           # drop isolated short runs
+        if p is not None and b - a < 2 * K:
+            left = next((r[0] for r in reversed(runs[:k]) if r[0] is not None), None)
+            right = next((r[0] for r in runs[k+1:] if r[0] is not None), None)
+            if left != p and right != p:
+                for x in range(a, b):
+                    page_of[x] = None
+    runs = run_list(page_of)
+    for k, (p, a, b) in enumerate(runs):           # fill short gaps within a page
+        if p is None and 0 < k < len(runs) - 1 and b - a <= 4 * K \
+                and runs[k-1][0] is not None and runs[k-1][0] == runs[k+1][0]:
+            for x in range(a, b):
+                page_of[x] = runs[k-1][0]
+    # Text with no unique anchor may still be in the PDF, repeated on several
+    # pages (summaries, glossaries, tables reprinted). Such a run takes the
+    # occurrence page nearest the pages of the text around it; only text found
+    # on no page at all is "not in pdf".
+    page_text = [P[pstarts[k]:(pstarts[k+1] if k + 1 < len(pstarts) else len(P))]
+                 for k in range(len(pstarts))]
+    runs = run_list(page_of)
+    repeated = 0
+    for k, (p, a, b) in enumerate(runs):
+        if p is not None or b - a < 4 * K:
+            continue
+        grams = [M[x:x+K] for x in range(a, b - K + 1, K // 2)]
+        hits = {}
+        for g in grams:
+            for q, t in enumerate(page_text, 1):
+                if g in t:
+                    hits[q] = hits.get(q, 0) + 1
+        if not hits:
+            continue
+        top = max(hits.values())
+        cands = [q for q, h in hits.items() if h >= 0.8 * top]
+        left = next((r[0] for r in reversed(runs[:k]) if r[0] is not None), None)
+        right = next((r[0] for r in runs[k+1:] if r[0] is not None), None)
+        near = [x for x in (left, right) if x is not None]
+        best = min(cands, key=lambda q: (min((abs(q - x) for x in near), default=0), -hits[q]))
+        for x in range(a, b):
+            page_of[x] = best
+        repeated += 1
+    runs = run_list(page_of)
+    out, cur = [], 'start'
+    for p, a, b in runs:
+        if p is None and b - a < 4 * K:
+            continue                               # too small to call it not-in-pdf
+        if p == cur:
+            continue
+        o = moff[a]
+        if p is None:
+            at = md.rfind('\n', 0, o) + 1
+        else:
+            at = place(md, o, lambda x, y: 0, lambda x, y: T)   # snap to line start
+        at = max(at, out[-1][1] if out else 0)
+        out.append((p, at, 0))
+        cur = p
+    if out:
+        out[0] = (out[0][0], 0, 0)
+    return out, page_of, matched, repeated
+
+def run_list(page_of):
+    runs, a = [], 0
+    for i in range(1, len(page_of) + 1):
+        if i == len(page_of) or page_of[i] != page_of[a]:
+            runs.append((page_of[a], a, i)); a = i
+    return runs
+
+# ------------------------------------------------------------------- rendering
+
+def render(md, brk, printed):
+    """Insert a marker line at each break. Between breaks the text is untouched,
+    except that the blank lines framing each marker are normalised."""
+    out, last = [], 0
+    for page, at, _ in brk:
+        chunk = md[last:at].strip('\n')
+        if chunk.strip():
+            out.append(chunk)
+        if page is None:
+            out.append(NOT_IN_PDF)
+        elif page in printed:
+            out.append(MARK_PRINTED.format(page, printed[page][0]))
+        else:
+            out.append(MARK.format(page))
+        last = at
+    tail = md[last:].strip('\n')
+    if tail.strip():
+        out.append(tail)
+    return '\n\n'.join(out) + '\n'
+
+# ------------------------------------------------------------------ the sources
+
+def relata_show(key):
+    out = subprocess.run(['relata', 'show', key], stdin=subprocess.DEVNULL,
+                         capture_output=True, text=True).stdout
+    pdf = re.search(r'^pdf:\s+(\S+)', out, re.M)
+    md = re.search(r'^markdown:\s+(/\S+)', out, re.M)
+    return (pdf.group(1) if pdf else None), (md.group(1) if md else None)
+
+def catalog_keys():
+    text = open(os.path.join(REPO, 'source-catalog.md')).read()
+    keys = []
+    for k in re.findall(r'`([a-z0-9][a-z0-9_.-]+)`', text):
+        if not k.endswith('.md') and k not in keys:
+            keys.append(k)
+    return keys
+
+def sha256(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as f:
+        for b in iter(lambda: f.read(1 << 20), b''):
+            h.update(b)
+    return h.hexdigest()
+
+def source(key):
+    pdf, mddir = relata_show(key)
+    if key in LOCAL:
+        s = LOCAL[key]
+        d = os.path.join(REPO, s['dir']) if s['dir'] else None
+        return dict(pdf=pdf, md=os.path.join(REPO, s['md']), dir=d,
+                    marker=s['marker'], note=s['note'])
+    if mddir and os.path.isfile(os.path.join(mddir, 'content.md')):
+        return dict(pdf=pdf, md=os.path.join(mddir, 'content.md'), dir=mddir,
+                    marker=True, note='relata conversion')
+    return dict(pdf=pdf, md=None)
+
+# --------------------------------------------------------------------- one key
+
+def canonicalize(key, outdir):
+    src = source(key)
+    if not src.get('pdf') or not os.path.isfile(src['pdf']):
+        return dict(key=key, skipped='no PDF in relata')
+    if not src.get('md'):
+        return dict(key=key, skipped='no markdown (relata has not converted it)')
+    md = open(src['md'], encoding='utf-8').read()
+    pages, cands = pdf_tsv(src['pdf'])
+    runs, printed = printed_numbering(cands)
+    labels_report = merge_page_labels(printed, pdf_page_labels(src['pdf']))
+    info_pages = pdfinfo_pages(src['pdf'])
+    M, moff = md_stream(md)
+    P, pstarts = pdf_stream(pages)
+    report = dict(key=key, mode='marker' if src['marker'] else 'unordered',
+                  pdf_pages=len(pages), pdfinfo_pages=info_pages)
+    if src['marker']:
+        page_of, matched = align_ordered(M, P, pstarts)
+        brk, conflicts = breaks_ordered(md, moff, page_of, len(pages))
+        report['conflicts_with_marker_facts'] = conflicts
+    else:
+        brk, page_of, matched, repeated = breaks_unordered(md, moff, M, P, pstarts)
+        report['passages_repeated_in_pdf_placed_by_context'] = repeated
+    report['matched'] = round(matched / max(1, len(M)), 3)
+
+    msc = os.path.join(outdir, 'msc', key)
+    rel = os.path.relpath(msc, outdir)
+    body = render(md, brk, printed)
+    if src['marker']:   # point marker's image links at the copies in msc/
+        body = re.sub(r'(!\[[^\]]*\]\()(_page_\d+_[^)]*\))', lambda m: m.group(1) + rel + '/' + m.group(2), body)
+
+    # Self-checks. Round trip: removing the markers gives back the source text.
+    stripped = '\n'.join(l for l in body.split('\n') if not MARK_RE.match(l))
+    if src['marker']:
+        stripped = stripped.replace('](' + rel + '/_page_', '](_page_')
+    ws = lambda s: re.sub(r'\s+', ' ', s).strip()
+    report['roundtrip'] = ws(stripped) == ws(md)
+    if src['marker'] and src['dir']:
+        report['headings_vs_marker_metadata'] = heading_check(md, brk, src['dir'])
+
+    head = header(key, src, report)
+    marks = [i + 1 for i, l in enumerate((head + body).split('\n')) if MARK_RE.match(l)]
+    assert len(marks) == len(brk), 'marker lines and breaks disagree'
+    blist = []
+    for (page, at, gap), ln in zip(brk, marks):
+        b = dict(page=page, line=ln)
+        if src['marker']:
+            b['unlocated_letters'] = gap   # 0: position determined; -1: nothing located
+        blist.append(b)
+    for b in blist:
+        if b['page'] in printed:
+            b['printed'], b['printed_from'] = printed[b['page']]
+    report['breaks'] = blist
+    report['printed_numbering'] = runs
+    report['pdf_page_labels'] = labels_report
+    report['breaks_uncertain'] = sum(1 for b in blist if b.get('unlocated_letters', 0) != 0)
+    located = {p for p in page_of if p is not None}
+    if src['marker']:
+        located |= {p for _, p in marker_facts(md)}
+    report['pages_without_text_located'] = [p for p in range(1, len(pages) + 1) if p not in located]
+
+    os.makedirs(msc, exist_ok=True)
+    if src['dir']:
+        for f in os.listdir(src['dir']):
+            fp = os.path.join(src['dir'], f)
+            if os.path.isfile(fp) and not f.endswith('.md'):
+                shutil.copy2(fp, os.path.join(msc, f))
+    with open(os.path.join(outdir, key + '.md'), 'w', encoding='utf-8') as f:
+        f.write(head + body)
+    report['sources'] = dict(pdf=src['pdf'], pdf_sha256=sha256(src['pdf']),
+                             markdown=src['md'], markdown_sha256=sha256(src['md']),
+                             note=src['note'])
+    report['generated'] = datetime.datetime.now().astimezone().isoformat(timespec='seconds')
+    with open(os.path.join(msc, 'pages.json'), 'w') as f:
+        json.dump(report, f, indent=1)
+    return report
+
+def heading_check(md, brk, d):
+    metas = [f for f in os.listdir(d) if f.endswith('_meta.json')]
+    if not metas:
+        return None
+    toc = json.load(open(os.path.join(d, metas[0]))).get('table_of_contents', [])
+    lines = md.split('\n')
+    starts = [0]
+    for l in lines[:-1]:
+        starts.append(starts[-1] + len(l) + 1)
+    heads = [(i, norm(l)) for i, l in enumerate(lines) if l.startswith('#')]
+    from collections import Counter
+    hc, tc = Counter(h for _, h in heads), Counter(norm(t['title']) for t in toc)
+    ats = [a for _, a, _ in brk]
+    right = wrong = 0
+    for t in toc:
+        nt = norm(t['title'])
+        if not nt or hc[nt] != 1 or tc[nt] != 1:
+            continue
+        i = next(i for i, h in heads if h == nt)
+        off = starts[i] + len(lines[i]) - len(lines[i].lstrip())
+        got = brk[bisect.bisect_right(ats, off) - 1][0]
+        if got == t['page_id'] + 1: right += 1
+        else: wrong += 1
+    return dict(right=right, wrong=wrong)
+
+def header(key, src, r):
+    how = ('page breaks recovered by aligning marker\'s markdown with pdftotext\'s per-page text'
+           if src['marker'] else
+           'pages assigned by aligning this markdown with the PDF\'s per-page text; text that '
+           'matches nothing in the PDF is marked [not in pdf]')
+    return ('<!-- canonical text of ' + key + ', made by bin/canonicalize.\n'
+            '     [pdf-page N] = physical page N of the PDF, counting from 1. printed "X" = the page\n'
+            '     number printed on it, where one is established (pages.json says whether it was seen\n'
+            '     on that page, inferred from its run, or taken from the PDF\'s page labels).\n'
+            '     ' + how + '.\n'
+            '     Source: ' + src['note'] + '. Breaks, their certainty and self-checks: msc/' + key + '/pages.json -->\n\n')
+
+# ------------------------------------------------------------------------ main
+
+def main(argv):
+    outdir = os.path.join(REPO, 'ref', 'canonical')
+    if argv[:1] == ['--out']:
+        outdir, argv = argv[1], argv[2:]
+    if argv[:1] in (['-h'], ['--help']):
+        print(__doc__.split('\n\nHow the pages')[0]); return 0
+    keys = argv or catalog_keys()
+    os.makedirs(outdir, exist_ok=True)
+    status = 0
+    for key in keys:
+        try:
+            r = canonicalize(key, outdir)
+        except Exception as e:
+            print(f'{key}: FAILED {e!r}', file=sys.stderr); status = 1; continue
+        if 'skipped' in r:
+            print(f'{key}: skipped — {r["skipped"]}'); continue
+        flags = []
+        if r['pdfinfo_pages'] and r['pdfinfo_pages'] != r['pdf_pages']:
+            flags.append(f'pdfinfo says {r["pdfinfo_pages"]} pages')
+        if not r['roundtrip']:
+            flags.append('ROUND TRIP FAILED'); status = 1
+        h = r.get('headings_vs_marker_metadata')
+        hs = f'  headings {h["right"]}/{h["right"] + h["wrong"]}' if h else ''
+        print(f'{key}: {r["pdf_pages"]} pages, {r["mode"]}, matched {r["matched"]}, '
+              f'{len(r["breaks"])} markers ({r["breaks_uncertain"]} uncertain), '
+              f'{len(r["pages_without_text_located"])} pages unlocated{hs}'
+              + (' — ' + '; '.join(flags) if flags else ''))
+    return status
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))
