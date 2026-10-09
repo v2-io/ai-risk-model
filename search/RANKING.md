@@ -62,6 +62,7 @@ Summing is only right for evidence that is roughly independent given relevance, 
 
 | Group | What it measures | Hypotheses |
 |---|---|---|
+| **Query and text** | not evidence: what the query is and what text a passage presents, before any group sees them | H-Q1 to H-Q7, H-T1 to H-T3 |
 | **Words** | the query's own words in the passage: which, how rare, how close together, where | H-W1 to H-W6 |
 | **Meaning** | the passage says something like the query, in any words | H-M1, H-M2 |
 | **Role** | what the passage is in its document: a definition, a contents line, a figure label | H-R1 to H-R3 |
@@ -102,6 +103,64 @@ Each entry has:
 Statuses: *proposed* (no test), *fixture-checked*, *measured* (an ablation on the evaluations, with its result), *calibrated* (weight fitted to data), *refuted* (measured, and it hurt or did nothing; kept in the register with the measurement, so it isn't proposed again unknowingly).
 
 Notation: q = the query, with content words W₁ … Wₙ; p = a passage; d = its document.
+
+### Query and text: what counts as a match
+
+These come before any evidence is scored. They decide what the query is and what text a passage presents, so an error here reaches every group below. Joseph, 2026-10-09: "our lexical massaging is essentially hypotheses on the search-term -> result-relevance". They were implicit in the code until this entry; all are *proposed* unless marked.
+
+**H-Q1 Content words.**
+- Feature: q's words minus a stop list ("a", "of", "the" … and "what", "how", "does", "which", "we", "our"; `rank.STOP`).
+- Hypothesis: function words carry no evidence of relevance.
+- Encoding: dropped from BM25 and proximity, but kept by the phrase factor and the concordance, where "loss of control" needs its "of".
+- Open: that's two rules for one question. "What" and "how" are on the list because questions use them, which is a separate claim (H-Q2's kind).
+
+**H-Q2 Definition intent.**
+- Feature: q begins "definition of", "what is", "define", "meaning of" (`rank.DEF_INTENT`).
+- Hypothesis: such a query asks about the term after it, and a definition of that term is what's wanted.
+- Encoding: the term is parsed out and drives H-R1.
+- Status: measured with the v2 definition rule in the pilot.
+
+**H-Q3 OCR repair.**
+- Feature: "Al" in q where "AI" was meant (`corpus.fix_ocr_ai`).
+- Hypothesis: a query typed from an uncorrected copy means "AI".
+
+**H-Q4 Case.**
+- Feature: capitals in q.
+- Hypothesis, Joseph's convention: a capital means the user wants that case ("AI", not "ai"), and lowercase means either.
+- Encoding: used by the concordance verbs and by `hybrid`'s phrase factor only. BM25 lowercases everything, and so, in effect, does the embedding. So in `hybrid` a capital mostly doesn't count.
+- Open: whether that's right for ranking, or an accident of where Postgres's index sits.
+
+**H-Q5 Tokens.**
+- Feature: how q and p are cut into words.
+- Hypothesis: the unit of matching is the word, with apostrophes inside a word kept.
+- Encoding: inconsistent, found 2026-10-09. `hybrid`'s query words keep a hyphenated word whole ("loss-of-control" is one token, `text.WORD_RE`), while the literal matcher splits it into three. Postgres's parser does something else again. One of these is an unstated assumption; which should win isn't decided.
+
+**H-Q6 Term identity for definitions.**
+- Feature: a defined term and the query's term, each normalised: folded, unaccented, quotes, emphasis and a parenthetical abbreviation removed, the last word made singular (`text.norm_term`).
+- Hypothesis: two terms that normalise alike are the same term ("Risks" = "risk"; "Floating point operations (FLOP)" = "floating point operations").
+- Open: singularising the last word merges terms the project might keep apart. "Capabilities" as a defined term may not be "capability".
+
+**H-Q7 Word forms.**
+- Feature: what extends a word: the two spelling rules, up to four more letters, a free plural or possessive, function words kept whole (DESIGN §7.1); in BM25, Postgres's stems (H-W2).
+- Hypothesis: these extensions are the same word, or close enough to count.
+- Encoding: in `lexical` and in the phrase factor, the run-on; in BM25, stems.
+- Status: the cap and spelling rules were measured on 18 key terms (DESIGN §7.1); stems against run-on as a ranking leg, measured (H-W2b).
+- Open: the two encodings disagree by design, and that disagreement is itself unexamined.
+
+**H-T1 The unit of relevance.**
+- Feature: the passage: about 800–1,500 characters, never across a heading, one glossary entry or definition per passage, split at paragraphs then sentences, with one sentence of overlap (DESIGN §5.2).
+- Hypothesis: relevance can be judged a passage at a time. The outline then aggregates passages to sections.
+- Open: the overlap means one sentence can count in two passages.
+
+**H-T2 What text counts.**
+- Feature: indexed text drops link targets, link tooltips, image links and HTML (DESIGN §5.2), and OCR's "Al" is corrected.
+- Hypothesis: these carry no evidence. IASR's tooltips repeat a full reference at every citation, which inflated counts from about 730 to 993.
+- Status: measured for that count.
+
+**H-T3 Query and passage embedded differently.**
+- Feature: the query is embedded as typed, with no prefix (bge-m3 specifies none). A passage is embedded with its document's title and heading path before its text (H-M2).
+- Hypothesis: a bare query should sit close to a passage carrying its context.
+- Open: the asymmetry may be what lets the title dominate short passages (H-M2's known failure).
 
 ### Words
 
