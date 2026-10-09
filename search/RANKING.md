@@ -6,14 +6,7 @@
 
 Joseph, 2026-10-09: "it's really easy to keep churning on the hybrid model and adding more edge-cases and heuristics and adjustments and it becomes spaghetti really quickly-- pretty much every time you see a result way out of place and recognize intuitively that something is clearly wrong." He asked for factors that are "very well principled, individually checked, simulated even with fixtures and mock results"; for a foundation, "something bayesian or even the principle of giving weights equal opportunity until something specific justifies a non-uniform weighing of the factors", with the justifications recorded; and for code whose organisation "mirrors a clean and well-organized defensible mental model of the algorithm".
 
-He added the form the factors should take: each written as a hypothesis, apart from its math. His example:
-
-```
-given phrase = {W_1, W_2, ...}
-proximity hypothesis:  {W_1, p = |I| = intermediate-characters, W_2} --  I ∝ 1/relevance
-```
-
-so that "the underlying assumptions can be challenged or composed together independent of the math".
+He added the form the factors should take: each written as a hypothesis, apart from its math, so that "the underlying assumptions can be challenged or composed together independent of the math". He sketched one, for proximity, and then said of the sketch: "my notation was deficient, and I was using a very oversimplified model of proximity, I know". It is kept as H-W4's impetus; the formal statements in the register are mine.
 
 `hybrid` is already drifting the way he describes. Every weight in `search/weights.toml` has a recorded reason, and most have a measurement, but the factors don't form one model. Two symptoms from the same day:
 - Proximity did nothing when folded into the lexical score, because the fusion keeps only the lexical *rank*. So it was moved to multiply the fused score, where it had an effect. That was locally sensible, but no model said where proximity belonged.
@@ -26,32 +19,37 @@ As read from `search/srcsearch/rank.py` (`search`, `lexical`, `proximity_density
 1. **Candidates:** every passage holding any query content word, the 400 passages nearest by cosine, and every passage defining the query's term. Nothing else is scored, and the outline treats the rest as having no hits.
 2. **A lexical score:** BM25 on exact word forms, plus BM25 on Postgres's English stems at weight 0.5. It is then multiplied by 2.0 if the query occurs as a phrase, and by 1.2 if every query word is in the passage's heading path.
 3. **A semantic distance:** cosine distance between the query's embedding and the passage's. A passage's embedding input is the document's title, the heading path and the passage text.
-4. **Fusion:** reciprocal rank fusion, `1/(60 + semantic rank) + 1/(60 + lexical rank)`.
-5. **Then seven multipliers on the fused score:**
-   - defines the term: 1 + 2 × match × confidence (exact 1, narrower 0.25);
-   - section kind: toc, references, index and figure 0.3, abbreviations 0.5, restored 0.7;
-   - superseded: 0.8;
-   - Influence: anchor 1.10, major 1.05, context 0.95;
-   - recency within the organisation: 1 + 0.05 × position;
-   - proximity: 1 + 0.6 × proximity score;
+4. **Fusion:** reciprocal rank fusion, where $r_{\mathrm{sem}}(p)$ and $r_{\mathrm{lex}}(p)$ are the passage's semantic and lexical ranks and $k = 60$:
+
+   $$s_{\mathrm{RRF}}(p) = \frac{1}{k + r_{\mathrm{sem}}(p)} + \frac{1}{k + r_{\mathrm{lex}}(p)}$$
+
+5. **Then seven multipliers on the fused score**, so that
+
+   $$s(p) = s_{\mathrm{RRF}}(p) \prod_{j} f_j(p)$$
+
+   with these $f_j$:
+   - defines the term: $1 + 2\,m\,c$, where the match $m$ is 1 for the exact term and 0.25 for a narrower one, and $c$ is the detection's confidence;
+   - section kind: $0.3$ for toc, references, index and figure; $0.5$ for abbreviations; $0.7$ for restored text;
+   - superseded: $0.8$;
+   - Influence: $1.10$ for anchor, $1.05$ for major, $0.95$ for context;
+   - recency within the organisation: $1 + 0.05\,y$, where $y \in [0, 1]$ is the document's position among its organisation's documents by year;
+   - proximity: $1 + 0.6\,\pi(p)$, with $\pi$ the proximity score of H-W4;
    - density: off (weight 0).
 
 That makes 13 factors with 27 tunable values, in three different places: inside the lexical score, inside the fusion, and multiplied on top. The fused score has no meaning of its own: a sum of reciprocal ranks, times priors stated on another scale.
 
-RRF itself, as I remember its source (Cormack, Clarke and Büttcher, SIGIR 2009; not re-read for this), is an empirical finding: summing 1/(k + rank) beat fancier fusion methods, and k = 60 was a tuned constant. What it gives is robustness, since it needs no calibrated scores. It has no theory of evidence, so nothing in it says how a prior multiplier should relate to the fused rank.
+RRF itself, as I remember its source (Cormack, Clarke and Büttcher, SIGIR 2009; not re-read for this), is an empirical finding: summing $1/(k + r)$ beat fancier fusion methods, and $k = 60$ was a tuned constant. What it gives is robustness, since it needs no calibrated scores. It has no theory of evidence, so nothing in it says how a prior multiplier should relate to the fused rank.
 
 ## 3. The proposed model
 
-**Score = the log odds that a passage is relevant to the query.** If the evidence comes in groups that are roughly independent given relevance, Bayes' rule gives
+**Score = the log odds that a passage is relevant to the query.** Let $R$ be the event that passage $p$ is relevant to query $q$, and $e_g$ the evidence of group $g$. If the groups' evidence is roughly independent given $R$ and given $\neg R$, Bayes' rule gives
 
-```
-log O(R | evidence) = log O(R)  +  Σ_g  log LR_g
-```
+$$\log O(R \mid e) = \log O(R) + \sum_{g} \log \Lambda_g(e_g), \qquad \Lambda_g(e_g) = \frac{P(e_g \mid R)}{P(e_g \mid \neg R)}$$
 
-where `log O(R)` is a prior for the passage, and `LR_g`, a likelihood ratio, says how much more likely a relevant passage is than an irrelevant one to show the evidence of group `g`.
+where $O(R)$ is the prior odds that the passage is relevant, and the likelihood ratio $\Lambda_g$ says how much more likely a relevant passage is than an irrelevant one to show the evidence $e_g$.
 
 What this buys:
-- **Every factor has one meaning:** a likelihood ratio, or a prior. A factor that tells us nothing has LR = 1, a term of 0, so "neutral" is built in.
+- **Every factor has one meaning:** a likelihood ratio, or a prior. A factor that tells us nothing has $\Lambda = 1$, a term of $0$, so "neutral" is built in.
 - **Composition is addition.** A factor can't sit in the wrong place, because there is only one place.
 - **`--explain` becomes exact:** the terms printed add up to the score.
 - **Today's multipliers already are likelihood ratios in disguise.** The definition boost of 3 says a definition is three times as likely to be relevant. They translate directly into this model. What doesn't translate is the RRF base, which is why it is replaced (§3.2).
@@ -102,7 +100,7 @@ Each entry has:
 
 Statuses: *proposed* (no test), *fixture-checked*, *measured* (an ablation on the evaluations, with its result), *calibrated* (weight fitted to data), *refuted* (measured, and it hurt or did nothing; kept in the register with the measurement, so it isn't proposed again unknowingly).
 
-Notation: q = the query, with content words W₁ … Wₙ; p = a passage; d = its document.
+Notation: $q$ is the query, with content words $w_1, \dots, w_n$; $p$ is a passage, of $|p|$ words; $d$ is its document; $f(w, p)$ is the number of times $w$ occurs in $p$; $N$ is the number of passages, and $n_w$ the number holding $w$.
 
 ### Query and text: what counts as a match
 
@@ -165,34 +163,53 @@ These come before any evidence is scored. They decide what the query is and what
 ### Words
 
 **H-W1 Term presence.**
-- Feature: {Wᵢ ∈ p}, with tf(Wᵢ, p), df(Wᵢ), and |p| the passage's length.
+- Feature: whether $w_i \in p$, with $f(w_i, p)$, $n_{w_i}$ and $|p|$.
 - Hypothesis: a passage holding the query's words is more likely relevant. A rare word is stronger evidence than a common one, repeats count for less and less, and a long passage's matches count for less.
 - Impetus: standard; BM25.
-- Encoding: BM25 (k1 1.2, b 0.75).
+- Encoding: BM25, with $k_1 = 1.2$ and $b = 0.75$, and $\overline{|p|}$ the mean passage length:
+
+  $$\mathrm{BM25}(q, p) = \sum_{w \in q} \mathrm{idf}(w) \, \frac{f(w, p)\,(k_1 + 1)}{f(w, p) + k_1 \left(1 - b + b\,\frac{|p|}{\overline{|p|}}\right)}, \qquad \mathrm{idf}(w) = \ln\left(1 + \frac{N - n_w + 0.5}{n_w + 0.5}\right)$$
 - Status: measured. In the pilot, lexical search with the priors is "as good as anything" on term queries (0.79).
 
 **H-W2 Exact form over stem.**
-- Feature: Wᵢ matched exactly, or only through its stem (developer ~ development).
+- Feature: $w_i$ matched exactly, or only through its stem ("developer" and "development").
 - Hypothesis: a stem-only match is weaker evidence, because stems merge words this project keeps apart.
 - Impetus: DESIGN §6.1, from the corpus's term collisions.
-- Encoding: a stem leg at 0.5 beside the exact leg.
+- Encoding: the lexical score is $\ell(p) = \mathrm{BM25}_{\mathrm{exact}}(q, p) + 0.5\,\mathrm{BM25}_{\mathrm{stem}}(q, p)$.
 - Status: measured. Replacing stems with longer word forms scored −0.011, because the query word is often the derived form itself ("misalignment" needs "misaligned"). That variant is *refuted* (H-W2b).
 
 **H-W3 Phrase.**
-- Feature: {W₁ W₂ … Wₙ}, adjacent and in order, separators free.
+- Feature: $w_1 w_2 \dots w_n$ adjacent and in order, with any separators between them.
 - Hypothesis: the query as a phrase is much stronger evidence than its words scattered.
 - Impetus: pilot.
-- Encoding: × 2.0 on the lexical score, found by the literal matcher. Before 2026-10-09 it never fired for "loss of control" (a bug).
+- Encoding: $\ell(p) \times 2$, the phrase found by the literal matcher. Before 2026-10-09 it never fired for "loss of control" (a bug).
 - Status: measured, +0.001 fused and +0.045 by the lexical side alone.
 - Note: H-W3 is the zero-gap case of H-W4. The model should say so, not count both.
 
 **H-W4 Proximity.**
-- Feature, in Joseph's form: {Wᵢ, I, Wⱼ}, with |I| the intervening text, counted in words. Joseph's example counts characters, and the unit is itself part of the hypothesis. Also the sentence and paragraph boundaries crossed, and whether the query's order is kept.
-- Hypothesis: relevance falls as |I| grows; crossing a sentence boundary costs more than a word, and a paragraph more than a sentence; out of order costs a little.
-- Impetus: memorata (Joseph, 2026-07-09).
-- Encoding: memorata's `proximity_score`: coverage × exactness × (0.4 + 0.6 × closeness), with closeness = 1 − 0.03 per word − 0.25 per sentence − 0.6 per paragraph, × 0.75 out of order. Applied as × (1 + 0.6 × proximity) on the fused score, a placement chosen by measurement, not by model.
-- Status: measured, +0.026 (interval −0.002 to +0.073), most of it one query.
-- Open: the constants (0.03, 0.25, 0.6, 0.75) are memorata's, not measured here. Each is a sub-hypothesis that a fixture can check.
+- Feature: for a passage holding at least two of the query's words, a window $W$ of $p$ that covers one occurrence of each word present. Its cost is
+  - $\gamma(W)$, the words inside it beyond the query's own;
+  - $\sigma(W)$, the sentences it spans;
+  - $\rho(W)$, the paragraphs it spans;
+  - $o(W) \in \{0, 1\}$, whether the words appear out of the query's order.
+
+  These combine into one distance, and the window that matters is the cheapest:
+
+  $$c(W) = \alpha\,\gamma(W) + \beta\,(\sigma(W) - 1) + \delta\,(\rho(W) - 1), \qquad c^{*}(p) = \min_{W} c(W)$$
+
+- Hypothesis: the evidence of relevance falls as $c^{*}$ grows, with $0 < \alpha \ll \beta < \delta$: an extra word costs little, a sentence break more, a paragraph break most. Words out of order are weaker evidence than the same words in order.
+- Impetus: memorata (Joseph, 2026-07-09); and Joseph's sketch on 2026-10-09 of relevance falling with the text between two query words.
+- Encoding: memorata's `proximity_score`, with $\alpha = 0.03$, $\beta = 0.25$, $\delta = 0.6$. It doesn't search every window. It tries one per occurrence of the rarest word present, taking the nearest occurrence of each other word, and keeps the best closeness $\kappa$ among those windows $\mathcal{W}$. With $P$ the query words present, $|P|/n$ their share of the query, and $\bar{x}$ their mean exactness (an inflection counts $0.55$):
+
+  $$\kappa(p) = \max_{W \in \mathcal{W}} \; \max\{0,\, 1 - c(W)\} \cdot 0.75^{\,o(W)}, \qquad \pi(p) = \frac{|P|}{n} \, \bar{x} \, \bigl(0.4 + 0.6\,\kappa(p)\bigr)$$
+
+  It is applied as $\times (1 + 0.6\,\pi)$ on the fused score, a placement chosen by measurement, not by model.
+- Status: measured, $+0.026$ (interval $-0.002$ to $+0.073$), most of it one query.
+- Open:
+  - The constants $\alpha$, $\beta$, $\delta$, $0.75$, $0.55$ and the floor $0.4$ are memorata's, not measured here. Each is a sub-hypothesis that a fixture can check.
+  - $\pi$ mixes three claims (coverage, exactness, closeness) that belong to H-W1, H-Q7 and this entry respectively. Coverage and exactness are already counted by BM25 and the stem leg, so they are counted twice.
+  - The unit of $\gamma$ (words, characters, tokens) is a choice. Joseph's sketch counted characters.
+  - Linear decay clamped at $c^{*} = 1$ is one shape among several: exponential, $1/(1 + c^{*})$. The shape is part of the hypothesis.
 
 **H-W5 Density.**
 - Feature: count and rate of the query's words in p.
@@ -202,16 +219,16 @@ These come before any evidence is scored. They decide what the query is and what
 - Note: it overlaps H-W1's term frequency, which may be why.
 
 **H-W6 Heading.**
-- Feature: {Wᵢ} ⊂ the passage's heading path.
+- Feature: $\{w_1, \dots, w_n\} \subseteq$ the words of the passage's heading path.
 - Hypothesis: a passage under a heading naming the query is about it.
 - Impetus: pilot (6 of the NRR's 79 "hazard" forms were in headings only).
-- Encoding: × 1.2.
+- Encoding: $\ell(p) \times 1.2$.
 - Status: proposed, untested.
 
 ### Meaning
 
 **H-M1 Semantic similarity.**
-- Feature: cos(e(q), e(p)), bge-m3.
+- Feature: $\cos(\mathbf{e}(q), \mathbf{e}(p))$, where $\mathbf{e}$ is bge-m3's embedding.
 - Hypothesis: closer in embedding space means more likely relevant, including for passages that never use the query's words.
 - Impetus: standard. The pilot found fusion with lexical beats either alone, and the whole-document judges found much of what matters doesn't use the query's words (DESIGN §11 step 8).
 - Status: measured as a group (in the pilot, cosine alone 0.654, against 0.761 fused with the priors).
@@ -226,16 +243,16 @@ These come before any evidence is scored. They decide what the query is and what
 ### Role
 
 **H-R1 Definition.**
-- Feature: p defines a term t, detected with confidence c, where t = the query's term (exact), contains it (narrower), or is contained in it (broader).
+- Feature: $p$ defines a term $t$, detected with confidence $c$, where $t$ is the query's term (exact), contains it (narrower), or is contained in it (broader).
 - Hypothesis: a definition of the exact term is strong evidence; of a narrower term, weak; of a broader one, none.
 - Impetus: Joseph, 2026-10-09: "Whether a chunk is part of something specifically designated as a glossary or definition or something might be very high factor."
-- Encoding: × (1 + 2 × match × c), with match 1, 0.25 and 0.
+- Encoding: $\times (1 + 2\,m\,c)$, with the match $m$ = $1$, $0.25$ and $0$ for exact, narrower and broader.
 - Status: measured, the strongest single lever (lexical alone 0.540 → 0.697). The match values were fitted to judged misses, so they are optimistic.
 
 **H-R2 Section kind.**
 - Feature: p's section kind: toc, references, index, abbreviations, figure, restored.
 - Hypothesis: these mention terms without saying anything about them, so a match there is weaker evidence.
-- Encoding: × 0.3 to 0.7.
+- Encoding: $\times 0.3$ to $\times 0.7$ (§2).
 - Status: measured for toc and references (pilot); proposed for the rest. `figure` was set after one bad result.
 - Note: this is evidence about the passage's role, not a prior about it. A contents line holding "loss of control" is evidence of where the section is, which the outline uses.
 
@@ -249,27 +266,27 @@ These come before any evidence is scored. They decide what the query is and what
 **H-D1 Superseded.**
 - Feature: d is superseded by a later version.
 - Hypothesis: an agent usually wants the current version.
-- Encoding: × 0.8.
+- Encoding: $\times 0.8$.
 - Status: proposed. Open: this is arguably scope (`--history` unfolds versions), not relevance.
 
 **H-D2 Influence.**
 - Feature: d's catalog Influence.
 - Hypothesis: a document others copy from is more often the one wanted.
-- Encoding: × 0.95 to 1.10.
+- Encoding: $\times 0.95$ to $\times 1.10$.
 - Status: proposed, and doubtful. The catalog says outright that reach "is not relevance". It may belong to the ordering of ties, or to presentation, not to evidence.
 
 **H-D3 Recency.**
 - Feature: d's position among its organisation's documents by year.
 - Hypothesis: newer is more often wanted.
 - Impetus: Joseph: "Freshness of document, freshness within a source (company, institute)".
-- Encoding: × (1 + 0.05 × position).
+- Encoding: $\times (1 + 0.05\,y)$, with $y \in [0, 1]$ the document's position by year.
 - Status: proposed. Like H-D1, it may be preference rather than relevance.
 
 ### Fusion and candidates
 
 **H-F1 The rank curve.**
-- Feature: a passage's rank r within a group.
-- Hypothesis: evidence falls with rank. RRF's 1/(60 + r) says it falls slowly, so ranks 1 and 10 differ little.
+- Feature: a passage's rank $r$ within a group.
+- Hypothesis: the evidence $\lambda(r)$ falls with rank. RRF's $\lambda(r) = 1/(60 + r)$ says it falls slowly: $\lambda(1)/\lambda(10) = 70/61 \approx 1.15$, so ranks 1 and 10 differ by 15%. That may undervalue the top of a ranking. Since RRF sums $\lambda$ rather than its logarithm, it also isn't a log likelihood ratio.
 - Status: proposed; its shape is the main open choice (§3.2).
 
 **H-C1 The candidate pool.**
@@ -286,7 +303,7 @@ These come before any evidence is scored. They decide what the query is and what
 ### 5.1 Fixtures
 
 The fixtures are a small synthetic corpus in `search/fixtures/`. Each case isolates one hypothesis and states the order it predicts:
-- **H-W4:** two passages, identical except for the gap between W₁ and W₂ (one word; one sentence; one paragraph). Predicted order: smaller gap first, and a sentence boundary costing more than a few words.
+- **H-W4:** two passages, identical except for the gap between $w_1$ and $w_2$ (one word; one sentence; one paragraph). Predicted order: smaller gap first, and a sentence boundary costing more than a few words.
 - **H-R1:** a definition of the term against a passage that only uses it. Predicted: the definition first, and a broader term's definition not boosted.
 - **H-R2:** a contents line holding the phrase against a body sentence holding it.
 
