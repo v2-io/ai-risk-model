@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>1. Why a third attempt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.step{background:#FFFFFF;border:1px solid #C9D1DC;border-radius:6px;padding:12px 14px;font-size:16px;line-height:1.35;flex:1 1 0;min-width:150px}
+.step.bad{background:#F6E1DB;border-color:#E2B7AA}
+.step.good{background:#DAE6F2;border-color:#AFC6DD}
+.chev{align-self:center;color:#8C97A8;font-size:22px;flex:0 0 auto}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 1 of 16, about 3 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Main.dc.html">Previous</a><a href="Corpus.dc.html">Next: the sources</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 900px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">Alpha and beta both put the sources’ claims into our structure before their words were translated. Gamma reorders that one step.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 64ch">Everything else in the plan follows from where the sources’ words get replaced by ours. In each attempt below, the red step is that moment.</p>
+</header>
+
+<section style="display: grid; gap: 26px; padding-bottom: 36px">
+<div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin-bottom: 10px"><span style="font-size: 21px; font-weight: 700">Alpha</span><span class="small">26–27 Sep, a crosswalk; <span class="id">influx/model-alpha.md</span></span></div>
+<div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px">
+<div class="step">About fifty sources</div><span class="chev">›</span>
+<div class="step bad"><b>One master row per risk factor</b>, in the synthesizer’s wording</div><span class="chev">›</span>
+<div class="step">Cells: source tag, role code, force code, verbatim quote</div><span class="chev">›</span>
+<div class="step">Disagreements about meaning: prose in §5, outside the structure</div>
+</div>
+</div>
+<div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin-bottom: 10px"><span style="font-size: 21px; font-weight: 700">Beta</span><span class="small">27–28 Sep, a claim-backed causal graph; <span class="id">influx/model-beta/</span></span></div>
+<div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px">
+<div class="step bad"><b>Relations chosen first</b>: 287 concepts, 573 relations</div><span class="chev">›</span>
+<div class="step">943 claims hung on them, each anchored to a passage</div><span class="chev">›</span>
+<div class="step bad"><b>Terms written</b>; the first four risk definitions adopted from IASR 2026</div><span class="chev">›</span>
+<div class="step">Loops enumerated: 641,083, then about 186,000 after one edge was recast</div>
+</div>
+</div>
+<div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin-bottom: 10px"><span style="font-size: 21px; font-weight: 700">Gamma</span><span class="small">proposed 6–7 Oct; <span class="id">MODEL-GAMMA-METHODOLOGY-AND-PLAN.md</span></span></div>
+<div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px">
+<div class="step good"><b>Lexicon</b>: method terms, then domain terms</div><span class="chev">›</span>
+<div class="step good"><b>One translation per source</b>: its words into ours, ambiguity kept</div><span class="chev">›</span>
+<div class="step">Assertions in our terms, the source’s words verbatim beside them</div><span class="chev">›</span>
+<div class="step">Views computed from the records</div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding-top: 34px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">What survives, and what doesn’t</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 8px; font-weight: 700; font-size: 18px">Kept from alpha</p>
+<p class="small" style="margin: 0">Verbatim quotes with locations; source tags; role codes (hazard, risk factor, trigger, mitigation, indicator, observation); force codes (law, commitment, example, recommendation …).</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 8px; font-weight: 700; font-size: 18px">Kept from beta</p>
+<p class="small" style="margin: 0">The claims ledger; the lexicon’s pooling checks; your address-theory idea that a source term <i>resolves</i> to ours with a recorded outcome, which can be “ambiguous”; draft 2’s two planes (what was said; what it is said about) joined by resolution.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 8px; font-weight: 700; font-size: 18px">Beta’s status now</p>
+<p class="small" style="margin: 0">Ideation only. Its claims carry verbatim anchors, but none of its terms, concepts, relations, mappings or schema had an independent check, so anything taken from it is re-derived against the primaries and re-owned.</p>
+</div>
+</div>
+
+<h2 style="margin: 36px 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">The principles you have set since <span class="id" style="font-size: 0.8em">CLAUDE.md</span></h2>
+<div class="body"><p>These are yours, quoted from 6 October. Every later chapter leans on them, so they are worth one careful read.</p></div>
+<div style="display: grid; gap: 14px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline"><span class="chip done">Settled, 6 Oct</span><b style="font-size: 18px">The lexicon’s shape</b></div>
+<p class="src" style="margin: 0; font-size: 18px; line-height: 1.5">“the union of all the most precise, scoped, bounded, and/or specific definitions (with some umbrella term containment as appropriate etc.)”</p>
+<p class="small" style="margin: 0">So no source’s precision is lost in translation, and broader terms exist only as declared umbrellas that contain the precise ones. Chapter 12 shows this sentence is now carrying a decision it didn’t know it was making.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline"><span class="chip done">Settled, 6 Oct</span><b style="font-size: 18px">Priority</b></div>
+<p class="src" style="margin: 0; font-size: 18px; line-height: 1.5">“One of the high priorities for me are our agreed-upon definitions for those actors (and agent parts) listed in the alignment-model/ directory.”</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline"><span class="chip done">Settled, 6 Oct</span><b style="font-size: 18px">Refinement is where the value is</b></div>
+<p class="src" style="margin: 0; font-size: 18px; line-height: 1.5">“the value really only settles in during the last 5-10% of the refinement. First pass and lazily generated stuff, even from ample context, will be more likely to seed confusion and misunderstanding than truthful analysis and understanding.”</p>
+<p class="small" style="margin: 0">The plan reads this as a cost to budget, not a cap on entries: every agent-drafted entry stays a candidate until it has had repeated line-by-line passes, and nothing downstream leans on it before then. Your address-theory entries are the bar.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline"><span class="chip done">Standing rule</span><b style="font-size: 18px">Established vocabulary over coinage, both ways</b></div>
+<p class="src" style="margin: 0; font-size: 18px; line-height: 1.5">“a coinage where there is established academic vocabulary to adopt is a smell”</p>
+<p class="small" style="margin: 0">The plan adds the converse: don’t borrow an established word in a different sense. Chapters 3 and 4 list the collisions it found.</p>
+</div>
+</div>
+</div>
+
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">Beta, in domain-driven design’s terms</h3>
+<div class="small">
+<p>Adopting IASR 2026’s definitions wholesale (<span class="src">“The first four definitions are IASR 2026’s, adopted”</span>, <span class="id">def-risk.ud</span>) is Evans’s <i>conformist</i> pattern: our lexicon took one upstream model as its own. Translation is what is meant to prevent that.</p>
+<p>Building the risk analysis and the lexicon it depended on at the same time is how beta began to read as a <i>big ball of mud</i>.</p>
+</div>
+<h3 style="margin: 24px 0 10px; font-size: 19px; font-weight: 700">One more principle, the plan’s own</h3>
+<div class="small">
+<p><b>Neutrality lives in the assertions, not the vocabulary.</b> The lexicon is our model (Evans: <span class="src">“a change in the language is a change to the model”</span>). It is judged by whether it can express every source’s distinctions without loss, not by looking neutral. Compilation-not-adjudication governs what we say the sources claim.</p>
+<p>Worth holding on to: it is the reason chapter 12’s question about where source definitions live matters.</p>
+</div>
+</aside>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan, §0, §1.1–1.2 and §2.</span>
+<a href="Corpus.dc.html">Next: 2. What the sources turned out to be</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

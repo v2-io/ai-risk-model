@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>2. What the sources turned out to be</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.gl{display:flex;flex-direction:column;gap:6px;padding:10px 12px 12px;border-radius:6px;background:#FFFFFF;border:1px solid #D3D9E2;flex:1 1 auto;max-width:100%}
+.gl .w{font-family:'Alegreya',Georgia,serif;font-style:italic;font-size:19px;line-height:1.35;color:#18202E}
+.gl .s{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:13px;line-height:1.35;color:#22324B}
+.gl .n{font-size:14.5px;line-height:1.4;color:#46505F}
+.gl.amb{background:#F6E1DB;border-color:#E2B7AA}
+.gl.del{background:#ECEFF3;border:1px dashed #8C97A8}
+.gl.out{background:#F5E8C6;border-color:#DCC690}
+.kind{background:#FFFFFF;border:1px solid #D3D9E2;border-radius:6px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 2 of 16, about 5 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Why-gamma.dc.html">Previous</a><a href="Architecture.dc.html">Next: the architecture</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 920px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">The sources model different things, copy each other, and are sometimes more precise than we are. A translation has to carry all three.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 64ch">Six findings from the source models (<span class="id">influx/source-models/OVERVIEW.md</span>) shape the method. The third is the easiest to see, so it comes first: one statutory sentence, glossed clause by clause.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">SB 53’s “catastrophic risk”, read as an interlinear gloss</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 78ch">Top line: the statute’s words, §22757.11(c), p. 4 of the chaptered text. Middle: the slot it fills, as the thin pass named it. Bottom: what is open. The plan calls this “one sentence carrying at least seven separable concepts”; the thin pass needed eight slots plus closure.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<div class="gl"><span class="w">“Catastrophic risk” means</span><span class="s">closure: closed</span><span class="n">“means”: the bar is a floor, not an example</span></div>
+<div class="gl del"><span class="w">a foreseeable</span><span class="s">knowledge standard</span><span class="n">not followed in the thin pass</span></div>
+<div class="gl amb"><span class="w">and material</span><span class="s">materiality</span><span class="n">importance | a likelihood floor | magnitude</span></div>
+<div class="gl"><span class="w">risk</span><span class="s">arm:risk.possibility</span><span class="n">the SRA’s first definition: no probability involved</span></div>
+<div class="gl"><span class="w">that a frontier developer’s</span><span class="s">bearer</span><span class="n">bound, §22757.11(h)</span></div>
+<div class="gl"><span class="w">development, storage, use, or deployment of a frontier model</span><span class="s">bearer’s conduct, closed list</span><span class="n">four acts</span></div>
+<div class="gl del"><span class="w">will materially contribute to</span><span class="s">causal contribution standard</span><span class="n">not followed</span></div>
+<div class="gl amb"><span class="w">the death of, or serious injury to, more than 50 people</span><span class="s">casualty bar</span><span class="n">pooled toward 50 | each counted apart</span></div>
+<div class="gl out"><span class="w">or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property</span><span class="s">property bar</span><span class="n">“property” is defined in (l); equity loss is excluded in §22757.16</span></div>
+<div class="gl amb"><span class="w">arising from a single incident</span><span class="s">counting unit</span><span class="n">governs both arms | only the property arm</span></div>
+<div class="gl"><span class="w">involving a frontier model doing any of the following: (A) … (B) … (C) …</span><span class="s">model conduct, closed list</span><span class="n">CBRN uplift; unsupervised cyberattack or crime; evading control</span></div>
+<div class="gl"><span class="w">(2) “Catastrophic risk” does not include … (A) … otherwise publicly accessible … (B) … (C) …</span><span class="s">exclusions</span><span class="n">(A) is a counterfactual baseline</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 14px; font-size: 15px; color: #46505F; align-items: center">
+<span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 18px; height: 14px; border-radius: 3px; background: #FFFFFF; border: 1px solid #C9D1DC"></span>settled by the text</span>
+<span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 18px; height: 14px; border-radius: 3px; background: #F6E1DB; border: 1px solid #E2B7AA"></span>ambiguous: we name the candidates</span>
+<span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 18px; height: 14px; border-radius: 3px; background: #ECEFF3; border: 1px dashed #8C97A8"></span>its content lies outside the text and wasn’t followed</span>
+<span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 18px; height: 14px; border-radius: 3px; background: #F5E8C6; border: 1px solid #DCC690"></span>the definition reaches outside its own subsection</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 22px">
+<div style="flex: 1 1 420px; min-width: 0" class="body"><p style="margin: 0">If the lexicon can’t say each of these separately, a translation of SB 53 loses what the statute says. That is why the lexicon has to be finer than any one source, and why SB 53 is acceptance test 1’s first case (chapter 13).</p></div>
+<div style="flex: 1 1 420px; min-width: 0; background: #F5E8C6; border-radius: 6px; padding: 14px 18px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip flag" style="background: #EBD9A8">Flag</span><span class="chip done" style="background: #DCE3D0; color: #33441A">Author agrees, fix queued</span></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.45; color: #3D2C00">The plan says SB 53 takes “foreseeable” and “materially contribute” from California law. The citation check found the statute doesn’t say so; that is our reading and needs marking as ours. The two dashed boxes are therefore “meaning lies outside the text”, not “imported”.</p>
+</div>
+</div>
+</section>
+
+<section style="padding: 36px 0 0; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Finding 1: they model different objects, not one object differently</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 78ch">OVERVIEW’s five kinds. A translation has to carry which kind of model a claim came from.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px">
+<div class="kind"><b style="font-size: 19px">Landscape</b><span style="font-size: 15.5px; line-height: 1.4">what the risks are</span><span class="small">IASR, MIT, CAIS, the UK Chronic Risks Analysis</span></div>
+<div class="kind"><b style="font-size: 19px">Gate</b><span style="font-size: 15.5px; line-height: 1.4">what a developer does when a model crosses a line</span><span class="small">the Frontier Safety Framework, OpenAI’s PF, Anthropic’s RSP v2.2, the EU Code’s acceptance loop</span></div>
+<div class="kind"><b style="font-size: 19px">Process</b><span style="font-size: 15.5px; line-height: 1.4">what an organization should have in place</span><span class="small">NIST AI RMF, the EU Code’s process layer</span></div>
+<div class="kind"><b style="font-size: 19px">Scenario</b><span style="font-size: 15.5px; line-height: 1.4">one worst plausible instance per risk</span><span class="small">the UK National Risk Register</span></div>
+<div class="kind"><b style="font-size: 19px">Measurement</b><span style="font-size: 15.5px; line-height: 1.4">what can be observed, and how far to trust it</span><span class="small">AISI’s Trends report and <i>Loss of Oversight</i>, NIST AI 100-2</span></div>
+</div>
+<p class="small" style="margin: 14px 0 0; max-width: 84ch">Hybrids: Anthropic’s v3 Risk Reports are <span class="src">“a landscape for one company, graded in words”</span>, defined against gate-shaped safety cases, and the August 2026 report is a G4 pilot. The EU Code is both a gate and a process model.</p>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding-top: 40px">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 16px; font-size: 27px; line-height: 1.2; font-weight: 700">Findings 2, 4, 5 and 6</h2>
+<div style="display: grid; gap: 22px">
+<div>
+<p style="margin: 0 0 6px; font-size: 20px; font-weight: 700">2. Much apparent agreement is copying</p>
+<div class="body"><p>The EU Code’s loss-of-control formula (<span class="src">“reliably direct, modify, or shut down”</span>) recurs in nine later documents. SB 53’s “>50 people or $1B” bar recurs in four, under two names. Shanghai AI Lab says its glossary is <span class="src">“primarily based on”</span> IASR 2025’s. Agreement counts only as far as lineage allows.</p></div>
+</div>
+<div>
+<p style="margin: 0 0 6px; font-size: 20px; font-weight: 700">4. Sources declare their own rules for reading their terms</p>
+<div class="body"><p>The EU Code: <span class="src">“the AI Act definition applies, and such definition shall prevail”</span>; <span class="src">“all grammatical variations of the terms defined in this Glossary shall be deemed to be covered”</span>. SB 53 §22757.14 orders an annual review of whether “frontier model” still reaches <span class="src">“foundation models at the frontier”</span>, weighing whether coverage can be determined before training and is <span class="src">“verifiable by parties other than the frontier developer”</span>. These are resolution policies in your sense, written by the sources.</p></div>
+</div>
+<div>
+<p style="margin: 0 0 6px; font-size: 20px; font-weight: 700">5. Terms are scoped finer than documents</p>
+<div class="body"><p>SB 53 defines “catastrophic risk” twice: frontier models in the Business and Professions Code, foundation models in the Labor Code. IASR 2026’s glossary and body define loss of control differently (<span class="src">“no clear path to regaining control”</span> against <span class="src">“extremely costly or impossible”</span>).</p></div>
+</div>
+<div>
+<p style="margin: 0 0 6px; font-size: 20px; font-weight: 700">6. Some sources are inconsistent with themselves, and some say so</p>
+<div class="body"><p style="margin: 0">Anthropic’s August 2026 Risk Report: <span class="src">“We acknowledge that the distinction between known and unknown is not crisply defined.”</span> MIT’s causal taxonomy uses one “Other” value for three different things (chapter 4). IASR 2026 is inconsistent with itself on several key terms.</p></div>
+</div>
+</div>
+</div>
+
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">The nine recurrences are three relations</h3>
+<div class="small">
+<p>From the citation check’s grep over 214 extractions:</p>
+<p><b>quoting it as the Code’s:</b> Barrett, METR, Stix;<br><b>adopting it verbatim:</b> xAI 2026;<br><b>embedding it:</b> OpenAI’s FGF;<br><b>paraphrasing it:</b> Microsoft 2026, Meta 2026 (which adds “contain”), Amazon 2026, GDM’s September 2025 blog.</p>
+<p>That the paraphrases derive from the Code is inferred from shared wording; none says so. A tenth paraphrases GDM, a second-generation copy. Chapter 7 has the rules for counting these.</p>
+</div>
+<h3 style="margin: 24px 0 10px; font-size: 19px; font-weight: 700">The four copies of the >50 bar are not identical</h3>
+<p class="small" style="margin: 0 0 10px">xAI 2025 quotes it with attribution and RAISE copies it. Anthropic’s FCF v2 and OpenAI’s FGF relabel it “systemic risk”, narrow it to “>50 fatalities” and make it an example (“including but not limited to”). For 60 deaths they agree; an injury-heavy event splits them. Chapter 11 follows this.</p>
+<h3 style="margin: 24px 0 10px; font-size: 19px; font-weight: 700">Reviewer is not maintainer</h3>
+<p class="small" style="margin: 0">Under §22757.14 the Department of Technology only recommends; the Legislature changes the definition. In address theory’s terms the party that checks for a dangle and the maintainer of the binding are different. The citation check noticed this; the plan doesn’t use it yet.</p>
+</aside>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §1.3; <span class="id">influx/thin-pass/notation/sb53.ud</span>; <span class="id">influx/reviews/citation-check-2026-10-07.md</span>.</span>
+<a href="Architecture.dc.html">Next: 3. The architecture</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

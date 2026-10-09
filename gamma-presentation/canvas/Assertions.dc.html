@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>6. Assertions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.pt{background:#FFFFFF;border:1px solid #D3D9E2;border-radius:6px;padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px}
+.lay{display:grid;grid-template-columns:56px 220px minmax(0,1fr);gap:0 18px;align-items:start;padding:16px 18px;border-top:1px solid #D3D9E2}
+.lay .n{font-size:30px;font-weight:800;color:#8C97A8;line-height:1}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 6 of 16, about 4 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Translation.dc.html">Previous</a><a href="Passages-lineage.dc.html">Next: passages and lineage</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 960px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">Draft 2 rebuilt most of speech-act, argument and norm theory under its own names. Gamma adopts the names, and with them one firm rule: record attacks, never defeats.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 66ch">Four questions about any claim a source makes: what act it is, whose voice it is in, what it argues against, and, if it is a norm, which layer of a norm we are recording.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The act: point and strength are separate axes</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 82ch">Searle’s five illocutionary points (1975, read whole by the research agent). <span class="src">“hypothesizing that p and flatly stating that p are in the same line of business”</span>: so “speculates” is not a different stance from “asserts”, it is the same act, weaker.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px">
+<div class="pt"><b style="font-size: 18px">Representative</b><span class="small">commits the speaker to something being so</span><div style="margin-top: 6px; display: grid; gap: 4px; font-size: 15px"><span>stronger: <i>insists, states</i></span><span>weaker: <i>hypothesizes, speculates</i></span></div></div>
+<div class="pt"><b style="font-size: 18px">Directive</b><span class="small">tries to get the hearer to act</span><div style="margin-top: 6px; display: grid; gap: 4px; font-size: 15px"><span>stronger: <i>orders, requires</i></span><span>weaker: <i>suggests</i></span></div></div>
+<div class="pt"><b style="font-size: 18px">Commissive</b><span class="small">commits the speaker to a future course of action</span><div style="margin-top: 6px; font-size: 15px">a framework’s “we will”</div></div>
+<div class="pt"><b style="font-size: 18px">Expressive</b><span class="small">expresses an attitude</span></div>
+<div class="pt" style="border: 2px solid #1F2C44"><b style="font-size: 18px">Declaration</b><span class="small">brings about what it states by being said</span><div style="margin-top: 6px; font-size: 15px">every definition is one; see below</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 18px; margin-top: 20px">
+<div class="body"><p style="margin: 0"><b>Definitions are declarations, of two kinds.</b> An <i>institutional</i> one creates a status: a statute defining “frontier developer” changes every obligation that uses the term. A <i>linguistic</i> one fixes a word within a text and needs no institution (<span class="src">“I define, abbreviate, name, call, or dub”</span>).</p></div>
+<div class="body"><p style="margin: 0"><b>Determinations are assertive declarations.</b> A Commission designation or a company’s capability-threshold determination is truth-apt <i>and</i> status-creating. The record can hold it as effective alongside another source’s claim that it is false, without contradiction.</p></div>
+<div class="body"><p style="margin: 0"><b>Mode and indirect force.</b> “To testify is to assert in one’s capacity as a witness” is the slot for who, in what capacity. Indirect force names draft 2’s “grammatical mood is not a safe guide”: NCSC writes norms in the indicative.</p></div>
+</div>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 16px; font-size: 27px; line-height: 1.2; font-weight: 700">Whose voice: sources nest, and the author is always outermost</h2>
+<div style="display: flex; flex-direction: column; gap: 0; max-width: 680px">
+<div style="background: #1F2C44; color: #F1F3F6; border-radius: 8px; padding: 14px 16px 16px">
+<div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 15px"><b>the author of the record (us)</b><span style="color: #C9D3E3">reads, and attributes</span></div>
+<div style="background: #33425E; border-radius: 6px; padding: 12px 14px 14px; margin-top: 10px">
+<div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 15px"><b>IASR 2026, the report</b><span style="color: #D7DEEA">⟨certain, positive⟩ that the study found it</span></div>
+<div style="background: #FFFFFF; color: #18202E; border-radius: 6px; padding: 12px 14px; margin-top: 10px">
+<div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 15px"><b>a study the report cites</b><span style="color: #46505F">⟨probable, positive⟩ that X</span></div>
+</div>
+</div>
+</div>
+</div>
+<p class="small" style="margin: 12px 0 0; max-width: 680px">Illustrative. FactBank (Saurí and Pustejovsky 2008) records factuality as ⟨modality, polarity⟩ relative to a source, and the author is always the outermost: <span class="src">“Izvestiya according to the author”</span>, not Izvestiya.</p>
+<div class="body" style="margin-top: 18px">
+<p><b>The proposal:</b> draft 2’s stance decomposes into Searle’s point and strength, FactBank’s factuality per nested source, and argument relations. Draft 2’s first stance question had mixed evidentiality (how something is known, grammatical, and absent from English) with epistemic modality (how sure).</p>
+</div>
+</div>
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">Other frames for voice</h3>
+<div class="small">
+<p><b>Penn Discourse Treebank</b> separates claims (“X says”), beliefs (“X thinks”), presupposed facts (“X found that”) and an arbitrary source (“reports suggest”).</p>
+<p><b>Goffman’s</b> animator, author and principal is draft 2’s authorship-roles table. The corpus splits the principal further: IASR’s Chair holds <span class="src">“ultimate responsibility”</span> for a report that <span class="src">“does not necessarily represent the views of the Chair”</span>. Goffman was read via a secondary that quotes him.</p>
+</div>
+</aside>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Arguments: three kinds of attack, and none of them is a verdict</h2>
+<p class="small" style="margin: 0 0 20px; max-width: 82ch">ASPIC+ (Modgil and Prakken 2013, read at the primary). Draft 2’s premise-attached “defeats” was undermining all along.</p>
+<div style="overflow-x: auto">
+<div style="position: relative; width: 1080px; height: 250px">
+<div style="position: absolute; left: 40px; top: 96px; width: 230px; height: 64px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #8C97A8; border-radius: 6px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; padding: 8px">premise</div>
+<div style="position: absolute; left: 430px; top: 96px; width: 230px; height: 64px; box-sizing: border-box; background: #ECEFF3; border: 1px dashed #8C97A8; border-radius: 6px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; padding: 8px">inference</div>
+<div style="position: absolute; left: 820px; top: 96px; width: 230px; height: 64px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #8C97A8; border-radius: 6px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; padding: 8px">conclusion</div>
+<div style="position: absolute; left: 270px; top: 127px; width: 160px; height: 2px; background: #8C97A8"></div>
+<div style="position: absolute; left: 660px; top: 127px; width: 160px; height: 2px; background: #8C97A8"></div>
+<div style="position: absolute; left: 154px; top: 30px; width: 2px; height: 66px; background: #922D19"></div>
+<div style="position: absolute; left: 544px; top: 30px; width: 2px; height: 66px; background: #922D19"></div>
+<div style="position: absolute; left: 934px; top: 30px; width: 2px; height: 66px; background: #922D19"></div>
+<div style="position: absolute; left: 60px; top: 0; width: 190px; text-align: center; font-size: 17px; font-weight: 700; color: #922D19">undermining</div>
+<div style="position: absolute; left: 450px; top: 0; width: 190px; text-align: center; font-size: 17px; font-weight: 700; color: #922D19">undercutting</div>
+<div style="position: absolute; left: 840px; top: 0; width: 190px; text-align: center; font-size: 17px; font-weight: 700; color: #922D19">rebutting</div>
+<div style="position: absolute; left: 40px; top: 176px; width: 230px; font-size: 15px; line-height: 1.4; color: #46505F; text-align: center">“the premise is false”</div>
+<div style="position: absolute; left: 430px; top: 176px; width: 230px; font-size: 15px; line-height: 1.4; color: #46505F; text-align: center">“it doesn’t follow”</div>
+<div style="position: absolute; left: 820px; top: 176px; width: 230px; font-size: 15px; line-height: 1.4; color: #46505F; text-align: center">“the opposite is true”</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 8px">
+<div class="body" style="flex: 1 1 520px"><p><b>Attack is not defeat.</b> An attack is a fact about what was argued. Defeat needs a preference ordering among arguments, and choosing one is adjudication. So attacks are recorded, typed; a contest’s standing (your logos-atom values: refuted, burden-shifted, standoff, open, conceded) is only ever some party’s attributed assertion, or a view computed under a declared ordering.</p>
+<p style="margin: 0"><b>The architecture already exists.</b> Inference Anchoring Theory and the Argument Interchange Format anchor an argument graph <i>in</i> the speech acts that carry it, which is draft 2’s two planes.</p></div>
+<div style="flex: 1 1 340px; background: #F6E1DB; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 8</span><b style="font-size: 18px">Contest standings are never our fields</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">Record them as attributed assertions or computed views only.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean: yes, high</span>
+</div>
+</div>
+<p class="small" style="margin: 6px 0 0; max-width: 90ch">Also available: OMG’s SACM statuses (asserted, needsSupport, assumed, axiomatic, defeated, asCited), where a support link is itself a challengeable assertion; Toulmin’s warrant and backing, which make a source’s methodology the backing for a family of its warrants; Walton’s schemes with critical questions; linked against convergent premises.</p>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Norms: five layers, each with an owner</h2>
+<p class="small" style="margin: 0 0 16px; max-width: 82ch">Draft 2 defined a commitment as “a norm where imposer = bearer”. Searle tried that assimilation and it failed: a promise commits the speaker, a request tries to move the hearer. The layering keeps them apart.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="lay" style="border-top: none"><span class="n">1</span><b style="font-size: 18px">The act</b><span class="small" style="font-size: 16px">directive, commissive or declaration, with strength (Searle)</span></div>
+<div class="lay"><span class="n">2</span><b style="font-size: 18px">The statement’s grammar</b><span class="small" style="font-size: 16px">Institutional Grammar 2.0, already applied to legislation. <i>Regulative</i>: attribute, deontic, aim, object, context (activation condition, execution constraint), or else. <i>Constitutive</i>: the entity constituted, the function (including <span class="src">“the conferral of status”</span>), its constituting properties.</span></div>
+<div class="lay"><span class="n">3</span><b style="font-size: 18px">The positions it creates</b><span class="small" style="font-size: 16px">Hohfeld: claim and duty, privilege and no-right; power and liability, immunity and disability. <span class="src">“Leadership can … make decisions without the SAG”</span> is a power plus an immunity, which no obligation-strength ladder can say. And every duty asks who holds the correlative claim: for a voluntary framework the honest answer is often “no one with a legal claim”, the materiality question the sources keep asking.</span></div>
+<div class="lay"><span class="n">4</span><b style="font-size: 18px">Its legal status over time</b><span class="small" style="font-size: 16px">LegalRuleML: applicable, in force, efficacy, valid, with status-changing events; <i>strong</i> against <i>weak</i> permission. Most framework deployment conditions are strong permissions, derogations from a prohibition the same document sets.</span></div>
+<div class="lay" style="background: #DAE6F2"><span class="n" style="color: #1A4C7B">5</span><b style="font-size: 18px">What we record</b><span style="font-size: 16px; line-height: 1.5; color: #18202E">a <b>norm-proposition</b> (von Wright): a norm is neither true nor false; a report that a norm exists is. Compilation-not-adjudication, in deontic logic’s own terms.</span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 18px; margin-top: 26px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 22px; display: grid; gap: 10px; align-content: start">
+<b style="font-size: 18px">The plan’s worked example</b>
+<p class="src" style="margin: 0; font-size: 17.5px; line-height: 1.5">“To avoid catastrophic harm, developers of open-weight models should not release models without evaluating risks”</p>
+<p class="small" style="margin: 0">IASR 2026, line 2077 of the local text. Read as von Wright’s <i>technical norm</i> (if you want this end, you ought to do X), it presupposes an <i>anankastic</i> statement, that evaluation is necessary for the end, which is truth-apt and fits a descriptive report. Draft 2’s conflict becomes a typed ambiguity: technical norm or prescription.</p>
+</div>
+<div style="background: #F5E8C6; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip flag" style="background: #EBD9A8">Flag</span><span class="chip done" style="background: #DCE3D0; color: #33441A">Author agrees, rewrite queued</span></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3D2C00">The example starts from “IASR 2026 declares that it makes no recommendations”. IASR actually says it <span class="src">“does not make specific policy recommendations”</span> and that <span class="src">“policy recommendations are outside the scope of this work”</span>. The sentence is addressed to developers, not policymakers, so there is <b>no conflict to dissolve</b>. The example narrows to a typed reading of one sentence, and it then supports the technical-norm reading.</p>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision G</span><b style="font-size: 18px">Hold G1(d) until a norm-shaped question runs thin</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">From my question C3. The thin pass used none of this chapter’s machinery: no strength, polarity, attack, Hohfeld position or IG statement. So write no G1(d) entries until question 3, 5 or 11 has been carried through thin. The research reports keep the vocabulary ready meanwhile, and §6’s first risk is “vocabularies heavier than the work needs”.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">The author’s lean: yes</span>
+</div>
+</div>
+<p class="small" style="margin: 18px 0 0">Collisions to record: Hohfeld’s “exemption” means immunity, not draft 2’s derogation; Institutional Grammar’s “norm” means a statement without a sanction, not the umbrella.</p>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §3.6 and §5 (decision 8); <span class="id">influx/gamma-research/speech-acts-argument-norms.md</span>; thin pass <span class="id">weight-and-defects.md</span> §1.</span>
+<a href="Passages-lineage.dc.html">Next: 7. Passages and lineage</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>4. The lexicon</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.ct{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);border-top:1px solid #D3D9E2}
+.ct > div{padding:11px 14px;font-size:15.5px;line-height:1.4}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 4 of 16, about 4 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Architecture.dc.html">Previous</a><a href="Translation.dc.html">Next: translation</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 940px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">No term or field of ours may mix a thing in the world with a fact about our reading. Namespaces keep our own words from colliding with each other.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 66ch">The first rule comes from the largest shared-vocabulary effort in the corpus, and what went wrong in it.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The MIT “Other” test</h2>
+<p class="small" style="margin: 0 0 20px; max-width: 80ch">MIT’s AI Risk Repository codes 1,725 risks from 74 documents in a causal taxonomy. Its Entity value “Other”, checked at the source (Table 1), covers 21% of coded risks and merges three kinds of fact:</p>
+<div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: stretch">
+<div style="flex: 1 1 260px; background: #1F2C44; color: #F1F3F6; border-radius: 6px; padding: 20px 22px; display: flex; flex-direction: column; justify-content: center; gap: 8px">
+<span style="font-size: 15px; color: #C9D3E3">MIT causal taxonomy, Entity</span>
+<span style="font-size: 34px; font-weight: 800">“Other”</span>
+<span class="src" style="font-size: 16.5px; line-height: 1.45; color: #E6ECF5">“The risk arises from human-AI interaction rather than either agent alone, or the causing entity is ambiguous or unspecified”</span>
+</div>
+<div style="flex: 0 0 auto; align-self: center; font-size: 28px; color: #5E6778">⟶</div>
+<div style="flex: 3 1 560px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px">
+<div style="background: #FFFFFF; border: 1px solid #C9D1DC; border-radius: 6px; padding: 16px 18px; display: grid; gap: 6px; align-content: start">
+<span style="font-size: 14px; color: #46505F">a thing in the world</span>
+<b style="font-size: 18px">interaction</b>
+<span class="small">a real causal category: human and AI together</span>
+</div>
+<div style="background: #F6E1DB; border: 1px solid #E2B7AA; border-radius: 6px; padding: 16px 18px; display: grid; gap: 6px; align-content: start">
+<span style="font-size: 14px; color: #6D2414">a fact about our reading</span>
+<b style="font-size: 18px">ambiguous</b>
+<span class="small" style="color: #4A2A22">a resolution outcome: the coder couldn’t tell which</span>
+</div>
+<div style="background: #ECEFF3; border: 1px dashed #8C97A8; border-radius: 6px; padding: 16px 18px; display: grid; gap: 6px; align-content: start">
+<span style="font-size: 14px; color: #46505F">a fact about the source</span>
+<b style="font-size: 18px">unspecified</b>
+<span class="small">the source was silent</span>
+</div>
+</div>
+</div>
+<p class="body" style="margin: 18px 0 0; max-width: 80ch">Timing “Other” does the same with <span class="src">“across both pre- and post-deployment phases”</span> and <span class="src">“presented without a clearly specified time”</span>. This becomes acceptance test 3, and in chapter 5 it reappears inside our own resolution record, where an outcome and its reason have to be kept apart for the same reason.</p>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">What an entry is</h2>
+<div class="body">
+<p>An udon term group in <span class="id">def/</span>, in your address-theory house style: a narrative opening, one-line definitions, relations with cardinalities, invariants, discussion, <span class="id">:synonyms</span> and <span class="id">:avoid</span>. Terminology science adds three things:</p>
+</div>
+<div style="display: grid; gap: 10px; margin-bottom: 18px">
+<div style="display: flex; gap: 14px; align-items: baseline"><b style="min-width: 200px; font-size: 17px">Intensional definitions</b><span class="small" style="font-size: 16px">the broader concept plus the delimiting characteristics that separate this one from its neighbours. Read <span class="id">|invariants</span> as those, and “not to be confused with” becomes mechanical.</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><b style="min-width: 200px; font-size: 17px">Acceptability status</b><span class="small" style="font-size: 16px">preferred, admitted, deprecated; <span class="id">:synonyms</span> and <span class="id">:avoid</span> already approximate the last two</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><b style="min-width: 200px; font-size: 17px">Marked adoption</b><span class="small" style="font-size: 16px"><span class="id">[SOURCE: …, modified — what changed]</span>, so a borrowed definition says where it came from</span></div>
+</div>
+<div class="body">
+<p><b>Status per term</b> uses your <span class="id">DECISIONS.ud</span> ladder: steward, ratified, council, supported, defacto, proposed, transition. Everything an agent drafts starts at <i>proposed</i>.</p>
+<p><b>Umbrellas and declared ambiguity.</b> An umbrella is declared as containing named precise terms. A word used in several incompatible senses gets a declared ambiguity with its candidates named, never a silent pick.</p>
+</div>
+
+<h2 style="margin: 30px 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">In from the start, and left for later</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 20px">
+<p style="margin: 0 0 8px; font-weight: 700; font-size: 18px">In: what’s needed to describe the sources without loss</p>
+<ul class="small" style="margin: 0; padding-left: 18px; display: grid; gap: 4px">
+<li>the method terms (chapter 3)</li>
+<li>for every source word: bound or a match; intended cardinality; maintainer; as-of; dangle and collide</li>
+<li>actors and agent parts (chapter 10)</li>
+<li>the components sources build risk definitions from (chapter 8)</li>
+</ul>
+</div>
+<div style="background: #FFFFFF; border: 1px dashed #8C97A8; border-radius: 6px; padding: 16px 20px">
+<p style="margin: 0 0 8px; font-weight: 700; font-size: 18px">Later, in a context of its own</p>
+<ul class="small" style="margin: 0; padding-left: 18px; display: grid; gap: 4px">
+<li>signed causal influences, loops, bow-ties, any graph that analyses how risk behaves: these are <i>our</i> claims</li>
+<li>deferred to a spike: whether one formal object (Kaplan and Garrick’s triplets) underlies the readings of risk</li>
+</ul>
+</div>
+</div>
+</div>
+
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">Our method words that already mean something</h3>
+<div class="small">
+<p><b>context map</b>: Evans’s map across all contexts. Decision 1, chapter 5.</p>
+<p><b>designator</b>: an admitted ISO 1087 term for a sign; your <span class="id">def-match.ud</span> uses it differently. Keep yours, record the collision.</p>
+<p><b>primary</b>: the repo’s <span class="id">channel: primary</span> means “read by us in the source”, not a historian’s primary source. Rename it after PAV’s ladder.</p>
+<p><b>broad / narrow</b>: beta’s direction is the reverse of SKOS’s. Decision 2, chapter 5.</p>
+<p><b>qualifier</b>: Toulmin’s is the force of one inference. Use that sense or another word.</p>
+<p><b>norm, commitment, assertion, argument, declaration, exemption, rebuttal</b>: each entry names its sense and lists the others under “not to be confused with”.</p>
+</div>
+</aside>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Our method words collide with our domain words</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 82ch">So every term lives in a declared namespace, which is address theory’s <i>scope</i> used for exactly its purpose: <span class="id">ddd:context</span> beside the agent part (name open), with the bare word left ordinary. “Coverage”, not “scope”, is what a document is about.</p>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px">
+<div style="min-width: 860px">
+<div class="ct" style="border-top: none; background: #E6EAF0; font-weight: 700"><div>Word</div><div>Method sense</div><div>Domain sense</div><div>Elsewhere</div></div>
+<div class="ct"><div><b>context</b></div><div>DDD’s context</div><div>the agent part in your map: “experience &amp; agency”</div><div>IG’s and GSN’s Context; a context window</div></div>
+<div class="ct"><div><b>model</b></div><div>DDD’s domain model</div><div>an AI model</div><div>“source model”, “model gamma”; <span class="id">CLAUDE.md</span>’s Model row adds claims about behaviour</div></div>
+<div class="ct"><div><b>source</b></div><div>a source document</div><div>a <i>risk source</i> (SRA, ISO)</div><div>FactBank’s nested source; SP 800-30’s threat source</div></div>
+<div class="ct"><div><b>role</b></div><div>Goffman’s production roles; “stage is a role relative to a focal event”</div><div>actor roles, functional and institutional</div><div>model alpha’s role codes</div></div>
+<div class="ct"><div><b>scope</b></div><div>address theory: where a binding holds</div><div>a source’s declared coverage</div><div></div></div>
+<div class="ct"><div><b>agent</b></div><div>the agent that made a record (PROV, SSSOM)</div><div>an AI agent</div><div></div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 28px">
+<div style="flex: 1 1 460px; background: #F6E1DB; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision C</span><b style="font-size: 18px">Bound vs match is two axes</b><span class="small">thin pass, proposed change 5</span></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3A1A12">The plan classes a source term as either <i>bound</i> (the source defines it) or a <i>match</i> (used undefined). In your theory those are two axes: <b>who maintains the sense</b> (the source, an outside institution, or nobody) and <b>how the sense reaches instances</b> (almost always by match, since a statutory definition is a test run as of a moment). So SB 53’s “frontier developer” is a binding <i>to</i> a match. The plan’s §22757.14 example (<span class="src">“its test no longer reaches what it was meant to”</span>) takes the <i>dangle</i> reading; the other reading is a match drifting with the world. The thin pass asks you to judge this: <span class="src">“You’ll judge this better than I can.”</span></p>
+</div>
+<div style="flex: 1 1 320px; background: #E9E3F6; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip ques" style="background: #DCD2F0">Question B1</span><span class="chip done" style="background: #CFDDED">Answered, 8 Oct</span></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #2A1D52">If SB 53 says nothing about where “foreseeable” gets its content, it is maintained by nobody in the text, and California law is only the likeliest resolver. Should the record’s reason say “our reading”?</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #18202E; background: #FFFFFF; border-radius: 4px; padding: 10px 14px"><b>Yes.</b> SB 53 leaves both terms as matches resolved by the reader. §3.4, acceptance test 1 and the thin pass’s <i>delegated</i> status will carry “our reading”; queued for after your read.</p>
+</div>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §3.2 (collisions, namespaces), §3.3; thin pass <span class="id">weight-and-defects.md</span> D-bound-vs-match.</span>
+<a href="Translation.dc.html">Next: 5. Translation and resolution</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

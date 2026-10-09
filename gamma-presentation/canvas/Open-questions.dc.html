@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>16. Flags and open questions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.fl{display:grid;grid-template-columns:minmax(0,1fr) 150px 120px;border-top:1px solid #E1E5EC}
+.fl > div{padding:10px 14px;font-size:15.5px;line-height:1.45}
+.qs{display:grid;grid-template-columns:56px minmax(0,1fr) 230px;border-top:1px solid #E1E5EC;align-items:baseline}
+.qs > div{padding:9px 12px;font-size:15.5px;line-height:1.45}
+.rk{background:#FFFFFF;border:1px solid #D3D9E2;border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 16 of 16, about 3 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Decisions.dc.html">Previous</a><a href="Main.dc.html">Back to the start</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 980px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">What not to trust in the plan as written, and how the plan could be wrong even where it is accurate.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 70ch">Most of the plan’s outside citations hold verbatim at the cited place, and the research reports’ “read at the primary” marks were accurate in nearly every case tested. None of the problems below undoes a recommendation.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; margin-bottom: 14px"><h2 style="margin: 0; font-size: 27px; line-height: 1.2; font-weight: 700">Flags: found by the citation check, not yet in the plan</h2><span class="small">The author agrees with all of them and has queued them for after your read.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="fl" style="border-top: none; background: #F5E8C6; font-weight: 700; color: #3D2C00"><div>What the plan says, and what is right</div><div>Where</div><div>Tour</div></div>
+<div class="fl"><div><b>SB 53 imports “foreseeable” and “materially contribute” from California law.</b> The statute doesn’t say so; it is our reading.</div><div>§3.4; test 1</div><div><a href="Corpus.dc.html">ch. 2</a>, <a href="Lexicon.dc.html">4</a></div></div>
+<div class="fl"><div><b>Control of the weights is an operative fact</b> (EU guidelines fn 12). Fn 12 makes it evidence of who performed a modification.</div><div>§3.9 note; spike</div><div><a href="Actors.dc.html">ch. 10</a></div></div>
+<div class="fl"><div><b>IASR “makes no recommendations”.</b> It disclaims <i>specific policy</i> recommendations, so the worked example shows no conflict.</div><div>§3.6</div><div><a href="Assertions.dc.html">ch. 6</a></div></div>
+<div class="fl"><div><b>“About 1,200” raw uses in IASR.</b> The counts sum to 993.</div><div>§3.4</div><div><a href="Translation.dc.html">ch. 5</a></div></div>
+<div class="fl"><div><b>Hart’s “final but not also infallible”.</b> It is Kloosterhuis’s unquoted paraphrase.</div><div>§3.6</div><div></div></div>
+<div class="fl"><div><b>“Two of the codes it amends”.</b> SB 53 adds chapters to them.</div><div>§3.4</div><div></div></div>
+<div class="fl"><div><b>SB 53 excludes an evaluation.</b> It excludes one <span class="src">“designed to elicit this behavior”</span>.</div><div>§3.8</div><div><a href="Hazard-instances.dc.html">ch. 9</a></div></div>
+<div class="fl"><div><b>Buhl et al. “recommend” bow-tie.</b> They say it <span class="src">“may be useful”</span>.</div><div>§3.8</div><div><a href="Risk.dc.html">ch. 8</a></div></div>
+<div class="fl"><div><b>R2P2’s 50-fatality line, in quotation marks.</b> Not verbatim.</div><div>§3.8</div><div><a href="Risk.dc.html">ch. 8</a></div></div>
+<div class="fl"><div><b>The AI Act’s “operator” umbrella (Art. 3(8))</b> is listed wrong.</div><div>§3.9 table</div><div></div></div>
+<div class="fl"><div><b>An STPA paraphrase drift</b> is attributed to the wrong author; <b>“Chu et al.”</b> is one author.</div><div>§5, decisions 6–7</div><div><a href="Phases.dc.html">ch. 14</a></div></div>
+<div class="fl"><div><b>SB 53’s definition as “one sentence”.</b> The exclusions are a separate paragraph, (c)(2), and the definition reaches (l) and §22757.16.</div><div>§1.3</div><div><a href="Corpus.dc.html">ch. 2</a>, <a href="Competency.dc.html">13</a></div></div>
+<div class="fl"><div><b>The EU Code requires “purposive” interpretation.</b> Slightly overstated: the binding “shall” is reading “in light of the objective”; purposive interpretation is something the Signatories “recognise … is particularly important”.</div><div>§1.3</div><div></div></div>
+<div class="fl"><div><b>Evidence marks flattened.</b> The reports mark Temmerman, the ISO acceptability values, the Admiralty grading, Searle’s mode of achievement and indirect force, the “ISO” event note and Hart as read via a secondary, an abstract, a preview or memory; the plan repeats them without the mark.</div><div>throughout</div><div></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px">
+<div style="flex: 1 1 460px; background: #F6E1DB; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision I</span><b style="font-size: 18px">Apply them now, or after your read?</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">The author held them back only so the text wouldn’t move while you were partway through a long read. All are mechanical. They should go in before any ratification read either way.</p>
+</div>
+<div style="flex: 1 1 380px; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 20px">
+<p style="margin: 0; font-size: 16px; line-height: 1.5">Several of the check’s findings <b>strengthen</b> the plan: RAISE’s “person” difference, the FCF’s narrowed threshold, the EU Code’s own import clause, and Grüninger and Fox.</p>
+</div>
+</div>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">What could make the plan wrong, even where it is accurate</h2>
+<p class="small" style="margin: 0 0 16px">The plan’s §6, each risk with its guard.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 14px">
+<div class="rk"><b style="font-size: 18px">The borrowed vocabularies are heavier than the work needs</b><p class="small" style="margin: 0"><b>Guard:</b> take their distinctions and names, not their machinery; an entry that imports machinery without a corpus case is the failure. The thin pass used none of chapter 6’s machinery; Decision G holds it.</p></div>
+<div class="rk"><b style="font-size: 18px">Same-model coherence</b><p class="small" style="margin: 0">The plan, the three research reports, the spike, the thin pass, both de novo passes, the citation check and this tour are all one model family. Agreement among them is coherence, not confirmation. <b>Guard:</b> the primaries they quote, your review, and readers from other families.</p></div>
+<div class="rk"><b style="font-size: 18px">Lexicon first can still harden too early</b><p class="small" style="margin: 0"><b>Guard:</b> the thin passes, which show which terms bear weight before most are refined, and G4, whose pilots are expected to change the lexicon before any wide translation.</p></div>
+<div class="rk"><b style="font-size: 18px">First-pass entries can look finished</b><p class="small" style="margin: 0">Fluent drafts read as settled and get inherited, as beta’s term files were. <b>Guard:</b> your refinement passes, the <i>supported</i> status, G4’s disagreement data.</p></div>
+<div class="rk"><b style="font-size: 18px">Over-weighting the strict sources</b><p class="small" style="margin: 0">The round trip favours statutes. The loose sources test whether declared ambiguity stays honest instead of becoming a dumping ground, which the MIT test doesn’t catch. <b>Guard:</b> the IASR round trip and its rule for when an ambiguity passes.</p></div>
+<div class="rk"><b style="font-size: 18px">Conflict of interest</b><p class="small" style="margin: 0">Anthropic’s August Risk Report is a pilot and the main example of a source with its own vocabulary, judged by an Anthropic model. <b>Guard:</b> the EU Code as a pilot beside it, and two-translator coding across model families.</p></div>
+</div>
+<div style="margin-top: 18px; background: #F6E1DB; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision K</span><b style="font-size: 18px">A cross-family review, now, before G4</b><span class="chip lean" style="background: #CDE5DF">Lean: high</span></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">Grok 4.7’s audit of the plan and the first <span class="id">def/</span> drafts (7 October) was the first reader from another family, and its accepted changes are in; §6 doesn’t yet record it (my question D1; queued). Still without one: the alignment-referents spike; the thin pass and its notation; the research reports’ quotations; the citation check; the <span class="id">def/</span> revisions made after Grok’s audit. G4’s two-translator coding assumes translators from different families, and one review would test that cheaply first.</p>
+</div>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; margin-bottom: 14px"><h2 style="margin: 0; font-size: 27px; line-height: 1.2; font-weight: 700">My sixteen questions, and where each landed</h2><span class="small">Full text and the author’s answers: <span class="id">gamma-presentation/questions.md</span>.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="qs" style="border-top: none; background: #E9E3F6; font-weight: 700; color: #2A1D52"><div></div><div>Question</div><div>Outcome</div></div>
+<div class="qs"><div><b>A1</b></div><div>Does your refinement budget apply to source-namespace entries?</div><div><span class="chip dec">Decision D</span></div></div>
+<div class="qs"><div><b>A2</b></div><div>Is a source namespace inside <span class="id">def/</span> still an anticorruption layer?</div><div><span class="chip done">yes, if drawn as hosted contexts</span></div></div>
+<div class="qs"><div><b>A3</b></div><div>Decision 1 interacts with proposed change 2</div><div><span class="chip dec">Decision E</span></div></div>
+<div class="qs"><div><b>B1–B5</b></div><div>Citation-check corrections; acceptance test 1’s unit</div><div><span class="chip done">accepted, queued</span> <span class="chip dec">I</span></div></div>
+<div class="qs"><div><b>C1</b></div><div>A second thin pass before G2’s refinement?</div><div><span class="chip dec">Decision F</span></div></div>
+<div class="qs"><div><b>C2</b></div><div>Lexicon first, or questions first?</div><div><span class="chip done">drafting proceeds; refinement waits</span></div></div>
+<div class="qs"><div><b>C3</b></div><div>Hold G1(d) until a norm-shaped question runs thin?</div><div><span class="chip dec">Decision G</span></div></div>
+<div class="qs"><div><b>D1</b></div><div>Record Grok’s audit; list what has no cross-family reader</div><div><span class="chip done">accepted, queued</span> <span class="chip dec">K</span></div></div>
+<div class="qs"><div><b>D2</b></div><div>Is the notation quietly hardening in the builder?</div><div><span class="chip dec">Decision H</span></div></div>
+<div class="qs"><div><b>E1</b></div><div>Decision 11’s “degree” and the thin pass’s harm facets</div><div><span class="chip done">accepted, queued</span></div></div>
+<div class="qs"><div><b>E2</b></div><div>Change 1 becomes unconditional under decision 12’s eight</div><div><span class="chip done">accepted</span> <span class="chip dec">J</span></div></div>
+<div class="qs"><div><b>E3</b></div><div>Is DDD becoming naming only?</div><div><span class="chip done">no: strategy and diagnosis</span></div></div>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From <span class="id">influx/reviews/citation-check-2026-10-07.md</span>, the plan §6, <span class="id">gamma-presentation/questions.md</span>.</span>
+<a href="Main.dc.html">Back to the start</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

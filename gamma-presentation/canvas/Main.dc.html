@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Model gamma, a guided tour: start here</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<span>Model gamma, a guided tour</span>
+<span>For Joseph, built 8 October 2026 from the plan as of 7 October</span>
+<a href="Why-gamma.dc.html">Begin: 1. Why a third attempt</a>
+</nav>
+
+<section style="display: flex; flex-wrap: wrap; gap: 48px; padding: 56px 0 40px; align-items: flex-start">
+<div style="flex: 999 1 560px; min-width: 0">
+<p class="src" style="margin: 0; font-size: clamp(64px, 11vw, 132px); line-height: 0.95; color: #18202E; letter-spacing: -0.02em">developer</p>
+<div style="margin-top: 22px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; font-size: 18px; line-height: 1.4">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline"><span class="id">arm:model-trainer</span><span style="color: #46505F">writes into the weights (your alignment map)</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline"><span class="id">eu-act:provider</span><span style="color: #46505F">a market act: <span class="src">“places it on the market … under its own name”</span>, Art. 3(3)</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline"><span class="id">sb53.bp:frontier-developer</span><span style="color: #46505F">a training act, a 10<sup>26</sup> compute threshold, and stated intent, §22757.11(h)</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline"><span class="id">iasr:ai-developer</span><span style="color: #46505F">any organisation that <span class="src">“designs, builds, or adapts”</span></span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline"><span class="id">iasr:developer#person</span><span style="color: #46505F">an individual engineer, elsewhere in the same report</span></div>
+</div>
+</div>
+<div style="flex: 1 1 320px; max-width: 420px; padding-top: 12px">
+<h1 style="margin: 0; font-size: 40px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">One word, five referents. Model beta let it quietly become “a lab”.</h1>
+<p class="body" style="margin: 18px 0 0">In beta, “developer” sits in 41 of 287 concepts, 23 times in the label. Gamma is a method for making that impossible to do silently: our words first, each source’s words translated into them with every ambiguity kept, then the claims.</p>
+</div>
+</section>
+
+<section style="padding: 8px 0 44px">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The plan in one picture</h2>
+<p class="small" style="margin: 0 0 22px; max-width: 70ch">Chapter 3 takes this apart. The running example throughout is SB 53’s “catastrophic risk”, the definition the thin pass carried end to end.</p>
+
+<div style="overflow-x: auto">
+<div style="min-width: 980px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 44px; position: relative">
+<div style="grid-column: 1 / span 4; background: #1F2C44; color: #F1F3F6; border-radius: 6px; padding: 16px 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; align-items: baseline">
+<span style="font-size: 20px; font-weight: 700">Lexicon: our words, defined first</span>
+<span style="font-size: 16px; color: #C9D3E3">method terms (<span class="id" style="color: #E6ECF5">ddd:</span>, <span class="id" style="color: #E6ECF5">addr:</span>) before domain terms (<span class="id" style="color: #E6ECF5">arm:</span>); namespaced; refined line by line before anything leans on it</span>
+</div>
+<div style="grid-column: 1 / span 4; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 44px; height: 34px">
+<div></div>
+<div style="border-left: 2px solid #1F2C44; margin-left: 50%"></div>
+<div style="border-left: 2px solid #1F2C44; margin-left: 50%"></div>
+<div></div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #C9D1DC; border-radius: 6px; padding: 18px 18px 20px; position: relative">
+<p style="margin: 0; font-size: 13px; color: #46505F">Their words</p>
+<p style="margin: 4px 0 10px; font-size: 20px; font-weight: 700">Passages</p>
+<p class="src" style="margin: 0; font-size: 16.5px; line-height: 1.4; color: #2B3445">“… more than 50 people … arising from a single incident …”</p>
+<p class="small" style="margin: 12px 0 0">Verbatim, anchored by page and quote; a quote that matches twice is a defect, not a widening.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #C9D1DC; border-radius: 6px; padding: 18px 18px 20px">
+<p style="margin: 0; font-size: 13px; color: #46505F">What their word means here</p>
+<p style="margin: 4px 0 10px; font-size: 20px; font-weight: 700">Translation and resolution</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.45">“more than 50 people” ⟶ <span class="id">{dead-or-injured pooled | each counted apart}</span></p>
+<p class="small" style="margin: 12px 0 0">Per source, per scope. Ambiguity is an outcome with named candidates, not an error.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #C9D1DC; border-radius: 6px; padding: 18px 18px 20px">
+<p style="margin: 0; font-size: 13px; color: #46505F">What they claim, in our terms</p>
+<p style="margin: 4px 0 10px; font-size: 20px; font-weight: 700">Assertions and lineage</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.45">Act, strength, whose voice, attacks, norms; and which earlier text each claim copies.</p>
+<p class="small" style="margin: 12px 0 0">Their words stay beside ours. Their hedges stay theirs.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px dashed #8C97A8; border-radius: 6px; padding: 18px 18px 20px">
+<p style="margin: 0; font-size: 13px; color: #46505F">Computed, never kept by hand</p>
+<p style="margin: 4px 0 10px; font-size: 20px; font-weight: 700">Views</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.45">Crosswalks, lineage-aware corroboration, coverage, a bow-tie around one event, loops.</p>
+<p class="small" style="margin: 12px 0 0">Which views exist is decided by the competency questions.</p>
+</div>
+<div style="grid-column: 1 / span 4; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 44px; margin-top: -1px">
+<div style="height: 0"></div><div></div><div></div><div></div>
+</div>
+<div style="grid-column: 1 / span 4; margin-top: 26px; border: 1px solid #C9D1DC; border-radius: 6px; padding: 14px 22px; background: #E6EAF0; display: flex; flex-wrap: wrap; gap: 6px 24px; align-items: baseline; justify-content: space-between">
+<span style="font-size: 18px; font-weight: 700">Competency questions</span>
+<span style="font-size: 16px; color: #2E3848">written first; they decide which machinery earns a place, and they are the final test</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 36px; margin-top: 16px; font-size: 16px; color: #2E3848">
+<span>Left to right: from a source’s words to a computed answer.</span>
+<span>The lexicon feeds the two middle steps; nothing flows back into a source.</span>
+</div>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 36px 0 8px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 16px; font-size: 27px; line-height: 1.2; font-weight: 700">Reading it</h2>
+<div class="body">
+<p>The main column of each chapter is the one-hour path. The narrower column on the right is optional depth; skip it on a first read. Each chapter opens with its claim as the headline, so the headlines alone, in order, are the argument.</p>
+<p>The type tells you whose words you are reading:</p>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 6px 0 26px">
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline"><span class="src" style="font-size: 21px; min-width: 210px">a source’s own words</span><span class="small">Alegreya italic, always verbatim, always attributed</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline"><span style="font-size: 20px; min-width: 210px">explanation</span><span class="small">the plan’s reasoning, or mine, in plain sans</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline"><span class="id" style="font-size: 18px; min-width: 210px">sb53.bp:catastrophic-risk</span><span class="small">a term in a namespace: a source’s (<span class="id">sb53.bp:</span>), ours (<span class="id">arm:</span>), or a method vocabulary (<span class="id">ddd:</span>, <span class="id">addr:</span>)</span></div>
+</div>
+<div class="body"><p>Five marks recur:</p></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 4px">
+<div style="display: flex; gap: 14px; align-items: baseline"><span class="chip dec" style="min-width: 92px; justify-content: center">Decision 3</span><span class="body" style="font-size: 17px">yours to make: numbered as in the plan’s §5, lettered A to K where they come from the thin pass, the plan’s §6, or my questions and the author’s answers. All 24 are on the decision board</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><span class="chip lean" style="min-width: 92px; justify-content: center">Lean</span><span class="body" style="font-size: 17px">the plan author’s recommendation, with the confidence it was given</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><span class="chip ques" style="min-width: 92px; justify-content: center">Question</span><span class="body" style="font-size: 17px">mine, raised while building this tour and answered by the plan’s author on 8 October in <span class="id">gamma-presentation/questions.md</span>; where the answer came back to you, it became a lettered decision with the author’s lean</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><span class="chip flag" style="min-width: 92px; justify-content: center">Flag</span><span class="body" style="font-size: 17px">a statement in the plan that a later check found wrong or loose, not yet corrected in the plan</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><span class="chip done" style="min-width: 92px; justify-content: center">Settled</span><span class="body" style="font-size: 17px">something you have already decided, with the date</span></div>
+</div>
+</div>
+
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">What has moved since the plan was last revised</h3>
+<div class="small" style="display: grid; gap: 10px">
+<p style="margin: 0"><b>7 Oct.</b> The thin pass (G1b) ran on SB 53 and candidate question 1, was audited, and withdrew its main finding. Chapter 11.</p>
+<p style="margin: 0"><b>7 Oct, evening.</b> The same slice was rewritten in your namespaced notation, which proposes a third answer to where a definition’s precision lives. Chapter 12.</p>
+<p style="margin: 0"><b>7 Oct.</b> A citation check of every outside source in the plan. Most hold verbatim; about a dozen don’t, and none of those corrections is in the plan yet. Chapter 16.</p>
+<p style="margin: 0"><b>7 Oct.</b> Grok 4.7’s audit, the first reader from another model family, was adjudicated; its accepted changes are in the plan.</p>
+<p style="margin: 0"><b>8 Oct.</b> <span class="id">lexicon/</span> now builds a page from <span class="id">def/</span> and can read the thin-pass notation too.</p>
+<p style="margin: 0"><b>8 Oct.</b> The plan’s author answered my sixteen questions and queued the agreed corrections for after your read.</p>
+</div>
+<h3 style="margin: 26px 0 10px; font-size: 19px; font-weight: 700">What this tour leaves out</h3>
+<p class="small" style="margin: 0">Every point in the plan was checked against the tour. What isn’t here, and why, is on the <a href="Addendum.dc.html">addendum sheet</a>.</p>
+</aside>
+</section>
+
+<section style="padding: 40px 0 0">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The route</h2>
+<p class="small" style="margin: 0 0 22px">About an hour on the main line. The right-hand columns add roughly twenty-five minutes.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 22px">
+
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 10px; font-size: 15px; color: #46505F">Part I, orientation, 8 min</p>
+<div style="display: grid; gap: 8px; font-size: 17px; line-height: 1.35">
+<a href="Why-gamma.dc.html">1. Why a third attempt</a>
+<a href="Corpus.dc.html">2. What the sources turned out to be</a>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 10px; font-size: 15px; color: #46505F">Part II, the machinery, 21 min</p>
+<div style="display: grid; gap: 8px; font-size: 17px; line-height: 1.35">
+<a href="Architecture.dc.html">3. The architecture</a>
+<a href="Lexicon.dc.html">4. The lexicon</a>
+<a href="Translation.dc.html">5. Translation and resolution</a>
+<a href="Assertions.dc.html">6. Assertions</a>
+<a href="Passages-lineage.dc.html">7. Passages and lineage</a>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 10px; font-size: 15px; color: #46505F">Part III, the domain, 12 min</p>
+<div style="display: grid; gap: 8px; font-size: 17px; line-height: 1.35">
+<a href="Risk.dc.html">8. The risk side</a>
+<a href="Hazard-instances.dc.html">9. Hazard, and documented instances</a>
+<a href="Actors.dc.html">10. Actors and agent parts</a>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 10px; font-size: 15px; color: #46505F">Part IV, proof and plan, 13 min</p>
+<div style="display: grid; gap: 8px; font-size: 17px; line-height: 1.35">
+<a href="Thin-pass.dc.html">11. The thin pass (G1b)</a>
+<a href="Precision.dc.html">12. Where a definition’s precision lives</a>
+<a href="Competency.dc.html">13. Competency questions and tests</a>
+<a href="Phases.dc.html">14. The phases</a>
+</div>
+</div>
+
+<div style="background: #1F2C44; color: #F1F3F6; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 10px; font-size: 15px; color: #C9D3E3">Part V, decide, 8 min</p>
+<div style="display: grid; gap: 8px; font-size: 17px; line-height: 1.35">
+<a href="Decisions.dc.html" style="color: #FFFFFF">15. Decision board</a>
+<a href="Open-questions.dc.html" style="color: #FFFFFF">16. Flags and open questions</a>
+</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.45; color: #C9D3E3">If you have ten minutes, read 15 and 16 only. Each item there links back to its chapter.</p>
+<a href="Addendum.dc.html" style="display: block; margin-top: 12px; color: #FFFFFF; font-size: 15px">Addendum: what the tour leaves out, and why</a>
+</div>
+
+</div>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

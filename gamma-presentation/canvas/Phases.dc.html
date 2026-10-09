@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>14. The phases</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.sw{display:grid;grid-template-columns:150px repeat(4,minmax(0,1fr));gap:10px}
+.sw .lane{font-size:15.5px;font-weight:700;padding:10px 4px;align-self:center;line-height:1.3}
+.sw .col{font-size:14.5px;font-weight:700;color:#46505F;padding-bottom:4px}
+.ph{border-radius:6px;padding:10px 12px;font-size:15px;line-height:1.35;background:#FFFFFF;border:1px solid #C9D1DC}
+.ph b{font-size:16px}
+.ph.d{background:#DAE6F2;border-color:#AFC6DD}
+.ph.w{background:#F6E1DB;border-color:#E2B7AA}
+.ph.p{background:#FFFFFF;border:1px dashed #8C97A8}
+.pr{display:grid;grid-template-columns:90px minmax(0,1fr) 220px;border-top:1px solid #D3D9E2}
+.pr > div{padding:12px 14px;font-size:15.5px;line-height:1.45}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 14 of 16, about 3 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Competency.dc.html">Previous</a><a href="Decisions.dc.html">Next: decision board</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 980px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">Eight phases and the thin passes. Two are done. Everything after waits on a handful of your decisions, and on whether a second thin pass runs first.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 68ch">Throughout, a phase is “done” only when its entries have had repeated truthification passes, not merely been drafted.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<div style="overflow-x: auto">
+<div class="sw" style="min-width: 1000px">
+<div></div><div class="col">Done</div><div class="col">Now: drafts, decisions</div><div class="col">Next</div><div class="col">Then, and later</div>
+
+<div class="lane">Lexicon and formats</div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph d"><b>G0</b> housekeeping, 6 Oct: 130 paths repointed, <span class="id">bin/extract-text</span></div><div class="ph d"><b>G1(a)</b> <span class="id">ddd:</span> terms, first draft 7 Oct: 6 groups, 20 terms, all proposed</div></div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph w"><b>G1(b, c, f)</b> address theory by reference; terminology terms; the competency questions, to ratify</div><div class="ph w"><b>G1(e)</b> record formats: translation row, resolution, assertion, instance. Needs decisions 1, 9, A, B, H</div><div class="ph p"><b>G1(d)</b> evidence-plane terms, held (Decision G)</div></div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph"><b>G2</b> actors and agent parts, drafted as parties × relations from the spike’s integration plan</div><div class="ph"><b>G3</b> risk core: components, readings of risk, H1–H7, intent, impact radius</div></div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph"><b>Refinement passes</b> on G2 and G3 entries, after G1c and the ratified questions</div></div>
+
+<div class="lane">End to end</div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph d"><b>G1b</b> thin pass: SB 53 and Q1, 7 Oct, disposable</div></div>
+<div></div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph w"><b>G1c</b> proposed: AISI INC-2026-07-28-01 through Q20 (Decision F)</div></div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph"><b>G4</b> pilots: four sources, two translators each, then one source and one question end to end at full strength, then loss of control through all eleven models</div></div>
+
+<div class="lane">Corpus-wide</div>
+<div></div>
+<div></div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph"><b>G5</b> distinctions inventory, in parallel with G2–G4</div></div>
+<div style="display: grid; gap: 8px; align-content: start"><div class="ph"><b>G6</b> remaining translations</div><div class="ph"><b>G7</b> assertions for the slice, then views</div><div class="ph"><b>G8</b> widen</div></div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 14px; font-size: 14.5px; color: #46505F; align-items: center">
+<span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 18px; height: 14px; border-radius: 3px; background: #DAE6F2; border: 1px solid #AFC6DD"></span>done</span>
+<span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 18px; height: 14px; border-radius: 3px; background: #F6E1DB; border: 1px solid #E2B7AA"></span>waiting on you</span>
+<span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 18px; height: 14px; border-radius: 3px; background: #FFFFFF; border: 1px dashed #8C97A8"></span>held on purpose</span>
+<span>G1b and G1c are drawn where the thin passes sit in the sequence; G1c exists only if you choose it.</span>
+</div>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">What each later phase is, and how it is known to be done</h2>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="pr" style="border-top: none; background: #E6EAF0; font-weight: 700"><div>Phase</div><div>What</div><div>Done when</div></div>
+<div class="pr"><div><b>G1</b></div><div>(a)–(c) and (f) go to you for ratification. (d) and (e) are <i>supported</i>: agents may use them, and you ratify them in batches once the passes show which terms and fields bore weight. Without an owner, the pilots would invent the record formats in passing and they would harden by default.</div><div>ratified, or supported pending batch ratification</div></div>
+<div class="pr"><div><b>G2</b></div><div>Actors drafted as parties × relations (not the superseded two-basis table), translated against the done-test’s sources. Can run alongside G1(d)–(e).</div><div>chapter 10’s done-test passes</div></div>
+<div class="pr"><div><b>G3</b></div><div>Concepts first, then you decide the names.</div><div>tests 1 and 2 pass for risk-side terms, and test 5 for the distinctions G5 has found so far; a later distinction reopens G3</div></div>
+<div class="pr"><div><b>G4</b></div><div><b>SB 53</b>, a statute stricter than us; <b>the EU Code</b> (Safety and Security), whose interpretation clause declares a resolution policy and which roots the loss-of-control formula; <b>Anthropic’s August 2026 Risk Report</b>, with its own vocabulary and drift (conflict of interest noted); <b>IASR 2026</b>, loose and self-inconsistent. Translation is coding: two independent translators, ideally different model families; disagreements recorded as attributed assertions; the per-term disagreement rate shows where the lexicon is underspecified; the converged guidelines become G6’s codebook. Then loss of control through all eleven OVERVIEW models, each bundled document its own record, the NRR’s and CRA’s absence of the term recorded with the search that found it.</div><div>pilot translations with disagreement data; the end-to-end answer; the slice recorded; the forced lexicon changes made</div></div>
+<div class="pr"><div><b>G5</b></div><div>Every basis of division the corpus draws, so the lexicon can express each. Not “pick the best taxonomy”, which would import a source’s model.</div><div>covers the catalog’s anchors and major sources; test 5 passes</div></div>
+<div class="pr"><div><b>G6</b></div><div>In Influence order: the 11 anchor rows, then the 26 major rows, less the four pilots. The unit is one document. The “not listed” frameworks behind the lineage findings are translated at least at their copied passages. Self-inconsistent sources mapped scope by scope. A milestone: <b>translated editions</b>, each source’s text with our terms marked in place, plus a sidecar on the hard cases; full text only where the licence allows.</div><div>each document translated, or skipped with a reason</div></div>
+<div class="pr"><div><b>G7, G8</b></div><div>Loss-of-control assertions with everything from chapter 6, then the views the questions call for. The vocabulary of causal relations <i>between</i> events, which loops need, belongs to the analysis context built on the lexicon, not inside it. Then widen.</div><div>the questions are answered</div></div>
+</div>
+<p class="small" style="margin: 14px 0 0; max-width: 92ch"><b>Process notes:</b> parallel agents each get their own scratch directory (helper-script names have collided before); translation rows record their justification and the agent that made them (SSSOM’s <span class="id">AgentBasedMatching</span>, then a reviewer), including which rows were reviewed and how they were sampled.</p>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 18px">
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 9</span><b style="font-size: 18px">Format for the evidence plane</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">udon for the lexicon is decided. Lean: keep translation rows and resolution, assertion and instance records in YAML through the G4 pilots, written so they convert mechanically. <span class="id">udon/core</span> has a working Rust parser, but no Ruby or Python bindings and it implements the pre-0.8 model; the records need validators and computed views, and the pilots will churn the formats.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip lean" style="background: #CDE5DF">Lean: YAML through G4, moderate</span><span class="chip done" style="background: #CFDDED">Decide first: G1(e) can’t start without it</span></div>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 13</span><b style="font-size: 18px">Translated editions</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">Produce them, starting with the pilots, with an in-place marking that can’t be mistaken for an ordinary link (Markdown link syntax would collide with the sources’ real links). Under Decision E’s lean, this is the artifact that keeps the name “translation”.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean: yes, moderate</span>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 7</span><b style="font-size: 18px">STPA</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">Keep it as one translated source, not the chain’s vocabulary. Bind any term we take to the STPA Handbook itself: the AI papers’ paraphrases drift (“will” lead to a loss becomes “can”; a scenario type dropped). Whether bow-tie, STPA’s control structure or something else frames the analysis is left to the questions.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean: keep as a source, moderate</span>
+<p class="small" style="margin: 0; font-size: 14.5px">Flag: the citation check found the plan attributes one of those drifts to the wrong author.</p>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §4 and §5 (decisions 7, 9, 13); questions C1–C3, D2.</span>
+<a href="Decisions.dc.html">Next: 15. Decision board</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>15. Decision board</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:14px}
+.dc{background:#FFFFFF;border:1px solid #D3D9E2;border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.dc .t{font-size:18px;font-weight:700;line-height:1.3}
+.dc .l{font-size:15.5px;line-height:1.45;color:#21574D}
+.dc .w{font-size:14.5px;line-height:1.4;color:#46505F}
+.hd{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.tier{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin:0 0 14px}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 15 of 16, about 5 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Phases.dc.html">Previous</a><a href="Open-questions.dc.html">Next: flags and open questions</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 980px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">Twenty-four decisions are yours. Seven of them unblock almost everything else; most of the rest can wait until G2 or G3 needs them.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 70ch">Numbered decisions are the plan’s §5. Lettered ones come from the thin pass, from my questions and the author’s answers, and from the plan’s §6. Each card gives the lean as the plan’s author stated it, and links to the chapter that sets it up.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<div class="tier"><h2 style="margin: 0; font-size: 27px; font-weight: 700">Decide first</h2><span class="small">They end up in <span class="id">def/</span> and every record format, or gate the next pass.</span></div>
+<div class="grid">
+<div class="dc" style="border: 2px solid #1F2C44"><div class="hd"><span class="chip dec">Decision 12</span><a href="Competency.dc.html" class="small">chapter 13</a></div><span class="t">The competency questions</span><span class="l">Lean: the eight proposed (4, 20, 1, 3, 2, 12, 17, 7); moderate</span><span class="w">Accepting them also settles J.</span></div>
+<div class="dc" style="border: 2px solid #1F2C44"><div class="hd"><span class="chip dec">Decision A</span><a href="Precision.dc.html" class="small">chapter 12</a></div><span class="t">Where a source definition’s precision lives</span><span class="l">Lean: C, source namespaces plus <span class="id">arm:</span> meeting points; moderate</span><span class="w">Decide with 1 and E.</span></div>
+<div class="dc" style="border: 2px solid #1F2C44"><div class="hd"><span class="chip dec">Decision 1</span><a href="Translation.dc.html" class="small">chapter 5</a></div><span class="t">The name of the per-source document</span><span class="l">Lean: “translation”, keeping “context map” for Evans’s across-sources map; moderate</span></div>
+<div class="dc" style="border: 2px solid #1F2C44"><div class="hd"><span class="chip dec">Decision 9</span><a href="Phases.dc.html" class="small">chapter 14</a></div><span class="t">Format for the evidence-plane records</span><span class="l">Lean: YAML through the G4 pilots, written to convert to udon; moderate</span></div>
+<div class="dc" style="border: 2px solid #1F2C44"><div class="hd"><span class="chip dec">Decision 10</span><a href="Actors.dc.html" class="small">chapter 10</a></div><span class="t">Is the agent itself among the admissible alignment referents?</span><span class="l">Lean: include it; moderate. The rest of 10 (no single default) is recommended at moderate-high</span></div>
+<div class="dc" style="border: 2px solid #1F2C44"><div class="hd"><span class="chip dec">Decision F</span><a href="Thin-pass.dc.html" class="small">chapter 11</a></div><span class="t">A second thin pass, G1c, on AISI’s INC-2026-07-28-01 before refinement passes on G2</span><span class="l">The author’s lean: yes</span></div>
+<div class="dc" style="border: 2px solid #1F2C44"><div class="hd"><span class="chip dec">Decision 2</span><a href="Translation.dc.html" class="small">chapter 5</a></div><span class="t">Broad and narrow in SKOS’s direction</span><span class="l">Lean: yes; high. A quick yes or no</span></div>
+</div>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div class="tier"><h2 style="margin: 0; font-size: 27px; font-weight: 700">Before the record formats (G1(e)) or the pilots (G4)</h2></div>
+<div class="grid">
+<div class="dc"><div class="hd"><span class="chip dec">Decision B</span><a href="Hazard-instances.dc.html" class="small">chapter 9</a></div><span class="t">Instance and scenario facts written in our vocabulary, with source definitions as tests over them</span><span class="l">Thin pass recommends; before G4</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision D</span><a href="Precision.dc.html" class="small">chapter 12</a></div><span class="t">What your refinement budget is for</span><span class="l">The author’s lean: <span class="id">arm:</span> terms, method terms and “our reading” lines; source entries get a verbatim script check and two independent slot parses</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision E</span><a href="Translation.dc.html" class="small">chapter 5</a></div><span class="t">Unit names if A goes to C</span><span class="l">The author’s lean: a source’s namespace and its resolutions; “translation” kept for translated editions; low</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision H</span><a href="Precision.dc.html" class="small">chapter 12</a></div><span class="t">The notation’s open syntax</span><span class="l">Needs deciding before the builder becomes the spec; no lean on the syntax itself</span><span class="w">Becomes a needs list for udon 0.10.x.</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision G</span><a href="Assertions.dc.html" class="small">chapter 6</a></div><span class="t">Hold G1(d) until a norm-shaped question has run thin</span><span class="l">The author’s lean: yes</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision I</span><a href="Open-questions.dc.html" class="small">chapter 16</a></div><span class="t">Apply the queued corrections now, or after your read?</span><span class="l">Held back only so the text wouldn’t move under you; none needs your judgment</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision K</span><a href="Open-questions.dc.html" class="small">chapter 16</a></div><span class="t">Commission a cross-family review of what has none yet</span><span class="l">Lean: now, before G4; high (the plan’s §6)</span></div>
+</div>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div class="tier"><h2 style="margin: 0; font-size: 27px; font-weight: 700">When G2 or G3 needs them</h2></div>
+<div class="grid">
+<div class="dc"><div class="hd"><span class="chip dec">Decision 3</span><a href="Hazard-instances.dc.html" class="small">chapter 9</a></div><span class="t">“Hazard” for H1, a source; intent as a separate attribute</span><span class="l">Lean: moderate-high</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision 4</span><a href="Risk.dc.html" class="small">chapter 8</a></div><span class="t">“Risk” as a declared umbrella over named readings</span><span class="l">Lean: high on the structure; names open</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision 5</span><a href="Actors.dc.html" class="small">chapter 10</a></div><span class="t">“Developer” dissolved; kept as an umbrella or deprecated</span><span class="l">Lean: declared umbrella; moderate</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision 6</span><a href="Actors.dc.html" class="small">chapter 10</a></div><span class="t">Names for the agent-part umbrella and the oversight relation</span><span class="l">Lean: “component” and “oversees”; low, your words</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision 7</span><a href="Phases.dc.html" class="small">chapter 14</a></div><span class="t">STPA as one translated source, not the chain’s vocabulary</span><span class="l">Lean: moderate</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision 8</span><a href="Assertions.dc.html" class="small">chapter 6</a></div><span class="t">Contest standings only as attributed assertions or computed views</span><span class="l">Lean: yes; high</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision 11</span><a href="Risk.dc.html" class="small">chapter 8</a></div><span class="t">Impact radius: target × degree × recoverability</span><span class="l">Lean: adopt; moderate. Degree takes the thin pass’s harm facets (accepted)</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision 13</span><a href="Phases.dc.html" class="small">chapter 14</a></div><span class="t">Translated editions, with an unmistakable in-place marking</span><span class="l">Lean: yes, starting with the pilots; moderate</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision C</span><a href="Lexicon.dc.html" class="small">chapter 4</a></div><span class="t">Bound vs match as two axes: who maintains the sense, how it reaches instances</span><span class="l">Thin pass proposes; asks for your judgment, since it is your theory</span></div>
+<div class="dc"><div class="hd"><span class="chip dec">Decision J</span><a href="Competency.dc.html" class="small">chapter 13</a></div><span class="t">Occurrence-to-risk relations and conferred event statuses</span><span class="l">Follows from 12: unconditional if incident-shaped questions are kept</span></div>
+</div>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2">
+<div class="tier"><h2 style="margin: 0; font-size: 27px; font-weight: 700">Approvable as a batch</h2><span class="small">Format and wording changes with no judgment call of yours in them.</span></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 14px">
+<div class="dc"><span class="t">Thin pass, proposed changes 3, 4, 6–9 and 11–13</span><span class="small">The resolution record’s four new fields; lineage per claim, template nodes, drift from frames, moves as moves; a relation for publisher-level divergence; three anchor rules; marking SB 53’s “no probability” as a reading; one wording fix; how event questions are stated and weighed.</span></div>
+<div class="dc"><span class="t">The spike’s integration</span><span class="small">By a separate agent, from <span class="id">proposed-integration-plan.md</span>, after the fn 12 correction (control as evidence, not an operative fact). The spike asks that its own coinages (“claimant set”, “aspect”, the eight relations as a set, the no-go table) not be inherited as if a source said them.</span></div>
+<div class="dc"><span class="t">The author’s queued edits from my questions</span><span class="small">B1–B5, C2’s gating sentence for G2 and G3, D1’s §6 record of Grok’s audit, D2’s README line, E1’s note under decision 11, E2’s note under decision 12, E3’s line in <span class="id">def/README.md</span>. Their timing is Decision I.</span></div>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §5 and §6, thin pass <span class="id">proposed-changes.md</span>, <span class="id">gamma-presentation/questions.md</span> with the author’s answers.</span>
+<a href="Open-questions.dc.html">Next: 16. Flags and open questions</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

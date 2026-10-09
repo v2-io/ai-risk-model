@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>12. Where a definition’s precision lives</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.opt{background:#FFFFFF;border:1px solid #D3D9E2;border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.lay{border-radius:4px;padding:8px 12px;font-size:15px;line-height:1.35}
+.mk{display:grid;grid-template-columns:200px minmax(0,1fr);border-top:1px solid #E1E5EC}
+.mk > div{padding:8px 12px;font-size:15px;line-height:1.4}
+pre.code{margin:0;font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:13.5px;line-height:1.65;color:#E6ECF5;white-space:pre}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 12 of 16, about 4 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Thin-pass.dc.html">Previous</a><a href="Competency.dc.html">Next: competency questions</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 980px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">The largest open choice isn’t on the plan’s list: where a source definition’s precision lives. Your lexicon-shape sentence decides it without saying so.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 68ch">Every answer the thin pass computed came from slot structures, and none could have come from SSSOM’s term-to-term rows. So the precision has to live somewhere. The plan’s §2 quotes you: <span class="src">“the union of all the most precise, scoped, bounded, and/or specific definitions”</span>. Three readings of that sentence:</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); gap: 18px">
+<div class="opt">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px"><b style="font-size: 22px">A. Frames</b><span class="small">what the thin pass did</span></div>
+<div style="display: grid; gap: 6px">
+<div class="lay" style="background: #DAE6F2"><b>lexicon</b>: our slot vocabulary only</div>
+<div class="lay" style="background: #F6E1DB"><b>translation</b>: SB 53’s definition as a frame over our slots</div>
+<div class="lay" style="background: #ECEFF3"><b>resolutions</b>: per use</div>
+</div>
+<p class="small" style="margin: 0">The lexicon stays small and wholly ours. The source’s precision is kept, but outside the lexicon, so the lexicon alone is not the “union of the most precise definitions”.</p>
+</div>
+<div class="opt">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px"><b style="font-size: 22px">B. Our concepts</b><span class="small">the verifier’s reading</span></div>
+<div style="display: grid; gap: 6px">
+<div class="lay" style="background: #DAE6F2"><b>lexicon</b>: SB 53’s catastrophic risk as a precise concept of ours, the slots as its delimiting characteristics</div>
+<div class="lay" style="background: #F6E1DB"><b>translation</b>: one-to-one rows</div>
+<div class="lay" style="background: #ECEFF3"><b>resolutions</b>: per use</div>
+</div>
+<p class="small" style="margin: 0">Reads your sentence literally and fits acceptance test 1. The cost: our lexicon fills with other parties’ concepts presented as ours, which is close to what §1.2 called conformist in beta.</p>
+</div>
+<div class="opt" style="border: 2px solid #1F2C44">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px"><b style="font-size: 22px">C. Both, divided</b><span class="small">from the notation trial</span></div>
+<div style="display: grid; gap: 6px">
+<div class="lay" style="background: #F5E8C6"><b>source namespaces</b>: <span class="id">sb53.bp:catastrophic-risk</span>, its precision as relations, verbatim and attributed</div>
+<div class="lay" style="background: #DAE6F2"><b><span class="id">arm:</span></b>: only where sources meet, or our thinking needs a term</div>
+<div class="lay" style="background: #ECEFF3"><b>resolutions</b>: all that is left of “translation”</div>
+</div>
+<p class="small" style="margin: 0">The union is real, and the namespace says whose each definition is. The question is whether hosting other parties’ models inside <span class="id">def/</span> is still an anticorruption layer. The author’s answer is below.</p>
+</div>
+</div>
+<p class="small" style="margin: 16px 0 0; max-width: 90ch">Needed under any option: the slot structure; inheritance with overrides (SB 53’s two codes, RAISE, each lineage descendant); a closure attribute (“means” against “includes”); separate umbrella and definition kinds; frame boundaries that follow the source’s own tie-ins.</p>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">Option C, as written in your notation</h2>
+<div style="background: #1F2C44; border-radius: 6px; padding: 18px 20px; overflow-x: auto">
+<pre class="code">|term[sb53.bp:catastrophic-risk] A foreseeable and material risk that …
+  :binding bound
+  :closure closed                                  ; "means"
+  |rels :is-a         @{arm:risk.possibility}  {1,1}
+        :knowledge    -&gt; ca-law:foreseeable ?      ; not followed
+        :materiality  { @{arm:materiality=importance}
+                      | @{arm:materiality=likelihood-floor}
+                      | @{arm:materiality=magnitude} }
+        :bearer       @{sb53.bp:frontier-developer} {1,1}
+        :outcome-any  …                            ; pooling: R-pooling
+        :incident-phrase-attaches {both | property-only}
+        :excludes-any [ "(A) …" "(B) …" "(C) …" ]</pre>
+</div>
+<p class="small" style="margin: 10px 0 18px">Abridged from <span class="id">notation/sb53.ud</span>. The source’s own “or” and “any of” go in relation names (<span class="id">:outcome-any</span>, <span class="id">:excludes-any</span>), so <span class="id">{a | b}</span> always means “one of these, we don’t know which”, never “either will do”.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 20px; display: grid; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip ques">Question A2</span><span class="chip done">Answered by the plan’s author</span></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5"><b>Is a source namespace inside <span class="id">def/</span> still an anticorruption layer?</b> Yes, if the boundary is drawn this way. Evans’s layer is about whose model governs ours, not where the files live. Beta adopted IASR’s definitions <i>as our terms</i>; hosting them verbatim in an <span class="id">iasr26:</span> namespace is a different act. Each source namespace is a foreign bounded context we keep a copy of; <span class="id">arm:</span> alone is our ubiquitous language; the layer is the relations between them. An <span class="id">arm:</span> term never takes a source definition as its own, and an <span class="id">arm:</span> umbrella contains the <span class="id">arm:</span> concept a source term maps exactly to, never the source term. <span class="id">ddd:</span> is the one exception: Evans’s terms adopted verbatim as our method vocabulary, the narrow cited adoption you have described. <span class="id">def/README.md</span> should name the two kinds of namespace, ours and hosted, once Decision A is made.</p>
+</div>
+</div>
+<aside style="flex: 1 1 300px; max-width: 400px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">Your sketch line, re-expressed</h3>
+<p class="id" style="margin: 0 0 10px; font-size: 13px; line-height: 1.5; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 4px; padding: 8px 10px">arm:thousands-severe-harm (== pf:severe-harm, != (fgf:severe-harm == arm:50-severe-harm))</p>
+<div class="small">
+<p>The material keeps its shape and corrects two equalities. The PF’s severe harm <i>contains</i> two classes, one of them a dollar class, so it isn’t equal to a casualty class. The FGF’s says “including”, so the 50-death class is a <i>member</i> of an open class, not the whole. The <span class="id">!=</span> survives as <span class="id">:not-to-be-confused-with</span> between two senses, and which sense the FGF’s word carries is a resolution of each use, not a relation between terms.</p>
+</div>
+<h3 style="margin: 22px 0 10px; font-size: 19px; font-weight: 700">Your worry about open and closed</h3>
+<div class="small">
+<p>“Grammatical pedantry”? In a <b>definition</b>, no: “means” against “includes” is the source’s choice between a floor and an example, and in the thin pass’s 40-death variant it changed results. Counting rules (pooling, what “a single incident” governs) turned up <i>inside</i> SB 53’s definition too. In <b>claims</b>, probably yes: leave the default unmarked and mark only where an answer changes.</p>
+</div>
+<h3 style="margin: 22px 0 10px; font-size: 19px; font-weight: 700">The trial’s rules for <span class="id">arm:</span></h3>
+<p class="small" style="margin: 0">A term exists only where two sources meet or our thinking needs one. No judgment words in names (“catastrophic”, “severe”, “systemic” appear only in source namespaces); this did the most work. Our umbrellas contain only our terms.</p>
+</aside>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The notation’s marks, and where they strained</h2>
+<p class="small" style="margin: 0 0 16px; max-width: 86ch">It worked: 43 entries in seven files carried all 22 of the thin pass’s resolution records. Writing it also found an error the pass and its verifier had both made: the FCF’s crime list doesn’t “drop murder”, it widens a closed list of four into an open class, “serious crimes (such as …)”.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(520px, 100%), 1fr)); gap: 20px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="mk" style="border-top: none; background: #E6EAF0; font-weight: 700"><div>Mark</div><div>Means</div></div>
+<div class="mk"><div class="id">ns:term</div><div>a source’s word, in its namespace</div></div>
+<div class="mk"><div class="id">ns.scope:term</div><div>the source mints the same word in two scopes</div></div>
+<div class="mk"><div class="id">ns:term#sense</div><div>a sense <i>we</i> split out of a word the source leaves unbound</div></div>
+<div class="mk"><div class="id">arm:name</div><div>ours, named by its distinguishing feature</div></div>
+<div class="mk"><div class="id">arm:facet=value</div><div>a value of one of our facets</div></div>
+<div class="mk"><div class="id">{a | b}</div><div>one of these is meant; undetermined</div></div>
+<div class="mk"><div class="id">{a, b}</div><div>a set</div></div>
+<div class="mk"><div class="id">?</div><div>unresolved; in a set, further unnamed members</div></div>
+<div class="mk"><div class="id">-&gt; ns:term</div><div>the path goes into another namespace; with <span class="id">?</span>, not followed</div></div>
+<div class="mk"><div class="id">lean x</div><div>our preference among candidates; the candidates stay</div></div>
+</div>
+<div style="display: grid; gap: 10px; align-content: start">
+<p style="margin: 0; font-size: 18px; font-weight: 700">Strains, from <span class="id">notes.md</span> §2–3</p>
+<div class="small" style="font-size: 16px"><b style="color: #18202E">Ambiguity in four places</b>: a referent, an attribute value, a relation (<span class="id">:{exact | narrower}</span>), a whole set. One mark held for all four, but braced relation keys are new syntax.</div>
+<div class="small" style="font-size: 16px"><b style="color: #18202E">Brackets collide in udon</b>: braces already mean reference and cardinality, and <span class="id">def-resolution.ud</span> already uses <span class="id">|</span> for a type union. Options: udon list brackets for sets, or keywords <span class="id">one-of()</span>, <span class="id">all-of()</span>, <span class="id">any-of()</span>.</div>
+<div class="small" style="font-size: 16px"><b style="color: #18202E"><span class="id">?</span> does two jobs; <span class="id">.</span> does two, and facets needed a third form (<span class="id">=</span>).</b></div>
+<div class="small" style="font-size: 16px"><b style="color: #18202E">Descriptive names grow with every characteristic.</b> Better: harm classes carry facets, and the name is a handle.</div>
+<div class="small" style="font-size: 16px"><b style="color: #18202E">Can’t yet say</b>: who asserts a relation (<span class="id">:by</span>); time (<span class="id">@version</span>, <span class="id">:in-force</span>); inheritance (<span class="id">:inherits</span> with overrides); evaluation, which needs an interpreter.</div>
+</div>
+</div>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 18px">
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision A</span><b style="font-size: 18px">Where precision lives: A, B or C</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">Thin pass change 2. Before G1(e), since it decides what a translation row is. Decide with Decisions 1 and E.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean: C, moderate; tried only on definitions</span>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision D</span><b style="font-size: 18px">What your refinement budget is for</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">From my question A1. Under C, are source-namespace entries refined line by line too? The author: no. The refinement lesson came from entries someone authored, where every line is a claim about meaning. A source entry is the source’s words plus our slot parse, so its check is a script-checked verbatim match and two independent slot parses, ideally from different model families (G4’s coding check). Your passes go to <span class="id">arm:</span> terms, method terms, and any line marked “our reading”. The lesson is yours, so this is yours to decide.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">The author’s lean: as above</span>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision H</span><b style="font-size: 18px">The notation’s open syntax</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">From my question D2. <span class="id">lexicon/build</span> now reads these forms, and a builder that accepts a form is how it becomes a de facto spec. The author proposes putting the open choices on the decision list as a G1(e) item, and a line in <span class="id">lexicon/README.md</span> saying the forms are read, not endorsed. With udon 0.10.1–0.10.2 in flux and this project a test target, what you decide becomes a needs list for udon.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">The author agrees it needs deciding; no lean on the syntax itself</span>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From thin pass <span class="id">proposed-changes.md</span> 2, <span class="id">weight-and-defects.md</span> D-row-vs-frame, <span class="id">notation/README.md</span>, <span class="id">notes.md</span>, <span class="id">oai.ud</span>, <span class="id">sb53.ud</span>; questions A1, A2, D2.</span>
+<a href="Competency.dc.html">Next: 13. Competency questions and tests</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

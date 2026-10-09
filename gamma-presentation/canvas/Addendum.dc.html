@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Addendum: what the tour leaves out</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.ad{display:grid;grid-template-columns:110px minmax(0,1fr) minmax(0,0.9fr);border-top:1px solid #E1E5EC}
+.ad > div{padding:11px 14px;font-size:15.5px;line-height:1.45}
+.ad .w{color:#46505F}
+.hd{background:#E6EAF0;font-weight:700;border-top:none}
+.sec{margin:0 0 6px;font-size:25px;line-height:1.2;font-weight:700}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Addendum, for reference</span>
+<span style="display: flex; gap: 18px"><a href="Open-questions.dc.html">Previous</a><a href="Main.dc.html">Back to the start</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 980px">
+<h1 style="margin: 0; font-size: 42px; line-height: 1.1; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">Every point the plan articulates was checked against the tour. These are the ones the tour doesn’t carry, each with the reason.</h1>
+<p style="margin: 18px 0 0; font-size: 19px; line-height: 1.5; color: #3E4859; max-width: 74ch">Checked section by section, §0 to §8, on 8 October. Two gaps found in the check were closed in place rather than listed: §22757.14’s two review criteria (now in <a href="Corpus.dc.html">chapter 2</a>) and §3.10’s list of candidate views (now in <a href="Architecture.dc.html">chapter 3</a>).</p>
+</header>
+
+<section style="padding-bottom: 36px">
+<h2 class="sec">Assumed known: you wrote or asked for these</h2>
+<p class="small" style="margin: 0 0 14px">The tour uses them without restating them.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="ad hd"><div>Plan</div><div>Point</div><div>Why not restated</div></div>
+<div class="ad"><div>§2</div><div>The six principles carried from <span class="id">CLAUDE.md</span>: compilation, not adjudication; fidelity; soft evidence stays in, marked; vocabulary first; correlation is not corroboration; conflict of interest stated plainly.</div><div class="w">Your file. The tour shows where each one bites (chapters 4, 7, 16) rather than listing them.</div></div>
+<div class="ad"><div>§0</div><div>The aim, and your causal chain from sources and causes to policies and decision-making.</div><div class="w">Yours. The chain appears once, laid over the bow-tie (chapter 8).</div></div>
+<div class="ad"><div>§3.9</div><div>The alignment map’s gloss for each agent part (weights: instinct, propensity, impulse and compulsions; system prompt: identity; trusted tools: actions available; ephemeral: interiority, reasoning; context: experience and agency, the real-time model; initial and current goal: intent and purpose as first given, and as it now stands).</div><div class="w">Your text. Chapter 10 shows only the part names.</div></div>
+<div class="ad"><div>§3.2</div><div>Address theory’s definitions: reference and referent, intended cardinality, binding and match, scope, resolution, admissibility and preference, ambiguity, dangle, collide.</div><div class="w">Your theory. Chapter 3 lists the terms; chapters 4 and 5 use them.</div></div>
+<div class="ad"><div>§3.3</div><div>The meanings of the <span class="id">DECISIONS.ud</span> status values.</div><div class="w">Your vocabulary.</div></div>
+<div class="ad"><div>§2</div><div>The fuller context of your refinement remark: even a handful of address-theory entries took an astounding amount of work.</div><div class="w">Yours; chapter 1 quotes the core of it.</div></div>
+</div>
+</section>
+
+<section style="padding: 0 0 36px">
+<h2 class="sec">Superseded in the plan itself</h2>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden; margin-top: 14px">
+<div class="ad hd"><div>Plan</div><div>Point</div><div>Why not taught</div></div>
+<div class="ad"><div>§3.9</div><div>The two-basis table (the AI product’s lifecycle or market, against what writes into a deployed agent), and the reading that none of the AI Act, SB 53, NIST or IASR has the second basis, AISI’s supply-chain list coming closest.</div><div class="w">The plan’s own note marks it superseded, and G2 is told not to build on it. Chapter 10 teaches its replacement: functional and institutional roles, conferral, parties × relations. AISI’s list survives in the done-test.</div></div>
+</div>
+</section>
+
+<section style="padding: 0 0 36px">
+<h2 class="sec">Summarized, with the detail left out</h2>
+<p class="small" style="margin: 0 0 14px">Low weight for any decision; here so nothing is lost.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="ad hd"><div>Plan</div><div>Point</div><div>Why left out</div></div>
+<div class="ad"><div>§1.2</div><div>Beta’s draft lexicon: 74 terms in 14 files (<span class="id">terms/*.ud</span>); its schema proposal, <span class="id">SCHEMA-SYNTHESIS.md</span> draft 2.</div><div class="w">Counts only; beta is ideation.</div></div>
+<div class="ad"><div>§3.2</div><div>DDD terms not taught one by one: <i>context</i> (<span class="src">“The setting in which a word or statement appears that determines its meaning”</span>), <i>ubiquitous language</i>, <i>published language</i>; <i>shared kernel</i>, of which the corpus has no clear case yet.</div><div class="w">Already drafted in <span class="id">def/</span>; none changes a decision.</div></div>
+<div class="ad"><div>§3.5</div><div>The W3C advice to give one passage several selectors <span class="src">“to maximize the chances that it will be discoverable later”</span>.</div><div class="w">Implied by the proposed page-plus-quote-plus-line anchor.</div></div>
+<div class="ad"><div>§3.6</div><div>The safety-case literature (SEI’s eliminative argumentation, 2015) uses all three kinds of attack. Walton’s scheme for expert opinion was checked via a secondary source; analogy is from memory only, though analogy is the commonest argument form in one family of sources.</div><div class="w">Supporting evidence for chapter 6, not a separate point.</div></div>
+<div class="ad"><div>§3.7</div><div>IFLA LRM’s three cases: “same text, several publishers”, “one finding in two renderings”, one relata key holding several documents. Akoma Ntoso’s <span class="id">termModification</span> and <span class="id">authenticInterpretation</span>, a change in what a term means.</div><div class="w">Chapter 7 names the vocabularies; these are their fit to the repo’s cases.</div></div>
+<div class="ad"><div>§3.8</div><div>ISO’s event notes: an event’s cause can itself be an event in a chain. The SRA defines vulnerability as risk conditional on the source occurring.</div><div class="w">Supporting; the ISO note’s evidence mark is one the citation check says was flattened.</div></div>
+<div class="ad"><div>§3.9</div><div>Proposed term group 4: beta’s “affected party” as a candidate name for the owed-alignment referents.</div><div class="w">A naming candidate for G2; the spike offers NIST’s “affected individuals/communities” instead (chapter 10).</div></div>
+<div class="ad"><div>§4</div><div>G0’s details: 130 stale paths repointed to <span class="id">ref/</span>, <span class="id">bin/extract-text</span> added, the handoff corrected (<span class="id">b6ed3c7</span>).</div><div class="w">Done.</div></div>
+<div class="ad"><div>§4</div><div>G1(c)’s term list: concept, designation, definition, delimiting characteristic, onomasiological and semasiological, acceptability status, declared ambiguity, umbrella containment, namespace.</div><div class="w">Each is taught in chapters 3 and 4; the list itself is a work order.</div></div>
+<div class="ad"><div>§4</div><div>G1b’s guard against hardening: everything it produced is disposable and kept outside <span class="id">def/</span>; formats and terms are adopted from it only by a later, deliberate decision.</div><div class="w">Bears on Decision H, which chapter 12 covers.</div></div>
+<div class="ad"><div>§4</div><div>G4’s findings feed back into G1–G3 before any wider translation, Evans’s <span class="src">“refactoring toward deeper insight”</span>.</div><div class="w">Implied by G4’s done-test in chapter 14.</div></div>
+<div class="ad"><div>§5</div><div>Decision 9’s detail: <span class="id">udon/core</span>’s <span class="id">stdin_parse</span> example is used by other projects as a validation gate (<span class="id">udon/CONSUMERS.md</span>); <span class="id">udon/core/TODO-PARSER.md</span> lists the bindings as “[later]”.</div><div class="w">Your project; chapter 14 gives the gist.</div></div>
+</div>
+</section>
+
+<section style="padding: 0 0 36px">
+<h2 class="sec">The plan’s corrections to other repository documents (§7)</h2>
+<p class="small" style="margin: 0 0 14px">Items 1–3 and 6 are applied in <span class="id">OVERVIEW.md</span>. Items 4, 5 and 7 concern beta and are only recorded. None bears on a decision.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="ad"><div>1</div><div>OVERVIEW §2.2: the probability-and-severity form is ISO/IEC Guide 51’s, not ISO 31000’s, which defines risk as <span class="src">“effect of uncertainty on objectives”</span>.</div><div class="w">applied</div></div>
+<div class="ad"><div>2</div><div>NIST AI RMF’s “Adapted from: ISO 31000:2018” follows its sentence on positive and negative impacts; whether it covers the composite-measure definition is itself ambiguous, and that core matches OMB A-130.</div><div class="w">applied</div></div>
+<div class="ad"><div>3</div><div>OVERVIEW §2.1: an eighth sense of hazard, root cause (Schnitzer et al.). Chapter 9’s H7.</div><div class="w">applied</div></div>
+<div class="ad"><div>4</div><div>Kasirzadeh’s four senses of risk are Hansson’s first four of five, nearly verbatim: one lineage, not two analyses.</div><div class="w">recorded</div></div>
+<div class="ad"><div>5</div><div>SCHEMA-SYNTHESIS §8, STPA row: the second scenario type is a loss-scenario type (“improperly executed or not executed”), not a fifth kind of unsafe control action; “no adversary distinction” is too strong.</div><div class="w">recorded</div></div>
+<div class="ad"><div>6</div><div>The NRR prints PHIA’s “Highly unlikely” as 5–25%; the official yardstick has ≈10–20%. The other six bands match.</div><div class="w">applied</div></div>
+<div class="ad"><div>7</div><div>Beta’s broad/narrow direction is SKOS’s reverse. Decision 2.</div><div class="w">recorded</div></div>
+</div>
+</section>
+
+<section style="padding: 0">
+<h2 class="sec">Provenance (§8)</h2>
+<p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.55; max-width: 92ch">The plan lists what its author read whole (<span class="id">CLAUDE.md</span>, the catalog, SCHEMA-SYNTHESIS, OVERVIEW, the handoff, the logos perspective note, <span class="id">alignment.md</span>, the seven address-theory files, Evans, SB 53, five of beta’s term files, the research reports, the de novo review), what as passages, and the two claims checked in the research agents’ downloads. Left out because chapter 16 handles trust through the citation check, which is the stronger evidence: it re-checked the citations against the sources themselves.</p>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>Coverage check of <span class="id">MODEL-GAMMA-METHODOLOGY-AND-PLAN.md</span> (905 lines) against this tour, 8 October.</span>
+<a href="Main.dc.html">Back to the start</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

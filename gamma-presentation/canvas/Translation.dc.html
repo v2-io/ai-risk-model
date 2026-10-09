@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>5. Translation and resolution</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.f{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid #E1E5EC;font-size:15.5px;line-height:1.45}
+.f b{font-size:16px}
+.new{display:inline-block;margin-left:6px;font-size:12.5px;font-weight:700;color:#21574D;background:#DBEDE9;border-radius:3px;padding:0 6px;line-height:20px}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 5 of 16, about 5 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Lexicon.dc.html">Previous</a><a href="Assertions.dc.html">Next: assertions</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 960px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">A translation row says what a source’s word can mean. A resolution says which meaning it had at one spot, and why we can or can’t tell. The standards only cover the first.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 66ch">SSSOM says it outright: <span class="src">“Mappings themselves have no context (i.e. are always true)”</span>. Inside one source, a word’s meaning moves, so the resolution record is ours to define.</p>
+</header>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr)); gap: 24px; padding-bottom: 40px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 22px 24px">
+<p style="margin: 0; font-size: 14px; color: #46505F">Type level, one row per sense the source uses</p>
+<h2 style="margin: 4px 0 10px; font-size: 24px; font-weight: 700">Translation row</h2>
+<p class="small" style="margin: 0 0 8px">Shape from OntoLex-Lemon: a <i>lexical sense</i> is <span class="src">“a reification of a pair”</span> of the source’s word and our concept. Fields from SSSOM:</p>
+<div>
+<div class="f"><b>subject</b><span>the source’s word, as a bare label</span></div>
+<div class="f"><b>predicate</b><span>a SKOS match, with a <i>Not</i> modifier; or “no term found”, which marks a gap in <i>our</i> vocabulary</span></div>
+<div class="f"><b>justification</b><span>required: <span class="id">ManualMappingCuration</span>, and on SSSOM’s main branch <span class="id">AgentBasedMatching</span></span></div>
+<div class="f"><b>who</b><span>author, creator and reviewer, kept apart</span></div>
+<div class="f"><b>confidence</b><span>ours, never merged with the source’s own hedge</span></div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 2px solid #1F2C44; border-radius: 6px; padding: 22px 24px">
+<p style="margin: 0; font-size: 14px; color: #46505F">Token level, one record per departure from a scope’s default</p>
+<h2 style="margin: 4px 0 10px; font-size: 24px; font-weight: 700">Resolution record</h2>
+<p class="small" style="margin: 0 0 8px">Your address theory’s resolution, as a record. Teal marks the fields the thin pass and the spike added.</p>
+<div>
+<div class="f"><b>outcome</b><span>zero, one, several, or ambiguous among named candidates, read against the term’s intended cardinality; the spike adds <i>invariant over the candidate set</i><span class="new">spike</span></span></div>
+<div class="f"><b>status</b><span>attempted, delegated, not needed; kept apart from outcome<span class="new">thin pass</span></span></div>
+<div class="f"><b>reason, and whose fact</b><span><b>the source’s:</b> withheld, delegated to the reader, defective, deliberately unbound (“plain meaning”), declined, imported. <b>our lexicon’s:</b> no term fits yet. <b>our reading’s:</b> we can’t tell which.</span></div>
+<div class="f"><b>path</b><span>glossary, section definition, imported binding, inline, our reading</span></div>
+<div class="f"><b>resolved by</b><span>us, the source, or a third party (IASR resolves the EU’s “systemic risk”)</span></div>
+<div class="f"><b>preference</b><span>the source’s declared policy (SB 53: <span class="src">“liberally construed”</span>) and ours, beside the candidates, never replacing them<span class="new">thin pass</span></span></div>
+<div class="f"><b>two times</b><span>read as of; evaluated at (foreseeability is judged as of the conduct)<span class="new">thin pass</span></span></div>
+<div class="f"><b>slots</b><span>for relational terms the reference standard and bearer; for causal slots a bearer<span class="new">thin pass</span>; for alignment words a use type<span class="new">spike</span></span></div>
+</div>
+</div>
+</section>
+
+<section style="padding: 0 0 40px">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">One real record, in your notation</h2>
+<p class="small" style="margin: 0 0 16px; max-width: 80ch">The thin pass’s one decisive ambiguity. OpenAI’s Frontier Governance Framework uses “severe harm” undefined; the same publisher’s Preparedness Framework defines it, about 20 to 200 times higher for casualties.</p>
+<div style="background: #1F2C44; border-radius: 6px; padding: 20px 24px; overflow-x: auto">
+<div class="id" style="color: #E6ECF5; font-size: 15px; line-height: 1.8; white-space: pre; min-width: 900px">R-fgf-severe   P-fgf-def   "risks of severe harm"
+  =&gt; { @{oai-fgf:severe-harm#own}  |  @{oai-pf:severe-harm} }      lean #own, low-moderate</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 14px; margin-top: 14px">
+<div class="small"><b style="color: #18202E">R-fgf-severe</b>: the record’s id, in <span class="id">records/resolutions.yaml</span></div>
+<div class="small"><b style="color: #18202E">P-fgf-def</b>: the anchored passage where the word is used</div>
+<div class="small"><b style="color: #18202E">{a | b}</b>: one of these is meant, undetermined; never “either will do”</div>
+<div class="small"><b style="color: #18202E">#own</b>: a sense <i>we</i> split out of an unbound word, so it is attributed to us</div>
+<div class="small"><b style="color: #18202E">lean</b>: our preference and its confidence; the candidates stay</div>
+</div>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">Which uses get a record</h2>
+<div class="body">
+<p>Recording every use is infeasible. So each scope (a document, section, code section or table) gets one <b>default resolution</b> of each key term, recorded once, and a separate record is made only where a use departs from that default, or where the use sits inside an assertion we record.</p>
+<p>The heavily loaded terms are about a dozen: catastrophic, severe and systemic risk; loss of control; (mis)alignment; safeguard; hazard; developer, provider and deployer; threshold; incident; frontier.</p>
+</div>
+<div style="background: #F5E8C6; border-radius: 6px; padding: 14px 18px; display: grid; gap: 8px; margin-bottom: 26px">
+<span class="chip flag" style="justify-self: start; background: #EBD9A8">Flag</span>
+<p style="margin: 0; font-size: 16px; line-height: 1.45; color: #3D2C00">The plan motivates the rule with “about 1,200 raw uses” of those terms in IASR 2026. The citation check found the counts sum to 993. The rule stands either way.</p>
+</div>
+
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">Which way does “broad” point?</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-bottom: 16px">
+<div style="flex: 0 0 auto; width: 220px; height: 170px; position: relative">
+<div style="position: absolute; left: 0; top: 0; width: 220px; height: 170px; border-radius: 50%; background: #FFFFFF; border: 2px solid #8C97A8"></div>
+<div style="position: absolute; left: 14px; top: 14px; font-size: 14px; color: #46505F">theirs</div>
+<div style="position: absolute; left: 92px; top: 60px; width: 96px; height: 80px; border-radius: 50%; background: #DAE6F2; border: 2px solid #1F5A8F; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #1A4C7B">ours</div>
+</div>
+<div style="flex: 1 1 340px; display: grid; gap: 10px; font-size: 16.5px; line-height: 1.45">
+<div><span class="small">Beta’s legend, all its term files:</span><br><b>broad</b> <span class="src">“(theirs is wider)”</span></div>
+<div><span class="small">SKOS and SSSOM, the source term as subject:</span><br><span class="id">theirs skos:narrowMatch ours</span>, since the object, ours, is the narrower</div>
+<div class="small">Same picture, opposite words. Every row is right as written inside the repo (46 and 70 rows in <span class="id">mappings*.yaml</span>, about 31 and 28 in <span class="id">terms/*.ud</span>); an export to SKOS would flip every one.</div>
+</div>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 2</span><b style="font-size: 18px">Adopt the SKOS/SSSOM direction for gamma</b><span class="chip lean" style="background: #CDE5DF">Lean: yes, high confidence</span></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3A1A12">Say it in one line; leave beta’s files alone. A quick yes or no. The notation trial already uses the SKOS direction (<span class="id">:broader</span>, <span class="id">:narrower</span>, <span class="id">:exact</span> with the entry as subject). One more trap from ISO 1087: the <i>broader</i> concept has the <i>narrower</i> intension, so “wider” should be defined once as meaning extension.</p>
+</div>
+</div>
+
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">Why outcome and reason are separate fields</h3>
+<p class="small">It is the MIT “Other” lesson applied to our own records. The thin pass found the failure in its first draft: an imported binding we didn’t follow (“foreseeable”) read as <i>zero referents</i>, which mixes a fact about our reading into the outcome. Hence the separate status field.</p>
+<h3 style="margin: 24px 0 10px; font-size: 19px; font-weight: 700">Third parties resolve sources too</h3>
+<p class="small">IASR resolves the EU’s “systemic risk”. Anthropic’s FCF files RSP thresholds under the statutory “loss of control”. A record has to say who did the resolving, because sometimes it isn’t us.</p>
+<h3 style="margin: 24px 0 10px; font-size: 19px; font-weight: 700">Under-specification is not ambiguity</h3>
+<p class="small">From the spike: an absolute “aligned” (“our most aligned model to date”) is an argument place left unfilled, not a word with two senses. The spike proposes recording it as under-specification, with a use type: relational, anaphoric, absolute, activity, field. Those labels are the spike author’s, not established.</p>
+</aside>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 20px">
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 1</span><b style="font-size: 18px">What to call the per-source document</b></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3A1A12">In Evans, a <i>context map</i> is the map <i>across</i> all contexts. The plan recommends keeping his sense for the across-sources map (the catalog plus lineage) and calling the per-source document a <b>translation</b>, the inside of an anticorruption layer. The cost of keeping “context map” for the per-source document is one recurring explanation to every DDD reader.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip lean" style="background: #CDE5DF">Lean: “translation”, moderate</span><span class="chip done" style="background: #CFDDED">Decide first: it ends up in def/ and every record format</span></div>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision E</span><b style="font-size: 18px">If Decision A goes to option C, what are the units called?</b></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3A1A12">From my question A3. If source definitions become entries in their own namespaces (chapter 12), the per-source “translation” shrinks to those entries plus the resolution records for their uses. “Translation” stretches to cover that, loosely. Decide with Decision 1, so nothing is renamed twice.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #18202E; background: #FFFFFF; border-radius: 4px; padding: 10px 14px"><b>The author’s lean:</b> call the per-source unit the source’s <i>namespace</i> and its <i>resolutions</i>, and keep “translation” for the G6 milestone, the translated edition: the source’s own text marked with our terms, which really is a translation.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean confidence: low</span>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §3.4 and §5 (decisions 1, 2); thin pass proposed change 3; <span class="id">notation/oai.ud</span>; the spike’s integration plan, item 2.</span>
+<a href="Assertions.dc.html">Next: 6. Assertions</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

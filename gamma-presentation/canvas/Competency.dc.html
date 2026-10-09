@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>13. Competency questions and acceptance tests</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.cq{display:grid;grid-template-columns:54px minmax(280px,1fr) repeat(13,38px);align-items:center}
+.cq > div{border-top:1px solid #E1E5EC;padding:8px 4px;font-size:15px;line-height:1.35;min-height:24px}
+.cq .ax{text-align:center;font-weight:700;font-size:15px;border-top:none;color:#18202E}
+.cq .x{display:flex;justify-content:center}
+.cq .x span{width:20px;height:20px;border-radius:4px;background:#1F2C44}
+.cq .gap{background:#F6E1DB}
+.at{display:grid;grid-template-columns:56px minmax(0,1fr);gap:0 16px;padding:16px 18px;border-top:1px solid #D3D9E2}
+.at .n{font-size:28px;font-weight:800;color:#8C97A8;line-height:1}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 13 of 16, about 4 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Precision.dc.html">Previous</a><a href="Phases.dc.html">Next: the phases</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 980px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">The competency questions are the model’s requirements and its final test, and the thin pass showed they also decide which terms bear weight. Eight are proposed; they are yours to write or approve.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 68ch">Questions written before building, which the finished model must answer: established practice in ontology engineering (Grüninger and Fox 1995, which the citation check confirmed from a scan). A piece of machinery earns its place when some question needs it.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The proposed eight, against the thirteen axes</h2>
+<p class="small" style="margin: 0 0 16px; max-width: 86ch">From <span class="id">influx/competency-questions-draft.md</span> (twenty candidates) and the lean under decision 12, chosen to exercise the most distinct machinery with the fewest questions, actors first. The red column is the one axis left out.</p>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 14px 16px">
+<div style="min-width: 900px">
+<div class="cq">
+<div class="ax"></div><div class="ax" style="text-align: left">Question, short form</div><div class="ax">A</div><div class="ax">B</div><div class="ax">C</div><div class="ax">D</div><div class="ax">E</div><div class="ax gap">F</div><div class="ax">G</div><div class="ax">H</div><div class="ax">I</div><div class="ax">J</div><div class="ax">K</div><div class="ax">L</div><div class="ax">M</div>
+<div><b>4</b></div><div>which actors write into which agent part, and which source role words resolve to each</div><div class="x"><span></span></div><div></div><div></div><div></div><div></div><div class="gap"></div><div></div><div class="x"><span></span></div><div></div><div></div><div></div><div></div><div></div>
+<div><b>20</b></div><div>how sources file an event (misuse, misalignment, robustness, security), where the cause entered, which writer carried it</div><div class="x"><span></span></div><div></div><div class="x"><span></span></div><div></div><div></div><div class="gap"></div><div></div><div class="x"><span></span></div><div></div><div></div><div></div><div></div><div></div>
+<div><b>1</b></div><div>which sources would call a 60-death incident catastrophic, severe or systemic, through how many independent lineages</div><div></div><div></div><div></div><div class="x"><span></span></div><div></div><div class="gap"></div><div></div><div></div><div></div><div></div><div></div><div class="x"><span></span></div><div></div>
+<div><b>3</b></div><div>for loss of control, which preventive controls, and which are duties no one holds the correlative claim to</div><div></div><div class="x"><span></span></div><div></div><div></div><div></div><div class="gap"></div><div class="x"><span></span></div><div></div><div></div><div></div><div></div><div></div><div></div>
+<div><b>2</b></div><div>for one focal event, who treats it as an event, who as a cause, who as having happened</div><div class="x"><span></span></div><div></div><div class="x"><span></span></div><div></div><div></div><div class="gap"></div><div></div><div></div><div class="x"><span></span></div><div></div><div></div><div></div><div></div>
+<div><b>12</b></div><div>once an event has happened, what limits the damage, who is responsible, how fast</div><div></div><div></div><div></div><div></div><div class="x"><span></span></div><div class="gap"></div><div></div><div class="x"><span></span></div><div></div><div></div><div class="x"><span></span></div><div></div><div></div>
+<div><b>17</b></div><div>which named risks rest on documented instances, which on scenario or argument alone</div><div></div><div></div><div class="x"><span></span></div><div></div><div></div><div class="gap"></div><div></div><div></div><div></div><div class="x"><span></span></div><div></div><div></div><div class="x"><span></span></div>
+<div><b>7</b></div><div>how many independent lines of evidence support a claim, once copies are counted once</div><div></div><div></div><div></div><div></div><div></div><div class="gap"></div><div></div><div></div><div></div><div></div><div></div><div class="x"><span></span></div><div></div>
+</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 4px 20px; margin-top: 14px; font-size: 14.5px; line-height: 1.45; color: #46505F">
+<span><b style="color: #18202E">A</b> sources and causes</span><span><b style="color: #18202E">B</b> prevention</span><span><b style="color: #18202E">C</b> events (kinds)</span><span><b style="color: #18202E">D</b> impact</span><span><b style="color: #18202E">E</b> response, resilience, recovery</span><span><b style="color: #922D19">F</b> control degradation</span><span><b style="color: #18202E">G</b> policy and decision-making</span><span><b style="color: #18202E">H</b> actors</span><span><b style="color: #18202E">I</b> interaction between events</span><span><b style="color: #18202E">J</b> knowledge and uncertainty</span><span><b style="color: #18202E">K</b> time</span><span><b style="color: #18202E">L</b> lineage and independence</span><span><b style="color: #18202E">M</b> documented instances</span>
+</div>
+<p class="small" style="margin: 12px 0 0; max-width: 90ch">K is touched only through question 12’s deadlines. Question 6 (collisions) is left out because acceptance test 2 covers it. Bow-tie covers A–F around one event; G–M are where the corpus goes beyond it, and C differs from M as a type from an individual.</p>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">What the thin pass taught about questions</h2>
+<div style="display: grid; gap: 14px; font-size: 17px; line-height: 1.5">
+<div><b>Say which direction a question runs.</b> Q1 names source words, so it is semasiological: it asks which source terms apply. Its onomasiological twin: “which sources’ definitions reach a risk of more than 50 deaths from one occurrence?”</div>
+<div><b>Split risk-shaped from incident-shaped.</b> No source calls an incident catastrophic; they say it of risks. The ex-post form lands on conferred event statuses (SB 53’s “critical safety incident”, the companies’ incident ladders).</div>
+<div><b>Every event question states three things:</b> what is stipulated, whether unstated harms are zero, and an as-of date.</div>
+<div><b>Weigh terms only with a question that can weigh them</b> (change 13). A two-fact hypothetical can’t; a documented instance can. Report weights at the row, and list what the evaluator can’t evaluate.</div>
+</div>
+</div>
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">Not yet covered by any question</h3>
+<div class="small">
+<p>Whether a given claim depends on the alignment referent: handled by decision 10’s recording rule, not a question.</p>
+<p>Benefits and trade-offs, which several sources weigh against risk.</p>
+<p>The project’s own claims, kept apart from the sources’.</p>
+</div>
+<h3 style="margin: 22px 0 10px; font-size: 19px; font-weight: 700">A candidate test from the spike</h3>
+<p class="small" style="margin: 0">Every alignment <i>definition</i> resolves slot by slot, unfilled slots recorded as unfilled; and every grouping of “who went wrong” (GDM’s four areas, the PF’s misaligned-model safeguards, the Model Spec’s three categories, NIST’s integrity attacks) records its referent, whether “misaligned” is a state or an origin, and where in the stack the cause enters.</p>
+</aside>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Five acceptance tests: when the lexicon is ready to translate at scale</h2>
+<p class="small" style="margin: 0 0 16px">They sit under the questions. Lineage is deliberately not one of them; it belongs to the records.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="at" style="border-top: none"><span class="n">1</span><div><b style="font-size: 18px">Round trip</b><p class="small" style="margin: 6px 0 0; font-size: 16px">Re-express, clause by clause in our terms: SB 53’s “catastrophic risk”; the AI Act’s “systemic risk” (Art. 3(65)); Anthropic’s “misalignment risk”, defined twice in the August report, 25 lines apart, once with “catastrophic”; and IASR 2026’s “loss of control” in its glossary and its body, a loose source on purpose. Passing may end at an imported binding, a deliberately unbound term, or a declared ambiguity, but an ambiguity passes only if it names its candidates as lexicon terms, cites the passage for each, and says what evidence would decide. Otherwise it is a gap.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin-top: 10px"><span class="chip ques">Question B5</span><span class="chip done">Accepted, queued</span><span class="small" style="font-size: 15px">The unit is the definition’s closure across the provisions it depends on: SB 53’s (c) alone misses (l)’s “property” and §22757.16’s equity exclusion.</span></div></div></div>
+<div class="at"><span class="n">2</span><div><b style="font-size: 18px">Collisions</b><p class="small" style="margin: 6px 0 0; font-size: 16px">Every sense in OVERVIEW §2’s collision tables (16 main terms, 12 secondary) is a resolution target or part of a declared ambiguity.</p></div></div>
+<div class="at"><span class="n">3</span><div><b style="font-size: 18px">No mixed categories</b><p class="small" style="margin: 6px 0 0; font-size: 16px">The MIT “Other” test (chapter 4).</p></div></div>
+<div class="at"><span class="n">4</span><div><b style="font-size: 18px">Actors</b><p class="small" style="margin: 6px 0 0; font-size: 16px">The done-test in chapter 10.</p></div></div>
+<div class="at"><span class="n">5</span><div><b style="font-size: 18px">Distinctions</b><p class="small" style="margin: 6px 0 0; font-size: 16px">Every basis of division in G5’s inventory can be expressed (MIT’s entity, intent and timing; the EU Code’s capabilities, propensities and affordances; the NRR’s hazard and threat; accident, misuse and structure).</p></div></div>
+</div>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr)); gap: 18px">
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 12</span><b style="font-size: 18px">The competency questions</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">Yours to write or approve; five to ten to start. They decide which machinery earns a place, so everything after is better aimed once they exist. If you keep Q1, take it in ex-ante and ex-post forms with a discriminating case, a date and a world flag.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip lean" style="background: #CDE5DF">Lean: the eight above, moderate</span><span class="chip done" style="background: #CFDDED">Decide first</span></div>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision J</span><b style="font-size: 18px">Occurrence-to-risk relations and conferred event statuses</b><span class="small">thin pass, change 1</span></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">An occurrence <i>realizes</i> a risk, or <i>demonstrates an increase</i> in one (SB 53’s limbs 2 and 4), and “X counts as Y in C” extends from roles to events. Needed only for incident-shaped questions. My question E2: the eight include Q20, Q2, Q12 and Q17, all event- or incident-shaped, so <b>accepting them makes this unconditional</b>. The author agrees; a note under decision 12 is queued.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Follows from decision 12</span>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §3.11, §5 (decision 12); <span class="id">influx/competency-questions-draft.md</span>; thin pass changes 1, 11–13; questions B5, E2.</span>
+<a href="Phases.dc.html">Next: 14. The phases</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

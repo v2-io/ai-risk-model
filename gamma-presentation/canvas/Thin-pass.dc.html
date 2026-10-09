@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>11. The thin pass (G1b)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.lk{display:grid;grid-template-columns:minmax(0,1.3fr) 110px minmax(0,1.4fr);border-top:1px solid #E1E5EC}
+.lk > div{padding:9px 14px;font-size:15.5px;line-height:1.4}
+.y{color:#1A4C7B;font-weight:700}.n{color:#922D19;font-weight:700}.q{color:#6A4700;font-weight:700}
+.card{position:absolute;box-sizing:border-box;background:#FFFFFF;border:1px solid #8C97A8;border-radius:6px;padding:8px 12px;display:flex;align-items:center;font-size:15px;line-height:1.3}
+.dchip{display:inline-flex;padding:2px 8px;border-radius:3px;background:#ECEFF3;font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:12.5px;color:#22324B}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 11 of 16, about 5 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Actors.dc.html">Previous</a><a href="Precision.dc.html">Next: where precision lives</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 980px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">The thin pass proved the record formats, then withdrew its main finding. A two-fact question can name SB 53’s precise clauses, but it can’t weigh them.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 68ch">G1b, 7 October, your decision: SB 53 at full depth and candidate question 1 (<i>for a single incident with 60 deaths, which sources would call it catastrophic, severe or systemic, under what conditions, and through how many independent lineages?</i>), carried end to end in disposable YAML. 65 anchored passages, 22 resolution records, a checker for every quote, and a small evaluator.</p>
+</header>
+
+<section style="display: flex; flex-wrap: wrap; gap: 30px 48px; padding-bottom: 40px">
+<div style="flex: 1 1 520px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">The withdrawn finding</h2>
+<p class="src" style="margin: 0 0 16px; font-size: 22px; line-height: 1.4; color: #5E6778; text-decoration: line-through; text-decoration-color: #922D19; text-decoration-thickness: 2px">“most of SB 53’s precise clauses carried no weight; the structure around them did”</p>
+<p class="small" style="margin: 0 0 14px">The coordinator had passed this to you as the main result. The audit showed why it can’t stand:</p>
+<div style="display: grid; gap: 10px; font-size: 16.5px; line-height: 1.45">
+<div><b>Q1 stipulates two facts</b>, 60 deaths and one incident. A clause that tests anything else (“foreseeable”, “material”, the conduct list, the exclusions) could only come out open.</div>
+<div><b>The evaluator could only find an ambiguity decisive if it had been encoded as one</b>, and only the magnitude, aggregation and umbrella side had been.</div>
+<div><b>“Decisive” was measured below the row’s result.</b> Measured at the row, 13 of 26 labels changed nothing.</div>
+</div>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 18px 20px">
+<p style="margin: 0 0 10px; font-size: 18px; font-weight: 700">What the slice can say instead</p>
+<div style="display: grid; gap: 12px; font-size: 16px; line-height: 1.45">
+<div><b style="color: #1A4C7B">Needed to state definitions faithfully, whatever the question:</b> whether a bar is a floor or an example; the counting unit and what it attaches to; how casualties pool; which harms count; who must causally contribute; umbrellas the sources declare. None is in §3.8’s component list as an attribute.</div>
+<div><b style="color: #1A4C7B">Needed only if questions are about incidents:</b> an occurrence <i>realizes</i> a risk (SB 53’s limb 2) or <i>demonstrates an increase</i> in one (limb 4); and statuses conferred on events.</div>
+<div><b style="color: #922D19">Untested:</b> SB 53’s precise clauses. Weighing them needs a question that supplies the facts they test, such as a documented instance.</div>
+</div>
+</div>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Independent lineages: one</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 86ch">Six definitions in five documents trace SB 53’s “>50 people or $1B” bar back to SB 53. The pass first modelled the FCF and FGF as two independent restatements. They share wording that is in neither SB 53 nor the EU Code: the error “correlation is not corroboration” exists to prevent, made inside a pass that was checking lineage.</p>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px">
+<div style="position: relative; width: 1060px; height: 500px">
+<svg width="95" height="8" viewBox="0 0 95 8" preserveAspectRatio="none" style="position: absolute; left: 240px; top: 206px; width: 95px; height: 8px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round"><path d="M 0 4 L 95 4"></path></svg>
+<svg width="8" height="300" viewBox="0 0 8 300" preserveAspectRatio="none" style="position: absolute; left: 331px; top: 56px; width: 8px; height: 300px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round"><path d="M 4 0 L 4 300"></path></svg>
+<svg width="94" height="8" viewBox="0 0 94 8" preserveAspectRatio="none" style="position: absolute; left: 335px; top: 52px; width: 94px; height: 8px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled-1" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#5E6778" stroke="none" style="stroke: none; fill: #5E6778; fill: context-stroke"/></marker></defs><path d="M 0 4 L 90 4" marker-end="url(#dc-arrow-head-filled-1)"></path></svg>
+<svg width="94" height="8" viewBox="0 0 94 8" preserveAspectRatio="none" style="position: absolute; left: 335px; top: 152px; width: 94px; height: 8px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled-2" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#5E6778" stroke="none" style="stroke: none; fill: #5E6778; fill: context-stroke"/></marker></defs><path d="M 0 4 L 90 4" marker-end="url(#dc-arrow-head-filled-2)"></path></svg>
+<svg width="94" height="8" viewBox="0 0 94 8" preserveAspectRatio="none" style="position: absolute; left: 335px; top: 252px; width: 94px; height: 8px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled-3" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#5E6778" stroke="none" style="stroke: none; fill: #5E6778; fill: context-stroke"/></marker></defs><path d="M 0 4 L 90 4" marker-end="url(#dc-arrow-head-filled-3)"></path></svg>
+<svg width="94" height="8" viewBox="0 0 94 8" preserveAspectRatio="none" style="position: absolute; left: 335px; top: 352px; width: 94px; height: 8px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled-4" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#5E6778" stroke="none" style="stroke: none; fill: #5E6778; fill: context-stroke"/></marker></defs><path d="M 0 4 L 90 4" marker-end="url(#dc-arrow-head-filled-4)"></path></svg>
+<svg width="45" height="8" viewBox="0 0 45 8" preserveAspectRatio="none" style="position: absolute; left: 670px; top: 252px; width: 45px; height: 8px; overflow: visible; fill: none; stroke: #922D19; stroke-width: 2; stroke-dasharray: 6 6"><path d="M 0 4 L 45 4"></path></svg>
+<svg width="45" height="8" viewBox="0 0 45 8" preserveAspectRatio="none" style="position: absolute; left: 670px; top: 352px; width: 45px; height: 8px; overflow: visible; fill: none; stroke: #922D19; stroke-width: 2; stroke-dasharray: 6 6"><path d="M 0 4 L 45 4"></path></svg>
+<svg width="8" height="100" viewBox="0 0 8 100" preserveAspectRatio="none" style="position: absolute; left: 711px; top: 256px; width: 8px; height: 100px; overflow: visible; fill: none; stroke: #922D19; stroke-width: 2; stroke-dasharray: 6 6"><path d="M 4 0 L 4 100"></path></svg>
+<svg width="45" height="8" viewBox="0 0 45 8" preserveAspectRatio="none" style="position: absolute; left: 715px; top: 302px; width: 45px; height: 8px; overflow: visible; fill: none; stroke: #922D19; stroke-width: 2; stroke-dasharray: 6 6"><path d="M 0 4 L 45 4"></path></svg>
+<svg width="210" height="8" viewBox="0 0 210 8" preserveAspectRatio="none" style="position: absolute; left: 550px; top: 438px; width: 210px; height: 8px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round"><path d="M 0 4 L 210 4"></path></svg>
+<svg width="8" height="49" viewBox="0 0 8 49" preserveAspectRatio="none" style="position: absolute; left: 546px; top: 393px; width: 8px; height: 49px; overflow: visible; fill: none; stroke: #5E6778; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="dc-arrow-head-filled-5" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#5E6778" stroke="none" style="stroke: none; fill: #5E6778; fill: context-stroke"/></marker></defs><path d="M 4 49 L 4 4" marker-end="url(#dc-arrow-head-filled-5)"></path></svg>
+<div class="card" style="left: 40px; top: 170px; width: 200px; height: 80px; background: #1F2C44; color: #FFFFFF; border-color: #1F2C44"><span><b style="font-size: 17px">SB 53</b><br><span style="color: #C9D3E3; font-size: 14px">the root, 2025</span></span></div>
+<div class="card" style="left: 430px; top: 20px; width: 240px; height: 72px"><span><b>RAISE S.8828</b><br><span style="color: #46505F; font-size: 14px">copies; same words, but “person” = nongovernmental</span></span></div>
+<div class="card" style="left: 430px; top: 120px; width: 240px; height: 72px"><span><b>xAI framework, Dec 2025</b><br><span style="color: #46505F; font-size: 14px">quotes it, with attribution</span></span></div>
+<div class="card" style="left: 430px; top: 220px; width: 240px; height: 72px"><span><b>Anthropic FCF v2</b><br><span style="color: #46505F; font-size: 14px">“systemic”; >50 fatalities, as an example</span></span></div>
+<div class="card" style="left: 430px; top: 320px; width: 240px; height: 72px"><span><b>OpenAI FGF</b><br><span style="color: #46505F; font-size: 14px">“systemic”; >50 fatalities, as an example</span></span></div>
+<div class="card" style="left: 760px; top: 270px; width: 250px; height: 72px; background: #F6E1DB; border: 1px dashed #922D19"><span><b>a shared template</b><br><span style="color: #5A2014; font-size: 14px">author unknown; direction undetermined</span></span></div>
+<div class="card" style="left: 760px; top: 410px; width: 250px; height: 64px"><span><b>OpenAI PF v2</b><br><span style="color: #46505F; font-size: 14px">two “severe harm” sentences reused</span></span></div>
+</div>
+</div>
+<p class="small" style="margin: 10px 0 0">Solid: derived from. Dashed: shares verbatim wording. Six definitions, because SB 53 defines its term in two codes. SB 53’s own upstream was not followed.</p>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The ex-ante answer, read straight off the notation</h2>
+<p class="small" style="margin: 0 0 14px">Which source terms reach <span class="id">arm:harm.over-50-deaths-one-incident</span>? From <span class="id">notation/notes.md</span> §1, by hand, no evaluator.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="lk" style="background: #E6EAF0; font-weight: 700"><div>Entry</div><div>Reaches it?</div><div>Why</div></div>
+<div class="lk"><div class="id">sb53.bp:catastrophic-risk</div><div class="y">yes*</div><div>either pooling reading contains it</div></div>
+<div class="lk"><div class="id">sb53.lab:catastrophic-risk</div><div class="y">yes*</div><div>broader than the bp entry</div></div>
+<div class="lk"><div class="id">ny-raise:catastrophic-risk</div><div class="y">yes*</div><div>copies SB 53</div></div>
+<div class="lk"><div class="id">xai-faif25:catastrophic-risk</div><div class="y">yes*</div><div>exact match to SB 53, as of 2025-12-30</div></div>
+<div class="lk"><div class="id">ant-fcf:systemic-risk</div><div class="y">yes</div><div>contains SB 53’s term</div></div>
+<div class="lk"><div class="id">oai-fgf:systemic-risk</div><div class="y">yes</div><div>contains SB 53’s term, under both closure readings</div></div>
+<div class="lk"><div class="id">oai-fgf:severe-harm#own</div><div class="y">yes</div><div>contains it</div></div>
+<div class="lk"><div class="id">oai-pf:severe-harm</div><div class="n">no</div><div>closed, and neither member contains it</div></div>
+<div class="lk"><div class="id">ant-rsp:catastrophic-risk</div><div class="q">open</div><div>deliberately unbound</div></div>
+<div class="lk"><div class="id">eu-act:systemic-risk</div><div class="q">open</div><div>no harm relation; its conditions are of another kind</div></div>
+<div class="lk"><div class="id">xai-rmf:catastrophic-malicious-use-events</div><div class="q">can’t say</div><div>its bar is quoted text, not a relation</div></div>
+</div>
+<p class="small" style="margin: 10px 0 0">* on its other conditions: nine for SB 53, which Q1 doesn’t state. So for Q1 the answer is a list of conditions, not a yes or no. Every “yes” and “no” is our frame’s output, unreviewed.</p>
+</div>
+<aside style="flex: 1 1 300px; max-width: 400px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">The one reading that changes Q1’s result</h3>
+<p class="small">Does the FGF’s undefined “severe harm” carry its own sense (60 fatalities qualify) or the PF’s (<span class="src">“the death or grave injury of thousands of people or hundreds of billions of dollars of economic damage”</span>)?</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 14px 14px 10px; margin: 6px 0 12px">
+<p style="margin: 0 0 8px; font-size: 13.5px; color: #46505F">Casualties, log scale</p>
+<div style="position: relative; height: 56px">
+<div style="position: absolute; left: 0; right: 0; top: 26px; height: 2px; background: #C9D1DC"></div>
+<div style="position: absolute; left: 25%; top: 14px; width: 4px; height: 26px; background: #1A4C7B; border-radius: 2px"></div>
+<div style="position: absolute; left: calc(50% - 2px); top: 14px; width: 25%; height: 26px; background: #922D19; opacity: 0.85; border-radius: 3px"></div>
+<div style="position: absolute; left: 0; top: 40px; font-size: 12px; color: #46505F">10</div>
+<div style="position: absolute; left: 25%; top: 40px; font-size: 12px; color: #1A4C7B; transform: translateX(-50%)">~50</div>
+<div style="position: absolute; left: 50%; top: 40px; font-size: 12px; color: #922D19; transform: translateX(-50%)">1,000</div>
+<div style="position: absolute; left: 75%; top: 40px; font-size: 12px; color: #922D19; transform: translateX(-50%)">10,000</div>
+</div>
+<p style="margin: 8px 0 0; font-size: 13.5px; line-height: 1.4; color: #46505F"><span style="color: #1A4C7B; font-weight: 700">FGF’s own sentence</span> against <span style="color: #922D19; font-weight: 700">the PF’s “thousands”</span>: about 20 to 200 times apart. For dollars, $1B against hundreds of billions.</p>
+</div>
+<p class="small">The FGF reuses two PF sentences containing the phrase verbatim, one two lines below its definition: evidence for the PF sense. The pass leans to the FGF’s own sentence, at low-moderate confidence, and keeps both. The FGF may use the phrase in two senses.</p>
+<p class="small" style="margin: 0"><b>Conflict of interest, checked:</b> the deciding ambiguity landed on OpenAI. The verifier ran the parallel check on Anthropic’s documents and found none.</p>
+</aside>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The defects it found</h2>
+<p class="small" style="margin: 0 0 16px; max-width: 86ch">Ids from <span class="id">weight-and-defects.md</span> §3. Most of them become the lettered decisions and the batch of format changes on the decision board.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px; display: grid; gap: 10px; align-content: start">
+<b style="font-size: 17px">In the question</b>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="dchip">q1-type</span><span class="dchip">q1-world</span><span class="dchip">q1-date</span><span class="dchip">q1-source-words</span><span class="dchip">q1-discrimination</span></div>
+<p class="small" style="margin: 0">No source calls an <i>incident</i> catastrophic, severe or systemic; they say it of risks or harm. Split Q1 ex ante and ex post; give it a date and an open- or closed-world flag; use a case that discriminates (30 deaths plus 30 serious injuries; 40 deaths; 60 across several incidents).</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px; display: grid; gap: 10px; align-content: start">
+<b style="font-size: 17px">In the lexicon and risk side</b>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="dchip">materialization</span><span class="dchip">conferred-events</span><span class="dchip">closure</span><span class="dchip">bearer</span><span class="dchip">bound-vs-match</span><span class="dchip">collide-scope</span></div>
+<p class="small" style="margin: 0">Relations between occurrences and risks; conferral extended from roles to events; a closure attribute on every definition; a causal slot with a bearer; publisher-level divergence as its own relation, so it doesn’t hang on a scope decision.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px; display: grid; gap: 10px; align-content: start">
+<b style="font-size: 17px">In the record formats</b>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="dchip">row-vs-frame</span><span class="dchip">frame-inheritance</span><span class="dchip">umbrella-vs-definition</span><span class="dchip">resolution-status</span><span class="dchip">bitemporal</span><span class="dchip">preference-whose</span><span class="dchip">lineage-per-claim</span><span class="dchip">lineage-template</span><span class="dchip">drift-needs-frames</span><span class="dchip">frame-boundary</span><span class="dchip">anchor-*</span><span class="dchip">scenario-in-source-terms</span></div>
+<p class="small" style="margin: 0">The biggest is <b>row-vs-frame</b>: no row in the pass mapped to a single term of ours. A source definition is a frame over many slots, which hides a lexicon-shape decision. Chapter 12.</p>
+</div>
+</div>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2">
+<div style="background: #F6E1DB; border-radius: 6px; padding: 20px 24px; display: grid; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision F</span><b style="font-size: 19px">A second thin pass, G1c, before G2’s entries get your refinement passes</b><span class="small" style="color: #5A2014">from my questions C1 and C2</span></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.55; color: #3A1A12">Q1 never touched the actors, your stated priority, and couldn’t weigh terms. The plan goes G1b, then G2, with the next end-to-end pass in G4, after refinement. The author’s proposal: one pass on <b>AISI’s INC-2026-07-28-01</b>, a documented instance whose facts involve a compaction summary and its writer, carried through Q20 (or Q18 or Q4). It would weigh actor terms and SB 53’s precise clauses against real facts. Drafting G2 and G3 entries proceeds meanwhile; spending refinement passes on them waits for G1c and for the ratified competency questions.</p>
+<p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #5A2014">The author says you and they already agreed that a pass on a documented incident comes next; this decides whether it is G1c and gates refinement.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">The author’s lean: yes</span>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From <span class="id">influx/thin-pass/</span>: README, debrief, answer, weight-and-defects, notation/notes.md; questions C1, C2.</span>
+<a href="Precision.dc.html">Next: 12. Where a definition’s precision lives</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

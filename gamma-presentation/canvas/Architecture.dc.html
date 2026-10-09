@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>3. The architecture</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.row{display:grid;grid-template-columns:200px minmax(0,1.1fr) minmax(0,1.5fr) minmax(0,1.3fr);gap:0;border-top:1px solid #D3D9E2}
+.row > div{padding:14px 16px;font-size:15.5px;line-height:1.45}
+.row .h{font-size:18px;font-weight:700;color:#18202E}
+.ours{background:#DAE6F2}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 3 of 16, about 4 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Corpus.dc.html">Previous</a><a href="Lexicon.dc.html">Next: the lexicon</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 940px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">Almost every layer of the model already has an established vocabulary. What none of them has is your address theory’s resolution: ambiguity as an outcome, as of a moment.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 66ch">Three research agents read the established literatures on 6 October (<span class="id">influx/gamma-research/</span>). Their main result: most of model beta’s coinages already have names, and adopting the names brings better theory along with them.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<h2 style="margin: 0 0 16px; font-size: 27px; line-height: 1.2; font-weight: 700">Two directions of work</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 22px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 20px 22px; display: grid; gap: 12px">
+<div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 18px">
+<span style="padding: 6px 12px; border-radius: 6px; background: #1F2C44; color: #FFFFFF">concept</span>
+<span style="color: #5E6778; font-size: 22px">⟶</span>
+<span style="padding: 6px 12px; border-radius: 6px; background: #DAE6F2; color: #1A4C7B">our name for it</span>
+</div>
+<p style="margin: 0; font-size: 20px; font-weight: 700">Onomasiological: the lexicon</p>
+<p class="small" style="margin: 0">Settle the concept, then choose its name. ISO 860: <span class="src">“Harmonization starts at the concept level and continues at the term level”</span>; in ISO 704, assigning a designation comes last. This is how “hazard” and “developer” should be decided (chapters 9 and 10).</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 20px 22px; display: grid; gap: 12px">
+<div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 18px">
+<span class="src" style="padding: 6px 12px; border-radius: 6px; background: #FFFFFF; border: 1px solid #C9D1DC">a source’s word, in its scope</span>
+<span style="color: #5E6778; font-size: 22px">⟶</span>
+<span style="padding: 6px 12px; border-radius: 6px; background: #1F2C44; color: #FFFFFF">which concept of ours</span>
+</div>
+<p style="margin: 0; font-size: 20px; font-weight: 700">Semasiological: the translations</p>
+<p class="small" style="margin: 0">Start from the word as used and ask what it denotes. Temmerman (2000) argues that real special languages need both directions, and that polysemy and drift in them are normal, not defects.</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px 30px; margin-top: 18px; align-items: baseline">
+<p class="body" style="margin: 0; flex: 1 1 520px"><b>We don’t harmonize the sources with each other.</b> ISO 860 says harmonization works where a field <span class="src">“is well established and relatively stable”</span> and has <span class="src">“a tradition of standardization”</span>. Frontier-AI risk is neither, which gives compilation-not-adjudication a citable reason: map each source onto ours, and leave them unreconciled with each other.</p>
+<p class="small" style="margin: 0; flex: 1 1 300px">Evidence note: the ISO standards were read in their official previews, and Temmerman via a secondary source; the citation check found the plan drops that second mark.</p>
+</div>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The layers, what each borrows, and what is ours</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 80ch">Blue cells are where the plan found no established vocabulary that fits. Read the last column first: it is the part only this project can supply, and so the part your refinement passes are for.</p>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px">
+<div style="min-width: 980px">
+<div class="row" style="border-top: none; background: #E6EAF0">
+<div style="font-weight: 700">Layer</div><div style="font-weight: 700">What it records</div><div style="font-weight: 700">Borrowed from</div><div style="font-weight: 700">Ours</div>
+</div>
+<div class="row">
+<div class="h">Lexicon<br><span class="small">chapter 4</span></div>
+<div>Our terms: definitions, relations, invariants, status</div>
+<div>ISO 1087 and 704 (intensional definitions by delimiting characteristics; preferred, admitted, deprecated); Evans’s DDD for strategy; the SRA’s separation of concept from metric</div>
+<div class="ours">Namespaces; umbrellas that contain; declared ambiguity; time (an as-of for deictic definitions); the refinement status ladder from your <span class="id">DECISIONS.ud</span></div>
+</div>
+<div class="row">
+<div class="h">Passages<br><span class="small">chapter 7</span></div>
+<div>The source’s words, anchored</div>
+<div>W3C Web Annotation (quote and position selectors, <span class="src">refinedBy</span>); RFC 8118 <span class="id">page=N</span>; PAV’s retrieved, imported, derived, accessed</div>
+<div class="ours">A match count that must be one; a selector for a PDF table’s row and column</div>
+</div>
+<div class="row">
+<div class="h">Translation<br><span class="small">chapter 5</span></div>
+<div>What a source’s word means in a scope</div>
+<div>OntoLex-Lemon (a lexical sense reifies word and concept); SSSOM (row fields, justification, author and reviewer); SKOS match predicates</div>
+<div class="ours">The resolution record: outcome, a reason saying whose fact it is, path, who resolved, as-of. No mapping standard checked can say “one of these, undetermined”.</div>
+</div>
+<div class="row">
+<div class="h">Assertions<br><span class="small">chapter 6</span></div>
+<div>What was claimed, by whom, how strongly, against what</div>
+<div>Searle (point, strength); FactBank and PDTB (nested sources); Goffman; ASPIC+ (three attacks); IG 2.0, Hohfeld, LegalRuleML, von Wright (norms); SACM, Toulmin, Walton, IAT</div>
+<div class="ours">The rule that we record attacks, never defeats; contest standings only as someone’s attributed assertion</div>
+</div>
+<div class="row">
+<div class="h">Lineage<br><span class="small">chapter 7</span></div>
+<div>Which text copies, cites or revises which</div>
+<div>W3C PROV, PAV, CiTO, IFLA LRM, Akoma Ntoso; the micropublications model</div>
+<div class="ours">Drift direction (a hedge dropped); templates of unknown authorship; per-claim edges; preemption across jurisdictions</div>
+</div>
+<div class="row">
+<div class="h">Views<br><span class="small">chapters 8, 13</span></div>
+<div>Answers, computed from the records</div>
+<div>Bow-tie; the Admiralty grading’s two axes</div>
+<div class="ours">Which views exist at all: decided by the competency questions. Candidates: the questions’ answers; crosswalks, ours and the sources’ own; lineage-aware corroboration; coverage by each source’s declared coverage, exclusions included, so “out of coverage” never reads as “silent”; a bow-tie around one event; causal loops, once G7 defines relations between events</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding-top: 34px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">Strategy from Evans, mechanism from you</h2>
+<div class="body">
+<p>Two vocabularies describe the method itself, and the plan wants the seam between them explicit in <span class="id">def/</span>.</p>
+<p><b>Domain-driven design supplies the strategy.</b> A <i>bounded context</i> is <span class="src">“a description of a boundary … within which a particular model is defined and applicable”</span>. A <i>context map</i> says <span class="src">“Map the existing terrain. Take up transformations later.”</span> The relationship patterns name what sources do to each other: xAI adopting the Code’s terms is <i>conformist</i> (RAISE copying SB 53 word for word counts only under a widening the <span class="id">def/</span> entries propose, since copying alone doesn’t show an upstream-downstream relation); an <i>anticorruption layer</i> is <span class="src">“an isolating layer … in terms of your own domain model”</span>, which is what a translation is.</p>
+<p><b>Address theory supplies the mechanism:</b> reference and referent with intended cardinality; binding against match; scope with containment; resolution from an origin, as of a moment, under declared admissibility and preference; ambiguity as an outcome; dangles and collisions. You know this part better than anyone; skim it.</p>
+<p><b>The join:</b> Evans’s bounded contexts are flat, the sources’ scopes nest, so a bounded context is defined as a kind of scope. Address theory is imported by reference at commit <span class="id">90f4fb6</span> of <span class="id">v2-io/udon</span>, and the pin moves only deliberately, with the affected entries re-read.</p>
+</div>
+<div style="background: #E9E3F6; border-radius: 6px; padding: 16px 20px; display: grid; gap: 10px; margin-top: 6px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip ques" style="background: #DCD2F0">Question E3</span><span class="chip done" style="background: #CFDDED">Answered by the plan’s author, 8 Oct</span></div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #2A1D52">Two DDD patterns were rejected for cases they seemed to fit (the RSP’s “plain meaning” is <i>deliberately unbound</i>, not <i>separate ways</i>; a self-inconsistent source is several scopes, not a <i>big ball of mud</i>). Is DDD becoming naming only?</p>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #18202E; background: #FFFFFF; border-radius: 4px; padding: 10px 14px"><b>No.</b> DDD still does the strategy and the diagnosis: each source as its own bounded context, the context map, the anticorruption layer that keeps our model from conforming, the conformist diagnosis of beta, and the ubiquitous-language discipline. Address theory does the structure. Two patterns failing two cases isn’t a rejection of the strategy. <span class="id">def/README.md</span> will say this; queued.</p>
+</div>
+</div>
+
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">What exists already</h3>
+<div class="small">
+<p><span class="id">def/</span> holds six <span class="id">ddd:</span> term groups, twenty terms, all <i>proposed</i>, drafted 7 October. Evans’s definitions are verbatim for eight terms; his patterns are restated with ISO’s <span class="id">[SOURCE: …, modified — …]</span> marks.</p>
+<p>The entries add blocks your address-theory entries don’t have: <span class="id">|conditions</span>, <span class="id">|practices</span>, <span class="id">|collisions</span>, <span class="id">|proposed-widening</span> and <span class="id">|ambiguity</span>, so that what a term <i>is</i> stays apart from when it arises and what its author advises.</p>
+<p><span class="id">ddd:bounded-context</span> declares an ambiguity in Evans himself: the definition says “a description of a boundary”, the pattern text uses it as the region.</p>
+</div>
+<h3 style="margin: 24px 0 10px; font-size: 19px; font-weight: 700">Why the address-theory import isn’t a shared kernel</h3>
+<p class="small" style="margin: 0">Nothing is held jointly in this repository, and no second team’s consultation gates a change. Grok’s audit caught the first draft calling it one. The nearest pattern is conformist: adopted untranslated.</p>
+</aside>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §3.1–3.2, §3.3 (“what the address theory adds”); <span class="id">def/README.md</span>; <span class="id">def/def-ddd-bounded-context.ud</span>.</span>
+<a href="Lexicon.dc.html">Next: 4. The lexicon</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

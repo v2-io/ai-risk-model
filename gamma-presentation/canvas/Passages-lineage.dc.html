@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>7. Passages and lineage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.lad{flex:1 1 0;min-width:170px;background:#FFFFFF;border:1px solid #D3D9E2;border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.chev{align-self:center;color:#8C97A8;font-size:22px;flex:0 0 auto}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 7 of 16, about 3 minutes</span>
+<span style="display: flex; gap: 18px"><a href="Assertions.dc.html">Previous</a><a href="Risk.dc.html">Next: the risk side</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 960px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">An anchor must match its passage exactly once, and a claim counts once per independent line of descent. In both, a copy is a record, never a vote.</h1>
+</header>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding-bottom: 40px">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">Passages: the fidelity atom</h2>
+<div class="body">
+<p><b>The anchor:</b> the PDF page (RFC 8118’s <span class="id">page=N</span>), refined by a W3C quote selector (exact text, prefix, suffix), with the extraction line kept as an optional position and the document version as read. PDF pages survive re-extraction; line numbers don’t.</p>
+<p><b>Where your theory corrects the W3C.</b> The Web Annotation spec says several matches of a quote <span class="src">“SHOULD be treated as matching all”</span>. A passage anchor intends exactly one match, {1,1}. Three matches means the anchor narrowed too little, and that should surface as a defect, not widen silently. So the match count is recorded when anchoring and on every re-check.</p>
+<p style="margin: 0"><b>Tables are the gap.</b> No standard addresses a PDF table’s row and column, and most framework thresholds live in tables that <span class="id">pdftotext -layout</span> interleaves. That selector is ours to define.</p>
+</div>
+</div>
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">What the thin pass added (change 7)</h3>
+<div class="small">
+<p>A position selector is required whenever a quote matches more than once. SB 53’s bar clause matches twice, once in each code.</p>
+<p>Each document records its text-normalization rule: rejoining hyphenated words is a live hazard in RAISE.</p>
+<p>Every passage carries a version-as-read that the text itself supports, or says where the version came from.</p>
+</div>
+</aside>
+</section>
+
+<section style="padding-bottom: 40px">
+<p style="margin: 0 0 12px; font-size: 18px; font-weight: 700">PAV’s provenance ladder fits what the repo already distinguishes</p>
+<div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px">
+<div class="lad"><span class="small">retrieved</span><b style="font-size: 17px">the PDF, from relata</b></div><span class="chev">›</span>
+<div class="lad"><span class="small">imported</span><b style="font-size: 17px">the <span class="id">pdftotext</span> text</b><span class="small" style="font-size: 14px">PAV’s own example is OCR’d text; <span class="id">bin/extract-text</span> regenerates it</span></div><span class="chev">›</span>
+<div class="lad"><span class="small">derived</span><b style="font-size: 17px">an assertion record</b></div><span class="chev">›</span>
+<div class="lad"><span class="small">accessed</span><b style="font-size: 17px">our reading</b></div>
+</div>
+<p class="small" style="margin: 12px 0 0">This is also why the repo’s <span class="id">channel: primary</span> needs renaming (chapter 4).</p>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 16px; font-size: 27px; line-height: 1.2; font-weight: 700">Lineage: two rules for any corroboration view</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 20px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 20px 22px; display: grid; gap: 12px; align-content: start">
+<b style="font-size: 20px">1. Never inherit transitivity</b>
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 16px">
+<span style="padding: 5px 10px; border: 1px solid #8C97A8; border-radius: 4px; background: #FFFFFF">A</span><span class="id">exactMatch</span>
+<span style="padding: 5px 10px; border: 1px solid #8C97A8; border-radius: 4px; background: #FFFFFF">B</span><span class="id">exactMatch</span>
+<span style="padding: 5px 10px; border: 1px solid #8C97A8; border-radius: 4px; background: #FFFFFF">C</span>
+<span style="color: #922D19; font-weight: 700">⟹ A agrees with C</span>
+</div>
+<p class="small" style="margin: 0"><span class="id">skos:exactMatch</span> is transitive, and so is the micropublications model’s <i>supports</i>. A view built on either propagates agreement down chains, which is precisely the inference lineage-awareness exists to block.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 20px 22px; display: grid; gap: 12px; align-content: start">
+<b style="font-size: 20px">2. Keep two axes</b>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; font-size: 16px">
+<div style="background: #ECEFF3; border-radius: 4px; padding: 10px 12px"><b>source reliability</b><br><span class="small">how far to trust who said it</span></div>
+<div style="background: #ECEFF3; border-radius: 4px; padding: 10px 12px"><b>information credibility</b><br><span class="small">how far to trust what was said</span></div>
+</div>
+<p class="small" style="margin: 0">The intelligence “Admiralty” grading separates them, and defines its top credibility grade as <span class="src">“confirmed by independent sources”</span>. If we grade sources at all, the grade is our attributed assertion, on two separate axes. (The Admiralty manual itself wasn’t reached; this rests on the research report.)</p>
+</div>
+</div>
+<div class="body" style="margin-top: 22px; max-width: 86ch">
+<p><b>Claim identity is an assertion.</b> The micropublications model: <span class="src">“identification of statements as being similogs is itself an assertion. Your ‘similarity’ may not be my ‘similarity’.”</span> When we say two passages make the same claim, that judgment is a record with an author, not a merge.</p>
+<p style="margin: 0"><b>Relations are mostly established</b>: PROV’s derivation, revision, quotation, invalidation; PAV; CiTO’s cites-as-authority, includes-quotation-from, updates, retracts, shares-author-with; IFLA LRM’s work, expression, manifestation; Akoma Ntoso’s amends, repeals, and force against efficacy. <b>Still ours:</b> the direction of drift (a hedge dropped, a claim hardened), a summary that adds content, boilerplate, “tasks, fulfils”, “orders revision of”, announcement status, preemption across jurisdictions.</p>
+</div>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">What the thin pass learned by getting it wrong (change 4)</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 82ch">The pass was checking lineage and still counted one template twice. Chapter 11 draws the graph.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px"><b style="font-size: 17px">Edges carry a claim</b><p class="small" style="margin: 8px 0 0">A document-level revision edge from xAI’s RMF to its 2025 framework would make the RMF an ancestor of the >50 bar, which it isn’t. The bar came from SB 53.</p></div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px"><b style="font-size: 17px">Templates get nodes</b><p class="small" style="margin: 8px 0 0">Anthropic’s FCF and OpenAI’s FGF share wording that is in neither SB 53 nor the EU Code. Their shared drift is plausibly one event, counted twice. Compare descendants with each other, not only with the root.</p></div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px"><b style="font-size: 17px">Drift needs frames</b><p class="small" style="margin: 8px 0 0">RAISE has SB 53’s exact words in its bearer slot and a different test, because RAISE defines “person” as nongovernmental. Comparing words finds no drift; comparing resolved tests does.</p></div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px"><b style="font-size: 17px">Moves are reported as moves</b><p class="small" style="margin: 8px 0 0">The companies move SB 53’s conduct list into a category table. Drift should report a relocated clause as moved, not as dropped and added.</p></div>
+</div>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §3.5, §3.7; thin pass proposed changes 4 and 7.</span>
+<a href="Risk.dc.html">Next: 8. The risk side</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

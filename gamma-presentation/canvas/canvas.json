@@ -1,0 +1,42 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-08T17:20:00Z"},
+  "title": "Model gamma — a guided tour",
+  "launch": {"view": "focused", "file": "Main.dc.html"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 2500, "title": "Start here", "expand": "fill", "is_interactive": true},
+    "Why-gamma.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 2200, "title": "1. Why a third attempt", "expand": "fill", "is_interactive": true},
+    "Corpus.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 2700, "title": "2. What the sources turned out to be", "expand": "fill", "is_interactive": true},
+    "Architecture.dc.html": {"x": 0, "y": 3120, "w": 1440, "h": 2600, "title": "3. The architecture", "expand": "fill", "is_interactive": true},
+    "Lexicon.dc.html": {"x": 1520, "y": 3120, "w": 1440, "h": 2600, "title": "4. The lexicon", "expand": "fill", "is_interactive": true},
+    "Translation.dc.html": {"x": 3040, "y": 3120, "w": 1440, "h": 2800, "title": "5. Translation and resolution", "expand": "fill", "is_interactive": true},
+    "Assertions.dc.html": {"x": 4560, "y": 3120, "w": 1440, "h": 2900, "title": "6. Assertions", "expand": "fill", "is_interactive": true},
+    "Passages-lineage.dc.html": {"x": 6080, "y": 3120, "w": 1440, "h": 2100, "title": "7. Passages and lineage", "expand": "fill", "is_interactive": true},
+    "Risk.dc.html": {"x": 0, "y": 6440, "w": 1440, "h": 3000, "title": "8. The risk side", "expand": "fill", "is_interactive": true},
+    "Hazard-instances.dc.html": {"x": 1520, "y": 6440, "w": 1440, "h": 2400, "title": "9. Hazard, and documented instances", "expand": "fill", "is_interactive": true},
+    "Actors.dc.html": {"x": 3040, "y": 6440, "w": 1440, "h": 3400, "title": "10. Actors and agent parts", "expand": "fill", "is_interactive": true},
+    "Thin-pass.dc.html": {"x": 0, "y": 10260, "w": 1440, "h": 3400, "title": "11. The thin pass (G1b)", "expand": "fill", "is_interactive": true},
+    "Precision.dc.html": {"x": 1520, "y": 10260, "w": 1440, "h": 2900, "title": "12. Where a definition's precision lives", "expand": "fill", "is_interactive": true},
+    "Competency.dc.html": {"x": 3040, "y": 10260, "w": 1440, "h": 2600, "title": "13. Competency questions and acceptance tests", "expand": "fill", "is_interactive": true},
+    "Phases.dc.html": {"x": 4560, "y": 10260, "w": 1440, "h": 2800, "title": "14. The phases", "expand": "fill", "is_interactive": true},
+    "Decisions.dc.html": {"x": 0, "y": 14080, "w": 1440, "h": 2500, "title": "15. Decision board", "expand": "fill", "is_interactive": true},
+    "Open-questions.dc.html": {"x": 1520, "y": 14080, "w": 1440, "h": 2900, "title": "16. Flags and open questions", "expand": "fill", "is_interactive": true},
+    "Addendum.dc.html": {"x": 3040, "y": 14080, "w": 1440, "h": 3000, "title": "Addendum: what the tour leaves out", "expand": "fill", "is_interactive": true}
+  },
+  "order": [
+    "Main.dc.html", "Why-gamma.dc.html", "Corpus.dc.html",
+    "Architecture.dc.html", "Lexicon.dc.html", "Translation.dc.html", "Assertions.dc.html", "Passages-lineage.dc.html",
+    "Risk.dc.html", "Hazard-instances.dc.html", "Actors.dc.html",
+    "Thin-pass.dc.html", "Precision.dc.html", "Competency.dc.html", "Phases.dc.html",
+    "Decisions.dc.html", "Open-questions.dc.html", "Addendum.dc.html"
+  ],
+  "notes": {
+    "p1": {"x": 0, "y": -300, "text": "Part I. Orientation", "kind": "title1", "maxW": 4480},
+    "p2": {"x": 0, "y": 2820, "text": "Part II. The machinery", "kind": "title1", "maxW": 7520},
+    "p3": {"x": 0, "y": 6140, "text": "Part III. The domain: risk and actors", "kind": "title1", "maxW": 4480},
+    "p4": {"x": 0, "y": 9960, "text": "Part IV. The proof so far, and the plan", "kind": "title1", "maxW": 6000},
+    "p5": {"x": 0, "y": 13780, "text": "Part V. Decide", "kind": "title1", "maxW": 4480}
+  },
+  "designSystems": []
+}

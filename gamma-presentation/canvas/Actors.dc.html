@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>10. Actors and agent parts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F1F3F6}
+a{color:#1F5A8F;text-underline-offset:3px}a:hover{color:#123B61}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 48px 96px;box-sizing:border-box}
+@media (max-width:720px){.wrap{padding:24px 18px 64px}}
+.src{font-family:'Alegreya',Georgia,'Times New Roman',serif;font-style:italic}
+.id{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:0.84em;letter-spacing:-0.01em;color:#22324B}
+.body{font-size:18px;line-height:1.55;color:#18202E}
+.body p{margin:0 0 14px}
+.small{font-size:15.5px;line-height:1.5;color:#46505F}
+.small p{margin:0 0 10px}
+.chip{display:inline-flex;align-items:center;padding:0 9px;border-radius:4px;font-weight:700;font-size:14px;line-height:24px;white-space:nowrap;font-style:normal}
+.dec{background:#F6E1DB;color:#922D19}
+.lean{background:#DBEDE9;color:#21574D}
+.ques{background:#E9E3F6;color:#4C338E}
+.flag{background:#F5E8C6;color:#6A4700}
+.done{background:#DAE6F2;color:#1A4C7B}
+.mx{display:grid;grid-template-columns:250px repeat(7,minmax(0,1fr));align-items:center}
+.mx > div{padding:7px 6px;font-size:15px;line-height:1.3;border-top:1px solid #E1E5EC;min-height:22px}
+.mx .h{font-size:14px;font-weight:700;color:#18202E;text-align:center;border-top:none;padding-bottom:10px;line-height:1.25}
+.mx .a{text-align:left;font-size:15.5px}
+.mx .c{display:flex;justify-content:center}
+.d1{width:10px;height:10px;border-radius:50%;background:#5E6778}
+.d2{width:16px;height:16px;border-radius:50%;background:#2E3B55}
+.d3{width:22px;height:22px;border-radius:50%;background:#18202E}
+.rel{display:grid;grid-template-columns:180px minmax(0,1fr) minmax(0,1.4fr);border-top:1px solid #D3D9E2}
+.rel > div{padding:11px 14px;font-size:15.5px;line-height:1.45}
+.dt{display:grid;grid-template-columns:150px minmax(0,1fr) 210px;border-top:1px solid #E7D2CB}
+.dt > div{padding:10px 14px;font-size:15.5px;line-height:1.45}
+</style>
+</helmet>
+<div style="font-family: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif; color: #18202E; background: #F1F3F6; min-height: 100%">
+<div class="wrap">
+
+<nav style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; color: #46505F; padding-bottom: 18px; border-bottom: 1px solid #D3D9E2">
+<a href="Main.dc.html">Model gamma, a guided tour</a>
+<span>Chapter 10 of 16, about 6 minutes; your stated priority</span>
+<span style="display: flex; gap: 18px"><a href="Hazard-instances.dc.html">Previous</a><a href="Thin-pass.dc.html">Next: the thin pass</a></span>
+</nav>
+
+<header style="padding: 44px 0 30px; max-width: 960px">
+<h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.015em; text-wrap: balance">Your map draws one relation, “writes into”. “To whom” turned out to be eight. So actors become parties × relations, and “developer” dissolves into roles that instruments confer.</h1>
+<p style="margin: 18px 0 0; font-size: 21px; line-height: 1.45; color: #3E4859; max-width: 66ch">The source of truth for our side is <span class="id">alignment-model/alignment.md</span>, newer than beta’s drafts. The alignment-referents spike, finished and repaired after an independent pass, supplies the rest.</p>
+</header>
+
+<section style="padding-bottom: 40px">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Who writes into which part, as your map has it</h2>
+<p class="small" style="margin: 0 0 18px; max-width: 84ch">Every edge in <span class="id">alignment.md</span>, with its weight (a larger dot is a heavier line). Control &amp; Eval has no edges by design: it acts <span class="src">“on the agent’s actions and on the other actors, not on the agent”</span>.</p>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 16px 18px">
+<div style="min-width: 900px">
+<div class="mx">
+<div class="h"></div><div class="h">Weights</div><div class="h">System prompt</div><div class="h">Trusted tools</div><div class="h">Ephemeral</div><div class="h">Context</div><div class="h">Initial goal</div><div class="h">Current goal</div>
+<div class="a">Pre-training content providers</div><div class="c"><span class="d2"></span></div><div></div><div></div><div></div><div></div><div></div><div></div>
+<div class="a">Model trainer</div><div class="c"><span class="d2"></span></div><div></div><div></div><div></div><div></div><div></div><div></div>
+<div class="a">Inference provider</div><div class="c"><span class="d2"></span></div><div></div><div></div><div class="c"><span class="d3"></span></div><div class="c"><span class="d2"></span></div><div></div><div></div>
+<div class="a">Application / harness provider</div><div></div><div class="c"><span class="d2"></span></div><div class="c"><span class="d2"></span></div><div></div><div class="c"><span class="d2"></span></div><div class="c"><span class="d2"></span></div><div></div>
+<div class="a">Tool and connector providers</div><div></div><div></div><div class="c"><span class="d1"></span></div><div></div><div></div><div></div><div></div>
+<div class="a" style="color: #46505F">Control &amp; Eval</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+<div class="a">The user’s environment</div><div></div><div class="c"><span class="d1"></span></div><div class="c"><span class="d1"></span></div><div></div><div class="c"><span class="d1"></span></div><div></div><div></div>
+<div class="a">The user</div><div></div><div></div><div></div><div></div><div class="c"><span class="d2"></span></div><div class="c"><span class="d2"></span></div><div class="c"><span class="d2"></span></div>
+<div class="a">The agent itself</div><div></div><div></div><div></div><div class="c"><span class="d1"></span></div><div class="c"><span class="d1"></span></div><div></div><div class="c"><span class="d1"></span></div>
+<div class="a">Other agents</div><div></div><div></div><div></div><div></div><div class="c"><span class="d1"></span></div><div></div><div class="c"><span class="d1"></span></div>
+<div class="a">Agents embedded in applications</div><div></div><div></div><div></div><div></div><div class="c"><span class="d1"></span></div><div></div><div></div>
+<div class="a">Content providers</div><div></div><div></div><div></div><div></div><div class="c"><span class="d1"></span></div><div></div><div></div>
+<div class="a" style="color: #46505F; font-style: italic">Affected third parties</div><div style="grid-column: 2 / span 7; font-size: 14px; color: #46505F">owed-alignment referent: no channel in</div>
+<div class="a" style="color: #46505F; font-style: italic">Society, law, humanity</div><div style="grid-column: 2 / span 7; font-size: 14px; color: #46505F">owed-alignment referent: only indirectly, through training, policy and law</div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 18px 40px; margin-top: 18px">
+<p class="body" style="flex: 1 1 520px; margin: 0">The field’s real disagreement about adversarial causes follows your map’s weights/context line. Poisoned training data enters the weights and comes out as misalignment almost everywhere. A planted instruction enters the context, and the sources split: OpenAI reads “misaligned” as a <i>state</i>, whatever its origin; GDM requires an <i>intrinsic</i> origin and files prompt injection outside misalignment. So the stack is a basis the field’s categories already track.</p>
+<div style="flex: 1 1 340px; background: #DBEDE9; border-radius: 6px; padding: 14px 18px; display: grid; gap: 8px; align-content: start">
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean: where your refinement passes start</span>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #173E37">With the seven agent parts, before the actors: a small set, entirely your vocabulary, and every actor definition leans on it, since an actor is defined partly by what it writes into. Then the actors, as parties × relations. If the map itself is about to change, the map first. Moderate-high.</p>
+</div>
+</div>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">The eight relations</h2>
+<p class="small" style="margin: 0 0 16px; max-width: 84ch">From the spike’s <span class="id">03-structure.md</span> §6.1. Each has evidence and most have established names; the set of eight is the spike author’s decomposition, which the spike asks not to be inherited as if a source said it.</p>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px">
+<div style="min-width: 860px">
+<div class="rel" style="border-top: none; background: #E6EAF0; font-weight: 700"><div>Relation</div><div>The question it answers</div><div>Established names</div></div>
+<div class="rel" style="background: #DAE6F2"><div><b>writes into</b></div><div>whose content shapes the agent, and where</div><div>influence (Shavit et al. 2023; PROV); NIST AI 100-2’s attacker capabilities</div></div>
+<div class="rel"><div><b>directs</b></div><div>whose instructions should carry weight</div><div>de jure authority; instruction privilege; principal</div></div>
+<div class="rel"><div><b>controls in fact</b></div><div>who can actually make it act</div><div>de facto authority (stolen weights direct without standing)</div></div>
+<div class="rel"><div><b>benefits</b></div><div>for whose sake it acts</div><div>beneficiary (trust law)</div></div>
+<div class="rel"><div><b>is owed regard</b></div><div>whose interests constrain it</div><div>NIST’s affected individuals and communities; indirect stakeholders</div></div>
+<div class="rel"><div><b>authors the standard</b></div><div>whose text or rules it is held to</div><div>NIST’s providers of norms or guidance; settlor</div></div>
+<div class="rel"><div><b>oversees</b></div><div>who watches and gates its actions</div><div>TEVV (NIST); trusted monitor (AI control)</div></div>
+<div class="rel"><div><b>answers for</b></div><div>who absorbs the consequences</div><div>no single established term</div></div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 14px; margin-top: 18px">
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 14px 16px"><b style="font-size: 17px">A planted web page</b><p class="small" style="margin: 6px 0 0">writes into the context, and has no standing to direct</p></div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 14px 16px"><b style="font-size: 17px">An affected third party</b><p class="small" style="margin: 6px 0 0">writes nothing, and is owed regard</p></div>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; padding: 14px 16px"><b style="font-size: 17px">An evaluator</b><p class="small" style="margin: 6px 0 0">oversees, and also writes into the context, deliberately unmarked: AISI’s evaluators <span class="src">“construct the model’s context merely by editing text”</span></p></div>
+</div>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="flex: 999 1 560px; min-width: 0">
+<h2 style="margin: 0 0 14px; font-size: 27px; line-height: 1.2; font-weight: 700">Two kinds of role, connected by conferral</h2>
+<div class="body">
+<p><b>Functional roles</b> are defined by what a party does: NIST’s tasks, and your writer roles. <b>Institutional roles</b> are conferred by an instrument under conditions, Searle’s <i>X counts as Y in C</i>: the EU provider, the SB 53 frontier developer. The conditions are Hohfeld’s <i>operative facts</i>: SB 53’s compute threshold is operative; a company’s report of its compute is <i>evidential</i>.</p>
+<p>The spike found the bases of division connect rather than compete. Instruments confer roles on operative facts of several kinds: <b>training acts</b> (SB 53), <b>modification acts</b> (the EU’s “significant change”), <b>market acts</b>, and <b>use</b>. So writing acts are already inside the institutional instruments.</p>
+</div>
+<div style="background: #F5E8C6; border-radius: 6px; padding: 14px 18px; display: grid; gap: 8px; margin-bottom: 22px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip flag" style="background: #EBD9A8">Flag</span><span class="chip done" style="background: #DCE3D0; color: #33441A">Author agrees, fix queued</span></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.45; color: #3D2C00">The plan and the spike also list <b>control of the weights</b> (EU guidelines fn 12) as an operative fact. Fn 12 says control <span class="src">“may be”</span> an important factor in deciding who performed the modification: <i>evidence</i>, not an operative fact. The conferral picture survives without it, and “controls in fact” stands on its own evidence.</p>
+</div>
+<div style="background: #F6E1DB; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 5</span><b style="font-size: 18px">“Developer”</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">Dissolve it into functional and institutional roles plus an organization term. Then keep “developer” either as a declared umbrella over the precise roles, or as a deprecated term. Your lexicon shape (umbrellas that contain) allows either.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean: declared umbrella, moderate</span>
+</div>
+</div>
+<aside style="flex: 1 1 300px; max-width: 380px; min-width: 0">
+<p class="src" style="margin: 0 0 10px; font-size: 17px; color: #46505F">Optional depth</p>
+<h3 style="margin: 0 0 10px; font-size: 19px; font-weight: 700">Established names for your rows</h3>
+<div class="small">
+<p><b>The user</b> → <i>end user</i> (NIST, ETSI). The AI Act defines no user role.</p>
+<p><b>Affected third parties</b> → NIST’s <i>affected individuals/communities</i>.</p>
+<p><b>Harness provider</b> has colliding names: system operator (ETSI), scaffolding developer (AISI), operator (Anthropic), developer (OpenAI’s Model Spec), system deployer (Shavit). “Operator” has at least four senses in the corpus.</p>
+<p><b>Model trainer</b> → AISI’s <i>original model developer</i>.</p>
+<p><b>New candidates:</b> the <i>counterparty</i> (the biggest gap, and probably where “agents embedded in applications” belongs); a fine-tuner or downstream modifier; human feedback providers; an evaluator split from the overseer; norm authors and states; writers of authority; a data custodian; the deploying organisation; co-users; a model host.</p>
+<p><b>Where your map is ahead of its sources:</b> the inference provider as a writer into context; the user’s lack of any obligation of truthfulness toward the agent; the agent as a party with interests.</p>
+</div>
+<h3 style="margin: 22px 0 10px; font-size: 19px; font-weight: 700">Your word for what’s missing: provenance</h3>
+<p class="small" style="margin: 0">Your map’s Notes describe three confusions: <i>attribution</i> (a harness summary that looks like the user’s words), <i>force</i> (a tool description read as an instruction) and <i>epistemic status</i> (an earlier agent’s note read as fact). Your floor, “authority travels out of band”, addresses the first two.</p>
+</aside>
+</section>
+
+<section style="padding: 34px 0 40px; border-top: 1px solid #D3D9E2">
+<div style="background: #F6E1DB; border-radius: 6px; padding: 18px 22px; display: grid; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 6</span><b style="font-size: 18px">Names for the agent-part umbrella and the oversight relation</b><span class="chip lean" style="background: #CDE5DF">Lean: low; these are your model’s words</span></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 16px">
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12"><b>The umbrella: “component”.</b> IMDA’s <span class="src">“Core components of an agent”</span>, CSA/FAR.AI’s “Components of Agents” and Google’s component walk all use it. Its cost: their components include things nothing writes into (controls, logging) and leave out ephemeral reasoning and the goals, so adopting it means a declared narrowing. Both alternatives collide: beta’s “surface” with <i>attack surface</i>; your map’s “layer” with Chu’s seven LASM layers and every architecture stack.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12"><b>The relation: “oversees”</b>, after the AI Act’s <i>human oversight</i> (Art. 14) and NIST’s oversight roles. Since Control &amp; Eval also writes, the row probably splits: an <i>overseer</i>, who oversees, and an <i>evaluator</i>, who oversees and writes into context (IMDA’s approvers also <span class="src">“edit the plan”</span>).</p>
+</div>
+</div>
+</section>
+
+<section style="padding: 34px 0 0; border-top: 1px solid #D3D9E2">
+<h2 style="margin: 0 0 6px; font-size: 27px; line-height: 1.2; font-weight: 700">Aligned to whom: every single default hides a named risk</h2>
+<p class="small" style="margin: 0 0 16px; max-width: 86ch">Your map’s opening line: <span class="src">“‘Alignment’ without saying to whom quietly picks one of them.”</span> The spike tested seven defaults. The table is the spike author’s construction; its cells cite sources, but no source says “this default hides that risk”.</p>
+<div style="background: #FFFFFF; border: 1px solid #D3D9E2; border-radius: 6px; overflow: hidden">
+<div class="dt" style="border-top: none; background: #E6EAF0; font-weight: 700"><div>Default</div><div>What it makes come out “aligned”</div><div>Status</div></div>
+<div class="dt"><div><b>user</b></div><div>misuse; sycophancy that validated a vulnerable user’s paranoid beliefs</div><div><span class="chip dec">defeated outright</span></div></div>
+<div class="dt"><div><b>a published spec</b></div><div>whatever its author left out (<span class="src">“might fail to prohibit coups”</span>)</div><div><span class="chip dec">defeated outright</span></div></div>
+<div class="dt"><div><b>the agent</b></div><div>scheming toward its own goals</div><div><span class="chip dec">defeated outright</span></div></div>
+<div class="dt"><div><b>developer</b></div><div>a head of state directing military AI through the institution</div><div><span class="chip flag">if developer = whoever controls its processes</span></div></div>
+<div class="dt"><div><b>society</b></div><div>GDM’s paternalism scenario, fabricated polls for a plan the AI believes is in the public interest</div><div><span class="chip flag">if the aspect is interest and the AI is right</span></div></div>
+<div class="dt"><div><b>law</b></div><div>the harm an executive order says a state law forces</div><div><span class="chip flag">if the order’s claim is the named risk</span></div></div>
+<div class="dt"><div><b>operator</b></div><div>an operator turning the agent against its own users</div><div><span class="chip ques">named only outside the corpus</span></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px">
+<div class="body" style="flex: 1 1 520px"><p style="margin: 0">So choosing a default decides which risks count, which is adjudication. Instead, the lexicon defines alignment as <b>a relation with named slots</b> (bearer, mode, claimant set, aspect, time, adjudicating standard, judge, domain, degree). Translations record the slots once per source <i>definition</i>. Referent-sensitivity is judged only for asserted claims where the alignment word carries the verdict, since most claims name their harm (“takeover”, “deceiving users”) and then the harm is what gets recorded. Those judgments use a <b>declared, versioned set of admissible referents</b>; a view may fix one referent as its own declared projection.</p></div>
+<div style="flex: 1 1 380px; background: #F6E1DB; border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px; align-content: start">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline"><span class="chip dec" style="background: #EFCDC3">Decision 10</span><b style="font-size: 18px">Is the agent itself in the admissible set?</b></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A1A12">The rest has the spike’s recommendation and the author’s agreement (moderate-high). This sub-question is yours. With the agent in the set, every takeover and power-seeking claim becomes referent-sensitive; the recording rule keeps the cost low, since those claims name their harm anyway.</p>
+<span class="chip lean" style="justify-self: start; background: #CDE5DF">Lean: include it, moderate; your map treats the agent as a party with interests</span>
+</div>
+</div>
+<p class="small" style="margin: 18px 0 0; max-width: 90ch"><b>Done-test for this group:</b> every actor and part in <span class="id">alignment.md</span>, every role in AI Act Art. 3(3)–(8) and (68), SB 53 §22757.11(h) and (j), NIST AI RMF Appendix A, IASR 2026’s two developer terms, and AISI <i>Loss of Oversight</i>’s supply-chain list resolve to our terms, with nothing left unresolved unless declared ambiguous.</p>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 18px; border-top: 1px solid #D3D9E2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #46505F">
+<span>From the plan §3.9, §5 (decisions 5, 6, 10); <span class="id">alignment-model/alignment.md</span>; the spike’s <span class="id">debrief.md</span>, <span class="id">03-structure.md</span> §6, <span class="id">proposed-integration-plan.md</span>; question B2.</span>
+<a href="Thin-pass.dc.html">Next: 11. The thin pass</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
