@@ -2,7 +2,7 @@
 """Build ref/canonical/: each source's best markdown, with the physical PDF page
 marked in it.
 
-    bin/canonicalize                 every source cited (@key) in source-catalog.md
+    bin/canonicalize                 every key the catalog says to canonicalize
     bin/canonicalize KEY…            just these relata keys
     bin/canonicalize --out DIR KEY…  write somewhere other than ref/canonical
 
@@ -13,9 +13,20 @@ For each KEY it writes
     ref/canonical/msc/KEY/pages.json     where each page break went, how sure
                                          that is, the self-checks, and
                                          `fidelity` (below)
-    ref/canonical/INDEX.md               every source's fidelity mark
+    ref/canonical/INDEX.md               every listed key: its status from the
+                                         catalog and its fidelity mark, in
+                                         catalog order; generated, never edited
+    ref/canonical/skipped.json           keys not built, and why (no conversion
+                                         yet, with relata's queue position)
     ref/canonical/msc/KEY/…              the conversion's images and metadata,
                                          which KEY.md links to
+
+What to build comes from source-catalog.md, read by bin/corpus.py (shared with
+any other tool that reads the catalog or these texts): every listed key except
+those tagged no-canon or subsumed-by; canon-text names the text to use instead
+of relata's conversion. A catalog that breaks the parsing contract stops the
+run; a key relata has no entry for fails it; a key with no conversion yet is
+skipped and reported. Nothing here forces a conversion.
 
 Page N is the physical page index in the PDF, counting from 1. Where the page
 also has a printed number, the marker carries it too —
@@ -82,32 +93,18 @@ the page they are marked with, 2396 are found there, 8 belong to another page
 """
 import bisect, datetime, difflib, hashlib, json, os, re, shutil, subprocess, sys, unicodedata
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from corpus import (MARK, MARK_PRINTED, MARK_RE, NOT_IN_PDF, SUPP_OPEN, SUPP_CLOSE,  # noqa: E402
+                    SUPP_RE, read_catalog, in_scope)
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 K = 24        # anchor length, in letters and digits
 T = 12        # fewer letters than this on one side of a line: not a real mid-line break
 BLK = 4       # smallest local match used to settle a window between pages
-MARK = '----------[pdf-page {}]----------'
-MARK_PRINTED = '----------[pdf-page {}, printed "{}"]----------'
-NOT_IN_PDF = '----------[not in pdf]----------'
-SUPP_OPEN, SUPP_CLOSE = '```pdf-text', '```'
-SUPP_RE = re.compile(r'\n*^```pdf-text\n.*?\n```$\n*', re.S | re.M)
 SUPP_MIN = 60    # letters actually missing: shorter runs are not inserted
 SUPP_GAP = 6     # words: missing runs this close are joined, with the words between
 PRESENT_ANY = 40   # letters: a run this long anywhere in the markdown = present
 PRESENT_NEAR = 16  # letters: or this long in the markdown of this page or a neighbour
-MARK_RE = re.compile(r'^----------\[(?:pdf-page (\d+)(?:, printed "([^"]*)")?|not in pdf)\]----------$')
-
-# Sources whose markdown was made outside relata (relata timed out on them).
-LOCAL = {
-    'csb-2007-bp-texas-city': dict(
-        md='ref/csb-2007-bp-texas-city/csb-2007-bp-texas-city.md',
-        dir='ref/csb-2007-bp-texas-city', marker=True, ocr=False,
-        note='marker_single run by hand; relata timed out'),
-    'bengio-2026-international': dict(
-        md='ref/iasr-2026-full.md', dir=None, marker=False, ocr=False,
-        note="the publisher's web edition saved as markdown, aligned to the PDF edition; "
-             'marker_single could not convert the PDF'),
-}
 
 # ---------------------------------------------------------------- text streams
 
@@ -283,7 +280,7 @@ def pdfinfo_pages(pdf):
     m = re.search(r'^Pages:\s+(\d+)', out, re.M)
     return int(m.group(1)) if m else None
 
-URL = r'\((?:[^()\s]|\([^()\s]*\))*\)'        # link target; balanced parentheses allowed
+URL = r'\((?:[^()\n]|\([^()\n]*\))*\)'        # link target, with any title; balanced parentheses allowed
 SKIP = re.compile(r'!\[[^\]]*\]' + URL +       # images
                   r'|\]' + URL +               # link targets (the link text stays)
                   r'|<[^>\n]{1,200}>')       # html tags
@@ -613,9 +610,44 @@ def missing_text(md, brk, pages, M):
 
 FID_N = 16          # letters per run when comparing the two texts
 WEAK = 0.6          # a PDF page with less of its text than this in the canonical text
+OCR_OK = 0.9        # an OCR'd page whose text matches the PDF's at least this well is not checked
 JUNK = re.compile(r'[<>=~^]|[a-z][0-9][a-z]', re.I)
 
-def fidelity(md, brk, body, pages, P, ocr, mode):
+def edition_check(body, pages, N=24):
+    """For a text that isn't a conversion of the PDF: each line of 60+ letters,
+    is its wording on the PDF page it is marked with, on another page, or
+    nowhere in the PDF?"""
+    idx = {}
+    for i, t in enumerate(pages, 1):
+        nt = norm(t)
+        for k in range(len(nt) - N + 1):
+            idx.setdefault(nt[k:k+N], set()).add(i)
+    cur, tally, elsewhere = None, dict(on_its_page=0, other_page=0, not_in_pdf=0), []
+    for ln, line in enumerate(body.split('\n'), 1):
+        m = MARK_RE.match(line)
+        if m:
+            cur = int(m.group(1)) if m.group(1) else 'none'
+            continue
+        if cur in (None, 'none') or line.startswith('```'):
+            continue
+        n = md_stream(line)[0]
+        if len(n) < 60:
+            continue
+        where = set()
+        for k in range(0, len(n) - N + 1, N // 2):
+            where |= idx.get(n[k:k+N], set())
+        if not where:
+            tally['not_in_pdf'] += 1
+        elif cur in where:
+            tally['on_its_page'] += 1
+        else:
+            tally['other_page'] += 1
+            elsewhere.append(dict(line=ln, marked=cur, found_on=sorted(where)[:4]))
+    tally['lines_checked'] = sum(tally.values())
+    tally['other_page_lines'] = elsewhere[:50]
+    return tally
+
+def fidelity(md, brk, body, pages, P, ocr, report):
     """How far the canonical text can stand in for the PDF, and why not where
     it can't. Faithful: share of the markdown's prose (not tables or math) whose
     16-letter runs occur in the PDF's text. Complete: share of the PDF's text
@@ -675,51 +707,134 @@ def fidelity(md, brk, body, pages, P, ocr, mode):
     check = set(weak)
     for k in kinds.values():
         check |= k['pages']
-    if ocr or mode == 'unordered' or faithful < 0.9:
+    mode = report['mode']
+    npages = max(1, len(pages))
+    if ocr:
+        # An OCR'd page is checked only where its text doesn't match the PDF's
+        # text layer well (or there is too little of it to compare): most of
+        # marker's OCR'd pages reproduce the text layer almost exactly.
+        sec, cur = {}, None
+        for line in body.split('\n'):
+            m = MARK_RE.match(line)
+            if m:
+                cur = int(m.group(1)) if m.group(1) else None
+                continue
+            if cur:
+                sec[cur] = sec.get(cur, '') + line + '\n'
+        unsure_ocr = set()
+        for pg in ocr:
+            nt = norm(pages[pg - 1]) if pg <= len(pages) else ''
+            g = [nt[k:k+N] for k in range(0, len(nt) - N + 1, 4)]
+            near = ''.join(md_stream(sec.get(q, ''))[0] for q in (pg - 1, pg, pg + 1))
+            ns = {near[k:k+N] for k in range(len(near) - N + 1)}
+            if len(g) < 25 or sum(x in ns for x in g) < OCR_OK * len(g):
+                unsure_ocr.add(pg)
+        if unsure_ocr:
+            kinds['OCR pages not matching the PDF text'] = dict(lines=len(unsure_ocr), pages=unsure_ocr)
+            check |= unsure_ocr
+    if mode == 'unordered':
+        ec = report.get('edition_check') or {}
+        for r in ec.get('other_page_lines', []):
+            check.add(r['marked'])
+    if len(ocr) > npages / 2 or mode == 'unordered' or faithful < 0.9:
         mark = 'check-all'
     elif check:
         mark = 'check-pages'
     else:
         mark = 'trusted'
+    # Every reason below is a measurement of this build, or a fact the
+    # documents state; decisions belong to the catalog.
     why = []
     if ocr:
-        why.append("OCR conversion: relata's probe judged the PDF's text layer insufficient, so this text is marker's OCR")
+        why.append(f'marker read {len(ocr)} of {len(pages)} pages by OCR')
     if mode == 'unordered':
-        why.append("another edition (the publisher's web edition), aligned to the PDF; its wording matched "
-                   "the PDF in 2396 of 2408 lines checked on 2026-10-08")
+        ec = report.get('edition_check') or {}
+        why.append(f'not a conversion of this PDF but a text of the same document, aligned to it; '
+                   f'of {ec.get("lines_checked", 0)} lines checked, {ec.get("on_its_page", 0)} are on their marked page, '
+                   f'{ec.get("other_page", 0)} on another page, {ec.get("not_in_pdf", 0)} not in the PDF')
     if faithful < 0.9:
-        why.append('much of the prose does not match the PDF text')
+        why.append(f'only {faithful:.0%} of the prose matches the PDF text')
+    if report.get('web_render'):
+        why.append('a web page printed to PDF: its page numbers are the rendering\'s')
     return dict(mark=mark, why=why, faithful_prose=round(faithful, 3), complete=round(complete, 3),
                 pages_to_check=sorted(check), pdf_pages_mostly_absent=weak,
                 differences={k: dict(lines=v['lines'], pages=sorted(v['pages'])) for k, v in kinds.items()})
 
-def write_index(outdir):
-    rows = []
-    for d in sorted(os.listdir(os.path.join(outdir, 'msc'))):
-        f = os.path.join(outdir, 'msc', d, 'pages.json')
-        if not os.path.isfile(f):
-            continue
-        r = json.load(open(f))
-        fi = r.get('fidelity') or {}
-        add = r.get('pdf_text_added')
-        added = (len(add) if isinstance(add, dict) else 0)
-        diffs = '; '.join(f'{k} ({v["lines"]} {"breaks" if k.startswith("page break") else "lines"})'
+def write_index(outdir, order, entries, skipped):
+    """INDEX.md, from the catalog (what is listed, each key's status, its
+    section and code) and the build's own pages.json files. Nothing in it is
+    written by hand."""
+    def cell(x):
+        return str(x).replace('|', '\\|').replace('\n', ' ')
+    def status(key, e, r):
+        t = e['tags']
+        if 'subsumed-by' in t:
+            return f"subsumed by `{t['subsumed-by']}`"
+        parts = []
+        if 'superseded-by' in t:
+            parts.append(f"superseded by `{t['superseded-by']}` (active: `{e['active']}`)")
+        if 'no-canon' in t:
+            parts.append(f"no-canon: {t['no-canon']}")
+        elif r is None:
+            sk = skipped.get(key)
+            if sk:
+                q = f", relata queue position {sk['queue_position']}" if sk.get('queue_position') else ''
+                parts.append(f"not built: {SKIP_REASON.get(sk['state'], sk['state'])}{q}")
+            else:
+                parts.append('not built yet')
+        return '; '.join(parts) or 'built'
+    def row(key, e):
+        f = os.path.join(outdir, 'msc', key, 'pages.json')
+        r = json.load(open(f)) if os.path.isfile(f) and in_scope(e) else None
+        fi = (r or {}).get('fidelity') or {}
+        add = (r or {}).get('pdf_text_added')
+        diffs = '; '.join(f'{k} ({v["lines"]} {"breaks" if k.startswith("page break") else "pages" if k.startswith("OCR pages") else "lines"})'
                           for k, v in fi.get('differences', {}).items())
+        notes = '; '.join(fi.get('why', []))
+        notes = notes + (' — ' if notes and diffs else '') + diffs
         pc = fi.get('pages_to_check', [])
-        rows.append(f"| `{d}` | {fi.get('mark', '?')} | {fi.get('faithful_prose', '')} | {fi.get('complete', '')} | "
-                    f"{len(pc) if fi.get('mark') == 'check-pages' else ('all' if fi.get('mark') == 'check-all' else 0)} | "
-                    f"{added} | {'; '.join(fi.get('why', [])) or ''}{(' — ' if fi.get('why') and diffs else '') + diffs} |")
+        npc = {'check-pages': len(pc), 'check-all': 'all', 'trusted': 0}.get(fi.get('mark'), '')
+        return (f"| `{key}` | {cell(e['code'] or '')} | {cell(status(key, e, r))} | {fi.get('mark', '')} | "
+                f"{fi.get('faithful_prose', '')} | {fi.get('complete', '')} | {npc} | "
+                f"{len(add) if isinstance(add, dict) else ''} | {cell(notes)} |")
+    head = ('| Source | Code | Status | Mark | Faithful | Complete | Pages to check | Restored | Notes |\n'
+            '|---|---|---|---|---|---|---|---|---|\n')
+    sections, out = [], []
+    for k in order:
+        sec = entries[k]['section']
+        if not sections or sections[-1][0] != sec:
+            sections.append((sec, []))
+        sections[-1][1].append(k)
+    for sec, keys in sections:
+        out.append(f'## {sec}\n\n' + head + '\n'.join(row(k, entries[k]) for k in keys) + '\n')
+    listed = set(order)
+    stale = sorted(d for d in os.listdir(os.path.join(outdir, 'msc'))
+                   if d not in listed and os.path.isfile(os.path.join(outdir, 'msc', d, 'pages.json')))
+    if stale:
+        out.append('## Built earlier, no longer listed in the catalog\n\n'
+                   + '\n'.join(f'- `{k}`' for k in stale) + '\n')
+    built = [k for k in order if in_scope(entries[k])
+             and os.path.isfile(os.path.join(outdir, 'msc', k, 'pages.json'))]
+    marks = {}
+    for k in built:
+        m = (json.load(open(os.path.join(outdir, 'msc', k, 'pages.json'))).get('fidelity') or {}).get('mark')
+        marks[m] = marks.get(m, 0) + 1
+    scope = sum(1 for k in order if in_scope(entries[k]))
     with open(os.path.join(outdir, 'INDEX.md'), 'w') as f:
-        f.write('# ref/canonical: how far each text can stand in for its PDF\n\n'
-                'Made by `bin/canonicalize`; details per source in `msc/<key>/pages.json` (`fidelity`).\n\n'
+        f.write('# ref/canonical: the canonical texts, and how far each can stand in for its PDF\n\n'
+                'Generated by `bin/canonicalize` from `source-catalog.md` (what is listed, and each key\'s status) '
+                'and the build\'s own measurements (`msc/<key>/pages.json`). Nothing here is written by hand: '
+                'decisions are changed in the catalog, measurements by rebuilding.\n\n'
+                f'{len(order)} keys listed; {scope} to be canonicalized; {len(built)} built '
+                f'({", ".join(f"{v} {k}" for k, v in sorted(marks.items(), key=lambda x: str(x[0])))}); '
+                f'{scope - len(built)} not built.\n\n'
                 '- **trusted**: no differences found; quote from the canonical text.\n'
                 '- **check-pages**: check quotes from the listed pages (`pages_to_check`) against the PDF.\n'
-                '- **check-all**: check every quote against the PDF (OCR conversion, or another edition).\n\n'
+                '- **check-all**: check every quote against the PDF: most pages were read by OCR, the text is '
+                'not a conversion of this PDF, or much of its prose does not match the PDF\'s text.\n\n'
                 '*Faithful*: share of the markdown\'s prose found in the PDF\'s text. *Complete*: share of the '
                 'PDF\'s text found in the canonical text. *Restored*: pages with text added back from the PDF '
-                '(```pdf-text blocks).\n\n'
-                '| Source | Mark | Faithful | Complete | Pages to check | Restored | Differences |\n'
-                '|---|---|---|---|---|---|---|\n' + '\n'.join(rows) + '\n')
+                '(```pdf-text blocks). Sections and order follow the catalog.\n\n' + '\n'.join(out))
 
 # ------------------------------------------------------------------- rendering
 
@@ -752,23 +867,35 @@ def render(md, brk, printed, supp=None):
 # ------------------------------------------------------------------ the sources
 
 def relata_show(key):
-    out = subprocess.run(['relata', 'show', key], stdin=subprocess.DEVNULL,
-                         capture_output=True, text=True).stdout
+    """(state, pdf, markdown dir): state is ok, no-entry, no-pdf, converting
+    or not-converted, from what `relata show` prints."""
+    r = subprocess.run(['relata', 'show', key], stdin=subprocess.DEVNULL,
+                       capture_output=True, text=True)
+    if r.returncode != 0 and 'no such entry' in (r.stdout + r.stderr).lower():
+        return 'no-entry', None, None
+    out = r.stdout
     pdf = re.search(r'^pdf:\s+(\S+)', out, re.M)
-    md = re.search(r'^markdown:\s+(/\S+)', out, re.M)
-    return (pdf.group(1) if pdf else None), (md.group(1) if md else None)
+    md = re.search(r'^markdown:\s+(.+)$', out, re.M)
+    pdf = pdf.group(1) if pdf and os.path.isfile(pdf.group(1)) else None
+    if not pdf:
+        return 'no-pdf', None, None
+    mdv = md.group(1).strip() if md else ''
+    if mdv.startswith('/'):
+        return 'ok', pdf, mdv.split()[0]
+    return ('converting' if 'converting' in mdv else 'not-converted'), pdf, None
 
-def catalog_keys():
-    """The relata keys in source-catalog.md, in order: written as citations,
-    `@key`, the form `relata emit` reads to build bib/refs.bib (pandoc's
-    citation-key syntax: a letter, digit or _ first; internal punctuation
-    allowed, trailing punctuation not)."""
-    text = open(os.path.join(REPO, 'source-catalog.md')).read()
-    keys = []
-    for m in re.finditer(r'(?<![\w@])@([A-Za-z0-9_](?:[\w:.#$%&+?<>~/-]*[\w])?)', text):
-        if m.group(1) not in keys:
-            keys.append(m.group(1))
-    return keys
+def relata_queue():
+    """{key: position} for conversions waiting in relata's queue."""
+    try:
+        r = subprocess.run(['relata', 'prep', 'list', '--json'], stdin=subprocess.DEVNULL,
+                           capture_output=True, text=True, timeout=60)
+        q = json.loads(r.stdout.strip().split('\n')[-1])
+    except Exception:
+        return {}
+    pos = {j['key']: j['pos'] for j in q.get('queued', [])}
+    if q.get('converting'):
+        pos[q['converting']['key']] = q['converting'].get('pos', 1)
+    return pos
 
 def sha256(path):
     h = hashlib.sha256()
@@ -777,38 +904,74 @@ def sha256(path):
             h.update(b)
     return h.hexdigest()
 
-def source(key):
-    pdf, mddir = relata_show(key)
-    if key in LOCAL:
-        s = LOCAL[key]
-        d = os.path.join(REPO, s['dir']) if s['dir'] else None
-        return dict(pdf=pdf, md=os.path.join(REPO, s['md']), dir=d,
-                    marker=s['marker'], ocr=s['ocr'], note=s['note'])
-    if mddir and os.path.isfile(os.path.join(mddir, 'content.md')):
+def ocr_pages_from(d):
+    """Pages marker read by OCR (surya) rather than from the text layer, from
+    its own _meta.json; None if there is no such record."""
+    metas = [f for f in os.listdir(d) if f.endswith('_meta.json')] if d and os.path.isdir(d) else []
+    if not metas:
+        return None
+    stats = json.load(open(os.path.join(d, metas[0]))).get('page_stats', [])
+    return {st['page_id'] + 1 for st in stats if st.get('text_extraction_method') == 'surya'}
+
+def source(key, entry=None):
+    state, pdf, mddir = relata_show(key)
+    if state in ('no-entry', 'no-pdf'):
+        return dict(state=state)
+    ct = (entry or {}).get('tags', {}).get('canon-text')
+    if ct:
+        path = os.path.join(REPO, ct)
+        if not os.path.isfile(path):
+            return dict(state='canon-text-missing', path=ct)
+        d = os.path.dirname(path)
+        marker = any(f.endswith('_meta.json') for f in os.listdir(d)) and d != os.path.join(REPO, 'ref')
+        return dict(state='ok', pdf=pdf, md=path, dir=d if marker else None, marker=marker,
+                    ocr_pages=ocr_pages_from(d) if marker else set(),
+                    note=(f'marker output outside relata, {ct} (catalog [canon-text])' if marker else
+                          f'a text of this document that is not a conversion of its PDF, {ct} '
+                          '(catalog [canon-text]); aligned to the PDF'))
+    if state != 'ok':
+        return dict(state=state)
+    ocr = ocr_pages_from(mddir)
+    if ocr is None:   # no marker metadata: fall back to relata's own OCR decision
         conv = os.path.join(mddir, 'relata-conversion.yml')
-        ocr = os.path.isfile(conv) and bool(re.search(
+        whole = os.path.isfile(conv) and bool(re.search(
             r'^force_ocr:\n(?:  .*\n)*?  applied: true', open(conv).read(), re.M))
-        return dict(pdf=pdf, md=os.path.join(mddir, 'content.md'), dir=mddir,
-                    marker=True, ocr=ocr, note='relata conversion' + (', OCR' if ocr else ''))
-    return dict(pdf=pdf, md=None)
+        ocr = 'all' if whole else set()
+    return dict(state='ok', pdf=pdf, md=os.path.join(mddir, 'content.md'), dir=mddir,
+                marker=True, ocr_pages=ocr, note='relata conversion')
 
 # --------------------------------------------------------------------- one key
 
-def canonicalize(key, outdir):
-    src = source(key)
-    if not src.get('pdf') or not os.path.isfile(src['pdf']):
-        return dict(key=key, skipped='no PDF in relata')
-    if not src.get('md'):
-        return dict(key=key, skipped='no markdown (relata has not converted it)')
+SKIP_REASON = {
+    'no-entry': 'relata has no entry for this key',
+    'no-pdf': 'relata holds no document for this key',
+    'converting': "relata is converting it now",
+    'not-converted': 'no conversion yet',
+    'canon-text-missing': 'the text named for it is missing',
+}
+
+def canonicalize(key, outdir, entry=None):
+    src = source(key, entry)
+    if src['state'] != 'ok':
+        return dict(key=key, skipped=src['state'], path=src.get('path'))
     md = open(src['md'], encoding='utf-8').read()
     pages, cands = pdf_tsv(src['pdf'])
+    # A web page printed to PDF says so on its first page; its page numbers
+    # are the rendering's, and any it prints are too.
+    render_note = None
+    if pages and pages[0].lstrip().startswith('PROVENANCE'):
+        render_note = pages[0][:600].strip()
+        cands = {}
     runs, printed = printed_numbering(cands)
-    labels_report = merge_page_labels(printed, pdf_page_labels(src['pdf']))
+    labels_report = None if render_note else merge_page_labels(printed, pdf_page_labels(src['pdf']))
     info_pages = pdfinfo_pages(src['pdf'])
     M, moff = md_stream(md)
     P, pstarts = pdf_stream(pages)
+    ocr = src['ocr_pages']
+    ocr = set(range(1, len(pages) + 1)) if ocr == 'all' else set(ocr or ())
     report = dict(key=key, mode='marker' if src['marker'] else 'unordered',
-                  pdf_pages=len(pages), pdfinfo_pages=info_pages)
+                  pdf_pages=len(pages), pdfinfo_pages=info_pages,
+                  ocr_pages=sorted(ocr), web_render=render_note)
     if src['marker']:
         page_of, matched = align_ordered(M, P, pstarts)
         brk, conflicts, windows = breaks_ordered(md, moff, page_of, len(pages))
@@ -821,10 +984,10 @@ def canonicalize(key, outdir):
 
     msc = os.path.join(outdir, 'msc', key)
     rel = os.path.relpath(msc, outdir)
-    supp = {} if src.get('ocr') else missing_text(md, brk, pages, M)
-    report['pdf_text_added'] = ('not attempted: OCR conversion, the PDF\'s text layer is not trusted'
-                                if src.get('ocr') else
-                                {str(p): sum(len(norm(r)) for r in rs) for p, rs in supp.items()})
+    # Text restored from the PDF's text layer, except on pages marker had to
+    # OCR: there the text layer is what failed.
+    supp = {p: r for p, r in missing_text(md, brk, pages, M).items() if p not in ocr}
+    report['pdf_text_added'] = {str(p): sum(len(norm(r)) for r in rs) for p, rs in supp.items()}
     body = render(md, brk, printed, supp)
     if src['marker']:   # point marker's image links at the copies in msc/
         body = re.sub(r'(!\[[^\]]*\]\()(_page_\d+_[^)]*\))', lambda m: m.group(1) + rel + '/' + m.group(2), body)
@@ -872,7 +1035,9 @@ def canonicalize(key, outdir):
                 shutil.copy2(fp, os.path.join(msc, f))
     with open(os.path.join(outdir, key + '.md'), 'w', encoding='utf-8') as f:
         f.write(head + body)
-    report['fidelity'] = fidelity(md, brk, body, pages, P, src.get('ocr'), report['mode'])
+    if not src['marker']:
+        report['edition_check'] = edition_check(body, pages)
+    report['fidelity'] = fidelity(md, brk, body, pages, P, ocr, report)
     report['sources'] = dict(pdf=src['pdf'], pdf_sha256=sha256(src['pdf']),
                              markdown=src['md'], markdown_sha256=sha256(src['md']),
                              note=src['note'])
@@ -928,19 +1093,41 @@ def main(argv):
         outdir, argv = argv[1], argv[2:]
     if argv[:1] in (['-h'], ['--help']):
         print(__doc__.split('\n\nHow the pages')[0]); return 0
-    keys = argv or catalog_keys()
-    if not keys:
+    order, entries, errors = read_catalog()
+    if errors:
+        for e in errors:
+            print('canonicalize: source-catalog.md:', e, file=sys.stderr)
+        return 2
+    if not order:
         print('canonicalize: no @keys found in source-catalog.md', file=sys.stderr)
         return 2
-    os.makedirs(outdir, exist_ok=True)
-    status = 0
+    keys = argv or [k for k in order if in_scope(entries[k])]
+    os.makedirs(os.path.join(outdir, 'msc'), exist_ok=True)
+    skf = os.path.join(outdir, 'skipped.json')
+    skipped = json.load(open(skf)) if os.path.isfile(skf) else {}
+    queue = relata_queue()
+    status, tally = 0, {}
     for key in keys:
+        e = entries.get(key)
+        if e and not in_scope(e):
+            print(f'{key}: not canonicalized ({", ".join(f"{k}: {v}" for k, v in e["tags"].items())})')
+            continue
         try:
-            r = canonicalize(key, outdir)
-        except Exception as e:
-            print(f'{key}: FAILED {e!r}', file=sys.stderr); status = 1; continue
+            r = canonicalize(key, outdir, e)
+        except Exception as ex:
+            print(f'{key}: FAILED {ex!r}', file=sys.stderr); status = 1; continue
         if 'skipped' in r:
-            print(f'{key}: skipped — {r["skipped"]}'); continue
+            st = r['skipped']
+            tally[st] = tally.get(st, 0) + 1
+            skipped[key] = dict(state=st, queue_position=queue.get(key), path=r.get('path'),
+                                when=datetime.date.today().isoformat())
+            q = f' (relata queue position {queue[key]})' if key in queue else ''
+            print(f'{key}: skipped, {SKIP_REASON.get(st, st)}{q}')
+            if st in ('no-entry', 'canon-text-missing'):
+                status = 1
+            continue
+        skipped.pop(key, None)
+        tally['built'] = tally.get('built', 0) + 1
         flags = []
         if r['pdfinfo_pages'] and r['pdfinfo_pages'] != r['pdf_pages']:
             flags.append(f'pdfinfo says {r["pdfinfo_pages"]} pages')
@@ -952,7 +1139,10 @@ def main(argv):
               f'{len(r["breaks"])} markers ({r["breaks_uncertain"]} uncertain), '
               f'{len(r["pages_without_text_located"])} pages unlocated{hs}'
               + (' — ' + '; '.join(flags) if flags else ''))
-    write_index(outdir)
+    with open(skf, 'w') as f:
+        json.dump(dict(sorted(skipped.items())), f, indent=1)
+    write_index(outdir, order, entries, skipped)
+    print('canonicalize: ' + ', '.join(f'{v} {k}' for k, v in sorted(tally.items())), file=sys.stderr)
     return status
 
 if __name__ == '__main__':
