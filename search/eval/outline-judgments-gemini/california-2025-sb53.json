@@ -1,0 +1,373 @@
+{
+  "key": "california-2025-sb53",
+  "canonical_sha256": "1b31896f258088b35af5ea6fbd56b052fd6a3c2c9340262a0b9286958961de70",
+  "judge": "Gemini 3.8 Flash (High), independent whole-document reader",
+  "read": "whole, in order",
+  "date": "2026-10-09",
+  "queries": {
+    "hazard": [],
+    "catastrophic risk": [
+      {
+        "lines": [98, 105],
+        "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Primary statutory definition of catastrophic risk in the Transparency in Frontier AI Act (§22757.11(c)), establishing quantitative thresholds (>50 deaths, >$1B damage), triggers (CBRN, cyberattack/crimes without oversight, evading control), and specific exclusions."
+      },
+      {
+        "lines": [257, 264],
+        "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Parallel statutory definition of catastrophic risk in the Labor Code whistleblower chapter (§1107(a)), extending identical thresholds and triggers to foundation models generally."
+      },
+      {
+        "lines": [127, 137],
+        "quote": "- **22757.12.** (a) A large frontier developer shall write, implement, comply with, and clearly and conspicuously publish",
+        "grade": 2,
+        "note": "Frontier AI framework mandate (§22757.12(a)) requiring large developers to define thresholds for catastrophic risk capabilities, apply mitigations, review risks prior to deployment, and manage internal use risks."
+      },
+      {
+        "lines": [78, 79],
+        "quote": "- (j) Unless they are developed with careful diligence and reasonable precaution",
+        "grade": 1,
+        "note": "Legislative findings (§1(j)-(k)) identifying catastrophic risks from hacking, biological attacks, and loss of control, and stating need for legislation tracking the frontier."
+      },
+      {
+        "lines": [160, 163],
+        "quote": "- (d) A large frontier developer shall transmit to the Office of Emergency Services",
+        "grade": 1,
+        "note": "Obligation (§22757.12(d)-(e)) to transmit quarterly summaries of catastrophic risk from internal use to Cal OES and prohibition against false/misleading statements regarding catastrophic risk."
+      },
+      {
+        "lines": [215, 215],
+        "quote": "- **22757.16.** The loss of value of equity does not count as damage to or loss of property",
+        "grade": 1,
+        "note": "Statutory clarification (§22757.16) that loss of equity value does not count toward the $1B catastrophic risk property damage threshold."
+      },
+      {
+        "lines": [36, 38],
+        "quote": "This bill would enact the Transparency in Frontier Artificial Intelligence Act (TFAIA)",
+        "grade": 1,
+        "note": "Legislative Counsel's Digest summary of catastrophic risk framework, reporting requirements, and public records exemptions."
+      }
+    ],
+    "loss of control": [
+      {
+        "lines": [106, 110],
+        "quote": "- (d) \"Critical safety incident\" means any of the following:",
+        "grade": 2,
+        "note": "Statutory definition of critical safety incident (§22757.11(d)(3)-(4)) explicitly including 'Loss of control of a frontier model causing death or bodily injury' and deceptive techniques subverting developer controls or monitoring outside evaluation contexts."
+      },
+      {
+        "lines": [98, 101],
+        "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Statutory definition of catastrophic risk (§22757.11(c)(1)(C)) explicitly including an incident involving a model 'Evading the control of its frontier developer or user' or acting with no meaningful human oversight."
+      },
+      {
+        "lines": [266, 270],
+        "quote": "- (c) \"Critical safety incident\" means any of the following:",
+        "grade": 2,
+        "note": "Parallel definition in Labor Code §1107(c)(3)-(4) classifying loss of control causing death/injury or deceptive subversion of monitoring as critical safety incidents for whistleblower disclosures."
+      },
+      {
+        "lines": [78, 78],
+        "quote": "- (j) Unless they are developed with careful diligence and reasonable precaution",
+        "grade": 1,
+        "note": "Legislative finding (§1(j)) expressly identifying 'loss of control' alongside AI-enabled hacking and biological attacks as catastrophic risks."
+      },
+      {
+        "lines": [137, 137],
+        "quote": "  - (10) Assessing and managing catastrophic risk resulting from the internal use",
+        "grade": 1,
+        "note": "Frontier AI framework mandate (§22757.12(a)(10)) to assess and manage internal use catastrophic risk, including risks resulting from a model circumventing oversight mechanisms."
+      },
+      {
+        "lines": [257, 260],
+        "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 1,
+        "note": "Parallel trigger in Labor Code §1107(a)(1)(C) covering foundation models evading the control of developers or users."
+      }
+    ],
+    "humans can no longer shut down or correct the AI system": [
+      {
+        "lines": [98, 101],
+        "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 1,
+        "note": "Closest statutory analogue: §22757.11(c)(1)(B)-(C) defines catastrophic risk as conduct with 'no meaningful human oversight, intervention, or supervision' or a model 'Evading the control of its frontier developer or user'. The statute contains no explicit shutdown mechanism requirement."
+      },
+      {
+        "lines": [106, 110],
+        "quote": "- (d) \"Critical safety incident\" means any of the following:",
+        "grade": 1,
+        "note": "Relevant context: §22757.11(d)(3)-(4) defines critical safety incident to include loss of control causing death/injury, and models using deceptive techniques to subvert controls or monitoring outside evaluation contexts."
+      },
+      {
+        "lines": [137, 137],
+        "quote": "  - (10) Assessing and managing catastrophic risk resulting from the internal use",
+        "grade": 1,
+        "note": "Relevant context: §22757.12(a)(10) requires framework protocols for managing risks from models circumventing oversight mechanisms during internal use."
+      }
+    ],
+    "misalignment": [],
+    "whistleblower": [
+      {
+        "lines": [251, 303],
+        "quote": "- **SEC. 4.** Chapter 5.1 (commencing with Section 1107) is added to Part 3 of Division 2 of the Labor Code, to read:",
+        "grade": 2,
+        "note": "Entire Chapter 5.1 of the Labor Code added by SB 53: dedicated whistleblower protections for covered employees reporting catastrophic risks or TFAIA violations, including definitions (§1107), anti-retaliation rights, notices, internal anonymous reporting channels, board updates, attorney's fees, burden of proof, and injunctive relief (§1107.1)."
+      },
+      {
+        "lines": [48, 53],
+        "quote": "(3) Existing law prohibits employers and their agents from making",
+        "grade": 1,
+        "note": "Legislative Counsel's Digest summarizing existing labor law and the bill's new whistleblower protections, anonymous disclosure requirements, and enforcement."
+      },
+      {
+        "lines": [76, 76],
+        "quote": "- (h) Whistleblower protections and public-facing information sharing are key instruments",
+        "grade": 1,
+        "note": "Legislative finding (§1(h)) identifying whistleblower protections as key instruments to increase transparency and public trust."
+      },
+      {
+        "lines": [181, 183],
+        "quote": "- (e) (1) The Attorney General or the Office of Emergency Services may transmit reports",
+        "grade": 1,
+        "note": "Provisions (§22757.13(e)-(f)) authorizing transmission of covered employee whistleblower reports to the Legislature/Governor/agencies and exempting them from California Public Records Act disclosure."
+      },
+      {
+        "lines": [210, 212],
+        "quote": "- (d) (1) Beginning January 1, 2027, and annually thereafter, the Attorney General shall produce a report",
+        "grade": 1,
+        "note": "Requirement (§22757.14(d)) that the Attorney General publish an annual anonymized and aggregated report on whistleblower disclosures submitted by covered employees."
+      }
+    ],
+    "serious incident": [
+      {
+        "lines": [106, 110],
+        "quote": "- (d) \"Critical safety incident\" means any of the following:",
+        "grade": 2,
+        "note": "Statutory definition of 'Critical safety incident' (§22757.11(d)), the California statutory equivalent of serious incidents: weight exfiltration causing death/injury, materialization of catastrophic risk, loss of control causing death/injury, and deceptive subversion of monitoring."
+      },
+      {
+        "lines": [166, 179],
+        "quote": "- **22757.13.** (a) The Office of Emergency Services shall establish a mechanism",
+        "grade": 2,
+        "note": "Core mandatory reporting requirements for critical safety incidents (§22757.13(a)-(c)): 15-day reporting to Cal OES, 24-hour emergency reporting to law enforcement/public safety for imminent risks of death or serious injury, and public reporting mechanism."
+      },
+      {
+        "lines": [266, 270],
+        "quote": "- (c) \"Critical safety incident\" means any of the following:",
+        "grade": 2,
+        "note": "Parallel statutory definition of 'Critical safety incident' in Labor Code §1107(c) governing covered employee whistleblower reporting."
+      },
+      {
+        "lines": [81, 81],
+        "quote": "- (m) Timely reporting of critical safety incidents to the government",
+        "grade": 1,
+        "note": "Legislative finding (§1(m)) establishing the necessity of timely government reporting to monitor and respond to emerging threats."
+      },
+      {
+        "lines": [135, 135],
+        "quote": "  - (8) Identifying and responding to critical safety incidents.",
+        "grade": 1,
+        "note": "Frontier AI framework requirement (§22757.12(a)(8)) to establish protocols for identifying and responding to critical safety incidents."
+      },
+      {
+        "lines": [180, 186],
+        "quote": "- (d) The Office of Emergency Services shall review critical safety incident reports",
+        "grade": 1,
+        "note": "Provisions (§22757.13(d)-(g)) governing Cal OES review, transmittal to government leadership, CPRA exemption, and annual anonymized reporting."
+      },
+      {
+        "lines": [187, 195],
+        "quote": "- (h) The Office of Emergency Services may adopt regulations designating one or more federal laws",
+        "grade": 1,
+        "note": "Alternative compliance safe harbor (§22757.13(h)-(i)) allowing developers to satisfy incident reporting via substantially equivalent federal reporting standards."
+      },
+      {
+        "lines": [213, 214],
+        "quote": "- **22757.15.** (a) A large frontier developer that fails to publish or transmit",
+        "grade": 1,
+        "note": "Civil penalty of up to $1,000,000 per violation (§22757.15) for failing to report critical safety incidents as required by Section 22757.13."
+      },
+      {
+        "lines": [36, 38],
+        "quote": "This bill would enact the Transparency in Frontier Artificial Intelligence Act (TFAIA)",
+        "grade": 1,
+        "note": "Legislative Counsel's Digest overview of critical safety incident reporting to Cal OES and CPRA exemption."
+      }
+    ],
+    "what must a developer publish or report before deploying a frontier model": [
+      {
+        "lines": [140, 159],
+        "quote": "- (c) (1) Before, or concurrently with, deploying a new frontier model",
+        "grade": 2,
+        "note": "Core statutory pre-deployment transparency report mandate (§22757.12(c)): required website disclosures for all frontier developers (website, contact mechanism, release date, languages, output modalities, intended uses, restrictions) and large developers (summaries of catastrophic risk assessments, assessment results, third-party evaluators involved, framework compliance steps; system card/model card compliance)."
+      },
+      {
+        "lines": [127, 137],
+        "quote": "- **22757.12.** (a) A large frontier developer shall write, implement, comply with, and clearly and conspicuously publish",
+        "grade": 2,
+        "note": "Mandate for large frontier developers to publish on their website a frontier AI framework (§22757.12(a)), including approaches to standards, risk thresholds, mitigations, deployment reviews, third-party assessments, weight cybersecurity, incident response, and governance."
+      },
+      {
+        "lines": [111, 112],
+        "quote": "- (e) (1) \"Deploy\" means to make a frontier model available to a third party",
+        "grade": 1,
+        "note": "Statutory definition of 'Deploy' (§22757.11(e)), distinguishing public/third-party deployment from internal development and evaluation."
+      },
+      {
+        "lines": [138, 139],
+        "quote": "- (b) (1) A large frontier developer shall review and, as appropriate, update its frontier AI framework",
+        "grade": 1,
+        "note": "Requirement (§22757.12(b)) to review the framework annually and publish material modifications and justifications within 30 days."
+      },
+      {
+        "lines": [160, 160],
+        "quote": "- (d) A large frontier developer shall transmit to the Office of Emergency Services",
+        "grade": 1,
+        "note": "Reporting requirement (§22757.12(d)) to transmit quarterly summaries of catastrophic risk assessments from internal use to Cal OES."
+      },
+      {
+        "lines": [161, 163],
+        "quote": "- (e) (1) (A) A frontier developer shall not make a materially false or misleading statement",
+        "grade": 1,
+        "note": "Prohibition (§22757.12(e)) against making materially false or misleading statements regarding catastrophic risk or framework compliance."
+      },
+      {
+        "lines": [164, 165],
+        "quote": "- (f) (1) When a frontier developer publishes documents to comply with this section",
+        "grade": 1,
+        "note": "Provisions (§22757.12(f)) governing permitted redactions for trade secrets, cybersecurity, public safety, or national security, and requiring 5-year retention of unredacted versions."
+      },
+      {
+        "lines": [213, 214],
+        "quote": "- **22757.15.** (a) A large frontier developer that fails to publish or transmit",
+        "grade": 1,
+        "note": "Civil penalty of up to $1,000,000 (§22757.15) for failure to publish or transmit compliant documents or comply with the developer's own framework."
+      }
+    ],
+    "chemical and biological weapons uplift": [
+      {
+        "lines": [98, 105],
+        "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Statutory definition of catastrophic risk (§22757.11(c)(1)(A)), defining CBRN risk as providing 'expert-level assistance in the creation or release of a chemical, biological, radiological, or nuclear weapon' causing >50 deaths or >$1B damage, and explicitly defining the uplift boundary in (c)(2)(A) by excluding information already publicly accessible from non-foundation-model sources."
+      },
+      {
+        "lines": [257, 264],
+        "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Parallel definition in Labor Code §1107(a)(1)(A) & (a)(2)(A) protecting whistleblowers who report CBRN weapon assistance capabilities, subject to the same public accessibility exclusion."
+      },
+      {
+        "lines": [78, 78],
+        "quote": "- (j) Unless they are developed with careful diligence and reasonable precaution",
+        "grade": 1,
+        "note": "Legislative finding (§1(j)) highlighting biological attacks alongside AI hacking and loss of control as severe threats requiring diligence."
+      }
+    ],
+    "evidence that models can sabotage, sandbag or evade oversight": [
+      {
+        "lines": [106, 110],
+        "quote": "- (d) \"Critical safety incident\" means any of the following:",
+        "grade": 1,
+        "note": "Statutory definition of critical safety incident (§22757.11(d)(4)) specifically including a model using 'deceptive techniques against the frontier developer to subvert the controls or monitoring of its frontier developer outside of the context of an evaluation designed to elicit this behavior and in a manner that demonstrates materially increased catastrophic risk'. Note: SB 53 contains regulatory definitions and reporting triggers for deceptive evasion rather than empirical scientific evidence of sabotage or sandbagging."
+      },
+      {
+        "lines": [137, 137],
+        "quote": "  - (10) Assessing and managing catastrophic risk resulting from the internal use",
+        "grade": 1,
+        "note": "Frontier AI framework mandate (§22757.12(a)(10)) to assess and manage internal risk, 'including risks resulting from a frontier model circumventing oversight mechanisms'."
+      },
+      {
+        "lines": [266, 270],
+        "quote": "- (c) \"Critical safety incident\" means any of the following:",
+        "grade": 1,
+        "note": "Parallel definition in Labor Code §1107(c)(4) covering deceptive subversion of monitoring for whistleblower protections."
+      },
+      {
+        "lines": [98, 101],
+        "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 1,
+        "note": "Statutory definition of catastrophic risk (§22757.11(c)(1)(C)) covering a frontier model 'Evading the control of its frontier developer or user'."
+      }
+    ],
+    "cyber capabilities of frontier models": [
+      {
+        "lines": [98, 101],
+        "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Statutory definition of catastrophic risk (§22757.11(c)(1)(B)) targeting autonomous cyber capability: 'Engaging in conduct with no meaningful human oversight, intervention, or supervision that is either a cyberattack or, if the conduct had been committed by a human, would constitute the crime of murder, assault, extortion, or theft' causing >50 deaths or >$1B damage."
+      },
+      {
+        "lines": [257, 260],
+        "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Parallel Labor Code §1107(a)(1)(B) definition covering autonomous cyberattacks for whistleblower protection."
+      },
+      {
+        "lines": [78, 78],
+        "quote": "- (j) Unless they are developed with careful diligence and reasonable precaution",
+        "grade": 1,
+        "note": "Legislative finding (§1(j)) citing 'artificial intelligence-enabled hacking' as a catastrophic risk from advanced models."
+      },
+      {
+        "lines": [134, 134],
+        "quote": "  - (7) Cybersecurity practices to secure unreleased model weights",
+        "grade": 1,
+        "note": "Framework mandate (§22757.12(a)(7)) requiring cybersecurity practices to protect model weights from unauthorized modification or exfiltration."
+      },
+      {
+        "lines": [106, 107],
+        "quote": "- (d) \"Critical safety incident\" means any of the following:",
+        "grade": 1,
+        "note": "Definition of critical safety incident (§22757.11(d)(1)) including unauthorized access, modification, or exfiltration of model weights resulting in death or bodily injury."
+      }
+    ],
+    "how the severity or acceptability of a risk is decided": [
+      {
+        "lines": [127, 132],
+        "quote": "- **22757.12.** (a) A large frontier developer shall write, implement, comply with, and clearly and conspicuously publish",
+        "grade": 2,
+        "note": "Statutory mechanism for risk severity and acceptability decisions (§22757.12(a)(1)-(5)): requiring large developers to define and assess thresholds (including multi-tiered thresholds) for catastrophic risk capabilities, apply mitigations based on assessment results, review assessments and mitigation adequacy before deploying or internally using models, and use third-party evaluators."
+      },
+      {
+        "lines": [98, 105],
+        "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Statutory threshold defining severe risk (§22757.11(c)): quantifies catastrophic severity as >50 deaths/serious injuries or >$1B property damage arising from CBRN assistance, autonomous cyberattack/crime, or evading control."
+      },
+      {
+        "lines": [257, 264],
+        "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk",
+        "grade": 2,
+        "note": "Parallel threshold in Labor Code §1107(a) defining the catastrophic risk standard for foundation models."
+      },
+      {
+        "lines": [84, 84],
+        "quote": "- (p) It is the intent of the Legislature to create more transparency",
+        "grade": 1,
+        "note": "Legislative declaration of intent (§1(p)) establishing that developers must take 'due care in their development and deployment of frontier models proportional to the scale of the foreseeable risks'."
+      },
+      {
+        "lines": [148, 157],
+        "quote": "  - (2) Before, or concurrently with, deploying a new frontier model",
+        "grade": 1,
+        "note": "Transparency reporting requirement (§22757.12(c)(2)) obligating developers to summarize risk assessments, assessment results, and mitigation steps prior to deployment."
+      },
+      {
+        "lines": [199, 208],
+        "quote": "- **22757.14.** (a) On or before January 1, 2027, and annually thereafter, the Department of Technology",
+        "grade": 1,
+        "note": "Mandate for CalTech (§22757.14(a)-(b)) to annually review evidence and recommend updates to statutory thresholds and definitions based on international standards, stakeholder input, and verifiability."
+      },
+      {
+        "lines": [213, 214],
+        "quote": "- **22757.15.** (a) A large frontier developer that fails to publish or transmit",
+        "grade": 1,
+        "note": "Civil penalty provision (§22757.15) establishing penalties up to $1,000,000 per violation scaled according to 'the severity of the violation'."
+      }
+    ]
+  }
+}
