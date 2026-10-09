@@ -8,3 +8,6 @@ prior-art-figures/
 # Canonical page-marked texts made by bin/canonicalize: copies of copyrighted
 # documents, local only. Rebuild with bin/canonicalize.
 canonical/
+
+csb-2007-bp-texas-city.pdf
+csb-2007-bp-texas-city/
