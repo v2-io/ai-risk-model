@@ -1,6 +1,6 @@
 # Source search: design
 
-*A proposal for a local semantic and lexical index over the corpus, drafted 2026-10-09 by Claude (Opus 5.5) at Joseph's request. Nothing here is built yet. The decisions for Joseph are collected in §10, each with a lean and a confidence. It draws on memorata (`~/src/memorata/memorata3/`, read whole: `schema.sql`, `search.py`, the embedder and the CLI) and on `bin/canonicalize`'s output contract (read whole).*
+*A proposal for a local semantic and lexical index over the corpus, drafted 2026-10-09 by Claude (Opus 5.5) at Joseph's request. Step 1 of the build order (§11) is built; the rest is not. The decisions for Joseph are collected in §10, each with a lean and a confidence. It draws on memorata (`~/src/memorata/memorata3/`, read whole: `schema.sql`, `search.py`, the embedder and the CLI) and on `bin/canonicalize`'s output contract (read whole).*
 
 ## 0. What the pilot changed (2026-10-09)
 
@@ -141,6 +141,16 @@ Lean: **bge-m3**. It is fast, small and multilingual (the corpus includes Chines
 
 Estimated cost: the corpus is about 21 MB of text today (89 canonical files), heading toward about 100 MB at 463 keys. At ~1,200 characters a passage that is roughly 80,000 passages, and at bge-m3's measured rate a full first embedding is about an hour. After that, runs embed only what changed. Vectors are stored as `halfvec(1024)`, about 160 MB with its HNSW index at that scale.
 
+### 5.5 What building it found (step 1, 2026-10-09)
+
+Read against SB 53, the AI Act, IASR 2026 and AISI's OCR'd *Frontier AI Trends Report* (`bin/source-index --show KEY` prints any text's passages and definitions):
+- **Definitions found:** SB 53's 18 and the AI Act's 68 statutory definitions; IASR 2026's 179 heading-less glossary entries; the EU Code's 35 glossary rows, including qualified ones ("'process' (noun; …)"); OpenAI's footnote "By 'severe harm' in this document, we mean"; AISI's 29 glossary entries, six of which lost their bold in OCR and are caught as plain "Term:" lines. Across the corpus: 2,193 definitions in 201 texts.
+- **Heading paths.** Conversions give headings arbitrary levels: the AI Act has `# *Article 4*` at level 1 and its title at level 3. So a heading that is only a label ("Article 3", "ANNEX I", "CHAPTER III", "SECTION 2") nests by its kind, and the title heading after it joins it: `CHAPTER I — GENERAL PROVISIONS › Article 3 — Definitions`. A statute's section numbers in list items act as headings, a code section inside the bill section that adds it (`CHAPTER 138 › SEC. 2 › §22757.12`). A table-of-contents heading no longer parents the front matter after it.
+- **Offsets are exact.** Indexed text keeps each character's offset in the canonical file, so a piece of a long block, or a sentence quoted from one, maps to an exact span and page (the pilot located pieces by their first words).
+- **A paragraph cut by a page break is joined** when it starts in lower case and the block before it doesn't end a sentence (12 joins in the AI Act, 11 in the AISI report).
+- **Weaker evidence, marked weaker.** "The term 'X'" sometimes introduces a definition and sometimes only mentions the word, so it gets 0.6 to "the notion of 'X'"'s 0.8. "We use X as" isn't taken as a definition unless X is quoted or named as a term. `**Label:** text` runs give 1,025 weak (0.35–0.5) definitions; in a sample of 30, about a quarter were real definitions ("CBRN-3: The ability to …"), the rest labels ("Updates:", "Methods:"). Their low confidence keeps them from ranking unless the query is that exact label.
+- **Not fixed:** OCR's glued forms such as "AlSI's" are still in the canonical texts (a decision for Joseph, in the canonicalize session's list). Footnotes inside the AI Act's recitals become passages of their own.
+
 ## 6. Ranking
 
 ### 6.1 Candidates
@@ -172,9 +182,9 @@ Then come the query-independent priors, multiplied in. Each is declared in `sear
 - **Verbatim copies across documents.** Passage text is hashed after normalisation. The same text in several documents (the EU Code's loss-of-control formula; SB 53's definitions in RAISE) is shown once, with "also verbatim in: …". Here copying is evidence, the thing the correlation-not-corroboration principle is about, so it is surfaced, not discarded.
 - **Near-duplicates across versions** (RSP v3.3 and v3.4) are folded under the active version, with the versions listed. `--history` unfolds them in lineage order, which is the "diffable history" the supersession tags were kept for.
 
-### 6.4 No cross-encoder
+### 6.4 No cross-encoder by default
 
-Memorata's optional reranker (`bge-reranker-v2-m3` in sentence-transformers) peaked at 18–21 GB of Metal memory over six searches, or about 4.8 GB on CPU (its own measurement, 2026-09-24). Here, the structural priors carry most of what a reranker would add: definition, section kind, status and exact form. My lean is to build without one and let the gold queries show whether anything is missing. If something is, a CPU-only rerank of a small head, opt-in per query, is the fallback.
+Memorata's optional reranker (`bge-reranker-v2-m3` in sentence-transformers) peaked at 18–21 GB of Metal memory over six searches, or about 4.8 GB on CPU (its own measurement, 2026-09-24). Here, the structural priors carry most of what a reranker would add: definition, section kind, status and exact form. My lean was to build without one and let the gold queries show whether anything is missing. The pilot (§0) measured the CPU fallback at 2.7–2.9 GB and about 2 s a query, helping paraphrase queries and hurting definitions-first ordering, so it becomes an opt-in `--rerank` that leaves definitions in place.
 
 ## 7. The command
 
@@ -230,7 +240,7 @@ The index should be ready for it. A translated edition keeps the canonical page 
 
 ## 11. Build order
 
-1. Schema, catalog reader, chunker and definitions detector, with no embeddings yet. Check by reading the chunk and definition output for SB 53, the AI Act, IASR 2026 and one OCR'd source.
+1. Schema, catalog reader, chunker and definitions detector, with no embeddings yet. Check by reading the chunk and definition output for SB 53, the AI Act, IASR 2026 and one OCR'd source. *Built 2026-10-09* (`bin/source-index`, `search/srcsearch/`, `search/schema.sql`); what the reading found is in §5.5. The reconcile part of step 2 came with it: a full build of the 201 texts takes about 20 s, and a second run changes nothing (0.1 s).
 2. Reconcile and embed, with the cache; run twice to show the second run does nothing; touch one canonical file and show only it changes.
 3. Search: ranked, `--defs`, `--all`, `--explain`, `--json`.
 4. The gold queries, with Joseph, then `--eval`, then tuning.
