@@ -92,8 +92,8 @@ Joseph:
 **C10. The notation's syntax** (decision 14). Lean: decide which distinctions the notation must carry, then hand that to the udon team as our needs list rather than fitting the current spec. The open points are `{a | b}` against type-union `|`, `?` doing two jobs, `.` doing two jobs, ambiguity on relations and sets, inline any-of/all-of, and inheritance with overrides. *Moderate.*
 Joseph:
 
-**C11. The passage anchor** (§3.5 note). Lean: relata key + physical PDF page (from `ref/canonical/`'s markers) + exact quote, with the printed page as a display field only; a passage record can hold several anchors. *Moderate-high.*
-Joseph:
+~~**C11. The passage anchor**~~ (§3.5 note). Lean: relata key + physical PDF page (from `ref/canonical/`'s markers) + exact quote, with the printed page as a display field only; a passage record can hold several anchors. *Moderate-high.*
+Joseph: endorsed, 2026-10-09; and search results always carry it.
 
 ## D. Open, without a lean of mine yet
 

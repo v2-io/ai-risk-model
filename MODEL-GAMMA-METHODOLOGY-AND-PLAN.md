@@ -331,7 +331,7 @@ The fidelity atom is the passage. The W3C Web Annotation Data Model (Recommendat
 **Proposed anchor:** the PDF page (RFC 8118 `page=N`), refined by a quote selector, with the extraction line number kept as an optional position, and the document version as read.
 
 > [!NOTE]
-> **The anchor, made concrete (Claude's lean, 2026-10-08). *Confidence: moderate-high*; part of G1(e).** `ref/canonical/<relata-key>.md` now exists for the 84 catalog sources (built by `bin/canonicalize`; git-ignored and rebuilt locally). Its page markers have the form `[pdf-page 12, printed "10"]`. So an anchor is:
+> **The anchor, made concrete (Claude's proposal, 2026-10-08; endorsed by Joseph, 2026-10-09).** Part of G1(e). Joseph also made it a requirement for search results: they "should always come back with your preferred reference format -- key + pdf-page etc. etc." `ref/canonical/<relata-key>.md` now exists for the 84 catalog sources (built by `bin/canonicalize`; git-ignored and rebuilt locally). Its page markers have the form `[pdf-page 12, printed "10"]`. So an anchor is:
 > - the relata key;
 > - the *physical* PDF page, 1-based: what `#page=N`, `pdftotext -f/-l` and viewers use, read from the nearest marker above the passage;
 > - the exact quote;
