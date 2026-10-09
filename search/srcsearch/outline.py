@@ -158,10 +158,10 @@ class Outline:
         for p in self.ps:
             key = p['key']
             root = self.roots.setdefault(key, Node(()))
-            if p['section'] == 'restored' and not p['path']:
-                # text restored from the PDF's text layer sits at the end of its page's
-                # section and has no heading of its own (DESIGN §2): it goes with the
-                # passage before it, and doesn't break that section's continuity
+            if p['section'] in ('restored', 'figure') and not p['path']:
+                # text restored from the PDF's text layer, prose or figure, sits at the end
+                # of its page's section and has no heading of its own (DESIGN §2): it goes
+                # with the passage before it, and doesn't break that section's continuity
                 cur.get(key, root).direct.append(p)
                 self.node_of[p['id']] = cur.get(key, root)
                 continue
