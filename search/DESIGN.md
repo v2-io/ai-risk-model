@@ -248,3 +248,15 @@ The index should be ready for it. A translated edition keeps the canonical page 
    - Ranked search takes 1–2 s, most of it loading bge-m3 for the query; `--defs` and `--all --counts` well under a second.
 4. The gold queries, with Joseph, then `--eval`, then tuning.
 5. Grouping, `--history`, and the embedder bake-off.
+
+## 12. Another shape for results: a folded outline (an open idea, 2026-10-09)
+
+Joseph, after steps 1–3, doubting that gold queries can be written except over a few sources: "Essentially what we're trying to do is give us all the right intuition and relevant info from a set of sources without requiring you or a sub-agent to have to ingest the entire things into context first.... Another perspective we might use would be more like 'context prepping' -- where it's looking for line ranges within documents that the agent who uses it will want to look at most carefully and probably ingest. Like a very smart index/ToC table." His sketch was a document's outline with only the relevant branches unfolded, down to line ranges and their text, each passage with its heading context. He offered it "as a mental model and thought and brainstorm", not as a design ruling.
+
+What the index already has for it: each passage's heading path (`src.passages.path`) and its offsets in `ref/canonical/KEY.md`, and every heading with its level, path and offsets (`src.headings`). Line numbers follow from the offsets, and they are what an agent's file reader takes. Heading coverage, measured 2026-10-09 over the 201 texts: 142 have at least one heading per page, 51 have between 0.3 and 1, 4 have fewer, and 4 short web pages have none. Where headings are sparse, page ranges would have to stand in for sections.
+
+My lean, not yet tried:
+- Every section stays on the screen. Unrelated sections are folded to a single line, with their length and how many weak hits they hold. A section the ranking misjudges then stays visible as a folded line that the reader can open. In a ranked list it would just be missing. (This is aspectus's rule, that a fold is shown with what it holds, applied to a document.)
+- Unfolding is chosen by hit density within a section, under a line budget for the whole output, the way `aspectus --lines` works. Adjacent hits merge into one range. A definition of the query term is always unfolded.
+- Each range carries both a line range, for reading now, and the usual anchor (key, PDF page, quote), for citing. Line numbers change whenever `bin/canonicalize` rebuilds a file, and the anchor does not.
+- This would also change the evaluation. A reader who has read one document whole can say which of its sections matter for many questions at once, so the cost is one whole read per document rather than per query. The measure would be how many of those sections were unfolded within a given number of lines.
