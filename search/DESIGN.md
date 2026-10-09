@@ -368,11 +368,32 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
    - What the outline is mostly for is the flags column. Joseph, 2026-10-09: the outline "is mostly for helping agents know what they *don't* know after having read the relevant parts". It flags 0.75 of what the judges marked, at every budget, and a list has nothing comparable. The rest sits in sections the outline names but counts as having no hits.
    - The unflagged quarter is a paraphrase problem in the ranking, not a folding problem. Flagged share by query: "humans can no longer shut down or correct the AI system" 0.40 (the documents say "reliably direct, modify, or shut down", "self-exfiltration", "rogue internal deployment"); "misalignment" 0.63; "loss of control" 0.67; but "whistleblower" and "serious incident", whose words the documents use, 0.94–1.0. The lexicon's term mappings were always the planned fix for this (§0).
 
-   Faults the judges found in the scorer, not yet fixed:
-   - A stretch counts as read if any passage in it opens, so a must-read chapter is credited by one paragraph.
-   - A quote taken from a heading line can't be found again after a rebuild, since headings belong to no passage.
-   - All documents share one budget; there is no per-document score.
-   - The docstring says only grade 2 counts, but the code scores grade 1.
+   The judges found four faults in the scorer, all fixed the same day by someone other than the outline's author:
+   - **Wide stretches were credited by one paragraph.** Each stretch is now scored two ways: *reached*, as before, if any passage in it opens; and *covered*, by the share of its text that opens.
+   - **A quote taken from a heading couldn't be found after a rebuild.** Quotes are now cleaned of markup and matched against headings too. Matching by quote alone puts 466 of the Claude judges' 469 stretches, and all 57 of Gemini's, on the judged line.
+   - **There was no per-document score.** `--per-doc` now gives one.
+   - **The docstring and code disagreed about grade 1.** A must-read stretch weighs 3 and a helpful one 1, as the code had it. A new "must" column scores must-read stretches alone.
+
+   Rescored, pooled over the five documents (ranking as of 263d347):
+
+   | Lines | | Reached | Covered | Must-read, covered |
+   |---|---|---|---|---|
+   | 60 | outline opens | 0.343 | 0.291 | 0.395 |
+   | 60 | outline flags | 0.748 | — | — |
+   | 60 | list, same output lines | 0.234 | 0.184 | 0.257 |
+   | 60 | list, same source lines | 0.399 | 0.322 | 0.430 |
+   | 120 | outline opens | 0.539 | 0.461 | 0.567 |
+   | 120 | list, same source lines | 0.615 | 0.512 | 0.613 |
+   | 200 | outline opens | 0.678 | 0.580 | 0.680 |
+   | 200 | list, same source lines | 0.707 | 0.591 | 0.680 |
+
+   Crediting by coverage lowers both methods about equally, and the ordering holds. Per document the budget barely binds: the outline opens only its top and near tiers, so from 120 lines its opened score equals its flagged score. AISI, SB 53 and the EU Code reach 0.87–0.94 covered, IASR 0.63–0.80, and the Risk Report 0.37 at most, where its judge marked chapter-sized stretches.
+
+   **Two judges of SB 53** (Claude, and Gemini through agy, each blind to the other), compared line by line over 227 lines × 12 queries:
+   - Of the 340 line-queries either judge marked, both marked 65% (170 at the same grade, 52 at different grades). One marked "helps" where the other marked nothing in 26%, split evenly between the judges. One marked "must" where the other marked nothing in 9%.
+   - Cohen's kappa is 0.67 over three grades, 0.77 for marked or not, and 0.73 for must-read or not.
+   - Gemini left "hazard" and "misalignment" empty where Claude graded the nearest provisions. That accounts for 15 of Claude's 43 "helps"-only lines. The largest disagreements were elsewhere: "how the severity or acceptability of a risk is decided" (Gemini marked 27 lines Claude didn't; Claude marked 9 Gemini didn't).
+   - The verdict holds on either reading: SB 53 scores 0.94 covered against Claude's grades and 0.99 against Gemini's, for the outline and the list alike.
 
    Their notes also record where each document's headings mislead: IASR's glossary is under no heading, the Risk Report's Claim 5.3 has no heading marker, and AISI's chapter numbers are empty headings. On a short document with no strong match, the outline fills its lines with noise.
 
@@ -385,6 +406,7 @@ The order is mine, with Joseph's leave ("I'm happy to defer to you"), 2026-10-09
    - My addition: a control of questions the document doesn't cover at all (every judge left them empty, as "hazard" in SB 53). There the outline should let an agent answer "not covered" without asking, so asking only where something is there to find separates calibration from mere caution.
    - The answer's form, Joseph, 2026-10-09: "covered / not-covered degree + confidence + its expected position", with an offer along the lines of "if you need to, you may request to look at the doc again...". Each part is scored against the judges' readings: covered or not, and how much, against whether and at what grade they marked anything; confidence against being right; and the expected position against their line ranges. That last shows whether an agent knows where something is, the outline's own claim, separately from knowing that it's there.
    - A self-rating, Joseph, 2026-10-09: after their first searches, ask "how well between 0-100 do you feel you know the _____ document". In his words, "it will be very interesting to see if the ToC gives more false confidence about things not actually read, or if the other agent, who probably doesn't even know the full size of the doc, would assume one way or the other". This tests the outline's main risk directly: a complete-looking map can feel like coverage ("a look is not a read", aspectus's own warning). The rating is compared with the share of the document actually opened, and with how the agent's answers score. An agent is calibrated if its rating tracks both.
+   - What the self-rating is for, Joseph, 2026-10-09: "seeing if we can gauge whether and which agents see it as a 'summary that's just as good as reading the text' vs a hole in their understanding."
    - Models: Opus, Sonnet and Haiku (Joseph: "It will be interesting also for sonnet and even haiku agents"). Smaller models may lean on a tidy map more, and they are among the agents the outline is meant to help. So the design is two conditions (outline, ranked list) × three models × the five documents, one agent per cell.
    - It would be run once the outline is a `source-search` verb, on the five judged documents.
 

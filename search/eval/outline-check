@@ -5,42 +5,66 @@ given the same room.
     search/eval/outline-check                      the pilot's blind grades, budgets 60 120 200
     search/eval/outline-check --budgets 40 80      other line budgets
     search/eval/outline-check --judgments DIR      whole-document judgments (outline-judging-brief.md)
+    search/eval/outline-check --judgments DIR --per-doc     also each document on its own
     search/eval/outline-check --per-query          a row per query too
+    search/eval/outline-check --agree DIR_A DIR_B  how far two judges of the same documents agree
 
 The question it answers: given the same room, does the outline put an agent onto
 more of what matters than a ranked list does? For each query and line budget B it
-compares four things over the Au5 documents:
+compares four things:
 - opened:   the passages the outline opens (▸ ranges) within B lines of output;
-- flagged:  the passages the outline marks strong or weak, so that the census of
+- flagged:  the passages the outline marks top or near, so that the census of
             whatever section line holds them says so, opened or not;
 - list@B:   a ranked list (bin/source-search's ranking, same scope) with as many
             results as B lines of its output hold, at 4 lines a result;
 - list@R:   a ranked list read to the same number of source lines R as the
             outline's opened ranges cover.
 
-The score is graded recall: each judged passage with grade 2 or more counts
-2^grade - 1, credited if a passage that holds its quote is among those read.
+Each judged item is a stretch of a document, and is scored two ways:
+- reached:  credited in full if any passage overlapping it is read (or flagged).
+            A must-read chapter is credited by one paragraph of it, which the
+            judges pointed out overstates what an agent got;
+- covered:  credited by the share of it that is read: the characters of the
+            stretch that lie in read passages, over those that lie in any passage
+            (a stretch's headings and images belong to no passage, so they count
+            on neither side). Flagging is pointing, not reading, so flagged has
+            no covered score.
+Gain is 2^grade - 1. For the whole-document judgments (grades 1 and 2) that weighs
+a must-read item 3 and a helpful one 1; "must" scores the grade-2 items alone. For
+the pilot's grades (0-3, of which 2 and 3 are kept), "must" is grade 3.
+
+Scopes:
+- pooled (always): all the judged documents together, one outline and one list
+  under one budget, as an agent would search the set;
+- --per-doc: each document on its own, its own outline and list under the budget,
+  scored against its own judge's items. So each judge can see how the outline did
+  on the document they read.
 
 Two sets of grades:
 - the pilot's (influx/search-pilot-2026-10-09/qrels-pilot.json): 16 queries graded
   blind by a separate Claude instance, of which 111 grades of 2 or 3 fall in four of
   the Au5 documents (the Trends Report wasn't in the pilot). They were pooled from
   ranked lists' top tens, so a relevant passage only the outline reaches was never
-  graded: this comparison leans toward the list. It is an interim check;
+  graded: this comparison leans toward the list;
 - whole-document judgments (--judgments DIR): a reader who read each document
   whole marks, per query, what an agent must read. That is the evaluation §12
   proposes; search/eval/outline-judging-brief.md is the brief for it.
 
+Finding a judged stretch: by its line numbers while the canonical file is the one
+the judge read (same sha256). After a rebuild, by its quote: the passage holding
+it, or else the heading whose text it is, then as many lines as the judge's
+stretch had (marked approximate). --by-quote forces that path, to test it.
+
 Query vectors are cached in search/eval/.cache/ (git-ignored), so a rerun loads no
 model.
 """
-import argparse, difflib, glob, hashlib, json, math, os, re, sys
+import argparse, bisect, difflib, glob, hashlib, json, os, re, sys
 
 sys.dont_write_bytecode = True
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(REPO, 'search'))
 from srcsearch import anchor, db, embed, outline, rank  # noqa: E402
-from srcsearch.text import fold  # noqa: E402
+from srcsearch.text import clean, clean_heading, fold  # noqa: E402
 
 AU5 = ['bengio-2026-international', 'eu-cop-2025-safety-security', 'california-2025-sb53',
        'anthropic-2026-risk-report-aug', 'aisi-2025-frontier']
@@ -77,121 +101,347 @@ def qvec(model, query):
     return cache[q]
 
 
+# ------------------------------------------------------------------- grades
 def pilot_grades():
     d = json.load(open(QRELS))['queries']
-    return {q: [g for g in gs if g['key'] in AU5 and g['grade'] >= 2] for q, gs in d.items()}
+    return {q: [dict(g, must=g['grade'] >= 3) for g in gs if g['key'] in AU5 and g['grade'] >= 2] for q, gs in d.items()}
 
 
 def judged_grades(path):
     """Whole-document judgments, one file per document (outline-judging-brief.md):
     {"key", "canonical_sha256", "queries": {query: [{"lines": [a, b], "quote", "grade", "note"}]}}.
-    An item names a stretch of the canonical text by its lines and the quote it begins
-    with; if the file has changed since (its sha256 differs), the quote finds it."""
-    out = {}
+    Grades 1 (helps) and 2 (must read) both count. An item names a stretch by its
+    lines and the quote it begins with; if the file has changed since (its sha256
+    differs), the quote finds it."""
+    out, keys = {}, []
     for f in sorted(glob.glob(os.path.join(path, '*.json'))):
         j = json.load(open(f))
+        keys.append(j['key'])
         raw = anchor.raw_of(j['key'])
         drift = hashlib.sha256(raw.encode()).hexdigest() != j.get('canonical_sha256')
         for q, items in j['queries'].items():
+            out.setdefault(q, [])
             for it in items:
                 if it['grade'] >= 1:
-                    out.setdefault(q, []).append(dict(it, key=j['key'], drift=drift))
-    return out
+                    out[q].append(dict(it, key=j['key'], drift=drift, must=it['grade'] >= 2))
+    return out, keys
 
 
-def passages_of(conn):
-    rows = conn.execute("select id, doc_key, ord, start_off, end_off, page, page_last, text from src.passages "
-                        "where doc_key = any(%s) and layer = 'canonical'", (AU5,)).fetchall()
-    return {r[0]: dict(id=r[0], key=r[1], ord=r[2], start=r[3], end=r[4], page=r[5], page_last=r[6] or r[5], L=letters(r[7]))
-            for r in rows}
+class Corpus:
+    """The judged documents' passages, headings and line maps."""
+
+    def __init__(self, conn, keys):
+        self.keys = keys
+        rows = conn.execute("select id, doc_key, ord, start_off, end_off, page, page_last, text from src.passages "
+                            "where doc_key = any(%s) and layer = 'canonical'", (keys,)).fetchall()
+        self.ps = {(r[1], r[2]): dict(id=r[0], key=r[1], ord=r[2], start=r[3], end=r[4], page=r[5],
+                                      page_last=r[6] or r[5], L=letters(r[7])) for r in rows}
+        self.by_key = {}
+        for p in sorted(self.ps.values(), key=lambda p: p['start']):
+            self.by_key.setdefault(p['key'], []).append(p)
+        self.heads = {}
+        for key, start, end, text, title in conn.execute(
+                'select doc_key, start_off, end_off, text, title from src.headings where doc_key = any(%s)', (keys,)):
+            self.heads.setdefault(key, []).append(dict(start=start, end=end, L=letters(clean_heading(text + ' ' + (title or '')))))
+        self.nl = {k: [i for i, c in enumerate(anchor.raw_of(k)) if c == '\n'] for k in keys}
+
+    def line_start(self, key, line):
+        nl = self.nl[key]
+        return nl[line - 2] + 1 if line >= 2 else 0
+
+    def line_end(self, key, line):
+        nl = self.nl[key]
+        return nl[line - 1] if line - 1 < len(nl) else len(anchor.raw_of(key))
+
+    def line_of(self, key, off):
+        return bisect.bisect_left(self.nl[key], off) + 1
+
+    def resolve(self, item, by_quote=False):
+        """The stretch [lo, hi) an item names, how it was found, and the passages
+        overlapping it."""
+        key = item['key']
+        if 'lines' in item and not item.get('drift') and not by_quote:
+            a, b = item['lines']
+            lo, hi, how = self.line_start(key, a), self.line_end(key, b), 'lines'
+        else:
+            # the quote as passages and headings store text: markup, tags and footnote
+            # numbers out (judges often copied a heading line raw, "### <span …>2.7 …")
+            ql = letters(clean(item.get('quote', '')).s)
+            page = item.get('page')
+            near = [p for p in self.by_key.get(key, ())
+                    if page is None or p['page'] - 1 <= page <= p['page_last'] + 1]
+            if 'lines' not in item:
+                # the pilot's grades name a passage, not a stretch: any passage holding
+                # the quote (a verbatim copy is as good as the original) counts in full
+                hit = [p for p in near if ql and ql in p['L']] or [p for p in near if holds(p['L'], ql)]
+                if not hit:
+                    return None
+                return dict(key=key, lo=0, hi=0, how='quote in a passage', any=True,
+                            ps={(p['key'], p['ord']) for p in hit}, size=1)
+            # every place the quote starts, in passages or headings; the one nearest the
+            # judge's old line wins (a heading's words also recur in contents pages)
+            cands = []
+            for p in near:
+                if ql and ql in p['L']:
+                    for off in self._starts(p, ql):
+                        cands.append((off, 'quote in a passage'))
+            for h in self.heads.get(key, ()):
+                if ql and (ql in h['L'] or (len(h['L']) > 8 and h['L'] in ql)):
+                    cands.append((h['start'], 'quote in a heading'))
+            if not cands:
+                fuzzy = [p for p in near if holds(p['L'], ql)]
+                cands = [(p['start'], 'quote in a passage, fuzzily') for p in fuzzy]
+            if not cands:
+                return None
+            a, b = item['lines']
+            lo, how = min(cands, key=lambda c: abs(self.line_of(key, c[0]) - a))
+            first = self.line_of(key, lo)
+            lo = self.line_start(key, first)
+            hi = self.line_end(key, first + (b - a))
+            how += ', extent from its line count'
+        ps = [p for p in self.by_key.get(key, ()) if p['start'] < hi and p['end'] > lo]
+        return dict(key=key, lo=lo, hi=hi, how=how, ps={(p['key'], p['ord']) for p in ps},
+                    size=_union([(max(p['start'], lo), min(p['end'], hi)) for p in ps]))
+
+    def _starts(self, p, ql):
+        """Offsets in the canonical file where ql (letters only) starts inside passage p."""
+        m = clean(anchor.raw_of(p['key']), p['start'], p['end'])
+        L, pos = [], []
+        for ch, off in zip(m.s, m.pos):
+            for c in letters(ch):
+                L.append(c)
+                pos.append(off)
+        L = ''.join(L)
+        out, i = [], L.find(ql)
+        while i >= 0:
+            out.append(pos[i])
+            i = L.find(ql, i + 1)
+        return out or [p['start']]
+
+    def covered(self, stretch, read):
+        """The share of a stretch's passage text that lies in read passages."""
+        if stretch.get('any'):
+            return 1.0 if stretch['ps'] & read else 0.0
+        if not stretch['size']:
+            return 0.0
+        lo, hi = stretch['lo'], stretch['hi']
+        got = _union([(max(self.ps[ko]['start'], lo), min(self.ps[ko]['end'], hi)) for ko in stretch['ps'] & read])
+        return got / stretch['size']
 
 
-def resolve(item, ps, nl):
-    """The passages (key, ord) an item is credited by."""
-    key = item['key']
-    if 'lines' in item and not item.get('drift'):
-        a, b = item['lines']
-        lo = nl[key][a - 2] + 1 if a >= 2 else 0
-        hi = nl[key][b - 1] if b - 1 < len(nl[key]) else 10 ** 9
-        return {(p['key'], p['ord']) for p in ps.values() if p['key'] == key and p['start'] < hi and p['end'] > lo}
-    ql = letters(item['quote'])
-    page = item.get('page')
-    near = [p for p in ps.values() if p['key'] == key and (page is None or p['page'] - 1 <= page <= p['page_last'] + 1)]
-    hit = {(p['key'], p['ord']) for p in near if ql in p['L']} or \
-          {(p['key'], p['ord']) for p in near if holds(p['L'], ql)}
-    return hit
+def _union(spans):
+    tot, cur = 0, None
+    for a, b in sorted(s for s in spans if s[1] > s[0]):
+        if cur is None or a > cur[1]:
+            if cur:
+                tot += cur[1] - cur[0]
+            cur = [a, b]
+        else:
+            cur[1] = max(cur[1], b)
+    return tot + (cur[1] - cur[0] if cur else 0)
 
 
 def gain(g):
     return 2 ** g['grade'] - 1
 
 
+# ------------------------------------------------------------------ scoring
+METHODS = ('opened', 'flagged', 'listB', 'listR')
+LABEL = dict(opened='opened', flagged='flagged', listB='list@B', listR='list@R')
+
+
+def score_scope(conn, C, grades, keys, budgets, model, by_quote, unresolved, per_query=None, label=''):
+    """{budget: totals} for one scope: one outline and one list per query over keys."""
+    tot = {b: dict(max=0, max_must=0, lines=0, **{f'{m}_{k}': 0.0 for m in METHODS for k in ('reached', 'covered', 'must')})
+           for b in budgets}
+    for q, items in grades.items():
+        targets = []
+        for it in items:
+            if it['key'] not in keys:
+                continue
+            s = C.resolve(it, by_quote)
+            if s and s['ps']:
+                targets.append((gain(it), it['must'], s))
+            elif unresolved is not None:
+                unresolved.append((q, it['key'], it.get('quote', '')[:60]))
+        if not targets:
+            continue
+        mx = sum(g for g, _, _ in targets)
+        mx_must = sum(g for g, m, _ in targets if m)
+        v = qvec(model, q)
+        res, _ = rank.search(conn, q, n=10 ** 6, model=model, keys=keys, qvec=v)
+        ranked = [(r[1], r[2]) for r, _s, _e in res]
+        for b in budgets:
+            o = outline.Outline(conn, q, keys=keys, qvec=v, model=model, budget=b)
+            R = o.opened_lines()
+            sets = dict(opened=o.opened(), flagged={(o.by_id[i]['key'], o.by_id[i]['ord']) for i in o.tier},
+                        listB=set(ranked[:max(1, (b - 1) // LIST_LINES)]))
+            listR, rl = set(), 0
+            for ko in ranked:
+                if rl >= R:
+                    break
+                p = C.ps[ko]
+                rl += C.line_of(ko[0], p['end'] - 1) - C.line_of(ko[0], p['start']) + 1
+                listR.add(ko)
+            sets['listR'] = listR
+            t = tot[b]
+            t['max'] += mx
+            t['max_must'] += mx_must
+            t['lines'] += R
+            row = {}
+            for m, S in sets.items():
+                reached = sum(g for g, _, s in targets if s['ps'] & S)
+                cov = sum(g * C.covered(s, S) for g, _, s in targets)
+                must = sum(g * C.covered(s, S) for g, mu, s in targets if mu)
+                t[f'{m}_reached'] += reached
+                t[f'{m}_covered'] += cov
+                t[f'{m}_must'] += must
+                row[m] = (reached / mx, cov / mx)
+            if per_query is not None:
+                per_query.append((label, q, b, R, mx, row))
+    return tot
+
+
+def print_table(tot, budgets, title):
+    print(f'\n{title}')
+    print(f'{"budget":>7}  {"":<8} {"reached":>8} {"covered":>8} {"must":>8}')
+    for b in budgets:
+        t = tot[b]
+        m, mm = t['max'] or 1, t['max_must'] or 1
+        for k, meth in enumerate(METHODS):
+            cov = '—' if meth == 'flagged' else f'{t[meth + "_covered"] / m:.3f}'
+            must = '—' if meth == 'flagged' else f'{t[meth + "_must"] / mm:.3f}'
+            print(f'{b if k == 0 else "":>7}  {LABEL[meth]:<8} {t[meth + "_reached"] / m:>8.3f} {cov:>8} {must:>8}'
+                  + (f'   (outline opened {t["lines"]} source lines in all)' if k == 0 else ''))
+
+
+# ---------------------------------------------------------------- agreement
+def agreement(dir_a, dir_b):
+    """Two judges of the same documents, compared line by line. A line is one that
+    holds indexed text; its grade is the highest grade of a judge's items covering
+    it, 0 if none."""
+    conn = db.connect()
+    fa = {os.path.basename(f): f for f in glob.glob(os.path.join(dir_a, '*.json'))}
+    fb = {os.path.basename(f): f for f in glob.glob(os.path.join(dir_b, '*.json'))}
+    common = sorted(set(fa) & set(fb))
+    if not common:
+        raise SystemExit('no document judged in both directories')
+    for name in common:
+        ja, jb = json.load(open(fa[name])), json.load(open(fb[name]))
+        key = ja['key']
+        C = Corpus(conn, [key])
+        lines = set()
+        for p in C.by_key[key]:
+            lines.update(range(C.line_of(key, p['start']), C.line_of(key, p['end'] - 1) + 1))
+        raw = anchor.raw_of(key).split('\n')
+        lines = {l for l in lines if l - 1 < len(raw) and raw[l - 1].strip()}
+        print(f"== {key}: {ja.get('judge', dir_a)[:60]}  vs  {jb.get('judge', dir_b)[:60]}")
+        print(f'   {len(lines)} lines hold indexed text; each query × line is one comparison\n')
+        qs = sorted(set(ja['queries']) | set(jb['queries']))
+        M = [[0] * 3 for _ in range(3)]
+        print(f'   {"query":<44} {"A":>4} {"B":>4} {"both":>5} {"A only":>7} {"B only":>7} {"same grade":>11}')
+        for q in qs:
+            ga, gb = ({l: 0 for l in lines} for _ in range(2))
+            for j, g in ((ja, ga), (jb, gb)):
+                for it in j['queries'].get(q, []):
+                    a, b = it['lines']
+                    for l in range(a, b + 1):
+                        if l in g:
+                            g[l] = max(g[l], it['grade'])
+            for l in lines:
+                M[ga[l]][gb[l]] += 1
+            na, nb = sum(v > 0 for v in ga.values()), sum(v > 0 for v in gb.values())
+            both = sum(ga[l] > 0 and gb[l] > 0 for l in lines)
+            same = sum(ga[l] == gb[l] > 0 for l in lines)
+            print(f'   {q[:44]:<44} {na:>4} {nb:>4} {both:>5} {na - both:>7} {nb - both:>7} {same:>11}')
+        n = sum(map(sum, M))
+        print('\n   lines × queries, A (rows) by B (columns), grades 0 / 1 / 2:')
+        for i in range(3):
+            print('   ' + f'A {i}: ' + ' '.join(f'{M[i][j]:>6}' for j in range(3)))
+        marked = n - M[0][0]
+        both = sum(M[i][j] for i in (1, 2) for j in (1, 2))
+        print(f'\n   of {marked} line-queries either judge marked:')
+        print(f'     both marked:                         {both:>5} ({both / marked:.0%}); same grade {M[1][1] + M[2][2]}, '
+              f'one 1 and the other 2 {M[1][2] + M[2][1]}')
+        print(f'     one marked "helps" (1), other nothing: {M[1][0] + M[0][1]:>5} ({(M[1][0] + M[0][1]) / marked:.0%})'
+              f'  [A only {M[1][0]}, B only {M[0][1]}]')
+        print(f'     one marked "must" (2), other nothing:  {M[2][0] + M[0][2]:>5} ({(M[2][0] + M[0][2]) / marked:.0%})'
+              f'  [A only {M[2][0]}, B only {M[0][2]}]')
+        for name_, f in (('three grades', lambda g: g), ('marked or not', lambda g: int(g > 0)), ('must-read or not', lambda g: int(g == 2))):
+            K = {}
+            for i in range(3):
+                for j in range(3):
+                    K[(f(i), f(j))] = K.get((f(i), f(j)), 0) + M[i][j]
+            cats = sorted({c for c, _ in K} | {c for _, c in K})
+            po = sum(K.get((c, c), 0) for c in cats) / n
+            pe = sum(sum(K.get((c, d), 0) for d in cats) * sum(K.get((d, c), 0) for d in cats) for c in cats) / n / n
+            print(f"   Cohen's kappa, {name_ + ':':<18} {(po - pe) / (1 - pe):.2f}  (raw agreement {po:.0%}, mostly lines neither marked)")
+        ea = {q for q in qs if not ja['queries'].get(q)}
+        eb = {q for q in qs if not jb['queries'].get(q)}
+        print(f'\n   queries left empty: A {sorted(ea) or "none"}; B {sorted(eb) or "none"}')
+        print()
+
+
+# --------------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0], formatter_class=argparse.RawDescriptionHelpFormatter,
                                  epilog=__doc__.split('\n\n', 1)[1])
     ap.add_argument('--budgets', type=int, nargs='+', default=[60, 120, 200])
     ap.add_argument('--judgments', help='a directory of whole-document judgments (default: the pilot\'s grades)')
+    ap.add_argument('--per-doc', action='store_true', help='also score each document on its own')
     ap.add_argument('--per-query', action='store_true')
+    ap.add_argument('--by-quote', action='store_true', help='find every stretch by its quote, as after a rebuild')
+    ap.add_argument('--agree', nargs=2, metavar='DIR', help='compare two judges of the same documents, and stop')
     ap.add_argument('--model', default=embed.DEFAULT_MODEL)
     ap.add_argument('--cost-power', type=float, help='override outline.COST_POWER')
     ap.add_argument('--quiet', choices=('runs', 'census', 'strong', 'auto'), help='override outline.QUIET')
     a = ap.parse_args()
+    if a.agree:
+        agreement(*a.agree)
+        return
     if a.cost_power is not None:
         outline.COST_POWER = a.cost_power
     if a.quiet:
         outline.QUIET = a.quiet
-    grades = judged_grades(a.judgments) if a.judgments else pilot_grades()
+    if a.judgments:
+        grades, keys = judged_grades(a.judgments)
+    else:
+        grades, keys = pilot_grades(), AU5
     conn = db.connect()
-    ps = passages_of(conn)
-    by_ko = {(p['key'], p['ord']): p for p in ps.values()}
-    nl = {k: [i for i, c in enumerate(anchor.raw_of(k)) if c == '\n'] for k in AU5}
-    unresolved, tot = [], {b: dict(opened=0, flagged=0, listB=0, listR=0, lines=0, listR_lines=0, max=0) for b in a.budgets}
-    for q, items in grades.items():
-        if not items:
-            continue
-        targets = []
+    C = Corpus(conn, keys)
+    unresolved, pq = [], [] if a.per_query else None
+    hows = {}
+    for items in grades.values():
         for it in items:
-            r = resolve(it, ps, nl)
-            if r:
-                targets.append((gain(it), r))
-            else:
-                unresolved.append((q, it['key'], it.get('quote', '')[:60]))
-        if not targets:
-            continue
-        mx = sum(g for g, _ in targets)
-        v = qvec(a.model, q)
-        res, _ = rank.search(conn, q, n=10 ** 6, model=a.model, keys=AU5, qvec=v)
-        ranked = [(r[1], r[2]) for r, _s, _e in res]
-        for b in a.budgets:
-            o = outline.Outline(conn, q, keys=AU5, qvec=v, model=a.model, budget=b)
-            opened = o.opened()
-            flagged = {(o.by_id[i]['key'], o.by_id[i]['ord']) for i in o.tier}
-            R = o.opened_lines()
-            listB = set(ranked[:max(1, (b - 1) // LIST_LINES)])
-            listR, rl = set(), 0
-            for ko in ranked:
-                if rl >= R:
-                    break
-                p = by_ko[ko]
-                rl += o.line(ko[0], p['end'] - 1) - o.line(ko[0], p['start']) + 1
-                listR.add(ko)
-            score = lambda S: sum(g for g, r in targets if r & S)
-            row = dict(opened=score(opened), flagged=score(flagged), listB=score(listB), listR=score(listR),
-                       lines=R, listR_lines=rl, max=mx)
-            for k in row:
-                tot[b][k] += row[k]
-            if a.per_query:
-                print(f'{q[:44]:<44} B={b:<4} opened {row["opened"] / mx:.2f}  flagged {row["flagged"] / mx:.2f}  '
-                      f'list@B {row["listB"] / mx:.2f}  list@R {row["listR"] / mx:.2f}   (R={R} lines, max gain {mx})')
-    print(f'\ngrades: {"whole-document judgments in " + a.judgments if a.judgments else "the pilot (pooled from ranked lists: leans toward the list)"}; '
+            s = C.resolve(it, a.by_quote)
+            hows[s['how'] if s else 'not found'] = hows.get(s['how'] if s else 'not found', 0) + 1
+    print(f'grades: {"whole-document judgments in " + a.judgments if a.judgments else "the pilot (pooled from ranked lists: leans toward the list)"}; '
           f'COST_POWER {outline.COST_POWER}, QUIET {outline.QUIET}')
-    print(f'{"budget":>7} {"opened":>8} {"flagged":>8} {"list@B":>8} {"list@R":>8} {"R lines":>8}')
-    for b in a.budgets:
-        t = tot[b]
-        m = t['max'] or 1
-        print(f'{b:>7} {t["opened"] / m:>8.3f} {t["flagged"] / m:>8.3f} {t["listB"] / m:>8.3f} {t["listR"] / m:>8.3f} {t["lines"]:>8}')
+    print('stretches found by: ' + ', '.join(f'{k} {v}' for k, v in sorted(hows.items())))
+    tot = score_scope(conn, C, grades, keys, a.budgets, a.model, a.by_quote, unresolved, pq, 'pooled')
+    print_table(tot, a.budgets, f'pooled: {len(keys)} documents under one budget')
+    if a.per_doc:
+        docs = {}
+        for key in keys:
+            docs[key] = score_scope(conn, C, grades, [key], a.budgets, a.model, a.by_quote, None, pq, key)
+        for key in keys:
+            print_table(docs[key], a.budgets, f'{key} on its own')
+        print('\nper document, covered (outline opened vs list read to the same source lines):')
+        print(f'{"":<34}' + ''.join(f'{"B=" + str(b):>16}' for b in a.budgets))
+        for key in keys:
+            cells = []
+            for b in a.budgets:
+                t = docs[key][b]
+                m = t['max'] or 1
+                cells.append(f'{t["opened_covered"] / m:.2f} vs {t["listR_covered"] / m:.2f}')
+            print(f'{key:<34}' + ''.join(f'{c:>16}' for c in cells))
+    if pq:
+        print('\nper query (reached / covered):')
+        for label, q, b, R, mx, row in pq:
+            print(f'{label[:20]:<20} {q[:40]:<40} B={b:<4} ' + '  '.join(f'{LABEL[m]} {row[m][0]:.2f}/{row[m][1]:.2f}' for m in METHODS)
+                  + f'  (R={R}, max {mx})')
     if unresolved:
-        print(f'\n{len(unresolved)} graded items found no passage holding their quote (not scored):')
+        print(f'\n{len(unresolved)} graded items found no passage (not scored):')
         for q, k, s in unresolved[:10]:
             print(f'  {q[:30]!r} {k}: {s!r}')
 
