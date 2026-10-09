@@ -220,7 +220,7 @@ The index should be ready for it. A translated edition keeps the canonical page 
 
 ## 10. Decisions for Joseph
 
-1. **Build it as designed, starting with the minimum in §11?** *Lean: yes.*
+1. ~~Build it as designed, starting with the minimum in §11?~~ *Decided by Joseph, 2026-10-09: yes.* He also said the pilot's `qrels-pilot.json` can stay in the public repo, and `qwen3-embedding:0.6b` stays installed for now.
 2. **Embedder: bge-m3**, confirmed by a bake-off on the gold queries once they exist. *Confidence: moderate-high.*
 3. **No cross-encoder at first** (§6.4). *Confidence: moderate*; the eval decides.
 4. **Recency favours newer**, within each organisation, mildly. This is the opposite of memorata. *Confidence: moderate.* An older document can matter more as a lineage root, which the lineage views handle rather than a weight.
