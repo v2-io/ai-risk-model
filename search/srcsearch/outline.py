@@ -16,9 +16,10 @@ How it is built:
 - the tree is the passages' heading paths (src.passages.path), which are fuller
   than the headings table: a statute's "§22757.12" is a path element without a
   heading of its own;
-- every passage in scope is scored by the hybrid ranking (rank.search: RRF of the
-  semantic and lexical rankings, times the priors), and a verbatim copy gets its
-  original's score;
+- the candidates rank.search gathers (passages holding a query word, the 400
+  nearest by meaning, and definitions of the term) are scored by the hybrid
+  ranking, and a verbatim copy gets its original's score. Every other passage in
+  scope counts as no hit (search/RANKING.md, H-C1);
 - the passages are cut into tiers relative to the scope: "top" is the best 2%
   (at least 10), "near" the next, to 10% (at least 40). The rest count as no hit.
   The tiers are ranks, not a judgment of relevance: a query nothing in scope

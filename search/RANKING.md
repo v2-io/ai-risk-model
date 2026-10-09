@@ -1,6 +1,6 @@
 # Ranking: the hypotheses, and the model that combines them
 
-*Drafted 2026-10-09 by Claude (Opus 5.5) at Joseph's request, then revised the same day after reviews by Fable and Gemini (`influx/reviews/ranking-*-2026-10-09.md`). Nothing here is built yet. It describes how `hybrid` ranks today (§2), the model to replace it (§3–§5), and the rules that keep the model re-examined (§6). The decisions are in §8: Claude's, supported by Joseph, each with what should cause it to be revisited.*
+*Drafted 2026-10-09 by Claude (Opus 5.5) at Joseph's request, then revised the same day after reviews by Fable, Gemini and Grok (`influx/reviews/ranking-*-2026-10-09.md`). Nothing here is built yet. It describes how `hybrid` ranks today (§2), the model to replace it (§3–§5), and the rules that keep the model re-examined (§6). The decisions are in §8: Claude's, supported by Joseph, each with what should cause it to be revisited.*
 
 ## 1. Why
 
@@ -82,7 +82,8 @@ Its log-odds is §3's sum, with each group's $\log \Lambda_g$ linear in that gro
 - **"Ranks or scores" stops being a dichotomy.** A feature can be a rank or a score; either way its coefficient is fitted. The earlier draft of this section leaned towards a fixed rank curve (H-F1). Both reviews argued against that, for a reason it had not weighed: rank evidence is relative to the scope and has no floor, so it can't say that nothing in scope is relevant. The outline and the answerability cue need exactly that.
 - **"Equal weights" gets a meaning.** It was undefined while the features' scales differed. Fable's example: under an RRF-shaped curve a group's whole top ten spans $\ln(70/61) \approx 0.14$ nats, about the same as the Influence multiplier's $\ln 1.10 \approx 0.10$, so Influence alone could reorder it. With every feature standardised over the candidates, equal opportunity is a prior on the coefficients, pulling them towards each other until the data say otherwise.
 - **The probability is testable.** The model claims a probability, not just an order, so its calibration can be checked: of passages it puts at $P = 0.7$, about 70% should be judged relevant.
-- **Absence is a value, not a gap.** Every candidate gets every feature. Cosine is computed for all candidates, not just the 400 nearest, which is an exact scan and cheap. A passage with no query word has BM25 0, a real value whose coefficient is fitted. A non-candidate is the one remaining absence (H-C1).
+- **What counts as relevant is fixed before fitting** (Grok). A grade-1 or grade-2 stretch is relevant, including a mention in a colliding sense: the pilot's judge graded the NRR's industrial "hazard" relevant, and those are mentions Joseph wants caught. That is a hypothesis about the project, not a detail of the evaluation, and a model fitted to "the AI sense only" would bury them.
+- **Absence is a value, not a gap.** Every candidate gets every feature. Cosine is computed for all candidates, not just the 400 nearest, which is an exact scan and cheap. A passage with no query word has BM25 0, a real value whose coefficient is fitted. A non-candidate is the one remaining absence (H-C1). The reviewers disagree on what absence should mean. Fable: it is evidence like any other value. Grok: a group that didn't retrieve a passage should contribute nothing, because missing words treated as evidence against relevance would fight H-M1, whose whole job is the passage that never uses the query's words. Today's code gives a missing lexical rank about zero, by accident of $1/(60 + N)$. The fit decides it, and Grok's whistleblower criterion (§8.4) guards against the paraphrase being buried.
 - **Today's multipliers are measured again, not translated.** They were measured on RRF's scale, so their register statuses drop back to *proposed* when the combiner changes, with the old measurements kept as impetus. The definition factor $1 + 2\,m\,c$ is the exception in form: it is exactly a mixture over whether the detection is right, so its shape survives and only its size is refitted.
 
 ### 3.3 Equal opportunity, fitting and testing
@@ -107,7 +108,7 @@ Each entry has:
 - **Fixture:** the synthetic case that would show it working.
 - **Evidence and status.**
 
-Statuses: *proposed* (no test), *fixture-checked*, *measured* (an ablation on the evaluations, with its result), *calibrated* (weight fitted to data), *refuted* (measured, and it hurt or did nothing; kept in the register with the measurement, so it isn't proposed again unknowingly).
+Statuses: *proposed* (no test), *fixture-checked*, *measured* (an ablation on the evaluations, with its result), *calibrated* (weight fitted to data), *refuted* (this encoding made the evaluations worse; kept in the register with the measurement, so it isn't proposed again unknowingly). An encoding that did nothing on these queries stays *measured*, with the queries named, since the queries may simply not test it (Grok). When an encoding changes, the Encoding line is the live one and the old one moves to a dated Evidence line.
 
 Notation: $q$ is the query, with content words $w_1, \dots, w_n$; $p$ is a passage, of $|p|$ words; $d$ is its document; $f(w, p)$ is the number of times $w$ occurs in $p$; $N$ is the number of passages, and $n_w$ the number holding $w$.
 
@@ -119,7 +120,7 @@ These come before any evidence is scored. They decide what the query is and what
 - Feature: q's words minus a stop list ("a", "of", "the" … and "what", "how", "does", "which", "we", "our"; `rank.STOP`).
 - Hypothesis: function words carry no evidence of relevance.
 - Encoding: dropped from BM25 and proximity, but kept by the phrase factor and the concordance, where "loss of control" needs its "of".
-- Open: that's two rules for one question. "What" and "how" are on the list because questions use them, which is a separate claim (H-Q2's kind).
+- Open: that's two rules for one question. "What" and "how" are on the list because questions use them, which is a separate claim (H-Q2's kind). And the two lists are opposites in places (Grok): `rank.STOP` drops "we", "our", "what", "how", "does" and "do" and keeps "not", "no" and "nor", while `match.FUNCTION_WORDS` does the reverse. One hypothesis should have one list, with the phrase keeping its function words by an explicit exception.
 
 **H-Q2 Definition intent.**
 - Feature: q begins "definition of", "what is", "define", "meaning of" (`rank.DEF_INTENT`).
@@ -129,7 +130,7 @@ These come before any evidence is scored. They decide what the query is and what
 
 **H-Q3 OCR repair.**
 - Feature: "Al" in q where "AI" was meant (`corpus.fix_ocr_ai`).
-- Hypothesis: a query typed from an uncorrected copy means "AI".
+- Hypothesis: a query typed from an uncorrected copy means "AI". The code is more careful than that: it leaves listed surnames and name-shaped references alone (Grok), and the hypothesis should say so, as well as the choice to run a document corrector on queries.
 
 **H-Q4 Case.**
 - Feature: capitals in q.
@@ -185,6 +186,7 @@ These come before any evidence is scored. They decide what the query is and what
 - Hypothesis: a stem-only match is weaker evidence, because stems merge words this project keeps apart.
 - Impetus: DESIGN §6.1, from the corpus's term collisions.
 - Encoding: the lexical score is $\ell(p) = \mathrm{BM25}_{\mathrm{exact}}(q, p) + 0.5\,\mathrm{BM25}_{\mathrm{stem}}(q, p)$.
+- Open (Grok): the encoding and the hypothesis disagree. An exact match also matches its stem, so an exact hit gets the exact term *plus* half the stem term, while a stem-only hit gets the half. The hypothesis wants a stem-only match as its own, weaker term, present only when the exact form is absent.
 - Status: measured. Replacing stems with longer word forms scored −0.011, because the query word is often the derived form itself ("misalignment" needs "misaligned"). That variant is *refuted* (H-W2b).
 
 **H-W3 Phrase.**
@@ -262,7 +264,7 @@ These come before any evidence is scored. They decide what the query is and what
 - Feature: p's section kind: toc, references, index, abbreviations, figure, restored.
 - Hypothesis: these mention terms without saying anything about them, so a match there is weaker evidence.
 - Encoding: $\times 0.3$ to $\times 0.7$ (§2).
-- Status: measured for toc and references (pilot); proposed for the rest. `figure` was set after one bad result.
+- Status: measured for toc and references (pilot); proposed for the rest. `figure` was set after one bad result, and it doesn't reach the result's neighbour (Grok, 2026-10-09): for "hazard" on IASR, rank 2 is a figure *caption*, which the chunker files as body, so the figure weight never touches it. The hypothesis covers captions that only name a term; the encoding covers six section kinds. Either the feature is made to match the hypothesis, or captions get a hypothesis of their own (a caption can be the sentence that says what a figure is for). Retuning 0.3 is not the answer.
 - Note: this is evidence about the passage's role, not a prior about it. A contents line holding "loss of control" is evidence of where the section is, which the outline uses.
 
 **H-R3 Boilerplate.**
@@ -282,14 +284,14 @@ These come before any evidence is scored. They decide what the query is and what
 - Feature: d's catalog Influence.
 - Hypothesis: a document others copy from is more often the one wanted.
 - Encoding: $\times 0.95$ to $\times 1.10$.
-- Status: proposed, and doubtful. The catalog says outright that reach "is not relevance". It may belong to the ordering of ties, or to presentation, not to evidence.
+- Status: proposed, and doubtful. The catalog says outright that reach "is not relevance". Grok's arithmetic: anchor against context is a factor of 1.16. With both sides at rank 1, that is 0.0361 against 0.0311, while one side falling from rank 1 to rank 10 moves the score only from 0.0328 to 0.0307. So "mild" is true beside a ×2.9 definition boost and false inside the top ten. Decided: out of ranking (§8).
 
 **H-D3 Recency.**
 - Feature: d's position among its organisation's documents by year.
 - Hypothesis: newer is more often wanted.
 - Impetus: Joseph: "Freshness of document, freshness within a source (company, institute)".
 - Encoding: $\times (1 + 0.05\,y)$, with $y \in [0, 1]$ the document's position by year.
-- Status: proposed. Like H-D1, it may be preference rather than relevance.
+- Status: proposed. Like H-D1, it may be preference rather than relevance. A bug in the encoding (Grok): a missing year is read as year 0, the organisation's oldest (`year or 0` in `_recency`). The neutral 0.5 applies only when the key is missing altogether.
 
 ### Fusion and candidates
 
@@ -301,7 +303,7 @@ These come before any evidence is scored. They decide what the query is and what
 **H-C1 The candidate pool.**
 - Feature: p is a candidate if it holds any query word, is among the 400 nearest, or defines the term.
 - Hypothesis: every relevant passage is a candidate.
-- Status: untested. The outline treats non-candidates as having no hits, so a miss here is silent.
+- Status: untested. The outline treats non-candidates as having no hits, so a miss here is silent. It can't be ablated, since there's nothing to switch off. The check is a count (Grok): of the judges' must-read stretches, how many hold no candidate passage. That count is the recall ceiling of the outline.
 
 **Not ranking, kept apart:**
 - the collapsing of verbatim copies, which is presentation;
@@ -316,7 +318,11 @@ The fixtures are a small synthetic corpus in `search/fixtures/`. Each case isola
 - **H-R1:** a definition of the term against a passage that only uses it. Predicted: the definition first, and a broader term's definition not boosted.
 - **H-R2:** a contents line holding the phrase against a body sentence holding it.
 
-Fixtures test each hypothesis's encoding in isolation. They need each signal to be computable from text and corpus statistics without the database, so signals become pure functions, with the database only fetching inputs (§7). A fixture that fails means the encoding doesn't say what its hypothesis says. That's a bug, found before any evaluation is run.
+Fixtures test each hypothesis's encoding in isolation. They need each signal to be computable from text and corpus statistics without the database, so signals become pure functions, with the database only fetching inputs (§7). Two requirements from Grok:
+- **The fixture corpus states its background statistics** ($N$, $n_w$, $\overline{|p|}$), or a BM25 order is an artifact of statistics nobody wrote down.
+- **Each case carries the negative its hypothesis also claims:** proximity abstains on one word; a broader term's definition isn't boosted; a missing year is neutral; a phrase match doesn't also get a full proximity term. H-R1's case names the strong competitor: an exact definition against a non-definition at rank 1 on both lists, plus a definition of a broader term. "A definition against a passage that only uses the term" would pass under almost any positive boost.
+
+A fixture that fails means the encoding doesn't say what its hypothesis says. That's a bug, found before any evaluation is run.
 
 ### 5.2 Ablation
 
@@ -343,7 +349,7 @@ The register lives in this file, and nothing ranks without an entry in it. Concr
   - when judged data are added;
   - when the embedder or the chunker changes;
   - when a hypothesis is added, since composition can change what the others contribute.
-- **The independence assumption (§3.1)** is checked directly. Across the judged data, compare how the groups' evidence correlates among relevant passages and among irrelevant ones. Strong correlation within one class means two groups are counting the same thing, and they should merge.
+- **The independence assumption (§3.1)** is checked directly, over the whole candidate pool with the whole-document labels mapped onto passages, not inside a judged top ten, which holds only passages today's ranker already promoted (Grok). Across the judged data, compare how the groups' evidence correlates among relevant passages and among irrelevant ones. Strong correlation within one class means two groups are counting the same thing, and they should merge.
 
 ## 7. Code that mirrors the model
 
@@ -362,7 +368,7 @@ Each module's pure functions take text and corpus statistics, and its fixture te
 
 ## 8. Decisions
 
-*Joseph, 2026-10-09: "I'm happy to go with your lean on anything-- I'm not going to be able to choose a better curve or priors or anything than you here. Mark your decisions as yours and supported by me and, if possible, what should cause someone to revisit it." So each decision below is Claude's, supported by Joseph. Each says what should cause someone to revisit it. They were made after Fable's and Gemini's reviews; Grok's review was still running, and if it raises something against one, that decision is revisited.*
+*Joseph, 2026-10-09: "I'm happy to go with your lean on anything-- I'm not going to be able to choose a better curve or priors or anything than you here. Mark your decisions as yours and supported by me and, if possible, what should cause someone to revisit it." So each decision below is Claude's, supported by Joseph. Each says what should cause someone to revisit it. They were made after Fable's and Gemini's reviews; Grok's review arrived after; decisions 3, 4 and 5 were revisited in its light the same day, and the sequence in 6 was changed.*
 
 1. **The model is a logistic regression on standardised features** (§3.2), not a fixed rank curve. Words gets BM25 on exact forms and on stems, headings as a BM25F field, and phrase and proximity as additive features (Gemini's point that the Words group was still multipliers inside). Meaning gets cosine, computed for every candidate. Role gets the definition match times its confidence, and section-kind indicators.
    - Revisit if coefficients change sign across the leave-one-document-out fits, which means too little data for that many features: drop to fewer.
@@ -370,7 +376,7 @@ Each module's pure functions take text and corpus statistics, and its fixture te
    - Revisit if the judged data roughly double, or the embedder or chunker changes.
 2. **Fit on the whole-document judgments by leave-one-document-out; test on the pilot's grades** (§3.3).
    - Revisit when more judged data exist, or if the two sets disagree on a feature's direction. That would mean one of them is biased in a way not yet understood.
-3. **Influence is out of relevance, and orders ties only.** Superseded versions become scope: by default only the active version is scored, with a note that older ones exist, and `--history` brings them in. Recency is out of relevance; a sort option can come later if someone asks.
+3. **Influence is out of ranking entirely, ties included** (changed after Grok's arithmetic, H-D2); reach belongs in `--by source` and the result's fields. Superseded versions become scope, as DESIGN §6.3 already specified: by default only the active version is scored, with a note that older ones exist, and `--history` brings them in. Recency is out of the default score; a sort option can come later if someone asks, and the missing-year bug (H-D3) is fixed whenever it returns.
    - Revisit Influence or recency if a study of what agents actually look for (the hallucination test's logs, DESIGN §11 step 8) shows them preferring anchor or newer documents beyond what relevance explains.
    - Revisit superseded if an agent misses content that exists only in an older version, for example text a later version dropped. That would call for a "dropped later" note rather than ranking.
 4. **Built beside today's model as `--fusion evidence`; it becomes the default only if it passes**, and the old path is then deleted. To pass:
@@ -378,11 +384,14 @@ Each module's pure functions take text and corpus statistics, and its fixture te
    - definitions still first on term queries;
    - outline-check no worse at 60, 120 and 200 lines;
    - `--explain`'s terms summing exactly to the score;
-   - the predicted probabilities calibrated.
+   - the predicted probabilities calibrated;
+   - "catastrophic risk" still leads with the exact definitions;
+   - "whistleblower" on SB 53 still surfaces the operative prohibition, which is semantic rank 1 and holds no query word.
 
-   The first four criteria are Gemini's, the last Fable's.
+   The first four criteria are Gemini's, the fifth Fable's, the last two Grok's. A 16-query nDCG can hold while either of those two moves.
    - Revisit if it fails: record where and why before deciding anything.
 5. **Fixtures are ours to write**, in `search/fixtures/`, one case per hypothesis to start. Each states an order the hypothesis predicts (for H-W4, adjacent before a sentence apart, a sentence apart before a paragraph apart) and tests the pure function directly.
    - Revisit when a hypothesis is added or its encoding changes; its fixture comes with it.
-6. **The first step is Fable's, before any restructuring:** fit the logistic model to the features today's `--explain` already prints, over the judged data, and read the coefficients. That measures what the earlier draft could only lean on.
+6. **The order of work** (Grok's sequencing): first write the Words group's equation and its fixtures in the current module. That means one BM25 on exact forms, a stem-only term, one positional term whose best case is the phrase, and heading as its own small term. Only then split the code into the modules of §7, since a split freezes whatever composition is implicit that day. Moving the concordance, definitions and answerability functions out of `rank.py` is independent and can happen any time.
+7. **The first measurement is Fable's, before any restructuring:** fit the logistic model to the features today's `--explain` already prints, over the judged data, and read the coefficients. That measures what the earlier draft could only lean on.
    - Revisit this plan if that fit shows the features as they stand already separate relevant from irrelevant well. Then the restructuring is about clarity, not quality, and can go at its own pace.
