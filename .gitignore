@@ -1,2 +1,3 @@
 # Git worktrees Claude Code makes for background sessions (experts/README.md)
 /.claude/worktrees/
+bin/__pycache__/

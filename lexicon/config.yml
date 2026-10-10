@@ -54,6 +54,8 @@ headwords:
 external:
   addr:
     title: address theory
+    # Since 2026-10-09 the theory is its own repository: v2-io/address-theory
+    # (local ~/src/address-theory). This udon pin still resolves; moving it is deliberate.
     note: imported by reference at v2-io/udon 90f4fb6
     href: https://github.com/v2-io/udon/tree/90f4fb6/v2/references/def
 
