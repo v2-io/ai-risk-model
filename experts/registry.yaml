@@ -20,7 +20,7 @@ experts:
     priming: the repo's CLAUDE.md describes SB 53; Joseph accepted it (2026-10-09) and the expert records it in its reflections
     read: []
     checkpoints: [the end of the reading]
-    context: {start: ~185k, at_unit_67_of_224: 312k}
+    context: {start: ~185k, at_unit_67_of_224: 312k, at_unit_172_of_224: 430k}
     context_after_preparation: null
     note: the pilot expert (README, Open); reading a paragraph per unit
   - key: eu-cop-2025-safety-security
