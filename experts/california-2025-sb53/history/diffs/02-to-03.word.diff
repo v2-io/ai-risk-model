@@ -1,0 +1,14 @@
+# Computed diff (mine, not Legislative Counsel's): 02-2025-02-27-amended-senate -> 03-2025-03-27-amended-senate
+# One line per paragraph. Produced with git diff --no-index on ../versions text bodies.
+# Word-level: [-struck-] {+inserted+}
+diff --git a/02-2025-02-27-amended-senate.txt b/03-2025-03-27-amended-senate.txt
+index 898d26c..dd2a58c 100644
+--- a/02-2025-02-27-amended-senate.txt
++++ b/03-2025-03-27-amended-senate.txt
+@@ -6 +6 @@ LEGISLATIVE COUNSEL'S DIGEST
+This bill would establish within the Government Operations Agency a consortium required to develop a framework for the creation of a public cloud computing cluster to be known as “CalCompute” that advances the development and deployment of artificial intelligence that is safe, ethical, equitable, and sustainable by, among other things, fostering research and innovation that benefits the public, as prescribed. The bill would require the Government Operations Agency to, on or before January 1, 2027, submit a report from the consortium to the Legislature with that [-framework.-]{+framework, and would dissolve the consortium upon submission of that report.+} The bill would make those provisions operative only upon an appropriation in a budget act, or other measure, for its purposes.
+@@ -40,2 +40,4 @@ Section 11547.6.1 is added to the Government Code, to read:
+(h) {+The members of the consortium shall serve without compensation, but shall be reimbursed for all necessary expenses actually incurred in the performance of their duties.+}
+{+(i) The consortium shall be dissolved upon submission of the report required by paragraph (1) of subdivision (f) to the Legislature.+}
+{+(j)+} If CalCompute is established within the University of California, the University of California may receive private donations for the purposes of implementing CalCompute.
+[-(i)-]{+(k)+} This section shall become operative only upon an appropriation in a budget act, or other measure, for the purposes of this section.
