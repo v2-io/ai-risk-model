@@ -1,0 +1,7 @@
+{"query": "hazard", "stretches": [
+ {"lines": [2901, 2901], "quote": "**Hazard:** Any event or activity that has the potential to cause harm", "grade": 2, "note": "The Report's one definition of the term (glossary)."},
+ {"lines": [2079, 2079], "quote": "Two prominent methods for identifying the risks from general-purpose AI are threat modelling", "grade": 1, "note": "Uses 'risk and hazard taxonomies' together without distinguishing them."},
+ {"lines": [2104, 2104], "quote": "|**System safety analysis**|System safety analysis highlights dependencies", "grade": 1, "note": "'system-level hazards' in the system-safety (STPA) row of the risk-analysis table."},
+ {"lines": [3085, 3085], "quote": "**Systems-theoretic process analysis (STPA):** A hazard analysis method", "grade": 1, "note": "Glossary: hazard analysis."},
+ {"lines": [1036, 1036], "quote": "**Figure\u00a02.1:** The number of events involving", "grade": 1, "note": "Names the OECD AI Incidents and Hazards Monitor as a data source; 'hazard' there is the source's term, not defined by the Report."}
+]}

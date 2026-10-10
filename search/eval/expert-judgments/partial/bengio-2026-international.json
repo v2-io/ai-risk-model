@@ -1,0 +1,69 @@
+{
+ "key": "bengio-2026-international",
+ "canonical_sha256": "95e91b7a5e14ad0ab91ae24e3a2a726fb924932c4bf6ed7887f35c23c29490a4",
+ "judge": "Claude Sonnet 5.5, the IASR source expert's fork (experiential reading of the whole source, units 1-340 of 481; reference list not read); stage 1, blind, written before any source-search run",
+ "read": "whole, in order, except the reference list ('Notes', lines 3137-7704)",
+ "date": "2026-10-10",
+ "queries": {
+  "hazard": [
+   {
+    "lines": [
+     2901,
+     2901
+    ],
+    "quote": "**Hazard:** Any event or activity that has the potential to cause harm",
+    "grade": 2,
+    "note": "The Report's one definition of the term (glossary)."
+   },
+   {
+    "lines": [
+     2079,
+     2079
+    ],
+    "quote": "Two prominent methods for identifying the risks from general-purpose AI are threat modelling",
+    "grade": 1,
+    "note": "Uses 'risk and hazard taxonomies' together without distinguishing them."
+   },
+   {
+    "lines": [
+     2104,
+     2104
+    ],
+    "quote": "|**System safety analysis**|System safety analysis highlights dependencies",
+    "grade": 1,
+    "note": "'system-level hazards' in the system-safety (STPA) row of the risk-analysis table."
+   },
+   {
+    "lines": [
+     3085,
+     3085
+    ],
+    "quote": "**Systems-theoretic process analysis (STPA):** A hazard analysis method",
+    "grade": 1,
+    "note": "Glossary: hazard analysis."
+   },
+   {
+    "lines": [
+     1036,
+     1036
+    ],
+    "quote": "**Figure 2.1:** The number of events involving",
+    "grade": 1,
+    "note": "Names the OECD AI Incidents and Hazards Monitor as a data source; 'hazard' there is the source's term, not defined by the Report."
+   }
+  ]
+ },
+ "not_judged_this_round": [
+  "catastrophic risk",
+  "loss of control",
+  "humans can no longer shut down or correct the AI system",
+  "misalignment",
+  "whistleblower",
+  "serious incident",
+  "what must a developer publish or report before deploying a frontier model",
+  "chemical and biological weapons uplift",
+  "evidence that models can sabotage, sandbag or evade oversight",
+  "cyber capabilities of frontier models",
+  "how the severity or acceptability of a risk is decided"
+ ]
+}

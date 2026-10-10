@@ -12,7 +12,7 @@
 
 ## What to know before using them
 
-- **Four of five sources.** The IASR expert's fork was stopped by a safety classifier on its first turn and is paused (2026-10-10). IASR has only its whole-document judge.
+- **Four of five sources.** The IASR expert's fork was stopped twice by a safety classifier, after turns that only checked a hash and ran a keyword search, so the cause is most likely the biological section in its context. It stopped itself (2026-10-10). Its one judged query ("hazard", stage 1) is in `partial/`, which the scorer doesn't read: a one-query file here would add IASR to the pooled scope and shift every document's cut. IASR has only its whole-document judge, which read the canonical text whole without a stop.
 - **The chemical and biological query** was left out for the Risk Report and AISI, after a classifier stop of another fork in that territory. SB 53 and the EU Code judged it with anchors and grades only.
 - **The AISI expert had read the earlier Opus AISI expert's notes** before judging (its notes say so), so its stage 1 isn't wholly unprimed.
 - **Questions the source can't answer in its own words** ("hazard" in a statute, say) were judged differently: some judges left them empty, while the experts mapped them to the source's nearest terms. That's a policy choice the evaluation hasn't made yet (EU Code and SB 53 notes).
