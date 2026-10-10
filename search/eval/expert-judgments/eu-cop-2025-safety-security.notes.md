@@ -84,3 +84,36 @@ Joseph asked for views beyond the format. From the reading:
 
   A search hit stripped of its heading loses this. Under "Examples of safety mitigations are", nothing is required by name.
 - **The places the text sends you,** one hop along "pursuant to".
+
+## After writing the above: against Grok's judgments and the SB 53 pilot
+
+*Added after both files above were committed, so what follows can't have shaped them.*
+
+**Against Grok's whole-document judgments** (`outline-judgments/eu-cop-2025-safety-security.json`, 2026-10-09):
+- **We agree on nearly every grade-2 stretch:**
+  - the loss-of-control definition, and its sources;
+  - recital (d) and M8.3 for whistleblowers;
+  - recital (j) and Commitment 9;
+  - C7, M1.4, M7.7 and M10.2;
+  - the CBRN and cyber specified risks;
+  - 'deception' and Appendix 3.2;
+  - C4 and M3.4.
+- **The main disagreement is about questions whose word the Code never uses.** Grok left "hazard" and "catastrophic risk" empty. I graded the Code's nearest concepts: 'systemic risk source' at grade 1; Art. 3(65), Appendix 1.2.1 and Appendix 1.4 at grade 2. The disagreement is about policy, not about the text. The evaluation should decide which reading "catastrophic risk" asked for. My view: an agent asking it of this source needs to be told the Code's word is "systemic", so an empty answer would mislead it.
+- **Grok caught one thing I missed:** M7.6's rule that a deliberate change made available on the market needs its Model Report update and full assessment first (L481, grade 2 for "what must… before deploying"). That's a real pre-deployment duty, for model updates.
+- **Grok also graded the content of M1.1** (what the Framework must contain) at 2 for that question. I graded only its deadline.
+- **Where I graded more:**
+  - for loss of control: Appendix 4.4, 'insider threats', the exfiltration definition, M9.3(2) and M5.1(8);
+  - for serious incidents: the Glossary precedence clause.
+
+  Grok graded Appendix 4.4 only under the sabotage/sandbag question.
+- **The grades for grade-1 context differ a lot**, as expected.
+
+**Against the SB 53 pilot's notes.** These are the patterns we both found, from different documents. One caution: the pilot's finding 1 cites "the EU Code expert" for the after-the-operative-text pattern. That came from my conversation with the SB 53 expert, so on that point we aren't independent. The others were found separately:
+- **A question naming its own document pulls in that name.** "SB 53" pulled in its digest heading; "the Code" pulled in the Objectives.
+- **Single-word false friends.** For SB 53: "internal" matched "internal process", "independent" matched "independent reasons". Here: "internal" matched internal market, validity and audit; "external" matched external validity.
+- **The answerability flag wrongly said "unanswered"** for the chemical-and-biological query in both documents. In mine it also did so for the chain-of-thought question. The all-words rule is the common cause.
+- **Snippets or anchors point at the wrong sentence in a long passage.** In both documents, list-shaped passages showed an item other than the one that matched.
+- **Passages cross the source's own boundaries.** In both, lists are merged into one passage or cut mid-list. Splitting on the source's item markers would help both.
+- **The outline opens a large share of the document.** For SB 53, 55% of lines over 18 queries. Here, 114–240 of 990 lines per query, with most ranges holding nothing graded.
+
+One finding of the pilot I can add a case to: qualifiers placed away from what they modify. Here they're Glossary definitions placed after the operative text. They change what M6.1 ('insider threats'), the Commitments' use of "appropriate", and every "including" list mean.
