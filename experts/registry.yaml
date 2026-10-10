@@ -64,10 +64,13 @@ experts:
     session: 81669188-e877-46c9-ad36-ef49b66ac9f2
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: reading (willing; units of at least 500 words, 249 units; conflict of interest named in its priming note)
+    state: paused (reading finished 2026-10-09: all 249 units of at least 500 words, every appendix; awaiting Joseph's /context and the triage of what it reads next)
     cwd: ~/src/ai-risk-model/.claude/worktrees/expert-risk-report-aug (fork from there; its ref/canonical is a symlink to the main checkout's, so bin/reading runs inside the worktree)
     branch: expert/anthropic-2026-risk-report-aug (reflections committed, not pushed)
-    read: []
+    read: [{key: anthropic-2026-risk-report-aug, sha256: 33cea4de19a3..., how: experientially, units of at least 500 words, 249 units}]
+    products: [reading/000-before.md (priming and conflict of interest), reading/001-249, reading/outline.md (structure, model of risk, pathway defence matrix), reading/questions.md (25 questions), reading/999-after.md (opening predictions scored), reading/conversion.md]
+    note_classifier: a safety classifier stopped one response at unit 171 (chemical/biological evidence); nothing ran or was written, and the expert then kept its section 4 reflections at the level of structure, statuses and conclusions. A fork needing CB specifics should go to the source text.
+    next_candidate: anthropic-2026-risk-report-feb, which the August report says got several things wrong or left out
     checkpoints: [unit 124 of 249 (reached, 2026-10-09 evening), the end of the reading]
     context_after_preparation: null
   - key: bengio-2026-international

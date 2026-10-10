@@ -11,6 +11,8 @@
 - **Article numbers lost in conversion.** EU Code expert, `eu-cop-2025-safety-security`: the LEGAL TEXT lines of Commitments 1 and 10 have lost their article numbers. Not fixed.
 - **A cited text that isn't there.** EU Code expert: Appendix 1 names "Recital 110 AI Act" under ADDITIONAL LEGAL TEXT, but no recital text follows. Whether the PDF holds it is unchecked. Not fixed.
 
+- **Footnotes moved away from their markers.** Risk Report expert, `anthropic-2026-risk-report-aug`: the conversion often puts a footnote's text far from its marker, which caused two of the expert's early misreadings. Its `reading/conversion.md` lists them. Not fixed.
+
 ## Ranking (`search/RANKING.md`)
 
 - **A summary inside the source outranks the text it gets wrong.** SB 53 expert: the Legislative Counsel's Digest drops decisive qualifiers and misprints "internal use" as "internet use", yet is keyword-dense. Registered as H-R4, proposed.
