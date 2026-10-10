@@ -8,3 +8,5 @@ california-2025-sb53             today     vs gemini        : unflagged 0.333; o
 california-2025-sb53             today     vs gemini|expert : unflagged 0.333; of it, also marked by gemini|expert 91%
 eu-cop-2025-safety-security      today     vs expert        : unflagged 0.158 of judged gain; of it, also marked by expert 67% (must-read unflagged 3, of it shared 100%)
 eu-cop-2025-safety-security      exp+tags  vs expert        : unflagged 0.079 of judged gain; of it, also marked by expert 44% (must-read unflagged 0, of it shared 0%)
+pooled over 4 docs, today: unflagged gain 135, of it marked by the expert too 66%
+pooled over 4 docs, exptags: unflagged gain 71, of it marked by the expert too 56%
