@@ -1,0 +1,20 @@
+# Computed diff (mine, not Legislative Counsel's): 02-2025-02-27-amended-senate -> 03-2025-03-27-amended-senate
+# One line per paragraph. Produced with git diff --no-index on ../versions text bodies.
+diff --git a/02-2025-02-27-amended-senate.txt b/03-2025-03-27-amended-senate.txt
+index 898d26c..dd2a58c 100644
+--- a/02-2025-02-27-amended-senate.txt
++++ b/03-2025-03-27-amended-senate.txt
+@@ -5,3 +5,3 @@ LEGISLATIVE COUNSEL'S DIGEST
+ (1) Existing law establishes the Department of Technology within the Government Operations Agency. Existing law requires the department to conduct, in coordination with other interagency bodies as it deems appropriate, a comprehensive inventory of all high-risk automated decision systems that have been proposed for use, development, or procurement by, or are being used, developed, or procured by, any state agency.
+-This bill would establish within the Government Operations Agency a consortium required to develop a framework for the creation of a public cloud computing cluster to be known as “CalCompute” that advances the development and deployment of artificial intelligence that is safe, ethical, equitable, and sustainable by, among other things, fostering research and innovation that benefits the public, as prescribed. The bill would require the Government Operations Agency to, on or before January 1, 2027, submit a report from the consortium to the Legislature with that framework. The bill would make those provisions operative only upon an appropriation in a budget act, or other measure, for its purposes.
++This bill would establish within the Government Operations Agency a consortium required to develop a framework for the creation of a public cloud computing cluster to be known as “CalCompute” that advances the development and deployment of artificial intelligence that is safe, ethical, equitable, and sustainable by, among other things, fostering research and innovation that benefits the public, as prescribed. The bill would require the Government Operations Agency to, on or before January 1, 2027, submit a report from the consortium to the Legislature with that framework, and would dissolve the consortium upon submission of that report. The bill would make those provisions operative only upon an appropriation in a budget act, or other measure, for its purposes.
+ (2) Existing law prohibits employers and their agents from making, adopting, or enforcing a rule, regulation, or policy preventing an employee from disclosing information to certain entities or from providing information to, or testifying before, any public body conducting an investigation, hearing, or inquiry if the employee has reasonable cause to believe that the information discloses a violation of a law, as specified, and prohibits retaliation against an employee for, among other things, exercising these rights.
+@@ -39,4 +39,6 @@ Section 11547.6.1 is added to the Government Code, to read:
+ (2) Eight members of the consortium shall be selected by the Secretary of Government Operations, and the President pro Tempore of the Senate and the Speaker of the Assembly shall each select three members.
+-(h) If CalCompute is established within the University of California, the University of California may receive private donations for the purposes of implementing CalCompute.
+-(i) This section shall become operative only upon an appropriation in a budget act, or other measure, for the purposes of this section.
++(h) The members of the consortium shall serve without compensation, but shall be reimbursed for all necessary expenses actually incurred in the performance of their duties.
++(i) The consortium shall be dissolved upon submission of the report required by paragraph (1) of subdivision (f) to the Legislature.
++(j) If CalCompute is established within the University of California, the University of California may receive private donations for the purposes of implementing CalCompute.
++(k) This section shall become operative only upon an appropriation in a budget act, or other measure, for the purposes of this section.
+ SEC. 2.

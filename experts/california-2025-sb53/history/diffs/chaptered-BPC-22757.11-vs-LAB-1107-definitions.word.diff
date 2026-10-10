@@ -1,0 +1,29 @@
+# Chaptered text (identical in 08, 09, 10): B&P §22757.11(c)–(d) [-as struck-] vs Labor Code §1107(a), (c) {+as inserted+}.
+# Computed by me (word diff). Subdivision labels stripped so the words align; LAB §1107(b) "Covered employee" omitted (no B&P counterpart).
+# Read [-x-]{+y+} as: B&P says x where the Labor Code says y.
+
+“Catastrophic risk” means a foreseeable and material risk that a frontier developer’s development, storage, use, or deployment of a [-frontier-]{+foundation+} model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a [-frontier-]{+foundation+} model doing any of the following:
+
+Providing expert-level assistance in the creation or release of a chemical, biological, radiological, or nuclear weapon.
+
+Engaging in conduct with no meaningful human oversight, intervention, or supervision that is either a cyberattack or, if[-the conduct had been-] committed by a human, would constitute the crime of murder, assault, extortion, or theft, including theft by false pretense.
+
+Evading the control of its frontier developer or user.
+
+“Catastrophic risk” does not include a foreseeable and material risk from any of the following:
+
+Information that a [-frontier-]{+foundation+} model outputs if the information is otherwise publicly accessible in a substantially similar form from a source other than a foundation model.
+
+Lawful activity of the federal government.
+
+Harm caused by a [-frontier-]{+foundation+} model in combination with other software [-if-]{+where+} the [-frontier-]{+foundation+} model did not materially contribute to the harm.
+
+“Critical safety incident” means any of the following:
+
+Unauthorized access to, modification of, or exfiltration [-of,-]{+of+} the model weights of a [-frontier-]{+foundation+} model that results in [-death or-]{+death,+} bodily [-injury.-]{+injury, or damage to, or loss of, property.+}
+
+Harm resulting from the materialization of a catastrophic risk.
+
+Loss of control of a [-frontier-]{+foundation+} model causing death or bodily injury.
+
+A [-frontier-]{+foundation+} model that uses deceptive techniques against the frontier developer to subvert the controls or monitoring of its frontier developer outside of the context of an evaluation designed to elicit this behavior and in a manner that demonstrates materially increased catastrophic risk.

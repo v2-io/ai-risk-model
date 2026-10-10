@@ -1,0 +1,39 @@
+# Computed diff (mine, not Legislative Counsel's): 03-2025-03-27-amended-senate -> 04-2025-05-23-amended-senate
+# One line per paragraph. Produced with git diff --no-index on ../versions text bodies.
+# Word-level: [-struck-] {+inserted+}
+diff --git a/03-2025-03-27-amended-senate.txt b/04-2025-05-23-amended-senate.txt
+index dd2a58c..77da7db 100644
+--- a/03-2025-03-27-amended-senate.txt
++++ b/04-2025-05-23-amended-senate.txt
+@@ -8 +8 @@ This bill would establish within the Government Operations Agency a consortium r
+This bill would, among other things related to protecting whistleblowers working with certain artificial intelligence models, prohibit a developer from making, adopting, {+enforcing,+} or [-enforcing-]{+entering into+} a rule, regulation, {+policy,+} or [-policy-]{+contract+} that prevents an employee from disclosing, or retaliates against an employee for disclosing, information to the Attorney General, {+a+} federal [-authorities,-]{+authority, a person with authority over the employee,+} or another employee who has authority to investigate, discover, or correct the reported issue, if the employee has reasonable cause to believe that the information discloses that the developer’s activities pose a critical risk or that the developer has made false or misleading statements about its management of critical risk. The bill would define “critical risk” to mean a foreseeable and material risk that a developer’s development, storage, or deployment of a foundation model, as defined, will result in the death of, or serious injury to, more than 100 people, or more than $1 billion in damage to rights in money or property, as provided. The bill would also require a developer to provide a certain internal process through which an employee may anonymously disclose information to the developer if the employee believes in good faith that the information indicates that the developer’s activities present a critical risk, {+or that the developer has made a false or misleading statement about its management of critical risk,+} as prescribed. The bill would specify provisions particular to enforcement and would authorize attorney’s fees to a plaintiff who brings a successful action for a violation.
+@@ -58,3 +58,5 @@ For purposes of this chapter:
+(d) “Employee” means a person who performs services for[-wages or a salary under a contract of employment, express or implied, for-] an employer, including both of the following:
+(1) [-(A) Contractors-]{+A contractor, subcontractor,+} or [-subcontractors and-]{+an+} unpaid [-advisors-]{+advisor+} involved with assessing, managing, or addressing[-the risk of-] critical [-harm from covered models and covered model derivatives.-]{+risk, including all of the following:+}
+{+(A) An independent contractor.+}
+(B) [-As used in this paragraph, “contractor or subcontractor” means a firm, corporation, partnership, or association and its responsible managing officer, as well as any supervisors, managers, and officers found-]{+A freelance worker.+}
+{+(C) A person employed+} by [-the Labor Commissioner to be personally and substantially responsible for the willful violation of this chapter.-]{+a labor contractor.+}
+@@ -63,3 +65,4 @@ For purposes of this chapter:
+(1) Trained on {+a+} broad [-data.-]{+data set.+}
+(2) [-Uses self-supervision in the training process.-]{+Designed for generality of output.+}
+(3) [-Applicable across-]{+Adaptable to+} a wide range of [-contexts.-]{+distinctive tasks.+}
+{+(f) “Labor contractor” means an individual or entity that supplies, either with or without a contract, a client employer with workers to perform labor within the client employer’s usual course of business.+}
+@@ -67 +70 @@ For purposes of this chapter:
+(a) A developer shall not make, adopt, {+enforce,+} or [-enforce-]{+enter into+} a rule, regulation, {+policy,+} or [-policy-]{+contract+} that prevents an employee from disclosing, or retaliates against an employee for disclosing, information to the Attorney General, {+a+} federal [-authorities,-]{+authority, a person with authority over the employee,+} or another employee who has authority to investigate, discover, or correct the reported issue, if the employee has reasonable cause to believe that the information discloses either of the following:
+@@ -70,2 +73,6 @@ For purposes of this chapter:
+(b) {+A developer shall not enter into a contract that prevents an employee from making a disclosure protected under Section 1102.5.+}
+{+(c) A developer shall not make, adopt, enforce, or enter into a rule, regulation, policy, or contract that would prevent an organization or entity that provides goods or services to the developer related to the assessment, management, or addressing of critical risk, or an employee of that organization or entity, from disclosing information to the Attorney General, a federal authority, or the developer if the organization, entity, or individual has reasonable cause to believe that the information discloses either of the following:+}
+{+(1) The developer’s activities pose a critical risk.+}
+{+(2) The developer has made a false or misleading statement about its management of critical risk.+}
+{+(d)+} An employee may use the hotline described in Section 1102.7 to make reports described in subdivision (a).
+[-(c)-]{+(e)+} A developer shall provide a clear notice to all employees of their rights and responsibilities under this section, including by doing either of the following:
+@@ -74 +81 @@ For purposes of this chapter:
+[-(d)-]{+(f)+} (1) A developer shall provide a reasonable internal process through which an employee may anonymously disclose information to the developer if the employee believes in good faith that the information indicates that the developer’s activities present a critical risk, {+or that the developer has made a false or misleading statement about its management of critical risk,+} including a monthly update to the person who made the disclosure regarding the status of the developer’s investigation of the disclosure and the actions taken by the developer in response to the disclosure.
+@@ -77,3 +84,3 @@ For purposes of this chapter:
+[-(e)-]{+(g)+} The court is authorized to award reasonable attorney’s fees to a plaintiff who brings a successful action for a violation of this section.
+[-(f)-]{+(h)+} In a civil action brought pursuant to this section, once it has been demonstrated by a preponderance of the evidence that an activity proscribed by this section was a contributing factor in the alleged prohibited action against the employee, the developer shall have the burden of proof to demonstrate by clear and convincing evidence that the alleged action would have occurred for legitimate, independent reasons even if the employee had not engaged in activities protected by this section.
+[-(g)-]{+(i)+} (1) In a civil action or administrative proceeding brought pursuant to this section, an employee may petition the superior court in any county wherein the violation in question is alleged to have occurred, or wherein the person resides or transacts business, for appropriate temporary or preliminary injunctive relief.
+@@ -84 +91,3 @@ For purposes of this chapter:
+[-(h)-]{+(j)+} Notwithstanding Section 916 of the Code of Civil Procedure, injunctive relief granted pursuant to this section shall not be stayed pending appeal.
+{+(k) (1) This section does not impair or limit the applicability of Section 1102.5.+}
+{+(2) The remedies provided by this section are cumulative to each other and the remedies or penalties available under all other laws of this state.+}

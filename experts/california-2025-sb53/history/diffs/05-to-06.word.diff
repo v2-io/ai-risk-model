@@ -1,0 +1,102 @@
+# Computed diff (mine, not Legislative Counsel's): 05-2025-07-08-amended-assembly -> 06-2025-07-17-amended-assembly
+# One line per paragraph. Produced with git diff --no-index on ../versions text bodies.
+# Word-level: [-struck-] {+inserted+}
+diff --git a/05-2025-07-08-amended-assembly.txt b/06-2025-07-17-amended-assembly.txt
+index a41a3df..a509fc2 100644
+--- a/05-2025-07-08-amended-assembly.txt
++++ b/06-2025-07-17-amended-assembly.txt
+@@ -7 +7,4 @@ LEGISLATIVE COUNSEL'S DIGEST
+This bill would enact the Transparency in Frontier Artificial Intelligence Act (TFAIA) that would, among other things related to ensuring the safety of a foundation model developed by a large developer, require a large developer to write, implement, and clearly and conspicuously publish on its internet website a safety and security protocol that describes in specific detail, among other things, the testing procedures that the large developer uses to assess catastrophic risks from its foundation models, as specified. The TFAIA would define “foundation model” to mean an artificial intelligence model that is trained on a broad data set, designed for generality of output, and adaptable to a wide range of distinctive tasks. The TFAIA would require the Attorney General to establish a mechanism to be used by a large developer or a member of the public to report, as prescribed, a critical safety incident, as defined, and would authorize the Attorney General to periodically update the definition of “foundation model,” as specified.
+The {+TFAIA would require, beginning January 1, 2030, and at least annually thereafter, a large developer to retain an independent third-party auditor to produce a report assessing whether the large developer has substantially complied with its safety and security protocol and any instances of substantial noncompliance during the prior year, as specified, and would require, within 30 days after completing an audit, the auditor to transmit to the Attorney General a high-level summary of the report that fairly presents, in all material respects, the outcome of the audit.+}
+{+The TFAIA would exempt from the California Public Records Act a report of a critical safety incident submitted to the Attorney General, an employee report made pursuant to the whistleblower protections described below, and a summary of an auditor’s report.+}
+{+The+} bill would impose a civil penalty for noncompliance {+with the TFAIA+} to be enforced by the Attorney [-General.-]{+General, as prescribed.+}
+@@ -12,0 +16,2 @@ This bill would require a large developer to provide a certain internal process
+{+Existing constitutional provisions require that a statute that limits the right of access to the meetings of public bodies or the writings of public officials and agencies be adopted with findings demonstrating the interest protected by the limitation and the need for protecting that interest.+}
+{+This bill would make legislative findings to that effect.+}
+@@ -29,3 +34,2 @@ The Legislature finds and declares all of the following:
+(m)[-A computational threshold of 10^26 floating point operations captures the current frontier of foundation model development and captures only highly resourced developers spending hundreds of millions of dollars to develop foundation models.-]
+[-(n)-] In the future, foundation models developed by smaller companies or that are behind the frontier may pose significant catastrophic risk, and additional legislation may be needed at that time.
+[-(o)-]{+(n)+} It is the intent of the Legislature to create more transparency, but collective safety will depend in part on large developers taking due care in their development and deployment of foundation models proportional to the scale of the foreseeable risks.
+@@ -42 +46 @@ For purposes of this chapter:
+(b) “Catastrophic risk” means a foreseeable and material risk that a large developer’s development, storage, use, or deployment of a foundation model will materially contribute to the death of, or serious injury to, more than [-100-]{+50+} people or more than one billion dollars ($1,000,000,000) in damage [-to rights in money-]{+to,+} or {+loss of,+} property arising from a single incident, scheme, or course of conduct involving a dangerous capability.
+@@ -46 +50 @@ For purposes of this chapter:
+(3) Loss of control of a foundation model causing death, bodily injury, or damage [-to rights in money-]{+to,+} or {+loss of,+} property.
+@@ -47,0 +52 @@ For purposes of this chapter:
+{+(5) Attaining a dangerous capability or catastrophic risk threshold, as defined in the large developer’s safety and security protocol pursuant to paragraph (3) of subdivision (a) of Section 22757.12, for the first time.+}
+@@ -51 +56 @@ For purposes of this chapter:
+(3) Engage in conduct, with limited human intervention, that would, if committed by a human, constitute the crime of {+murder, assault,+} extortion, {+or+} theft, including theft by [-deception, or a serious or violent felony.-]{+false pretense.+}
+@@ -55,6 +60 @@ For purposes of this chapter:
+(f)[-“Large developer” means either of the following:-]
+[-(1) (A) Before January 1, 2027, “large developer” means a person who has trained, or initiated the training of, at least one foundation model using a quantity of computing power greater than 10^26 integer or floating-point operations.-]
+[-(B) The quantity of computing power described in subparagraph (A) shall include computing for the original training run and any subsequent fine-tuning, reinforcement learning, or other material modifications to a preceding foundation model.-]
+[-(2) (A) Except as provided in subparagraph (B), on and after January 1, 2027, “large developer” has the meaning defined by a regulation adopted by the Attorney General pursuant to Section 22757.15.-]
+[-(B) If the Attorney General does not adopt a regulation described in subparagraph (A) by January 1, 2027, the definition in paragraph (1) shall be operative until the regulation is adopted.-]
+[-(g)-] “Foundation model” means an artificial intelligence model that is all of the following:
+@@ -63,0 +64,7 @@ For purposes of this chapter:
+{+(g) “Large developer” means either of the following:+}
+{+(1) (A) Before January 1, 2027, “large developer” means a person who meets both of the following criteria:+}
+{+(i) (I) The person has trained, or initiated the training of, at least one foundation model using a quantity of computing power greater than 10^26 integer or floating-point operations.+}
+{+(II) The quantity of computing power described in subclause (I) shall include computing for the original training run and any subsequent fine-tuning, reinforcement learning, or other material modifications to a preceding foundation model.+}
+{+(ii) The person had annual gross revenues in excess of one hundred million dollars ($100,000,000) in the preceding calendar year.+}
+{+(2) (A) Except as provided in subparagraph (B), on and after January 1, 2027, “large developer” has the meaning defined by a regulation adopted by the Attorney General pursuant to Section 22757.15.+}
+{+(B) If the Attorney General does not adopt a regulation described in subparagraph (A) by January 1, 2027, the definition in paragraph (1) shall be operative until the regulation is adopted.+}
+@@ -65 +72,2 @@ For purposes of this chapter:
+(i) {+“Property” means tangible or intangible property.+}
+{+(j)+} “Safety and security protocol” means documented technical and organizational protocols to manage, assess, and mitigate catastrophic risks.
+@@ -67,2 +75,2 @@ For purposes of this chapter:
+(a) A large developer shall write, implement, {+comply with,+} and clearly and conspicuously publish on its internet website a safety and security protocol that describes in specific detail all of the following:
+(1) How, if at all, the large developer excludes certain foundation models from being covered by its safety and security protocol because those foundation models [-do not pose-]{+are incapable of posing+} material catastrophic [-risks.-]{+risks and which foundation models, if any, have been included.+}
+@@ -70,7 +78,10 @@ For purposes of this chapter:
+(3) {+(A) Thresholds used by the large developer to identify and assess whether a foundation model has attained a dangerous capability or poses a catastrophic risk.+}
+{+(B) How the large developer will assess whether a threshold described in subparagraph (A) has been attained, which may include multiple tiered thresholds for different dangerous capabilities or for catastrophic risk.+}
+{+(C) The actions the large developer will take if each threshold is attained.+}
+{+(4)+} The mitigations that a large developer takes to reduce a catastrophic risk and how the large developer assesses the effectiveness of those mitigations.
+[-(4)-]{+(5)+} The degree to which the large developer’s assessments of catastrophic risk and {+dangerous capabilities and+} the effectiveness of catastrophic risk mitigations are reproducible by external entities.
+[-(5)-]{+(6)+} The extent to which, and how, a large developer will use third parties to assess catastrophic risks and {+dangerous capabilities and+} the effectiveness of mitigations of catastrophic risk.
+[-(6)-]{+(7)+} The large developer’s cybersecurity practices and how the large developer secures unreleased model weights from unauthorized modification or transfer by internal or external parties.
+[-(7)-]{+(8)+} To the extent that the foundation model is controlled by the large developer, the procedures the large developer will use to monitor critical safety incidents and the steps that a large developer would take to respond to a critical safety incident, including, but not limited to, {+whether the large developer has the ability to promptly shut down copies of foundation models owned and controlled by the large developer,+} who the large developer will [-notify-]{+notify,+} and the timeline on which the large developer would take these steps.
+[-(8)-]{+(9)+} The testing procedures that the large developer will use to assess and manage a catastrophic risk {+or dangerous capability+} resulting from the internal use of its foundation models, including risks resulting from a foundation model circumventing oversight mechanisms, and the schedule, specified in days, by which the large developer will report these assessments pursuant to subdivision (d).
+[-(9)-]{+(10)+} How the developer determines when its foundation models are substantially modified enough to conduct additional assessments and publish a transparency report pursuant to subdivision (c).
+@@ -78,3 +89,2 @@ For purposes of this chapter:
+(c) [-Before-]{+Before,+} or concurrently [-with-]{+with,+} deploying a new foundation model or a substantially modified version of an existing foundation [-model,-]{+model that is covered by the large developer’s safety and security protocol,+} a large developer shall clearly and conspicuously publish on its internet website a transparency report containing [-all-]{+both+} of the following:
+(1) {+(A)+} The results of any risk [-assessment, the steps taken to address any identified risks, and the results of any-]{+assessment or+} risk mitigation assessment conducted by the large developer {+or a third party that contracts with a large developer+} pursuant to its safety and security [-protocol.-]
+[-(2) (A) The results of any risk assessment,-]{+protocol, why the information gathered by the large developer or third party leads to the stated results, and+} the steps taken to address any identified [-risks, and the results of any risk mitigation assessment conducted pursuant to a large developer’s safety and security protocol that is conducted by a third party that contracts with a large developer.-]{+risks.+}
+@@ -82 +92,2 @@ For purposes of this chapter:
+[-(3) (A) If the deployment would pose-]{+(C) Whether+} a catastrophic [-risk,-]{+risk threshold or dangerous capability threshold has been attained for+} the {+foundation model and any actions taken as a result.+}
+{+(2) (A) The+} reasoning behind the large developer’s decision to deploy the foundation model, the process by which the large developer arrived at that decision, and any limitations in the assessments that the large developer used to make that decision.
+@@ -84,2 +95,2 @@ For purposes of this chapter:
+(d) A large developer shall clearly and conspicuously publish on its internet website any assessment of catastrophic risk {+or dangerous capabilities+} resulting from internal use of its foundation models pursuant to the schedule the developer specifies in its safety and security protocol.
+(e) A large developer shall not make a materially false or misleading statement about catastrophic risk from its foundation [-models or-]{+models,+} its management of catastrophic [-risk.-]{+risk, or its implementation of or compliance with its safety and security protocol.+}
+@@ -93 +104,2 @@ For purposes of this chapter:
+(b) [-A-]{+(1) Subject to paragraph (2), a+} large developer shall report any critical safety incident pertaining to one or more of its foundation models to the Attorney General within 15 days of discovering the critical safety incident.
+{+(2) If a large developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the large developer shall disclose that incident within 24 hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.+}
+@@ -94,0 +107,5 @@ For purposes of this chapter:
+{+(d) The Attorney General may transmit reports of critical safety incidents, reports from employees made pursuant to Chapter 5.1 (commencing with Section 1107) of Part 3 of Division 2 of the Labor Code, and summaries of auditor reports required by Section 22757.14 to the Legislature, the Governor, the federal government, or appropriate state agencies.+}
+{+(e) A report of a critical safety incident submitted to the Attorney General pursuant to this section, a employee report made pursuant to Chapter 5.1 (commencing with Section 1107) of Part 3 of Division 2 of the Labor Code, and a summary of an auditor’s report required by Section 22757.14 are exempt from the California Public Records Act (Division 10 (commencing with Section 7920.000) of Title 1 of the Government Code).+}
+{+(f) (1) Beginning January 1, 2027, and annually thereafter, the Attorney General shall produce a report with anonymized and aggregated information about critical safety incidents, reports from employees made pursuant to Chapter 5.1 (commencing with Section 1107) of Part 3 of Division 2 of the Labor Code, and summaries of auditor’s reports required by Section 22757.14 that have been reviewed by the Attorney General since the preceding report.+}
+{+(2) The Attorney General shall not include information in a report pursuant to this subdivision that would compromise the trade secrets or cybersecurity of a large developer, public safety, or the national security of the United States or that would be prohibited by any federal or state law.+}
+{+(3) The Attorney General shall transmit a report pursuant to this subdivision to the Legislature, pursuant to Section 9795, and to the Governor.+}
+@@ -96,2 +113,8 @@ For purposes of this chapter:
+(a) [-A violation of this chapter-]{+Beginning January 1, 2030, and at least annually thereafter, a large developer+} shall [-be subject-]{+retain an independent third-party auditor+} to {+produce+} a [-civil penalty-]{+report assessing both of the following:+}
+{+(1) Whether the large developer has substantially complied with its safety and security protocol and any instances of substantial noncompliance during the prior year.+}
+{+(2) Any instances+} in [-an amount-]{+which the large developer’s safety and security protocol has+} not {+been stated clearly enough+} to [-exceed ____ dollars ($____) per violation, unless-]{+determine whether+} the [-violation is willful or reckless, in which case-]{+large developer has complied.+}
+{+(b) A large developer shall allow the third-party auditor access to all materials produced to comply with this chapter and any other materials reasonably necessary to perform+} the [-civil penalty-]{+assessment required by this section.+}
+{+(c) A large developer+} shall [-be in-]{+retain a report required by this section for five years.+}
+{+(d) In conducting+} an [-amount not-]{+audit for a large developer pursuant+} to [-exceed ____ dollars ($____).-]
+[-(b) The civil penalty-]{+this section, an auditor+} shall [-be assessed-]{+employ or contract one or more individuals with expertise in corporate compliance and one or more individuals with technical expertise+} in {+the safety of foundation models.+}
+{+(e) Within 30 days after completing an audit, the auditor shall transmit to the Attorney General+} a [-civil action brought only-]{+high-level summary of the report required+} by {+this section that fairly presents, in all material respects,+} the [-Attorney General.-]{+outcome of the audit.+}
+{+(f) An auditor shall not knowingly include a material misrepresentation or omit a material fact in a summary or report produced pursuant to this section.+}
+@@ -106,0 +130,9 @@ For purposes of this chapter:
+{+22757.16.+}
+{+(a) A large developer who violates this chapter shall be subject to a civil penalty subject to all of the following:+}
+{+(1) (A) For an unknowing violation that does not create a material risk of death, serious physical injury, or a catastrophic risk, a large developer shall be subject to a civil penalty in an amount not to exceed ten thousand dollars ($10,000).+}
+{+(B) (i) If the violation is a first violation subject to a civil penalty pursuant to subparagraph (A), a large developer shall be provided with a 30-day period to cure the violation after notification by the Attorney General. If the violation is cured within that period, a civil penalty shall not be imposed for that violation.+}
+{+(ii) For the purposes of this subparagraph, a violation involving the missing or late publication or submission of a document is cured when the developer publishes or submits that document, even if the publication or submission occurs after the statutory deadline.+}
+{+(2) For a knowing violation that does not create a material risk of death, serious physical injury, or a catastrophic risk or an unknowing violation that creates a material risk of death, serious physical injury, or a catastrophic risk, a large developer shall be subject to a civil penalty in an amount not to exceed one hundred thousand dollars ($100,000).+}
+{+(3) For a knowing violation that creates a material risk of death, serious physical injury, or a catastrophic risk, a large developer shall be subject to a civil penalty in an amount not to exceed one million dollars ($1,000,000) for a violation that is the large developer’s first such violation and in an amount not exceeding ten million dollars ($10,000,000) for any subsequent violation.+}
+{+(b) A violation of this chapter by an auditor shall be subject to a civil penalty in an amount not to exceed ten thousand dollars ($10,000).+}
+{+(c) A civil penalty described in this section shall be recovered in a civil action brought only by the Attorney General.+}
+@@ -187,0 +220,3 @@ SEC. 5.
+{+SEC. 6.+}
+{+The Legislature finds and declares that Section 2 of this act, which adds Chapter 25.1 (commencing with Section 22757.10) to Division 8 of the Business and Professions Code, imposes a limitation on the public’s right of access to the meetings of public bodies or the writings of public officials and agencies within the meaning of Section 3 of Article I of the California Constitution. Pursuant to that constitutional provision, the Legislature makes the following findings to demonstrate the interest protected by this limitation and the need for protecting that interest:+}
+{+Information in critical safety incident reports, summaries of auditor’s reports, and reports from employees may contain information that could threaten public safety or compromise the response to an incident if disclosed to the public.+}
