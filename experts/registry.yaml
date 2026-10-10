@@ -92,13 +92,13 @@ experts:
     name: expert-aisi-2025-frontier-sonnet
     session: 78d471da-d663-4696-8ea4-7f793eb201d8
     model: sonnet
-    effort: the default (low or medium, Joseph judged), not set at launch
+    effort: the default (low or medium, Joseph judged) for the reading; raised to xhigh by Joseph afterwards
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: paused (reading finished 2026-10-09: all 123 units of at least 80 words, every claim-bearing figure, the reference list and glossary; no safeguard flags; 399k after the reading, against about 600-700k for the Opus experts; what it reads next is Joseph's call)
+    state: paused (reading finished 2026-10-09: all 123 units of at least 80 words, every claim-bearing figure, the reference list and glossary; no safeguard flags; 399k after the reading; then, at Joseph's request, a conversation with him, a cross-reading of its predecessor and a second pass of wandering, so its context has grown; a fresh /context is needed before forking)
     branch: expert/aisi-2025-frontier-sonnet, in .claude/worktrees/expert-aisi-2025-frontier
     read: [{key: aisi-2025-frontier, sha256: 0677c8340149..., how: experientially, units of at least 80 words, 123 units}]
-    products: [reading/00-start.md (priming), reading/01-reflections.md (~31k words, one entry per unit), reading/98-flags-and-conversion-notes.md, reading/99-questions.md]
+    products: [reading/00-start.md (priming), reading/01-reflections.md (~31k words, one entry per unit), reading/98-flags-and-conversion-notes.md, reading/99-questions.md, reading/97-cross-read-earlier-expert.md, reading/02-08 (second-pass wandering over units 38-123, marked as hindsight, about 14k words)]
     after_reading: Joseph talked with it at length (2026-10-10), and had it read the flagged Opus AISI expert's reflections (units 1-33); a fork holds both readings
     checkpoints: [unit 62 of 123 (reached), the end (reached)]
     context_after_preparation: null

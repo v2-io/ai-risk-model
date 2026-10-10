@@ -13,7 +13,7 @@
 
 - **Footnotes moved away from their markers.** Risk Report expert, `anthropic-2026-risk-report-aug`: the conversion often puts a footnote's text far from its marker, which caused two of the expert's early misreadings. Its `reading/conversion.md` lists them. Not fixed.
 
-- **Pages with no text.** AISI Sonnet expert, `aisi-2025-frontier`: PDF pages 50–51 came through with no text, between the references and the glossary. Not fixed.
+- ~~**Pages with no text.**~~ AISI Sonnet expert, `aisi-2025-frontier`: it first reported PDF pages 50–51 as empty, then checked the PDF and withdrew it. Nothing was lost; the page labels were off.
 
 - **Superscripts flattened into wrong numbers.** IASR Sonnet expert, `bengio-2026-international`: exponents lost their superscript, so "10^13 tokens" reads as "1013 tokens", and some citation markers vanish ("(MMLU, )"). A reader or a search takes the wrong number at face value; the same kind of fault as RAISE's "10º26". Not fixed.
 - **Image figures and tables missing from a web edition.** IASR Sonnet expert: figures and tables that are images (Fig 1.2, Table 1.4) aren't in the text, and their image files aren't local for IASR's web edition. Not fixed.
