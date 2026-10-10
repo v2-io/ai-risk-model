@@ -37,7 +37,7 @@ experts:
     lineage: [eu-cop-2025-safety-security, eu-cop-chairs-2025-statement]
     available: true
     name: expert-eu-cop-2025-safety-security
-    forks: [expert-eu-cop-2025-safety-security-fork-1 (session 6bff3be9-c897-49c8-a08d-6fc8e9522974; the recall test, passed; /context 637k after its task, against the expert's 617k; stopped)]
+    forks: [expert-eu-cop-2025-safety-security-fork-1 (session 6bff3be9-c897-49c8-a08d-6fc8e9522974; the recall test, passed; /context 637k after its task, against the expert's 617k; stopped), expert-eu-cop-2025-safety-security-fork-gold-1 (2026-10-10, started by ai-risk-model-61: gold judgments, round 1, blind then shown; brief in experts/fork-briefs/gold-round-1-eu-cop-2025-safety-security.md; running)]
     session: 7354940e-6bd5-44cc-86a2-bd1b61638fd6
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
@@ -73,7 +73,7 @@ experts:
     session: 81669188-e877-46c9-ad36-ef49b66ac9f2
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    forks: [expert-anthropic-2026-risk-report-aug-fork-1 (the recall test from the main checkout, though its transcript is filed under its worktree; passed; stopped)]
+    forks: [expert-anthropic-2026-risk-report-aug-fork-1 (the recall test from the main checkout, though its transcript is filed under its worktree; passed; stopped), expert-anthropic-2026-risk-report-aug-fork-gold-1 (2026-10-10, started by ai-risk-model-61: gold judgments, round 1, blind then shown; brief in experts/fork-briefs/gold-round-1-anthropic-2026-risk-report-aug.md; running)]
     state: prepared (2026-10-09, Joseph: an expert at 703k, to be stopped and kept for questions; all 249 units of at least 500 words, every appendix)
     branch: expert/anthropic-2026-risk-report-aug (reflections committed, not pushed)
     read: [{key: anthropic-2026-risk-report-aug, sha256: 33cea4de19a3..., how: experientially, units of at least 500 words, 249 units}]
@@ -99,6 +99,7 @@ experts:
     lineage: [aisi-2025-frontier]
     available: true
     name: expert-aisi-2025-frontier-sonnet
+    forks: [expert-aisi-2025-frontier-fork-gold-1 (2026-10-10, started by ai-risk-model-61: gold judgments, round 1, blind then shown; brief in experts/fork-briefs/gold-round-1-aisi-2025-frontier.md; running)]
     session: 78d471da-d663-4696-8ea4-7f793eb201d8
     model: sonnet
     effort: the default (low or medium, Joseph judged) for the reading; raised to xhigh by Joseph afterwards
@@ -125,6 +126,6 @@ experts:
     read: [{key: bengio-2026-international, sha256: 95e91b7a5e14..., how: experientially, units of at least 300 words, units 1-340}]
     products: [reading/reflections.md (about 530 KB; its last section gives the reference-list decision and the findings a fork should know first)]
     publishing: unmerged and unpushed; the reflections quote the report at length, and this repo keeps IASR's full text local (CLAUDE.md), so merging is Joseph's call
-    forks: [expert-bengio-2026-international-sonnet-fork-1 (session 4f716349; its impressions and a comparison with the Opus expert's reflections, committed on its branch; resumed once to finish the comparison (session b59f044b); 962k at the end; stopped)]
+    forks: [expert-bengio-2026-international-sonnet-fork-1 (session 4f716349; its impressions and a comparison with the Opus expert's reflections, committed on its branch; resumed once to finish the comparison (session b59f044b); 962k at the end; stopped), expert-bengio-2026-international-fork-gold-1 (2026-10-10, started by ai-risk-model-61: gold judgments, round 1, blind then shown; brief in experts/fork-briefs/gold-round-1-bengio-2026-international.md; running)]
     checkpoints: [unit 211 of 481, the end of Chapter 2 (reached), the end (unit 340, reached)]
     context_after_preparation: 775k
