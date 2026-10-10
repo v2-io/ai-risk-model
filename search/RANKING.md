@@ -121,6 +121,7 @@ These come before any evidence is scored. They decide what the query is and what
 - Hypothesis: function words carry no evidence of relevance.
 - Encoding: dropped from BM25 and proximity, but kept by the phrase factor and the concordance, where "loss of control" needs its "of".
 - Open: that's two rules for one question. "What" and "how" are on the list because questions use them, which is a separate claim (H-Q2's kind). And the two lists are opposites in places (Grok): `rank.STOP` drops "we", "our", "what", "how", "does" and "do" and keeps "not", "no" and "nor", while `match.FUNCTION_WORDS` does the reverse. One hypothesis should have one list, with the phrase keeping its function words by an explicit exception.
+- Evidence, 2026-10-10 (the shortfall spike, `influx/spikes/spike-search-shortfall-2026-10-10/`, verified de novo): adding "can", "no", "not", "must", "longer" and similar words to the stop list moved the outline's flagged score by −0.001; dropping every word in more than 5% or 10% of passages, by −0.012. BM25's idf already discounts them. Status: these variants measured, null on the outline's measure. Unifying the two lists is still worth doing for clarity.
 
 **H-Q2 Definition intent.**
 - Feature: q begins "definition of", "what is", "define", "meaning of" (`rank.DEF_INTENT`).
@@ -142,6 +143,7 @@ These come before any evidence is scored. They decide what the query is and what
 - Feature: how q and p are cut into words.
 - Hypothesis: the unit of matching is the word, with apostrophes inside a word kept.
 - Encoding: inconsistent, found 2026-10-09. `hybrid`'s query words keep a hyphenated word whole ("loss-of-control" is one token, `text.WORD_RE`), while the literal matcher splits it into three. Postgres's parser does something else again. One of these is an unstated assumption; which should win isn't decided.
+- Found 2026-10-10 (the shortfall spike): Postgres's parser reads slash-joined words ("Misalignment/Instrumental", "chemical/biological", "threats/risks") as a single `file` token, so BM25 sees neither word. That's 4,748 passages in 393 texts by the spike's count, and 6,047 passages by the verifier's regex (`[A-Za-z]{2,}/[A-Za-z]{2,}`). Not fixed.
 
 **H-Q6 Term identity for definitions.**
 - Feature: a defined term and the query's term, each normalised: folded, unaccented, quotes, emphasis and a parenthetical abbreviation removed, the last word made singular (`text.norm_term`).
@@ -154,6 +156,7 @@ These come before any evidence is scored. They decide what the query is and what
 - Encoding: in `lexical` and in the phrase factor, the run-on; in BM25, stems.
 - Status: the cap and spelling rules were measured on 18 key terms (DESIGN §7.1); stems against run-on as a ranking leg, measured (H-W2b).
 - Open: the two encodings disagree by design, and that disagreement is itself unexamined.
+- Open, found 2026-10-10 (the SB 53 and Risk Report experts' gold forks; the shortfall spike): compounds. "cyber" reaches neither "cyberattack" nor "cybersecurity", and "shut down" doesn't reach "shutdown", since neither the stems nor the four-letter cap covers a compound. The spike estimates it at about 3% of the outline's shortfall, though the verifier notes that morphology also contributes to misses classed under other causes.
 
 **H-Q8 Expansion through the lexicon** (proposed 2026-10-10).
 - Feature: the query's terms resolved through the lexicon's per-source term mappings to each source's own wording ("loss of control" → the EU Code's "reliably direct, modify, or shut down"; "developer" → the AI Act's "provider").
@@ -162,6 +165,13 @@ These come before any evidence is scored. They decide what the query is and what
 - Decided against, 2026-10-10: fine-tuning the embedder on lexicon mappings. That would hide our translation decisions in the vectors, where they can't be seen, attributed or switched off, and freeze first-pass mappings. Joseph raised fine-tuning, Claude argued for explicit expansion instead, and Joseph agreed: "a potential new hybrid factor or flag that does lexicon-based permutations-- we'll stay model-agnostic still for now."
 - Encoding: none yet. It needs the lexicon's mapping records (plan G4). `--explain` should name each mapping used, so every expansion is visible and can be checked.
 - Open: a factor in the default ranking or an opt-in flag; how a closed ambiguity (`{a | b}`) expands; whether expansion also widens the candidate pool (H-C1), which it would have to in order to help at all.
+- Evidence, 2026-10-10 (the shortfall spike and its de novo verification, `influx/spikes/spike-search-shortfall-2026-10-10/`): a stand-in, since the lexicon has no mappings yet. An agent that hadn't seen the documents or the judgments wrote rephrasings and related concepts for each query, each phrase fused as its own legs.
+  - Against the whole-document judges: +0.025 at equal weight, +0.050 (interval +0.015 to +0.094) at double weight.
+  - Against the experts' blind judgments: −0.002 and +0.023 (−0.008 to +0.056).
+  - With document-side tags (H-M3), the expansions also matched against the tags: +0.118 against the whole-document judges, +0.098 (+0.063 to +0.139) against the experts. The combination is the robust result.
+  - About a quarter of the gain is the model recalling the sources' own wording from training: 25 phrases occur verbatim in only one Au5 source, and dropping them takes +0.050 to +0.038. A lexicon-derived expansion won't carry that memory, and less famous documents won't give it.
+  - Related concepts helped as much as rewordings, so the encoding should expand through the lexicon's relations (broader, narrower, related) as well as its equivalences.
+- Status: measured as a ceiling with a model-written expansion; no lexicon encoding yet.
 
 **H-T1 The unit of relevance.**
 - Feature: the passage: about 800–1,500 characters, never across a heading, one glossary entry or definition per passage, split at paragraphs then sentences, with one sentence of overlap (DESIGN §5.2).
@@ -258,6 +268,26 @@ These come before any evidence is scored. They decide what the query is and what
 - Impetus: DESIGN §5.4.
 - Status: proposed.
 - Known failure: a short passage's embedding is dominated by the title, so site navigation ranks first for "whistleblower" on SB 53. Either the hypothesis needs a bound (context weighted by the passage's length), or the failure belongs to H-R3.
+- Evidence, 2026-10-10 (the shortfall spike): all of Au5 re-embedded with and without the title and path. The outline's flagged score moved ±0.01, while cosine-alone AUC is 0.845 with the context against 0.798 without, so the context helps the bulk ordering. The single case that prompted the test (the EU Code's loss-of-control definition at cosine rank 105) is the same without the context. Status: measured; kept.
+
+**H-M3 Document-side concept tags** (proposed 2026-10-10).
+- Feature: tags written for each passage (by a model, by the source's expert, or from the lexicon's terms), indexed as their own legs: BM25 over the tags and an embedding of the joined tags.
+- Hypothesis: a passage restated in the field's standard vocabulary is findable by queries written in that vocabulary, including a passage that names a concept only through an instance or a mechanism.
+- Impetus: Joseph's DESIGN §12 idea (summaries and tags "allowed to influence the rankings"); the shortfall spike.
+- Evidence, 2026-10-10 (the shortfall spike and its de novo verification, `influx/spikes/spike-search-shortfall-2026-10-10/`). Six Sonnet agents tagged every Au5 passage without seeing the queries or judgments:
+  - against the whole-document judges: +0.068 (interval +0.030 to +0.107);
+  - against the experts' blind judgments: +0.042 (−0.005 to +0.083);
+  - on the experts' own 27 questions, which nothing in the spike saw: +0.028 (−0.014 to +0.079), near the ceiling;
+  - a control using each passage's own top TF-IDF words: +0.003, so the gain is the tagger's knowledge;
+  - precision in the top tier rose only 0.008, so part of the gain is spread across more stretches, not more precision;
+  - tags sharing a word with their passage gave +0.043, and tags sharing none +0.018: they work mostly by restating a passage in standard vocabulary.
+- Caveats: the taggers' brief told them what the tags were for (an upper bound); tagging procedure varied with the document; the taggers share a family with most judges.
+- Status: measured, with those caveats.
+- Open:
+  - a bare-prompt tagging control, a tagger from another family, and one procedure across all documents;
+  - the tags' vocabulary: free tags drifted between batches ("sandbagging" against "underperformance on evaluations"). Three tiers, each labelled: free tags written by a model, an expert's source-aware tags, and the lexicon's terms, the last superseding the others as entries land;
+  - whether a larger embedder or a cross-encoder does the same normalisation, which would make the tags redundant. Untested;
+  - tags are our reading: shown as ours, never quoted as the source's, allowed to raise a passage and never to exclude one (DESIGN §12).
 
 ### Role
 
@@ -317,7 +347,7 @@ These come before any evidence is scored. They decide what the query is and what
 **H-C1 The candidate pool.**
 - Feature: p is a candidate if it holds any query word, is among the 400 nearest, or defines the term.
 - Hypothesis: every relevant passage is a candidate.
-- Status: untested. The outline treats non-candidates as having no hits, so a miss here is silent. It can't be ablated, since there's nothing to switch off. The check is a count (Grok): of the judges' must-read stretches, how many hold no candidate passage. That count is the recall ceiling of the outline.
+- Status: measured, 2026-10-10 (the shortfall spike): 0.057 of the judged gain, pooled over Au5, sits in stretches holding no candidate passage. Scoring every passage by cosine instead of the nearest 400 recovered only +0.005, since those passages are far away by cosine too. Before that: untested. The outline treats non-candidates as having no hits, so a miss here is silent. It can't be ablated, since there's nothing to switch off. The check is a count (Grok): of the judges' must-read stretches, how many hold no candidate passage. That count is the recall ceiling of the outline.
 
 **Not ranking, kept apart:**
 - the collapsing of verbatim copies, which is presentation;
@@ -409,3 +439,5 @@ Each module's pure functions take text and corpus statistics, and its fixture te
 6. **The order of work** (Grok's sequencing): first write the Words group's equation and its fixtures in the current module. That means one BM25 on exact forms, a stem-only term, one positional term whose best case is the phrase, and heading as its own small term. Only then split the code into the modules of §7, since a split freezes whatever composition is implicit that day. Moving the concordance, definitions and answerability functions out of `rank.py` is independent and can happen any time.
 7. **The first measurement is Fable's, before any restructuring:** fit the logistic model to the features today's `--explain` already prints, over the judged data, and read the coefficients. That measures what the earlier draft could only lean on.
    - Revisit this plan if that fit shows the features as they stand already separate relevant from irrelevant well. Then the restructuring is about clarity, not quality, and can go at its own pace.
+   - **Done 2026-10-10** (the shortfall spike, verified de novo). Held out, the fit raised passage AUC from 0.866 to 0.88–0.89, but the outline's flagged score fell to 0.70–0.74, against today's 0.752. In-sample it gives 0.731. Weighting each passage by its stretch gives 0.754 in-sample and 0.733 held out. So this revisit condition is met: rebuilding the combiner on today's features is about clarity, not quality. `heading` and `figure` changed sign across folds, which also meets decision 1's revisit condition.
+   - Claude's lean after the spike, not yet Joseph's: change decision 6's order so that the new evidence legs (H-M3's tags, H-Q8's expansion) come before the combiner rebuild, and fit any combiner to the stretch-level measure the tool is for, not to passage likelihood.
