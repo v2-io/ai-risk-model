@@ -56,7 +56,7 @@ experts:
     session: dce07d10-4941-4c1e-9446-a00a684f6c13
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 33, at the source's biological section; whether it can continue is unchecked)
+    state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 33, at the source's biological section; stopped 2026-10-10; not to be forked: a fork would replay the flagged turn, and its successor, the -sonnet expert, read the whole source)
     branch: expert/aisi-2025-frontier
     read: []
     reflections: merged into main except units 30-32, its reflections on the biological section, which are on the local branch expert/aisi-2025-frontier-held only (the coordinator's caution: the safeguards flagged what was being written there)
@@ -83,7 +83,7 @@ experts:
     session: 240cfb7e-db79-4ea2-bd47-d42e8614bc54
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 134, at the source's biological section; whether it can continue is unchecked)
+    state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 134, at the source's biological section; stopped 2026-10-10; not to be forked: a fork would replay the flagged turn, and its successor, the -sonnet expert, read the whole source)
     branch: expert/bengio-2026-international
     read: []
     reflections: merged into main except units 129-133, its reflections on the biological section, which are on the local branch expert/bengio-2026-international-held only (the coordinator's caution: the safeguards flagged what was being written there)
