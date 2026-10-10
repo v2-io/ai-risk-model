@@ -110,11 +110,11 @@ experts:
     effort: the default (low or medium, Joseph judged), not set at launch
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: paused (reading finished 2026-10-09: units 1-340 of 481, the report, glossary and citation; the reference list left out by its own call, reasons and cost in its file; 775k by Joseph's /context, as its own estimate of about 770k said; it asked for no further messages)
+    state: prepared (2026-10-10, stopped by Joseph at 775k; units 1-340 of 481, the report, glossary and citation; the reference list left out by its own call)
     branch: worktree-expert-bengio-2026-international-sonnet, in .claude/worktrees/expert-bengio-2026-international-sonnet
     read: [{key: bengio-2026-international, sha256: 95e91b7a5e14..., how: experientially, units of at least 300 words, units 1-340}]
     products: [reading/reflections.md (about 530 KB; its last section gives the reference-list decision and the findings a fork should know first)]
     publishing: unmerged and unpushed; the reflections quote the report at length, and this repo keeps IASR's full text local (CLAUDE.md), so merging is Joseph's call
     forks: [expert-bengio-2026-international-sonnet-fork-1 (session 4f716349; its impressions and a comparison with the Opus expert's reflections, committed on its branch; resumed once to finish the comparison (session b59f044b); 962k at the end; stopped)]
     checkpoints: [unit 211 of 481, the end of Chapter 2 (reached), the end (unit 340, reached)]
-    context_after_preparation: null
+    context_after_preparation: 775k
