@@ -56,7 +56,7 @@ experts:
     session: dce07d10-4941-4c1e-9446-a00a684f6c13
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: reading (willing; units of at least 100 words)
+    state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 33, at the source's biological section; whether it can continue is unchecked)
     branch: expert/aisi-2025-frontier
     read: []
     checkpoints: [unit 54 of 108, the end of the reading]
@@ -82,7 +82,7 @@ experts:
     session: 240cfb7e-db79-4ea2-bd47-d42e8614bc54
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: reading (willing; units of at least 500 words, about 338 expected; the bibliography left out, the glossary and notes read)
+    state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 134, at the source's biological section; whether it can continue is unchecked)
     branch: expert/bengio-2026-international
     read: []
     checkpoints: [the halfway unit (about 170), the end of the reading; readings at no other times, at its request]
