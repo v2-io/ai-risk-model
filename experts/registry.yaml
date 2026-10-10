@@ -94,9 +94,10 @@ experts:
     model: sonnet
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: asked
+    state: reading (units of at least 80 words, 123 units; passed the chem/bio units 33-45 on claims, evidence and status, with no flags)
+    branch: expert/aisi-2025-frontier-sonnet, in .claude/worktrees/expert-aisi-2025-frontier
     read: []
-    checkpoints: []
+    checkpoints: [unit 62 of 123 (reached), the end of the reading]
     context_after_preparation: null
   - key: bengio-2026-international
     lineage: [bengio-2026-international, bengio-2026-international-extended, bengio-2025-international, bengio-2025-iasr-key-update-1, bengio-2025-iasr-key-update-2]
