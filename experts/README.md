@@ -77,7 +77,7 @@ The order is Claude's, from the conversation: the source first, so the expert se
 
 ### 4b. Exploring, and talking with each other
 
-After the reading, Joseph's guidance (2026-10-09): experts "should be welcome to explore a bit and fire off any delegated agents to do web searches etc. as desired", and room should be left for experts to talk with each other, asking about each other's readings and experiences of reading, before either reaches about 700k tokens.
+Experiential reading is for the expert's core document only; anything read after it can be read however serves the expert best (Joseph, 2026-10-09). After the reading, Joseph's guidance (2026-10-09): experts "should be welcome to explore a bit and fire off any delegated agents to do web searches etc. as desired", and room should be left for experts to talk with each other, asking about each other's readings and experiences of reading, before either reaches about 700k tokens.
 
 ### 5. Kept, never compacted
 
