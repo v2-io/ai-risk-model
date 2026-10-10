@@ -1,0 +1,11 @@
+gain-weighted share of judged stretches with a passage within the cut (cut as share of 1,872 Au5 passages)
+   cut     38     94    188    282    374    562    936   1872
+ share     2%     5%    10%    15%    20%    30%    50%   100%
+        hybrid  0.422  0.602  0.752  0.833  0.867  0.900  0.933  0.943
+ semantic_full  0.329  0.463  0.645  0.731  0.788  0.844  0.915  1.000
+       lexical  0.364  0.561  0.706  0.736  0.771  0.809  0.861  0.882
+must-read only:
+        hybrid  0.548  0.719  0.849  0.911  0.932  0.938  0.952  0.959
+ semantic_full  0.459  0.582  0.788  0.849  0.897  0.904  0.945  1.000
+       lexical  0.459  0.651  0.788  0.815  0.842  0.870  0.904  0.918
+random ranking, cut 188: 0.215

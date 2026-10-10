@@ -1,0 +1,2 @@
+judge claude: max 105, flagged 0.667; unflagged 0.333 = also marked by gemini 0.200 + marked by claude alone 0.133
+judge gemini: max 95, flagged 0.768; unflagged 0.232 = also marked by claude 0.158 + marked by gemini alone 0.074

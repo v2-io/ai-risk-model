@@ -1,0 +1,15 @@
+query                                                       today       exp R+N a2          tags b1  exp+tags+eot b1
+hazard                                                       0.94             0.94             0.94             0.94
+catastrophic risk                                            0.81             0.85             0.91             0.94
+loss of control                                              0.73             0.84             0.86             0.90
+humans can no longer shut down or correct the AI             0.40             0.60             0.48             0.71
+misalignment                                                 0.63             0.69             0.76             0.76
+whistleblower                                                1.00             1.00             1.00             1.00
+serious incident                                             0.95             0.95             0.97             0.97
+what must a developer publish or report before d             0.81             0.85             0.80             0.91
+chemical and biological weapons uplift                       0.77             0.77             0.93             0.93
+evidence that models can sabotage, sandbag or ev             0.82             0.85             0.83             0.87
+cyber capabilities of frontier models                        0.76             0.90             0.76             0.93
+how the severity or acceptability of a risk is d             0.66             0.64             0.79             0.75
+POOLED                                                      0.752            0.802            0.820            0.870
+POOLED must                                                 0.849            0.897            0.918            0.959

@@ -1,0 +1,44 @@
+today's hybrid:            AUC 0.866   flagged@188 0.752
+cosine alone (full scan):  AUC 0.845   flagged@188 0.645
+LR today-features     held out by doc  : AUC 0.882   flagged@188 0.740
+    coefficient (mean, min, max over folds; standardised features):
+      cos            +2.215  [+1.418, +2.715]
+      log_sem_rank   -0.671  [-0.975, -0.126]
+      lex            +0.562  [+0.413, +0.721]
+      has_lex        +0.131  [+0.003, +0.207]
+      phrase         +0.187  [+0.081, +0.249]
+      heading        +0.059  [-0.066, +0.349] SIGN FLIPS
+      prox           +0.046  [+0.004, +0.080]
+      defines        +0.269  [+0.126, +0.428]
+      coverage       -0.131  [-0.201, -0.072]
+      log_nwords     -0.087  [-0.134, -0.007]
+      sec_references -2.203  [-2.671, -0.991]
+      sec_glossary   -0.215  [-0.376, -0.025]
+      sec_annex      -0.055  [-0.071, -0.032]
+      sec_figure     -0.109  [-0.576, +0.031] SIGN FLIPS
+      sec_toc        -0.773  [-0.927, -0.524]
+      sec_restored   +0.116  [+0.078, +0.235]
+LR today-features     held out by query: AUC 0.894   flagged@188 0.703
+    coefficient (mean, min, max over folds; standardised features):
+      cos            +2.342  [+1.590, +2.669]
+      log_sem_rank   -0.750  [-0.924, -0.289]
+      lex            +0.547  [+0.460, +0.681]
+      has_lex        +0.123  [-0.080, +0.200] SIGN FLIPS
+      phrase         +0.191  [+0.154, +0.233]
+      heading        +0.019  [-0.123, +0.251] SIGN FLIPS
+      prox           +0.048  [-0.002, +0.091] SIGN FLIPS
+      defines        +0.644  [+0.116, +4.001]
+      coverage       -0.135  [-0.190, -0.049]
+      log_nwords     -0.082  [-0.137, -0.052]
+      sec_references -2.283  [-2.512, -2.070]
+      sec_glossary   -0.228  [-0.328, -0.160]
+      sec_annex      -0.065  [-0.089, -0.043]
+      sec_figure     -0.003  [-0.044, +0.031] SIGN FLIPS
+      sec_toc        -0.744  [-0.828, -0.539]
+      sec_restored   +0.079  [+0.058, +0.092]
+LR cos+lex only       held out by doc  : AUC 0.856   flagged@188 0.737
+LR cos+lex only       held out by query: AUC 0.876   flagged@188 0.715
+LR cos only           held out by doc  : AUC 0.837   flagged@188 0.653
+LR cos only           held out by query: AUC 0.845   flagged@188 0.645
+LR hybrid score only  held out by doc  : AUC 0.838   flagged@188 0.733
+LR hybrid score only  held out by query: AUC 0.866   flagged@188 0.752

@@ -1,0 +1,23 @@
+grades: whole-document judgments in search/eval/outline-judgments; COST_POWER 0.0, QUIET auto
+stretches found by: lines 469
+
+pooled: 5 documents under one budget
+ budget            reached  covered     must
+     60  opened      0.332    0.288    0.393   (outline opened 1734 source lines in all)
+         flagged     0.752        —        —
+         list@B      0.235    0.185    0.255
+         list@R      0.397    0.315    0.418
+
+per query (reached / covered):
+pooled               hazard                                   B=60   opened 0.65/0.65  flagged 0.94/0.94  list@B 0.65/0.65  list@R 0.82/0.82  (R=78, max 17)
+pooled               catastrophic risk                        B=60   opened 0.45/0.40  flagged 0.81/0.70  list@B 0.40/0.36  list@R 0.47/0.40  (R=189, max 47)
+pooled               loss of control                          B=60   opened 0.33/0.31  flagged 0.73/0.63  list@B 0.16/0.13  list@R 0.33/0.31  (R=86, max 70)
+pooled               humans can no longer shut down or correc B=60   opened 0.11/0.11  flagged 0.40/0.36  list@B 0.06/0.06  list@R 0.06/0.06  (R=19, max 63)
+pooled               misalignment                             B=60   opened 0.31/0.24  flagged 0.63/0.55  list@B 0.19/0.07  list@R 0.41/0.30  (R=295, max 54)
+pooled               whistleblower                            B=60   opened 0.96/0.89  flagged 1.00/0.93  list@B 0.78/0.67  list@R 0.96/0.89  (R=145, max 27)
+pooled               serious incident                         B=60   opened 0.45/0.41  flagged 0.95/0.87  list@B 0.25/0.21  list@R 0.47/0.40  (R=134, max 64)
+pooled               what must a developer publish or report  B=60   opened 0.35/0.32  flagged 0.81/0.66  list@B 0.20/0.16  list@R 0.46/0.38  (R=188, max 81)
+pooled               chemical and biological weapons uplift   B=60   opened 0.23/0.16  flagged 0.77/0.65  list@B 0.15/0.06  list@R 0.38/0.26  (R=216, max 71)
+pooled               evidence that models can sabotage, sandb B=60   opened 0.25/0.18  flagged 0.82/0.68  list@B 0.21/0.15  list@R 0.31/0.18  (R=103, max 107)
+pooled               cyber capabilities of frontier models    B=60   opened 0.28/0.27  flagged 0.76/0.69  list@B 0.28/0.23  list@R 0.40/0.29  (R=141, max 58)
+pooled               how the severity or acceptability of a r B=60   opened 0.31/0.25  flagged 0.66/0.55  list@B 0.21/0.17  list@R 0.40/0.31  (R=140, max 102)

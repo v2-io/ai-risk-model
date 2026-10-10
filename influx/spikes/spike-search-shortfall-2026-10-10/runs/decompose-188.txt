@@ -1,0 +1,16 @@
+cut = 188 (hybrid rank); gain-weighted shares of each query's judged stretches
+
+query                                       max  flag    NC    CL | of unflagged:  semF  lexF   noW
+hazard                                       17  0.94  0.06  0.00 |                0.00  0.00  1.00
+catastrophic risk                            47  0.81  0.11  0.09 |                0.22  0.00  0.78
+loss of control                              70  0.73  0.06  0.21 |                0.42  0.05  0.95
+humans can no longer shut down or correct    63  0.40  0.16  0.44 |                0.00  0.11  0.34
+misalignment                                 54  0.63  0.20  0.17 |                0.00  0.00  0.95
+whistleblower                                27  1.00  0.00  0.00 |                0.00  0.00  0.00
+serious incident                             64  0.95  0.03  0.02 |                0.00  0.33  1.00
+what must a developer publish or report be   81  0.81  0.04  0.15 |                0.13  0.07  0.33
+chemical and biological weapons uplift       71  0.77  0.03  0.20 |                0.06  0.38  0.62
+evidence that models can sabotage, sandbag  107  0.82  0.01  0.17 |                0.47  0.05  0.37
+cyber capabilities of frontier models        58  0.76  0.02  0.22 |                0.14  0.14  0.29
+how the severity or acceptability of a ris  102  0.66  0.03  0.31 |                0.14  0.20  0.23
+POOLED                                      761  0.75  0.06  0.19 |                0.15  0.12  0.50

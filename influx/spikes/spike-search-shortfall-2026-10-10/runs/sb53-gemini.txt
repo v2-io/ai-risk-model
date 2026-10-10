@@ -1,0 +1,2 @@
+SB 53 judged by Claude: today 0.67 | exp R+N a2 0.67 | tags b1 0.76 | exp+tags+eot b1 0.74
+SB 53 judged by Gemini: today 0.77 | exp R+N a2 0.76 | tags b1 0.82 | exp+tags+eot b1 0.80

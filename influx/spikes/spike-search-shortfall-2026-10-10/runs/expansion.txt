@@ -1,0 +1,31 @@
+today: flagged 0.752, must 0.849
+
+R                alpha 0.5: flagged 0.775 (+0.024, +0.009 to +0.044)  must 0.877
+R                alpha 1.0: flagged 0.778 (+0.026, +0.006 to +0.049)  must 0.870
+R                alpha 2.0: flagged 0.786 (+0.034, +0.002 to +0.075)  must 0.877
+R, blind only    alpha 0.5: flagged 0.771 (+0.020, +0.009 to +0.032)  must 0.870
+R, blind only    alpha 1.0: flagged 0.781 (+0.029, +0.013 to +0.050)  must 0.877
+R, blind only    alpha 2.0: flagged 0.786 (+0.034, -0.001 to +0.078)  must 0.877
+N                alpha 0.5: flagged 0.762 (+0.011, -0.003 to +0.024)  must 0.863
+N                alpha 1.0: flagged 0.779 (+0.028, +0.010 to +0.048)  must 0.877
+N                alpha 2.0: flagged 0.794 (+0.042, +0.019 to +0.071)  must 0.877
+R+N              alpha 0.5: flagged 0.766 (+0.014, +0.004 to +0.026)  must 0.863
+R+N              alpha 1.0: flagged 0.777 (+0.025, +0.009 to +0.044)  must 0.870
+R+N              alpha 2.0: flagged 0.802 (+0.050, +0.015 to +0.094)  must 0.897
+R+N, blind only  alpha 0.5: flagged 0.766 (+0.014, +0.004 to +0.026)  must 0.863
+R+N, blind only  alpha 1.0: flagged 0.775 (+0.024, +0.008 to +0.042)  must 0.870
+R+N, blind only  alpha 2.0: flagged 0.798 (+0.046, +0.014 to +0.086)  must 0.890
+
+per query, alpha 1 (today -> R / N / R+N):
+  hazard                                           0.94 -> 0.94 / 0.94 / 0.94
+  catastrophic risk                                0.81 -> 0.85 / 0.81 / 0.85
+  loss of control                                  0.73 -> 0.70 / 0.84 / 0.76
+  humans can no longer shut down or correct the AI 0.40 -> 0.51 / 0.41 / 0.49
+  misalignment                                     0.63 -> 0.67 / 0.65 / 0.67
+  whistleblower                                    1.00 -> 1.00 / 1.00 / 1.00
+  serious incident                                 0.95 -> 0.95 / 0.95 / 0.95
+  what must a developer publish or report before d 0.81 -> 0.84 / 0.85 / 0.83
+  chemical and biological weapons uplift           0.77 -> 0.77 / 0.77 / 0.77
+  evidence that models can sabotage, sandbag or ev 0.82 -> 0.84 / 0.86 / 0.85
+  cyber capabilities of frontier models            0.76 -> 0.84 / 0.76 / 0.83
+  how the severity or acceptability of a risk is d 0.66 -> 0.68 / 0.70 / 0.65

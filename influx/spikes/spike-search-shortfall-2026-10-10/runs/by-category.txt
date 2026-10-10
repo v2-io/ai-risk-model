@@ -1,0 +1,6 @@
+expansion R|2.0              won NBR 13, PARA 13, RELDEF 8, CTX 3, RANK 3, FORM 2, XREF 1  | lost 17  | net +0.034
+expansion N|2.0              won NBR 19, PARA 11, FORM 3, RELDEF 3, CTX 3, XREF 1  | lost 8  | net +0.042
+expansion R+N|2.0            won NBR 17, PARA 11, RELDEF 8, FORM 3, RANK 3, CTX 2, XREF 1  | lost 7  | net +0.050
+expansion R+N|1.0            won PARA 8, RELDEF 7, NBR 6, FORM 2, XREF 1, CTX 1  | lost 6  | net +0.025
+embedder embeddinggemma:300m won PARA 10, BIO 9, NBR 8, RELDEF 6, CTX 1, FORM 1, RANK 1, XREF 1  | lost 23  | net +0.018
+embedder snowflake-arctic-embed2 won BIO 9, PARA 8, NBR 5, RELDEF 3, FORM 1, RANK 1, CTX 1  | lost 23  | net +0.007

@@ -1,0 +1,60 @@
+
+pooled, ranking = today
+ budget            reached  covered     must
+     60  opened      0.332    0.288    0.393   (outline opened 1734 source lines in all)
+         flagged     0.752        —        —
+         list@B      0.235    0.185    0.255
+         list@R      0.397    0.315    0.418
+    120  opened      0.541    0.462    0.579   (outline opened 4132 source lines in all)
+         flagged     0.752        —        —
+         list@B      0.356    0.281    0.373
+         list@R      0.607    0.505    0.607
+    200  opened      0.653    0.566    0.659   (outline opened 6677 source lines in all)
+         flagged     0.752        —        —
+         list@B      0.478    0.376    0.484
+         list@R      0.687    0.586    0.666
+
+pooled, ranking = exp
+ budget            reached  covered     must
+     60  opened      0.348    0.304    0.424   (outline opened 1787 source lines in all)
+         flagged     0.802        —        —
+         list@B      0.233    0.183    0.262
+         list@R      0.442    0.348    0.475
+    120  opened      0.586    0.518    0.642   (outline opened 4341 source lines in all)
+         flagged     0.802        —        —
+         list@B      0.393    0.300    0.410
+         list@R      0.681    0.572    0.680
+    200  opened      0.721    0.643    0.746   (outline opened 7029 source lines in all)
+         flagged     0.802        —        —
+         list@B      0.527    0.420    0.542
+         list@R      0.756    0.668    0.758
+
+pooled, ranking = tags
+ budget            reached  covered     must
+     60  opened      0.342    0.304    0.406   (outline opened 1656 source lines in all)
+         flagged     0.820        —        —
+         list@B      0.242    0.182    0.250
+         list@R      0.430    0.344    0.452
+    120  opened      0.586    0.502    0.618   (outline opened 3858 source lines in all)
+         flagged     0.820        —        —
+         list@B      0.372    0.292    0.388
+         list@R      0.653    0.539    0.647
+    200  opened      0.714    0.616    0.723   (outline opened 6076 source lines in all)
+         flagged     0.820        —        —
+         list@B      0.491    0.388    0.487
+         list@R      0.765    0.644    0.750
+
+pooled, ranking = exp+tags
+ budget            reached  covered     must
+     60  opened      0.372    0.334    0.452   (outline opened 1751 source lines in all)
+         flagged     0.870        —        —
+         list@B      0.255    0.192    0.274
+         list@R      0.472    0.382    0.512
+    120  opened      0.614    0.540    0.660   (outline opened 4031 source lines in all)
+         flagged     0.870        —        —
+         list@B      0.444    0.352    0.481
+         list@R      0.706    0.595    0.687
+    200  opened      0.774    0.694    0.792   (outline opened 6376 source lines in all)
+         flagged     0.870        —        —
+         list@B      0.548    0.444    0.560
+         list@R      0.830    0.730    0.828

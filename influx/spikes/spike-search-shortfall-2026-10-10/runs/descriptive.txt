@@ -1,0 +1,9 @@
+must-read judged gain 438; unflagged must gain 66 (0.151)
+   PARA                  33  50% of unflagged must
+   NBR                   18  27% of unflagged must
+   BIO (not inspected)    6  9% of unflagged must
+   XREF                   3  5% of unflagged must
+   RELDEF                 3  5% of unflagged must
+   RANK                   3  5% of unflagged must
+term queries 0.814 must 0.904
+question queries 0.716 must 0.819

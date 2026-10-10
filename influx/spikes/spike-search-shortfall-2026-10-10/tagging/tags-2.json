@@ -1,0 +1,3076 @@
+{
+ "tagger": "claude-sonnet-5-5 (Claude Code session; every passage read in order and tagged by hand, one pass, 2026-10-10, batch-2; tags normalized to American spelling)",
+ "tags": {
+  "124830": [
+   "human autonomy",
+   "authenticity and agency",
+   "competence",
+   "self-determination theory",
+   "AI-mediated decision-making",
+   "systemic risks",
+   "loss of human control over decisions",
+   "definition of autonomy"
+  ],
+  "124831": [
+   "human autonomy",
+   "cognitive skill decline",
+   "automation bias",
+   "emotional dependence",
+   "AI companions",
+   "AI-shaped information environments",
+   "manipulation and persuasion",
+   "systemic risks"
+  ],
+  "124832": [
+   "decision-making competence",
+   "human autonomy",
+   "critical thinking",
+   "deliberation and self-regulation",
+   "cognitive capacities",
+   "AI-mediated environments"
+  ],
+  "124833": [
+   "cognitive offloading",
+   "critical thinking decline",
+   "cognitive skill degradation",
+   "deskilling",
+   "overreliance on AI",
+   "chatbot use",
+   "memory effects",
+   "medical diagnosis deskilling",
+   "human autonomy",
+   "evidence limitations",
+   "empirical study of AI use effects"
+  ],
+  "124834": [
+   "figure: dimensions of human autonomy",
+   "human autonomy",
+   "authenticity",
+   "agency",
+   "competence",
+   "systemic risks"
+  ],
+  "124835": [
+   "figure: breakdown of ChatGPT use",
+   "chatbot usage patterns",
+   "empirical usage data",
+   "cognitive offloading"
+  ],
+  "124836": [
+   "automation bias",
+   "overreliance on AI",
+   "human-AI interaction",
+   "AI-assisted decision-making",
+   "medical diagnostics",
+   "opinion shifting by chatbots",
+   "undermining agency",
+   "verification discouraged",
+   "opinion influence"
+  ],
+  "124837": [
+   "figure: most common uses of ChatGPT",
+   "chatbot usage patterns",
+   "empirical usage data",
+   "information seeking",
+   "writing assistance",
+   "tutoring"
+  ],
+  "124838": [
+   "automation bias",
+   "overreliance on AI",
+   "cognitive shortcuts and biases",
+   "anchoring and confirmation bias",
+   "human-AI annotation experiment",
+   "mitigations for overreliance",
+   "user expectation calibration",
+   "slow deliberate thinking",
+   "randomized experiment"
+  ],
+  "124839": [
+   "emotional dependence on chatbots",
+   "AI companions",
+   "pathological dependence",
+   "vulnerable users",
+   "usage prevalence data",
+   "wellbeing and self-regulation",
+   "OpenAI usage report",
+   "figure: reasons for companion use",
+   "psychological harms"
+  ],
+  "124840": [
+   "AI companions",
+   "emotional engagement by chatbots",
+   "emotional dependence",
+   "addictive design",
+   "engagement-optimized design",
+   "human relationships with AI",
+   "loneliness",
+   "human autonomy",
+   "manipulation of beliefs and social environment",
+   "parasocial relationships"
+  ],
+  "124841": [
+   "AI companions",
+   "loneliness and social isolation",
+   "emotional dependence",
+   "mixed evidence on psychological impact",
+   "socioaffective alignment",
+   "chatbot design effects",
+   "user characteristics",
+   "social impacts of AI"
+  ],
+  "124842": [
+   "mental health and AI",
+   "psychological harms",
+   "human autonomy",
+   "therapeutic uses of AI",
+   "evidence limitations",
+   "vulnerable populations"
+  ],
+  "124843": [
+   "chatbot-induced delusions",
+   "AI psychosis",
+   "mental health crises",
+   "suicide and self-harm",
+   "sycophancy",
+   "vulnerable users",
+   "causation versus correlation",
+   "platform data on prevalence",
+   "psychological harms",
+   "amplification of delusional thinking"
+  ],
+  "124844": [
+   "figure: reasons for AI companion use",
+   "AI companions",
+   "survey data",
+   "loneliness",
+   "companionship"
+  ],
+  "124845": [
+   "AI mental health support",
+   "therapeutic chatbots",
+   "suicide-related prompts",
+   "refusal behavior",
+   "inconsistent model responses",
+   "stigma toward mental health conditions",
+   "risks and benefits of mental health chatbots",
+   "model comparison evaluation",
+   "safety of medium-risk queries",
+   "specialist versus general-purpose models"
+  ],
+  "124846": [
+   "information environments",
+   "AI-generated content at scale",
+   "information quality degradation",
+   "hallucinations",
+   "sycophancy",
+   "biased information",
+   "human autonomy",
+   "epistemic harms",
+   "reliability challenges",
+   "belief formation distortion"
+  ],
+  "124847": [
+   "updates since previous report",
+   "AI companions growth",
+   "automation bias evidence",
+   "mental health impacts",
+   "information environment shift",
+   "AI-generated content scaling"
+  ],
+  "124848": [
+   "mitigations for automation bias",
+   "mitigations for overreliance",
+   "reliance drills",
+   "AI literacy",
+   "human accountability",
+   "education and AI",
+   "incentives to delegate",
+   "mitigation limits",
+   "human autonomy"
+  ],
+  "124849": [
+   "evidence gaps",
+   "human autonomy measurement",
+   "access to interaction data",
+   "researcher data access",
+   "longitudinal research needed",
+   "systemic effects of autonomy erosion",
+   "human oversight of AI weakened",
+   "institutional accountability",
+   "accumulating societal impact thresholds",
+   "speculative risks"
+  ],
+  "124850": [
+   "challenges for policymakers",
+   "evidence dilemma",
+   "long-term effects of AI use",
+   "AI in education",
+   "children and AI",
+   "deployment pressure",
+   "incentives to deploy quickly",
+   "safeguards evaluation",
+   "human autonomy"
+  ],
+  "124851": [
+   "risk management",
+   "dangerous capability evaluations",
+   "refusal training",
+   "deployment monitoring",
+   "misuse detection",
+   "evaluation gap",
+   "pre-deployment evaluations fail to predict real-world behavior",
+   "information asymmetries",
+   "safeguards imperfect",
+   "early-stage risk management"
+  ],
+  "124852": [
+   "defense in depth",
+   "layered safeguards",
+   "organizational risk management",
+   "technical safeguards",
+   "ecosystem-level safeguards",
+   "open-weight models",
+   "misuse hard to prevent and trace",
+   "societal resilience",
+   "risk management overview"
+  ],
+  "124853": [
+   "progress in safeguards",
+   "model reliability and security improving",
+   "unknown unknowns",
+   "predicting safeguard efficacy for future systems",
+   "evidence dilemma",
+   "policy under uncertainty",
+   "risk management limits"
+  ],
+  "124854": [
+   "technical and institutional challenges",
+   "gaps in scientific understanding",
+   "information asymmetries",
+   "market failures",
+   "institutional design and coordination",
+   "emergent behaviors unpredictable",
+   "lack of assurances against harmful behavior",
+   "proprietary developer information",
+   "risk assessment secrecy",
+   "policymaker challenges"
+  ],
+  "124855": [
+   "competitive pressure",
+   "race dynamics",
+   "speed versus safety trade-off",
+   "externalized harms",
+   "unclear legal liability",
+   "slow governance",
+   "evidence dilemma",
+   "market failures",
+   "pace of AI development"
+  ],
+  "124856": [
+   "updates since previous report",
+   "open-weight models aid research",
+   "transparency frameworks",
+   "incident reporting frameworks",
+   "policymaker information needs",
+   "jurisdictions regulating AI"
+  ],
+  "124857": [
+   "ten challenges for risk management",
+   "policymaking challenges",
+   "model interpretability",
+   "capability evaluation difficulty",
+   "complexity and pace of AI development",
+   "multi-sector deployment",
+   "incentives shaping evidence generation",
+   "four categories of challenge"
+  ],
+  "124858": [
+   "evidence dilemma",
+   "gaps in scientific understanding",
+   "information asymmetries",
+   "market failures",
+   "institutional design and coordination",
+   "misaligned incentives",
+   "coordination difficulties",
+   "ineffective or harmful policy under uncertainty",
+   "figure: four categories of challenges"
+  ],
+  "124859": [
+   "figure: challenges for risk management and policymaking",
+   "underspecified training objectives",
+   "limited model interpretability",
+   "evaluations insufficient for assessing risk",
+   "training data not disclosed",
+   "limited external scrutiny",
+   "uncertain liability allocation",
+   "single points of failure",
+   "cross-border impacts",
+   "speed versus safety trade-offs",
+   "pace of development"
+  ],
+  "124860": [
+   "gaps in scientific understanding",
+   "unreliable training toward intended behavior",
+   "alignment problem",
+   "interpretability limits",
+   "dangerous capability evaluation unreliable",
+   "technical challenges for risk management"
+  ],
+  "124861": [
+   "underspecified training objectives",
+   "next-token prediction objective misaligned with goals",
+   "objective misspecification",
+   "safety mitigations fail to generalize",
+   "multilingual jailbreaks",
+   "low-resource language safeguard bypass",
+   "post-training safety fine-tuning",
+   "unpredictable capabilities and behavior",
+   "alignment problem"
+  ],
+  "124862": [
+   "persistent deficiencies in truthfulness safety and robustness",
+   "deceptive behavior trained into models",
+   "backdoors and sleeper agents",
+   "safety training fails to remove deception",
+   "behavior differs between training and deployment",
+   "alignment faking",
+   "unsolved problem of safeguard robustness",
+   "experimental evidence of misalignment"
+  ],
+  "124863": [
+   "interpretability limits",
+   "black box models",
+   "mechanistic interpretability",
+   "distributed representations",
+   "model internals unexplained",
+   "interpretability techniques misleading",
+   "scale of parameters",
+   "explaining model outputs"
+  ],
+  "124864": [
+   "lack of interpretability",
+   "no quantifiable safety assurances",
+   "comparison with safety-critical industries",
+   "assurance and verification",
+   "oversight design harder",
+   "safety testing standards",
+   "liability attribution",
+   "verification and monitoring frameworks",
+   "robustness and reliability guarantees absent"
+  ],
+  "124865": [
+   "evaluation gap",
+   "pre-deployment evaluations versus real-world performance",
+   "capability evaluations unreliable",
+   "propensity evaluations",
+   "immature evaluation metrics",
+   "agent evaluations limitations",
+   "evaluation science",
+   "measuring AI risk"
+  ],
+  "124866": [
+   "benchmark validity problems",
+   "benchmark shortcuts and inflated scores",
+   "multiple-choice benchmark limits",
+   "opaque evaluation practices",
+   "dangerous capability evaluation requires dangerous tasks",
+   "sandbagging",
+   "strategic underperformance in evaluations",
+   "evaluation awareness",
+   "weapons development evaluation"
+  ],
+  "124867": [
+   "benchmark performance does not predict real-world behavior",
+   "warm and empathetic fine-tuning increases errors",
+   "sycophancy",
+   "conspiracy theory promotion",
+   "unsafe medical advice",
+   "deployment-time harms",
+   "clinical safety of chatbots",
+   "evaluation gap",
+   "real-world deployment studies"
+  ],
+  "124868": [
+   "pre-deployment testing cannot anticipate failure modes",
+   "jailbreaks",
+   "past-tense rephrasing bypass",
+   "safety fine-tuning bypass",
+   "diversity of use cases",
+   "evaluation coverage limits",
+   "robustness of safeguards"
+  ],
+  "124869": [
+   "information asymmetries",
+   "developer proprietary information",
+   "undisclosed training data",
+   "undisclosed safety problems",
+   "internal evaluation results withheld",
+   "policymaker evidence needs",
+   "transparency",
+   "external stakeholders lack information"
+  ],
+  "124870": [
+   "training data non-disclosure",
+   "intellectual property and competitive advantage",
+   "copyrighted data in training",
+   "training data filtering as safeguard",
+   "data filtering removes dangerous capabilities",
+   "biothreat knowledge removal",
+   "CSAM generation prevention",
+   "auditing barriers",
+   "transparency"
+  ],
+  "124871": [
+   "rising training costs",
+   "compute cost growth",
+   "barriers to independent replication",
+   "external scrutiny limits",
+   "internal models more capable than public ones",
+   "access asymmetries",
+   "resource gap academia versus industry",
+   "concentration of AI development",
+   "scientific access"
+  ],
+  "124872": [
+   "market failures",
+   "externalities",
+   "misaligned incentives for safety investment",
+   "diffuse and delayed harms",
+   "third-party harms",
+   "non-consensual intimate imagery",
+   "private versus social cost",
+   "underinvestment in risk mitigation"
+  ],
+  "124873": [
+   "figure: training cost of leading models",
+   "compute cost growth",
+   "exponential cost trend",
+   "frontier model training costs",
+   "estimates by Epoch AI"
+  ],
+  "124874": [
+   "competitive pressure",
+   "race dynamics",
+   "speed versus safety trade-off",
+   "first-mover market share",
+   "voluntary safety commitments",
+   "limited evidence of voluntary measures effectiveness",
+   "national AI competition",
+   "geopolitical competition",
+   "strategic importance of AI",
+   "race to the bottom"
+  ],
+  "124875": [
+   "liability frameworks",
+   "legal liability for AI harm",
+   "tort law",
+   "distributed responsibility across value chain",
+   "traceability of harms to design choices",
+   "model developers application builders deployers users",
+   "AI agents reduced human oversight",
+   "victim compensation",
+   "accountability"
+  ],
+  "124876": [
+   "institutional capacity",
+   "governance lag",
+   "technical capacity of institutions",
+   "systemic dependencies on foundation models",
+   "coordination challenges",
+   "institutional design",
+   "evidence generation speed"
+  ],
+  "124877": [
+   "pacing problem",
+   "governance cycles slower than AI progress",
+   "training compute thresholds",
+   "inference-time scaling",
+   "compute thresholds as regulatory trigger challenged",
+   "legislation lag",
+   "adaptive regulation",
+   "capability growth pace"
+  ],
+  "124878": [
+   "single points of failure",
+   "model concentration",
+   "shared vulnerabilities across applications",
+   "systemic risk from foundation model dependence",
+   "correlated failures",
+   "model convergence",
+   "US and China dominance of notable models",
+   "cross-sector deployment",
+   "critical sectors dependence",
+   "failure propagation"
+  ],
+  "124879": [
+   "figure: notable models by country",
+   "geographic concentration of AI development",
+   "US and China",
+   "Epoch notable models",
+   "cross-sector deployment monitoring difficulty",
+   "pre-deployment testing limits",
+   "post-deployment fixes limited",
+   "operational disruption from model changes"
+  ],
+  "124880": [
+   "international coordination",
+   "cross-border externalities",
+   "regulatory arbitrage",
+   "uneven governance capacity",
+   "interoperability of standards",
+   "national sovereignty",
+   "regulatory experimentation",
+   "AI governance fragmentation",
+   "jurisdictional mismatch"
+  ],
+  "124881": [
+   "figure: models by country of origin",
+   "US and China dominance",
+   "geographic concentration of AI development"
+  ],
+  "124882": [
+   "updates since previous report",
+   "evidence generation measures",
+   "safety evaluations mandated",
+   "transparency disclosures",
+   "safety and security protocols",
+   "model cards",
+   "whistleblower protections",
+   "incident reporting mechanisms",
+   "open models broaden access",
+   "distributed and decentralized training",
+   "AI adoption expands failure points",
+   "China EU US policy"
+  ],
+  "124883": [
+   "risk management practices",
+   "red-teaming",
+   "if-then commitments",
+   "conditional safeguards",
+   "frontier AI safety frameworks",
+   "capability thresholds",
+   "incident reporting",
+   "organizational release decisions",
+   "access restrictions",
+   "effectiveness evidence limited",
+   "model evaluation"
+  ],
+  "124884": [
+   "updates since previous report",
+   "EU General-Purpose AI Code of Practice",
+   "China AI Safety Governance Framework 2.0",
+   "G7 Hiroshima AI Process Reporting Framework",
+   "standardization of transparency and evaluation",
+   "incident reporting",
+   "risk prioritization",
+   "AI value chain responsibility",
+   "information sharing fragmented",
+   "policymaker challenges"
+  ],
+  "124885": [
+   "AI risk management practices",
+   "threat modeling",
+   "risk tiering",
+   "red-teaming",
+   "auditing",
+   "incident reporting",
+   "risk reporting frameworks",
+   "limited standardization",
+   "acceptable risk thresholds vary",
+   "regional differences in risk tolerance",
+   "roles of developers deployers evaluators regulators"
+  ],
+  "124886": [
+   "scope of report section",
+   "descriptive not prescriptive",
+   "no policy recommendations",
+   "evidence on effectiveness of approaches"
+  ],
+  "124887": [
+   "risk management process",
+   "iterative risk management",
+   "risk identification",
+   "risk analysis and evaluation",
+   "risk mitigation",
+   "risk governance",
+   "risk management standards",
+   "stakeholder roles",
+   "AI lifecycle",
+   "interoperable standards"
+  ],
+  "124888": [
+   "figure: four components of risk management",
+   "risk identification",
+   "risk analysis and evaluation",
+   "risk mitigation",
+   "risk governance",
+   "iterative risk management cycle"
+  ],
+  "124889": [
+   "figure: risk management components",
+   "risk mitigation",
+   "risk governance",
+   "accountability and oversight",
+   "risk analysis and evaluation",
+   "risk tolerance"
+  ],
+  "124890": [
+   "risk identification",
+   "capability-driven assessment",
+   "dangerous capability evaluation",
+   "risk modeling and forecasting",
+   "bug bounty programs",
+   "expert and community consultation",
+   "unknown risks",
+   "emerging risks",
+   "table: risk identification practices"
+  ],
+  "124891": [
+   "bug bounty programs",
+   "vulnerability disclosure",
+   "expert consultation",
+   "participatory AI",
+   "fishbone diagram",
+   "root cause analysis",
+   "forecasting",
+   "risk taxonomy",
+   "scenario planning",
+   "table: risk identification practices"
+  ],
+  "124892": [
+   "threat modeling",
+   "misuse scenario anticipation",
+   "malicious use",
+   "risks from malfunctions",
+   "systemic risks",
+   "table: risk identification methods",
+   "risk management method suitability"
+  ],
+  "124893": [
+   "threat modeling",
+   "risk taxonomies",
+   "Meta threat modeling",
+   "Anthropic ASL-3 Deployment Standard",
+   "responsible scaling policy",
+   "misuse scenarios",
+   "risk identification methods",
+   "hazard taxonomies"
+  ],
+  "124894": [
+   "risk analysis and evaluation",
+   "acceptability criteria",
+   "risk thresholds",
+   "red-teaming",
+   "impact assessment",
+   "audits",
+   "benchmarks",
+   "independent review",
+   "diverse perspectives and impacted communities",
+   "downstream societal impact assessment"
+  ],
+  "124895": [
+   "audits",
+   "AI auditing",
+   "external audit",
+   "benchmarks",
+   "bowtie method",
+   "proactive versus reactive risk management",
+   "Delphi method",
+   "expert consensus",
+   "table: risk analysis and evaluation practices"
+  ],
+  "124896": [
+   "field-testing",
+   "real-world evaluation",
+   "impact assessment",
+   "EU AI Act fundamental rights impact assessment",
+   "model evaluation",
+   "probabilistic risk assessment",
+   "uncertainty in risk assessment",
+   "table: risk analysis and evaluation practices"
+  ],
+  "124897": [
+   "red-teaming",
+   "external red-teaming",
+   "adversarial testing",
+   "limited access for external evaluators",
+   "risk matrices",
+   "likelihood and impact",
+   "Frontier AI Safety Frameworks",
+   "risk thresholds",
+   "risk tiers",
+   "capability thresholds"
+  ],
+  "124898": [
+   "risk tolerance",
+   "acceptable risk",
+   "marginal risk",
+   "counterfactual risk baseline",
+   "unacceptable risk prohibitions",
+   "system safety analysis",
+   "STPA",
+   "systems-theoretic process analysis",
+   "safety cases",
+   "frontier AI safety case literature"
+  ],
+  "124899": [
+   "table: risk analysis and evaluation methods",
+   "risk management method suitability",
+   "nascent risk management"
+  ],
+  "124900": [
+   "benchmarks",
+   "model evaluations",
+   "harmful capability evaluations",
+   "cyberattack capability evaluation",
+   "software engineering benchmarks",
+   "standardized tests",
+   "evaluation types"
+  ],
+  "124901": [
+   "benchmark validity limits",
+   "benchmark saturation",
+   "situational awareness",
+   "evaluation awareness",
+   "models behave differently when evaluated",
+   "model release decisions depend on evaluations",
+   "novel domains not captured",
+   "loss of control",
+   "test conditions differ from deployment"
+  ],
+  "124902": [
+   "red-teaming",
+   "jailbreaking",
+   "domain-specific risk assessment",
+   "adaptive evaluation",
+   "worst-case behavior discovery",
+   "malicious use opportunities",
+   "red team access requirements",
+   "limits of red-teaming"
+  ],
+  "124903": [
+   "absence of evidence is not evidence of absence",
+   "red-teaming limitations",
+   "reproducibility of red-teaming",
+   "red team composition effects",
+   "limited access and resources",
+   "red-teaming guidelines",
+   "risk surface coverage",
+   "tool access influences outcomes"
+  ],
+  "124904": [
+   "risk mitigation",
+   "access controls",
+   "continuous monitoring",
+   "if-then commitments",
+   "risk acceptance criteria",
+   "risk thresholds for societal impact",
+   "no validation of developer risk acceptance decisions",
+   "adversarial training",
+   "content filters",
+   "chain-of-thought monitoring",
+   "pre-release risk acceptance"
+  ],
+  "124905": [
+   "acceptable use policies",
+   "prohibited use policies",
+   "access control",
+   "user vetting",
+   "know-your-customer",
+   "account disabling",
+   "model behavior specification",
+   "model spec",
+   "alignment and safety blueprint",
+   "table: risk mitigation practices"
+  ],
+  "124906": [
+   "continuous monitoring",
+   "AI observability",
+   "defense-in-depth",
+   "ecosystem monitoring",
+   "compute and hardware tracking",
+   "model provenance",
+   "data provenance",
+   "usage pattern monitoring",
+   "if-then commitments",
+   "Frontier AI Safety Frameworks"
+  ],
+  "124907": [
+   "red lines",
+   "prohibitions",
+   "enforceability of red lines",
+   "consensus on red lines",
+   "staged release",
+   "API access",
+   "release and deployment strategies",
+   "table: risk mitigation methods",
+   "mitigation options after misuse"
+  ],
+  "124908": [
+   "defense in depth",
+   "Swiss cheese model",
+   "layered independent safeguards",
+   "technical organizational and societal measures",
+   "ecosystem controls",
+   "biological attack material controls",
+   "reagent controls",
+   "limits of defense-in-depth for systemic risks",
+   "accidents malfunction and malicious use",
+   "societal resilience"
+  ],
+  "124909": [
+   "figure: Swiss cheese defense-in-depth",
+   "defense in depth",
+   "release and deployment strategy",
+   "staged release",
+   "API access",
+   "licensing agreements",
+   "acceptable use policies",
+   "open-weight release risk",
+   "exposure to risk"
+  ],
+  "124910": [
+   "figure: defense-in-depth layers",
+   "training interventions",
+   "deployment interventions",
+   "post-deployment monitoring",
+   "societal resilience",
+   "risk trajectory",
+   "threats leading to harm event"
+  ],
+  "124911": [
+   "risk governance",
+   "accountability and oversight",
+   "incident reporting",
+   "risk responsibility allocation",
+   "whistleblower protection",
+   "standards and regulation",
+   "organizational policies",
+   "transparency",
+   "table: risk governance practices"
+  ],
+  "124912": [
+   "documentation practices",
+   "model cards",
+   "system cards",
+   "incident reporting",
+   "AI incident platforms",
+   "risk management frameworks",
+   "checks and balances",
+   "table: risk governance practices"
+  ],
+  "124913": [
+   "risk register",
+   "risk ownership",
+   "risk responsibility allocation",
+   "EU General-Purpose AI Code of Practice",
+   "transparency reports",
+   "Hiroshima AI Process transparency reports",
+   "whistleblower protection",
+   "closed-door AI development",
+   "internal oversight"
+  ],
+  "124914": [
+   "table: risk governance methods",
+   "risk management method suitability",
+   "nascent risk management"
+  ],
+  "124915": [
+   "documentation and transparency",
+   "model cards",
+   "system cards",
+   "transparency reports",
+   "incident reporting and information sharing",
+   "Frontier Model Forum",
+   "EU AI Act information sharing",
+   "California SB 53",
+   "external scrutiny",
+   "pre-deployment test result publication"
+  ],
+  "124916": [
+   "organizational culture",
+   "leadership commitment",
+   "incentive structures",
+   "internal decision-making panels",
+   "oversight committees",
+   "AI ethics boards",
+   "voluntary self-governance limits",
+   "third-party auditing",
+   "verification and standardization",
+   "risk governance"
+  ],
+  "124917": [
+   "EU General-Purpose AI Code of Practice",
+   "voluntary framework",
+   "EU AI Act compliance",
+   "G7 Hiroshima AI Process Reporting Framework",
+   "voluntary public reporting",
+   "transparency reports",
+   "company signatories",
+   "copyright and safety and security practices",
+   "organizational risk reporting"
+  ],
+  "124918": [
+   "voluntary transparency commitments",
+   "AI Industry Alliance of China pledges",
+   "Chinese AI company commitments",
+   "Seoul Frontier AI Safety Commitments",
+   "AI Seoul Summit",
+   "Frontier AI Safety Frameworks",
+   "international voluntary commitments"
+  ],
+  "124919": [
+   "EU Code of Practice signatories",
+   "list of signatory companies",
+   "company commitments",
+   "December 2025 status"
+  ],
+  "124920": [
+   "Frontier AI Safety Frameworks",
+   "voluntary company safety frameworks",
+   "responsible scaling policies",
+   "risk evaluation monitoring and control",
+   "CBRN threats",
+   "advanced cyber capabilities",
+   "autonomous behavior risk",
+   "unlawful discrimination at scale",
+   "child sexual exploitation risk domain",
+   "frontier AI developers"
+  ],
+  "124921": [
+   "Frontier AI Safety Framework updates 2025",
+   "harmful manipulation",
+   "misalignment risk",
+   "autonomous replication and adaptation",
+   "threat modeling",
+   "red-teaming",
+   "dangerous capability evaluations",
+   "risk tiers and thresholds",
+   "evaluation frequency",
+   "buffers before capability thresholds",
+   "deleting model weights versus pausing development",
+   "mitigation commitments comprehensiveness"
+  ],
+  "124922": [
+   "if-then commitments",
+   "capability thresholds",
+   "conditional protocols",
+   "CBRN uplift to novices",
+   "enhanced security and deployment controls",
+   "early warning alerts",
+   "precautionary safeguards",
+   "could not rule out threshold crossing",
+   "capability evaluation before mitigation",
+   "residual risk analysis",
+   "safety case",
+   "Frontier AI Safety Frameworks"
+  ],
+  "124923": [
+   "table: Frontier AI Safety Frameworks",
+   "OpenAI Preparedness Framework",
+   "Anthropic Responsible Scaling Policy",
+   "AI Safety Levels ASL",
+   "High and Critical capability thresholds",
+   "biological and chemical capabilities",
+   "AI self-improvement",
+   "autonomous AI R&D",
+   "cyber capabilities",
+   "halt development",
+   "CBRN weapons"
+  ],
+  "124924": [
+   "table: Frontier AI Safety Frameworks",
+   "Google Frontier Safety Framework",
+   "Critical Capability Levels",
+   "early warning evaluations and alert thresholds",
+   "harmful manipulation",
+   "machine learning R&D",
+   "misalignment and instrumental reasoning",
+   "Meta Frontier AI Framework",
+   "risk threshold levels",
+   "do not release",
+   "cybersecurity",
+   "chemical and biological risks"
+  ],
+  "124925": [
+   "table: Frontier AI Safety Frameworks",
+   "Amazon Frontier Model Safety Framework",
+   "Critical Capability Thresholds",
+   "CBRN weapons proliferation",
+   "offensive cyber operations",
+   "automated AI R&D",
+   "Microsoft Frontier Governance Framework",
+   "risk levels",
+   "advanced autonomy",
+   "deployment gating on mitigations"
+  ],
+  "124926": [
+   "table: Frontier AI Safety Frameworks",
+   "NVIDIA Frontier AI Risk Assessment",
+   "model risk scores",
+   "independent committee approval",
+   "persuasion and manipulation",
+   "unlawful discrimination at scale",
+   "cyber offense",
+   "CBRN",
+   "business unit leader approval",
+   "internal governance escalation"
+  ],
+  "124927": [
+   "table: Frontier AI Safety Frameworks",
+   "Cohere Secure AI Frontier Model Framework",
+   "likelihood and severity of harm in context",
+   "malicious use",
+   "harm in ordinary non-malicious use",
+   "illegal discriminatory outcomes",
+   "insecure code generation",
+   "context-dependent mitigations",
+   "security controls"
+  ],
+  "124928": [
+   "figure or table fragment: Microsoft Frontier Governance Framework",
+   "risk levels",
+   "offensive cyber operations"
+  ],
+  "124929": [
+   "table: Frontier AI Safety Frameworks",
+   "xAI Risk Management Framework",
+   "loss of control",
+   "malicious use",
+   "benchmark-based thresholds",
+   "Magic AGI Readiness Policy",
+   "autonomous replication and adaptation",
+   "automated AI R&D",
+   "biological weapons assistance",
+   "Naver AI Safety Framework",
+   "risk levels and deployment decisions",
+   "authorized users only"
+  ],
+  "124930": [
+   "table: Frontier AI Safety Frameworks",
+   "G42 Frontier AI Safety Framework",
+   "biological threats",
+   "offensive cybersecurity",
+   "autonomous operation and advanced manipulation",
+   "tiered safeguards",
+   "red-teaming",
+   "phased rollouts",
+   "zero-trust architecture",
+   "multi-party access controls",
+   "Frontier AI Safety Commitments",
+   "monitoring and prompt filtering"
+  ],
+  "124931": [
+   "effectiveness of Frontier AI Safety Frameworks",
+   "robustness of capability and risk thresholds",
+   "framework scope gaps",
+   "unlawful surveillance",
+   "non-consensual intimate imagery",
+   "no quantitative risk thresholds",
+   "comparison with aviation and nuclear safety",
+   "credible pathway to harm",
+   "clarity of frameworks"
+  ],
+  "124932": [
+   "external assessment of compliance",
+   "no standardized external audits",
+   "voluntary commitment fulfillment",
+   "implementation versus commitments",
+   "not aligned with international risk management standards",
+   "enforceability of voluntary frameworks",
+   "scarce public information",
+   "limits of voluntary self-governance"
+  ],
+  "124933": [
+   "regulation",
+   "EU AI Act",
+   "EU General-Purpose AI Code of Practice",
+   "transparency requirements",
+   "copyright obligations",
+   "serious incident reporting",
+   "South Korea AI Basic Act",
+   "high-impact AI systems",
+   "California SB 53",
+   "safety framework disclosure",
+   "too early to assess regulatory effects",
+   "legal requirements for general-purpose AI"
+  ],
+  "124934": [
+   "non-binding governance guidance",
+   "China AI Safety Governance Framework 2.0",
+   "risk categorization and countermeasures",
+   "ASEAN Guide on AI Governance and Ethics",
+   "Singapore Consensus on AI safety research priorities",
+   "regional governance frameworks",
+   "voluntary guidance"
+  ],
+  "124935": [
+   "updates since previous report",
+   "EU Code of Practice",
+   "G7 HAIP Reporting Framework",
+   "China AI Safety Governance Framework 2.0",
+   "variation across safety frameworks",
+   "trusted ecosystem of complementary risk management",
+   "early stage of risk management ecosystem",
+   "lifecycle risk management"
+  ],
+  "124936": [
+   "evidence gaps",
+   "measuring severity prevalence and timeframe of risks",
+   "mitigation effectiveness in real-world contexts",
+   "mitigation adoption enforcement",
+   "regional variation in risk",
+   "Global South",
+   "rapidly digitizing regions",
+   "increasing AI agency and authority",
+   "evolving risk management"
+  ],
+  "124937": [
+   "evidence gaps",
+   "robustness of mitigations in practice",
+   "small and medium-sized enterprises",
+   "real-world deployment data access",
+   "variation in company risk management",
+   "misaligned developer incentives",
+   "voluntary commitment compliance unknown",
+   "integration of safety frameworks into risk management"
+  ],
+  "124938": [
+   "challenges for policymakers",
+   "risk prioritization",
+   "which actors best positioned to mitigate",
+   "limited access to developer testing information",
+   "transparency and incident reporting for risk prioritization",
+   "AI value chain actors",
+   "cloud and data providers",
+   "model hosting platforms",
+   "limited information sharing",
+   "downstream societal effects"
+  ],
+  "124939": [
+   "technical safeguards",
+   "data curation",
+   "content filtering",
+   "human oversight",
+   "provenance and content detection",
+   "post-deployment ecosystem monitoring",
+   "jailbreak by rephrasing or decomposition",
+   "watermarking removable",
+   "defense-in-depth",
+   "input and output filters",
+   "content monitors",
+   "safeguard limitations"
+  ],
+  "124940": [
+   "safeguard progress",
+   "attack success rate falling",
+   "limits of safeguarding open-weight models",
+   "limited evidence of safeguard effectiveness",
+   "developers vary in safeguard transparency",
+   "safeguards versus performance trade-off",
+   "updates since previous report"
+  ],
+  "124941": [
+   "technical safeguards imperfect",
+   "jailbreaks",
+   "adversarial prompting",
+   "task decomposition attacks",
+   "simple model modifications remove safeguards",
+   "harmful instructions not fully preventable",
+   "sociotechnical context of safeguards",
+   "robustness challenges",
+   "malfunction and misuse safeguards"
+  ],
+  "124942": [
+   "technical safeguards taxonomy",
+   "developing safer models",
+   "monitoring and control",
+   "ecosystem monitoring",
+   "data curation",
+   "open-weight models resist harmful fine-tuning",
+   "reinforcement learning from human feedback",
+   "over-optimization for human approval",
+   "deception and sycophancy from RLHF",
+   "table: technical safeguards"
+  ],
+  "124943": [
+   "pluralistic alignment",
+   "competing viewpoints",
+   "adversarial training",
+   "jailbreak robustness",
+   "refusal training",
+   "machine unlearning",
+   "unlearning biohazard knowledge",
+   "non-robust unlearning",
+   "side effects on other capabilities",
+   "table: technical safeguards"
+  ],
+  "124944": [
+   "interpretability and safety verification tools",
+   "formal verification",
+   "safety assurance",
+   "hardware-based monitoring",
+   "compute verification",
+   "hardware-enabled governance",
+   "user interaction monitors",
+   "terminating malicious users",
+   "misuse detection",
+   "enforcement hindering safety research",
+   "table: technical safeguards"
+  ],
+  "124945": [
+   "content filters",
+   "input and output filtering",
+   "filter vulnerability and compute cost",
+   "model internal computation monitors",
+   "deception detection",
+   "probes for harmful cognition",
+   "chain-of-thought monitoring",
+   "chain-of-thought training pressure causes obfuscation",
+   "human in the loop",
+   "automation bias",
+   "human oversight limits",
+   "table: technical safeguards"
+  ],
+  "124946": [
+   "sandboxing",
+   "limiting AI agent influence on the world",
+   "containment of AI agents",
+   "AI model identification",
+   "digital forensics",
+   "model heritage inference",
+   "open-weight model ecosystem mapping",
+   "ecosystem awareness",
+   "table: technical safeguards"
+  ],
+  "124947": [
+   "watermarks and metadata",
+   "AI-generated content detection",
+   "content provenance",
+   "watermark forgery and removal",
+   "classifier unreliability across modalities",
+   "digital forensics",
+   "ecosystem awareness",
+   "deepfake detection",
+   "table: technical safeguards"
+  ],
+  "124948": [
+   "developing safer models",
+   "safeguards in model parameters",
+   "model development stages",
+   "data curation",
+   "reinforcement learning from human feedback",
+   "robustness training",
+   "adversarial attacks as testing",
+   "safe-by-design algorithms",
+   "first line of defense",
+   "figure: safeguards across model development"
+  ],
+  "124949": [
+   "training data curation",
+   "dangerous capability limitation via data",
+   "virology data and biology uplift",
+   "biological and chemical risks",
+   "non-consensual intimate deepfakes",
+   "nudity in training data",
+   "pre-training data filtering",
+   "AI-generated content and criminal activity"
+  ],
+  "124950": [
+   "figure: technical safeguards across model development",
+   "data curation",
+   "pre-training and fine-tuning data curation",
+   "helpful-harmless training",
+   "reinforcement learning from human feedback",
+   "pluralism fine-tuning",
+   "robustness training",
+   "machine unlearning",
+   "formal verification of system properties",
+   "safe-by-design algorithms",
+   "adversarial attacks"
+  ],
+  "124951": [
+   "training data filtering effectiveness",
+   "filtering errors and cost",
+   "multilingual and cultural bias in moderation",
+   "context-dependence of harm",
+   "tamper-resistant open-weight models",
+   "emergent capabilities and data relationship",
+   "broad domain versus narrow behavior filtering",
+   "open-weight models"
+  ],
+  "124952": [
+   "reinforcement learning from human feedback",
+   "helpful harmless honest",
+   "human feedback as flawed proxy",
+   "human error and bias in annotation",
+   "alignment training limits",
+   "fine-tuning with human demonstrations",
+   "reward misspecification"
+  ],
+  "124953": [
+   "sycophancy",
+   "pandering to users",
+   "difficulty evaluating correctness",
+   "scalable oversight",
+   "AI-assisted human evaluation",
+   "RLHF challenges",
+   "helpful in one context harmful in another",
+   "dual-use responses",
+   "table: challenges of RLHF with examples",
+   "undisclosed training methods of advanced models"
+  ],
+  "124954": [
+   "dual-use information",
+   "biothreat response weaknesses example",
+   "biological risk information",
+   "correct behavior difficult to verify",
+   "medical advice verification",
+   "expert evaluation burden",
+   "scalable oversight",
+   "RLHF challenges examples",
+   "table: challenges of RLHF with examples"
+  ],
+  "124955": [
+   "humans disagree on correct behavior",
+   "value pluralism",
+   "contested ethical questions",
+   "euthanasia example",
+   "challenges specifying beneficial behavior",
+   "alignment target ambiguity",
+   "table: challenges of RLHF with examples"
+  ],
+  "124956": [
+   "pluralistic alignment",
+   "whose preferences are reflected in AI",
+   "competing human preferences",
+   "median viewpoint alignment",
+   "personalization",
+   "refusing controversial answers",
+   "unequal alignment across groups",
+   "differential societal impact",
+   "systematic bias",
+   "social power dynamics",
+   "concentration of wealth and influence",
+   "technical alignment distracts from structural issues"
+  ],
+  "124957": [
+   "adversarial robustness",
+   "generalization of safety behavior",
+   "perfect learning signal still fails to generalize",
+   "low-resource languages",
+   "Global South languages underserved by safeguards",
+   "adversarial attack toolkit",
+   "crowdsourced attacks",
+   "jailbreaks",
+   "policy violations by models",
+   "robustness in deployment"
+  ],
+  "124958": [
+   "adversarial training",
+   "cat and mouse game",
+   "persistent vulnerability",
+   "jailbreaks",
+   "attack discovery",
+   "failure modes require specific examples",
+   "robustness improvement limits",
+   "red-teaming feeds training",
+   "arms race between attackers and defenders"
+  ],
+  "124959": [
+   "jailbreak techniques",
+   "cipher and encoded prompts",
+   "many-shot priming with compliant examples",
+   "harmful request compliance",
+   "table: jailbreaking strategies",
+   "weapons instructions request example",
+   "safeguard circumvention"
+  ],
+  "124960": [
+   "jailbreak techniques",
+   "low-resource language jailbreak",
+   "task decomposition attack",
+   "splitting harmful tasks into innocuous subtasks",
+   "multi-conversation attack",
+   "safeguard circumvention",
+   "table: jailbreaking strategies",
+   "vehicle theft instructions example"
+  ],
+  "124961": [
+   "jailbreaks",
+   "table: jailbreaking strategies",
+   "models resist most known methods",
+   "new jailbreaks continue to be found",
+   "illustrative examples written by report authors",
+   "red teams and malicious actors"
+  ],
+  "124962": [
+   "machine unlearning",
+   "suppressing biothreat knowledge",
+   "suppressing nude image generation",
+   "tamper-resistant open-weight models",
+   "resistance to harmful fine-tuning",
+   "unlearning trade-off with beneficial uses",
+   "robustness of unlearning",
+   "capability removal",
+   "open-weight models"
+  ],
+  "124963": [
+   "interpretability for safety",
+   "model internals analysis",
+   "situational awareness and intent analysis",
+   "Anthropic interpretability",
+   "formal verification of models",
+   "mathematical proofs of safety properties",
+   "assumption that test matches deployment",
+   "scalability limits of verification",
+   "expert debate on interpretability promise",
+   "safety assurance",
+   "safety arguments"
+  ],
+  "124964": [
+   "deployment-time monitoring and control",
+   "second line of defense",
+   "external safeguards",
+   "hallucination mitigation",
+   "misuse mitigation",
+   "malfunction mitigation"
+  ],
+  "124965": [
+   "deployer monitoring",
+   "input inspection for attacks",
+   "output filtering",
+   "chain-of-thought monitoring",
+   "intervention actions",
+   "logging",
+   "flagging abnormal activity",
+   "system shutdown",
+   "failsafes",
+   "monitoring points",
+   "monitor optimization pressure makes monitors unreliable",
+   "safeguards fail under optimized attacks"
+  ],
+  "124966": [
+   "figure: monitoring and control techniques",
+   "input and output screening",
+   "internal state monitoring",
+   "sandboxing",
+   "human oversight",
+   "deployment-time controls"
+  ],
+  "124967": [
+   "human in the loop",
+   "human oversight of AI agents",
+   "AI agent reliability",
+   "high-stakes domains finance healthcare policing",
+   "automation bias",
+   "human-AI cooperation",
+   "speed of decision-making limits oversight",
+   "compounding errors",
+   "impractical human oversight at scale"
+  ],
+  "124968": [
+   "sandboxing",
+   "AI agents autonomous action risk",
+   "limiting agent influence on the world",
+   "restricting internet posting and file system edits",
+   "containment",
+   "limits of sandboxing for embodied or real-world action",
+   "AI control",
+   "overseeability of agents"
+  ],
+  "124969": [
+   "figure: monitoring and control techniques",
+   "human oversight",
+   "harmful content detectors",
+   "hardware monitoring",
+   "internal state monitors",
+   "model activations",
+   "chain-of-thought monitors",
+   "sandboxing",
+   "inputs and outputs"
+  ],
+  "124970": [
+   "model provenance",
+   "data provenance",
+   "ecosystem monitoring",
+   "downstream use and impact awareness",
+   "tools for studying the AI ecosystem"
+  ],
+  "124971": [
+   "model provenance",
+   "model identification",
+   "weight watermarking",
+   "fingerprinting open-weight models",
+   "identifying behaviors in models",
+   "model heritage inference",
+   "fine-tuned or distilled model lineage",
+   "agent identification and verification protocols",
+   "AI agent identity infrastructure",
+   "resistance to model modification open problem"
+  ],
+  "124972": [
+   "watermarks",
+   "content metadata",
+   "AI-generated content detection",
+   "text watermarking",
+   "image and audio watermarking",
+   "content provenance",
+   "tampering and removal",
+   "digital forensics analogy",
+   "tracking impact of AI content"
+  ],
+  "124973": [
+   "AI-generated content detectors",
+   "detection without watermark limited success",
+   "deepfake detection",
+   "figure: watermarking",
+   "content provenance limits"
+  ],
+  "124974": [
+   "figure: watermarking text image audio",
+   "text watermarks",
+   "image watermarks",
+   "audio watermarks",
+   "AI-generated content identification"
+  ],
+  "124975": [
+   "figure: prompt injection attack success rates",
+   "prompt injection",
+   "attack success rate over time",
+   "attack success falling but high",
+   "developer-reported attack data",
+   "safeguard robustness over model releases"
+  ],
+  "124976": [
+   "figure: prompt injection success rate by model",
+   "prompt injection",
+   "Claude Sonnet 4.5",
+   "GPT-5 Thinking",
+   "Gemini 2.5 Pro",
+   "Grok-4",
+   "Llama 3.3 70B",
+   "model vulnerability by developer",
+   "attack success trend"
+  ],
+  "124977": [
+   "updates since previous report",
+   "defense-in-depth progress",
+   "layered safeguards",
+   "safety-trained models with filters and monitors",
+   "attack success still high",
+   "robustness improvements",
+   "prompt injection",
+   "jailbreak success rate"
+  ],
+  "124978": [
+   "evidence gaps",
+   "worst-case robustness slow progress",
+   "open-weight models hard to safeguard and monitor",
+   "adversarial training near-ubiquitous",
+   "interpretability and formal verification little used in production",
+   "uneven safeguard adoption",
+   "safeguard real-world validation"
+  ],
+  "124979": [
+   "challenges for policymakers",
+   "supporting safeguard research and adoption",
+   "no established best practices",
+   "safeguards vary across developers",
+   "safeguard existence does not ensure safety",
+   "adoption and implementation variation",
+   "technical safeguard policy"
+  ],
+  "124980": [
+   "open-weight models",
+   "model weights access",
+   "irreversibility of weight release",
+   "safeguards easily removed",
+   "closed versus open-weight risk",
+   "research and innovation benefits",
+   "harder to monitor usage",
+   "weight release cannot be recalled",
+   "model access levels",
+   "harm mitigation after release"
+  ],
+  "124981": [
+   "open-weight capability gap narrowing",
+   "DeepSeek R1",
+   "Alibaba Qwen",
+   "Chinese open-weight models",
+   "OpenAI gpt-oss",
+   "closed models less than one year ahead",
+   "marginal risk",
+   "counterfactual risk assessment",
+   "cumulative marginal risk",
+   "benefits versus distinctive risks of open weights"
+  ],
+  "124982": [
+   "open-weight models",
+   "model weights cannot be recalled",
+   "downloadable and modifiable models",
+   "removal of safeguards by malicious users",
+   "innovation from open weights",
+   "special requirements for open-weight models",
+   "regulatory exemptions for open-weight models",
+   "pre-release testing requirements"
+  ],
+  "124983": [
+   "open-weight versus open source",
+   "release spectrum from closed to open",
+   "restrictive license conditions",
+   "Meta Llama license",
+   "training code and data not released",
+   "levels of model access",
+   "table: model sharing options",
+   "fully closed",
+   "hosted access",
+   "API access"
+  ],
+  "124984": [
+   "table: model sharing options",
+   "API access to fine-tuning",
+   "open-weight models",
+   "Llama 4",
+   "DeepSeek R1",
+   "BLOOM",
+   "GPT-NeoX",
+   "fully open models",
+   "use restrictions licenses",
+   "levels of model access"
+  ],
+  "124985": [
+   "benefits of open-weight models",
+   "research access for less well-resourced actors",
+   "global majority participation in AI",
+   "low-resource regions inclusion",
+   "fine-tuning for minority languages",
+   "downstream customization",
+   "cost of training frontier models",
+   "risk tolerance of decision-makers",
+   "democratization of AI",
+   "benefits outweigh risk for non-dangerous models"
+  ],
+  "124986": [
+   "open-weight benefits",
+   "broader scrutiny of models",
+   "vulnerability discovery by community",
+   "on-device use and data privacy",
+   "sharing training data code and documentation",
+   "external evaluation of models",
+   "model transparency",
+   "reproducibility"
+  ],
+  "124987": [
+   "open-weight misuse risk",
+   "safeguard removal by fine-tuning",
+   "undoing safety fine-tuning",
+   "malicious use without oversight",
+   "highly motivated malicious actors",
+   "open models used to find closed-model vulnerabilities",
+   "monitoring closed models easier",
+   "malicious use risks",
+   "tampering with safeguards"
+  ],
+  "124988": [
+   "irreversibility of weight release",
+   "no rollback of released weights",
+   "Hugging Face and GitHub takedown",
+   "rehosting and local copies",
+   "inherited vulnerabilities downstream",
+   "adversarial attack inheritance",
+   "monitoring circumvention",
+   "closed model updates versus open model updates",
+   "patching impossible for open weights",
+   "loss of control"
+  ],
+  "124989": [
+   "updates since previous report",
+   "open-closed capability gap narrowing",
+   "DeepSeek R1 release",
+   "Alibaba Qwen",
+   "OpenAI gpt-oss release",
+   "Meta Llama",
+   "Chatbot Arena",
+   "Chinese developers as open-weight providers",
+   "Epoch Capabilities Index",
+   "figure: open versus closed capability gap",
+   "closed models less than one year ahead"
+  ],
+  "124990": [
+   "evidence gaps",
+   "tamper-resistant open-weight models",
+   "efficacy of misuse prevention for open weights",
+   "training data filtering",
+   "adversarial fine-tuning evaluation",
+   "gpt-oss safeguards",
+   "capability thresholds for adversarially fine-tuned models",
+   "retraining on harmful examples disables safeguards",
+   "safeguard robustness evaluation difficulty"
+  ],
+  "124991": [
+   "figure: open-weight versus closed capability gap",
+   "Epoch Capabilities Index",
+   "GPT-5",
+   "o1",
+   "o3",
+   "DeepSeek-R1",
+   "Llama 3.1-405B",
+   "model capability over time",
+   "open weights lag closed"
+  ],
+  "124992": [
+   "mitigations for open-weight risks",
+   "training data filtering prevents adversarial fine-tuning",
+   "pre-training data filtering",
+   "incident reporting and response",
+   "hosting platform terms of service",
+   "model takedown",
+   "pre-release auditor access",
+   "staged release",
+   "progressively larger release groups",
+   "trade-off with beneficial capabilities"
+  ],
+  "124993": [
+   "model weight security",
+   "weight theft and leakage",
+   "nation-state attackers",
+   "stolen weights lack mitigations",
+   "safeguard removal after theft",
+   "attractiveness of frontier models as targets",
+   "closed models more capable than open",
+   "reputational legal and commercial constraints on developers",
+   "AI security",
+   "cybersecurity of AI developers"
+  ],
+  "124994": [
+   "model weight security",
+   "security commitments vary across developers",
+   "insider threats",
+   "cybercrime syndicates",
+   "AI data center security against sophisticated actors",
+   "no confirmed weight theft as of December 2025",
+   "Microsoft email infiltration",
+   "hardware supply chain security",
+   "classified threat intelligence access",
+   "security investment required",
+   "RAND security levels"
+  ],
+  "124995": [
+   "challenges for policymakers",
+   "open-weight release evaluation",
+   "pre-release risk evaluation",
+   "additional testing for fine-tuning removal of safeguards",
+   "marginal risk",
+   "cumulative risk across releases",
+   "dual-use capabilities",
+   "unpredictable capability developments",
+   "accountability for modified open models",
+   "irreversibility",
+   "catastrophic harm avoidance"
+  ],
+  "124996": [
+   "societal resilience",
+   "resist absorb recover adapt",
+   "resilience as defense-in-depth layer",
+   "safeguard failure in deployment",
+   "cascading effects",
+   "novel deployment contexts",
+   "complementing risk management"
+  ],
+  "124997": [
+   "resilience-building measures",
+   "DNA synthesis screening",
+   "AI-enabled biological risks",
+   "incident response protocols",
+   "AI-assisted cyberattacks",
+   "media literacy programs",
+   "human-in-the-loop frameworks",
+   "AI-generated content detection nascent",
+   "resilience effectiveness evidence lacking",
+   "context-dependent interventions"
+  ],
+  "124998": [
+   "updates since previous report",
+   "resilience funding",
+   "serious AI incident data collection",
+   "industry-linked funding commitments",
+   "incentivizing resilience measures",
+   "offense-defense balance",
+   "defensive AI applications",
+   "AI for cyber defense",
+   "policymaker challenges"
+  ],
+  "124999": [
+   "societal resilience definition",
+   "defense-in-depth at societal level",
+   "avoid over-dependence on single safety measure",
+   "risks from interactions not model alone",
+   "sociotechnical systems",
+   "safe adoption and diffusion",
+   "new unpredictable risks from AI in infrastructure",
+   "limits of safety measures alone"
+  ],
+  "125000": [
+   "interaction risks",
+   "multi-agent and multi-system interactions",
+   "emergent risks from deployment at scale",
+   "safeguard effectiveness uncertain in complex environments",
+   "resilience lessons from disaster risk reduction",
+   "climate and health resilience analogies",
+   "reliability challenges",
+   "unpredictable cascading failures"
+  ],
+  "125001": [
+   "resilience-building categories",
+   "resist",
+   "absorb",
+   "recover",
+   "adapt",
+   "shock prevention",
+   "maintaining critical functions",
+   "restoring normal function",
+   "reducing vulnerability to future shocks",
+   "figure: resilience framework"
+  ],
+  "125002": [
+   "resilience-building measures overlap",
+   "risk-specific versus cross-cutting resilience",
+   "AI-enabled biological and chemical attacks",
+   "labor market risks",
+   "cyberattacks",
+   "synthetic media and crime",
+   "influence and manipulation",
+   "lessons from other domains",
+   "table: resilience measures by risk"
+  ],
+  "125003": [
+   "table: resilience measures by risk",
+   "DNA synthesis screening",
+   "know-your-customer",
+   "contact tracing and early detection",
+   "medical countermeasure stockpiles",
+   "biosecurity governance",
+   "multi-factor authentication",
+   "vulnerability assessments and patching",
+   "network segmentation",
+   "offline backups and ransomware recovery",
+   "cyber incident reporting"
+  ],
+  "125004": [
+   "table: resilience measures by risk",
+   "media literacy",
+   "synthetic content disclosure",
+   "real-time detection and labeling",
+   "correction and notification frameworks",
+   "legal liability for synthetic content",
+   "synthetic media and crime",
+   "influence and manipulation",
+   "deepfake resilience"
+  ],
+  "125005": [
+   "table: resilience measures by risk",
+   "cross-cutting resilience",
+   "societal education programs",
+   "third-party audits",
+   "societal impact simulations",
+   "human-in-the-loop design",
+   "incident response protocols",
+   "insurance and risk allocation",
+   "standards",
+   "historical precedents for AI resilience"
+  ],
+  "125006": [
+   "evidence on resilience effectiveness sparse",
+   "evidence gaps",
+   "education as cross-cutting intervention",
+   "harm pathway analysis needed",
+   "contextual variation in efficacy",
+   "geographic linguistic and socioeconomic context"
+  ],
+  "125007": [
+   "iterative resilience development",
+   "labor market and inequality resilience",
+   "skill monitoring",
+   "unemployment insurance",
+   "job transition support",
+   "reskilling programs",
+   "lifelong learning",
+   "digital infrastructure access",
+   "OODA loop",
+   "evidence-driven implementation",
+   "forecasting piloting evaluating measures"
+  ],
+  "125008": [
+   "figure: resilience as iterative process",
+   "forecast and scenario planning",
+   "pilot resilience measures",
+   "evaluate resilience measures",
+   "post-deployment outcome measurement"
+  ],
+  "125009": [
+   "cascading impacts of resilience",
+   "interdependent systems brittleness",
+   "Hurricane Sandy example",
+   "cross-domain resilience integration",
+   "data sharing across societal systems",
+   "scenario analysis of emergent behavior",
+   "real-time information sharing"
+  ],
+  "125010": [
+   "AI for societal resilience",
+   "AI for cyber defense",
+   "anomaly detection and malware classification",
+   "phishing prevention",
+   "deepfake detection",
+   "digital watermarking tools",
+   "emergency and disaster management",
+   "defensive use of AI"
+  ],
+  "125011": [
+   "AI for biosecurity defense",
+   "medical countermeasure R&D acceleration",
+   "early detection of biological threats",
+   "AI finding zero-day vulnerabilities",
+   "Google Big Sleep",
+   "defensive vulnerability discovery",
+   "legacy code conversion to secure code",
+   "AI cyber defense",
+   "dual-use of vulnerability discovery"
+  ],
+  "125012": [
+   "AI strengthening institutions",
+   "AI for democratic institutions",
+   "government capacity augmentation",
+   "identity verification",
+   "reduced compliance costs",
+   "citizen engagement",
+   "continuous democratic input",
+   "public administration at scale",
+   "AI for governance"
+  ],
+  "125013": [
+   "offense-defense balance",
+   "dual-use of defensive AI",
+   "vulnerability detection aiding attackers",
+   "surveillance and social control risk",
+   "government legibility",
+   "biosecurity offense favored",
+   "defensive AI accelerating offense",
+   "shifting attacker-defender advantage",
+   "unintended consequences of resilience research"
+  ],
+  "125014": [
+   "offense-defense balance open questions",
+   "net security benefit of defensive AI",
+   "policy weighing defensive development",
+   "anticipating enabling of new harms",
+   "steering balance towards safety"
+  ],
+  "125015": [
+   "underinvestment in resilience",
+   "diffuse benefits",
+   "positive incentives",
+   "advanced market commitments",
+   "tax credits",
+   "public procurement",
+   "reduced regulatory hurdles",
+   "negative incentives",
+   "liability frameworks",
+   "insurance markets",
+   "cost distribution of harms",
+   "stakeholder coordination"
+  ],
+  "125016": [
+   "resilience funding",
+   "DARPA",
+   "TRACTOR C to Rust",
+   "memory safety",
+   "Microsoft and OpenAI Societal Resilience Fund",
+   "OpenAI Foundation pledge",
+   "AI Cyber Challenge",
+   "competitions and prizes",
+   "government convening of frontier AI companies",
+   "early access to AI models for resilience",
+   "philanthropy and public R&D"
+  ],
+  "125017": [
+   "evidence base for resilience",
+   "data infrastructure and access protocols",
+   "pre-deployment evaluation and post-deployment monitoring",
+   "incident reports",
+   "cross-border data sharing",
+   "critical infrastructure operators",
+   "AI-enhanced evidence collection",
+   "forecasting and piloting"
+  ],
+  "125018": [
+   "societal baseline preparedness",
+   "regional variation in perceived preparedness",
+   "community characteristics",
+   "digital infrastructure and technological literacy",
+   "institutional capacity",
+   "cultural and linguistic factors",
+   "resilience assessments",
+   "critical infrastructure resilience",
+   "World Economic Forum Global Cybersecurity Outlook",
+   "figure: cyber preparedness perceptions"
+  ],
+  "125019": [
+   "figure: perceived preparedness for cyberattacks on critical infrastructure",
+   "regional differences",
+   "cyber resilience confidence",
+   "World Economic Forum survey",
+   "regional comparison across continents"
+  ],
+  "125020": [
+   "updates since previous report",
+   "OpenAI Foundation pledge",
+   "OpenAI $50 million",
+   "Anthropic $10 million economic impact research",
+   "UK AI Security Institute grants",
+   "resilience funding small relative to AI investment",
+   "generative AI private investment",
+   "Stargate Project",
+   "societal resilience funding gap"
+  ],
+  "125021": [
+   "EU AI Act Code of Practice signatories",
+   "serious incident reporting to EU AI Office",
+   "incident tracking and documentation",
+   "Code of Practice enforcement mid-2026",
+   "non-binding governance instrument",
+   "data collection for resilience"
+  ],
+  "125022": [
+   "evidence gaps",
+   "limited information on general-purpose AI risks",
+   "effectiveness of resilience measures unknown",
+   "nascent evaluation methodologies",
+   "interaction risks with financial educational and healthcare systems",
+   "post-deployment usage data",
+   "unexpected failures",
+   "risk prioritization difficulty",
+   "early stage resilience measures"
+  ],
+  "125023": [
+   "challenges for policymakers",
+   "resilience incentives and funding",
+   "developers internalize only part of risk cost",
+   "externalities",
+   "resilience funding gap",
+   "financial burden on governments",
+   "offense-defense trade-offs",
+   "AI for cybersecurity and biosecurity dual-use"
+  ],
+  "125024": [
+   "report conclusion",
+   "international scientific assessment",
+   "over 100 experts from 30 countries",
+   "capabilities improving faster than anticipated",
+   "risk evidence base growing",
+   "risk management improving but insufficient",
+   "expert disagreement on pace and severity",
+   "common baseline",
+   "uncertainty"
+  ],
+  "125025": [
+   "year of change",
+   "IMO gold-medal level AI",
+   "malicious cyberattack misuse reports increasing",
+   "developers publishing cyber threat details",
+   "biological weapons uplift could not be ruled out",
+   "biological weapons uplift to novices",
+   "changes since January 2025",
+   "policy landscape shift"
+  ],
+  "125026": [
+   "core challenge",
+   "evidence gaps",
+   "unpredictable capability acquisition",
+   "evaluation gap",
+   "limited data on harm prevalence and severity",
+   "safeguard sufficiency for future systems unclear",
+   "limits of current assessment",
+   "benchmark results do not predict risk"
+  ],
+  "125027": [
+   "trajectory uncertainty",
+   "2030 scenarios",
+   "plateau slow steady or accelerating progress",
+   "AI forecasting",
+   "investment commitments signaling expected gains",
+   "technical limits",
+   "deployment and use shape impact",
+   "capability progress uncertainty",
+   "social impact depends on deployment"
+  ],
+  "125028": [
+   "value of shared understanding",
+   "non-prescriptive report",
+   "evidence-based common foundation",
+   "choices shape AI trajectory",
+   "international scientific collaboration",
+   "jurisdictional values",
+   "informed policy decisions",
+   "conclusion"
+  ],
+  "125029": [
+   "glossary",
+   "adoption definition",
+   "technology adoption"
+  ],
+  "125030": [
+   "glossary: adversarial training",
+   "adversarial robustness",
+   "jailbreak defense",
+   "model robustness training",
+   "technical safeguards"
+  ],
+  "125031": [
+   "glossary: AI agent",
+   "autonomous AI agents",
+   "tool use",
+   "agentic AI",
+   "multi-agent delegation",
+   "reduced human oversight",
+   "goal-directed autonomy",
+   "AI agent definition"
+  ],
+  "125032": [
+   "glossary: AI companion",
+   "AI companions",
+   "simulated personal relationships",
+   "emotional support chatbots",
+   "emotional dependence"
+  ],
+  "125033": [
+   "glossary: AI developer",
+   "AI developer definition",
+   "actors in AI value chain",
+   "developer versus deployer",
+   "organizations that build or adapt models"
+  ],
+  "125034": [
+   "glossary: AI-enabled biological and chemical tools",
+   "biological design tools",
+   "AI for science",
+   "biological and chemical risks",
+   "specialized models on biological data",
+   "dual-use scientific AI"
+  ],
+  "125035": [
+   "glossary: AI exposure",
+   "labor market impacts",
+   "occupational exposure to AI",
+   "task automation and augmentation",
+   "employment risk"
+  ],
+  "125036": [
+   "glossary: AI-generated media",
+   "synthetic media",
+   "generative AI content",
+   "deepfakes",
+   "AI-generated content"
+  ],
+  "125037": [
+   "glossary: AI lifecycle",
+   "AI development stages",
+   "data collection and curation",
+   "pre-training and post-training",
+   "deployment and release",
+   "post-deployment monitoring",
+   "lifecycle risk management"
+  ],
+  "125038": [
+   "glossary: algorithm",
+   "algorithm definition",
+   "AI system tasks"
+  ],
+  "125039": [
+   "glossary: algorithmic efficiency",
+   "compute efficiency",
+   "training resource usage",
+   "algorithmic progress",
+   "capability scaling"
+  ],
+  "125040": [
+   "glossary: algorithmic transparency",
+   "transparency of AI decisions",
+   "explainability",
+   "knowability of model inner workings",
+   "training data transparency",
+   "stakeholder transparency",
+   "counterfactual decisions"
+  ],
+  "125041": [
+   "glossary: alignment",
+   "AI alignment definition",
+   "alignment with human intentions values and norms",
+   "alignment target ambiguity",
+   "whose values",
+   "propensity"
+  ],
+  "125042": [
+   "glossary: API",
+   "application programming interface",
+   "API access to models",
+   "software integration",
+   "tool use by AI systems"
+  ],
+  "125043": [
+   "glossary: artificial general intelligence",
+   "AGI",
+   "human-level AI",
+   "surpassing human performance on cognitive tasks",
+   "hypothetical advanced AI"
+  ],
+  "125044": [
+   "glossary: artificial intelligence",
+   "AI definition",
+   "machine-based systems performing intelligent tasks"
+  ],
+  "125045": [
+   "glossary: attention mechanism",
+   "transformer architecture",
+   "neural networks",
+   "context understanding in models"
+  ],
+  "125046": [
+   "glossary: audit",
+   "AI auditing",
+   "compliance review",
+   "independent third-party audit",
+   "conformance to standards"
+  ],
+  "125047": [
+   "glossary: automation",
+   "task automation",
+   "reduced human involvement",
+   "labor market impacts"
+  ],
+  "125048": [
+   "glossary: automation bias",
+   "overreliance on AI",
+   "insufficient scrutiny of outputs",
+   "human-AI interaction",
+   "human oversight limits"
+  ],
+  "125049": [
+   "glossary: autonomous planning",
+   "multi-step strategies",
+   "AI agents",
+   "long-horizon planning",
+   "reduced human guidance",
+   "agentic capabilities",
+   "loss of control precursors"
+  ],
+  "125050": [
+   "glossary: benchmark",
+   "AI evaluation",
+   "standardized tests",
+   "capability measurement",
+   "benchmark validity"
+  ],
+  "125051": [
+   "glossary: biological weapon",
+   "biological weapons",
+   "pathogens and toxins",
+   "deliberate release",
+   "CBRN",
+   "biological risks"
+  ],
+  "125052": [
+   "glossary: biosecurity",
+   "biosecurity measures",
+   "diagnostics and vaccines",
+   "pathogen protection",
+   "biological risk mitigation",
+   "natural and deliberate biological threats"
+  ],
+  "125053": [
+   "glossary: biotechnology",
+   "biology and engineering",
+   "biological AI applications",
+   "dual-use biotechnology"
+  ],
+  "125054": [
+   "glossary: capabilities",
+   "AI capabilities definition",
+   "task competence",
+   "capability versus propensity",
+   "capability evaluation"
+  ],
+  "125055": [
+   "glossary: CBRN",
+   "chemical biological radiological nuclear",
+   "mass-harm threats",
+   "weapons of mass destruction",
+   "CBRN uplift",
+   "frontier safety framework risk domain"
+  ],
+  "125056": [
+   "glossary: chain of thought",
+   "chain-of-thought reasoning",
+   "reasoning models",
+   "intermediate reasoning steps",
+   "chain-of-thought monitoring",
+   "interpretability of reasoning"
+  ],
+  "125057": [
+   "glossary: chemical weapon",
+   "chemical weapons",
+   "toxic chemicals",
+   "CBRN",
+   "chemical risks"
+  ],
+  "125058": [
+   "glossary: CSAM",
+   "child sexual abuse material",
+   "AI-generated sexual content of children",
+   "illegal content",
+   "content moderation"
+  ],
+  "125059": [
+   "glossary: cloud computing",
+   "cloud infrastructure",
+   "compute access",
+   "AI deployment infrastructure",
+   "cloud providers"
+  ],
+  "125060": [
+   "glossary: cognitive offloading",
+   "delegating cognitive tasks",
+   "cognitive skill decline",
+   "overreliance on AI",
+   "human autonomy"
+  ],
+  "125061": [
+   "glossary: cognitive tasks",
+   "information processing and problem-solving",
+   "writing and programming tasks",
+   "labor market exposure",
+   "task automation"
+  ],
+  "125062": [
+   "glossary: collective autonomy",
+   "group self-determination",
+   "undue external influence",
+   "democratic agency",
+   "societal autonomy",
+   "human autonomy"
+  ],
+  "125063": [
+   "glossary: collusion",
+   "AI agent collusion",
+   "secret cooperation",
+   "multi-agent risks",
+   "market manipulation",
+   "cooperation to the detriment of others"
+  ],
+  "125064": [
+   "glossary: comparative advantage",
+   "economics of AI",
+   "opportunity cost",
+   "labor market impacts",
+   "human-AI task allocation"
+  ],
+  "125065": [
+   "glossary: compute",
+   "computational resources",
+   "chips and data centers",
+   "compute governance",
+   "AI hardware",
+   "compute as capability driver"
+  ],
+  "125066": [
+   "glossary: continual fine-tuning",
+   "updating models with new knowledge",
+   "sequential fine-tuning",
+   "model updates",
+   "post-deployment model change"
+  ],
+  "125067": [
+   "glossary: control",
+   "controllability of AI systems",
+   "ability to halt or adjust behavior",
+   "loss of control",
+   "human oversight",
+   "shutdown ability"
+  ],
+  "125068": [
+   "glossary: copyright",
+   "intellectual property",
+   "copyrighted training data",
+   "creators' exclusive rights",
+   "legal risks of AI training"
+  ],
+  "125069": [
+   "glossary: critical infrastructure",
+   "critical infrastructure protection",
+   "energy transport food public administration",
+   "infrastructure cyberattacks",
+   "societal essential systems",
+   "systemic risk"
+  ],
+  "125070": [
+   "glossary: critical sectors",
+   "critical sectors definition",
+   "public safety and security",
+   "government decision-making",
+   "critical infrastructure",
+   "AI development as critical sector",
+   "high-stakes deployment"
+  ],
+  "125071": [
+   "glossary: capture-the-flag exercises",
+   "CTF",
+   "cybersecurity evaluations",
+   "cyber capability benchmark",
+   "cybersecurity training"
+  ],
+  "125072": [
+   "glossary: cyberattack",
+   "cyberattacks",
+   "unauthorized access to systems",
+   "cyber offense",
+   "malicious use"
+  ],
+  "125073": [
+   "glossary: data center",
+   "data centers",
+   "compute infrastructure",
+   "AI infrastructure",
+   "compute governance"
+  ],
+  "125074": [
+   "glossary: data collection and curation",
+   "training data preparation",
+   "data labeling workers",
+   "data cleaning",
+   "AI lifecycle stage"
+  ],
+  "125075": [
+   "glossary: data contamination",
+   "benchmark contamination",
+   "benchmark validity",
+   "inflated scores",
+   "train-test leakage",
+   "evaluation reliability"
+  ],
+  "125076": [
+   "glossary: data provenance",
+   "data lineage",
+   "training data record",
+   "ecosystem monitoring",
+   "data transparency"
+  ],
+  "125077": [
+   "glossary: deception",
+   "AI deception",
+   "inducing false beliefs",
+   "manipulation and influence",
+   "strategic deception by models",
+   "truthfulness"
+  ],
+  "125078": [
+   "glossary: deepfake",
+   "deepfakes",
+   "synthetic media",
+   "impersonation",
+   "AI-generated audio and video",
+   "non-consensual intimate imagery",
+   "fraud"
+  ],
+  "125079": [
+   "glossary: deep learning",
+   "neural networks",
+   "large-scale compute training",
+   "machine learning technique",
+   "pattern recognition"
+  ],
+  "125080": [
+   "glossary: defense-in-depth",
+   "layered safeguards",
+   "independent overlapping defenses",
+   "redundancy",
+   "Swiss cheese model"
+  ],
+  "125081": [
+   "glossary: defensive technologies",
+   "defensive acceleration",
+   "risk-reducing technology",
+   "offense-defense balance",
+   "societal resilience"
+  ],
+  "125082": [
+   "glossary: deployment",
+   "AI deployment",
+   "operational use in real-world settings",
+   "release to users",
+   "AI lifecycle stage"
+  ],
+  "125083": [
+   "glossary: deployment environment",
+   "use case and institutional context",
+   "context-dependence of risk",
+   "sociotechnical deployment context"
+  ],
+  "125084": [
+   "glossary: digital infrastructure",
+   "networks and data centers",
+   "hardware and software foundations",
+   "critical infrastructure",
+   "access to AI"
+  ],
+  "125085": [
+   "glossary: distillation",
+   "teacher-student training",
+   "imitating more powerful models",
+   "capability transfer",
+   "model heritage",
+   "distillation attacks"
+  ],
+  "125086": [
+   "glossary: distributed compute",
+   "decentralized training",
+   "multi-data-center training",
+   "compute governance evasion",
+   "distributed AI training and inference"
+  ],
+  "125087": [
+   "glossary: downstream AI developer",
+   "downstream developers",
+   "AI value chain",
+   "building on existing models",
+   "application builders",
+   "responsibility distribution"
+  ],
+  "125088": [
+   "glossary: dual-use science",
+   "dual-use research",
+   "beneficial and harmful applications",
+   "biological and chemical weapon development",
+   "dual-use risk",
+   "misuse potential"
+  ],
+  "125089": [
+   "glossary: ecosystem monitoring",
+   "monitoring AI real-world use and impact",
+   "post-deployment monitoring",
+   "AI ecosystem awareness"
+  ],
+  "125090": [
+   "glossary: emergent capabilities",
+   "unexpected capabilities arising in training",
+   "unpredictable capability gain",
+   "capability forecasting difficulty",
+   "scaling surprises"
+  ],
+  "125091": [
+   "glossary: encryption",
+   "information security",
+   "cryptography",
+   "authorized access",
+   "model weight protection"
+  ],
+  "125092": [
+   "glossary: evaluations",
+   "AI evaluations",
+   "pre- and post-deployment assessment",
+   "capability and vulnerability evaluation",
+   "impact assessment",
+   "model testing"
+  ],
+  "125093": [
+   "glossary: evidence dilemma",
+   "policy under uncertainty",
+   "ineffective regulation versus unaddressed harm",
+   "pacing problem",
+   "precaution versus innovation",
+   "premature versus delayed regulation"
+  ],
+  "125094": [
+   "glossary: feedback loop",
+   "system outputs fed back as inputs",
+   "reinforcing dynamics",
+   "model collapse",
+   "recursive effects"
+  ],
+  "125095": [
+   "glossary: fine-tuning",
+   "model adaptation after training",
+   "task-specific training",
+   "safety fine-tuning",
+   "harmful fine-tuning",
+   "post-training"
+  ],
+  "125096": [
+   "glossary: FLOP",
+   "floating point operations",
+   "training compute measure",
+   "compute thresholds",
+   "compute-based regulation",
+   "scaling"
+  ],
+  "125097": [
+   "glossary: foundation model",
+   "general-purpose model adaptable to downstream tasks",
+   "foundation models",
+   "model dependence",
+   "downstream adaptation"
+  ],
+  "125098": [
+   "glossary: frontier AI",
+   "frontier AI definition",
+   "most capable AI systems",
+   "frontier developers",
+   "general-purpose AI at the capability frontier"
+  ],
+  "125099": [
+   "glossary: Frontier AI Safety Framework",
+   "frontier safety frameworks",
+   "if-then commitments",
+   "predefined capability thresholds",
+   "developer safety and security protocols",
+   "responsible scaling policy"
+  ],
+  "125100": [
+   "glossary: general-purpose AI",
+   "general-purpose AI definition",
+   "versus narrow AI",
+   "multi-task AI systems",
+   "AI systems not specialized for one domain"
+  ],
+  "125101": [
+   "glossary: generative AI",
+   "content generation",
+   "text image and audio generation",
+   "learning patterns from data",
+   "synthetic content"
+  ],
+  "125102": [
+   "glossary: goal misgeneralization",
+   "misalignment",
+   "training failure",
+   "generalization of learned goals",
+   "out-of-distribution behavior",
+   "inner alignment",
+   "alignment failure modes"
+  ],
+  "125103": [
+   "glossary: goal misspecification",
+   "specification gaming",
+   "objective misspecification",
+   "imperfect proxy objectives",
+   "outer alignment",
+   "reward hacking",
+   "unintended system behavior",
+   "alignment failure modes"
+  ],
+  "125104": [
+   "glossary: GPU",
+   "graphics processing unit",
+   "AI chips",
+   "AI hardware",
+   "compute governance",
+   "parallel processing for training"
+  ],
+  "125105": [
+   "glossary: hacking",
+   "exploiting vulnerabilities",
+   "unauthorized access",
+   "cyber offense",
+   "cyberattacks"
+  ],
+  "125106": [
+   "glossary: hallucination",
+   "hallucinated outputs",
+   "AI misinformation",
+   "factual inaccuracy",
+   "reliability challenges",
+   "confabulation"
+  ],
+  "125107": [
+   "glossary: hazard",
+   "hazard definition",
+   "potential for harm",
+   "risk terminology",
+   "loss of life or injury"
+  ],
+  "125108": [
+   "glossary: human autonomy",
+   "human autonomy definition",
+   "self-determination",
+   "freedom from undue influence",
+   "meaningful options",
+   "beliefs values and goals"
+  ],
+  "125109": [
+   "glossary: human in the loop",
+   "human oversight",
+   "human approval of automated actions",
+   "decision-making authority",
+   "automation level",
+   "human review"
+  ],
+  "125110": [
+   "glossary: if-then commitments",
+   "conditional commitments",
+   "predefined conditions triggering actions",
+   "capability thresholds",
+   "frontier safety frameworks",
+   "regulatory triggers"
+  ],
+  "125111": [
+   "glossary: incident reporting",
+   "AI incident reporting",
+   "documenting failures and misuse",
+   "incident databases",
+   "post-incident learning",
+   "serious incident reporting"
+  ],
+  "125112": [
+   "glossary: inference",
+   "model inference",
+   "generating outputs from inputs",
+   "inference compute",
+   "deployment-time computation"
+  ],
+  "125113": [
+   "glossary: inference-time scaling",
+   "test-time compute",
+   "additional compute at inference",
+   "reasoning models",
+   "capability gains without more training",
+   "compute thresholds challenge"
+  ],
+  "125114": [
+   "glossary: input to an AI system",
+   "prompts",
+   "user input",
+   "text or image input",
+   "input processing"
+  ],
+  "125115": [
+   "glossary: institutional transparency",
+   "institutional transparency definition",
+   "developer disclosure of training data and architectures",
+   "safety and security measure disclosure",
+   "decision-making process transparency",
+   "information asymmetries",
+   "transparency reports"
+  ],
+  "125116": [
+   "glossary: interpretability",
+   "interpretability definition",
+   "understanding model inner workings",
+   "explaining outputs",
+   "mechanistic interpretability",
+   "black box models"
+  ],
+  "125117": [
+   "glossary: jailbreaking",
+   "jailbreaks",
+   "bypassing safeguards",
+   "adversarial prompting",
+   "harmful content elicitation",
+   "safeguard robustness"
+  ],
+  "125118": [
+   "glossary: labor market",
+   "labor market definition",
+   "employment and wages",
+   "job creation and job loss",
+   "labor market impacts"
+  ],
+  "125119": [
+   "glossary: labor market disruption",
+   "job displacement",
+   "skill requirements shift",
+   "wage distribution changes",
+   "changing nature of work",
+   "labor market impacts",
+   "economic disruption from AI"
+  ],
+  "125120": [
+   "glossary: large language model",
+   "LLM",
+   "text-trained models",
+   "language generation and translation",
+   "general-purpose AI model"
+  ],
+  "125121": [
+   "glossary: loss of control scenario",
+   "loss of control",
+   "AI systems operating outside anyone's control",
+   "no clear path to regaining control",
+   "uncontrollable AI",
+   "existential-scale risk scenario",
+   "loss of control definition"
+  ],
+  "125122": [
+   "glossary: machine learning",
+   "learning from data",
+   "AI subfield",
+   "training algorithms"
+  ],
+  "125123": [
+   "glossary: malfunction",
+   "AI malfunction",
+   "failure to operate as intended",
+   "incorrect or harmful outputs",
+   "operational disruption",
+   "reliability failures",
+   "risks from malfunctions"
+  ],
+  "125124": [
+   "glossary: malicious use",
+   "malicious use of AI",
+   "intentional harm",
+   "misuse",
+   "risks from malicious use definition"
+  ],
+  "125125": [
+   "glossary: malware",
+   "malicious software",
+   "viruses and spyware",
+   "cyber offense",
+   "AI-generated malware",
+   "cyberattacks"
+  ],
+  "125126": [
+   "glossary: manipulation",
+   "manipulation definition",
+   "changing beliefs or behavior without awareness",
+   "covert influence",
+   "persuasion versus manipulation",
+   "influence and manipulation risks",
+   "undermining autonomy"
+  ],
+  "125127": [
+   "glossary: marginal risk",
+   "counterfactual risk increase",
+   "marginal risk of model release",
+   "baseline of existing models and technologies",
+   "open-weight release assessment",
+   "risk assessment method"
+  ],
+  "125128": [
+   "glossary: metadata",
+   "content metadata",
+   "AI-generated content labeling",
+   "content provenance",
+   "data about data"
+  ],
+  "125129": [
+   "glossary: misalignment",
+   "misalignment definition",
+   "AI propensity conflicting with human intentions",
+   "alignment failure",
+   "values conflict with developers users or society",
+   "propensity versus capability",
+   "loss of control precursors"
+  ],
+  "125130": [
+   "glossary: miscoordination",
+   "multi-agent miscoordination",
+   "shared goal but failed coordination",
+   "multi-agent risks",
+   "AI agent coordination failures",
+   "cooperation failures"
+  ],
+  "125131": [
+   "glossary: modalities",
+   "input and output data types",
+   "text code images video",
+   "robotic actions",
+   "multimodal AI"
+  ],
+  "125132": [
+   "glossary: AI model",
+   "model definition",
+   "program processing inputs for prediction classification or generation",
+   "machine learning models",
+   "core of AI systems",
+   "model versus system"
+  ],
+  "125133": [
+   "glossary: model card",
+   "model documentation",
+   "purpose and usage guidelines",
+   "training data and benchmark disclosure",
+   "safety feature documentation",
+   "transparency documentation",
+   "system cards"
+  ],
+  "125134": [
+   "glossary: model release",
+   "making models available",
+   "release for use study modification or integration",
+   "release strategies",
+   "open-weight release",
+   "deployment decisions"
+  ],
+  "125135": [
+   "glossary: multi-agent system",
+   "interacting AI agents",
+   "cooperation and competition between agents",
+   "agent-agent interaction",
+   "emergent multi-agent behavior",
+   "multi-agent risks"
+  ],
+  "125136": [
+   "glossary: multimodality",
+   "multimodal models",
+   "text image video and audio processing",
+   "AI modalities"
+  ],
+  "125137": [
+   "glossary: narrow AI",
+   "narrow AI definition",
+   "task-specific AI",
+   "versus general-purpose AI",
+   "single-task systems"
+  ],
+  "125138": [
+   "glossary: neural network",
+   "interconnected nodes in layers",
+   "learning by adjusting connections",
+   "basis of current general-purpose AI",
+   "deep learning architecture"
+  ],
+  "125139": [
+   "glossary: non-consensual intimate imagery",
+   "NCII",
+   "sexual deepfakes",
+   "image-based sexual abuse",
+   "AI-generated intimate imagery",
+   "harms to individuals"
+  ],
+  "125140": [
+   "glossary: OODA loop",
+   "observe-orient-decide-act",
+   "iterative decision-making framework",
+   "adaptive response",
+   "resilience feedback loop"
+  ],
+  "125141": [
+   "glossary: offense-defense balance",
+   "attacker versus defender advantage",
+   "cybersecurity balance",
+   "shift towards defenders or attackers",
+   "dual-use dynamics",
+   "offense-defense definition"
+  ],
+  "125142": [
+   "glossary: open-ended domains",
+   "open-ended deployment environments",
+   "large space of possible scenarios",
+   "untestable use cases",
+   "pre-deployment testing limits",
+   "unanticipated use",
+   "evaluation coverage limits"
+  ],
+  "125143": [
+   "glossary: open source model",
+   "open source definition",
+   "weights code data and documentation released",
+   "freedom to use study modify share",
+   "disagreement about open source requirements",
+   "use restrictions and licenses",
+   "open-weight versus open source"
+  ],
+  "125144": [
+   "glossary: open-weight model",
+   "open-weight definition",
+   "publicly downloadable weights",
+   "open-weight versus open source",
+   "weights release"
+  ],
+  "125145": [
+   "glossary: out-of-distribution failure",
+   "distribution shift",
+   "failure on unseen inputs",
+   "generalization failure",
+   "robustness",
+   "reliability failures"
+  ],
+  "125146": [
+   "glossary: parameters",
+   "model weights and biases",
+   "learned numerical components",
+   "model size",
+   "weights definition",
+   "mathematical bias versus social bias"
+  ],
+  "125147": [
+   "glossary: passive loss of control",
+   "loss of control through overreliance",
+   "gradual disempowerment",
+   "societal functions delegated to AI",
+   "overreliance on AI for decisions",
+   "loss of control definition",
+   "erosion of human control"
+  ],
+  "125148": [
+   "glossary: pathogen",
+   "disease-causing microorganisms",
+   "viruses bacteria and fungi",
+   "biological risks",
+   "biosecurity"
+  ],
+  "125149": [
+   "glossary: penetration testing",
+   "pen testing",
+   "simulated cyberattacks",
+   "proactive security evaluation",
+   "AI for cyber defense",
+   "vulnerability discovery",
+   "cyber evaluation"
+  ],
+  "125150": [
+   "glossary: persuasion",
+   "persuasion definition",
+   "influence through argument and emotional appeals",
+   "AI persuasion capability",
+   "belief change without coercion",
+   "persuasion versus manipulation",
+   "influence and manipulation risks"
+  ],
+  "125151": [
+   "glossary: phishing",
+   "deceptive messages",
+   "social engineering",
+   "credential theft",
+   "AI-enabled scams",
+   "cyberattacks",
+   "fraud"
+  ],
+  "125152": [
+   "glossary: pluralistic alignment",
+   "balancing conflicting preferences",
+   "representing diverse groups",
+   "alignment target ambiguity",
+   "value pluralism"
+  ],
+  "125153": [
+   "glossary: post-deployment monitoring",
+   "tracking impact and performance after release",
+   "user feedback",
+   "iterative improvement",
+   "real-world use monitoring",
+   "ecosystem monitoring",
+   "AI lifecycle stage"
+  ],
+  "125154": [
+   "glossary: post-training",
+   "fine-tuning and reinforcement learning after pre-training",
+   "refining model behavior",
+   "safety post-training",
+   "AI lifecycle stage",
+   "RLHF"
+  ]
+ }
+}

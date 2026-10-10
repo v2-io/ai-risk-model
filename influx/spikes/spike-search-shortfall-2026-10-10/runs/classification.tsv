@@ -1,0 +1,144 @@
+# One reader's classification (Claude Opus 5.5, ai-risk-model spike, 2026-10-10) of every unflagged judged stretch at cut 188,
+# from the stretch's opening words and its judge's note, not from rereading the whole document. Estimated, not measured.
+# The chemical/biological query's 12 stretches are not inspected or classified (brief's constraint).
+# PARA     says the query's own concept in other words (incl. another source's term for it)
+# NBR      a different concept that domain knowledge links to the query: an instance, mechanism, sub-type, or evidence of it
+# RELDEF   a glossary entry or definition of a related or paired term
+# XREF     a provision the document itself ties to a relevant one: a definition used inside it, an exclusion, a statute's repeat
+# FORM     the query's word is there in a form the matcher misses (compound, derivation, tokenizer)
+# RANK     direct content holding the query's words, ranked just past the cut
+# CTX      peripheral context whose link is the judge's wide reading
+sid	cat
+hazard|bengio-2|9	FORM
+catastrophic|anthropi|9	CTX
+catastrophic|bengio-2|16	NBR
+catastrophic|bengio-2|20	PARA
+catastrophic|bengio-2|21	RELDEF
+catastrophic|californ|23	XREF
+catastrophic|californ|24	XREF
+catastrophic|californ|26	XREF
+loss of cont|aisi-202|5	NBR
+loss of cont|anthropi|7	NBR
+loss of cont|anthropi|8	NBR
+loss of cont|anthropi|11	NBR
+loss of cont|anthropi|12	NBR
+loss of cont|anthropi|14	NBR
+loss of cont|anthropi|16	NBR
+loss of cont|anthropi|17	NBR
+loss of cont|anthropi|19	NBR
+loss of cont|bengio-2|27	CTX
+loss of cont|bengio-2|30	PARA
+loss of cont|californ|36	NBR
+loss of cont|eu-cop-2|41	NBR
+loss of cont|eu-cop-2|42	RELDEF
+loss of cont|eu-cop-2|43	NBR
+humans can n|anthropi|3	NBR
+humans can n|anthropi|4	PARA
+humans can n|anthropi|5	NBR
+humans can n|anthropi|6	PARA
+humans can n|anthropi|7	NBR
+humans can n|anthropi|8	NBR
+humans can n|anthropi|9	NBR
+humans can n|anthropi|10	FORM
+humans can n|anthropi|11	NBR
+humans can n|bengio-2|17	RELDEF
+humans can n|bengio-2|18	PARA
+humans can n|bengio-2|19	PARA
+humans can n|bengio-2|21	CTX
+humans can n|bengio-2|25	NBR
+humans can n|californ|28	PARA
+humans can n|californ|29	PARA
+humans can n|californ|30	NBR
+humans can n|californ|31	PARA
+humans can n|californ|32	XREF
+humans can n|eu-cop-2|34	NBR
+humans can n|eu-cop-2|35	PARA
+humans can n|eu-cop-2|36	NBR
+misalignment|aisi-202|0	PARA
+misalignment|aisi-202|1	NBR
+misalignment|aisi-202|2	PARA
+misalignment|aisi-202|3	CTX
+misalignment|anthropi|9	FORM
+misalignment|anthropi|15	CTX
+misalignment|bengio-2|20	RELDEF
+misalignment|bengio-2|21	RELDEF
+misalignment|bengio-2|22	NBR
+misalignment|bengio-2|23	PARA
+misalignment|bengio-2|24	NBR
+misalignment|bengio-2|26	FORM
+misalignment|californ|27	NBR
+misalignment|californ|28	NBR
+misalignment|californ|29	NBR
+misalignment|californ|30	NBR
+serious inci|aisi-202|0	CTX
+serious inci|anthropi|10	CTX
+serious inci|anthropi|12	RANK
+what must a |aisi-202|1	CTX
+what must a |aisi-202|2	CTX
+what must a |anthropi|4	CTX
+what must a |anthropi|10	NBR
+what must a |anthropi|11	PARA
+what must a |bengio-2|22	CTX
+what must a |bengio-2|27	NBR
+what must a |bengio-2|28	PARA
+what must a |bengio-2|29	CTX
+what must a |bengio-2|31	RELDEF
+what must a |eu-cop-2|41	PARA
+what must a |eu-cop-2|46	CTX
+what must a |eu-cop-2|47	NBR
+evidence tha|aisi-202|4	NBR
+evidence tha|anthropi|10	PARA
+evidence tha|anthropi|17	RANK
+evidence tha|anthropi|27	NBR
+evidence tha|bengio-2|31	PARA
+evidence tha|bengio-2|36	NBR
+evidence tha|bengio-2|42	NBR
+evidence tha|bengio-2|43	PARA
+evidence tha|bengio-2|48	NBR
+evidence tha|bengio-2|49	NBR
+evidence tha|bengio-2|50	RELDEF
+evidence tha|californ|51	PARA
+evidence tha|californ|52	PARA
+evidence tha|eu-cop-2|59	NBR
+evidence tha|eu-cop-2|60	NBR
+cyber capabi|aisi-202|6	XREF
+cyber capabi|anthropi|8	NBR
+cyber capabi|anthropi|9	RANK
+cyber capabi|anthropi|11	CTX
+cyber capabi|anthropi|12	NBR
+cyber capabi|bengio-2|19	FORM
+cyber capabi|bengio-2|23	CTX
+cyber capabi|bengio-2|25	FORM
+cyber capabi|bengio-2|27	NBR
+cyber capabi|bengio-2|29	CTX
+cyber capabi|bengio-2|30	RELDEF
+cyber capabi|eu-cop-2|37	NBR
+how the seve|aisi-202|2	CTX
+how the seve|aisi-202|3	CTX
+how the seve|anthropi|5	NBR
+how the seve|anthropi|11	PARA
+how the seve|anthropi|12	NBR
+how the seve|anthropi|14	NBR
+how the seve|anthropi|15	PARA
+how the seve|anthropi|18	NBR
+how the seve|anthropi|19	NBR
+how the seve|anthropi|20	PARA
+how the seve|bengio-2|31	NBR
+how the seve|bengio-2|32	NBR
+how the seve|bengio-2|33	NBR
+how the seve|bengio-2|36	NBR
+how the seve|bengio-2|37	PARA
+how the seve|bengio-2|40	CTX
+how the seve|bengio-2|42	RELDEF
+how the seve|bengio-2|43	RELDEF
+how the seve|bengio-2|44	RELDEF
+how the seve|californ|45	PARA
+how the seve|californ|46	PARA
+how the seve|californ|47	XREF
+how the seve|californ|48	XREF
+how the seve|californ|49	NBR
+how the seve|californ|50	CTX
+how the seve|californ|51	CTX
+how the seve|eu-cop-2|59	NBR
+how the seve|eu-cop-2|62	PARA
+how the seve|eu-cop-2|63	NBR

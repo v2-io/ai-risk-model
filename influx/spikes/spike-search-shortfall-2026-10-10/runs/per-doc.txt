@@ -1,0 +1,6 @@
+pooled Au5 ranking, scored per document (judge in brackets)
+bengio-2026-international        [Claude]            today 0.77       exp R+N a2 0.85          tags b1 0.81  exp+tags+eot b1 0.88   gain 235
+eu-cop-2025-safety-security      [Grok  ]            today 0.84       exp R+N a2 0.83          tags b1 0.89  exp+tags+eot b1 0.92   gain 114
+california-2025-sb53             [Claude]            today 0.67       exp R+N a2 0.67          tags b1 0.76  exp+tags+eot b1 0.74   gain 105
+anthropic-2026-risk-report-aug   [Claude]            today 0.73       exp R+N a2 0.83          tags b1 0.81  exp+tags+eot b1 0.90   gain 216
+aisi-2025-frontier               [Claude]            today 0.75       exp R+N a2 0.73          tags b1 0.85  exp+tags+eot b1 0.86   gain 91

@@ -1,0 +1,7 @@
+total judged gain 761; unflagged 0.248
+  sect    0.051 of all  (21% of unflagged)
+  parent  0.173 of all  (70% of unflagged)
+  adj     0.062 of all  (25% of unflagged)
+  dup     0.005 of all  (2% of unflagged)
+  any     0.095 of all  (38% of unflagged)
+  none    0.154 of all  (62% of unflagged)

@@ -1,0 +1,5 @@
+expansion R+N a2             won NBR 17, PARA 11, RELDEF 8, FORM 3, RANK 3, CTX 2, XREF 1  | lost 7  | net +0.050
+tags-both|1.0                won PARA 22, NBR 13, BIO 11, RELDEF 6, CTX 4, XREF 4, RANK 2, FORM 1  | lost 11  | net +0.068
+doc2query                    won PARA 7, RELDEF 6, BIO 5, NBR 4, RANK 1  | lost 8  | net +0.020
+exp+tags b1.0|1.0            won PARA 26, NBR 16, BIO 11, RELDEF 8, XREF 5, CTX 4, RANK 2, FORM 2  | lost 5  | net +0.091
+exp+tags+exp-on-tags b1.0|1.0 won PARA 30, NBR 27, BIO 11, CTX 8, RELDEF 8, XREF 5, RANK 5, FORM 2  | lost 6  | net +0.118

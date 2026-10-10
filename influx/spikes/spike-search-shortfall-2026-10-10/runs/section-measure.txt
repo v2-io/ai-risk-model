@@ -1,0 +1,2 @@
+today  {'passage': 0.752, 'near': 0.813, 'section': 0.803}
+random {'passage': np.float64(0.219), 'near': np.float64(0.49), 'section': np.float64(0.435)}

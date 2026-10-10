@@ -1,0 +1,3 @@
+bge-m3 full : semantic alone flagged 0.645 AUC 0.845 | hybrid flagged 0.752 (vs today +0.000, +0.000 to +0.000) must 0.849
+bge-m3 path : semantic alone flagged 0.668 AUC 0.850 | hybrid flagged 0.746 (vs today -0.005, -0.029 to +0.023) must 0.849
+bge-m3 text : semantic alone flagged 0.661 AUC 0.798 | hybrid flagged 0.760 (vs today +0.008, -0.023 to +0.034) must 0.842

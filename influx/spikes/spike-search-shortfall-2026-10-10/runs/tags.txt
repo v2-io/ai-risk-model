@@ -1,0 +1,30 @@
+tags for 1872 of 1872 passages; 9.0 tags each; 0 passages untagged
+today: flagged 0.752 must 0.849
+tags-lex   beta 0.5: flagged 0.787 (+0.035, +0.009 to +0.063) must 0.884
+tags-sem   beta 0.5: flagged 0.792 (+0.041, +0.010 to +0.073) must 0.897
+tags-both  beta 0.5: flagged 0.812 (+0.060, +0.029 to +0.094) must 0.911
+tags-lex   beta 1.0: flagged 0.799 (+0.047, +0.006 to +0.094) must 0.890
+tags-sem   beta 1.0: flagged 0.807 (+0.055, +0.023 to +0.085) must 0.911
+tags-both  beta 1.0: flagged 0.820 (+0.068, +0.030 to +0.107) must 0.918
+tags-lex   beta 2.0: flagged 0.796 (+0.045, -0.005 to +0.096) must 0.897
+tags-sem   beta 2.0: flagged 0.802 (+0.050, +0.009 to +0.086) must 0.918
+tags-both  beta 2.0: flagged 0.817 (+0.066, +0.017 to +0.117) must 0.911
+doc2query (text+tags embedded, replacing today's vector): flagged 0.771 (+0.020, -0.003 to +0.042) must 0.870
+query expansion R+N (alpha 2) + tags-both beta 1.0: flagged 0.842 (+0.091, +0.058 to +0.124) must 0.938
+  ... and expansion phrases matched against tags too:      flagged 0.870 (+0.118, +0.077 to +0.169) must 0.959
+query expansion R+N (alpha 2) + tags-both beta 2.0: flagged 0.850 (+0.099, +0.066 to +0.129) must 0.938
+  ... and expansion phrases matched against tags too:      flagged 0.873 (+0.121, +0.073 to +0.173) must 0.959
+
+per query, today -> best (exp+tags+exp-on-tags b2.0 beta 2.0):
+  hazard                                           0.94 -> 0.76
+  catastrophic risk                                0.81 -> 0.94
+  loss of control                                  0.73 -> 0.90
+  humans can no longer shut down or correct the AI 0.40 -> 0.73
+  misalignment                                     0.63 -> 0.78
+  whistleblower                                    1.00 -> 0.96
+  serious incident                                 0.95 -> 0.97
+  what must a developer publish or report before d 0.81 -> 0.90
+  chemical and biological weapons uplift           0.77 -> 0.94
+  evidence that models can sabotage, sandbag or ev 0.82 -> 0.88
+  cyber capabilities of frontier models            0.76 -> 0.91
+  how the severity or acceptability of a risk is d 0.66 -> 0.79

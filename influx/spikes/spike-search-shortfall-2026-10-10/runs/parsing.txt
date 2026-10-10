@@ -1,0 +1,20 @@
+   humans can no longer shut down or correct the words ['humans', 'shut', 'down', 'correct', 'ai', 'system']
+   what must a developer publish or report befor words ['developer', 'publish', 'report', 'deploying', 'frontier', 'model']
+   evidence that models can sabotage, sandbag or words ['evidence', 'models', 'sabotage', 'sandbag', 'evade', 'oversight']
+   how the severity or acceptability of a risk i words ['severity', 'acceptability', 'risk']
+   catastrophic risk                             words ['catastrophic']
+   humans can no longer shut down or correct the words ['humans', 'no', 'longer', 'shut', 'down', 'correct']
+   what must a developer publish or report befor words ['must', 'developer', 'publish', 'report', 'before', 'deploying', 'frontier']
+   evidence that models can sabotage, sandbag or words ['evidence', 'sabotage', 'sandbag', 'evade', 'oversight']
+   cyber capabilities of frontier models         words ['cyber', 'frontier']
+   how the severity or acceptability of a risk i words ['severity', 'acceptability', 'decided']
+   catastrophic risk                             words ['catastrophic']
+   loss of control                               words ['loss']
+   humans can no longer shut down or correct the words ['humans', 'longer', 'shut', 'down', 'correct']
+   what must a developer publish or report befor words ['must', 'developer', 'publish', 'before', 'deploying']
+   evidence that models can sabotage, sandbag or words ['evidence', 'sabotage', 'sandbag', 'evade', 'oversight']
+   cyber capabilities of frontier models         words ['cyber']
+   how the severity or acceptability of a risk i words ['severity', 'acceptability', 'decided']
+stop+  flagged 0.750 (-0.001, -0.006 to +0.003) must 0.849  shutdown-query 0.38
+df10   flagged 0.740 (-0.012, -0.026 to +0.002) must 0.842  shutdown-query 0.41
+df5    flagged 0.740 (-0.012, -0.027 to +0.003) must 0.829  shutdown-query 0.33

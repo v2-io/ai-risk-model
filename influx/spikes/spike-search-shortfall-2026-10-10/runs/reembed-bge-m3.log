@@ -1,0 +1,3 @@
+bge-m3 full: 1872 passages in 38s -> /Users/josephwecker-v2/src/ai-risk-model/influx/spikes/spike-search-shortfall-2026-10-10/cache/bge-m3-full.npz
+bge-m3 path: 1872 passages in 53s -> /Users/josephwecker-v2/src/ai-risk-model/influx/spikes/spike-search-shortfall-2026-10-10/cache/bge-m3-path.npz
+bge-m3 text: 1872 passages in 54s -> /Users/josephwecker-v2/src/ai-risk-model/influx/spikes/spike-search-shortfall-2026-10-10/cache/bge-m3-text.npz

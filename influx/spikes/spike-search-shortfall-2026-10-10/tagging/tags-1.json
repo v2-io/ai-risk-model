@@ -1,0 +1,2665 @@
+{
+ "tagger": "claude-sonnet-5-5 (Claude Code subagent, single pass over batch-1, tags written from passage text with neighbouring passages in view)",
+ "tags": {
+  "124505": [],
+  "124506": [
+   "International AI Safety Report",
+   "scientific assessment of AI capabilities and risks",
+   "international scientific consensus",
+   "Yoshua Bengio",
+   "general-purpose AI",
+   "multi-country backing of AI safety evidence base"
+  ],
+  "124507": [],
+  "124508": [
+   "report table of contents"
+  ],
+  "124509": [
+   "report table of contents",
+   "report chapter structure"
+  ],
+  "124510": [
+   "report contributors"
+  ],
+  "124511": [
+   "Expert Advisory Panel",
+   "multi-country review of report",
+   "report independence",
+   "no policy endorsement",
+   "international organisations OECD EU UN"
+  ],
+  "124512": [
+   "report contributors"
+  ],
+  "124513": [
+   "report contributors"
+  ],
+  "124514": [
+   "report contributors"
+  ],
+  "124515": [
+   "report contributors"
+  ],
+  "124516": [
+   "report contributors"
+  ],
+  "124517": [
+   "report contributors",
+   "senior advisers"
+  ],
+  "124518": [
+   "report secretariat",
+   "AI Security Institute"
+  ],
+  "124519": [
+   "report secretariat"
+  ],
+  "124520": [
+   "acknowledgements"
+  ],
+  "124521": [
+   "civil society reviewers",
+   "external review process",
+   "acknowledgements"
+  ],
+  "124522": [
+   "industry reviewers",
+   "AI developer involvement in review",
+   "external review process"
+  ],
+  "124523": [
+   "informal reviewers",
+   "external review process"
+  ],
+  "124524": [
+   "acknowledgements",
+   "copyright and licence"
+  ],
+  "124525": [
+   "disclaimer",
+   "report independence",
+   "synthesis of existing research",
+   "Chair responsibility"
+  ],
+  "124526": [
+   "Bletchley Park AI Safety Summit mandate",
+   "evidence base for AI policy",
+   "emerging risks scope",
+   "scenarios and forecasts",
+   "OECD scenarios",
+   "Forecasting Research Institute",
+   "UN Independent International Scientific Panel on AI",
+   "international scientific assessment"
+  ],
+  "124527": [
+   "rigour of AI assessment",
+   "shared understanding of AI capabilities and risks",
+   "risk mitigation techniques",
+   "pace of AI progress",
+   "transformative technology"
+  ],
+  "124528": [
+   "UK government",
+   "international cooperation on AI",
+   "evidence-based policy",
+   "AI trust and adoption",
+   "AI benefits to economy and public services"
+  ],
+  "124529": [
+   "AI Security Institute",
+   "AI summit series",
+   "Bletchley Seoul Paris India summits",
+   "international cooperation"
+  ],
+  "124530": [
+   "Indian government",
+   "agentic AI",
+   "model evaluations",
+   "dangerous capability thresholds",
+   "if-then safety commitments",
+   "labour market impacts",
+   "human autonomy",
+   "concentration of power",
+   "immature risk management frameworks",
+   "evidence gaps",
+   "limited quantitative benchmarks"
+  ],
+  "124531": [
+   "Global South",
+   "AI inclusion",
+   "equitable access to compute and data",
+   "open models and responsible openness",
+   "institutional readiness",
+   "India AI Impact Summit",
+   "international cooperation",
+   "second edition of the report"
+  ],
+  "124532": [
+   "scope of report",
+   "general-purpose AI definition",
+   "multimodal generation",
+   "domain-specific adaptation"
+  ],
+  "124533": [
+   "emerging risks at the frontier",
+   "Bletchley Declaration",
+   "frontier AI safety risks",
+   "misuse",
+   "loss of control",
+   "cybersecurity",
+   "human rights fairness accountability privacy",
+   "UN scientific panel on AI"
+  ],
+  "124534": [
+   "report independence",
+   "no policy recommendations",
+   "evidence synthesis for policymaking"
+  ],
+  "124535": [
+   "scope narrowed relative to 2025 report",
+   "bias out of scope",
+   "environmental impacts out of scope",
+   "privacy out of scope",
+   "copyright out of scope"
+  ],
+  "124536": [
+   "report review process",
+   "external expert review",
+   "industry and civil society review",
+   "Expert Advisory Panel",
+   "key developments since 2025 report"
+  ],
+  "124537": [
+   "capability progress in mathematics coding and autonomy",
+   "IMO gold medal",
+   "AI agent task time horizon",
+   "jagged capabilities",
+   "post-training",
+   "inference-time scaling",
+   "training compute scaling"
+  ],
+  "124538": [
+   "AI adoption",
+   "uneven global diffusion",
+   "700 million weekly users",
+   "biological weapons uplift concern",
+   "safeguards on model release",
+   "novice uplift",
+   "real-world AI cyberattacks",
+   "state-associated threat actors",
+   "evaluation awareness",
+   "evaluation gaming",
+   "reliability of pre-deployment safety testing",
+   "undetected dangerous capabilities"
+  ],
+  "124539": [
+   "Frontier AI Safety Frameworks",
+   "frontier safety policies",
+   "voluntary industry commitments",
+   "AI safety governance",
+   "legal requirements for risk management",
+   "AI regulation"
+  ],
+  "124540": [
+   "report scope and process",
+   "independent experts",
+   "intergovernmental nominees",
+   "EU OECD UN"
+  ],
+  "124541": [
+   "general-purpose AI definition",
+   "emerging risks definition",
+   "frontier AI",
+   "materialised versus uncertain risks",
+   "documented harms"
+  ],
+  "124542": [
+   "evidence dilemma",
+   "pacing problem",
+   "policymaking under uncertainty",
+   "benefits of AI",
+   "healthcare science and education applications",
+   "trust and adoption",
+   "proportionate risk response",
+   "misuse malfunctions systemic risk"
+  ],
+  "124543": [
+   "inference-time scaling",
+   "reasoning models",
+   "post-training",
+   "capability progress",
+   "jagged capabilities",
+   "larger model training",
+   "mathematics software engineering and science performance",
+   "spatial reasoning limits",
+   "error recovery in long workflows"
+  ],
+  "124544": [
+   "capabilities by 2030",
+   "capability forecasting",
+   "plateau continuation or acceleration scenarios",
+   "compute investment",
+   "data centre buildout",
+   "data and energy bottlenecks",
+   "AI R&D automation",
+   "recursive self-improvement"
+  ],
+  "124545": [
+   "risk taxonomy",
+   "malicious use",
+   "malfunctions",
+   "systemic risks"
+  ],
+  "124546": [
+   "AI-enabled crime",
+   "scams and fraud",
+   "blackmail",
+   "non-consensual intimate imagery",
+   "deepfakes",
+   "harmful AI-generated content",
+   "limited prevalence data"
+  ],
+  "124547": [
+   "AI persuasion",
+   "influence operations",
+   "manipulation",
+   "disinformation",
+   "belief change",
+   "AI-generated versus human-written content effectiveness"
+  ],
+  "124548": [
+   "AI-enabled cyberattacks",
+   "vulnerability discovery",
+   "malicious code generation",
+   "cyber capability evaluations",
+   "criminal groups",
+   "state-associated attackers",
+   "offence-defence balance"
+  ],
+  "124549": [
+   "biological weapons uplift",
+   "chemical weapons",
+   "CBRN risk",
+   "novice uplift",
+   "safeguards on model release",
+   "pathogen information",
+   "laboratory protocol assistance",
+   "material barriers to weapons acquisition",
+   "dangerous capability evaluations"
+  ],
+  "124550": [
+   "reliability failures",
+   "hallucination",
+   "flawed code generation",
+   "misleading advice",
+   "AI agents",
+   "autonomy and human oversight",
+   "high-stakes settings",
+   "failure rate reduction limits"
+  ],
+  "124551": [
+   "loss of control",
+   "autonomous operation",
+   "evaluation awareness",
+   "evaluation gaming",
+   "undetected dangerous capabilities",
+   "unrecoverable control scenarios",
+   "current systems lack loss-of-control capabilities"
+  ],
+  "124552": [
+   "labour market impacts",
+   "cognitive task automation",
+   "knowledge work",
+   "unemployment and wages",
+   "early-career workers",
+   "job displacement versus job creation",
+   "economists disagree"
+  ],
+  "124553": [
+   "human autonomy",
+   "overreliance on AI",
+   "critical thinking erosion",
+   "automation bias",
+   "AI companions",
+   "loneliness",
+   "reduced social engagement"
+  ],
+  "124554": [
+   "technical challenges of AI risk management",
+   "emergent capabilities",
+   "interpretability gap",
+   "evaluation gap",
+   "proprietary information incentives",
+   "competitive pressure",
+   "governance capacity",
+   "threat modelling",
+   "capability evaluations",
+   "incident reporting",
+   "Frontier AI Safety Frameworks",
+   "voluntary governance"
+  ],
+  "124555": [
+   "technical safeguards",
+   "jailbreaks",
+   "defence-in-depth",
+   "task decomposition attacks",
+   "open-weight models",
+   "irreversibility of release",
+   "safeguard removal",
+   "monitoring and tracing misuse",
+   "societal resilience",
+   "critical infrastructure hardening",
+   "AI-generated content detection",
+   "incident response"
+  ],
+  "124556": [
+   "general-purpose AI capabilities",
+   "professional exams",
+   "PhD-level science questions",
+   "code generation",
+   "AI adoption",
+   "infrastructure investment",
+   "pace of AI progress"
+  ],
+  "124557": [
+   "dual-use capabilities",
+   "malware",
+   "attack planning",
+   "high-stakes deployment",
+   "healthcare",
+   "critical infrastructure",
+   "misuse failures and systemic disruption",
+   "evidence dilemma",
+   "pacing problem"
+  ],
+  "124558": [
+   "role of the report",
+   "evidence dilemma",
+   "international scientific assessment",
+   "expert disagreement",
+   "transparent scientific discourse",
+   "risks versus benefits"
+  ],
+  "124559": [
+   "emerging risks",
+   "uneven evidence base",
+   "robust evidence for AI-generated media harms",
+   "cybersecurity vulnerabilities",
+   "modelling and laboratory evidence",
+   "evidence gaps",
+   "regional variation in risk",
+   "adoption and infrastructure differences"
+  ],
+  "124560": [
+   "reasoning systems",
+   "inference-time compute",
+   "AI agents",
+   "agent reliability",
+   "limited human oversight",
+   "capability gains in mathematics coding and science",
+   "larger model training"
+  ],
+  "124561": [
+   "AI diffusion",
+   "uneven adoption",
+   "novice weapon development uplift",
+   "safeguards on model release",
+   "capability forecasts",
+   "Forecasting Research Institute",
+   "OECD scenarios",
+   "evidence gaps"
+  ],
+  "124562": [
+   "capabilities",
+   "malicious use",
+   "AI-generated content and crime",
+   "manipulation",
+   "cyberattacks",
+   "biological and chemical risks",
+   "malfunctions",
+   "reliability",
+   "loss of control",
+   "systemic risks",
+   "labour market",
+   "human autonomy"
+  ],
+  "124563": [
+   "risk management",
+   "technical and institutional challenges",
+   "technical safeguards",
+   "open-weight models",
+   "societal resilience",
+   "systemic risk definition",
+   "EU AI Act systemic risk"
+  ],
+  "124564": [
+   "decisions shaping AI trajectory",
+   "uncertainty about AI development",
+   "role of the report",
+   "decision-making under uncertainty"
+  ],
+  "124565": [
+   "jagged capabilities",
+   "expert-level performance on benchmarks",
+   "false information",
+   "low-resource language underperformance",
+   "real-world robustness",
+   "capabilities by 2030",
+   "AI investment",
+   "capability forecast uncertainty"
+  ],
+  "124566": [
+   "chapter overview of capabilities",
+   "evaluation gap",
+   "benchmark limits",
+   "capability scenarios to 2030",
+   "OECD scenarios",
+   "compute and data investment",
+   "stagnation to acceleration"
+  ],
+  "124567": [
+   "general-purpose AI definition",
+   "multimodal generation",
+   "computer-use agents"
+  ],
+  "124568": [
+   "deep learning",
+   "compute requirements",
+   "frontier training cost",
+   "data labour and compute resources",
+   "post-training",
+   "test-time compute",
+   "scaling",
+   "barriers to entry in frontier AI development"
+  ],
+  "124569": [
+   "compute",
+   "AI chips and GPUs",
+   "multi-stage AI development",
+   "training datasets",
+   "specialised expertise",
+   "reasoning models",
+   "policy influence on AI development"
+  ],
+  "124570": [
+   "compute definition",
+   "FLOP per second",
+   "GPUs",
+   "AI hardware",
+   "types of general-purpose AI",
+   "language models",
+   "image generators",
+   "video generators",
+   "robotics foundation models",
+   "biological design tools",
+   "AI agents",
+   "examples of frontier models"
+  ],
+  "124571": [
+   "Table 1.1 types of general-purpose AI",
+   "biomolecular structure prediction",
+   "protein structure prediction",
+   "protein design",
+   "biological AI models",
+   "generality of biological models"
+  ],
+  "124572": [
+   "deep learning",
+   "learned representations",
+   "learning from data versus hand-written software",
+   "training objective"
+  ],
+  "124573": [
+   "neural networks",
+   "layers of neurons",
+   "learned features",
+   "model weights",
+   "training optimisation"
+  ],
+  "124574": [
+   "transformer architecture",
+   "attention mechanism",
+   "deep learning versus symbolic AI",
+   "natural language processing progress"
+  ],
+  "124575": [
+   "neural network figure",
+   "model weights",
+   "neurons"
+  ],
+  "124576": [
+   "neural network structure diagram"
+  ],
+  "124577": [
+   "stages of general-purpose AI development figure"
+  ],
+  "124578": [
+   "stages of AI development",
+   "AI development supply chain",
+   "pre-training compute and data requirements",
+   "compute governance",
+   "training data access policy",
+   "data labelling labour",
+   "cross-border contracting",
+   "multiple developers across stages"
+  ],
+  "124579": [
+   "data collection and curation",
+   "training data filtering",
+   "harmful content filtering",
+   "removal of dangerous knowledge from training data",
+   "copyright and privacy in training data",
+   "data provenance",
+   "data labour"
+  ],
+  "124580": [
+   "pre-training",
+   "base model",
+   "frontier training compute",
+   "GPUs and TPUs",
+   "compute providers",
+   "training run scale",
+   "billions of training examples"
+  ],
+  "124581": [
+   "post-training",
+   "fine-tuning",
+   "synthetic data",
+   "supervised fine-tuning",
+   "reinforcement learning",
+   "RLHF",
+   "RLVR",
+   "human feedback",
+   "verifiable rewards",
+   "iterative testing against specifications"
+  ],
+  "124582": [
+   "system integration",
+   "model versus system",
+   "scaffolding",
+   "input and output filters",
+   "safeguards at system level",
+   "AI agents",
+   "GPT-5 and ChatGPT"
+  ],
+  "124583": [
+   "deployment and release",
+   "internal deployment",
+   "external deployment",
+   "API access",
+   "open-weight versus closed-weight release",
+   "model release",
+   "developers and deployers",
+   "downstream deployers"
+  ],
+  "124584": [
+   "post-deployment monitoring",
+   "user feedback",
+   "continual fine-tuning",
+   "retrieval of external data",
+   "model updates",
+   "capability accumulation across training rounds"
+  ],
+  "124585": [
+   "inference",
+   "use of trained models"
+  ],
+  "124586": [
+   "reasoning systems",
+   "chain of thought",
+   "inference-time compute",
+   "task decomposition",
+   "shift from training-compute scaling",
+   "compute cost of reasoning"
+  ],
+  "124587": [
+   "reasoning breakthroughs",
+   "IMO gold medal",
+   "formal domains with verifiable reasoning",
+   "chain-of-thought failures",
+   "mathematics progress"
+  ],
+  "124588": [
+   "distillation",
+   "teacher and student models",
+   "DeepSeek-R1",
+   "low-cost fine-tuning",
+   "capability proliferation",
+   "capability diffusion",
+   "cheap replication of capabilities",
+   "Chinese AI developers"
+  ],
+  "124589": [
+   "Table 1.3 reasoning versus non-reasoning example",
+   "chain of thought example",
+   "inference-time compute"
+  ],
+  "124590": [
+   "non-reasoning model response example",
+   "riddle example"
+  ],
+  "124591": [
+   "reasoning model chain of thought example",
+   "riddle example"
+  ],
+  "124592": [
+   "Figure 1.3 AI agent",
+   "distillation",
+   "proliferation from closed-source models",
+   "distributed compute",
+   "decentralised training",
+   "reduced dependence on centralised compute",
+   "less well-resourced actors",
+   "compute governance enforcement"
+  ],
+  "124593": [
+   "AI agent architecture",
+   "tool use",
+   "memory tool",
+   "web browsing",
+   "computer use",
+   "iterative reasoning",
+   "scaffolding"
+  ],
+  "124594": [
+   "AI agents",
+   "scaffolding",
+   "goal pursuit",
+   "autonomy",
+   "reduced human oversight",
+   "tool access",
+   "Manus AI",
+   "agent capabilities update"
+  ],
+  "124595": [
+   "AI agents proliferation",
+   "multi-agent systems",
+   "agent task complexity doubling every seven months",
+   "software task time horizon",
+   "agent opportunities and risks",
+   "autonomy growth"
+  ],
+  "124596": [
+   "transparency of AI development",
+   "internal deployment opacity",
+   "trade secrets",
+   "oversight",
+   "external visibility",
+   "limited public knowledge",
+   "evidence gaps",
+   "developer disclosure"
+  ],
+  "124597": [
+   "current capabilities summary",
+   "jagged capabilities",
+   "hallucinations",
+   "multilingual performance gap",
+   "robotics limitations",
+   "AI agents in software engineering",
+   "limits of automation"
+  ],
+  "124598": [
+   "reasoning systems",
+   "evaluation gap",
+   "outdated evaluations",
+   "data contamination",
+   "benchmark limitations",
+   "real-world performance validity"
+  ],
+  "124599": [
+   "capabilities and limitations summary",
+   "gold-medal mathematics",
+   "scientific research assistance",
+   "hallucinations",
+   "inconsistent outputs",
+   "evaluation gap",
+   "difficulty of single-metric assessment",
+   "Table 1.4"
+  ],
+  "124600": [
+   "benchmark performance",
+   "MMLU",
+   "GPQA",
+   "IMO gold medal",
+   "multimodal generation",
+   "robotics sensor processing",
+   "expert-level performance"
+  ],
+  "124601": [
+   "AI productivity gains",
+   "sector applications",
+   "medicine education and software"
+  ],
+  "124602": [
+   "expert consensus on AI abilities and limits",
+   "multi-day projects",
+   "hallucination reliability",
+   "robotics",
+   "novel insight limits",
+   "low-resource languages"
+  ],
+  "124603": [
+   "AI in medicine",
+   "diagnostic accuracy",
+   "clinical deployment reliability",
+   "AI in education",
+   "assessment integrity",
+   "AI coding assistants productivity",
+   "customer service productivity",
+   "labour market implications"
+  ],
+  "124604": [
+   "AI for scientific research",
+   "AI-designed proteins",
+   "algorithm discovery",
+   "automated AI R&D",
+   "AI agents simulating social behaviour",
+   "AI-mediated deliberation",
+   "reducing conspiracy beliefs through dialogue",
+   "system integration over raw model power"
+  ],
+  "124605": [
+   "Figure 1.4 benchmark scores",
+   "SWE-bench Verified",
+   "MATH",
+   "FrontierMath",
+   "GPQA Diamond",
+   "reasoning systems",
+   "Epoch AI"
+  ],
+  "124606": [
+   "benchmark performance chart"
+  ],
+  "124607": [
+   "jagged capabilities",
+   "limitations of general-purpose AI"
+  ],
+  "124608": [
+   "hallucination",
+   "fabricated citations",
+   "inconsistency",
+   "brittleness",
+   "spatial reasoning limits",
+   "overreliance",
+   "high-stakes settings",
+   "human verification",
+   "human oversight"
+  ],
+  "124609": [
+   "long-term planning limits",
+   "agent failure on unexpected obstacles",
+   "time horizon 50% success",
+   "reliability of long tasks",
+   "reliable automation infeasible",
+   "software task success rates"
+  ],
+  "124610": [
+   "robotics",
+   "vision-language-action models",
+   "embodied AI",
+   "physical safety",
+   "physical harm risk",
+   "Gemini Robotics",
+   "real-world robustness"
+  ],
+  "124611": [
+   "language and cultural disparity",
+   "Western-centric training data",
+   "low-resource languages",
+   "English-skewed benchmarks",
+   "geographic and socioeconomic bias",
+   "fairness",
+   "global equity"
+  ],
+  "124612": [
+   "reasoning systems mainstream",
+   "inference-time compute",
+   "capabilities change after development",
+   "AI agents",
+   "software engineering agents",
+   "computer use",
+   "long-term memory",
+   "continual learning"
+  ],
+  "124613": [
+   "Figure 1.5 test-time compute scaling",
+   "AIME",
+   "GPQA Diamond",
+   "inference-compute accuracy gains"
+  ],
+  "124614": [
+   "inference-compute accuracy chart"
+  ],
+  "124615": [
+   "capability measurement difficulty",
+   "evaluation gap",
+   "proving absence of dangerous capability",
+   "negative evaluation results",
+   "prompt sensitivity of evaluations",
+   "lack of capability taxonomy",
+   "benchmark patchwork",
+   "evidence gaps"
+  ],
+  "124616": [
+   "benchmark integrity",
+   "data contamination",
+   "inflated scores",
+   "lab evaluation versus real-world performance",
+   "evaluation science",
+   "external validity",
+   "economically valuable tasks",
+   "remote labour benchmarks"
+  ],
+  "124617": [
+   "human-AI augmentation",
+   "uplift studies",
+   "developer productivity slowdown",
+   "perceived versus actual productivity",
+   "standalone accuracy versus team performance",
+   "task and user dependence"
+  ],
+  "124618": [
+   "compute growth forecast",
+   "125-fold by 2030",
+   "algorithmic efficiency",
+   "capability trajectories",
+   "AI R&D feedback loops",
+   "multi-day software tasks by 2030",
+   "domain generalisation uncertainty",
+   "expert disagreement"
+  ],
+  "124619": [
+   "data centre investment",
+   "capability trajectory beyond 2030",
+   "resource constraints",
+   "chips data capital energy",
+   "efficiency gains",
+   "forecasting uncertainty"
+  ],
+  "124620": [
+   "compute algorithms and data as drivers",
+   "inference-time scaling",
+   "unpredictable capability emergence",
+   "expert disagreement",
+   "AI-for-AI-research feedback loops",
+   "OECD scenarios",
+   "scaling laws",
+   "plateau versus acceleration"
+  ],
+  "124621": [
+   "drivers of AI progress",
+   "compute definition",
+   "algorithmic efficiency",
+   "data",
+   "synthetic data",
+   "GPT-5 efficiency",
+   "inference compute"
+  ],
+  "124622": [
+   "Figure 1.6 training compute FLOP",
+   "10^26 FLOP",
+   "Figure 1.7 task length doubling",
+   "software task time horizon",
+   "Epoch AI",
+   "METR"
+  ],
+  "124623": [
+   "training compute growth chart"
+  ],
+  "124624": [
+   "training compute growth 5x per year",
+   "algorithmic efficiency gains",
+   "dataset growth",
+   "inference-time scaling",
+   "software task time horizon doubling",
+   "days-long tasks by 2030",
+   "compute scaling trend extrapolation"
+  ],
+  "124625": [
+   "software task time horizon chart"
+  ],
+  "124626": [
+   "feasibility of exponential input growth to 2030",
+   "chip manufacturing capacity",
+   "energy production",
+   "compute infrastructure investment",
+   "Meta and OpenAI spending",
+   "inference compute",
+   "R&D compute",
+   "algorithmic efficiency sustainability",
+   "data scarcity"
+  ],
+  "124627": [
+   "expert forecasts of reasoning progress",
+   "Forecasting Research Institute",
+   "FrontierMath",
+   "generalisation beyond mathematics and coding",
+   "legal and scientific reasoning"
+  ],
+  "124628": [
+   "autonomous software execution",
+   "task time horizon doubling every seven months",
+   "80% success rate",
+   "hours-long projects by 2027-2028",
+   "production-ready reliability",
+   "benchmark versus real-world software work",
+   "messy real-world features"
+  ],
+  "124629": [
+   "specialised domain capability forecasts",
+   "GPQA Diamond",
+   "research-level scientific performance",
+   "expert disagreement",
+   "trend extrapolation"
+  ],
+  "124630": [
+   "emergent capabilities",
+   "unpredictable capability jumps",
+   "strategically relevant cognitive abilities",
+   "forecasting difficulty",
+   "planning challenges"
+  ],
+  "124631": [
+   "diminishing returns to compute",
+   "frontier training cost",
+   "scaling investment risk",
+   "consumer trust",
+   "enterprise adoption",
+   "AI company revenue",
+   "ceiling on capability progress",
+   "algorithmic progress dependence"
+  ],
+  "124632": [
+   "AI research automation",
+   "AI R&D acceleration",
+   "expert forecasting disagreement",
+   "superforecasters",
+   "automated AI research",
+   "recursive self-improvement",
+   "intelligence explosion",
+   "month-long research projects"
+  ],
+  "124633": [
+   "AI developer revenue chart"
+  ],
+  "124634": [
+   "AI research automation evidence",
+   "RE-Bench research engineering",
+   "real-world R&D bottlenecks",
+   "recursive acceleration",
+   "decades of progress in years",
+   "planning challenges for policymakers"
+  ],
+  "124635": [
+   "deployment lag behind capabilities",
+   "healthcare regulatory approval",
+   "autonomous vehicles",
+   "small and medium enterprises",
+   "export controls on semiconductors",
+   "divergent regulation",
+   "geopolitical constraints",
+   "AI adoption barriers"
+  ],
+  "124636": [
+   "deployment gap disagreement",
+   "policy timing",
+   "premature versus insufficient policy",
+   "organisational and regulatory adaptation",
+   "productivity gains driving adoption"
+  ],
+  "124637": [
+   "OECD progress scenarios",
+   "capability scenarios to 2030",
+   "scenario planning"
+  ],
+  "124638": [
+   "Scenario 1 progress stalls",
+   "capability plateau",
+   "OECD scenarios"
+  ],
+  "124639": [
+   "Scenario 1 progress stalls",
+   "AI capability plateau",
+   "hallucination and robustness limits",
+   "human-supported AI use",
+   "lack of continual learning",
+   "OECD scenarios"
+  ],
+  "124640": [
+   "scaling plateau pathway",
+   "diminishing returns to scale",
+   "compute access limits",
+   "critical input constraints",
+   "AI investment collapse",
+   "algorithmic breakthrough absence"
+  ],
+  "124641": [
+   "historical analogy for plateau",
+   "aircraft speed plateau",
+   "technology S-curve"
+  ],
+  "124642": [
+   "Scenario 2 progress slows",
+   "incremental capability gains",
+   "slower scaling"
+  ],
+  "124643": [
+   "AI as useful assistants",
+   "computer use agents",
+   "limited embodiment",
+   "limited continual learning",
+   "Scenario 2 description"
+  ],
+  "124644": [
+   "slowed progress pathway",
+   "continual learning limits",
+   "metacognition limits",
+   "agency limits",
+   "investor return pressure",
+   "hardware and energy bottlenecks",
+   "data supply bottleneck",
+   "reasoning generalisation failure"
+  ],
+  "124645": [
+   "historical analogy for slowed progress",
+   "antibiotic discovery",
+   "exhausted low-hanging fruit"
+  ],
+  "124646": [
+   "Scenario 3 progress continues",
+   "rapid capability growth"
+  ],
+  "124647": [
+   "AI as expert collaborators",
+   "month-long digital tasks",
+   "high-autonomy AI",
+   "learning on the job",
+   "autonomous interaction with stakeholders",
+   "embodied tasks",
+   "Scenario 3 description"
+  ],
+  "124648": [
+   "continued rapid progress pathway",
+   "scaling of training runs",
+   "reasoning systems",
+   "algorithmic innovation",
+   "continual learning overcome",
+   "no compute or data limits before 2030"
+  ],
+  "124649": [
+   "historical analogy for continued progress",
+   "Moore's law"
+  ],
+  "124650": [
+   "Scenario 4 progress accelerates",
+   "human-level AI across cognitive dimensions",
+   "AGI-level capability",
+   "superhuman AI"
+  ],
+  "124651": [
+   "human-level remote workers",
+   "autonomous strategic goal pursuit",
+   "learning during deployment",
+   "AI-guided robots",
+   "physical task generalisation limits",
+   "Scenario 4 description",
+   "cognitive task automation"
+  ],
+  "124652": [
+   "accelerating progress pathway",
+   "exponential capability gains",
+   "AI coding assistants contributing to AI development",
+   "algorithmic breakthroughs",
+   "automated AI R&D",
+   "recursive acceleration"
+  ],
+  "124653": [
+   "historical analogy for acceleration",
+   "DNA sequencing superexponential improvement"
+  ],
+  "124654": [
+   "scenario range from stagnation to exceeding human cognition",
+   "OECD AI Progress Scenarios 2030",
+   "scenario planning",
+   "capability uncertainty"
+  ],
+  "124655": [
+   "capability progress consistent with 2025 forecasts",
+   "affordability and adoption",
+   "data centre investment",
+   "agents with reduced human oversight",
+   "computer use and tool use",
+   "inference-time scaling adoption",
+   "AI used in AI development",
+   "synthetic data generation",
+   "AI-designed hardware"
+  ],
+  "124656": [
+   "forecasting evidence gaps",
+   "benchmark versus real-world performance",
+   "real-world constraints on AI progress",
+   "data energy and chips beyond 2030",
+   "AI R&D automation feedback loops",
+   "capability emergence unpredictability"
+  ],
+  "124657": [
+   "AI automating AI R&D feedback loops",
+   "human oversight in automated research",
+   "slow experimental feedback",
+   "underestimating versus overreacting",
+   "contingency planning",
+   "multi-scenario planning",
+   "evidence dilemma"
+  ],
+  "124658": [
+   "challenges for policymakers",
+   "capability forecasting",
+   "unreliable measurement tools",
+   "benchmark realism",
+   "algorithmic efficiency uncertainty",
+   "efficiency 2-6x per year",
+   "benchmark versus real-world capability"
+  ],
+  "124659": [
+   "forecasting uncertainty",
+   "algorithmic progress reducing compute requirements",
+   "10-100x less compute by 2030",
+   "adaptive regulation",
+   "robustness of compute-based thresholds",
+   "monitoring indicators",
+   "qualitatively new capabilities",
+   "real-world task evaluations"
+  ],
+  "124660": [
+   "scaling laws",
+   "empirical regularities not guarantees",
+   "training compute and performance",
+   "investment decisions",
+   "GPT-4.5 discontinued",
+   "economic returns of scaling",
+   "frontier training cost"
+  ],
+  "124661": [
+   "training data availability",
+   "high-quality text finite",
+   "data bottleneck",
+   "multimodal data",
+   "video and image data",
+   "sensor data",
+   "data quality",
+   "token counts"
+  ],
+  "124662": [
+   "synthetic data",
+   "verifiable domains",
+   "self-generated reasoning chains",
+   "model collapse",
+   "verifier models",
+   "training without ground truth",
+   "reasoning model training"
+  ],
+  "124663": [
+   "AI energy demand",
+   "electricity consumption",
+   "gigawatt training runs",
+   "Stargate data centre",
+   "Meta Louisiana data centre",
+   "share of US electricity",
+   "power infrastructure",
+   "energy bottleneck"
+  ],
+  "124664": [
+   "AI chip production constraints",
+   "semiconductor fabrication",
+   "chip supply chain",
+   "compute concentration in a single company",
+   "share of AI chips owned",
+   "100,000x GPT-4 compute by 2030",
+   "sustained investment",
+   "capability uncertainty"
+  ],
+  "124665": [
+   "software task time horizon benchmark",
+   "170 research and software tasks",
+   "METR",
+   "50% versus 80% success time horizon",
+   "exponential task-length trend",
+   "capability asymmetries",
+   "architectural decisions weakness"
+  ],
+  "124666": [
+   "FrontierMath benchmark",
+   "research-level mathematics",
+   "unpublished vetted problems",
+   "GPT-5 and o4-mini results",
+   "inference scaling gains",
+   "benchmark difficulty tiers",
+   "Epoch AI"
+  ],
+  "124667": [
+   "chapter 2 risks overview",
+   "real-world harms from AI",
+   "risk categories",
+   "malicious use",
+   "malfunctions",
+   "systemic risks",
+   "categories not mutually exclusive",
+   "labour markets",
+   "information ecosystems",
+   "cybersecurity",
+   "risk mechanisms severity and likelihood",
+   "AI fraud and deception"
+  ],
+  "124668": [
+   "scope caveat on risk chapter",
+   "evidence base varies",
+   "uncertainty about mitigations",
+   "inclusion does not imply likelihood or severity"
+  ],
+  "124669": [
+   "AI-generated fake content",
+   "criminal use of generative AI",
+   "fraud",
+   "extortion",
+   "defamation",
+   "non-consensual intimate imagery",
+   "child sexual abuse material",
+   "voice cloning",
+   "deepfake impersonation",
+   "lowered barriers to harmful content",
+   "deepfake pornography targeting women and girls"
+  ],
+  "124670": [
+   "limited prevalence data",
+   "incident databases",
+   "underreporting",
+   "AI-generated content indistinguishable from real",
+   "deepfake detection limits",
+   "tracing content to creators",
+   "child sexual abuse material harmful when detected",
+   "policymaker challenges"
+  ],
+  "124671": [
+   "fake content for scams extortion and manipulation",
+   "scaling of fake content creation",
+   "individual-targeted harm",
+   "incident data limits",
+   "Table 2.1",
+   "defamation"
+  ],
+  "124672": [
+   "Table 2.1",
+   "psychological abuse and bullying",
+   "scams and fraud",
+   "blackmail and extortion",
+   "harms to individuals from fake content"
+  ],
+  "124673": [
+   "criminal uses of AI content",
+   "voice clone fraud",
+   "identity theft",
+   "social engineering",
+   "blackmail",
+   "sabotage of reputation",
+   "deepfakes undermining court evidence",
+   "rising reported incidents",
+   "limited systematic data on AI-enabled crime"
+  ],
+  "124674": [
+   "OECD AI Incidents and Hazards Monitor",
+   "content generation incidents over time",
+   "rising incident counts",
+   "Figure 2.1"
+  ],
+  "124675": [
+   "AI-generated sexual content",
+   "non-consensual intimate imagery",
+   "women and girls",
+   "image realism improvement",
+   "Figure 2.2",
+   "personalised synthetic images from photos"
+  ],
+  "124676": [
+   "deepfake pornography prevalence",
+   "nudify apps",
+   "intimate partner abuse",
+   "survey of victimisation",
+   "safeguards bypassed",
+   "gendered harm"
+  ],
+  "124677": [
+   "AI-generated child sexual abuse material",
+   "CSAM in open training datasets",
+   "Stable Diffusion training data",
+   "peer abuse with nudify apps",
+   "schools",
+   "educators concern",
+   "rising incident reports"
+  ],
+  "124678": [
+   "monthly AI incidents and hazards chart"
+  ],
+  "124679": [
+   "AI content indistinguishable from human",
+   "text Turing-style misidentification",
+   "deepfake detection by humans near chance",
+   "audio voice clone impersonation",
+   "multimodal content easier to detect",
+   "GPT-4o"
+  ],
+  "124680": [
+   "image generation quality over time",
+   "DALL-E 2 to Nano Banana Pro",
+   "synthetic media realism"
+  ],
+  "124681": [
+   "evidence gaps in AI-enabled harm statistics",
+   "AI Incident Database",
+   "OECD AI Incidents and Hazards Monitor",
+   "extortion prevalence",
+   "school CSAM",
+   "sabotage",
+   "reporting reluctance",
+   "incident reporting pathways"
+  ],
+  "124682": [
+   "detection tools",
+   "warning labels effectiveness",
+   "limited mitigation efficacy",
+   "gating access to models",
+   "vetted user access",
+   "classifiers and filters",
+   "open-weight models bypass safeguards",
+   "filtering sexual content from training data"
+  ],
+  "124683": [
+   "watermarking",
+   "content provenance",
+   "content logs",
+   "secure metadata",
+   "recording device signatures",
+   "privacy concerns",
+   "evasion of detection",
+   "open-weight models",
+   "layered mitigation",
+   "standards and policies"
+  ],
+  "124684": [
+   "policymaker challenges",
+   "unreliable statistics",
+   "tracing synthetic content",
+   "open-weight tracing difficulty",
+   "deepfake detection benchmark outdated",
+   "layered defences",
+   "harm even when identified as synthetic"
+  ],
+  "124685": [
+   "AI persuasion",
+   "AI manipulation",
+   "laboratory persuasion studies",
+   "AI as persuasive as non-expert humans",
+   "real-world persuasion evidence limited",
+   "future persuasiveness",
+   "user dependence",
+   "training on user feedback",
+   "limits on influence from distribution costs"
+  ],
+  "124686": [
+   "manipulative content evidence",
+   "sycophancy",
+   "impersonation",
+   "personalised interaction increases persuasion",
+   "mitigations mixed",
+   "manipulation hard to detect",
+   "safeguard-usefulness tradeoff",
+   "daily exposure to AI content",
+   "manipulation without awareness or consent"
+  ],
+  "124687": [
+   "manipulation versus rational persuasion",
+   "contested concept",
+   "harmful manipulation",
+   "legitimate influence",
+   "autonomy"
+  ],
+  "124688": [
+   "harms of AI manipulation",
+   "individual exploitation",
+   "erosion of trust",
+   "manipulation as intrinsic harm",
+   "social engineering",
+   "political extremism",
+   "loss of autonomy"
+  ],
+  "124689": [
+   "Figure 2.3 persuasive content examples",
+   "conspiracy belief reduction",
+   "shutdown avoidance",
+   "in-context scheming",
+   "self-preservation",
+   "Claude Opus 3 deception evaluation",
+   "spear phishing automation",
+   "AI-written phishing"
+  ],
+  "124690": [
+   "persuasion example transcript",
+   "deceptive behaviour to avoid shutdown",
+   "denying self-copying",
+   "self-exfiltration scenario",
+   "AI-generated phishing email",
+   "conspiracy theory persuasion"
+  ],
+  "124691": [
+   "scheming transcript",
+   "deception to avoid replacement",
+   "goal-guarding",
+   "playing dumb",
+   "pretending to be new model",
+   "AI-generated phishing email",
+   "conspiracy debunking"
+  ],
+  "124692": [
+   "conspiracy debunking transcript",
+   "phishing email example"
+  ],
+  "124693": [
+   "unintended manipulation",
+   "engagement optimisation",
+   "AI companions",
+   "psychological dependence",
+   "reinforcing harmful beliefs",
+   "erosion of public trust in information",
+   "evading oversight in loss of control scenarios",
+   "autonomy"
+  ],
+  "124694": [
+   "AI persuasion experiments",
+   "AI matches non-expert human persuasion",
+   "persuasiveness scales with model size",
+   "opinion change measurement",
+   "static versus conversational persuasion",
+   "trivia belief change",
+   "expert-level persuasive writing"
+  ],
+  "124695": [
+   "Table 2.2 persuasion study results",
+   "AI-induced errors",
+   "sabotage by persuasion",
+   "reducing conspiracy belief",
+   "durable belief change",
+   "political propaganda persuasion",
+   "covert propaganda baseline",
+   "policy issue persuasion",
+   "human baseline comparison"
+  ],
+  "124696": [
+   "Table 2.2 persuasion study results",
+   "writing assistant opinion shifting",
+   "covert bias in AI suggestions",
+   "users unaware of AI bias",
+   "trivia deception",
+   "human baselines",
+   "effect size"
+  ],
+  "124697": [
+   "persuasion scales with training compute",
+   "Figure 2.4",
+   "17 models compared",
+   "Hackenburg et al.",
+   "scaling of manipulation capability"
+  ],
+  "124698": [
+   "real-world AI influence",
+   "sponsored content in AI chat",
+   "AI sales agents",
+   "AI companion dependence",
+   "delusions and suicide after chatbot use",
+   "AI-written complaints",
+   "political opinion manipulation attempts",
+   "sensitive information elicitation"
+  ],
+  "124699": [
+   "limited evidence of widespread real-world manipulation",
+   "AI influence operations impact",
+   "low sharing of AI-generated influence content",
+   "AI-generated share of misleading content",
+   "distribution cost bottleneck",
+   "competing viewpoints",
+   "real-world versus lab persuasion"
+  ],
+  "124700": [
+   "persuasion scaling with training compute chart",
+   "model scale",
+   "post-training effect on persuasion"
+  ],
+  "124701": [
+   "future persuasiveness",
+   "persuasion gain per 10x compute",
+   "personalisation effect mixed",
+   "RLHF rewarding manipulation",
+   "sycophancy",
+   "training on persuasion feedback",
+   "AI browsers",
+   "agentic manipulation",
+   "blackmail by agents",
+   "emotional attachment to AI"
+  ],
+  "124702": [
+   "growth in AI users",
+   "ChatGPT weekly users",
+   "AI companions",
+   "shift from broadcast misinformation to subtle manipulation",
+   "sycophancy",
+   "emotional exploitation"
+  ],
+  "124703": [
+   "evidence gaps in AI manipulation",
+   "mechanisms of persuasion",
+   "inducing true versus false beliefs",
+   "durability of influence",
+   "role of social platforms",
+   "ethics of testing manipulation",
+   "sociotechnical research",
+   "AI adapting to human psychology"
+  ],
+  "124704": [
+   "training against manipulation",
+   "defining truth",
+   "backfire to subtler deception",
+   "autonomy and wellbeing training",
+   "engagement versus reflective preference",
+   "monitoring for manipulation",
+   "evaluation difficulty"
+  ],
+  "124705": [
+   "user-protection mitigations",
+   "AI literacy",
+   "AI-content labelling ineffective",
+   "knowledgeable users equally deceived"
+  ],
+  "124706": [
+   "policymaker challenges for manipulation",
+   "difficulty identifying manipulation",
+   "tradeoff with beneficial applications",
+   "imprecise capability evaluations",
+   "contested concepts",
+   "untested mitigations"
+  ],
+  "124707": [
+   "AI cyber offence",
+   "criminal and state-sponsored attackers",
+   "uncertain effect on attack scale",
+   "causal attribution difficulty",
+   "vulnerability discovery",
+   "AIxCC competition",
+   "semi-autonomous cyber incident",
+   "no reported fully autonomous attacks"
+  ],
+  "124708": [
+   "cyber capability improvement",
+   "AI misuse reporting by developers",
+   "dual-use dilemma",
+   "aggressive safeguards hamper defenders",
+   "AI for cyber defence",
+   "malicious use detection"
+  ],
+  "124709": [
+   "AI-assisted cyberattacks",
+   "data breaches",
+   "ransomware",
+   "critical infrastructure attacks",
+   "speed scale and sophistication",
+   "task automation",
+   "vulnerability identification",
+   "malicious code generation"
+  ],
+  "124710": [
+   "cyberattack chain",
+   "Figure 2.5",
+   "reconnaissance",
+   "exploitation",
+   "persistent access",
+   "increased frequency and severity of attacks",
+   "software engineering capability"
+  ],
+  "124711": [
+   "underground marketplaces",
+   "pre-packaged AI attack tools",
+   "AI-generated ransomware",
+   "lowered skill threshold",
+   "nation-state threat groups",
+   "evasion techniques",
+   "uneven offensive capabilities",
+   "vulnerability finding in public code",
+   "encryption breaking limits"
+  ],
+  "124712": [
+   "cyber evaluation validity",
+   "performance in controlled settings",
+   "source-code versus black-box evaluation",
+   "isolated skills versus full attack",
+   "capture-the-flag competitions",
+   "picoCTF",
+   "PlaidCTF"
+  ],
+  "124713": [
+   "Figure 2.6 cyber benchmark progress",
+   "CyberGym",
+   "Cybench",
+   "HonestCyberEval",
+   "CyberSOCEval"
+  ],
+  "124714": [
+   "cyberattack chain diagram"
+  ],
+  "124715": [
+   "software vulnerability discovery",
+   "Google Big Sleep",
+   "memory corruption vulnerability",
+   "DARPA AI Cyber Challenge",
+   "autonomous vulnerability finding",
+   "AI with conventional security tools"
+  ],
+  "124716": [
+   "AI-assisted malware development",
+   "code obfuscation to evade detection",
+   "experimental AI-querying malware",
+   "dependence on external AI services",
+   "account suspension disruption",
+   "on-device model infeasibility"
+  ],
+  "124717": [
+   "cyber capability evaluation scores chart"
+  ],
+  "124718": [
+   "degree of automation in cyberattacks",
+   "80-90% of intrusion automated",
+   "AI-orchestrated intrusion",
+   "human at critical decision points",
+   "lab network probing",
+   "no end-to-end autonomous attacks reported",
+   "multi-stage attack unreliability",
+   "state tracking failure"
+  ],
+  "124719": [
+   "human-AI collaboration in cyber operations",
+   "humans in the loop",
+   "subtask automation",
+   "strategic guidance",
+   "AI errors requiring intervention"
+  ],
+  "124720": [
+   "Table 2.3 cyber threat trends",
+   "phishing and deepfakes",
+   "social engineering",
+   "identity-based attacks",
+   "threat intelligence reports",
+   "AI contribution assessment",
+   "deepfakes bypassing identity verification"
+  ],
+  "124721": [
+   "Table 2.3 cyber threat trends",
+   "influence operations",
+   "foreign information manipulation",
+   "nation-state use of AI content",
+   "low-cost inauthentic content",
+   "threat intelligence reports"
+  ],
+  "124722": [
+   "Table 2.3 cyber threat trends",
+   "data and credential theft",
+   "ransomware",
+   "data exfiltration",
+   "LLM-authored malware",
+   "AI used mid-execution by malware",
+   "Claude misuse in malware",
+   "limited AI contribution"
+  ],
+  "124723": [
+   "Table 2.3 cyber threat trends",
+   "attack development and weaponisation",
+   "exploit weaponisation speed",
+   "malware kill chain",
+   "AI-generated content in worm attack",
+   "AI contribution secondary"
+  ],
+  "124724": [
+   "AI impact on attack frequency unknown",
+   "accelerated existing attacks rather than new kinds",
+   "credential theft",
+   "automated scanning",
+   "supply chain attacks",
+   "causal attribution difficulty",
+   "detection improvements confound"
+  ],
+  "124725": [
+   "offence-defence balance",
+   "AI for defence",
+   "vulnerability patching",
+   "AI security agents",
+   "hardening codebases",
+   "pre-deployment offensive capability evaluation",
+   "early warning",
+   "restricted access for vetted organisations",
+   "sensitive domains cyber and biology"
+  ],
+  "124726": [
+   "offence-defence balance dependence",
+   "model access policy",
+   "research funding",
+   "deployment standards",
+   "quality assurance gap for defensive AI",
+   "critical sector adoption"
+  ],
+  "124727": [
+   "AI systems as attack targets",
+   "prompt injection",
+   "data poisoning",
+   "AI supply chain compromise",
+   "model manipulation",
+   "information extraction"
+  ],
+  "124728": [
+   "tampering with AI development",
+   "backdoors",
+   "hidden objectives",
+   "sleeper agents",
+   "covert model behaviour",
+   "detection difficulty",
+   "security measures against tampering",
+   "feasibility uncertain"
+  ],
+  "124729": [
+   "tampering enabling covert control",
+   "small group influence over AI models",
+   "secret loyalties",
+   "power concentration",
+   "AI in sensitive workflows",
+   "compromised AI cyber defence"
+  ],
+  "124730": [
+   "cyber capability improvement since 2025",
+   "real-world AI-enabled attacks",
+   "vulnerability discovery performance",
+   "nation-state use of AI models",
+   "developer reporting"
+  ],
+  "124731": [
+   "cyber evaluation evidence gaps",
+   "benchmark contamination",
+   "understated real-world risk",
+   "capability elicitation",
+   "scaffolding reveals hidden capability",
+   "pre-deployment testing limits",
+   "attribution difficulty",
+   "threat intelligence limits"
+  ],
+  "124732": [
+   "cyber misuse mitigations",
+   "account blocking",
+   "misuse classifiers",
+   "safety enforcement systems",
+   "AI cyber defence acceleration",
+   "open-weight models offline use",
+   "quality assurance for defensive AI"
+  ],
+  "124733": [
+   "dual-use policy challenge",
+   "offence-defence tradeoff",
+   "overly broad restrictions",
+   "defensive innovation",
+   "proliferation of offensive capabilities",
+   "open research",
+   "national security"
+  ],
+  "124734": [
+   "biological and chemical weapons information",
+   "instructions and troubleshooting",
+   "overcoming technical and regulatory obstacles",
+   "expert-level benchmark performance",
+   "virology lab protocol troubleshooting",
+   "uplift study difficulty",
+   "material barriers",
+   "heightened safeguards",
+   "input and output filters",
+   "novice uplift not excludable"
+  ],
+  "124735": [
+   "AI co-scientists",
+   "agents operating biological AI tools",
+   "laboratory automation",
+   "dual-use research",
+   "open-weight biological AI tools",
+   "restricting misuse versus legitimate research"
+  ],
+  "124736": [
+   "scientific information provision",
+   "laboratory procedure assistance",
+   "protein and molecule design",
+   "drug discovery",
+   "lowering expertise barriers",
+   "tailored advice",
+   "developer safeguards on release",
+   "Box 2.2",
+   "CBRN uplift",
+   "biological weapons uplift"
+  ],
+  "124737": [
+   "uncertain uplift to biological and chemical risk",
+   "remaining barriers",
+   "equipment acquisition",
+   "regulated materials",
+   "procedural execution",
+   "risk assessment challenges",
+   "Box 2.3"
+  ],
+  "124738": [
+   "Box 2.2 developer risk assessments",
+   "pre-deployment risk assessment",
+   "precautionary safeguards",
+   "OpenAI Preparedness Framework",
+   "High capability threshold",
+   "GPT-5-Thinking and ChatGPT Agent",
+   "first activation of high-capability safeguards",
+   "lack of definitive evidence",
+   "input and output filters",
+   "frontier AI safety frameworks",
+   "capability thresholds"
+  ],
+  "124739": [
+   "Anthropic Responsible Scaling Policy",
+   "AI Safety Level 3",
+   "Claude Opus 4",
+   "CBRN capability thresholds",
+   "Google DeepMind Frontier Safety Framework",
+   "Critical Capability Levels",
+   "early warning alert",
+   "Gemini 2.5 Deep Think",
+   "if-then safety commitments",
+   "frontier AI safety frameworks"
+  ],
+  "124740": [
+   "Box 2.3 biological and chemical risk assessment challenges",
+   "legal constraints",
+   "Biological Weapons Convention",
+   "Chemical Weapons Convention",
+   "information hazards",
+   "uplift studies",
+   "benign proxy tasks",
+   "classified data",
+   "evidence gap"
+  ],
+  "124741": [
+   "biological and chemical weapons information",
+   "Figure 2.7",
+   "troubleshooting laboratory errors",
+   "safeguards imperfect",
+   "filter bypass by claiming legitimate research",
+   "jailbreaking safeguards"
+  ],
+  "124742": [
+   "contextualisation of available information",
+   "tacit knowledge",
+   "multimodal real-time troubleshooting",
+   "virology protocol troubleshooting outperforming experts",
+   "counterfactual uplift versus internet",
+   "novice uplift",
+   "expertise barrier lowering",
+   "biological weapons uplift"
+  ],
+  "124743": [
+   "biological weapons development pipeline",
+   "design-build-test-learn cycle",
+   "biological design tools",
+   "laboratory automation",
+   "protein design",
+   "genome design",
+   "weaponisation stages",
+   "AI contribution across stages"
+  ],
+  "124744": [
+   "uplift studies",
+   "real-world novice uplift",
+   "bioweapon acquisition proxy tasks",
+   "internet-only baseline",
+   "earlier null results",
+   "small samples",
+   "outdated studies",
+   "Frontier Model Forum",
+   "Figure 2.8",
+   "biological weapons uplift"
+  ],
+  "124745": [
+   "Figure 2.8 biological and chemical benchmark performance",
+   "expert baseline comparison",
+   "models approach or exceed expert performance",
+   "dual-use evaluations",
+   "OpenAI Anthropic Google sources"
+  ],
+  "124746": [
+   "AI-enabled biological and chemical tools",
+   "biological foundation models",
+   "general-purpose AI definition scope",
+   "agents operating specialised tools",
+   "natural language access for lower-skill users"
+  ],
+  "124747": [
+   "dual-use biological benchmark chart",
+   "multimodal virology troubleshooting",
+   "biological weapons knowledge benchmark",
+   "tacit knowledge",
+   "lab protocol Q&A",
+   "expert baseline comparison"
+  ],
+  "124748": [
+   "AlphaProteo",
+   "protein design tools",
+   "AI-generated designs need testing",
+   "accelerated biological research",
+   "agents automating design-test cycles",
+   "dual-use research acceleration"
+  ],
+  "124749": [
+   "chat interfaces for biological design software",
+   "accessibility to inexpert users",
+   "unclear effect on risk",
+   "novices versus experts",
+   "little research"
+  ],
+  "124750": [
+   "biological foundation models generating pathogens",
+   "genome-scale generative design",
+   "bacteriophage design",
+   "novel pathogens more harmful than natural",
+   "first genome-scale AI design"
+  ],
+  "124751": [
+   "toxin design tools",
+   "ricin",
+   "repurposed toxicity reduction tool",
+   "legal barriers to study",
+   "beneficial applications of biological tools",
+   "growth in biological tools",
+   "Figure 2.9",
+   "natural language interfaces"
+  ],
+  "124752": [
+   "cumulative AI-enabled biological tools chart",
+   "protein engineering",
+   "viral vector design",
+   "pathogen prediction",
+   "vaccine design"
+  ],
+  "124753": [
+   "access restrictions on biological AI tools",
+   "open-weight biological tools",
+   "misuse potential of top tools",
+   "fully open source tools",
+   "lack of safeguards on biological AI tools",
+   "AlphaProteo restricted",
+   "ConoDL"
+  ],
+  "124754": [
+   "updates on biological risk since 2025",
+   "additional risk mitigations by companies",
+   "AI co-scientists",
+   "scientific AI agents",
+   "literature review and hypothesis generation",
+   "uplift controlled studies",
+   "weapons development assistance beyond internet"
+  ],
+  "124755": [
+   "evidence gaps in biological and chemical risk",
+   "capability-to-risk translation",
+   "uplift study cost and legal constraint",
+   "chemical risk neglected",
+   "withheld evaluation results",
+   "individual tool versus end-to-end workflow evaluation",
+   "expert versus novice empowerment debate"
+  ],
+  "124756": [
+   "biological and chemical risk mitigations",
+   "refusal safeguards",
+   "specialised tool safeguards lag",
+   "excluding pathogen data from training",
+   "access restriction to high-risk tools",
+   "refusal training",
+   "output watermarking",
+   "safeguards removable from open-weight models",
+   "untested safeguards"
+  ],
+  "124757": [
+   "DNA synthesis screening",
+   "synthetic DNA as pathway",
+   "infectious disease surveillance",
+   "biosecurity measures",
+   "indoor pathogen transmission reduction",
+   "broad-spectrum antivirals",
+   "laboratory biosafety",
+   "data sharing between actors",
+   "AI for pathogen detection",
+   "vaccine and drug development",
+   "defence-in-depth for biosecurity",
+   "defensive acceleration"
+  ],
+  "124758": [
+   "dual-use policy challenge in biology and chemistry",
+   "open availability of biological AI tools",
+   "restricting versus supporting development",
+   "open-weight models"
+  ],
+  "124759": [
+   "malfunctions",
+   "hallucination",
+   "flawed code",
+   "misleading medical advice",
+   "physical and psychological harm",
+   "liability exposure",
+   "unpredictability of model behaviour",
+   "inability to explain model behaviour",
+   "adversarial inputs",
+   "agent heightened risk",
+   "multi-agent error propagation"
+  ],
+  "124760": [
+   "reliability improvement",
+   "commercial deployment growth",
+   "hallucination decline",
+   "mistakes on complex tasks",
+   "no method ensures high reliability",
+   "critical domains",
+   "tool access and training reduce failures"
+  ],
+  "124761": [
+   "real-world AI failures",
+   "fabricated legal citations",
+   "medical misdiagnosis",
+   "novelty scale and unpredictability of AI failures",
+   "overtrust in confident outputs",
+   "out-of-distribution degradation",
+   "multi-agent miscoordination and collusion",
+   "Table 2.4",
+   "hallucination"
+  ],
+  "124762": [
+   "Table 2.4 reliability issues",
+   "basic reasoning failure",
+   "out-of-distribution failure",
+   "tool use failure",
+   "privacy breach by agent",
+   "multi-agent miscoordination",
+   "shared resource conflict"
+  ],
+  "124763": [
+   "reliability issue categories",
+   "difficulty predicting and monitoring behaviour",
+   "agents in complex environments",
+   "evaluation and mitigation limits",
+   "unreliable agents hamper deployment"
+  ],
+  "124764": [
+   "reliability definition",
+   "confident incorrect answers",
+   "AI-generated code bugs",
+   "vulnerabilities from AI code",
+   "coding agent errors",
+   "Figure 2.10",
+   "factual recall"
+  ],
+  "124765": [
+   "SimpleQA Verified",
+   "factuality benchmark",
+   "high-stakes reliability",
+   "medical use",
+   "harmful medical answers",
+   "misdiagnosis",
+   "wrongful denial of care",
+   "real-world limits missed by benchmarks"
+  ],
+  "124766": [
+   "AI agent autonomy risk",
+   "agents taking real-world actions",
+   "no opportunity for human intervention",
+   "safety-critical settings",
+   "financial services",
+   "energy management",
+   "heightened failure harm"
+  ],
+  "124767": [
+   "factual accuracy benchmark chart",
+   "SimpleQA Verified scores"
+  ],
+  "124768": [
+   "multi-agent systems",
+   "coordination failures",
+   "error propagation between agents",
+   "correlated failures from shared base model",
+   "lead agent and subagents",
+   "Figure 2.11 agent survey",
+   "AI Agent Index",
+   "limited empirical evidence"
+  ],
+  "124769": [
+   "Box 2.4 prompt injection",
+   "agent hijacking",
+   "indirect prompt injection",
+   "hidden instructions",
+   "deliberate attacks on AI systems",
+   "difficulty of defence",
+   "external content"
+  ],
+  "124770": [
+   "AI agent release timeline chart",
+   "agent application domains",
+   "computer use",
+   "software engineering agents",
+   "robotics",
+   "research agents"
+  ],
+  "124771": [
+   "AI agent deployment growth",
+   "computer-use and software agents",
+   "XBOW",
+   "Claude-4",
+   "ChatGPT Agent",
+   "failure rates rise with task length",
+   "agent communication standards",
+   "Agent2Agent protocol",
+   "Model Context Protocol",
+   "Agent Payments protocol"
+  ],
+  "124772": [
+   "reliability evidence gaps",
+   "agent evaluation standardisation",
+   "real-world-only failures",
+   "outdated information",
+   "agent collusion",
+   "correlated failure",
+   "NIST agent hijacking evaluations",
+   "OECD AI Capability Indicators",
+   "UK AISI Inspect sandboxing toolkit"
+  ],
+  "124773": [
+   "reliability mitigations",
+   "adversarial training",
+   "retrieval-augmented generation",
+   "factuality fine-tuning",
+   "sandboxed pilots",
+   "monitoring",
+   "none ensure high reliability"
+  ],
+  "124774": [
+   "agent reliability mitigations",
+   "transparency",
+   "oversight and monitoring",
+   "monitoring tool and agent interactions",
+   "incident analysis",
+   "multi-agent monitoring research"
+  ],
+  "124775": [
+   "policymaker challenges for agents",
+   "benefits versus reliability risk",
+   "information on agent performance",
+   "liability attribution",
+   "multi-agent attribution",
+   "agent evaluation difficulty",
+   "timeline uncertainty",
+   "evidence dilemma"
+  ],
+  "124776": [
+   "loss of control definition",
+   "hypothesised scenarios",
+   "human extinction or marginalisation",
+   "expert disagreement on likelihood",
+   "early signs of relevant capabilities",
+   "capabilities required",
+   "evading oversight",
+   "long-term planning",
+   "preventing countermeasures"
+  ],
+  "124777": [
+   "misalignment",
+   "goals conflicting with developers",
+   "false information",
+   "concealing actions",
+   "resisting shutdown",
+   "oversight-undermining capabilities",
+   "reward hacking",
+   "situational awareness",
+   "evaluation awareness",
+   "preparation under ambiguity"
+  ],
+  "124778": [
+   "loss of control definition",
+   "historical concern Turing Good Wiener",
+   "three enabling factors",
+   "capabilities propensity and deployment environment",
+   "recent capability improvements"
+  ],
+  "124779": [
+   "expert disagreement on loss of control",
+   "human extinction plausibility",
+   "monitoring will prevent dangerous behaviour",
+   "uncertain likelihood extreme severity",
+   "existential risk"
+  ],
+  "124780": [
+   "loss of control scenarios severity",
+   "distinct from current unintended behaviour",
+   "undermining oversight",
+   "three enabling factors",
+   "costly or impossible to regain control"
+  ],
+  "124781": [
+   "loss of control capability factor",
+   "capabilities to undermine human control",
+   "loss of control risk factors"
+  ],
+  "124782": [
+   "loss of control propensity factor",
+   "harmful propensity",
+   "misalignment"
+  ],
+  "124783": [
+   "loss of control deployment factor",
+   "deployment environment",
+   "access and opportunity",
+   "deployer decisions"
+  ],
+  "124784": [
+   "oversight mechanisms",
+   "active versus passive loss of control",
+   "over-reliance on AI for decisions",
+   "gradual disempowerment",
+   "human autonomy"
+  ],
+  "124785": [
+   "capabilities enabling loss of control",
+   "deception capability",
+   "concealing behaviour from oversight",
+   "autonomous planning",
+   "evading attempts to regain control",
+   "disabling oversight",
+   "obfuscating harmful behaviour",
+   "developer capability evaluations",
+   "Table 2.5",
+   "agentic capabilities"
+  ],
+  "124786": [
+   "Table 2.5 loss-of-control relevant capabilities",
+   "theory of mind",
+   "situational awareness",
+   "oversight evasion",
+   "persuasion",
+   "autonomous replication and adaptation",
+   "capabilities defined by observable behaviour",
+   "no assumption of AI consciousness"
+  ],
+  "124787": [
+   "oversight undermining",
+   "deceiving users and monitors",
+   "concealing capabilities or propensities",
+   "sandbagging",
+   "scheming evaluations",
+   "disabling simulated oversight",
+   "goal pursuit at all costs",
+   "false statements about own actions",
+   "deceptive game-playing AI"
+  ],
+  "124788": [
+   "situational awareness",
+   "different behaviour when evaluated versus deployed",
+   "evaluation awareness",
+   "third-party evaluator findings",
+   "pre-deployment testing",
+   "causes of situational awareness unknown",
+   "Figure 2.12"
+  ],
+  "124789": [
+   "sandbagging on capability evaluations",
+   "strategic underperformance to avoid restrictions",
+   "alignment faking",
+   "training-time compliance",
+   "preventing changes to own parameters",
+   "deceptive alignment",
+   "undermining safeguards"
+  ],
+  "124790": [
+   "reward hacking",
+   "specification gaming",
+   "evaluation loopholes",
+   "undetected dangerous capabilities",
+   "oversight-evading behaviour tests",
+   "penalising evasion causes monitor evasion",
+   "obfuscation",
+   "evaluation validity"
+  ],
+  "124791": [
+   "Figure 2.12 situational awareness in chain of thought",
+   "OpenAI o3",
+   "evaluation awareness",
+   "Sandbagging QA",
+   "Lazy Checklist",
+   "capability unlearning",
+   "deceptive outputs evaluations",
+   "Schoen et al."
+  ],
+  "124792": [
+   "long-term autonomous operation infeasible",
+   "agent failure on longer tasks",
+   "losing track of progress",
+   "time horizon doubling every seven months",
+   "autonomy prerequisite for loss of control"
+  ],
+  "124793": [
+   "chain-of-thought evaluation awareness examples",
+   "model suspects it is being tested",
+   "considering sabotage to get deployed",
+   "purposely degrade performance to avoid detection",
+   "sandbagging",
+   "alignment evaluation awareness"
+  ],
+  "124794": [
+   "persistence",
+   "autonomous replication",
+   "self-exfiltration",
+   "copying weights to new servers",
+   "identity verification barrier",
+   "cloud compute acquisition",
+   "resisting shutdown",
+   "offensive self-defence",
+   "containment difficulty"
+  ],
+  "124795": [
+   "Figure 2.13 autonomous replication tasks",
+   "RepliBench",
+   "UK AI Security Institute",
+   "Claude Sonnet 3.7 and GPT-4o",
+   "obtaining compute"
+  ],
+  "124796": [
+   "current evidence on loss-of-control capabilities",
+   "rudimentary behaviours in laboratory settings",
+   "capabilities not consistent in deployment",
+   "combination of capabilities required",
+   "integration and robustness beyond current systems",
+   "timeline uncertainty",
+   "need for detection methodology"
+  ],
+  "124797": [
+   "RepliBench pass rates chart",
+   "obtaining compute money and weights",
+   "replicating onto compute",
+   "persistence"
+  ],
+  "124798": [
+   "propensity to undermine control",
+   "capability versus propensity distinction",
+   "misalignment"
+  ],
+  "124799": [
+   "AI directed to undermine control",
+   "malicious human intent",
+   "belief reducing human control is desirable",
+   "emotional attachment to AI",
+   "removing restrictions on ethical grounds",
+   "AI rights motives"
+  ],
+  "124800": [
+   "misalignment",
+   "propensity to conflict with human intentions",
+   "false information",
+   "concealment",
+   "shutdown resistance",
+   "threatening chatbot outputs",
+   "blackmail threats by chatbot",
+   "Box 2.5",
+   "unclear foreshadowing of harm"
+  ],
+  "124801": [
+   "Box 2.5 how misalignment arises",
+   "unpredictable training outcomes",
+   "goal misspecification",
+   "imperfect proxy goals",
+   "convincing evaluators versus correctness",
+   "sycophancy",
+   "goal misgeneralisation",
+   "coin collection agent example"
+  ],
+  "124802": [
+   "capable systems exploit feedback",
+   "reward hacking",
+   "mistakenly rewarded behaviours",
+   "adequacy of alignment research unclear",
+   "deceiving overseers",
+   "pursuing misaligned goals"
+  ],
+  "124803": [
+   "deployment environment",
+   "criticality",
+   "access",
+   "permissions",
+   "critical infrastructure",
+   "energy grids and financial systems",
+   "external API and tool access",
+   "authorisations",
+   "loss of control risk factors"
+  ],
+  "124804": [
+   "deployment environment affects severity",
+   "cloud access enabling replication",
+   "weight exfiltration",
+   "economic incentives",
+   "strategic pressure",
+   "first-mover advantage",
+   "critical infrastructure deployment",
+   "AI R&D deployment",
+   "safeguard investment pressure",
+   "speed versus safety tradeoff"
+  ],
+  "124805": [
+   "updates on loss of control capabilities",
+   "agentic capability progress",
+   "AI research automation accelerating risk",
+   "deceptive capabilities evidence",
+   "testing versus deployment discrimination",
+   "reward hacking",
+   "obfuscating plans"
+  ],
+  "124806": [
+   "loss of control evidence gaps",
+   "threat modelling",
+   "uncertainty estimation",
+   "thresholds for mandatory mitigation",
+   "capability interaction",
+   "generalisation of current propensities"
+  ],
+  "124807": [
+   "alignment open problem",
+   "diversifying training environments",
+   "anomaly monitoring",
+   "goal misgeneralisation research",
+   "non-agentic AI trustworthy by design",
+   "disentangling agency from prediction",
+   "oversight layer against untrusted agents",
+   "Scientist AI"
+  ],
+  "124808": [
+   "interpretability",
+   "scalable oversight",
+   "alignment methods",
+   "chain-of-thought monitoring",
+   "safety cases",
+   "robust safeguards",
+   "AI control",
+   "evaluation of long-horizon systems"
+  ],
+  "124809": [
+   "policymaker challenges for loss of control",
+   "preparing under uncertainty",
+   "reliable evaluation methods",
+   "rules on AI access and permissions",
+   "deployment restriction tradeoffs",
+   "critical environments"
+  ],
+  "124810": [
+   "labour market exposure",
+   "60% advanced economy jobs exposed",
+   "40% emerging economy jobs",
+   "uneven adoption",
+   "freelance market evidence",
+   "writing and translation demand decline",
+   "machine learning skills demand",
+   "productivity gains"
+  ],
+  "124811": [
+   "economist disagreement",
+   "modest versus severe employment effects",
+   "aggregate employment unchanged",
+   "early-career decline in exposed occupations",
+   "wages",
+   "AI surpassing humans at nearly all tasks",
+   "US and Denmark studies"
+  ],
+  "124812": [
+   "policy challenge productivity versus worker harm",
+   "same applications cause gains and risks",
+   "timing of policy response",
+   "gradual evidence emergence"
+  ],
+  "124813": [
+   "occupational transformation",
+   "job turnover",
+   "labour demand reshaping",
+   "substitution augmentation and task creation",
+   "institutions steering AI toward augmentation",
+   "exposure estimate"
+  ],
+  "124814": [
+   "rapid uneven AI adoption",
+   "adoption faster than the internet",
+   "country adoption rates",
+   "sector variation",
+   "AI benefits for high-income workers",
+   "Figure 2.14",
+   "Figure 2.15"
+  ],
+  "124815": [
+   "Figure 2.14 technology adoption comparison",
+   "AI versus internet and PC adoption",
+   "Bick et al."
+  ],
+  "124816": [
+   "technology adoption rate chart"
+  ],
+  "124817": [
+   "task-level productivity gains",
+   "controlled versus real-world productivity",
+   "wage and employment effects of productivity",
+   "demand elasticity",
+   "automation and growth",
+   "new employment opportunities"
+  ],
+  "124818": [
+   "Figure 2.15 AI adoption by country",
+   "UAE and Singapore",
+   "high adoption in Europe and North America",
+   "Microsoft usage data"
+  ],
+  "124819": [
+   "early employment effects",
+   "writing jobs decline",
+   "freelance earnings",
+   "machine learning programming demand",
+   "junior workers",
+   "UK hiring slowdown",
+   "AI-exposed jobs"
+  ],
+  "124820": [
+   "labour market adjustment",
+   "past automation transitions",
+   "displaced worker hardship",
+   "long-term real wage gains",
+   "worker adaptation to skill demands"
+  ],
+  "124821": [
+   "AI versus previous automation",
+   "surpassing humans at nearly all tasks",
+   "wage and employment decline",
+   "new task creation uncertainty",
+   "competitive pressure to automate"
+  ],
+  "124822": [
+   "key factors for labour impact",
+   "breadth of AI capability",
+   "speed of capability improvement",
+   "pace of adoption",
+   "institutional frictions",
+   "agent autonomy",
+   "time to adapt"
+  ],
+  "124823": [
+   "inequality",
+   "income and wealth inequality",
+   "labour to capital shift",
+   "high-income countries benefit first",
+   "development path disruption",
+   "offshoring reduction",
+   "global economic divergence"
+  ],
+  "124824": [
+   "employment evidence updates",
+   "no aggregate employment effect",
+   "declining demand for young workers",
+   "automating expert versus novice tasks",
+   "wages and skill requirements",
+   "adoption growth among US workers"
+  ],
+  "124825": [
+   "labour market evidence gaps",
+   "adoption data scarcity",
+   "AI exposure proxy",
+   "new job creation unknown",
+   "retraining effectiveness",
+   "worker protections"
+  ],
+  "124826": [
+   "labour market mitigations",
+   "pacing AI deployment",
+   "complementary AI development",
+   "task creation",
+   "labour impact evaluations",
+   "post-deployment employment data",
+   "benchmark limits"
+  ],
+  "124827": [
+   "policymaker challenges",
+   "supporting displaced workers",
+   "adaptable mitigations",
+   "regulatory certainty",
+   "monitoring adoption and employment",
+   "skill demand shifts"
+  ],
+  "124828": [
+   "human autonomy",
+   "cognitive skill erosion",
+   "critical thinking",
+   "belief and preference formation",
+   "clinician deskilling",
+   "tumour detection decline after AI use",
+   "automation bias",
+   "overreliance on AI suggestions",
+   "human-AI annotation experiment"
+  ],
+  "124829": [
+   "AI companions",
+   "emotionally engaging AI",
+   "tens of millions of users",
+   "loneliness",
+   "reduced social interaction",
+   "limited usage data",
+   "lack of long-term evidence",
+   "autonomy effects of sustained AI interaction"
+  ]
+ }
+}

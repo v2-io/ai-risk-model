@@ -1,0 +1,5 @@
+tags: 2002 bridge, 14829 echo (12% bridge)
+all tags       flagged 0.820 (+0.068, +0.030 to +0.107) must 0.918
+bridge only    flagged 0.770 (+0.018, -0.009 to +0.051) must 0.884
+echo only      flagged 0.795 (+0.043, +0.003 to +0.087) must 0.884
+tfidf control  flagged 0.754 (+0.003, -0.029 to +0.037) must 0.870

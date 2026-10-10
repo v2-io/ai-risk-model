@@ -1,0 +1,3 @@
+snowflake-arctic-embed2 full: 1872 passages in 56s -> /Users/josephwecker-v2/src/ai-risk-model/influx/spikes/spike-search-shortfall-2026-10-10/cache/snowflake-arctic-embed2-full.npz
+qwen3-embedding:0.6b full: 1872 passages in 75s -> /Users/josephwecker-v2/src/ai-risk-model/influx/spikes/spike-search-shortfall-2026-10-10/cache/qwen3-embedding_0.6b-full.npz
+embeddinggemma:300m full: 1872 passages in 48s -> /Users/josephwecker-v2/src/ai-risk-model/influx/spikes/spike-search-shortfall-2026-10-10/cache/embeddinggemma_300m-full.npz
