@@ -1,0 +1,20 @@
+{
+"hazard": {"items": [[19,1],[53,1]]},
+"catastrophic risk": {"items": [[19,2],[46,2],[53,2],[65,2],[28,1],[20,1],[29,1],[30,1],[23,1],[33,1],[34,1],[14,1],[12,1],[59,1],[66,1]], "ok": [35,43,61]},
+"loss of control": {"items": [[20,2],[19,2],[30,2],[12,1],[55,1],[53,1]], "ok": [14]},
+"humans can no longer shut down or correct the AI system": {"items": [[19,2],[20,2],[30,1],[55,1],[53,1]]},
+"misalignment": {"items": [[20,2],[30,1],[19,1],[55,1]], "ok": [53]},
+"whistleblower": {"items": [[59,2],[54,2],[61,2],[60,2],[62,2],[63,2],[64,2],[53,2],[55,2],[56,2],[57,2],[58,2],[52,2],[65,2],[44,1],[37,1],[12,1],[7,1],[8,1],[9,1]], "ok": [5]},
+"serious incident": {"items": [[20,2],[35,2],[36,2],[37,1],[38,1],[39,1],[40,1],[41,1],[55,1],[45,1],[14,1],[12,1],[30,1]]},
+"what must a developer publish or report before deploying a frontier model": {"items": [[32,2],[33,2],[21,2],[29,1],[30,1],[34,1],[24,1],[25,1],[26,1]], "ok": [31,45]},
+"chemical and biological weapons uplift": {"items": [[19,2],[53,2],[12,1]]},
+"evidence that models can sabotage, sandbag or evade oversight": {"items": [[20,1],[30,1],[12,1],[14,1]], "ok": [19,53,55]},
+"cyber capabilities of frontier models": {"items": [[19,2],[12,1],[30,1],[53,1]]},
+"how the severity or acceptability of a risk is decided": {"items": [[19,2],[29,2],[46,1],[20,1],[11,1],[14,1],[45,1]], "ok": [53,55,30]},
+"what is SB 53's definition of catastrophic risk": {"items": [[19,2],[46,2],[28,1],[53,1],[65,1]]},
+"does SB 53 require developers to comply with their own frameworks": {"items": [[29,2],[45,2],[34,1],[59,1]], "ok": [13,14,33,31]},
+"who can be penalised under SB 53, and by whom": {"items": [[45,2],[26,1],[62,1],[63,1],[64,1],[66,1]], "ok": [17,24,34,9]},
+"is theft of model weights a critical safety incident": {"items": [[20,2],[55,2],[30,1],[27,1]], "ok": [35,36,19,45]},
+"does SB 53 require independent third-party evaluation": {"items": [[30,2],[33,2],[21,1],[12,1]], "ok": [29,13]},
+"how does SB 53 treat internal use of frontier models": {"items": [[33,2],[35,2],[30,2],[29,1],[21,1],[19,1],[37,1]], "ok": [4,32]}
+}

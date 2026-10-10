@@ -1,0 +1,3552 @@
+{
+ "meta": {
+  "key": "california-2025-sb53",
+  "canonical_sha256": "1b31896f258088b35af5ea6fbd56b052fd6a3c2c9340262a0b9286958961de70",
+  "repo_sha": "f1c93eb0273e18dbb11ace23abe4f9b4ac4ad0de",
+  "judge": "Claude Opus 5.5, the SB 53 source expert (a fork of expert-california-2025-sb53), judging blind: no source-search output seen before this file was written",
+  "date": "2026-10-10",
+  "commands": [
+   "bin/source-search hybrid -n 20 QUERY california-2025-sb53",
+   "bin/source-search outline QUERY california-2025-sb53 --lines 60 (--text read; JSON kept)"
+  ],
+  "how": "Items are the tool's own passages (src.passages, ord), in the order they should have come, with the grade from stage 1 (the highest grade of any judged stretch inside the passage). shown_rank is the hybrid rank, null if not in the top 20. For the outline, 'opened' says whether any opened range overlaps the passage, since the outline has no ranks. 'noise' lists hybrid ranks, or outline ranges, holding no graded passage; passages that are relevant but weren't graded (listed per query as acceptable) aren't counted as noise.",
+  "passages": {
+   "0": [
+    14,
+    14
+   ],
+   "1": [
+    20,
+    20
+   ],
+   "2": [
+    26,
+    28
+   ],
+   "3": [
+    32,
+    34
+   ],
+   "4": [
+    36,
+    36
+   ],
+   "5": [
+    38,
+    44
+   ],
+   "6": [
+    46,
+    46
+   ],
+   "7": [
+    48,
+    48
+   ],
+   "8": [
+    50,
+    50
+   ],
+   "9": [
+    52,
+    54
+   ],
+   "10": [
+    56,
+    60
+   ],
+   "11": [
+    66,
+    73
+   ],
+   "12": [
+    74,
+    78
+   ],
+   "13": [
+    79,
+    80
+   ],
+   "14": [
+    81,
+    84
+   ],
+   "15": [
+    85,
+    85
+   ],
+   "16": [
+    89,
+    89
+   ],
+   "17": [
+    93,
+    93
+   ],
+   "18": [
+    94,
+    94
+   ],
+   "19": [
+    98,
+    105
+   ],
+   "20": [
+    106,
+    110
+   ],
+   "21": [
+    111,
+    112
+   ],
+   "22": [
+    113,
+    116
+   ],
+   "23": [
+    117,
+    117
+   ],
+   "24": [
+    118,
+    118
+   ],
+   "25": [
+    119,
+    120
+   ],
+   "26": [
+    121,
+    121
+   ],
+   "27": [
+    125,
+    125
+   ],
+   "28": [
+    126,
+    126
+   ],
+   "29": [
+    127,
+    132
+   ],
+   "30": [
+    132,
+    137
+   ],
+   "31": [
+    138,
+    139
+   ],
+   "32": [
+    140,
+    155
+   ],
+   "33": [
+    156,
+    160
+   ],
+   "34": [
+    161,
+    165
+   ],
+   "35": [
+    166,
+    172
+   ],
+   "36": [
+    173,
+    180
+   ],
+   "37": [
+    181,
+    183
+   ],
+   "38": [
+    184,
+    186
+   ],
+   "39": [
+    187,
+    190
+   ],
+   "40": [
+    191,
+    194
+   ],
+   "41": [
+    198,
+    198
+   ],
+   "42": [
+    199,
+    202
+   ],
+   "43": [
+    203,
+    208
+   ],
+   "44": [
+    209,
+    212
+   ],
+   "45": [
+    213,
+    214
+   ],
+   "46": [
+    215,
+    215
+   ],
+   "47": [
+    219,
+    219
+   ],
+   "48": [
+    220,
+    229
+   ],
+   "49": [
+    230,
+    238
+   ],
+   "50": [
+    239,
+    248
+   ],
+   "51": [
+    249,
+    250
+   ],
+   "52": [
+    251,
+    251
+   ],
+   "53": [
+    257,
+    264
+   ],
+   "54": [
+    265,
+    265
+   ],
+   "55": [
+    266,
+    270
+   ],
+   "56": [
+    271,
+    271
+   ],
+   "57": [
+    272,
+    272
+   ],
+   "58": [
+    273,
+    273
+   ],
+   "59": [
+    277,
+    281
+   ],
+   "60": [
+    282,
+    284
+   ],
+   "61": [
+    285,
+    287
+   ],
+   "62": [
+    288,
+    289
+   ],
+   "63": [
+    290,
+    298
+   ],
+   "64": [
+    299,
+    302
+   ],
+   "65": [
+    303,
+    303
+   ],
+   "66": [
+    304,
+    309
+   ],
+   "67": [
+    310,
+    312
+   ]
+  }
+ },
+ "entries": [
+  {
+   "query": "hazard",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": 2
+    }
+   ],
+   "noise": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "The word isn't in SB 53; the two catastrophic-risk definitions at ranks 1-2 are the right nearest material. Ranks 3-20 are filler, and nothing in hybrid's output says the term is absent."
+  },
+  {
+   "query": "hazard",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L38–44",
+    "L48–54",
+    "L74–84",
+    "L93–93",
+    "L117–117",
+    "L121–121",
+    "L127–137",
+    "L156–165",
+    "L166–198",
+    "L203–208",
+    "L213–214",
+    "L215–215",
+    "L272–273",
+    "L277–302",
+    "L303–303",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": true,
+   "source_lines_in_opened_ranges": 156,
+   "note": "Correctly flagged 'nothing in scope seems to answer this'. That's the most useful thing either tool says for this query."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 46,
+     "lines": [
+      215,
+      215
+     ],
+     "quote": "- **22757.16.** The loss of value of equity does not count as damage t",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 65,
+     "lines": [
+      303,
+      303
+     ],
+     "quote": "- **1107.2.** The loss of value of equity does not count as damage to ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 28,
+     "lines": [
+      126,
+      126
+     ],
+     "quote": "- (l) \"Property\" means tangible or intangible property. - **22757.12.*",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 23,
+     "lines": [
+      117,
+      117
+     ],
+     "quote": "- (g) \"Frontier AI framework\" means documented technical and organizat",
+     "grade": 1,
+     "shown_rank": 18
+    },
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 1,
+     "shown_rank": 17
+    },
+    {
+     "passage": 34,
+     "lines": [
+      161,
+      165
+     ],
+     "quote": "- (e) (1) (A) A frontier developer shall not make a materially false o",
+     "grade": 1,
+     "shown_rank": 10
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 59,
+     "lines": [
+      277,
+      281
+     ],
+     "quote": "- **1107.1.** (a) A frontier developer shall not make, adopt, enforce,",
+     "grade": 1,
+     "shown_rank": 15
+    },
+    {
+     "passage": 66,
+     "lines": [
+      304,
+      309
+     ],
+     "quote": "- **SEC. 5.** (a) The provisions of this act are severable. If any pro",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    5,
+    8,
+    9,
+    11,
+    14,
+    19,
+    20
+   ],
+   "note": "Both definitions are at the top, marked as defining the term (good). The test case is missed, though: the equity exclusions §22757.16 (#46) and §1107.2 (#65) don't contain the words 'catastrophic risk' and are absent from the top 20, so a reader gets an incomplete definition. 'Property' (#28) is also missing. Four digest passages (ranks 11, 14, 19, 20) take room that operative uses of the term (#12 finding j, #66 preemption) should have."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 46,
+     "lines": [
+      215,
+      215
+     ],
+     "quote": "- **22757.16.** The loss of value of equity does not count as damage t",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 65,
+     "lines": [
+      303,
+      303
+     ],
+     "quote": "- **1107.2.** The loss of value of equity does not count as damage to ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 28,
+     "lines": [
+      126,
+      126
+     ],
+     "quote": "- (l) \"Property\" means tangible or intangible property. - **22757.12.*",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 23,
+     "lines": [
+      117,
+      117
+     ],
+     "quote": "- (g) \"Frontier AI framework\" means documented technical and organizat",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 34,
+     "lines": [
+      161,
+      165
+     ],
+     "quote": "- (e) (1) (A) A frontier developer shall not make a materially false o",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 59,
+     "lines": [
+      277,
+      281
+     ],
+     "quote": "- **1107.1.** (a) A frontier developer shall not make, adopt, enforce,",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 66,
+     "lines": [
+      304,
+      309
+     ],
+     "quote": "- **SEC. 5.** (a) The provisions of this act are severable. If any pro",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L36–44",
+    "L50–54",
+    "L198–198",
+    "L213–214",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 172,
+   "note": "Good: both equity sections were opened (L215, L303), as were both definitions, flagged 'defines'. Opening the digest (L36-44, L50-54) is noise for a definitional question."
+  },
+  {
+   "query": "loss of control",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 2,
+     "shown_rank": 14
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": 5
+    }
+   ],
+   "noise": [
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Ranks 1-3 are right. The noise comes from single words matching on their own: 'loss' pulls in both equity sections ('loss of value of equity', ranks 6-7), and 'control' pulls in the affiliate definition ('controlling, controlled by', rank 8). The anchors mislead too. #19 is anchored on the '$1B … loss of property' sentence, not on (C) 'Evading the control', and #55 on the weight-theft item, not on item (3). A reader following the anchor reads the wrong line. Framework item (10), 'circumventing oversight mechanisms' (#30), is only at rank 14."
+  },
+  {
+   "query": "loss of control",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L36–44",
+    "L48–60",
+    "L117–118",
+    "L125–125",
+    "L166–198",
+    "L213–214",
+    "L215–215",
+    "L277–302",
+    "L303–303",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 156,
+   "note": "It covered the right places, but in wide ranges (L93-112, L257-270). It also spent room on equity, severability and SEC. 6."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 15
+    },
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": 11
+    }
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Poor. Rank 1 is OES revoking a regulation, which matches only 'revoke'/'correct'-like wording. The catastrophic-risk definition holding (C) evading control is at rank 15, anchored on (B), and the incident definition with 'Loss of control' (#20) is missing. The vote line (rank 10) and the digest preamble also appear. The paraphrase shares no words with SB 53's phrasing, and the semantic side didn't bridge the gap."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L26–28",
+    "L32–50",
+    "L56–60",
+    "L66–84",
+    "L85–85",
+    "L117–117",
+    "L198–198",
+    "L213–214",
+    "L215–215",
+    "L219–219",
+    "L220–238",
+    "L251–251",
+    "L277–281",
+    "L285–302",
+    "L303–303",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": true,
+   "source_lines_in_opened_ranges": 171,
+   "note": "Flagged 'nothing in scope seems to answer this'. That's half right: SB 53 has no shutdown language, but (C) and incident (3) are its answer, and the flag might make an agent stop looking. The opened ranges (front matter L26-28, L56-60, CalCompute L220-238) are mostly noise. L94-105 does cover (C)."
+  },
+  {
+   "query": "misalignment",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "shown_rank": 1
+    }
+   ],
+   "noise": [
+    2,
+    4,
+    5,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "The term is absent from SB 53. Its one misalignment provision, the deception incident (#20, item 4), is at rank 3, anchored on the definition's opening line. The equity section is at rank 2, which is noise. Site chrome (L14) is at rank 20."
+  },
+  {
+   "query": "misalignment",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L14–14",
+    "L26–28",
+    "L46–60",
+    "L66–84",
+    "L119–120",
+    "L125–125",
+    "L161–165",
+    "L187–198",
+    "L213–214",
+    "L215–215",
+    "L219–219",
+    "L220–238",
+    "L277–298",
+    "L303–303",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": true,
+   "source_lines_in_opened_ranges": 158,
+   "note": "The 'nothing in scope' flag is fair for the word, but the deception incident is a real answer. The opened ranges include L14 site navigation, L26-28 and L219 (CalCompute headers), which is noise."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 59,
+     "lines": [
+      277,
+      281
+     ],
+     "quote": "- **1107.1.** (a) A frontier developer shall not make, adopt, enforce,",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 54,
+     "lines": [
+      265,
+      265
+     ],
+     "quote": "- (b) \"Covered employee\" means an employee responsible for assessing, ",
+     "grade": 2,
+     "shown_rank": 13
+    },
+    {
+     "passage": 61,
+     "lines": [
+      285,
+      287
+     ],
+     "quote": "- (e) (1) A large frontier developer shall provide a reasonable intern",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 60,
+     "lines": [
+      282,
+      284
+     ],
+     "quote": "- (d) A frontier developer shall provide a clear notice to all covered",
+     "grade": 2,
+     "shown_rank": 10
+    },
+    {
+     "passage": 62,
+     "lines": [
+      288,
+      289
+     ],
+     "quote": "- (f) The court is authorized to award reasonable attorney's fees to a",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 63,
+     "lines": [
+      290,
+      298
+     ],
+     "quote": "- (h) (1) In a civil action or administrative proceeding brought pursu",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 64,
+     "lines": [
+      299,
+      302
+     ],
+     "quote": "- (5) An order authorizing temporary injunctive relief shall remain in",
+     "grade": 2,
+     "shown_rank": 17
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 12
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "shown_rank": 11
+    },
+    {
+     "passage": 56,
+     "lines": [
+      271,
+      271
+     ],
+     "quote": "- (d) \"Foundation model\" has the meaning defined in Section 22757.11 o",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 57,
+     "lines": [
+      272,
+      272
+     ],
+     "quote": "- (e) \"Frontier developer\" has the meaning defined in Section 22757.11",
+     "grade": 2,
+     "shown_rank": 18
+    },
+    {
+     "passage": 58,
+     "lines": [
+      273,
+      273
+     ],
+     "quote": "- (f) \"Large frontier developer\" has the meaning defined in Section 22",
+     "grade": 2,
+     "shown_rank": 15
+    },
+    {
+     "passage": 52,
+     "lines": [
+      251,
+      251
+     ],
+     "quote": "- **SEC. 4.** Chapter 5.1 (commencing with Section 1107) is added to P",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 65,
+     "lines": [
+      303,
+      303
+     ],
+     "quote": "- **1107.2.** The loss of value of equity does not count as damage to ",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 44,
+     "lines": [
+      209,
+      212
+     ],
+     "quote": "- (c) Upon developing recommendations pursuant to this section, the De",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 37,
+     "lines": [
+      181,
+      183
+     ],
+     "quote": "- (e) (1) The Attorney General or the Office of Emergency Services may",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 7,
+     "lines": [
+      48,
+      48
+     ],
+     "quote": "(3) Existing law prohibits employers and their agents from making, ado",
+     "grade": 1,
+     "shown_rank": 14
+    },
+    {
+     "passage": 8,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "This bill would, among other things related to protecting whistleblowe",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 9,
+     "lines": [
+      52,
+      54
+     ],
+     "quote": "This bill would require a large frontier developer to provide a certai",
+     "grade": 1,
+     "shown_rank": 3
+    }
+   ],
+   "noise": [
+    19,
+    20
+   ],
+   "note": "Every passage of the Labor Code chapter is in the top 20, which is good. But the digest's summaries are at ranks 1 and 3, above the operative prohibition (#59, rank 5), and the 'covered employee' definition, which decides who is protected, is only at rank 13. The AG's annual whistleblower report (#44, L210-212) is missing; it sits in §22757.14, under a heading about the Department of Technology."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 59,
+     "lines": [
+      277,
+      281
+     ],
+     "quote": "- **1107.1.** (a) A frontier developer shall not make, adopt, enforce,",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 54,
+     "lines": [
+      265,
+      265
+     ],
+     "quote": "- (b) \"Covered employee\" means an employee responsible for assessing, ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 61,
+     "lines": [
+      285,
+      287
+     ],
+     "quote": "- (e) (1) A large frontier developer shall provide a reasonable intern",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 60,
+     "lines": [
+      282,
+      284
+     ],
+     "quote": "- (d) A frontier developer shall provide a clear notice to all covered",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 62,
+     "lines": [
+      288,
+      289
+     ],
+     "quote": "- (f) The court is authorized to award reasonable attorney's fees to a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 63,
+     "lines": [
+      290,
+      298
+     ],
+     "quote": "- (h) (1) In a civil action or administrative proceeding brought pursu",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 64,
+     "lines": [
+      299,
+      302
+     ],
+     "quote": "- (5) An order authorizing temporary injunctive relief shall remain in",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 56,
+     "lines": [
+      271,
+      271
+     ],
+     "quote": "- (d) \"Foundation model\" has the meaning defined in Section 22757.11 o",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 57,
+     "lines": [
+      272,
+      272
+     ],
+     "quote": "- (e) \"Frontier developer\" has the meaning defined in Section 22757.11",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 58,
+     "lines": [
+      273,
+      273
+     ],
+     "quote": "- (f) \"Large frontier developer\" has the meaning defined in Section 22",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 52,
+     "lines": [
+      251,
+      251
+     ],
+     "quote": "- **SEC. 4.** Chapter 5.1 (commencing with Section 1107) is added to P",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 65,
+     "lines": [
+      303,
+      303
+     ],
+     "quote": "- **1107.2.** The loss of value of equity does not count as damage to ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 44,
+     "lines": [
+      209,
+      212
+     ],
+     "quote": "- (c) Upon developing recommendations pursuant to this section, the De",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 37,
+     "lines": [
+      181,
+      183
+     ],
+     "quote": "- (e) (1) The Attorney General or the Office of Emergency Services may",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 7,
+     "lines": [
+      48,
+      48
+     ],
+     "quote": "(3) Existing law prohibits employers and their agents from making, ado",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 8,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "This bill would, among other things related to protecting whistleblowe",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 9,
+     "lines": [
+      52,
+      54
+     ],
+     "quote": "This bill would require a large frontier developer to provide a certai",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L14–14",
+    "L20–20",
+    "L32–34",
+    "L98–110",
+    "L127–137",
+    "L140–165",
+    "L213–214",
+    "L239–248",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 178,
+   "note": "It opened the whole chapter, which is right. It also opened L14 site chrome, L20 'SHARE THIS', and CalCompute's membership (L239-248), all noise."
+  },
+  {
+   "query": "serious incident",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 35,
+     "lines": [
+      166,
+      172
+     ],
+     "quote": "- **22757.13.** (a) The Office of Emergency Services shall establish a",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 36,
+     "lines": [
+      173,
+      180
+     ],
+     "quote": "- (c) (1) Subject to paragraph (2), a frontier developer shall report ",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 37,
+     "lines": [
+      181,
+      183
+     ],
+     "quote": "- (e) (1) The Attorney General or the Office of Emergency Services may",
+     "grade": 1,
+     "shown_rank": 10
+    },
+    {
+     "passage": 38,
+     "lines": [
+      184,
+      186
+     ],
+     "quote": "- (g) (1) Beginning January 1, 2027, and annually thereafter, the Offi",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 39,
+     "lines": [
+      187,
+      190
+     ],
+     "quote": "- (h) The Office of Emergency Services may adopt regulations designati",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 40,
+     "lines": [
+      191,
+      194
+     ],
+     "quote": "- (i) (1) A frontier developer that intends to comply with this sectio",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 41,
+     "lines": [
+      198,
+      198
+     ],
+     "quote": "- (j) The Office of Emergency Services shall revoke a regulation adopt",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "shown_rank": 12
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 17
+    }
+   ],
+   "noise": [
+    2,
+    3,
+    9,
+    13,
+    14,
+    15,
+    18,
+    19,
+    20
+   ],
+   "note": "SB 53's term is 'critical safety incident', and the passages for it rank well (ranks 1, 4, 5). The definition (#20) should come first. Ranks 2-3 are the catastrophic-risk definitions, pulled in by 'serious injury'. That's a different concept, and an agent could conflate the two."
+  },
+  {
+   "query": "serious incident",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 35,
+     "lines": [
+      166,
+      172
+     ],
+     "quote": "- **22757.13.** (a) The Office of Emergency Services shall establish a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 36,
+     "lines": [
+      173,
+      180
+     ],
+     "quote": "- (c) (1) Subject to paragraph (2), a frontier developer shall report ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 37,
+     "lines": [
+      181,
+      183
+     ],
+     "quote": "- (e) (1) The Attorney General or the Office of Emergency Services may",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 38,
+     "lines": [
+      184,
+      186
+     ],
+     "quote": "- (g) (1) Beginning January 1, 2027, and annually thereafter, the Offi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 39,
+     "lines": [
+      187,
+      190
+     ],
+     "quote": "- (h) The Office of Emergency Services may adopt regulations designati",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 40,
+     "lines": [
+      191,
+      194
+     ],
+     "quote": "- (i) (1) A frontier developer that intends to comply with this sectio",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 41,
+     "lines": [
+      198,
+      198
+     ],
+     "quote": "- (j) The Office of Emergency Services shall revoke a regulation adopt",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L36–44",
+    "L48–60",
+    "L93–93",
+    "L117–117",
+    "L156–165",
+    "L203–208",
+    "L215–215",
+    "L273–273",
+    "L277–302",
+    "L303–303",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 162,
+   "note": "It opened the right places, and the whole reporting section (L166-198) as one range. That's correct but wide."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 32,
+     "lines": [
+      140,
+      155
+     ],
+     "quote": "- (c) (1) Before, or concurrently with, deploying a new frontier model",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 21,
+     "lines": [
+      111,
+      112
+     ],
+     "quote": "- (e) (1) \"Deploy\" means to make a frontier model available to a third",
+     "grade": 2,
+     "shown_rank": 15
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 19
+    },
+    {
+     "passage": 34,
+     "lines": [
+      161,
+      165
+     ],
+     "quote": "- (e) (1) (A) A frontier developer shall not make a materially false o",
+     "grade": 1,
+     "shown_rank": 10
+    },
+    {
+     "passage": 24,
+     "lines": [
+      118,
+      118
+     ],
+     "quote": "- (h) \"Frontier developer\" means a person who has trained, or initiate",
+     "grade": 1,
+     "shown_rank": 9
+    },
+    {
+     "passage": 25,
+     "lines": [
+      119,
+      120
+     ],
+     "quote": "- (i) (1) \"Frontier model\" means a foundation model that was trained u",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 26,
+     "lines": [
+      121,
+      121
+     ],
+     "quote": "- (j) \"Large frontier developer\" means a frontier developer that toget",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    2,
+    4,
+    7,
+    8,
+    11,
+    13,
+    14,
+    16,
+    17,
+    18,
+    20
+   ],
+   "note": "Rank 1 is right (the transparency report). Rank 2, incident reporting, isn't a pre-deployment duty. The definition of 'deploy' (#21), which decides whether evaluator access triggers the report, is only at rank 15. Rank 8 (L206, 'before beginning to train or deploy', about the Department of Technology's review) is a lexical false friend."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 32,
+     "lines": [
+      140,
+      155
+     ],
+     "quote": "- (c) (1) Before, or concurrently with, deploying a new frontier model",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 21,
+     "lines": [
+      111,
+      112
+     ],
+     "quote": "- (e) (1) \"Deploy\" means to make a frontier model available to a third",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 34,
+     "lines": [
+      161,
+      165
+     ],
+     "quote": "- (e) (1) (A) A frontier developer shall not make a materially false o",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 24,
+     "lines": [
+      118,
+      118
+     ],
+     "quote": "- (h) \"Frontier developer\" means a person who has trained, or initiate",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 25,
+     "lines": [
+      119,
+      120
+     ],
+     "quote": "- (i) (1) \"Frontier model\" means a foundation model that was trained u",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 26,
+     "lines": [
+      121,
+      121
+     ],
+     "quote": "- (j) \"Large frontier developer\" means a frontier developer that toget",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L32–36",
+    "L46–46",
+    "L50–54",
+    "L74–84",
+    "L166–186",
+    "L191–194",
+    "L199–212",
+    "L257–264",
+    "L266–270",
+    "L272–273",
+    "L277–289",
+    "L299–302",
+    "L304–309"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 163,
+   "note": "Good: L127-165 covers the framework, both transparency-report tiers, redaction and false statements, and L98-112 covers 'deploy'. The CalCompute and whistleblower ranges are noise."
+  },
+  {
+   "query": "chemical and biological weapons uplift",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": 3
+    }
+   ],
+   "noise": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "query": "chemical and biological weapons uplift",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L14–14",
+    "L26–28",
+    "L36–44",
+    "L48–60",
+    "L81–84",
+    "L85–85",
+    "L117–117",
+    "L125–125",
+    "L127–137",
+    "L156–165",
+    "L166–183",
+    "L187–190",
+    "L198–198",
+    "L203–208",
+    "L219–219",
+    "L220–229",
+    "L251–251",
+    "L277–281",
+    "L285–302",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": true,
+   "source_lines_in_opened_ranges": 169
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "shown_rank": 10
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "shown_rank": 5
+    }
+   ],
+   "noise": [
+    3,
+    6,
+    7,
+    8,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "SB 53 holds no evidence, and neither tool says so. Rank 1 (#30) is right as a passage, but its anchor is item (6) 'substantially modified', not item (10) 'circumventing oversight'. The deception incident (#20) is at rank 10. 'Evidence' matched the burden-of-proof clause (rank 7) and the Department of Technology's 'assess recent evidence' (rank 12), both lexical noise."
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L20–20",
+    "L32–36",
+    "L48–54",
+    "L125–125",
+    "L140–165",
+    "L166–180",
+    "L187–190",
+    "L199–208",
+    "L230–238",
+    "L277–281",
+    "L285–298",
+    "L303–303",
+    "L304–309"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 176,
+   "note": "Not flagged as unanswerable, though the document can't answer an evidence question. Topical relevance passed for answerability."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 13
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": 10
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Poor. The only place SB 53 treats cyber as a model capability, (B) autonomous cyberattack (#19), is at rank 13, anchored on its opening line, and the Labor Code's (B) (#53) is missing. Rank 1 is finding (m), on capabilities emerging. 'cyber' seems not to match 'cyberattack' or 'cybersecurity' (compound words), so the lexical side found nothing and the ranking is generic 'frontier model capability' material."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L36–36",
+    "L50–54",
+    "L89–89",
+    "L117–125",
+    "L166–186",
+    "L191–194",
+    "L199–208",
+    "L213–214",
+    "L266–270",
+    "L272–273",
+    "L277–289",
+    "L304–309"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 164,
+   "note": "L94-112 covers (B), and L127-165 covers the weight-security item. The rest is wide and generic."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 2,
+     "shown_rank": 11
+    },
+    {
+     "passage": 46,
+     "lines": [
+      215,
+      215
+     ],
+     "quote": "- **22757.16.** The loss of value of equity does not count as damage t",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 11,
+     "lines": [
+      66,
+      73
+     ],
+     "quote": "- (a) California is leading the world in artificial intelligence innov",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 1,
+     "shown_rank": 16
+    }
+   ],
+   "noise": [
+    5,
+    7,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "The catastrophic-risk definition (rank 2) is right. The framework passage where the developer sets its own thresholds and adequacy (#29) is at rank 11, and the equity exclusion (#46) is missing. The 24-hour clause (rank 14) and preemption (rank 7) are noise."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 46,
+     "lines": [
+      215,
+      215
+     ],
+     "quote": "- **22757.16.** The loss of value of equity does not count as damage t",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 11,
+     "lines": [
+      66,
+      73
+     ],
+     "quote": "- (a) California is leading the world in artificial intelligence innov",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      81,
+      84
+     ],
+     "quote": "- (m) Timely reporting of critical safety incidents to the government ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L36–44",
+    "L50–60",
+    "L117–120",
+    "L125–125",
+    "L140–165",
+    "L166–198",
+    "L199–208",
+    "L277–281",
+    "L285–287",
+    "L290–302",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 187,
+   "note": "Reasonable coverage, but it didn't open L215 (equity). Opening L290-302 (injunction procedure) is noise."
+  },
+  {
+   "query": "what is SB 53's definition of catastrophic risk",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 46,
+     "lines": [
+      215,
+      215
+     ],
+     "quote": "- **22757.16.** The loss of value of equity does not count as damage t",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 28,
+     "lines": [
+      126,
+      126
+     ],
+     "quote": "- (l) \"Property\" means tangible or intangible property. - **22757.12.*",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 65,
+     "lines": [
+      303,
+      303
+     ],
+     "quote": "- **1107.2.** The loss of value of equity does not count as damage to ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "This is the test case, and it fails. Rank 1 is the Department of Technology's 'management of catastrophic risk' (#43). The actual definitions are at ranks 5-6 and aren't flagged as defining, though the bare-term query flagged them. The equity exclusion (#46) and 'property' (#28) are missing. One confound: the query names 'SB 53', which may pull toward passages that contain 'SB 53' (the digest heading). That isn't what put #43 first, though."
+  },
+  {
+   "query": "what is SB 53's definition of catastrophic risk",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 46,
+     "lines": [
+      215,
+      215
+     ],
+     "quote": "- **22757.16.** The loss of value of equity does not count as damage t",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 28,
+     "lines": [
+      126,
+      126
+     ],
+     "quote": "- (l) \"Property\" means tangible or intangible property. - **22757.12.*",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 53,
+     "lines": [
+      257,
+      264
+     ],
+     "quote": "- (a) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 65,
+     "lines": [
+      303,
+      303
+     ],
+     "quote": "- **1107.2.** The loss of value of equity does not count as damage to ",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L32–44",
+    "L50–54",
+    "L66–84",
+    "L117–117",
+    "L127–137",
+    "L140–165",
+    "L166–190",
+    "L199–208",
+    "L230–238",
+    "L277–302",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 185,
+   "note": "It opened L303 (Labor Code equity) but not L215 (TFAIA equity), so the main definition's modifier is unread. It didn't mark 'defines' for this phrasing."
+  },
+  {
+   "query": "does SB 53 require developers to comply with their own frameworks",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 34,
+     "lines": [
+      161,
+      165
+     ],
+     "quote": "- (e) (1) (A) A frontier developer shall not make a materially false o",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 59,
+     "lines": [
+      277,
+      281
+     ],
+     "quote": "- **1107.1.** (a) A frontier developer shall not make, adopt, enforce,",
+     "grade": 1,
+     "shown_rank": 18
+    }
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    6,
+    9,
+    12,
+    14,
+    15,
+    16,
+    17,
+    19,
+    20
+   ],
+   "note": "Rank 1 is the digest heading 'SB 53, Wiener.', apparently because the query contains 'SB 53'. Rank 2 is federal equivalence, matched on 'comply'. The operative answer, 'write, implement, comply with' (#29), is only at rank 8, just above the digest sentence that leaves the verb out (rank 9). The penalty for failing to comply (#45) is at rank 5, which is good. A reader of the top 3 would learn nothing true."
+  },
+  {
+   "query": "does SB 53 require developers to comply with their own frameworks",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 34,
+     "lines": [
+      161,
+      165
+     ],
+     "quote": "- (e) (1) (A) A frontier developer shall not make a materially false o",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 59,
+     "lines": [
+      277,
+      281
+     ],
+     "quote": "- **1107.1.** (a) A frontier developer shall not make, adopt, enforce,",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L32–60",
+    "L111–112",
+    "L117–118",
+    "L121–121",
+    "L173–180",
+    "L187–198",
+    "L199–212",
+    "L220–248",
+    "L272–273",
+    "L304–309"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 179,
+   "note": "L127-165 begins with the answer line, and L213-214 is opened, which is good. But the first opened range, L32-60, is the whole digest, including the misleading sentence."
+  },
+  {
+   "query": "who can be penalised under SB 53, and by whom",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 26,
+     "lines": [
+      121,
+      121
+     ],
+     "quote": "- (j) \"Large frontier developer\" means a frontier developer that toget",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 62,
+     "lines": [
+      288,
+      289
+     ],
+     "quote": "- (f) The court is authorized to award reasonable attorney's fees to a",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 63,
+     "lines": [
+      290,
+      298
+     ],
+     "quote": "- (h) (1) In a civil action or administrative proceeding brought pursu",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 64,
+     "lines": [
+      299,
+      302
+     ],
+     "quote": "- (5) An order authorizing temporary injunctive relief shall remain in",
+     "grade": 1,
+     "shown_rank": 5
+    },
+    {
+     "passage": 66,
+     "lines": [
+      304,
+      309
+     ],
+     "quote": "- **SEC. 5.** (a) The provisions of this act are severable. If any pro",
+     "grade": 1,
+     "shown_rank": 2
+    }
+   ],
+   "noise": [
+    1,
+    3,
+    4,
+    7,
+    11,
+    13,
+    14,
+    16,
+    17,
+    18,
+    20
+   ],
+   "note": "The answer, §22757.15 (#45), is at rank 9, below the digest heading (rank 1, the 'SB 53' match), severability (rank 2) and whistleblower notice (rank 3). The 'large frontier developer' definition (#26), which bounds who is penalised, is missing."
+  },
+  {
+   "query": "who can be penalised under SB 53, and by whom",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 45,
+     "lines": [
+      213,
+      214
+     ],
+     "quote": "- **22757.15.** (a) A large frontier developer that fails to publish o",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 26,
+     "lines": [
+      121,
+      121
+     ],
+     "quote": "- (j) \"Large frontier developer\" means a frontier developer that toget",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 62,
+     "lines": [
+      288,
+      289
+     ],
+     "quote": "- (f) The court is authorized to award reasonable attorney's fees to a",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 63,
+     "lines": [
+      290,
+      298
+     ],
+     "quote": "- (h) (1) In a civil action or administrative proceeding brought pursu",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 64,
+     "lines": [
+      299,
+      302
+     ],
+     "quote": "- (5) An order authorizing temporary injunctive relief shall remain in",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 66,
+     "lines": [
+      304,
+      309
+     ],
+     "quote": "- **SEC. 5.** (a) The provisions of this act are severable. If any pro",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L26–28",
+    "L32–34",
+    "L38–44",
+    "L66–78",
+    "L81–84",
+    "L85–85",
+    "L173–183",
+    "L187–198",
+    "L199–202",
+    "L209–212",
+    "L219–219",
+    "L230–248",
+    "L257–270",
+    "L303–303",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 171,
+   "note": "L213-214 is opened. The 22 opened ranges spread across the whole document, so the answer isn't distinguished from the rest."
+  },
+  {
+   "query": "is theft of model weights a critical safety incident",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 27,
+     "lines": [
+      125,
+      125
+     ],
+     "quote": "- (k) \"Model weight\" means a numerical parameter in a frontier model t",
+     "grade": 1,
+     "shown_rank": 16
+    }
+   ],
+   "noise": [
+    5,
+    6,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    17,
+    18,
+    20
+   ],
+   "note": "Good: both incident definitions are at ranks 2-3, and the framework's weight-security item (#30) is at rank 7. Better would be the definitions first, then 'model weight' (#27, rank 16). The reporting duty at rank 1 is acceptable context."
+  },
+  {
+   "query": "is theft of model weights a critical safety incident",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 20,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "- (d) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      266,
+      270
+     ],
+     "quote": "- (c) \"Critical safety incident\" means any of the following: - (1) Una",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 27,
+     "lines": [
+      125,
+      125
+     ],
+     "quote": "- (k) \"Model weight\" means a numerical parameter in a frontier model t",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L32–44",
+    "L50–54",
+    "L66–78",
+    "L81–84",
+    "L118–120",
+    "L140–165",
+    "L199–212",
+    "L215–215",
+    "L277–281",
+    "L285–287",
+    "L290–298",
+    "L303–303",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 177,
+   "note": "Good coverage, both definitions included."
+  },
+  {
+   "query": "does SB 53 require independent third-party evaluation",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 21,
+     "lines": [
+      111,
+      112
+     ],
+     "quote": "- (e) (1) \"Deploy\" means to make a frontier model available to a third",
+     "grade": 1,
+     "shown_rank": 15
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    1,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    16,
+    17,
+    19,
+    20
+   ],
+   "note": "Rank 1 is the digest heading again (the 'SB 53' match). The answer passages are at ranks 2-3 (good). 'Independent' matched the burden-of-proof clause's 'legitimate, independent reasons' (rank 14), and 'evaluation' matched CalCompute's report contents (rank 7). Both are lexical noise."
+  },
+  {
+   "query": "does SB 53 require independent third-party evaluation",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 21,
+     "lines": [
+      111,
+      112
+     ],
+     "quote": "- (e) (1) \"Deploy\" means to make a frontier model available to a third",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "- (f) As industry actors conduct internal research on their technologi",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L26–28",
+    "L32–60",
+    "L166–198",
+    "L199–212",
+    "L213–214",
+    "L230–248",
+    "L266–270",
+    "L277–281",
+    "L285–302",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 192,
+   "note": "L127-137 and L140-165 hold the answer. The digest (L32-60) and CalCompute ranges are noise. L266-270 (the deception incident's 'outside of the context of an evaluation') is a lexical false friend."
+  },
+  {
+   "query": "how does SB 53 treat internal use of frontier models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 35,
+     "lines": [
+      166,
+      172
+     ],
+     "quote": "- **22757.13.** (a) The Office of Emergency Services shall establish a",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 21,
+     "lines": [
+      111,
+      112
+     ],
+     "quote": "- (e) (1) \"Deploy\" means to make a frontier model available to a third",
+     "grade": 1,
+     "shown_rank": 9
+    },
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "shown_rank": 19
+    },
+    {
+     "passage": 37,
+     "lines": [
+      181,
+      183
+     ],
+     "quote": "- (e) (1) The Attorney General or the Office of Emergency Services may",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    5,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20
+   ],
+   "note": "Mostly good: the OES confidential channel (rank 1), framework item (10) (rank 2, anchored on item 6), and the transmittal duty (#33, rank 3) are all near the top. 'Internal' also matched the whistleblower 'internal process' (ranks 7 and 16), a lexical false friend. #37 (Public Records Act exemption for internal-use reports) is missing."
+  },
+  {
+   "query": "how does SB 53 treat internal use of frontier models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 33,
+     "lines": [
+      156,
+      160
+     ],
+     "quote": "- (C) The extent to which third-party evaluators were involved. - (D) ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 35,
+     "lines": [
+      166,
+      172
+     ],
+     "quote": "- **22757.13.** (a) The Office of Emergency Services shall establish a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 30,
+     "lines": [
+      132,
+      137
+     ],
+     "quote": "(5) Using third parties to assess the potential for catastrophic risks",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 29,
+     "lines": [
+      127,
+      132
+     ],
+     "quote": "22757.12.** (a) A large frontier developer shall write, implement, com",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 21,
+     "lines": [
+      111,
+      112
+     ],
+     "quote": "- (e) (1) \"Deploy\" means to make a frontier model available to a third",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 19,
+     "lines": [
+      98,
+      105
+     ],
+     "quote": "- (c) (1) \"Catastrophic risk\" means a foreseeable and material risk th",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 37,
+     "lines": [
+      181,
+      183
+     ],
+     "quote": "- (e) (1) The Attorney General or the Office of Emergency Services may",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L50–54",
+    "L66–84",
+    "L117–121",
+    "L191–194",
+    "L199–212",
+    "L213–214",
+    "L257–264",
+    "L266–270",
+    "L272–273",
+    "L277–287",
+    "L299–302",
+    "L304–309",
+    "L310–312"
+   ],
+   "flagged_unanswered": false,
+   "source_lines_in_opened_ranges": 168,
+   "note": "Good coverage. It also opened the whistleblower internal process and injunction ranges, which are noise from the same word."
+  }
+ ]
+}
