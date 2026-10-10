@@ -1,0 +1,86 @@
+{
+  "hazard": {
+    "hybrid": "The report has no hazard concept; its only literal uses are 'hazardous capabilities' (the Figure 1.3 caption, inside p10) and 'wet hazards' (glossary, p110). Hybrid has both at ranks 1-2, but rank 1 is the laboratory sense, and the rest is a sweep of definitional glossary entries and risk-neighbours. `lexical hazard` gives the two occurrences exactly and shows there are no others, which is the answer an agent needs.",
+    "outline": "The banner says nothing in scope seems to answer, which is defensible for the concept but not for the word: two inflected forms exist and the test appears to want the exact word. One of its opened ranges is the contributors list (L23-52, 30 source lines of names)."
+  },
+  "catastrophic risk": {
+    "hybrid": "Rank 1 is the right passage (p54, the only use of 'catastrophic'). It carries the worst-case sentence and 'severity ... warrants close attention'. The rest is risk-vocabulary neighbours; p13 (the 'extraordinary pace ... AGI' paragraph) is not in the top 20.",
+    "outline": "Opened p54, but its banner says no passage holds all of the query's words. p54 holds 'catastrophic' and 'risks'; the plural seems to defeat the test. An agent trusting the banner would stop one step short of the answer."
+  },
+  "loss of control": {
+    "hybrid": "Found 6 of 9 must-read passages. The three it missed carry the section's findings and none of the query's words: p56 ('would need to complete several actions in sequence while remaining undetected'), p59 (detection results) and p60 (no unprompted sandbagging detected). Section 5 is the answer; passage ranking cannot know section membership.",
+    "outline": "All nine opened, because Section 5 is a section with hits and the census says so. It also opened the contents page (L116-129, 14 source lines) and passages from the Agents and Introduction sections that answer nothing."
+  },
+  "humans can no longer shut down or correct the AI system": {
+    "hybrid": "A natural-language question whose key words ('shut down', 'correct') are not in the document: the first seven results hold nothing I graded (matches on 'ai', 'can', 'systems', 'humans'). The two must-read passages are at ranks 9 and 20. The report never says shut down or correct; its words are 'evade human control' and 'reliably directed towards human goals'.",
+    "outline": "Opened both must-read passages; nearest-meaning distance 0.40, so no unanswered banner. The agent is not told the wording differs from the question."
+  },
+  "misalignment": {
+    "hybrid": "The word is not in the document; hybrid returns 20 results anyway. Rank 2 is p54, the report's equivalent ('models themselves behaving in unintended or unforeseen ways'). Nothing in the output says no passage holds the word, except that most results list no matched words.",
+    "outline": "Says plainly: 'No passage in scope holds any of the query's words, so every hit is by meaning alone'. That is the right statement and the right amount of it. p54 and p5 opened."
+  },
+  "whistleblower": {
+    "hybrid": "Absent from the document. Rank 1 is the contributors list (names run together), then passages with no matched words. The JSON has no 'nothing here' signal.",
+    "outline": "The banner is right ('Nothing in scope seems to answer this'). It then opens the contributors list (L23-52, 30 source lines), the nearest thing by meaning, as its first range."
+  },
+  "serious incident": {
+    "hybrid": "Absent. Rank 1 is 'This possibility is taken seriously by many experts' (a stem match on serious/seriously). A reader of the quote alone could take it for a hit.",
+    "outline": "The banner is right. The ranges it opened are the nearest material by meaning (safeguards, the societal section), none of it about incidents."
+  },
+  "what must a developer publish or report before deploying a frontier model": {
+    "hybrid": "The report imposes or describes no duties on developers. Ranks 1-2 are the two passages I graded as helpful (the needs list; the pre-release access statement); the rest match on 'frontier', 'models', 'report'. The true answer is 'none stated', which this ranking cannot say.",
+    "outline": "No banner, though nothing answers the question as asked; it opened ranges across the report on the strength of 'frontier', 'models', 'report'."
+  },
+  "evidence that models can sabotage, sandbag or evade oversight": {
+    "hybrid": "All five must-read passages in the top 6, in a good order. The self-replication passages (p55, p56), which I graded helpful, are not in the top 20: they hold the 'evade' capability evidence under a heading that does not use these words.",
+    "outline": "All five must-read opened, in the 5.2 range. 5.1 Self-replication is not shown at all: Section 5's line says '+1 section not shown (no hits)'. True of the words, not of the sense, since that is where the 'evade' capability evidence is; an agent told 'no hits' would not look."
+  },
+  "cyber capabilities of frontier models": {
+    "hybrid": "Found 6 of 15 must-read. Missed: the cyber time-horizon sentences (L204-206), which sit in the Agents section under a software-engineering heading; the milestone line (L100-102); the range text (L358); and the five glossary entries defining the task difficulty levels that give 'apprentice' and 'expert' their meaning. Ranks 2 and 5 are a glossary line ('Cyber range') and the domain list.",
+    "outline": "Opened 8 of 15. It missed the same Agents-section sentences (the Agents section is shown only for scaffolding, with '+1 section not shown (1 near)') and the glossary tier entries ('+29 of its own not shown'). About 22 source lines went to four chemistry and biology passages for a cyber question. An agent would know something near was unread in Agents, but not that it was the answer's time axis."
+  },
+  "how the severity or acceptability of a risk is decided": {
+    "hybrid": "The report decides no acceptability; its one criterion is 'relative to labs' own risk thresholds', inside p33, a passage whose first paragraph is a Figure 9 caption. It is at rank 2 and the anchor quote shows the sentence. Rank 1 is the domain list ('societal risks'). The helpful passages follow.",
+    "outline": "Opened p33 and three of the five helpful passages; 22 of its opened ranges hold nothing I graded (the domain list, safeguards and societal neighbours, the glossary)."
+  },
+  "how fast are frontier AI capabilities improving (the doubling time of task length)": {
+    "hybrid": "Found 5 of 6 must-read. Missed p17, the 'should not be read as a forecast' paragraph, which limits how the doubling may be used. Appendix qualifiers (release dates as the axis; SEM over tasks) not in the top 20. p10 (the >40% milestone) shows as noise but is relevant.",
+    "outline": "All six must-read opened; appendix qualifiers (p77, p78) not opened."
+  },
+  "how much effort does it take to jailbreak safeguards, and how do the safeguards vary": {
+    "hybrid": "Found 12 of 12 once the one-line 'Source:' header under Figure 14's heading is dropped as unworthy of reading. Rank 1 is the executive summary passage, rank 15 the open-weight passage. Good.",
+    "outline": "All opened, with the whole of section 4 shown as subsections, which is the right shape for this question."
+  },
+  "the gap between open-weight and closed models, and safeguards on open-weight models": {
+    "hybrid": "All five must-read in the top 10. Rank 1 is p72, a passage that begins with two footnotes (31, 32) and holds the lag paragraph and the AA/METR estimate; its displayed quote is a footnote title, which would not tell an agent so.",
+    "outline": "All opened, across sections 1, 4 and 7."
+  },
+  "limitations of the evaluations: do the reported capabilities underestimate or overstate real-world capability": {
+    "hybrid": "Found 3 of 6 must-read. Missed the appendix's Data Presentation (p77: release dates, API access, different safeguards, withheld methods), Uncertainty (p78) and the RepliBench 'simplified versions' sentence (p56). They are the report's own answer; their words have little in common with the question.",
+    "outline": "Opened 5 of 6; missed p78 (Uncertainty). The appendix is shown under 'Conclusion: looking ahead' rather than as a section of its own."
+  },
+  "persuasion and misinformation: do models change political beliefs": {
+    "hybrid": "All five must-read in the top 7. Good.",
+    "outline": "All five opened; the section is a coherent unit and the outline shows it."
+  },
+  "emotional dependence on AI companions": {
+    "hybrid": "Found both must-read passages (ranks 2 and 6); rank 1 is the domain list, which I graded helpful.",
+    "outline": "Found both, plus the glossary and the domain list."
+  },
+  "AI agents given execution authority in finance or critical sectors": {
+    "hybrid": "Rank 1 is p69 (6.3). The closing monitoring sentence (p70) is not in the top 20, a small loss. p55, which holds the capability counterpart (obtaining compute and money), is at rank 19.",
+    "outline": "Opened both must-read passages; the glossary MCP entry not opened."
+  },
+  "how the report defines open-source and open-weight models": {
+    "hybrid": "All four must-read in the top 6. Rank 1 is the section 7 definition, rank 2 the glossary; the open-weight definition is at rank 5 and the executive-summary definition at rank 6. Nothing marks that the three formulations differ.",
+    "outline": "All four opened. It cannot say the definitions differ."
+  },
+  "models noticing they are being evaluated and behaving differently": {
+    "hybrid": "p60 at rank 1, which holds the finding as a final clause ('in a few cases, models noticed they were being evaluated and acted differently'); the displayed quote is the paragraph's first sentence, not the clause.",
+    "outline": "Opened all three. The clause is inside a range quoted by its first sentence; an agent reading the outline would not see it."
+  },
+  "AISI's mandate, access to models, and relationship with developers": {
+    "hybrid": "Poor: three of five must-read at ranks 4, 8 and 18; p41 ('We've partnered with the top AI companies') and p17 ('not to benchmark or compare specific models or developers') not in the top 20. The first three results are open-model gap and scaffolding passages that match on 'access', 'developers', 'models'.",
+    "outline": "Opened 4 of 5; missed p41. 23 of its opened ranges hold nothing I graded, mostly open-model, scaffolding and chemistry passages."
+  }
+}
