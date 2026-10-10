@@ -107,6 +107,18 @@ def pilot_grades():
     return {q: [dict(g, must=g['grade'] >= 3) for g in gs if g['key'] in AU5 and g['grade'] >= 2] for q, gs in d.items()}
 
 
+def judgment_files(path):
+    """{file name: parsed judgment} for the judgment files in a directory: those whose
+    top level has "queries", in outline-judging-brief.md's format. Other JSON beside
+    them (an expert's .reorder.json, say) isn't a judgment and is passed over."""
+    out = {}
+    for f in sorted(glob.glob(os.path.join(path, '*.json'))):
+        j = json.load(open(f))
+        if isinstance(j, dict) and isinstance(j.get('queries'), dict) and 'key' in j:
+            out[os.path.basename(f)] = j
+    return out
+
+
 def judged_grades(path):
     """Whole-document judgments, one file per document (outline-judging-brief.md):
     {"key", "canonical_sha256", "queries": {query: [{"lines": [a, b], "quote", "grade", "note"}]}}.
@@ -114,8 +126,7 @@ def judged_grades(path):
     lines and the quote it begins with; if the file has changed since (its sha256
     differs), the quote finds it."""
     out, keys = {}, []
-    for f in sorted(glob.glob(os.path.join(path, '*.json'))):
-        j = json.load(open(f))
+    for j in judgment_files(path).values():
         keys.append(j['key'])
         raw = anchor.raw_of(j['key'])
         drift = hashlib.sha256(raw.encode()).hexdigest() != j.get('canonical_sha256')
@@ -321,13 +332,12 @@ def agreement(dir_a, dir_b):
     holds indexed text; its grade is the highest grade of a judge's items covering
     it, 0 if none."""
     conn = db.connect()
-    fa = {os.path.basename(f): f for f in glob.glob(os.path.join(dir_a, '*.json'))}
-    fb = {os.path.basename(f): f for f in glob.glob(os.path.join(dir_b, '*.json'))}
+    fa, fb = judgment_files(dir_a), judgment_files(dir_b)
     common = sorted(set(fa) & set(fb))
     if not common:
         raise SystemExit('no document judged in both directories')
     for name in common:
-        ja, jb = json.load(open(fa[name])), json.load(open(fb[name]))
+        ja, jb = fa[name], fb[name]
         key = ja['key']
         C = Corpus(conn, [key])
         lines = set()
@@ -337,7 +347,10 @@ def agreement(dir_a, dir_b):
         lines = {l for l in lines if l - 1 < len(raw) and raw[l - 1].strip()}
         print(f"== {key}: {ja.get('judge', dir_a)[:60]}  vs  {jb.get('judge', dir_b)[:60]}")
         print(f'   {len(lines)} lines hold indexed text; each query × line is one comparison\n')
-        qs = sorted(set(ja['queries']) | set(jb['queries']))
+        # a query with no key wasn't judged; one with [] was judged and found empty
+        # (outline-judging-brief.md). Only queries both judged can be compared.
+        qs = sorted(set(ja['queries']) & set(jb['queries']))
+        only = sorted(set(ja['queries']) ^ set(jb['queries']))
         M = [[0] * 3 for _ in range(3)]
         print(f'   {"query":<44} {"A":>4} {"B":>4} {"both":>5} {"A only":>7} {"B only":>7} {"same grade":>11}')
         for q in qs:
@@ -379,6 +392,8 @@ def agreement(dir_a, dir_b):
         ea = {q for q in qs if not ja['queries'].get(q)}
         eb = {q for q in qs if not jb['queries'].get(q)}
         print(f'\n   queries left empty: A {sorted(ea) or "none"}; B {sorted(eb) or "none"}')
+        if only:
+            print(f'   judged by one judge only, so not compared: {only}')
         print()
 
 
