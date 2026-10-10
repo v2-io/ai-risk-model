@@ -107,8 +107,10 @@ experts:
     model: sonnet
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: reading (units of at least 300 words, 481 units with the reference list; the report text ends near unit 305)
+    state: paused (reading finished 2026-10-09: units 1-340 of 481, the report, glossary and citation; the reference list left out by its own call, reasons and cost in its file; its own estimate about 770k, awaiting Joseph's /context; it asked for no further messages)
     branch: worktree-expert-bengio-2026-international-sonnet, in .claude/worktrees/expert-bengio-2026-international-sonnet
-    read: []
-    checkpoints: [unit 211 of 481, the end of Chapter 2 (reached), the end of the reading]
+    read: [{key: bengio-2026-international, sha256: 95e91b7a5e14..., how: experientially, units of at least 300 words, units 1-340}]
+    products: [reading/reflections.md (about 530 KB; its last section gives the reference-list decision and the findings a fork should know first)]
+    publishing: unmerged and unpushed; the reflections quote the report at length, and this repo keeps IASR's full text local (CLAUDE.md), so merging is Joseph's call
+    checkpoints: [unit 211 of 481, the end of Chapter 2 (reached), the end (unit 340, reached)]
     context_after_preparation: null
