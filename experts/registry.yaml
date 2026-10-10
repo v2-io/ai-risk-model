@@ -21,7 +21,7 @@ experts:
     read: [{key: california-2025-sb53, sha256: 1b31896f258088b35af5ea6fbd56b052fd6a3c2c9340262a0b9286958961de70, how: experientially, a paragraph per unit, 224 units}]
     checkpoints: [the end of the reading]
     products: [reading/ (224 unit files), reading/000-before.md (its priming), reading/outline.md, reading/questions.md (likely and should-ask questions, answered with cites)]
-    context: {start: ~185k, at_unit_67_of_224: 312k, at_unit_172_of_224: 430k, after_reading: 507k}
+    context: {start: ~185k, at_unit_67_of_224: 312k, at_unit_172_of_224: 430k, after_reading: 507k, after_raise_and_ca_report: 628k}
     context_after_preparation: null
     note: the pilot expert (README, Open); reading a paragraph per unit
   - key: eu-cop-2025-safety-security
@@ -36,7 +36,7 @@ experts:
     read: [{key: eu-cop-2025-safety-security, sha256: d2968247a71d1cb372aa050f42af0459ce4249ccbc56983ceb76f194ac79370f, how: experientially, units of at least 150 words, 124 units}]
     products: [reading/ (117 files), reading/000-before.md (its priming), reading/031a-figures-1-4.md, reading/999-after.md (a look back over the whole reading)]
     checkpoints: [unit 30, unit 60, unit 90, the end of the reading (124 units of at least 150 words)]
-    context: {start: 188k, at_unit_39_of_124: 318k, at_unit_60_of_124: 379k, at_unit_90_of_124: 461k}
+    context: {start: 188k, at_unit_39_of_124: 318k, at_unit_60_of_124: 379k, at_unit_90_of_124: 461k, after_reading: 536k}
     note_figures: bin/reading dropped figures until 2026-10-09 evening; this expert passed four (units 11, 16, 17, 22) and was sent their paths
     context_after_preparation: null
     note: the second expert; Grok judged this source whole for the outline evaluation, so its gold can be compared across model families
