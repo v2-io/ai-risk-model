@@ -64,9 +64,11 @@ experts:
     session: 81669188-e877-46c9-ad36-ef49b66ac9f2
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: asked
+    state: reading (willing; units of at least 500 words, about 230 expected; conflict of interest named in its priming note)
+    cwd: its worktree under ~/src/ai-risk-model/.claude/worktrees/ (fork from there; check the transcript's directory)
+    branch: expert/anthropic-2026-risk-report-aug (reflections committed, not pushed)
     read: []
-    checkpoints: []
+    checkpoints: [unit 60, unit 120, unit 180, the end of the reading]
     context_after_preparation: null
   - key: bengio-2026-international
     lineage: [bengio-2026-international, bengio-2026-international-extended, bengio-2025-international, bengio-2025-iasr-key-update-1, bengio-2025-iasr-key-update-2]
