@@ -94,7 +94,7 @@ experts:
     model: sonnet
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: paused (reading finished 2026-10-09: all 123 units of at least 80 words, every claim-bearing figure, the reference list and glossary; no safeguard flags; awaiting Joseph's /context)
+    state: paused (reading finished 2026-10-09: all 123 units of at least 80 words, every claim-bearing figure, the reference list and glossary; no safeguard flags; 399k after the reading, against about 600-700k for the Opus experts; what it reads next is Joseph's call)
     branch: expert/aisi-2025-frontier-sonnet, in .claude/worktrees/expert-aisi-2025-frontier
     read: [{key: aisi-2025-frontier, sha256: 0677c8340149..., how: experientially, units of at least 80 words, 123 units}]
     products: [reading/00-start.md (priming), reading/01-reflections.md (~31k words, one entry per unit), reading/98-flags-and-conversion-notes.md, reading/99-questions.md]
