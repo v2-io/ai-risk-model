@@ -107,7 +107,8 @@ experts:
     model: sonnet
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: asked
+    state: reading (units of at least 300 words, 481 units with the reference list; the report text ends near unit 305)
+    branch: worktree-expert-bengio-2026-international-sonnet, in .claude/worktrees/expert-bengio-2026-international-sonnet
     read: []
-    checkpoints: []
+    checkpoints: [unit 211 of 481, the end of Chapter 2 (reached), the end of the reading]
     context_after_preparation: null

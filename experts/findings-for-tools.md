@@ -15,6 +15,10 @@
 
 - **Pages with no text.** AISI Sonnet expert, `aisi-2025-frontier`: PDF pages 50–51 came through with no text, between the references and the glossary. Not fixed.
 
+- **Superscripts flattened into wrong numbers.** IASR Sonnet expert, `bengio-2026-international`: exponents lost their superscript, so "10^13 tokens" reads as "1013 tokens", and some citation markers vanish ("(MMLU, )"). A reader or a search takes the wrong number at face value; the same kind of fault as RAISE's "10º26". Not fixed.
+- **Image figures and tables missing from a web edition.** IASR Sonnet expert: figures and tables that are images (Fig 1.2, Table 1.4) aren't in the text, and their image files aren't local for IASR's web edition. Not fixed.
+- **Inline footnote bodies.** IASR Sonnet expert: footnote text set inline swells some units a lot. Not fixed.
+
 ## Ranking (`search/RANKING.md`)
 
 - **A summary inside the source outranks the text it gets wrong.** SB 53 expert: the Legislative Counsel's Digest drops decisive qualifiers and misprints "internal use" as "internet use", yet is keyword-dense. Registered as H-R4, proposed. A second instance (AISI Sonnet expert): the *Frontier AI Trends Report*'s executive summary drops qualifiers the body gives ("doubling every eight months" is an "estimated upper bound"; "5% to 60%" self-replication is 11 of 20 tasks, closed models, "simplified") and omits a null result on persuasion.
