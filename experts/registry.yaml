@@ -59,6 +59,7 @@ experts:
     state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 33, at the source's biological section; whether it can continue is unchecked)
     branch: expert/aisi-2025-frontier
     read: []
+    reflections: merged into main except units 30-32, its reflections on the biological section, which are on the local branch expert/aisi-2025-frontier-held only (the coordinator's caution: the safeguards flagged what was being written there)
     checkpoints: [unit 54 of 108, the end of the reading]
     context_after_preparation: null
   - key: anthropic-2026-risk-report-aug
@@ -85,6 +86,7 @@ experts:
     state: flagged (2026-10-09, about 21:05: Anthropic's safeguards flagged the session after unit 134, at the source's biological section; whether it can continue is unchecked)
     branch: expert/bengio-2026-international
     read: []
+    reflections: merged into main except units 129-133, its reflections on the biological section, which are on the local branch expert/bengio-2026-international-held only (the coordinator's caution: the safeguards flagged what was being written there)
     checkpoints: [the halfway unit (about 170), the end of the reading; readings at no other times, at its request]
     context_after_preparation: null
   - key: aisi-2025-frontier
