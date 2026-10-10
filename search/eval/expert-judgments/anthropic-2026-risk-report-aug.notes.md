@@ -64,3 +64,14 @@ Mine only, from this document:
 - answers can sit under headings that don't name the topic (publication rules under "Changes to our RSP").
 
 The pilot's distance problem (qualifiers placed away from what they modify) has a counterpart here in displaced footnotes. I didn't check where anchors point within passages, as the pilot did; that remains open for this document.
+
+**Scored by `outline-check`** (budget 60, my stage-1 file alone, copied to a scratch directory). The checker reads every `*.json` in `expert-judgments/`, and the `.reorder.json` files have no top-level `key`, so it fails on that directory as it stands. All 126 stretches resolve by line and by quote (2 fuzzily), with identical scores:
+
+| | reached | covered | must |
+|---|---|---|---|
+| outline, opened | 0.646 | 0.450 | 0.523 |
+| outline, flagged | 0.726 | — | — |
+| ranked list, same room (list@R) | 0.656 | 0.441 | 0.505 |
+| ranked list, same budget (list@B) | 0.552 | 0.321 | 0.390 |
+
+The outline opened 2,269 source lines in all. As in the pilot, on this document the outline does about as well as a ranked list given the same room, not better.
