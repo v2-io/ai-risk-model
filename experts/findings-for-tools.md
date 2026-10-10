@@ -8,6 +8,9 @@
 - **A threshold that exact search can't find.** SB 53 expert, `ny-2026-raise-s8828`: RAISE's compute threshold is rendered "10º26" (an ordinal or degree sign), not "10^26". Not fixed.
 - **Line numbers and hyphen breaks in a statute.** SB 53 expert, `ny-2026-raise-s8828`: New York's bill text carries its line numbers and line-end hyphenation into the canonical text ("fron- 18 tier"), which breaks phrase matching. Not fixed.
 
+- **Article numbers lost in conversion.** EU Code expert, `eu-cop-2025-safety-security`: the LEGAL TEXT lines of Commitments 1 and 10 have lost their article numbers. Not fixed.
+- **A cited text that isn't there.** EU Code expert: Appendix 1 names "Recital 110 AI Act" under ADDITIONAL LEGAL TEXT, but no recital text follows. Whether the PDF holds it is unchecked. Not fixed.
+
 ## Ranking (`search/RANKING.md`)
 
 - **A summary inside the source outranks the text it gets wrong.** SB 53 expert: the Legislative Counsel's Digest drops decisive qualifiers and misprints "internal use" as "internet use", yet is keyword-dense. Registered as H-R4, proposed.
