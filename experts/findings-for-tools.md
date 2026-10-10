@@ -13,9 +13,11 @@
 
 - **Footnotes moved away from their markers.** Risk Report expert, `anthropic-2026-risk-report-aug`: the conversion often puts a footnote's text far from its marker, which caused two of the expert's early misreadings. Its `reading/conversion.md` lists them. Not fixed.
 
+- **Pages with no text.** AISI Sonnet expert, `aisi-2025-frontier`: PDF pages 50–51 came through with no text, between the references and the glossary. Not fixed.
+
 ## Ranking (`search/RANKING.md`)
 
-- **A summary inside the source outranks the text it gets wrong.** SB 53 expert: the Legislative Counsel's Digest drops decisive qualifiers and misprints "internal use" as "internet use", yet is keyword-dense. Registered as H-R4, proposed.
+- **A summary inside the source outranks the text it gets wrong.** SB 53 expert: the Legislative Counsel's Digest drops decisive qualifiers and misprints "internal use" as "internet use", yet is keyword-dense. Registered as H-R4, proposed. A second instance (AISI Sonnet expert): the *Frontier AI Trends Report*'s executive summary drops qualifiers the body gives ("doubling every eight months" is an "estimated upper bound"; "5% to 60%" self-replication is 11 of 20 tasks, closed models, "simplified") and omits a null result on persuasion.
 - **A definition completed by a provision that never names it.** SB 53 expert: the catastrophic-risk definition needs §22757.16 (equity value isn't property loss), which doesn't contain "catastrophic risk", so lexical search misses it. Evidence for the Meaning group (H-M1) and for whole-document readers as the source of labels.
 
 - **Interpretive rules sit after the operative text, or before it in a preamble.** Both experts, from their conversation (2026-10-09): SB 53's §22757.16 and its uncodified SEC. 5 (liberal construction, severability, preemption); the Code's glossary and recital (i). A reader or a search that stops at the operative clauses gets the strength of every provision wrong, and wrong in the same direction every time. For ranking, a passage that states how other provisions are to be read is relevant to queries about those provisions, though it shares none of their words. Not yet registered as a hypothesis.
