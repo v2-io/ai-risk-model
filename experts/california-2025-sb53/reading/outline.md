@@ -37,6 +37,44 @@
 
 **Regulatory theory:** information channels (disclosure, incident reporting, whistleblowing). The only conduct mandate so far is "implement" the framework. Whether self-commitments are enforceable is the hinge (see questions).
 
+## As of unit 102 (start of §22757.13, the OES mechanism)
+
+**SEC. 1, findings (a)–(p)**, L64–84. It moves from boosterish (a–h) to risk-aware (j–o) to an honest limit (p).
+- Risk is never asserted in the Legislature's own voice: "there is concern that" (j); "could pose potential" (o).
+- (j) borrows two of the IASR's three risk categories (malicious use, malfunctions) and leaves out systemic risk.
+- (l): frontier AI frameworks are an existing voluntary industry practice, now made mandatory.
+- (n): sub-frontier and smaller-company models are a declared gap.
+- (p): intent is transparency only; safety also needs "due care … proportional to … foreseeable risks", which the act doesn't impose.
+- No finding for CalCompute.
+
+**SEC. 2 = B&P Ch. 25.1 = the TFAIA** (the TFAIA is this chapter only; SB 53 is broader).
+- §22757.10: short title.
+- §22757.11: twelve definitions, (a)–(l). "Person" is undefined; "property" is tangible or intangible.
+  - Catastrophic risk ((c)) carries about eleven separable concepts: unit 48 has the inventory.
+  - Critical safety incident ((d)) is a closed list of four. Three need harm, and (4), deception against the developer, needs none.
+  - Deploy covers third-party availability, so open-weight release counts; access for evaluation doesn't.
+  - Foundation model: broad data, *designed* for generality, adaptable.
+  - Frontier model: >10^26 integer or floating-point operations, cumulative over original training plus "the developer's" modifications. Whether that crosses developers is a hinge.
+  - Frontier developer: trained, or started training, with the compute actually used or intended.
+  - Large frontier developer: group revenue over $500M in the preceding calendar year.
+- §22757.12, the obligations:
+  - (a) A *large* developer must write, implement, **comply with** and publish a framework that "describes how [it] approaches" 10 topics. It's a mandatory table of contents with an enforceable promise to follow it. **The digest omits "comply with".**
+  - (b) Annual review; a material modification must be published with a justification within 30 days.
+  - (c)(1) *Every* frontier developer publishes a transparency report at deployment, before or at the same time. Its 7 required items contain **no risk content**.
+  - (c)(2) A *large* developer adds summaries of assessments, results, third-party involvement and other framework steps.
+  - (c)(3) A system card or model card counts as compliance. (c)(4) Better-than-best-practice disclosure is encouraged, not required.
+  - (d) A *large* developer sends OES quarterly summaries of internal-use catastrophic-risk assessments, or on another reasonable schedule it chooses.
+  - (e) No materially false or misleading statements: about catastrophic risk (all developers), or about framework compliance (large developers). Safe harbour if made in good faith **and** reasonable.
+  - (f) Redaction is allowed on 5 grounds. The character and justification of each redaction must be described, and the unredacted version kept 5 years.
+
+**Recurring structural features:**
+1. The developer sets its own parameters: primary purpose; designed for; thresholds; update criteria; "substantially modified"; materiality of modifications; the reporting schedule.
+2. "Material(ly)" appears at least 7 times and is never defined.
+3. There are four epistemic standards, depending on the provision.
+4. There are four control phrasings (evade / lose / subvert / circumvent), none defined.
+5. Enumerations aren't type-consistent: (c)(2)(C) is a harm, not a source; (d)(4) is a model, not an event.
+6. Every outward interface carries summaries, not full assessments.
+
 ## Open hinges (to settle from the text)
 - Does the TFAIA require compliance with one's own framework? This sets how wide whistleblower prong (b) reaches.
 - Does the Labor Code chapter define "catastrophic risk" again, or cross-reference the B&P definition?
