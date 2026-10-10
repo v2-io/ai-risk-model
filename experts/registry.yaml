@@ -76,7 +76,9 @@ experts:
     session: 240cfb7e-db79-4ea2-bd47-d42e8614bc54
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: asked
+    state: reading (willing; units of at least 500 words, about 338 expected; the bibliography left out, the glossary and notes read)
+    cwd: its worktree under ~/src/ai-risk-model/.claude/worktrees/ (fork from there; check the transcript's directory)
+    branch: expert/bengio-2026-international
     read: []
-    checkpoints: []
+    checkpoints: [unit 60, unit 120, unit 180, unit 240, unit 300, the end of the reading; readings at no other times, at its request]
     context_after_preparation: null
