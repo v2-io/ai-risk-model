@@ -110,7 +110,7 @@ experts:
     effort: the default (low or medium, Joseph judged), not set at launch
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: paused (reading finished 2026-10-09: units 1-340 of 481, the report, glossary and citation; the reference list left out by its own call, reasons and cost in its file; its own estimate about 770k, awaiting Joseph's /context; it asked for no further messages)
+    state: paused (reading finished 2026-10-09: units 1-340 of 481, the report, glossary and citation; the reference list left out by its own call, reasons and cost in its file; 775k by Joseph's /context, as its own estimate of about 770k said; it asked for no further messages)
     branch: worktree-expert-bengio-2026-international-sonnet, in .claude/worktrees/expert-bengio-2026-international-sonnet
     read: [{key: bengio-2026-international, sha256: 95e91b7a5e14..., how: experientially, units of at least 300 words, units 1-340}]
     products: [reading/reflections.md (about 530 KB; its last section gives the reference-list decision and the findings a fork should know first)]
