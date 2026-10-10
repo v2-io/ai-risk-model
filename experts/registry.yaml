@@ -33,7 +33,7 @@ experts:
     state: asked
     read: []
     checkpoints: [unit 30, unit 60, unit 90, the end of the reading (124 units of at least 150 words)]
-    context: {start: 188k, at_unit_39_of_124: 318k}
+    context: {start: 188k, at_unit_39_of_124: 318k, at_unit_60_of_124: 379k}
     note_figures: bin/reading dropped figures until 2026-10-09 evening; this expert passed four (units 11, 16, 17, 22) and was sent their paths
     context_after_preparation: null
     note: the second expert; Grok judged this source whole for the outline evaluation, so its gold can be compared across model families
