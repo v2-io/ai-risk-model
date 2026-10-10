@@ -16,7 +16,8 @@
 - ~~**Pages with no text.**~~ AISI Sonnet expert, `aisi-2025-frontier`: it first reported PDF pages 50–51 as empty, then checked the PDF and withdrew it. Nothing was lost; the page labels were off.
 
 - **Superscripts flattened into wrong numbers.** IASR Sonnet expert, `bengio-2026-international`: exponents lost their superscript, so "10^13 tokens" reads as "1013 tokens", and some citation markers vanish ("(MMLU, )"). A reader or a search takes the wrong number at face value; the same kind of fault as RAISE's "10º26". Not fixed.
-- **Image figures and tables missing from a web edition.** IASR Sonnet expert: figures and tables that are images (Fig 1.2, Table 1.4) aren't in the text, and their image files aren't local for IASR's web edition. Not fixed.
+- **Image figures and tables missing from a web edition, partly.** IASR Sonnet expert: figures and tables that are images (Fig 1.2) aren't in the text, and IASR web edition's image files aren't local. Corrected by its own fork: some image tables' text *is* in the canonical file, in restored `pdf-text` blocks (44 in IASR) displaced from their captions and flattened. Table 1.4's lists are at L709–711, under the next heading. So the fault is the displacement, not the absence. Not fixed.
+- **Citation link text stripped in reading.** IASR Sonnet fork: "(MMLU, )" isn't a conversion fault. The canonical file has the citations, but `bin/reading`, like the search index, drops citation link text from prose. That's right for ranking, but it leaves holes a reader notices. Not fixed.
 - **Inline footnote bodies.** IASR Sonnet expert: footnote text set inline swells some units to 6–9k tokens. Not fixed.
 - **Smaller faults in IASR's web edition.** IASR Sonnet expert: a duplicate table of contents without titles, detached asterisks, and a dangling link for the Panel's membership. Not fixed.
 

@@ -66,6 +66,14 @@ IASR's counts include its bibliography (about 4,500 of its 7,704 lines). Whether
 
 **Effort.** The first two Sonnet experts (AISI and IASR, 2026-10-09) were launched without an effort level and ran at their default. Joseph, after talking with the AISI one (2026-10-10): "it looks like the sonnet agents were set at effort low or medium, and that to be as thoughtful as the opus instances (even if a bit less capable) needed it to be at xhigh or so." Their reflections were much shorter, and the AISI reading cost about 215k against 320–520k for the Opus readings. `bin/expert-launch` and `bin/expert-fork` now pass `--effort xhigh` unless told otherwise. The Opus experts ran at high.
 
+**What a Sonnet fork learned comparing itself with an Opus expert** (IASR, 2026-10-10, `experts/bengio-2026-international-sonnet/reading/fork-1-impressions-and-comparison.md` on its branch). The Opus expert wrote an investigation: hypotheses formed, tested and resolved across units, tied to the corpus and the project. The Sonnet expert, at its default effort, wrote a ledger: it reacted to each unit, quoted heavily and concluded less. Its misses were all connections between units, never inventions. The fork's advice for future experts, especially Sonnet ones:
+- run at high effort (now `xhigh` by default);
+- test each new unit against the previous three before writing;
+- make predictions specific enough to fail;
+- cross-check against the repository as you go;
+- quote less, with a line range and the decisive phrases;
+- keep the should-ask questions as you go, with answers.
+
 ### 3. A pause, then triage
 
 After the reading the expert stops and reports, so the remaining preparation can be fitted to the room left (Joseph: "pause after experientially reading so we can gauge how much context they have remaining in order to triage the rest"). The ceiling Joseph set is about 80% of the context, 800k tokens of a 1M window. That leaves room for one independent task in each fork. Measured on the first two experts (Joseph, with `/context`, 2026-10-09):
