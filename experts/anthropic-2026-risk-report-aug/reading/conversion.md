@@ -1,0 +1,12 @@
+# Conversion and text suspicions (kept apart from what the source says)
+
+- Unit 6 (L249–291, p.9): Tables 1.2.A–C render one word per line inside cells (`<br>`). Readable, but a quoted phrase must be rejoined. Footnote markers are glued to neighbouring words: "2 heavily" (fn 2: the 18-day export-control period), "for 3 described" (fn 3: "no impact on our customers"). Footnote text appears after each table rather than at the marker.
+- Unit 5 (p.8): footnote 1 (definition of "catastrophic risk") is inlined mid-list between "We address both:" and item (a). Content intact; position misleading.
+- Unit 8 (p.13, Table 1.3.1.A): footnote markers 4 and 5 sit inside the table cell and scramble word order: "where (a) we 4 observe", "the 5 we've fastest rate of extended progress observed" (probably "the fastest rate of extended progress we've observed⁵").
+- Unit 9 (p.14, Table 1.3.2.A): the current CB-2 threshold cell is scrambled by footnote markers 6–9: "biological 6 weapons", "team7 could, That is, a well-resourced using the model", "would 8 require otherwise recruiting one of a small 9 of number world-leading specialists". Footnote texts 6–9 not shown in the unit.
+- Unit 10 (p.14): footnotes 6–9 of Table 1.3.2.A are printed inside §1.3.3, splitting its last sentence. A reader of unit 9 alone sees no footnotes and can misread the CB-2 threshold (I did; see the correction in 009.md).
+- Unit 35 (p.39): heading "2.9.1 Claim 3.1: …" is run into the following paragraph without a break.
+- Unit 48 (p.50, Claim 3.4.4): the paragraph on the fifth audit stress-test is split around a redaction note and the paragraph on exercises 1–4; "…intentionally trained" resumes later as "to use a specific external-memory-based strategy…".
+- Unit 75 (p.65): footnote 28 (actors plausibly attempting lower-level poisoning, below catastrophic threshold) is printed as a paragraph under the §2.15 heading, reading as body text of §2.15.
+- Unit 64 (p.59): a stray page-number line "59" and fn 26 interposed mid-sentence in Claim 5.1.4 item 2.
+- Unit 90 (pp.70–71): footnote 29 is split — its tail "only the next N training steps)." precedes the page number "70", and its beginning ("This includes non-frontier models…") follows.
