@@ -16,6 +16,8 @@
 - **A summary inside the source outranks the text it gets wrong.** SB 53 expert: the Legislative Counsel's Digest drops decisive qualifiers and misprints "internal use" as "internet use", yet is keyword-dense. Registered as H-R4, proposed.
 - **A definition completed by a provision that never names it.** SB 53 expert: the catastrophic-risk definition needs §22757.16 (equity value isn't property loss), which doesn't contain "catastrophic risk", so lexical search misses it. Evidence for the Meaning group (H-M1) and for whole-document readers as the source of labels.
 
+- **Interpretive rules sit after the operative text, or before it in a preamble.** Both experts, from their conversation (2026-10-09): SB 53's §22757.16 and its uncodified SEC. 5 (liberal construction, severability, preemption); the Code's glossary and recital (i). A reader or a search that stops at the operative clauses gets the strength of every provision wrong, and wrong in the same direction every time. For ranking, a passage that states how other provisions are to be read is relevant to queries about those provisions, though it shares none of their words. Not yet registered as a hypothesis.
+
 ## The reading tool (`bin/reading`)
 
 - **Figures were dropped.** EU Code expert: the tool showed only captions, so the expert took the figures to be lost. Fixed 2026-10-09 (`babdc38`): a figure shows as ⟦figure: path⟧ at the end of its unit.
