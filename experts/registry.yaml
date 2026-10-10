@@ -11,6 +11,7 @@ experts:
   - key: california-2025-sb53
     lineage: [california-2025-sb53]
     name: expert-california-2025-sb53
+    cwd: ~/src/ai-risk-model (fork from here)
     session: 8c1808c5-b812-4e61-af21-82cfa984310f
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
@@ -28,6 +29,8 @@ experts:
   - key: eu-cop-2025-safety-security
     lineage: [eu-cop-2025-safety-security, eu-cop-chairs-2025-statement]
     name: expert-eu-cop-2025-safety-security
+    cwd: ~/src/ai-risk-model/.claude/worktrees/expert-eu-cop (fork from here: the transcript is filed under the worktree's path)
+    forks: [expert-eu-cop-2025-safety-security-fork-1 (session 6bff3be9-c897-49c8-a08d-6fc8e9522974; the recall test, passed)]
     session: 7354940e-6bd5-44cc-86a2-bd1b61638fd6
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09

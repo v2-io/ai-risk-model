@@ -104,6 +104,10 @@ claude --dangerously-skip-permissions \
 
 Add `--bg` and a prompt to run a fork's task in the background. The same appended system prompt keeps the fork's system prompt identical to the expert's. A fork's `/context` should match the expert's final reading, which is the check that it holds the whole reading.
 
+**An expert that moved into a worktree is filed under the worktree's path.** The EU Code expert's transcript is in `~/.claude/projects/-Users-josephwecker-v2-src-ai-risk-model--claude-worktrees-expert-eu-cop/`, not the main project's directory. So it must be forked from inside its worktree (`cd .claude/worktrees/expert-eu-cop` first), or `--resume` won't find it. The registry's `cwd` field says where to fork each expert from.
+
+**Tested 2026-10-09.** The stopped EU Code expert was forked in the background from its worktree (`expert-eu-cop-2025-safety-security-fork-1`, a new session id, the expert's own transcript untouched). Asked, without opening any file, what Measure 3.4 requires and what Figure 3 groups, it answered word for word on the Measure's three example formats. It also recalled a point from its reading ("impact" in the example against "severity" in the operative sentence), and said which details to check before quoting. A backup of both experts' session directories was taken first, in `~/.claude/backups/experts-2026-10-09/`.
+
 Each use is a fork: the prepared expert stays as it was, and each fork does one task. Joseph: "alas, the experience wouldn't continue to build like it will in the future". A fork's answer, if it's worth keeping, goes into the repository; nothing a fork learns returns to the expert.
 
 ## Coordinating experts
