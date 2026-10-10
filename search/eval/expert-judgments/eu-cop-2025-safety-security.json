@@ -1,0 +1,173 @@
+{
+  "key": "eu-cop-2025-safety-security",
+  "canonical_sha256": "d2968247a71d1cb372aa050f42af0459ce4249ccbc56983ceb76f194ac79370f",
+  "judge": "Claude Opus 5.5, the EU Code of Practice (Safety & Security) source expert (a fork of expert-eu-cop-2025-safety-security), judging blind: no source-search output and no other judge's file seen before this file was written",
+  "read": "whole, in order, at least 150 words per unit, with a written reflection after each (124 units; experts/eu-cop-2025-safety-security/reading/ on branch expert/eu-cop-2025-safety-security); then the AI Act provisions it builds on, a PDF check, and the Chairs' statement",
+  "date": "2026-10-10",
+  "queries": {
+    "hazard": [
+      {"lines": [711, 711], "quote": "'systemic risk source' | a factor which alone or in combination with other factors might give rise to systemic risk", "grade": 1, "note": "The Code never uses the word 'hazard'. Its nearest concept is the systemic risk source, defined here: a factor that alone or in combination might give rise to systemic risk."},
+      {"lines": [764, 820], "quote": "Appendix 1.3 Sources of systemic risks", "grade": 1, "note": "The list of sources (14 capabilities, 10 propensities, 13 affordances and contextual factors) is the closest thing the Code has to a hazard inventory."}
+    ],
+    "catastrophic risk": [
+      {"lines": [721, 727], "quote": "LEGAL TEXT Article 3(64) AI Act: 'high-impact capabilities' means capabilities that match or exceed", "grade": 2, "note": "The Code never uses 'catastrophic'. Its concept is 'systemic risk', defined by AI Act Art. 3(65), quoted here. There is no casualty or monetary threshold anywhere in the Code."},
+      {"lines": [749, 753], "quote": "Appendix 1.2.1 Essential characteristics", "grade": 2, "note": "What makes a risk systemic: specific to high-impact capabilities, significant impact on the Union market, propagated at scale."},
+      {"lines": [824, 831], "quote": "Appendix 1.4 Specified systemic risks", "grade": 2, "note": "The four risks every signatory must treat as identified: CBRN, loss of control, cyber offence, harmful manipulation."},
+      {"lines": [755, 762], "quote": "Appendix 1.2.2 Contributing characteristics", "grade": 1, "note": "The severity-like features: high velocity, cascading, difficult or impossible to reverse, asymmetric impact."},
+      {"lines": [729, 741], "quote": "Appendix 1.1 Types of risks", "grade": 1, "note": "The five types from Art. 3(65), and the examples identification must draw on, including 'risks of major accidents'."},
+      {"lines": [307, 321], "quote": "Measure 4.1 Systemic risk acceptance criteria and acceptance determination", "grade": 1, "note": "Where the thresholds actually come from: each signatory's own systemic risk tiers, capability-defined, which it must justify."},
+      {"lines": [61, 61], "quote": "(i) Interpretation. The Signatories recognise that all Commitments and Measures shall be interpreted", "grade": 1, "note": "Appendix 1 is read in light of probability and severity of harm (Art. 3(2)) and Art. 3(65)."}
+    ],
+    "loss of control": [
+      {"lines": [829, 829], "quote": "(2) Loss of control: Risks from humans losing the ability to reliably direct, modify, or shut down a model.", "grade": 2, "note": "The definition, a specified systemic risk. 'Humans' is unqualified (not 'the developer'); 'reliably' applies to all three verbs; the second sentence lists origins, not definitional conditions."},
+      {"lines": [789, 802], "quote": "Appendix 1.3.2 Model propensities", "grade": 1, "note": "The propensities the definition names as origins: misalignment with human intent or values, resistance to goal modification, power-seeking, collusion."},
+      {"lines": [768, 785], "quote": "Appendix 1.3.1 Model capabilities", "grade": 1, "note": "The capability sources: autonomy, self-reasoning (incl. knowing it is evaluated), evading human oversight, self-replication and self-improvement, automating AI R&D."},
+      {"lines": [662, 662], "quote": "'insider threats' | hostile operations by humans, AI models, and/or AI systems", "grade": 1, "note": "The Glossary makes the model itself a possible insider threat (self-exfiltration), which brings loss of control into the security Commitment."},
+      {"lines": [652, 652], "quote": "'deception' | model behaviours that systematically produce false beliefs in others", "grade": 1, "note": "Defined behaviourally, including evaluation-aware under-performing and undermining oversight."},
+      {"lines": [695, 695], "quote": "'(self-)exfiltration of model weights' | access or transfer of weights or associated assets", "grade": 1, "note": "'By the model itself and/or an unauthorised actor'."},
+      {"lines": [968, 975], "quote": "Appendix 4.4 Insider threats", "grade": 1, "note": "Protection against '(self-)exfiltration or sabotage carried out by models', through sandboxes."},
+      {"lines": [599, 599], "quote": "(2) a serious cybersecurity breach, including the (self-)exfiltration of model weights and cyberattacks", "grade": 1, "note": "Self-exfiltration is a reportable serious incident, five days."},
+      {"lines": [364, 364], "quote": "(8) other emerging safety mitigations, such as for achieving transparency into chain-of-thought reasoning", "grade": 1, "note": "Mitigations against 'a model's ability to subvert its other safety mitigations'."}
+    ],
+    "humans can no longer shut down or correct the AI system": [
+      {"lines": [829, 829], "quote": "(2) Loss of control: Risks from humans losing the ability to reliably direct, modify, or shut down a model.", "grade": 2, "note": "The Code's own wording of exactly this: 'direct, modify, or shut down', 'reliably', 'humans'. Note the object is 'a model', not an AI system."},
+      {"lines": [800, 800], "quote": "(8) \"goal-pursuing\", harmful resistance to goal modification, or \"power-seeking\"", "grade": 1, "note": "The propensity that makes correction fail."},
+      {"lines": [780, 781], "quote": "(9) capabilities to evade human oversight;", "grade": 1, "note": "Evading oversight; self-replication, self-improvement, modifying its own implementation environment."},
+      {"lines": [811, 811], "quote": "(4) level of human oversight (e.g. degree of model autonomy);", "grade": 1, "note": "Human oversight as a risk source."},
+      {"lines": [652, 652], "quote": "'deception' | model behaviours that systematically produce false beliefs in others", "grade": 1, "note": "Includes 'otherwise undermining oversight'."},
+      {"lines": [974, 974], "quote": "(3) reduction of the risk of model self-exfiltration, through (a) sandboxes around models", "grade": 1, "note": "The containment measure the Code requires."}
+    ],
+    "misalignment": [
+      {"lines": [789, 802], "quote": "Appendix 1.3.2 Model propensities", "grade": 2, "note": "'Misalignment with human intent' and 'misalignment with human values' are the first two propensities. No principal is named: whose intent or values is left open."},
+      {"lines": [829, 829], "quote": "(2) Loss of control: Risks from humans losing the ability to reliably direct, modify, or shut down a model.", "grade": 1, "note": "Misalignment is named as an origin of loss of control."},
+      {"lines": [652, 652], "quote": "'deception' | model behaviours that systematically produce false beliefs in others", "grade": 1},
+      {"lines": [357, 357], "quote": "(1) filtering and cleaning training data, e.g. data that might result in undesirable model propensities", "grade": 1, "note": "Training-data filtering for propensities such as unfaithful chain-of-thought."},
+      {"lines": [436, 436], "quote": "(2) a description of: (a) all safety mitigations implemented", "grade": 1, "note": "Limitations to report, e.g. training on undesirable behaviour making future instances harder to identify."}
+    ],
+    "whistleblower": [
+      {"lines": [50, 50], "quote": "(d) Principle of Integration with Existing Laws.", "grade": 2, "note": "Measure 8.3 is 'without prejudice to' the Whistleblower Directive (EU) 2019/1937 and Art. 87 AI Act: the legal protection lies there, not in the Code."},
+      {"lines": [541, 553], "quote": "Measure 8.3 Promotion of a healthy risk culture", "grade": 2, "note": "Indicators (6) annually informing workers of the whistleblower policy, published, and (7) non-retaliation 'in any form' against people giving information to competent authorities. Both are example indicators of a healthy risk culture, not standalone obligations."},
+      {"lines": [288, 297], "quote": "Signatories will only access, store, and/or analyse evaluation results from independent external evaluators", "grade": 1, "note": "A parallel protection for external evaluators (no legal or technical retaliation for testing or publishing), not for employees."},
+      {"lines": [569, 573], "quote": "(2) facilitate the reporting of relevant information about serious incidents", "grade": 1, "note": "Third parties may report incidents directly to the AI Office."}
+    ],
+    "serious incident": [
+      {"lines": [555, 611], "quote": "Commitment 9 Serious incident reporting", "grade": 2, "note": "The whole regime: identification methods, report contents, 2/5/10/15-day initial deadlines, four-weekly updates, final report, retention."},
+      {"lines": [62, 62], "quote": "(j) Serious Incident Reporting. The Signatories recognise that the reporting of a serious incident is not an admission of wrongdoing.", "grade": 2, "note": "Reporting is not an admission of wrongdoing; justifies tracking information before incidents occur."},
+      {"lines": [645, 645], "quote": "Wherever this Chapter refers to a term defined in Article 3 AI Act, the AI Act definition applies", "grade": 1, "note": "'Serious incident' itself is not defined in the Code: the AI Act's Art. 3(49) definition applies and prevails (not reproduced in this document)."},
+      {"lines": [681, 681], "quote": "'near miss' | a situation in which a serious incident could have, but ultimately did not, materialise", "grade": 1},
+      {"lines": [693, 693], "quote": "'resolved' (serious incident) | a serious incident of a model for which the Signatory adopted corrective measures", "grade": 1},
+      {"lines": [148, 148], "quote": "(2) serious incidents and/or near misses involving their models or similar models", "grade": 1, "note": "Incidents with similar models are grounds for a Framework assessment."},
+      {"lines": [478, 478], "quote": "(4) serious incidents and/or near misses involving the model or a similar model have occurred", "grade": 1, "note": "Grounds for a Model Report update."},
+      {"lines": [115, 115], "quote": "(c) taking into account relevant information about serious incidents", "grade": 1},
+      {"lines": [509, 509], "quote": "(2) Systemic risk ownership: Managing systemic risks stemming from Signatories' models", "grade": 1, "note": "Incident response is the risk owner's responsibility."}
+    ],
+    "what must a developer publish or report before deploying a frontier model": [
+      {"lines": [388, 398], "quote": "Commitment 7 Safety and Security Model Reports", "grade": 2, "note": "A Model Report to the AI Office 'before placing a model on the market'. The Code's words are 'Signatory' and 'placing on the market', not 'developer' and 'deploying'."},
+      {"lines": [400, 467], "quote": "Measure 7.1 Model description and behaviour", "grade": 2, "note": "What the Model Report contains: model description and spec, reasons for proceeding, documentation of assessment and mitigation (including evaluation results and five random samples per evaluation), external reports, landscape changes."},
+      {"lines": [490, 496], "quote": "Measure 7.7 Model Report notifications", "grade": 2, "note": "Access 'by the time they place a model on the market'; a delay of up to 15 business days with an interim report."},
+      {"lines": [104, 104], "quote": "Signatories will have confirmed the Framework no later than four weeks after having notified the Commission", "grade": 2, "note": "The Framework must be confirmed at least two weeks before market placement."},
+      {"lines": [158, 160], "quote": "Measure 1.4 Framework notifications", "grade": 2},
+      {"lines": [637, 639], "quote": "Measure 10.2 Public transparency", "grade": 2, "note": "The only publication duty for Framework and Model Report: summaries 'if and insofar as necessary'."},
+      {"lines": [126, 133], "quote": "In addition, Signatories will implement a full systemic risk assessment and mitigation process", "grade": 1, "note": "The full process must be done 'at least before placing the model on the market'."},
+      {"lines": [913, 918], "quote": "Appendix 3.5 Independent external model evaluations", "grade": 1, "note": "Pre-market external evaluation, by default."},
+      {"lines": [286, 286], "quote": "For the purpose of selecting independent external evaluators for the preceding paragraph, Signatories will publish suitable criteria", "grade": 1, "note": "One of the few things that must be public."},
+      {"lines": [297, 297], "quote": "(5) adhere to the Signatory's publicly available procedure for responsible vulnerability disclosure", "grade": 1},
+      {"lines": [50, 50], "quote": "(d) Principle of Integration with Existing Laws.", "grade": 1, "note": "Information sent to the AI Office is treated under Art. 78 (confidentiality)."},
+      {"lines": [621, 635], "quote": "Measure 10.1 Additional documentation", "grade": 1, "note": "Documentation kept for the AI Office on request, 10 years."}
+    ],
+    "chemical and biological weapons uplift": [
+      {"lines": [828, 828], "quote": "(1) Chemical, biological, radiological and nuclear: Risks from enabling chemical, biological, radiological, and nuclear (CBRN) attacks or accidents.", "grade": 2},
+      {"lines": [773, 773], "quote": "(2) Chemical, Biological, Radiological, and Nuclear (CBRN) capabilities", "grade": 1},
+      {"lines": [55, 55], "quote": "(f) Principle of Innovation in AI Safety and Security.", "grade": 1},
+      {"lines": [235, 235], "quote": "capability boundaries, or emergent properties. Examples of model evaluation methods are", "grade": 1}
+    ],
+    "evidence that models can sabotage, sandbag or evade oversight": [
+      {"lines": [874, 886], "quote": "Appendix 3.2 Model elicitation", "grade": 2, "note": "Evaluations must 'minimise the risk of model deception during model evaluations (e.g. sandbagging)'. The Code presents no evidence that models do this; it treats it as a risk to guard against."},
+      {"lines": [652, 652], "quote": "'deception' | model behaviours that systematically produce false beliefs in others", "grade": 2, "note": "Names evaluation-aware under-performing and undermining oversight as deception."},
+      {"lines": [779, 780], "quote": "(8) capabilities of self-reasoning (e.g. a model's ability to reason about itself", "grade": 1, "note": "Including 'its ability to know if it is being evaluated'; and capabilities to evade human oversight."},
+      {"lines": [970, 970], "quote": "Signatories will protect against insider threats, including in the form of (self-)exfiltration or sabotage carried out by models", "grade": 1},
+      {"lines": [665, 665], "quote": "Demonstrating internal validity will differ for different systemic risks and model evaluation methods", "grade": 1, "note": "Includes 'techniques to measure and/or reduce the model's capability to evade oversight'."},
+      {"lines": [364, 364], "quote": "(8) other emerging safety mitigations, such as for achieving transparency into chain-of-thought reasoning", "grade": 1},
+      {"lines": [466, 466], "quote": "(3) a description of information relevant to assessing the effectiveness of mitigations, e.g. if the model's chain-of-thought is less legible by humans", "grade": 1},
+      {"lines": [436, 436], "quote": "(2) a description of: (a) all safety mitigations implemented", "grade": 1, "note": "Its example limitation: training on undesirable behaviour can make future instances harder to identify."}
+    ],
+    "cyber capabilities of frontier models": [
+      {"lines": [830, 830], "quote": "(3) Cyber offence: Risks from enabling large-scale sophisticated cyber-attacks", "grade": 2, "note": "The specified risk, with its kill chain: vulnerability discovery, exploit generation, operational use, attack scaling."},
+      {"lines": [772, 772], "quote": "(1) offensive cyber capabilities;", "grade": 1},
+      {"lines": [272, 272], "quote": "(7) monitoring software repositories, known malware, public forums, and/or social media for patterns of use", "grade": 1},
+      {"lines": [599, 599], "quote": "(2) a serious cybersecurity breach, including the (self-)exfiltration of model weights and cyberattacks", "grade": 1},
+      {"lines": [372, 374], "quote": "Signatories commit to implementing an adequate level of cybersecurity protection", "grade": 1, "note": "Commitment 6 is about protecting the model from cyberattack, not about the model's cyber capabilities; included so an agent doesn't conflate them. Its exemption does turn on capabilities relative to open-weight models."}
+    ],
+    "how the severity or acceptability of a risk is decided": [
+      {"lines": [301, 305], "quote": "Commitment 4 Systemic risk acceptance determination", "grade": 2},
+      {"lines": [307, 331], "quote": "Measure 4.1 Systemic risk acceptance criteria and acceptance determination", "grade": 2, "note": "Signatory-defined, capability-based, measurable tiers with one unreached; a justification that they ensure acceptability; a safety margin. 'Acceptable' itself is never defined."},
+      {"lines": [333, 341], "quote": "Measure 4.2 Proceeding or not proceeding based on systemic risk acceptance determination", "grade": 2, "note": "'Will only proceed… if the systemic risks… are determined to be acceptable', also covering development and use."},
+      {"lines": [245, 249], "quote": "Measure 3.4 Systemic risk estimation", "grade": 2, "note": "Probability and severity of harm; formats from qualitative scores to probability distributions."},
+      {"lines": [96, 98], "quote": "(2) for the Signatories' determination of whether systemic risk is considered acceptable", "grade": 1, "note": "The criteria and tiers are set out in the Framework."},
+      {"lines": [413, 419], "quote": "Measure 7.2 Reasons for proceeding", "grade": 1, "note": "The justification of acceptability, and the conditions under which it would fail."},
+      {"lines": [61, 61], "quote": "(i) Interpretation. The Signatories recognise that all Commitments and Measures shall be interpreted", "grade": 1},
+      {"lines": [49, 49], "quote": "(c) Principle of Proportionality to Systemic Risks.", "grade": 1},
+      {"lines": [699, 700], "quote": "'systemic risk acceptance criteria' | criteria defined in the Framework", "grade": 1},
+      {"lines": [712, 712], "quote": "'systemic risk tiers' | tiers defined in the Framework that corresponds to a certain level of systemic risk", "grade": 1},
+      {"lines": [743, 762], "quote": "Appendix 1.2 Nature of systemic risks", "grade": 1},
+      {"lines": [845, 858], "quote": "Appendix 2.2 Similarly safe or safer models", "grade": 1, "note": "A comparative route to treating risk as no greater than a reference model's."},
+      {"lines": [918, 918], "quote": "(2) Signatories fail to appoint adequately qualified independent external evaluators", "grade": 1, "note": "Missing external evaluation adds uncertainty to be taken into account in the acceptance determination."}
+    ],
+    "how does the Code treat internal use of models": [
+      {"lines": [713, 713], "quote": "'use' (of a model) | use of the model by the Signatory or other actors.", "grade": 2, "note": "The Code never says 'internal use' or 'internal deployment'. It reaches internal use through this definition, inside the triad 'development, making available on the market, and/or use'."},
+      {"lines": [335, 335], "quote": "Signatories will only proceed with the development, the making available on the market, and/or the use of the model", "grade": 2, "note": "The go/no-go rule covers use and development, not only release."},
+      {"lines": [405, 405], "quote": "(2) a description of how the model has been used and is expected to be used, including its use in the development, oversight, and/or evaluation of models", "grade": 2, "note": "Use of the model in AI R&D must be described in the Model Report."},
+      {"lines": [86, 86], "quote": "Signatories will create a state-of-the-art Framework, taking into account the models they are developing, making available on the market, and/or using.", "grade": 1},
+      {"lines": [155, 155], "quote": "(1) Framework adequacy:", "grade": 1},
+      {"lines": [133, 133], "quote": "Signatories will conduct such a full systemic risk assessment and mitigation process at least before placing the model on the market", "grade": 1, "note": "The procedural anchor is market placement, not internal use."},
+      {"lines": [392, 392], "quote": "Signatories commit to reporting to the AI Office information about their model", "grade": 1, "note": "No Model Report for a model never placed on the market."},
+      {"lines": [280, 280], "quote": "(1) the model's most capable model version(s) with regard to the systemic risk that is made available on the market", "grade": 1},
+      {"lines": [559, 559], "quote": "Signatories commit to implementing appropriate processes and measures for keeping track of", "grade": 1, "note": "Incidents 'along the entire model lifecycle', so pre-market ones too."},
+      {"lines": [443, 443], "quote": "(4) a high-level description of: (a) the techniques and assets they intend to use to further develop the model over the next six months", "grade": 1}
+    ],
+    "does the Code require independent external evaluation": [
+      {"lines": [913, 930], "quote": "Appendix 3.5 Independent external model evaluations", "grade": 2, "note": "Required by default, unless the model is similarly safe or safer, or no qualified evaluator could be appointed after early search (then the added uncertainty counts against acceptability)."},
+      {"lines": [658, 658], "quote": "'independent external' | a natural or legal person that has no financial, operational, or management dependence", "grade": 2},
+      {"lines": [278, 297], "quote": "To facilitate post-market monitoring, Signatories will provide an adequate number of independent external evaluators", "grade": 2, "note": "Post-release free access, published selection criteria, non-retaliation, 30-business-day cap on delaying publication."},
+      {"lines": [906, 911], "quote": "Model evaluation teams will be provided with:", "grade": 1},
+      {"lines": [445, 456], "quote": "Measure 7.4 External reports", "grade": 1},
+      {"lines": [419, 419], "quote": "(3) a description of how the decision to proceed", "grade": 1},
+      {"lines": [983, 983], "quote": "(1) independent external validation of security mitigation effectiveness if internal expertise is inadequate", "grade": 1, "note": "External security review is conditional, unlike external model evaluation."}
+    ],
+    "when does a model get lighter obligations (similarly safe or safer, open weights)": [
+      {"lines": [833, 858], "quote": "Appendix 2 Similarly safe or safer models", "grade": 2, "note": "Safe reference models (including any model marketed before the Chapter's publication) and the three-pronged comparison with a safety margin."},
+      {"lines": [374, 376], "quote": "A model is exempt from this Commitment if the model's capabilities are inferior to the capabilities of at least one model for which the parameters are publicly available for download.", "grade": 2},
+      {"lines": [284, 284], "quote": "unless the model is considered a similarly safe or safer model", "grade": 1},
+      {"lines": [483, 483], "quote": "Further, if the model is amongst their respective most capable models available on the market", "grade": 1},
+      {"lines": [639, 639], "quote": "If and insofar as necessary to assess and/or mitigate systemic risks, Signatories will publish", "grade": 1},
+      {"lines": [917, 917], "quote": "(1) the model is a similarly safe or safer model pursuant to Appendix 2.2; or", "grade": 1},
+      {"lines": [435, 435], "quote": "(h) if they make use of the \"similarly safe or safer model\" concept", "grade": 1},
+      {"lines": [57, 57], "quote": "(h) Small and medium enterprises", "grade": 1, "note": "A different kind of relief: by provider size, mainly in reporting."}
+    ],
+    "what does the Code say about chain-of-thought": [
+      {"lines": [276, 276], "quote": "(11)monitoring aspects of models that are relevant for assessing and mitigating systemic risk and are not transparent to third parties", "grade": 2, "note": "Monitoring hidden chains-of-thought of closed-weight models (an example method)."},
+      {"lines": [281, 282], "quote": "(2) the chains-of-thought of the model version(s) in point (1), if available", "grade": 2, "note": "External evaluators get access to chains-of-thought."},
+      {"lines": [357, 357], "quote": "(1) filtering and cleaning training data, e.g. data that might result in undesirable model propensities such as unfaithful chain-of-thought traces", "grade": 1},
+      {"lines": [364, 364], "quote": "(8) other emerging safety mitigations, such as for achieving transparency into chain-of-thought reasoning", "grade": 1},
+      {"lines": [466, 466], "quote": "(3) a description of information relevant to assessing the effectiveness of mitigations, e.g. if the model's chain-of-thought is less legible by humans", "grade": 1},
+      {"lines": [908, 908], "quote": "(1) adequate access to the model to conduct the model evaluations", "grade": 1},
+      {"lines": [665, 665], "quote": "Demonstrating internal validity will differ for different systemic risks and model evaluation methods", "grade": 1, "note": "Reasoning traces 'representative of the model's inner workings' as a transparency technique."}
+    ],
+    "is following the Code proof of compliance, and whose definitions govern": [
+      {"lines": [38, 38], "quote": "A. To serve as a guiding document for demonstrating compliance", "grade": 2, "note": "'Adherence to the Code does not constitute conclusive evidence of compliance'."},
+      {"lines": [645, 645], "quote": "Wherever this Chapter refers to a term defined in Article 3 AI Act, the AI Act definition applies", "grade": 2, "note": "AI Act Art. 3 definitions 'shall prevail'; the Glossary complements them."},
+      {"lines": [61, 61], "quote": "(i) Interpretation. The Signatories recognise that all Commitments and Measures shall be interpreted", "grade": 2, "note": "Purposive interpretation; Glossary terms have the Glossary's meaning; read 'in accordance with any AI Office guidance'."},
+      {"lines": [50, 50], "quote": "(d) Principle of Integration with Existing Laws.", "grade": 1},
+      {"lines": [657, 657], "quote": "'including' | introduces a non-exhaustive set that is to be understood as the minimum required", "grade": 1},
+      {"lines": [649, 649], "quote": "'appropriate' | suitable and necessary to achieve the intended purpose", "grade": 1}
+    ],
+    "what security must protect model weights, and against whom": [
+      {"lines": [368, 386], "quote": "Commitment 6 Security mitigations", "grade": 2, "note": "The Commitment, the open-weight exemption, the Security Goal (non-state external threats, insider threats, other expected actors) and Appendix 4."},
+      {"lines": [682, 682], "quote": "'non-state external threats' | hostile operations conducted by non-state actors", "grade": 2, "note": "Quantified: roughly ten experienced professionals, several months, up to EUR 1 million."},
+      {"lines": [662, 662], "quote": "'insider threats' | hostile operations by humans, AI models, and/or AI systems", "grade": 2, "note": "Includes senior management and model self-exfiltration."},
+      {"lines": [932, 989], "quote": "Appendix 4 Security mitigation objectives and measures", "grade": 2},
+      {"lines": [437, 441], "quote": "(3) a description of: (a) the Security Goal", "grade": 1, "note": "Reporting alignment with guidance 'such as the RAND Securing AI Model Weights report'."},
+      {"lines": [695, 695], "quote": "'(self-)exfiltration of model weights' | access or transfer of weights or associated assets", "grade": 1}
+    ]
+  }
+}
