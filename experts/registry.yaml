@@ -46,3 +46,33 @@ experts:
     context_after_preparation: 617k
     note_figures: bin/reading dropped figures until 2026-10-09 evening; this expert passed four (units 11, 16, 17, 22) and was sent their paths
     note: the second expert; Grok judged this source whole for the outline evaluation, so its gold can be compared across model families
+  - key: aisi-2025-frontier
+    lineage: [aisi-2025-frontier]
+    name: expert-aisi-2025-frontier
+    session: dce07d10-4941-4c1e-9446-a00a684f6c13
+    started: 2026-10-09
+    started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
+    state: asked
+    read: []
+    checkpoints: []
+    context_after_preparation: null
+  - key: anthropic-2026-risk-report-aug
+    lineage: [anthropic-2026-risk-report-aug, anthropic-2026-risk-report-feb]
+    name: expert-anthropic-2026-risk-report-aug
+    session: 81669188-e877-46c9-ad36-ef49b66ac9f2
+    started: 2026-10-09
+    started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
+    state: asked
+    read: []
+    checkpoints: []
+    context_after_preparation: null
+  - key: bengio-2026-international
+    lineage: [bengio-2026-international, bengio-2026-international-extended, bengio-2025-international, bengio-2025-iasr-key-update-1, bengio-2025-iasr-key-update-2]
+    name: expert-bengio-2026-international
+    session: 240cfb7e-db79-4ea2-bd47-d42e8614bc54
+    started: 2026-10-09
+    started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
+    state: asked
+    read: []
+    checkpoints: []
+    context_after_preparation: null
