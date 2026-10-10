@@ -75,7 +75,49 @@
 5. Enumerations aren't type-consistent: (c)(2)(C) is a harm, not a source; (d)(4) is a model, not an event.
 6. Every outward interface carries summaries, not full assessments.
 
-## Open hinges (to settle from the text)
+## As of unit 224 (the end)
+
+**Rest of the TFAIA.**
+- §22757.13, OES:
+  - (a) the incident intake, with four fields; members of the public may report;
+  - (b) the confidential channel for internal-use summaries, need-to-know access;
+  - (c) incident reports within 15 days, or within 24 hours to an "appropriate" authority if death or injury is imminent (whether this replaces or adds to the OES report: u110); amended reports optional; voluntary reporting on sub-frontier models;
+  - (d) OES must review developers' reports and may review the public's;
+  - (e) the AG or OES may transmit reports onward;
+  - (f) exemption from the Public Records Act;
+  - (g) annual anonymised aggregate to the Legislature and Governor from 2027;
+  - (h)–(j) federal equivalence, by designation and declaration, with revocation mandatory.
+- §22757.14: annual Department of Technology recommendations on three definitions. Five criteria: federal alignment, stakeholders, predictability, simplicity, external verifiability. Plus (d), oddly placed here, the AG's whistleblower aggregate.
+- §22757.15: penalties for **large** developers only, up to $1M; enforced only by the AG.
+- §22757.16: loss of equity value isn't property.
+
+**SEC. 3, Gov. §11546.8, CalCompute.** A consortium of 14 (4 academic, 3 labour, 3 public-interest, 4 technical; appointed by the executive and the Legislature) develops a framework for publicly owned infrastructure, preferably at UC. Report due 2027-01-01. Members serve unpaid, and the consortium dissolves when it reports. UC may take donations. **The whole section is operative only on appropriation.** No finding in SEC. 1 supports it, and it never mentions catastrophic risk.
+
+**SEC. 4, Lab. §1107–1107.2, whistleblowers.**
+- **§1107 restates "catastrophic risk" and "critical safety incident" with "foundation model"**, and adds property harm to weight theft. It cross-references the unchanged terms.
+- "Covered employee" is defined by role.
+- §1107.1 provides: the two-prong protection (danger, or a TFAIA violation); a bar on contracts that restrict §1102.5 disclosures; the hotline; notice of rights; for large developers, the anonymous internal channel; fees; the burden shift; injunctions not stayed on appeal; and savings and cumulation.
+- §1107.2 repeats the equity exclusion.
+
+**SEC. 5, uncodified.** Severability; **liberal construction of the whole act**; cumulation; federal contracts override where they strictly conflict; deference to federal preemption; local preemption (the term "catastrophic risk" is undefined here).
+
+**SEC. 6, uncodified.** Findings for the Public Records Act exemption. The stated interests are public safety and incident response only.
+
+**Corrections made during the reading:**
+- u41 → u66 → u145: the property concept, worked out in three steps.
+- u191/193 → u216: the Labor Code does exclude loss of equity value.
+- u215 → u219: cumulation is act-wide.
+- u143 → u196: small developers' duties carry no penalty, but breaking them is protected whistleblowing territory.
+
+## Hinges, as resolved
+
+- Compliance with one's own framework: **required** (u67).
+- The Labor Code **restates** catastrophic risk, more broadly (u177).
+- Preemption: **uncodified**, SEC. 5(f) (u222).
+- Belief standards: **confirmed in the statute**, and they differ (u194, u202).
+- Liberal construction: **act-wide**, uncodified (u218).
+
+## Open hinges (as of unit 20, kept for the record)
 - Does the TFAIA require compliance with one's own framework? This sets how wide whistleblower prong (b) reaches.
 - Does the Labor Code chapter define "catastrophic risk" again, or cross-reference the B&P definition?
 - Where is preemption codified?
