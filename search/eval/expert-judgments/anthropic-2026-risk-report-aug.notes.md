@@ -37,5 +37,30 @@ Repo `52984a6` (main `e0e7025` plus the stage-1 commit; no code changes). Comman
 - One sentence-paragraph at L901 is split into two passages (#140, #141).
 - One paragraph is split by a page break, so its second half starts "to use a specific external-memory-based strategy…" (#142, L905).
 - Footnotes print far from their markers: footnote 1 is inside #19 with §1.1's list; footnotes 6–9 of the CB-2 table are inside #37, under §1.3.3.
-- Tables are single passages.
+- Tables are split into rows, so a cell's claim and its column header ("Misalignment in high-stakes settings") land in different passages.
 So "should rank N" is sometimes a choice between two halves of one thought, and a passage's heading path can be wrong about its footnote content. Two passages in the cyber ordering (#44, #23: the summary-table rows that give "incident disclosures related to model behavior in cybersecurity evaluations" as the reason for the rating) weren't judged in stage 1; they're marked `added_in_stage2`.
+
+## After comparison (written after reading the whole-document judge's file and the SB 53 pilot's notes)
+
+**Against the whole-document judge** (`outline-judgments/…json`, same sha256). Its stretches cover nearly all of mine: 9/10, 7/7, 7/8, 12/12, 8/8, 7/7, 11/12 and 12/14 of my stretches on the shared queries. The exception is cyber, at 7/13: I included more of the passages that use cyber compound words. The judge is broader, mostly at grade 1. Where it found things I'd now accept:
+- agents killing agents (L667–671) and Pathway 5 (L1166–1174, its grade 2) for the shutdown and loss-of-control questions;
+- §5.4 for "catastrophic risk";
+- Claim 3.4.2, evaluation awareness, at grade 2 for the sabotage-evidence query;
+- the link in §5.3.1 (L2985) to a public disclosure of an AI-espionage incident, for cyber, which I missed.
+
+It didn't grade §2.25's Hacker-Opus results or §5.2.2's partial refusals for the sabotage-evidence query; I graded both 2. Our grade-2 cores agree; the disagreements are about how much grade-1 context to include.
+
+**Against the SB 53 pilot.** Found independently in both documents, so these count twice:
+- compound words defeat "cyber";
+- paraphrase with no shared words defeats the shutdown/loss-of-control queries;
+- the answerability signal is useful but incomplete;
+- passages split or merge the source's own units.
+
+Mine only, from this document:
+- for evidence queries, the argument outranks the evidence;
+- the absence warning counts words, not phrases ("serious incident", "ASL-3");
+- `likely_unanswered` never fired here, though the pilot saw it fire, sometimes wrongly, on SB 53. A fixed 0.5 cosine threshold behaves differently on a 3,253-line report and a 313-line statute;
+- the outline's "+N sections not shown (k near)" annotations are, for a long document, its best answer to "what haven't I read";
+- answers can sit under headings that don't name the topic (publication rules under "Changes to our RSP").
+
+The pilot's distance problem (qualifiers placed away from what they modify) has a counterpart here in displaced footnotes. I didn't check where anchors point within passages, as the pilot did; that remains open for this document.
