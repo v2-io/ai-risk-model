@@ -1,3 +1,7 @@
+# ALWAYS FORK, NEVER RESUME an expert itself: bin/expert-fork KEY ["task"] [--bg].
+# Joseph: "we need to always remember to --fork-session with them or they will
+# accumulate context that we can't remove."
+#
 # Source experts (experts/README.md). One entry per expert, kept current by whoever
 # changes an expert's state. To use an expert, fork its session:
 #   claude --dangerously-skip-permissions \

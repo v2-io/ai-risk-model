@@ -2,6 +2,8 @@
 
 *Designed 2026-10-09 by Joseph and Claude (Opus 5.5) in conversation, and written up by Claude. The idea of source experts is Joseph's; the mechanics below are mostly Claude's and are marked where they are. Nothing here is settled practice yet. The first expert is a pilot.*
 
+> **Always fork; never resume an expert itself.** Joseph, 2026-10-09: "we need to always remember to --fork-session with them or they will accumulate context that we can't remove." `bin/expert-fork KEY ["task"] [--bg]` looks the session up in the registry and always passes `--fork-session`. Resuming without it fails silently: it appends to the expert, and only restoring a backup undoes that.
+
 ## What a source expert is
 
 A source expert is a Claude session that has read one source of this corpus slowly, in order and with written reflection, and is then kept, never compacted, so that anyone can fork it and ask it about that source.

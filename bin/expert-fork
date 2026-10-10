@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Fork a prepared source expert (experts/README.md). Always a fork, never a resume.
+
+    bin/expert-fork KEY                  an interactive fork, in this terminal
+    bin/expert-fork KEY "task" [--bg]    a fork that starts on the task (--bg: in the background)
+    bin/expert-fork KEY --name NAME …    name the fork (default: expert-KEY-fork-<time>)
+
+Resuming an expert's session without --fork-session would add to the expert itself,
+and its context can't be taken back out. Joseph, 2026-10-09: "we need to always
+remember to --fork-session with them or they will accumulate context that we can't
+remove." This script looks the session up in experts/registry.yaml and always passes
+--fork-session, with the same appended system prompt the expert was started with.
+"""
+import argparse, datetime, os, re, subprocess, sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROMPT = os.path.expanduser('~/src/arch/proprium/comproprium/stopgap-system-prompt.md')
+
+
+def session_of(key):
+    text = open(os.path.join(ROOT, 'experts', 'registry.yaml')).read()
+    for block in re.split(r'\n  - key: ', text)[1:]:
+        if block.split('\n', 1)[0].strip() == key:
+            m = re.search(r'\n    session: ([0-9a-f-]{36})', block)
+            if m:
+                return m.group(1)
+    sys.exit(f'no session for {key!r} in experts/registry.yaml')
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split('\n')[0], epilog=__doc__.split('\n', 1)[1],
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('key')
+    ap.add_argument('task', nargs='?')
+    ap.add_argument('--bg', action='store_true')
+    ap.add_argument('--name')
+    a = ap.parse_args()
+    if a.bg and not a.task:
+        sys.exit('--bg needs a task, since nobody would be there to type one')
+    name = a.name or f'expert-{a.key}-fork-{datetime.datetime.now():%Y%m%d-%H%M}'
+    cmd = ['claude'] + (['--bg'] if a.bg else []) + ['--dangerously-skip-permissions', '--append-system-prompt-file',
+                                                      PROMPT, '--resume', session_of(a.key), '--fork-session', '-n', name]
+    if a.task:
+        cmd.append(a.task)
+    os.chdir(ROOT)
+    os.execvp('claude', cmd)
+
+
+if __name__ == '__main__':
+    main()
