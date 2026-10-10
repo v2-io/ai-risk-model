@@ -115,6 +115,6 @@ experts:
     read: [{key: bengio-2026-international, sha256: 95e91b7a5e14..., how: experientially, units of at least 300 words, units 1-340}]
     products: [reading/reflections.md (about 530 KB; its last section gives the reference-list decision and the findings a fork should know first)]
     publishing: unmerged and unpushed; the reflections quote the report at length, and this repo keeps IASR's full text local (CLAUDE.md), so merging is Joseph's call
-    forks: [expert-bengio-2026-international-sonnet-fork-1 (session 4f716349; its impressions and a comparison with the Opus expert's reflections, committed on its branch; stopped)]
+    forks: [expert-bengio-2026-international-sonnet-fork-1 (session 4f716349; its impressions and a comparison with the Opus expert's reflections, committed on its branch; resumed once to finish the comparison (session b59f044b); 962k at the end; stopped)]
     checkpoints: [unit 211 of 481, the end of Chapter 2 (reached), the end (unit 340, reached)]
     context_after_preparation: null
