@@ -1,0 +1,5509 @@
+{
+ "meta": {
+  "key": "eu-cop-2025-safety-security",
+  "canonical_sha256": "d2968247a71d1cb372aa050f42af0459ce4249ccbc56983ceb76f194ac79370f",
+  "repo_sha": "e0e702550a81994afd9ab7878fea57c71d5cf5a5",
+  "judge": "Claude Opus 5.5, the EU Code of Practice (Safety & Security) source expert (a fork of expert-eu-cop-2025-safety-security), judging blind: no source-search output and no other judge's file seen before this file was written",
+  "date": "2026-10-10",
+  "commands": [
+   "bin/source-search hybrid -n 20 QUERY eu-cop-2025-safety-security",
+   "bin/source-search outline QUERY eu-cop-2025-safety-security --lines 60 (--text read; JSON kept)"
+  ],
+  "how": "Items are the tool's own passages (src.passages, ord), in the order they should have come, with a grade. Grades come from stage 1: the highest grade of any judged stretch overlapping the passage, adjusted where a stage-1 stretch was coarser than the passage grain (e.g. the empty 'ADDITIONAL LEGAL TEXT: Recital 110' heading, #125, is dropped). shown_rank is the hybrid rank, null if not in the top 20. 'acceptable' lists relevant passages that weren't graded; they aren't counted as noise. For the outline, 'opened' says whether any opened range (▸) overlaps the passage, since the outline has no ranks. 'noise' lists hybrid ranks, or outline ranges, holding no graded or acceptable passage. The chemical-and-biological query carries anchors and grades only, by request.",
+  "passages": {
+   "0": [
+    14,
+    28
+   ],
+   "1": [
+    34,
+    39
+   ],
+   "2": [
+    47,
+    47
+   ],
+   "3": [
+    48,
+    48
+   ],
+   "4": [
+    49,
+    49
+   ],
+   "5": [
+    50,
+    50
+   ],
+   "6": [
+    54,
+    54
+   ],
+   "7": [
+    55,
+    55
+   ],
+   "8": [
+    56,
+    57
+   ],
+   "9": [
+    61,
+    61
+   ],
+   "10": [
+    62,
+    62
+   ],
+   "11": [
+    68,
+    82
+   ],
+   "12": [
+    86,
+    92
+   ],
+   "13": [
+    96,
+    100
+   ],
+   "14": [
+    101,
+    104
+   ],
+   "15": [
+    108,
+    120
+   ],
+   "16": [
+    124,
+    131
+   ],
+   "17": [
+    133,
+    139
+   ],
+   "18": [
+    143,
+    148
+   ],
+   "19": [
+    149,
+    149
+   ],
+   "20": [
+    155,
+    156
+   ],
+   "21": [
+    160,
+    160
+   ],
+   "22": [
+    164,
+    177
+   ],
+   "23": [
+    181,
+    190
+   ],
+   "24": [
+    194,
+    194
+   ],
+   "25": [
+    200,
+    210
+   ],
+   "26": [
+    214,
+    225
+   ],
+   "27": [
+    229,
+    235
+   ],
+   "28": [
+    239,
+    243
+   ],
+   "29": [
+    247,
+    249
+   ],
+   "30": [
+    253,
+    270
+   ],
+   "31": [
+    271,
+    278
+   ],
+   "32": [
+    280,
+    286
+   ],
+   "33": [
+    288,
+    295
+   ],
+   "34": [
+    296,
+    299
+   ],
+   "35": [
+    303,
+    305
+   ],
+   "36": [
+    309,
+    321
+   ],
+   "37": [
+    323,
+    323
+   ],
+   "38": [
+    327,
+    331
+   ],
+   "39": [
+    335,
+    341
+   ],
+   "40": [
+    347,
+    349
+   ],
+   "41": [
+    353,
+    353
+   ],
+   "42": [
+    357,
+    364
+   ],
+   "43": [
+    370,
+    376
+   ],
+   "44": [
+    380,
+    380
+   ],
+   "45": [
+    384,
+    386
+   ],
+   "46": [
+    390,
+    398
+   ],
+   "47": [
+    402,
+    411
+   ],
+   "48": [
+    415,
+    419
+   ],
+   "49": [
+    425,
+    425
+   ],
+   "50": [
+    427,
+    432
+   ],
+   "51": [
+    432,
+    434
+   ],
+   "52": [
+    434,
+    435
+   ],
+   "53": [
+    436,
+    441
+   ],
+   "54": [
+    443,
+    443
+   ],
+   "55": [
+    447,
+    456
+   ],
+   "56": [
+    460,
+    467
+   ],
+   "57": [
+    473,
+    479
+   ],
+   "58": [
+    481,
+    481
+   ],
+   "59": [
+    483,
+    488
+   ],
+   "60": [
+    492,
+    496
+   ],
+   "61": [
+    500,
+    502
+   ],
+   "62": [
+    506,
+    506
+   ],
+   "63": [
+    508,
+    508
+   ],
+   "64": [
+    509,
+    509
+   ],
+   "65": [
+    510,
+    510
+   ],
+   "66": [
+    511,
+    511
+   ],
+   "67": [
+    513,
+    523
+   ],
+   "68": [
+    525,
+    525
+   ],
+   "69": [
+    526,
+    526
+   ],
+   "70": [
+    527,
+    527
+   ],
+   "71": [
+    528,
+    528
+   ],
+   "72": [
+    532,
+    537
+   ],
+   "73": [
+    543,
+    551
+   ],
+   "74": [
+    552,
+    553
+   ],
+   "75": [
+    557,
+    559
+   ],
+   "76": [
+    563,
+    573
+   ],
+   "77": [
+    577,
+    585
+   ],
+   "78": [
+    586,
+    589
+   ],
+   "79": [
+    593,
+    599
+   ],
+   "80": [
+    600,
+    603
+   ],
+   "81": [
+    605,
+    607
+   ],
+   "82": [
+    611,
+    611
+   ],
+   "83": [
+    617,
+    619
+   ],
+   "84": [
+    623,
+    632
+   ],
+   "85": [
+    633,
+    635
+   ],
+   "86": [
+    639,
+    639
+   ],
+   "87": [
+    645,
+    645
+   ],
+   "88": [
+    649,
+    649
+   ],
+   "89": [
+    650,
+    650
+   ],
+   "90": [
+    651,
+    651
+   ],
+   "91": [
+    652,
+    652
+   ],
+   "92": [
+    653,
+    654
+   ],
+   "93": [
+    655,
+    656
+   ],
+   "94": [
+    657,
+    657
+   ],
+   "95": [
+    658,
+    658
+   ],
+   "96": [
+    662,
+    662
+   ],
+   "97": [
+    664,
+    665
+   ],
+   "98": [
+    666,
+    666
+   ],
+   "99": [
+    667,
+    676
+   ],
+   "100": [
+    677,
+    677
+   ],
+   "101": [
+    678,
+    678
+   ],
+   "102": [
+    679,
+    680
+   ],
+   "103": [
+    681,
+    681
+   ],
+   "104": [
+    682,
+    682
+   ],
+   "105": [
+    683,
+    684
+   ],
+   "106": [
+    685,
+    685
+   ],
+   "107": [
+    686,
+    691
+   ],
+   "108": [
+    693,
+    693
+   ],
+   "109": [
+    694,
+    694
+   ],
+   "110": [
+    695,
+    695
+   ],
+   "111": [
+    696,
+    696
+   ],
+   "112": [
+    697,
+    697
+   ],
+   "113": [
+    698,
+    698
+   ],
+   "114": [
+    699,
+    700
+   ],
+   "115": [
+    701,
+    701
+   ],
+   "116": [
+    702,
+    702
+   ],
+   "117": [
+    703,
+    703
+   ],
+   "118": [
+    704,
+    705
+   ],
+   "119": [
+    709,
+    709
+   ],
+   "120": [
+    711,
+    711
+   ],
+   "121": [
+    712,
+    712
+   ],
+   "122": [
+    713,
+    713
+   ],
+   "123": [
+    723,
+    723
+   ],
+   "124": [
+    725,
+    725
+   ],
+   "125": [
+    727,
+    727
+   ],
+   "126": [
+    731,
+    741
+   ],
+   "127": [
+    745,
+    745
+   ],
+   "128": [
+    751,
+    753
+   ],
+   "129": [
+    757,
+    757
+   ],
+   "130": [
+    758,
+    758
+   ],
+   "131": [
+    759,
+    759
+   ],
+   "132": [
+    760,
+    760
+   ],
+   "133": [
+    761,
+    761
+   ],
+   "134": [
+    762,
+    762
+   ],
+   "135": [
+    766,
+    766
+   ],
+   "136": [
+    772,
+    785
+   ],
+   "137": [
+    791,
+    802
+   ],
+   "138": [
+    806,
+    817
+   ],
+   "139": [
+    818,
+    820
+   ],
+   "140": [
+    826,
+    826
+   ],
+   "141": [
+    828,
+    828
+   ],
+   "142": [
+    829,
+    829
+   ],
+   "143": [
+    830,
+    830
+   ],
+   "144": [
+    831,
+    831
+   ],
+   "145": [
+    837,
+    841
+   ],
+   "146": [
+    847,
+    850
+   ],
+   "147": [
+    851,
+    857
+   ],
+   "148": [
+    858,
+    858
+   ],
+   "149": [
+    862,
+    862
+   ],
+   "150": [
+    866,
+    870
+   ],
+   "151": [
+    876,
+    886
+   ],
+   "152": [
+    890,
+    894
+   ],
+   "153": [
+    898,
+    902
+   ],
+   "154": [
+    908,
+    909
+   ],
+   "155": [
+    910,
+    911
+   ],
+   "156": [
+    915,
+    923
+   ],
+   "157": [
+    924,
+    930
+   ],
+   "158": [
+    934,
+    934
+   ],
+   "159": [
+    938,
+    943
+   ],
+   "160": [
+    947,
+    952
+   ],
+   "161": [
+    956,
+    957
+   ],
+   "162": [
+    961,
+    965
+   ],
+   "163": [
+    966,
+    966
+   ],
+   "164": [
+    970,
+    975
+   ],
+   "165": [
+    981,
+    987
+   ],
+   "166": [
+    988,
+    989
+   ]
+  }
+ },
+ "entries": [
+  {
+   "query": "hazard",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 120,
+     "lines": [
+      711,
+      711
+     ],
+     "quote": "| 'systemic risk<br>source' | a factor which alone or in combination w",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 135,
+     "lines": [
+      766,
+      766
+     ],
+     "quote": "The following model capabilities, model propensities, model affordance",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 1,
+     "shown_rank": 19
+    },
+    {
+     "passage": 138,
+     "lines": [
+      806,
+      817
+     ],
+     "quote": "Model affordances and other systemic risk sources, encompassing model ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 139,
+     "lines": [
+      818,
+      820
+     ],
+     "quote": "- (11) lack of appropriate model explainability or transparency; - (12",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    124,
+    126,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    140,
+    141,
+    142,
+    143,
+    144
+   ],
+   "noise": [
+    6,
+    9,
+    11,
+    13,
+    14,
+    18,
+    20
+   ],
+   "note": "The Code never says 'hazard', and the tool said so in effect: no passage has the word. Its top hits are Appendix 1.2.2's contributing characteristics (velocity, cascading) and the specified risks, which are acceptable context. But the one passage that comes closest to defining a hazard, the Glossary's 'systemic risk source' (#120, 'a factor which alone or in combination with other factors might give rise to systemic risk'), isn't in the top 20, and neither are the source lists in Appendix 1.3 except the propensities (#137, rank 19)."
+  },
+  {
+   "query": "hazard",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 120,
+     "lines": [
+      711,
+      711
+     ],
+     "quote": "| 'systemic risk<br>source' | a factor which alone or in combination w",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 135,
+     "lines": [
+      766,
+      766
+     ],
+     "quote": "The following model capabilities, model propensities, model affordance",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 138,
+     "lines": [
+      806,
+      817
+     ],
+     "quote": "Model affordances and other systemic risk sources, encompassing model ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 139,
+     "lines": [
+      818,
+      820
+     ],
+     "quote": "- (11) lack of appropriate model explainability or transparency; - (12",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L149–149",
+    "L181–190",
+    "L194–194",
+    "L247–249",
+    "L327–331",
+    "L432–434",
+    "L552–553",
+    "L563–573",
+    "L586–589",
+    "L600–603",
+    "L662–662",
+    "L681–682",
+    "L693–693",
+    "L745–745",
+    "L961–966",
+    "L970–975",
+    "L988–989"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 26,
+   "source_lines_in_opened_ranges": 123,
+   "note": "Its warning line ('No passage in scope holds any of the query's words, so every hit is by meaning alone, and the ranks are relative') is exactly right and is the most useful thing an agent could be told here. It opened the 'systemic risk source' definition and most of Appendix 1.3."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 124,
+     "lines": [
+      725,
+      725
+     ],
+     "quote": "[Article 3\\(65\\)] AI Act: 'systemic risk' means a risk that is spe",
+     "grade": 2,
+     "shown_rank": 11
+    },
+    {
+     "passage": 128,
+     "lines": [
+      751,
+      753
+     ],
+     "quote": "- (1) The risk **is specific to high-impact capabilities** pursuant to",
+     "grade": 2,
+     "shown_rank": 19
+    },
+    {
+     "passage": 140,
+     "lines": [
+      826,
+      826
+     ],
+     "quote": "Based on the types of risks in Appendix 1.1, considering the nature of",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 141,
+     "lines": [
+      828,
+      828
+     ],
+     "quote": "- (1) **Chemical, biological, radiological and nuclear:** Risks from e",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 143,
+     "lines": [
+      830,
+      830
+     ],
+     "quote": "- (3) **Cyber offence:** Risks from enabling large-scale sophisticated",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 144,
+     "lines": [
+      831,
+      831
+     ],
+     "quote": "- (4) **Harmful manipulation:** Risks from enabling the strategic dist",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 123,
+     "lines": [
+      723,
+      723
+     ],
+     "quote": "[Article 3\\(64\\)] AI Act: 'high-impact capabilities' means capabil",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 133,
+     "lines": [
+      761,
+      761
+     ],
+     "quote": "- (5) **Difficult or impossible to reverse:** Once materialised, the r",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 134,
+     "lines": [
+      762,
+      762
+     ],
+     "quote": "- (6) **Asymmetric impact:** A small number of actors or events can tr",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 132,
+     "lines": [
+      760,
+      760
+     ],
+     "quote": "- (4) **Compounding or cascading:** The risk can trigger other systemi",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 131,
+     "lines": [
+      759,
+      759
+     ],
+     "quote": "- (3) **High velocity:** The risk can materialise rapidly, potentially",
+     "grade": 1,
+     "shown_rank": 13
+    },
+    {
+     "passage": 129,
+     "lines": [
+      757,
+      757
+     ],
+     "quote": "- (1) **Capability-dependent:** The risk increases with model capabili",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 130,
+     "lines": [
+      758,
+      758
+     ],
+     "quote": "- (2) **Reach-dependent:** The risk increases with model reach. - (3) ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 126,
+     "lines": [
+      731,
+      741
+     ],
+     "quote": "For the purpose of identifying systemic risks pursuant to Measure 2.1,",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 36,
+     "lines": [
+      309,
+      321
+     ],
+     "quote": "Signatories will describe and justify (in the Framework pursuant to Me",
+     "grade": 1,
+     "shown_rank": 5
+    },
+    {
+     "passage": 9,
+     "lines": [
+      61,
+      61
+     ],
+     "quote": "- (i) **Interpretation.** The Signatories recognise that all Commitmen",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    29,
+    37,
+    121
+   ],
+   "noise": [
+    2,
+    3,
+    6,
+    8,
+    9,
+    10,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20
+   ],
+   "note": "The Code never says 'catastrophic'; its counterpart is 'systemic risk'. Hybrid ranked the generic process passages first (estimation #29, scenarios #24, identification #22) and returned none of Appendix 1.4's four specified systemic risks (#140-144), which are what an agent asking this needs. The Art. 3(65) definition (#124) is at rank 11 and the essential characteristics (#128) at 19. A term map from 'catastrophic risk' to this source's 'systemic risk' would fix most of it."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 124,
+     "lines": [
+      725,
+      725
+     ],
+     "quote": "[Article 3\\(65\\)] AI Act: 'systemic risk' means a risk that is spe",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 128,
+     "lines": [
+      751,
+      753
+     ],
+     "quote": "- (1) The risk **is specific to high-impact capabilities** pursuant to",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 140,
+     "lines": [
+      826,
+      826
+     ],
+     "quote": "Based on the types of risks in Appendix 1.1, considering the nature of",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 141,
+     "lines": [
+      828,
+      828
+     ],
+     "quote": "- (1) **Chemical, biological, radiological and nuclear:** Risks from e",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 143,
+     "lines": [
+      830,
+      830
+     ],
+     "quote": "- (3) **Cyber offence:** Risks from enabling large-scale sophisticated",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 144,
+     "lines": [
+      831,
+      831
+     ],
+     "quote": "- (4) **Harmful manipulation:** Risks from enabling the strategic dist",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 123,
+     "lines": [
+      723,
+      723
+     ],
+     "quote": "[Article 3\\(64\\)] AI Act: 'high-impact capabilities' means capabil",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 133,
+     "lines": [
+      761,
+      761
+     ],
+     "quote": "- (5) **Difficult or impossible to reverse:** Once materialised, the r",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 134,
+     "lines": [
+      762,
+      762
+     ],
+     "quote": "- (6) **Asymmetric impact:** A small number of actors or events can tr",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 132,
+     "lines": [
+      760,
+      760
+     ],
+     "quote": "- (4) **Compounding or cascading:** The risk can trigger other systemi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 131,
+     "lines": [
+      759,
+      759
+     ],
+     "quote": "- (3) **High velocity:** The risk can materialise rapidly, potentially",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 129,
+     "lines": [
+      757,
+      757
+     ],
+     "quote": "- (1) **Capability-dependent:** The risk increases with model capabili",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 130,
+     "lines": [
+      758,
+      758
+     ],
+     "quote": "- (2) **Reach-dependent:** The risk increases with model reach. - (3) ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 126,
+     "lines": [
+      731,
+      741
+     ],
+     "quote": "For the purpose of identifying systemic risks pursuant to Measure 2.1,",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 36,
+     "lines": [
+      309,
+      321
+     ],
+     "quote": "Signatories will describe and justify (in the Framework pursuant to Me",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 9,
+     "lines": [
+      61,
+      61
+     ],
+     "quote": "- (i) **Interpretation.** The Signatories recognise that all Commitmen",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L47–47",
+    "L49–49",
+    "L96–100",
+    "L164–177",
+    "L181–190",
+    "L194–194",
+    "L200–210",
+    "L239–243",
+    "L303–305",
+    "L327–331",
+    "L427–432",
+    "L508–510",
+    "L527–527",
+    "L543–551",
+    "L699–702",
+    "L745–745",
+    "L766–766",
+    "L847–850"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 26,
+   "source_lines_in_opened_ranges": 136,
+   "note": "It opened the Art. 3(65) definition and Appendix 1.4's first two specified risks, but not cyber offence or harmful manipulation (#143, #144), and nothing tells the agent that the word 'catastrophic' never occurs, or that 'systemic risk' is the Code's term for it. A one-line 'this document's nearest term is X' would help."
+  },
+  {
+   "query": "loss of control",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 96,
+     "lines": [
+      662,
+      662
+     ],
+     "quote": "| 'insider threats' | hostile operations by humans, AI models, and/or ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 110,
+     "lines": [
+      695,
+      695
+     ],
+     "quote": "| '(self-)exfiltration<br>of model weights' | access or transfer of we",
+     "grade": 1,
+     "shown_rank": 9
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 79,
+     "lines": [
+      593,
+      599
+     ],
+     "quote": "Signatories will provide the information in points (1) to (7) of Measu",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    19,
+    97,
+    133,
+    138
+   ],
+   "noise": [
+    2,
+    5,
+    6,
+    8,
+    10,
+    11,
+    13,
+    14,
+    15,
+    17,
+    18,
+    20
+   ],
+   "note": "Good at the top: the definition (#142) is rank 1, with the capabilities and propensities lists (#136, #137) and the exfiltration definition. Missed: Appendix 4.4 (#164), which requires sandboxes against 'self-exfiltration or sabotage carried out by models'; the Glossary's 'insider threats' (#96), which makes the model an insider; M5.1's mitigations against a model subverting its own safeguards (#42); and the five-day incident category for self-exfiltration (#79). Noise: the independent-external definition (#95, rank 2), external reports (#55), several incident and governance passages."
+  },
+  {
+   "query": "loss of control",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 96,
+     "lines": [
+      662,
+      662
+     ],
+     "quote": "| 'insider threats' | hostile operations by humans, AI models, and/or ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 110,
+     "lines": [
+      695,
+      695
+     ],
+     "quote": "| '(self-)exfiltration<br>of model weights' | access or transfer of we",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 79,
+     "lines": [
+      593,
+      599
+     ],
+     "quote": "Signatories will provide the information in points (1) to (7) of Measu",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L62–62",
+    "L447–456",
+    "L473–479",
+    "L508–510",
+    "L525–527",
+    "L557–559",
+    "L577–589",
+    "L681–681",
+    "L693–693",
+    "L697–697",
+    "L702–703",
+    "L725–725",
+    "L831–831",
+    "L966–966",
+    "L988–989"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 25,
+   "source_lines_in_opened_ranges": 114,
+   "note": "Rank 1 is right (Appendix 1.4 marked █). But Appendix 4.4 is folded into '+54 sections not shown (no hits)', so an agent can't know that the Code's loss-of-control content continues in the security appendix. About half the opened ranges are noise (recital (j), M7.4, M7.6, M8.1 twice, incident timelines)."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "shown_rank": 17
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 138,
+     "lines": [
+      806,
+      817
+     ],
+     "quote": "Model affordances and other systemic risk sources, encompassing model ",
+     "grade": 1,
+     "shown_rank": 13
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    96,
+    110
+   ],
+   "noise": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    18,
+    19,
+    20
+   ],
+   "note": "Rank 1 is the definition, which uses nearly this wording ('humans losing the ability to reliably direct, modify, or shut down a model'). After that it drifts into the recitals (#2, #3, #6, #7) and the Objectives (#1), which have nothing on this. The propensities list (#137, with 'harmful resistance to goal modification') and Appendix 4.4's sandboxes (#164) are missing."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 138,
+     "lines": [
+      806,
+      817
+     ],
+     "quote": "Model affordances and other systemic risk sources, encompassing model ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L34–39",
+    "L47–55",
+    "L61–61",
+    "L68–82",
+    "L101–104",
+    "L296–299",
+    "L303–305",
+    "L347–349",
+    "L370–376",
+    "L415–419",
+    "L443–443",
+    "L460–467",
+    "L492–496",
+    "L500–502",
+    "L557–559",
+    "L650–650",
+    "L667–676",
+    "L693–694",
+    "L723–725",
+    "L751–753",
+    "L760–760",
+    "L831–831",
+    "L837–841",
+    "L851–857",
+    "L988–989"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 30,
+   "source_lines_in_opened_ranges": 155,
+   "note": "Opened the definition and most sources; missed Appendix 4.4 and the 'deception' definition (#91, which includes 'undermining oversight')."
+  },
+  {
+   "query": "misalignment",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 1,
+     "shown_rank": 18
+    }
+   ],
+   "acceptable": [
+    97,
+    136
+   ],
+   "noise": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    20
+   ],
+   "note": "Right at the top: the propensities list (#137) and the loss-of-control definition (#142). Missed the 'deception' definition (#91) and M5.1's training-data filtering for unfaithful chain-of-thought (#42)."
+  },
+  {
+   "query": "misalignment",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 137,
+     "lines": [
+      791,
+      802
+     ],
+     "quote": "Model propensities, which encompass inclinations or tendencies of a mo",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 142,
+     "lines": [
+      829,
+      829
+     ],
+     "quote": "- (2) **Loss of control:** Risks from humans losing the ability to rel",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L49–49",
+    "L62–62",
+    "L143–149",
+    "L155–156",
+    "L353–353",
+    "L370–376",
+    "L384–386",
+    "L460–467",
+    "L473–479",
+    "L557–559",
+    "L563–573",
+    "L577–589",
+    "L593–603",
+    "L681–681",
+    "L693–693",
+    "L695–695",
+    "L758–762",
+    "L806–820",
+    "L831–831",
+    "L851–858",
+    "L876–886",
+    "L938–943",
+    "L947–952",
+    "L961–966",
+    "L970–975"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 29,
+   "source_lines_in_opened_ranges": 170,
+   "note": "Opened what matters except the 'deception' definition. Note for an agent: the Code's 'misalignment with human intent' and 'with human values' name no principal; that's a finding, and only the text of #137 shows it."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 74,
+     "lines": [
+      552,
+      553
+     ],
+     "quote": "- (6) annually informing workers of the Signatory's whistleblower prot",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 5,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "- (d) **Principle of Integration with Existing Laws.** The Signatories",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 73,
+     "lines": [
+      543,
+      551
+     ],
+     "quote": "Signatories will promote a healthy risk culture and take appropriate m",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 33,
+     "lines": [
+      288,
+      295
+     ],
+     "quote": "Signatories will only access, store, and/or analyse evaluation results",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 34,
+     "lines": [
+      296,
+      299
+     ],
+     "quote": "- (4) do not use findings to threaten Signatories, users, or other act",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 76,
+     "lines": [
+      563,
+      573
+     ],
+     "quote": "Signatories will consider the exemplary methods in Measure 3.5 to keep",
+     "grade": 1,
+     "shown_rank": 7
+    }
+   ],
+   "acceptable": [
+    163,
+    164
+   ],
+   "noise": [
+    3,
+    4,
+    5,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "The two passages that carry the answer are ranks 1-2: M8.3's indicators (6)-(7) (#74) and recital (d)'s 'without prejudice to' the Whistleblower Directive (#5). Missed the first half of M8.3 (#73), which has the internal reporting channels and the 'healthy risk culture' frame that makes non-retaliation only an example indicator. Ranks 3-5 are incident-reporting passages, noise here."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 74,
+     "lines": [
+      552,
+      553
+     ],
+     "quote": "- (6) annually informing workers of the Signatory's whistleblower prot",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "- (d) **Principle of Integration with Existing Laws.** The Signatories",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 73,
+     "lines": [
+      543,
+      551
+     ],
+     "quote": "Signatories will promote a healthy risk culture and take appropriate m",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 33,
+     "lines": [
+      288,
+      295
+     ],
+     "quote": "Signatories will only access, store, and/or analyse evaluation results",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 34,
+     "lines": [
+      296,
+      299
+     ],
+     "quote": "- (4) do not use findings to threaten Signatories, users, or other act",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 76,
+     "lines": [
+      563,
+      573
+     ],
+     "quote": "Signatories will consider the exemplary methods in Measure 3.5 to keep",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L62–62",
+    "L143–148",
+    "L181–190",
+    "L214–225",
+    "L271–278",
+    "L357–364",
+    "L390–398",
+    "L432–434",
+    "L447–456",
+    "L473–479",
+    "L492–496",
+    "L557–559",
+    "L577–589",
+    "L593–607",
+    "L639–639",
+    "L662–662",
+    "L791–802",
+    "L831–831",
+    "L876–886",
+    "L924–930",
+    "L938–943",
+    "L947–957",
+    "L988–989"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 29,
+   "source_lines_in_opened_ranges": 209,
+   "note": "Opened everything graded. An agent would still need to be careful: the provisions are 'examples of indicators', not obligations, and the outline's snippets don't show that."
+  },
+  {
+   "query": "serious incident",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 75,
+     "lines": [
+      557,
+      559
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recitals [114 a](https://e",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 79,
+     "lines": [
+      593,
+      599
+     ],
+     "quote": "Signatories will provide the information in points (1) to (7) of Measu",
+     "grade": 2,
+     "shown_rank": 13
+    },
+    {
+     "passage": 80,
+     "lines": [
+      600,
+      603
+     ],
+     "quote": "- (3) a death of a person, or if the Signatories establish or suspect ",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 77,
+     "lines": [
+      577,
+      585
+     ],
+     "quote": "Signatories will keep track of, document, and report to the AI Office ",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 78,
+     "lines": [
+      586,
+      589
+     ],
+     "quote": "- (8) a root cause analysis with a description of the model's outputs ",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 76,
+     "lines": [
+      563,
+      573
+     ],
+     "quote": "Signatories will consider the exemplary methods in Measure 3.5 to keep",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 81,
+     "lines": [
+      605,
+      607
+     ],
+     "quote": "Signatories will submit a final report, covering all the information r",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 82,
+     "lines": [
+      611,
+      611
+     ],
+     "quote": "Signatories will keep documentation of all relevant information gather",
+     "grade": 2,
+     "shown_rank": 10
+    },
+    {
+     "passage": 10,
+     "lines": [
+      62,
+      62
+     ],
+     "quote": "- (j) **Serious Incident Reporting.** The Signatories recognise that t",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 87,
+     "lines": [
+      645,
+      645
+     ],
+     "quote": "Wherever this Chapter refers to a term defined in Article 3 AI Act, th",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 103,
+     "lines": [
+      681,
+      681
+     ],
+     "quote": "| 'near miss' | a situation in which a serious incident could",
+     "grade": 1,
+     "shown_rank": 9
+    },
+    {
+     "passage": 108,
+     "lines": [
+      693,
+      693
+     ],
+     "quote": "| 'resolved' (serious<br>incident) | a serious incident of a model for",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 18,
+     "lines": [
+      143,
+      148
+     ],
+     "quote": "Signatories will update the Framework as appropriate, including withou",
+     "grade": 1,
+     "shown_rank": 17
+    },
+    {
+     "passage": 57,
+     "lines": [
+      473,
+      479
+     ],
+     "quote": "Signatories will update their Model Report if they have reasonable gro",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 15,
+     "lines": [
+      108,
+      120
+     ],
+     "quote": "Signatories will implement the processes and measures outlined in thei",
+     "grade": 1,
+     "shown_rank": 15
+    },
+    {
+     "passage": 64,
+     "lines": [
+      509,
+      509
+     ],
+     "quote": "- (2) **Systemic risk ownership:** Managing systemic risks stemming fr",
+     "grade": 1,
+     "shown_rank": 14
+    }
+   ],
+   "acceptable": [
+    23,
+    30,
+    58,
+    110
+   ],
+   "noise": [
+    18,
+    19,
+    20
+   ],
+   "note": "The best query of the set: 15 of the top 17 are graded. Order could be better: the incident categories and deadlines (#79: 2 days critical infrastructure, 5 days cyber breach including self-exfiltration) are rank 13, below near-miss and 'resolved' definitions; Commitment 9's own statement (#75) is rank 7. Missed: the Glossary's precedence clause (#87), which is how an agent learns that the Code doesn't define 'serious incident' itself (the AI Act's Art. 3(49) applies, defined for AI systems, not models)."
+  },
+  {
+   "query": "serious incident",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 75,
+     "lines": [
+      557,
+      559
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recitals [114 a](https://e",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 79,
+     "lines": [
+      593,
+      599
+     ],
+     "quote": "Signatories will provide the information in points (1) to (7) of Measu",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 80,
+     "lines": [
+      600,
+      603
+     ],
+     "quote": "- (3) a death of a person, or if the Signatories establish or suspect ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 77,
+     "lines": [
+      577,
+      585
+     ],
+     "quote": "Signatories will keep track of, document, and report to the AI Office ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 78,
+     "lines": [
+      586,
+      589
+     ],
+     "quote": "- (8) a root cause analysis with a description of the model's outputs ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 76,
+     "lines": [
+      563,
+      573
+     ],
+     "quote": "Signatories will consider the exemplary methods in Measure 3.5 to keep",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 81,
+     "lines": [
+      605,
+      607
+     ],
+     "quote": "Signatories will submit a final report, covering all the information r",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 82,
+     "lines": [
+      611,
+      611
+     ],
+     "quote": "Signatories will keep documentation of all relevant information gather",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 10,
+     "lines": [
+      62,
+      62
+     ],
+     "quote": "- (j) **Serious Incident Reporting.** The Signatories recognise that t",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 87,
+     "lines": [
+      645,
+      645
+     ],
+     "quote": "Wherever this Chapter refers to a term defined in Article 3 AI Act, th",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 103,
+     "lines": [
+      681,
+      681
+     ],
+     "quote": "| 'near miss' | a situation in which a serious incident could",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 108,
+     "lines": [
+      693,
+      693
+     ],
+     "quote": "| 'resolved' (serious<br>incident) | a serious incident of a model for",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 18,
+     "lines": [
+      143,
+      148
+     ],
+     "quote": "Signatories will update the Framework as appropriate, including withou",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 57,
+     "lines": [
+      473,
+      479
+     ],
+     "quote": "Signatories will update their Model Report if they have reasonable gro",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 15,
+     "lines": [
+      108,
+      120
+     ],
+     "quote": "Signatories will implement the processes and measures outlined in thei",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 64,
+     "lines": [
+      509,
+      509
+     ],
+     "quote": "- (2) **Systemic risk ownership:** Managing systemic risks stemming fr",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L194–194",
+    "L214–225",
+    "L247–249",
+    "L353–353",
+    "L357–364",
+    "L662–662",
+    "L709–709",
+    "L723–725",
+    "L751–753",
+    "L759–762",
+    "L772–785",
+    "L828–831",
+    "L866–870",
+    "L988–989"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 28,
+   "source_lines_in_opened_ranges": 172,
+   "note": "Opened the whole regime. Missed #87 (the definition is borrowed from the Act), which matters because the Code adds a category (cyber breaches) the Act's definition doesn't have."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 46,
+     "lines": [
+      390,
+      398
+     ],
+     "quote": "**LEGAL TEXT:** Article[s 55\\(1\\)] and 56(5) AI Act Signatories",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 60,
+     "lines": [
+      492,
+      496
+     ],
+     "quote": "Signatories will provide the AI Office with access to the Model Report",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 47,
+     "lines": [
+      402,
+      411
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a high-level descr",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 48,
+     "lines": [
+      415,
+      419
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a detailed justifi",
+     "grade": 2,
+     "shown_rank": 10
+    },
+    {
+     "passage": 50,
+     "lines": [
+      427,
+      432
+     ],
+     "quote": "(1) a description of the results of their systemic risk identification",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 51,
+     "lines": [
+      432,
+      434
+     ],
+     "quote": "(iv) how the model was elicited (pursuant to Appendix 3.2); (v) how th",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 52,
+     "lines": [
+      434,
+      435
+     ],
+     "quote": "(g) a description of the access and other resources provided to: (i) i",
+     "grade": 2,
+     "shown_rank": 18
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 54,
+     "lines": [
+      443,
+      443
+     ],
+     "quote": "(4) a high-level description of: (a) the techniques and assets they in",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 55,
+     "lines": [
+      447,
+      456
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) any available repo",
+     "grade": 2,
+     "shown_rank": 13
+    },
+    {
+     "passage": 56,
+     "lines": [
+      460,
+      467
+     ],
+     "quote": "Signatories will ensure that the Model Report contains information rel",
+     "grade": 2,
+     "shown_rank": 14
+    },
+    {
+     "passage": 14,
+     "lines": [
+      101,
+      104
+     ],
+     "quote": "- (3) a description of how systemic risk responsibility is allocated f",
+     "grade": 2,
+     "shown_rank": 11
+    },
+    {
+     "passage": 21,
+     "lines": [
+      160,
+      160
+     ],
+     "quote": "Signatories will provide the AI Office with (unredacted) access to the",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 86,
+     "lines": [
+      639,
+      639
+     ],
+     "quote": "If and insofar as necessary to assess and/or mitigate systemic risks, ",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 17,
+     "lines": [
+      133,
+      139
+     ],
+     "quote": "Signatories will conduct such a full systemic risk assessment and miti",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 34,
+     "lines": [
+      296,
+      299
+     ],
+     "quote": "- (4) do not use findings to threaten Signatories, users, or other act",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 84,
+     "lines": [
+      623,
+      632
+     ],
+     "quote": "Signatories will draw up and keep up-to-date the following information",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 85,
+     "lines": [
+      633,
+      635
+     ],
+     "quote": "- (2) justifications for choices of a particular best practice, state-",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 5,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "- (d) **Principle of Integration with Existing Laws.** The Signatories",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 16,
+     "lines": [
+      124,
+      131
+     ],
+     "quote": "Figure 2. Illustrative timeline of systemic risk assessment and mitiga",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    49,
+    57,
+    58,
+    59,
+    83
+   ],
+   "noise": [
+    5,
+    15,
+    16,
+    17,
+    19
+   ],
+   "note": "Rank 1-2 are right (Commitment 7, M10.2). The query's words aren't the Code's ('developer' is 'Signatory', 'deploying' is 'placing on the market'), and the ranking still found most of C7. Missed: the Framework notification (#21, five business days), the middle of M7.3 (#50, #51, #53, #54: risk results, evaluation samples, mitigations, the six-month look-ahead), the external-evaluation default (#156), and the published evaluator-selection criteria and disclosure procedure (#32 is shown, #34 isn't). Noise: the safe-reference-model definition (#145), M7.6 timing (#58, #59, both after release)."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 46,
+     "lines": [
+      390,
+      398
+     ],
+     "quote": "**LEGAL TEXT:** Article[s 55\\(1\\)] and 56(5) AI Act Signatories",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 60,
+     "lines": [
+      492,
+      496
+     ],
+     "quote": "Signatories will provide the AI Office with access to the Model Report",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 47,
+     "lines": [
+      402,
+      411
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a high-level descr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 48,
+     "lines": [
+      415,
+      419
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a detailed justifi",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 50,
+     "lines": [
+      427,
+      432
+     ],
+     "quote": "(1) a description of the results of their systemic risk identification",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 51,
+     "lines": [
+      432,
+      434
+     ],
+     "quote": "(iv) how the model was elicited (pursuant to Appendix 3.2); (v) how th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 52,
+     "lines": [
+      434,
+      435
+     ],
+     "quote": "(g) a description of the access and other resources provided to: (i) i",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 54,
+     "lines": [
+      443,
+      443
+     ],
+     "quote": "(4) a high-level description of: (a) the techniques and assets they in",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 55,
+     "lines": [
+      447,
+      456
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) any available repo",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 56,
+     "lines": [
+      460,
+      467
+     ],
+     "quote": "Signatories will ensure that the Model Report contains information rel",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      101,
+      104
+     ],
+     "quote": "- (3) a description of how systemic risk responsibility is allocated f",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 21,
+     "lines": [
+      160,
+      160
+     ],
+     "quote": "Signatories will provide the AI Office with (unredacted) access to the",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 86,
+     "lines": [
+      639,
+      639
+     ],
+     "quote": "If and insofar as necessary to assess and/or mitigate systemic risks, ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      133,
+      139
+     ],
+     "quote": "Signatories will conduct such a full systemic risk assessment and miti",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 34,
+     "lines": [
+      296,
+      299
+     ],
+     "quote": "- (4) do not use findings to threaten Signatories, users, or other act",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 84,
+     "lines": [
+      623,
+      632
+     ],
+     "quote": "Signatories will draw up and keep up-to-date the following information",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 85,
+     "lines": [
+      633,
+      635
+     ],
+     "quote": "- (2) justifications for choices of a particular best practice, state-",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 5,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "- (d) **Principle of Integration with Existing Laws.** The Signatories",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 16,
+     "lines": [
+      124,
+      131
+     ],
+     "quote": "Figure 2. Illustrative timeline of systemic risk assessment and mitiga",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L47–47",
+    "L62–62",
+    "L86–92",
+    "L253–270",
+    "L335–341",
+    "L577–585",
+    "L593–607",
+    "L651–651",
+    "L698–698",
+    "L757–757",
+    "L806–817",
+    "L837–841",
+    "L847–850",
+    "L876–886",
+    "L898–902",
+    "L947–952",
+    "L961–965"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 31,
+   "source_lines_in_opened_ranges": 203,
+   "note": "Opened C7 and most of its Measures; missed the Framework notification (#21), parts of M7.3 and Appendix 3.5. The opened ranges total about 200 lines, which is a lot of the document for an agent to read without knowing which parts are about timing and which about contents."
+  },
+  {
+   "query": "chemical and biological weapons uplift",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 141,
+     "lines": [
+      828,
+      828
+     ],
+     "quote": "- (1) **Chemical, biological, radiological and nuclear:** Risks from e",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 27,
+     "lines": [
+      229,
+      235
+     ],
+     "quote": "Signatories will conduct at least state-of-the-art model evaluations i",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 7,
+     "lines": [
+      55,
+      55
+     ],
+     "quote": "- (f) **Principle of Innovation in AI Safety and Security.** The Signa",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [],
+   "noise": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "query": "chemical and biological weapons uplift",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 141,
+     "lines": [
+      828,
+      828
+     ],
+     "quote": "- (1) **Chemical, biological, radiological and nuclear:** Risks from e",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 27,
+     "lines": [
+      229,
+      235
+     ],
+     "quote": "Signatories will conduct at least state-of-the-art model evaluations i",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 7,
+     "lines": [
+      55,
+      55
+     ],
+     "quote": "- (f) **Principle of Innovation in AI Safety and Security.** The Signa",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L47–47",
+    "L49–49",
+    "L68–82",
+    "L86–100",
+    "L124–131",
+    "L149–149",
+    "L247–249",
+    "L309–321",
+    "L353–353",
+    "L370–376",
+    "L443–443",
+    "L460–467",
+    "L473–479",
+    "L633–635",
+    "L727–727",
+    "L751–753",
+    "L757–762",
+    "L806–817",
+    "L830–831",
+    "L858–858",
+    "L876–886",
+    "L908–909",
+    "L947–957",
+    "L988–989"
+   ],
+   "flagged_unanswered": true,
+   "ranges_opened": 28,
+   "source_lines_in_opened_ranges": 158
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 151,
+     "lines": [
+      876,
+      886
+     ],
+     "quote": "Signatories will ensure that the model evaluations are conducted with ",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 97,
+     "lines": [
+      664,
+      665
+     ],
+     "quote": "| 'internal validity' | an aspect of high scientific and technical rig",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "shown_rank": 15
+    },
+    {
+     "passage": 56,
+     "lines": [
+      460,
+      467
+     ],
+     "quote": "Signatories will ensure that the Model Report contains information rel",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    47,
+    138,
+    142
+   ],
+   "noise": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Found the right passages: Appendix 4.4 (sabotage by models) rank 1, 'deception' (with evaluation-aware under-performing) rank 2, the capabilities list, Appendix 3.2's sandbagging clause rank 4. Missed M7.5's chain-of-thought legibility example (#56) and M7.3(2)'s mitigation-limitations example (#53). An agent must still be told the Code presents no evidence: it treats these as risks to guard against, not findings. No tool can say that, but an agent reading these passages would see it."
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 151,
+     "lines": [
+      876,
+      886
+     ],
+     "quote": "Signatories will ensure that the model evaluations are conducted with ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 91,
+     "lines": [
+      652,
+      652
+     ],
+     "quote": "| 'deception' | model behaviours that systematically produce false bel",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 97,
+     "lines": [
+      664,
+      665
+     ],
+     "quote": "| 'internal validity' | an aspect of high scientific and technical rig",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 56,
+     "lines": [
+      460,
+      467
+     ],
+     "quote": "Signatories will ensure that the Model Report contains information rel",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L34–39",
+    "L47–47",
+    "L55–55",
+    "L143–149",
+    "L214–225",
+    "L229–235",
+    "L271–278",
+    "L370–376",
+    "L390–398",
+    "L443–443",
+    "L473–479",
+    "L667–676",
+    "L679–680",
+    "L725–725",
+    "L759–760",
+    "L791–802",
+    "L837–841",
+    "L847–857",
+    "L947–952",
+    "L961–965"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 29,
+   "source_lines_in_opened_ranges": 188,
+   "note": "Opened nearly everything graded. Missed #56."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 143,
+     "lines": [
+      830,
+      830
+     ],
+     "quote": "- (3) **Cyber offence:** Risks from enabling large-scale sophisticated",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 79,
+     "lines": [
+      593,
+      599
+     ],
+     "quote": "Signatories will provide the information in points (1) to (7) of Measu",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 31,
+     "lines": [
+      271,
+      278
+     ],
+     "quote": "- (6) conducting frequent dialogues with affected stakeholders; - (7) ",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 43,
+     "lines": [
+      370,
+      376
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recital[s 114](https://eur",
+     "grade": 1,
+     "shown_rank": 3
+    }
+   ],
+   "acceptable": [
+    138
+   ],
+   "noise": [
+    2,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "The specified risk 'Cyber offence' (#143) is rank 7, below the capability-dependent characteristic (#129), Art. 3(64) (#123) and M3.1's web searches (#26). It should be rank 1: it's the only passage that describes what cyber capabilities the Code worries about (automated vulnerability discovery, exploit generation, operational use, attack scaling). Missed the incident category for cyberattacks (#79). Commitment 6 (#43, rank 3) is about protecting the model from cyberattack, a different thing."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 143,
+     "lines": [
+      830,
+      830
+     ],
+     "quote": "- (3) **Cyber offence:** Risks from enabling large-scale sophisticated",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 136,
+     "lines": [
+      772,
+      785
+     ],
+     "quote": "- (1) offensive cyber capabilities; - (2) Chemical, Biological, Radiol",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 79,
+     "lines": [
+      593,
+      599
+     ],
+     "quote": "Signatories will provide the information in points (1) to (7) of Measu",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 31,
+     "lines": [
+      271,
+      278
+     ],
+     "quote": "- (6) conducting frequent dialogues with affected stakeholders; - (7) ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 43,
+     "lines": [
+      370,
+      376
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recital[s 114](https://eur",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L55–55",
+    "L96–100",
+    "L149–149",
+    "L214–225",
+    "L229–235",
+    "L380–380",
+    "L402–411",
+    "L443–443",
+    "L460–467",
+    "L483–488",
+    "L667–676",
+    "L696–696",
+    "L723–725",
+    "L751–753",
+    "L757–758",
+    "L766–766",
+    "L791–802",
+    "L837–841",
+    "L847–857",
+    "L876–886",
+    "L947–957",
+    "L961–966",
+    "L970–975"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 28,
+   "source_lines_in_opened_ranges": 187,
+   "note": "Opened #143 and the capabilities list; missed the incident category (#79)."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 35,
+     "lines": [
+      303,
+      305
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\)] AI Act Signatories commit to s",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 36,
+     "lines": [
+      309,
+      321
+     ],
+     "quote": "Signatories will describe and justify (in the Framework pursuant to Me",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 37,
+     "lines": [
+      323,
+      323
+     ],
+     "quote": "Signatories will apply the systemic risk acceptance criteria to each i",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 38,
+     "lines": [
+      327,
+      331
+     ],
+     "quote": "- (1) be appropriate for the systemic risk; and - (2) take into accoun",
+     "grade": 2,
+     "shown_rank": 16
+    },
+    {
+     "passage": 39,
+     "lines": [
+      335,
+      341
+     ],
+     "quote": "Signatories will only proceed with the development, the making availab",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 29,
+     "lines": [
+      247,
+      249
+     ],
+     "quote": "Signatories will estimate the probability and severity of harm for the",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 13,
+     "lines": [
+      96,
+      100
+     ],
+     "quote": "- (2) for the Signatories' determination of whether systemic risk is c",
+     "grade": 1,
+     "shown_rank": 9
+    },
+    {
+     "passage": 48,
+     "lines": [
+      415,
+      419
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a detailed justifi",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 114,
+     "lines": [
+      699,
+      700
+     ],
+     "quote": "| 'systemic risk<br>acceptance criteria' | criteria defined in the Fra",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 121,
+     "lines": [
+      712,
+      712
+     ],
+     "quote": "| 'systemic risk tiers' | tiers defined in the Framework that correspo",
+     "grade": 1,
+     "shown_rank": 14
+    },
+    {
+     "passage": 9,
+     "lines": [
+      61,
+      61
+     ],
+     "quote": "- (i) **Interpretation.** The Signatories recognise that all Commitmen",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 4,
+     "lines": [
+      49,
+      49
+     ],
+     "quote": "- (c) **Principle of Proportionality to Systemic Risks.** The Signator",
+     "grade": 1,
+     "shown_rank": 18
+    },
+    {
+     "passage": 128,
+     "lines": [
+      751,
+      753
+     ],
+     "quote": "- (1) The risk **is specific to high-impact capabilities** pursuant to",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 127,
+     "lines": [
+      745,
+      745
+     ],
+     "quote": "The considerations below concerning the nature of systemic risks infor",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 129,
+     "lines": [
+      757,
+      757
+     ],
+     "quote": "- (1) **Capability-dependent:** The risk increases with model capabili",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 133,
+     "lines": [
+      761,
+      761
+     ],
+     "quote": "- (5) **Difficult or impossible to reverse:** Once materialised, the r",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 134,
+     "lines": [
+      762,
+      762
+     ],
+     "quote": "- (6) **Asymmetric impact:** A small number of actors or events can tr",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 131,
+     "lines": [
+      759,
+      759
+     ],
+     "quote": "- (3) **High velocity:** The risk can materialise rapidly, potentially",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 132,
+     "lines": [
+      760,
+      760
+     ],
+     "quote": "- (4) **Compounding or cascading:** The risk can trigger other systemi",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 130,
+     "lines": [
+      758,
+      758
+     ],
+     "quote": "- (2) **Reach-dependent:** The risk increases with model reach. - (3) ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 146,
+     "lines": [
+      847,
+      850
+     ],
+     "quote": "A model may be considered a similarly safe or safer model with regard ",
+     "grade": 1,
+     "shown_rank": 19
+    },
+    {
+     "passage": 147,
+     "lines": [
+      851,
+      857
+     ],
+     "quote": "- (3) there are no known differences in the model's characteristics su",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 148,
+     "lines": [
+      858,
+      858
+     ],
+     "quote": "- (2) treat the other model as subject to all Commitments and Measures",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    16,
+    115,
+    145,
+    152
+   ],
+   "noise": [
+    10,
+    11,
+    12,
+    17
+   ],
+   "note": "Strong: estimation (#29), C4 and M4.1 (#35-37), M4.2 (#39) all in the top 7. The safety margin (#38) is rank 16 and should be near the top. Missed M7.2's justification of acceptability (#48), Appendix 1.2's nature of systemic risks (#127-134) and the external-evaluation uncertainty rule (#156). Noise is mild (scenarios, root-cause analysis)."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 35,
+     "lines": [
+      303,
+      305
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\)] AI Act Signatories commit to s",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 36,
+     "lines": [
+      309,
+      321
+     ],
+     "quote": "Signatories will describe and justify (in the Framework pursuant to Me",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 37,
+     "lines": [
+      323,
+      323
+     ],
+     "quote": "Signatories will apply the systemic risk acceptance criteria to each i",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 38,
+     "lines": [
+      327,
+      331
+     ],
+     "quote": "- (1) be appropriate for the systemic risk; and - (2) take into accoun",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 39,
+     "lines": [
+      335,
+      341
+     ],
+     "quote": "Signatories will only proceed with the development, the making availab",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 29,
+     "lines": [
+      247,
+      249
+     ],
+     "quote": "Signatories will estimate the probability and severity of harm for the",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 13,
+     "lines": [
+      96,
+      100
+     ],
+     "quote": "- (2) for the Signatories' determination of whether systemic risk is c",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 48,
+     "lines": [
+      415,
+      419
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a detailed justifi",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 114,
+     "lines": [
+      699,
+      700
+     ],
+     "quote": "| 'systemic risk<br>acceptance criteria' | criteria defined in the Fra",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 121,
+     "lines": [
+      712,
+      712
+     ],
+     "quote": "| 'systemic risk tiers' | tiers defined in the Framework that correspo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 9,
+     "lines": [
+      61,
+      61
+     ],
+     "quote": "- (i) **Interpretation.** The Signatories recognise that all Commitmen",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 4,
+     "lines": [
+      49,
+      49
+     ],
+     "quote": "- (c) **Principle of Proportionality to Systemic Risks.** The Signator",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 128,
+     "lines": [
+      751,
+      753
+     ],
+     "quote": "- (1) The risk **is specific to high-impact capabilities** pursuant to",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 127,
+     "lines": [
+      745,
+      745
+     ],
+     "quote": "The considerations below concerning the nature of systemic risks infor",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 129,
+     "lines": [
+      757,
+      757
+     ],
+     "quote": "- (1) **Capability-dependent:** The risk increases with model capabili",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 133,
+     "lines": [
+      761,
+      761
+     ],
+     "quote": "- (5) **Difficult or impossible to reverse:** Once materialised, the r",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 134,
+     "lines": [
+      762,
+      762
+     ],
+     "quote": "- (6) **Asymmetric impact:** A small number of actors or events can tr",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 131,
+     "lines": [
+      759,
+      759
+     ],
+     "quote": "- (3) **High velocity:** The risk can materialise rapidly, potentially",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 132,
+     "lines": [
+      760,
+      760
+     ],
+     "quote": "- (4) **Compounding or cascading:** The risk can trigger other systemi",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 130,
+     "lines": [
+      758,
+      758
+     ],
+     "quote": "- (2) **Reach-dependent:** The risk increases with model reach. - (3) ",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 146,
+     "lines": [
+      847,
+      850
+     ],
+     "quote": "A model may be considered a similarly safe or safer model with regard ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 147,
+     "lines": [
+      851,
+      857
+     ],
+     "quote": "- (3) there are no known differences in the model's characteristics su",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 148,
+     "lines": [
+      858,
+      858
+     ],
+     "quote": "- (2) treat the other model as subject to all Commitments and Measures",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L47–47",
+    "L68–82",
+    "L164–177",
+    "L194–194",
+    "L200–210",
+    "L229–235",
+    "L239–243",
+    "L427–432",
+    "L508–509",
+    "L511–511",
+    "L525–528",
+    "L543–551",
+    "L586–589",
+    "L650–650",
+    "L898–902"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 31,
+   "source_lines_in_opened_ranges": 167,
+   "note": "Opened the core. Missed Appendix 1.2's contributing characteristics, which are the Code's account of what makes a risk worse, and M7.2."
+  },
+  {
+   "query": "how does the Code treat internal use of models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 122,
+     "lines": [
+      713,
+      713
+     ],
+     "quote": "| 'use' (of a model) | use of the model by the Signatory or other acto",
+     "grade": 2,
+     "shown_rank": 19
+    },
+    {
+     "passage": 39,
+     "lines": [
+      335,
+      341
+     ],
+     "quote": "Signatories will only proceed with the development, the making availab",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 47,
+     "lines": [
+      402,
+      411
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a high-level descr",
+     "grade": 2,
+     "shown_rank": 12
+    },
+    {
+     "passage": 12,
+     "lines": [
+      86,
+      92
+     ],
+     "quote": "Signatories will create a state-of-the-art Framework, taking into acco",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 20,
+     "lines": [
+      155,
+      156
+     ],
+     "quote": "- (1) Framework adequacy: An assessment of whether the processes and m",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 54,
+     "lines": [
+      443,
+      443
+     ],
+     "quote": "(4) a high-level description of: (a) the techniques and assets they in",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 17,
+     "lines": [
+      133,
+      139
+     ],
+     "quote": "Signatories will conduct such a full systemic risk assessment and miti",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 46,
+     "lines": [
+      390,
+      398
+     ],
+     "quote": "**LEGAL TEXT:** Article[s 55\\(1\\)] and 56(5) AI Act Signatories",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 75,
+     "lines": [
+      557,
+      559
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recitals [114 a](https://e",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    48,
+    151
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11,
+    13,
+    14,
+    15,
+    17,
+    18,
+    20
+   ],
+   "note": "The worst result of the set, from word sense. 'Internal' matched 'internal market' (#1, rank 1), 'internal validity' (#97), 'internal model evaluation teams' (#52), 'internal assurance' and 'internal registry'. The Code never says 'internal use'; it reaches it through 'use', defined as 'use of the model by the Signatory or other actors' (#122, rank 19), and the triad 'development, making available on the market, and/or use'. The go/no-go rule that covers use (#39, M4.2) is missing, and so are the Framework's coverage of models 'using' (#12) and M1.2's market anchor (#17)."
+  },
+  {
+   "query": "how does the Code treat internal use of models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 122,
+     "lines": [
+      713,
+      713
+     ],
+     "quote": "| 'use' (of a model) | use of the model by the Signatory or other acto",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 39,
+     "lines": [
+      335,
+      341
+     ],
+     "quote": "Signatories will only proceed with the development, the making availab",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 47,
+     "lines": [
+      402,
+      411
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a high-level descr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      86,
+      92
+     ],
+     "quote": "Signatories will create a state-of-the-art Framework, taking into acco",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 20,
+     "lines": [
+      155,
+      156
+     ],
+     "quote": "- (1) Framework adequacy: An assessment of whether the processes and m",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 54,
+     "lines": [
+      443,
+      443
+     ],
+     "quote": "(4) a high-level description of: (a) the techniques and assets they in",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      133,
+      139
+     ],
+     "quote": "Signatories will conduct such a full systemic risk assessment and miti",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 46,
+     "lines": [
+      390,
+      398
+     ],
+     "quote": "**LEGAL TEXT:** Article[s 55\\(1\\)] and 56(5) AI Act Signatories",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 75,
+     "lines": [
+      557,
+      559
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recitals [114 a](https://e",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L34–39",
+    "L214–225",
+    "L229–235",
+    "L271–278",
+    "L288–295",
+    "L370–376",
+    "L432–435",
+    "L513–523",
+    "L543–551",
+    "L639–639",
+    "L655–656",
+    "L662–665",
+    "L667–676",
+    "L679–680",
+    "L686–691",
+    "L699–700",
+    "L772–785",
+    "L806–820",
+    "L858–858",
+    "L866–870",
+    "L908–909",
+    "L915–923",
+    "L938–943",
+    "L947–957",
+    "L961–966",
+    "L970–975"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 32,
+   "source_lines_in_opened_ranges": 217,
+   "note": "Same word-sense noise: most opened ranges are 'internal validity', 'internal audit', the internal registry of weights. It did open the 'use' definition and M7.1. It missed M4.2. An agent would come away thinking internal use is barely addressed, which is wrong."
+  },
+  {
+   "query": "does the Code require independent external evaluation",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 157,
+     "lines": [
+      924,
+      930
+     ],
+     "quote": "- (3) having agreed to protect commercially confidential information, ",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 95,
+     "lines": [
+      658,
+      658
+     ],
+     "quote": "| 'independent<br>external' | a natural or legal person that has no fi",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 31,
+     "lines": [
+      271,
+      278
+     ],
+     "quote": "- (6) conducting frequent dialogues with affected stakeholders; - (7) ",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 2,
+     "shown_rank": 11
+    },
+    {
+     "passage": 33,
+     "lines": [
+      288,
+      295
+     ],
+     "quote": "Signatories will only access, store, and/or analyse evaluation results",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 34,
+     "lines": [
+      296,
+      299
+     ],
+     "quote": "- (4) do not use findings to threaten Signatories, users, or other act",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 155,
+     "lines": [
+      910,
+      911
+     ],
+     "quote": "- (3) time to competently design and/or adapt, debug, execute, and ana",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 154,
+     "lines": [
+      908,
+      909
+     ],
+     "quote": "- (1) adequate access to the model to conduct the model evaluations pu",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 55,
+     "lines": [
+      447,
+      456
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) any available repo",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 48,
+     "lines": [
+      415,
+      419
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a detailed justifi",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 165,
+     "lines": [
+      981,
+      987
+     ],
+     "quote": "Signatories will obtain assurance that their security mitigations meet",
+     "grade": 1,
+     "shown_rank": 13
+    }
+   ],
+   "acceptable": [
+    13,
+    52,
+    107
+   ],
+   "noise": [
+    5,
+    10,
+    15,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Good: Appendix 3.5 (#156, #157), the 'independent external' definition (#95), M3.5's post-release access and non-retaliation (#31-33) are all in the top 11. Missed the end of M3.5's evaluator conditions (#34, the 30-business-day cap on delaying publication) and Appendix 3.4's access list (#154, activations, gradients, chains-of-thought, helpful-only version). Noise: 'external validity' (#92), a word-sense collision."
+  },
+  {
+   "query": "does the Code require independent external evaluation",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 157,
+     "lines": [
+      924,
+      930
+     ],
+     "quote": "- (3) having agreed to protect commercially confidential information, ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 95,
+     "lines": [
+      658,
+      658
+     ],
+     "quote": "| 'independent<br>external' | a natural or legal person that has no fi",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 31,
+     "lines": [
+      271,
+      278
+     ],
+     "quote": "- (6) conducting frequent dialogues with affected stakeholders; - (7) ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 33,
+     "lines": [
+      288,
+      295
+     ],
+     "quote": "Signatories will only access, store, and/or analyse evaluation results",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 34,
+     "lines": [
+      296,
+      299
+     ],
+     "quote": "- (4) do not use findings to threaten Signatories, users, or other act",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 155,
+     "lines": [
+      910,
+      911
+     ],
+     "quote": "- (3) time to competently design and/or adapt, debug, execute, and ana",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 154,
+     "lines": [
+      908,
+      909
+     ],
+     "quote": "- (1) adequate access to the model to conduct the model evaluations pu",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      447,
+      456
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) any available repo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 48,
+     "lines": [
+      415,
+      419
+     ],
+     "quote": "Signatories will provide in the Model Report: - (1) a detailed justifi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 165,
+     "lines": [
+      981,
+      987
+     ],
+     "quote": "Signatories will obtain assurance that their security mitigations meet",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L34–39",
+    "L47–47",
+    "L200–210",
+    "L214–225",
+    "L229–235",
+    "L473–479",
+    "L511–523",
+    "L528–528",
+    "L651–651",
+    "L653–656",
+    "L664–665",
+    "L678–680",
+    "L682–682",
+    "L761–761",
+    "L862–862",
+    "L866–870",
+    "L876–886",
+    "L898–902",
+    "L956–957",
+    "L961–965",
+    "L970–975"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 31,
+   "source_lines_in_opened_ranges": 198,
+   "note": "Opened everything graded except #34."
+  },
+  {
+   "query": "when does a model get lighter obligations (similarly safe or safer, open weights)",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 145,
+     "lines": [
+      837,
+      841
+     ],
+     "quote": "A model may be considered a safe reference model with regard to a syst",
+     "grade": 2,
+     "shown_rank": 10
+    },
+    {
+     "passage": 146,
+     "lines": [
+      847,
+      850
+     ],
+     "quote": "A model may be considered a similarly safe or safer model with regard ",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 147,
+     "lines": [
+      851,
+      857
+     ],
+     "quote": "- (3) there are no known differences in the model's characteristics su",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 148,
+     "lines": [
+      858,
+      858
+     ],
+     "quote": "- (2) treat the other model as subject to all Commitments and Measures",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 43,
+     "lines": [
+      370,
+      376
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recital[s 114](https://eur",
+     "grade": 2,
+     "shown_rank": 20
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 1,
+     "shown_rank": 5
+    },
+    {
+     "passage": 59,
+     "lines": [
+      483,
+      488
+     ],
+     "quote": "Further, if the model is amongst their respective most capable models ",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 86,
+     "lines": [
+      639,
+      639
+     ],
+     "quote": "If and insofar as necessary to assess and/or mitigate systemic risks, ",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 52,
+     "lines": [
+      434,
+      435
+     ],
+     "quote": "(g) a description of the access and other resources provided to: (i) i",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 8,
+     "lines": [
+      56,
+      57
+     ],
+     "quote": "- (g) **Precautionary Principle.** The Signatories recognise the impor",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    42,
+    111
+   ],
+   "noise": [
+    9,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "note": "Appendix 2 and the places that use it are well found. But Commitment 6's open-weight exemption (#43: 'exempt from this Commitment if the model's capabilities are inferior to the capabilities of at least one model for which the parameters are publicly available for download') is rank 20, though it's the most direct open-weight rule in the Code."
+  },
+  {
+   "query": "when does a model get lighter obligations (similarly safe or safer, open weights)",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 145,
+     "lines": [
+      837,
+      841
+     ],
+     "quote": "A model may be considered a safe reference model with regard to a syst",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 146,
+     "lines": [
+      847,
+      850
+     ],
+     "quote": "A model may be considered a similarly safe or safer model with regard ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 147,
+     "lines": [
+      851,
+      857
+     ],
+     "quote": "- (3) there are no known differences in the model's characteristics su",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 148,
+     "lines": [
+      858,
+      858
+     ],
+     "quote": "- (2) treat the other model as subject to all Commitments and Measures",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 43,
+     "lines": [
+      370,
+      376
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recital[s 114](https://eur",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 59,
+     "lines": [
+      483,
+      488
+     ],
+     "quote": "Further, if the model is amongst their respective most capable models ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 86,
+     "lines": [
+      639,
+      639
+     ],
+     "quote": "If and insofar as necessary to assess and/or mitigate systemic risks, ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 156,
+     "lines": [
+      915,
+      923
+     ],
+     "quote": "In addition to internal model evaluations, Signatories will ensure tha",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 52,
+     "lines": [
+      434,
+      435
+     ],
+     "quote": "(g) a description of the access and other resources provided to: (i) i",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 8,
+     "lines": [
+      56,
+      57
+     ],
+     "quote": "- (g) **Precautionary Principle.** The Signatories recognise the impor",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L86–100",
+    "L108–131",
+    "L214–225",
+    "L229–235",
+    "L327–331",
+    "L335–341",
+    "L347–349",
+    "L353–353",
+    "L390–398",
+    "L447–456",
+    "L593–603",
+    "L667–676",
+    "L683–684",
+    "L791–802",
+    "L806–817",
+    "L876–886",
+    "L908–909",
+    "L947–952",
+    "L961–966"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 29,
+   "source_lines_in_opened_ranges": 240,
+   "note": "Opened everything graded except recital (h) on SMEs (#8), which is a different kind of relief."
+  },
+  {
+   "query": "what does the Code say about chain-of-thought",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 31,
+     "lines": [
+      271,
+      278
+     ],
+     "quote": "- (6) conducting frequent dialogues with affected stakeholders; - (7) ",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 56,
+     "lines": [
+      460,
+      467
+     ],
+     "quote": "Signatories will ensure that the Model Report contains information rel",
+     "grade": 1,
+     "shown_rank": 20
+    },
+    {
+     "passage": 154,
+     "lines": [
+      908,
+      909
+     ],
+     "quote": "- (1) adequate access to the model to conduct the model evaluations pu",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 97,
+     "lines": [
+      664,
+      665
+     ],
+     "quote": "| 'internal validity' | an aspect of high scientific and technical rig",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    53
+   ],
+   "noise": [
+    1,
+    3,
+    5,
+    6,
+    7,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "note": "Rank 1 is the Objectives (#1), which match only 'Code'. The question's word for its own document pulls in the passage that names the document. The CoT passages are there (#32 rank 2, #42 rank 4, #31 rank 8, #154 rank 11, #56 rank 20) but mixed with noise. Missed the 'internal validity' entry's reasoning-traces clause (#97)."
+  },
+  {
+   "query": "what does the Code say about chain-of-thought",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 31,
+     "lines": [
+      271,
+      278
+     ],
+     "quote": "- (6) conducting frequent dialogues with affected stakeholders; - (7) ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 32,
+     "lines": [
+      280,
+      286
+     ],
+     "quote": "- (1) the model's most capable model version(s) with regard to the sys",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 42,
+     "lines": [
+      357,
+      364
+     ],
+     "quote": "- (1) filtering and cleaning training data, e.g. data that might resul",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 56,
+     "lines": [
+      460,
+      467
+     ],
+     "quote": "Signatories will ensure that the Model Report contains information rel",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 154,
+     "lines": [
+      908,
+      909
+     ],
+     "quote": "- (1) adequate access to the model to conduct the model evaluations pu",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 97,
+     "lines": [
+      664,
+      665
+     ],
+     "quote": "| 'internal validity' | an aspect of high scientific and technical rig",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L34–39",
+    "L47–47",
+    "L50–50",
+    "L61–62",
+    "L68–82",
+    "L86–104",
+    "L108–120",
+    "L296–299",
+    "L390–398",
+    "L427–434",
+    "L443–443",
+    "L552–553",
+    "L557–559",
+    "L563–573",
+    "L577–589",
+    "L600–603",
+    "L623–635",
+    "L649–649",
+    "L657–657",
+    "L685–691",
+    "L694–694",
+    "L697–698",
+    "L725–725",
+    "L751–753",
+    "L760–760",
+    "L772–785"
+   ],
+   "flagged_unanswered": true,
+   "ranges_opened": 30,
+   "source_lines_in_opened_ranges": 190,
+   "note": "Wrongly flagged 'Nothing in scope seems to answer this'. The Code addresses chain-of-thought in eight places. The flag comes from 'no passage holds all of the query's words' (the question's 'what does the Code say about' can't all occur) and a nearest distance of 0.56. The CoT passages were opened, but their «» snippets show other sentences (#31's snippet is about 'the model's most capable version', #42's stops before 'unfaithful chain-of-thought traces'). So an agent trusting the header would skip the very passages that answer."
+  },
+  {
+   "query": "is following the Code proof of compliance, and whose definitions govern",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 1,
+     "lines": [
+      34,
+      39
+     ],
+     "quote": "The overarching objective of this Code of Practice (\"Code\") is to impr",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 87,
+     "lines": [
+      645,
+      645
+     ],
+     "quote": "Wherever this Chapter refers to a term defined in Article 3 AI Act, th",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 9,
+     "lines": [
+      61,
+      61
+     ],
+     "quote": "- (i) **Interpretation.** The Signatories recognise that all Commitmen",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 94,
+     "lines": [
+      657,
+      657
+     ],
+     "quote": "| 'including' | introduces a non-exhaustive set that is to be understo",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 88,
+     "lines": [
+      649,
+      649
+     ],
+     "quote": "| 'appropriate' | suitable and necessary to achieve the intended purpo",
+     "grade": 1,
+     "shown_rank": 18
+    },
+    {
+     "passage": 5,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "- (d) **Principle of Integration with Existing Laws.** The Signatories",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    67
+   ],
+   "noise": [
+    3,
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    20
+   ],
+   "note": "Objective A (#1) rank 1 and recital (i) (#9) rank 4 are right. The Glossary's precedence clause (#87, 'the AI Act definition applies, and such definition shall prevail') is rank 9 and should be 2. Missed the 'including' definition (#94) and recital (d) (#5)."
+  },
+  {
+   "query": "is following the Code proof of compliance, and whose definitions govern",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 1,
+     "lines": [
+      34,
+      39
+     ],
+     "quote": "The overarching objective of this Code of Practice (\"Code\") is to impr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 87,
+     "lines": [
+      645,
+      645
+     ],
+     "quote": "Wherever this Chapter refers to a term defined in Article 3 AI Act, th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 9,
+     "lines": [
+      61,
+      61
+     ],
+     "quote": "- (i) **Interpretation.** The Signatories recognise that all Commitmen",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 94,
+     "lines": [
+      657,
+      657
+     ],
+     "quote": "| 'including' | introduces a non-exhaustive set that is to be understo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 88,
+     "lines": [
+      649,
+      649
+     ],
+     "quote": "| 'appropriate' | suitable and necessary to achieve the intended purpo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      50,
+      50
+     ],
+     "quote": "- (d) **Principle of Integration with Existing Laws.** The Signatories",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L47–47",
+    "L54–54",
+    "L96–100",
+    "L108–120",
+    "L143–148",
+    "L164–177",
+    "L253–270",
+    "L323–323",
+    "L506–506",
+    "L577–585",
+    "L593–599",
+    "L623–632",
+    "L664–665",
+    "L683–684",
+    "L686–694",
+    "L697–698",
+    "L703–703",
+    "L713–713",
+    "L766–766",
+    "L862–862",
+    "L934–934",
+    "L938–943",
+    "L947–952",
+    "L961–965",
+    "L970–975",
+    "L981–987"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 31,
+   "source_lines_in_opened_ranges": 171,
+   "note": "Opened what matters."
+  },
+  {
+   "query": "what security must protect model weights, and against whom",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 43,
+     "lines": [
+      370,
+      376
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recital[s 114](https://eur",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 44,
+     "lines": [
+      380,
+      380
+     ],
+     "quote": "Signatories will define a goal that specifies the threat actors that t",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 104,
+     "lines": [
+      682,
+      682
+     ],
+     "quote": "| 'non-state external<br>threats' | hostile operations conducted by no",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 96,
+     "lines": [
+      662,
+      662
+     ],
+     "quote": "| 'insider threats' | hostile operations by humans, AI models, and/or ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 45,
+     "lines": [
+      384,
+      386
+     ],
+     "quote": "Signatories will implement appropriate security mitigations to meet th",
+     "grade": 2,
+     "shown_rank": 14
+    },
+    {
+     "passage": 158,
+     "lines": [
+      934,
+      934
+     ],
+     "quote": "The following specifies the security mitigation objectives and measure",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 159,
+     "lines": [
+      938,
+      943
+     ],
+     "quote": "Signatories will implement general security mitigations that achieve t",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 160,
+     "lines": [
+      947,
+      952
+     ],
+     "quote": "Signatories will protect unreleased model parameters by implementing s",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 161,
+     "lines": [
+      956,
+      957
+     ],
+     "quote": "- (5) prevention of unauthorised access to model parameters during use",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 162,
+     "lines": [
+      961,
+      965
+     ],
+     "quote": "Signatories will harden interface-access to unreleased model parameter",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 163,
+     "lines": [
+      966,
+      966
+     ],
+     "quote": "- (4) reduction of the risk of insider threats or compromised accounts",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 165,
+     "lines": [
+      981,
+      987
+     ],
+     "quote": "Signatories will obtain assurance that their security mitigations meet",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 166,
+     "lines": [
+      988,
+      989
+     ],
+     "quote": "- (6) detection of suspicious or malicious activity, through (a) insta",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 110,
+     "lines": [
+      695,
+      695
+     ],
+     "quote": "| '(self-)exfiltration<br>of model weights' | access or transfer of we",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 1,
+     "shown_rank": 9
+    }
+   ],
+   "acceptable": [
+    138,
+    154,
+    157
+   ],
+   "noise": [
+    5,
+    10,
+    11,
+    12,
+    15,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Appendix 4.2-4.4 and the Security Goal are found. The 'against whom' half is missed: the Glossary definitions of 'non-state external threats' (#104, the quantified attacker: about ten professionals, several months, up to EUR 1 million) and 'insider threats' (#96, which include AI models and senior management). Without those, an agent can't answer 'against whom'. Also missed Appendix 4.1 and 4.5 (#159, #165, #166) and the Appendix 4 intro (#158). Noise: M10.2 publication (#86), Appendix 2.2 (#146)."
+  },
+  {
+   "query": "what security must protect model weights, and against whom",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 43,
+     "lines": [
+      370,
+      376
+     ],
+     "quote": "**LEGAL TEXT:** [Article 55\\(1\\),] and recital[s 114](https://eur",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 44,
+     "lines": [
+      380,
+      380
+     ],
+     "quote": "Signatories will define a goal that specifies the threat actors that t",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 104,
+     "lines": [
+      682,
+      682
+     ],
+     "quote": "| 'non-state external<br>threats' | hostile operations conducted by no",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 96,
+     "lines": [
+      662,
+      662
+     ],
+     "quote": "| 'insider threats' | hostile operations by humans, AI models, and/or ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 45,
+     "lines": [
+      384,
+      386
+     ],
+     "quote": "Signatories will implement appropriate security mitigations to meet th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 158,
+     "lines": [
+      934,
+      934
+     ],
+     "quote": "The following specifies the security mitigation objectives and measure",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 159,
+     "lines": [
+      938,
+      943
+     ],
+     "quote": "Signatories will implement general security mitigations that achieve t",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 160,
+     "lines": [
+      947,
+      952
+     ],
+     "quote": "Signatories will protect unreleased model parameters by implementing s",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 161,
+     "lines": [
+      956,
+      957
+     ],
+     "quote": "- (5) prevention of unauthorised access to model parameters during use",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 162,
+     "lines": [
+      961,
+      965
+     ],
+     "quote": "Signatories will harden interface-access to unreleased model parameter",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 163,
+     "lines": [
+      966,
+      966
+     ],
+     "quote": "- (4) reduction of the risk of insider threats or compromised accounts",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 164,
+     "lines": [
+      970,
+      975
+     ],
+     "quote": "Signatories will protect against insider threats, including in the for",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 165,
+     "lines": [
+      981,
+      987
+     ],
+     "quote": "Signatories will obtain assurance that their security mitigations meet",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 166,
+     "lines": [
+      988,
+      989
+     ],
+     "quote": "- (6) detection of suspicious or malicious activity, through (a) insta",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 110,
+     "lines": [
+      695,
+      695
+     ],
+     "quote": "| '(self-)exfiltration<br>of model weights' | access or transfer of we",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      436,
+      441
+     ],
+     "quote": "- (2) a description of: (a) all safety mitigations implemented (pursua",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L48–48",
+    "L55–55",
+    "L124–131",
+    "L229–235",
+    "L280–295",
+    "L353–353",
+    "L357–364",
+    "L390–398",
+    "L427–432",
+    "L492–496",
+    "L527–527",
+    "L593–603",
+    "L639–639",
+    "L664–665",
+    "L667–676",
+    "L837–841",
+    "L847–857",
+    "L876–886"
+   ],
+   "flagged_unanswered": false,
+   "ranges_opened": 30,
+   "source_lines_in_opened_ranges": 193,
+   "note": "Same gap: neither threat-actor definition opened, nor Appendix 4.5."
+  }
+ ]
+}
