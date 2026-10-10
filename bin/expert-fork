@@ -43,6 +43,9 @@ def main():
     if a.task:
         cmd.append(a.task)
     os.chdir(ROOT)
+    print(f'forking expert-{a.key} as {name}' + (' in the background' if a.bg else '') +
+          f'. Message it with SendMessage to {name!r}; stop it with /stop inside it, or claude stop with the id '
+          f'claude prints (claude agents lists them). The expert itself is untouched.', file=sys.stderr, flush=True)
     os.execvp('claude', cmd)
 
 
