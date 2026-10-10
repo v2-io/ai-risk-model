@@ -18,7 +18,10 @@
 
 - **Interpretive rules sit after the operative text, or before it in a preamble.** Both experts, from their conversation (2026-10-09): SB 53's §22757.16 and its uncodified SEC. 5 (liberal construction, severability, preemption); the Code's glossary and recital (i). A reader or a search that stops at the operative clauses gets the strength of every provision wrong, and wrong in the same direction every time. For ranking, a passage that states how other provisions are to be read is relevant to queries about those provisions, though it shares none of their words. Not yet registered as a hypothesis.
 
+- **IASR marks industry-authored references.** IASR 2026 expert: the web edition's citation tooltips prefix industry-authored references with "[industry]", so a grep over the canonical text can count industry-authored evidence per section. A possible feature, and evidence for the conflict-of-interest principle.
+
 ## The reading tool (`bin/reading`)
 
 - **Figures were dropped.** EU Code expert: the tool showed only captions, so the expert took the figures to be lost. Fixed 2026-10-09 (`babdc38`): a figure shows as ⟦figure: path⟧ at the end of its unit.
+- **Tables aren't cleaned.** IASR 2026 expert, `bengio-2026-international` (2026-10-09): inside table cells, `bin/reading` keeps link targets and citation tooltips in full, so a footnoted table such as Table 1.1 (unit 38) costs several times its prose. The cause is in `bin/reading` itself: it cleans paragraphs but passes table rows through as they are. Not fixed yet, on purpose. Cleaning tables changes their word counts and so, with `--min-words`, could move unit boundaries under the three experts reading now. The fix should clean what is shown while keeping the grouping on the raw text, or wait until those readings are done. Whether the search index's chunker cleans table cells needs checking separately.
 - **A stale line in the help.** SB 53 expert: the help said the reflections were git-ignored. Fixed (`a62338f`).
