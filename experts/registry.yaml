@@ -56,7 +56,7 @@ experts:
     cwd: ~/src/ai-risk-model/.claude/worktrees/expert-aisi (fork from here if its transcript is filed under the worktree; check)
     branch: expert/aisi-2025-frontier
     read: []
-    checkpoints: [unit 40, unit 80, unit 120, the end of the reading]
+    checkpoints: [unit 40, unit 80, the end of the reading (108 units at 100 words)]
     context_after_preparation: null
   - key: anthropic-2026-risk-report-aug
     lineage: [anthropic-2026-risk-report-aug, anthropic-2026-risk-report-feb]
