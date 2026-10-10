@@ -1,0 +1,5 @@
+25 dropped: ['AI incident database', 'Directive (EU) 2019/1937', 'Office of Emergency Services', 'acceptable level of risk', 'acceptable use policy', 'capture the flag', 'chemical, biological, radiological, or nuclear weapon', 'critical safety incident', 'death of, or serious injury to, more than 50 people', 'disabling oversight mechanisms', 'evade human control', 'evading the control of its frontier developer', 'foreseeable and material risk', 'irreversible loss of control', 'likelihood and severity', 'malicious cyber activity', 'model weight theft', 'offensive cyber capabilities', 'reliably direct, modify, or shut down', 'safety and security framework', 'safety and security model report', 'serious harm to property or the environment', 'severity and likelihood', 'within 15 days', 'within 24 hours']
+R+N alpha 1.0 all             flagged 0.777 (+0.025, +0.009 to +0.044)
+R+N alpha 1.0 minus recalled  flagged 0.770 (+0.018, +0.006 to +0.032)
+R+N alpha 2.0 all             flagged 0.802 (+0.050, +0.015 to +0.094)
+R+N alpha 2.0 minus recalled  flagged 0.790 (+0.038, +0.010 to +0.074)

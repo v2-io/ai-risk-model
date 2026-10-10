@@ -1,0 +1,30 @@
+expert docs ['aisi-2025-frontier', 'anthropic-2026-risk-report-aug', 'california-2025-sb53', 'eu-cop-2025-safety-security'] unresolved 0
+resolved by {'lines': 465}
+
+== original judges, same 4 docs
+  today      flagged 0.743  must 0.822
+  exp_a1         flagged 0.747 (+0.004, -0.009 to +0.017)  must 0.832
+  exp_a2         flagged 0.781 (+0.038, +0.007 to +0.073)  must 0.869
+  tags_b1        flagged 0.823 (+0.080, +0.037 to +0.122)  must 0.907
+  exptags_noeot  flagged 0.835 (+0.091, +0.055 to +0.123)  must 0.925
+  exptags        flagged 0.865 (+0.122, +0.080 to +0.173)  must 0.953
+  tags-lex|1.0   flagged 0.798 (+0.055)
+  tags-sem|1.0   flagged 0.800 (+0.057)
+    aisi-2025-frontier                 today 0.75 tags 0.85 exp+tags 0.86
+    anthropic-2026-risk-report-aug     today 0.73 tags 0.81 exp+tags 0.90
+    california-2025-sb53               today 0.67 tags 0.76 exp+tags 0.74
+    eu-cop-2025-safety-security        today 0.84 tags 0.89 exp+tags 0.92
+
+== experts (blind stage 1)
+  today      flagged 0.729  must 0.817
+  exp_a1         flagged 0.727 (-0.002, -0.019 to +0.016)  must 0.817
+  exp_a2         flagged 0.752 (+0.023, -0.008 to +0.056)  must 0.828
+  tags_b1        flagged 0.770 (+0.042, -0.005 to +0.083)  must 0.871
+  exptags_noeot  flagged 0.797 (+0.069, +0.038 to +0.099)  must 0.892
+  exptags        flagged 0.827 (+0.098, +0.063 to +0.139)  must 0.925
+  tags-lex|1.0   flagged 0.754 (+0.025)
+  tags-sem|1.0   flagged 0.747 (+0.019)
+    aisi-2025-frontier                 today 0.75 tags 0.73 exp+tags 0.78
+    anthropic-2026-risk-report-aug     today 0.74 tags 0.80 exp+tags 0.92
+    california-2025-sb53               today 0.66 tags 0.74 exp+tags 0.74
+    eu-cop-2025-safety-security        today 0.76 tags 0.78 exp+tags 0.82

@@ -1,0 +1,47 @@
+# one reader's classification (Claude Opus 5.5, de novo feedback 1) of a seeded random 45 of the 133 non-bio unflagged stretches (sample.py), made before opening runs/classification.tsv
+# sample index	primary	alternate	sid
+0	PARA	RANK	evidence tha|californ|52
+1	NBR	CTX	misalignment|californ|29
+2	NBR		loss of cont|anthropi|8
+3	CTX		what must a |aisi-202|2
+4	PARA	NBR	evidence tha|bengio-2|43
+5	RELDEF	FORM	cyber capabi|bengio-2|30
+6	XREF		humans can n|californ|32
+7	PARA		misalignment|aisi-202|0
+8	RELDEF	PARA	humans can n|bengio-2|17
+9	CTX	NBR	evidence tha|anthropi|27
+10	RELDEF		how the seve|bengio-2|43
+11	NBR	CTX	loss of cont|eu-cop-2|43
+12	RELDEF		loss of cont|eu-cop-2|42
+13	PARA		misalignment|anthropi|15
+14	FORM	PARA	cyber capabi|bengio-2|19
+15	NBR		misalignment|californ|28
+16	FORM	CTX	hazard|bengio-2|9
+17	NBR		cyber capabi|bengio-2|27
+18	CTX	NBR	what must a |bengio-2|29
+19	CTX		how the seve|californ|51
+20	PARA		humans can n|californ|28
+21	XREF		how the seve|californ|48
+22	FORM		misalignment|bengio-2|26
+23	NBR		evidence tha|aisi-202|4
+24	NBR	CTX	how the seve|bengio-2|32
+25	RELDEF		how the seve|bengio-2|42
+26	PARA	NBR	humans can n|anthropi|4
+27	NBR	CTX	humans can n|eu-cop-2|36
+28	NBR		how the seve|anthropi|19
+29	PARA		humans can n|californ|29
+30	NBR		loss of cont|anthropi|14
+31	NBR	CTX	cyber capabi|anthropi|12
+32	NBR		loss of cont|anthropi|11
+33	CTX	NBR	evidence tha|bengio-2|49
+34	XREF		catastrophic|californ|26
+35	NBR		how the seve|eu-cop-2|59
+36	NBR	PARA	humans can n|bengio-2|19
+37	XREF		humans can n|californ|31
+38	CTX		how the seve|bengio-2|40
+39	CTX		how the seve|aisi-202|2
+40	CTX	NBR	cyber capabi|bengio-2|25
+41	NBR	FORM	cyber capabi|bengio-2|23
+42	NBR		how the seve|bengio-2|36
+43	NBR		misalignment|anthropi|9
+44	NBR	CTX	loss of cont|bengio-2|27

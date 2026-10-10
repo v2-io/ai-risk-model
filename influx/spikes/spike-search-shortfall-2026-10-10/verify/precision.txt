@@ -1,0 +1,8 @@
+                  P@188  mustP  paths  medRk meanLogRk
+today             0.358  0.161  110.2   81.0    4.3
+exp_a1            0.380  0.172  109.2   74.0    4.1
+exp_a2            0.394  0.178  107.3   71.0    4.1
+tags_b1           0.366  0.169  113.2   70.0    4.1
+exptags_noeot     0.392  0.182  109.0   63.0    4.0
+exptags           0.402  0.184  110.5   60.0    3.9
+two random legs at beta 1: flagged [0.702 0.707 0.714 0.702 0.706]

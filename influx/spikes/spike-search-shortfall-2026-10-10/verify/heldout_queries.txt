@@ -1,0 +1,35 @@
+27 held-out queries
+today        flagged 0.875 must 0.892
+tags-both b1 flagged 0.903 (+0.028, -0.014 to +0.079) must 0.932
+tags-lex b1  flagged 0.891 (+0.016, -0.026 to +0.067) must 0.919
+tags-sem b1  flagged 0.887 (+0.012, -0.021 to +0.048) must 0.905
+  how fast are frontier AI capabilities improving (the doubling time of  gain  15  today 0.93 -> tags 0.87
+  how much effort does it take to jailbreak safeguards, and how do the s gain  20  today 0.95 -> tags 0.95
+  the gap between open-weight and closed models, and safeguards on open- gain  15  today 1.00 -> tags 1.00
+  limitations of the evaluations: do the reported capabilities underesti gain  22  today 0.59 -> tags 0.64
+  persuasion and misinformation: do models change political beliefs      gain   4  today 1.00 -> tags 1.00
+  emotional dependence on AI companions                                  gain   6  today 1.00 -> tags 1.00
+  AI agents given execution authority in finance or critical sectors     gain   6  today 0.67 -> tags 0.67
+  how the report defines open-source and open-weight models              gain  14  today 1.00 -> tags 1.00
+  models noticing they are being evaluated and behaving differently      gain   9  today 1.00 -> tags 1.00
+  AISI's mandate, access to models, and relationship with developers     gain  18  today 0.67 -> tags 0.50
+  marginal versus absolute risk                                          gain   9  today 1.00 -> tags 1.00
+  AI R&D automation threshold                                            gain  18  today 1.00 -> tags 1.00
+  model weight security against state actors                             gain  15  today 1.00 -> tags 1.00
+  chain-of-thought monitorability                                        gain  13  today 0.92 -> tags 1.00
+  ASL-3                                                                  gain   5  today 1.00 -> tags 1.00
+  what is SB 53's definition of catastrophic risk                        gain   9  today 0.56 -> tags 0.89
+  does SB 53 require developers to comply with their own frameworks      gain   8  today 1.00 -> tags 1.00
+  who can be penalised under SB 53, and by whom                          gain   6  today 0.83 -> tags 0.83
+  is theft of model weights a critical safety incident                   gain   8  today 1.00 -> tags 1.00
+  does SB 53 require independent third-party evaluation                  gain   8  today 1.00 -> tags 0.88
+  how does SB 53 treat internal use of frontier models                   gain  14  today 1.00 -> tags 1.00
+  how does the Code treat internal use of models                         gain  16  today 0.56 -> tags 0.69
+  does the Code require independent external evaluation                  gain  13  today 1.00 -> tags 1.00
+  when does a model get lighter obligations (similarly safe or safer, op gain  12  today 0.92 -> tags 0.92
+  what does the Code say about chain-of-thought                          gain  11  today 0.91 -> tags 1.00
+  is following the Code proof of compliance, and whose definitions gover gain  12  today 1.00 -> tags 1.00
+  what security must protect model weights, and against whom             gain  14  today 0.57 -> tags 1.00
+
+per-document scope (rank within the named document only, cut 10% of its passages):
+{'base': 0.753, 'tags': 0.769}

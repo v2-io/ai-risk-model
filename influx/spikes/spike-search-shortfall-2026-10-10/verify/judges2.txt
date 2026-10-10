@@ -1,0 +1,10 @@
+aisi-2025-frontier               today     vs expert        : unflagged 0.253 of judged gain; of it, also marked by expert 39% (must-read unflagged 9, of it shared 33%)
+aisi-2025-frontier               exp+tags  vs expert        : unflagged 0.143 of judged gain; of it, also marked by expert 54% (must-read unflagged 0, of it shared 0%)
+anthropic-2026-risk-report-aug   today     vs expert        : unflagged 0.273 of judged gain; of it, also marked by expert 61% (must-read unflagged 27, of it shared 89%)
+anthropic-2026-risk-report-aug   exp+tags  vs expert        : unflagged 0.102 of judged gain; of it, also marked by expert 23% (must-read unflagged 3, of it shared 0%)
+california-2025-sb53             today     vs expert        : unflagged 0.333 of judged gain; of it, also marked by expert 91% (must-read unflagged 18, of it shared 100%)
+california-2025-sb53             exp+tags  vs expert        : unflagged 0.257 of judged gain; of it, also marked by expert 89% (must-read unflagged 12, of it shared 100%)
+california-2025-sb53             today     vs gemini        : unflagged 0.333; of it, also marked by gemini 60%
+california-2025-sb53             today     vs gemini|expert : unflagged 0.333; of it, also marked by gemini|expert 91%
+eu-cop-2025-safety-security      today     vs expert        : unflagged 0.158 of judged gain; of it, also marked by expert 67% (must-read unflagged 3, of it shared 100%)
+eu-cop-2025-safety-security      exp+tags  vs expert        : unflagged 0.079 of judged gain; of it, also marked by expert 44% (must-read unflagged 0, of it shared 0%)

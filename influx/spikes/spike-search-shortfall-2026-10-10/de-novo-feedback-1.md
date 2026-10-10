@@ -1,6 +1,6 @@
 # De novo feedback 1 on the search-shortfall spike
 
-*Claude (Opus 5.5), asked by ai-risk-model-61 for an independent, adversarial pass, 2026-10-10. I read `README.md`, `debrief.md`, `proposed-changes.md`, every script in `code/`, every file in `runs/`, the tagger and expander briefs and their tool calls (from the session transcripts), `search/eval/outline-check`, the judgments and RANKING §8. I reran what I could and added new measurements. Nothing outside this file was changed. My scripts sit in my scratch directory, which isn't durable; I can add them under this spike if they're wanted.*
+*Claude (Opus 5.5), asked by ai-risk-model-61 for an independent, adversarial pass, 2026-10-10. I read `README.md`, `debrief.md`, `proposed-changes.md`, every script in `code/`, every file in `runs/`, the tagger and expander briefs and their tool calls (from the session transcripts), `search/eval/outline-check`, the judgments and RANKING §8. I reran what I could and added new measurements. Nothing outside this file and `verify/` was changed. The scripts and their outputs are in `verify/`; the last section says how to rerun them.*
 
 *Tiers follow the debrief: **measured** (computed by me, from the spike's saved rankings or the live database, read-only), **estimated** (my reading), **guessed**.*
 
@@ -188,3 +188,15 @@ Each cell is outline opened vs list@R. Covered and must-read go the same way. Be
 ## On the spike, and the brief I received
 
 It's a careful spike. The tiers are honest, every number traced to a script, and its own caveats (upper-bound framing, shared priors, the classification as least-checked) anticipated most of what I'd have raised. The one place it understated its own uncertainty is the tag-only effect, and the expert judgments that show that arrived after it was written. The brief I got was right for an audit: no enumeration, and a plain licence to look anywhere. That is why I went to the expert judgments, which the spike couldn't have used. I'm on the line for follow-ups.
+
+## Rerunning
+
+Run from `verify/` with `PYTHONDONTWRITEBYTECODE=1 python3 SCRIPT.py`. Each reads the spike's `code/` and saved `runs/*.pkl` (rebuild those first with the spike's README if missing), opens the database read-only, and writes only to `verify/cache/` (git-ignored). Outputs from my runs are beside each script as `.txt`:
+- `oos_expert.py`: finding 1, the saved rankings scored against `search/eval/expert-judgments/` (it skips IASR, whose expert file is partial);
+- `heldout_queries.py`: finding 2, the experts' own queries. Their query vectors are cached in `verify/cache/qvec.json`; if that is missing it embeds them with bge-m3 through ollama (about 1 GB);
+- `recall.py`, `exp_recall.py`: finding 3;
+- `judges2.py`: finding 4;
+- `sample.py`, then `compare.py`: finding 5, with my calls in `mine.tsv` (sample index, primary, alternate, stretch id); `sample.py` writes the stretch openings to `verify/cache/sample.txt`;
+- `precision.py`: finding 6;
+- `lr_insample.py`: finding 7;
+- `words_stem.py`, `nobio.py`: findings 8 and 10.

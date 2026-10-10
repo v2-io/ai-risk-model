@@ -1,0 +1,19 @@
+n=45; primary agreement 36/45 = 80%; spiker label among my primary or alternate 40/45
+Cohen's kappa 0.74
+gain-weighted shares in this sample, mine vs spiker:
+  CTX     15%  15%
+  FORM    5%  9%
+  NBR     36%  33%
+  PARA    24%  25%
+  RELDEF  13%  13%
+  XREF    7%  5%
+disagreements (n sid grade mine/alt spiker):
+   (9, 'evidence tha|anthropi|27', 1, 'CTX', 'NBR', 'NBR')
+   (13, 'misalignment|anthropi|15', 1, 'PARA', '', 'CTX')
+   (33, 'evidence tha|bengio-2|49', 1, 'CTX', 'NBR', 'NBR')
+   (36, 'humans can n|bengio-2|19', 1, 'NBR', 'PARA', 'PARA')
+   (37, 'humans can n|californ|31', 1, 'XREF', '', 'PARA')
+   (40, 'cyber capabi|bengio-2|25', 1, 'CTX', 'NBR', 'FORM')
+   (41, 'cyber capabi|bengio-2|23', 1, 'NBR', 'FORM', 'CTX')
+   (43, 'misalignment|anthropi|9', 1, 'NBR', '', 'FORM')
+   (44, 'loss of cont|bengio-2|27', 1, 'NBR', 'CTX', 'CTX')
