@@ -105,3 +105,17 @@
 - **Read everything:** recitals, Glossary, every appendix. I skipped nothing.
 - **Figures:** I missed them on first pass (the tool then dropped them; it has since been fixed). I looked at them after unit 32, at Joseph's prompt.
 - **Material I avoided:** Grok's judgements on this source, `influx/source-models/`, the atlas, anything else in the repo about the Code, and the Chairs' statement. All still unread.
+
+## Since then (same day)
+
+- `after-1-ai-act-anchors.md`, from the Act's text and a PDF check:
+  - The C1 and C10 LEGAL TEXT damage is confirmed as conversion loss, and the full lines are given there.
+  - The recital 110 heading is empty in the PDF too.
+  - Art. 3(49) is defined for AI *systems* and has no cybersecurity category, so the Code's "serious cybersecurity breach" category is an addition.
+  - The development / market / use triad comes from Art. 55(1)(b).
+  - Art. 2(3) excludes AI systems used *exclusively* for military, defence or national-security purposes.
+  - The loss-of-control formula is the Code's own; recital 110 has only "unintended issues of control relating to alignment with human intent".
+- `after-2-chairs-statement.md`, from the Chairs' statement:
+  - It assumed "about 5-15 providers".
+  - It asks for a review cadence (e.g. every 2 years), a dedicated whistleblower channel, staffing, a foresight unit, and international engagement.
+  - The source also carries a web edition of the Chapter, labelled "FINAL VERSION · 10/07/2025", which differs from the official text in Appendix 2.2(2)–(3), M7.2(3), and the titles of Commitment 10 and M10.1.
