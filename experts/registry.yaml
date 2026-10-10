@@ -15,7 +15,7 @@ experts:
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
     started_by: ai-risk-search-tool, with experts/BRIEF.md
-    state: prepared (2026-10-09; stopped after the core reading, RAISE, the California report, a conversation with the EU Code expert, and the Sept 5 amendment; two delegated agents' files, history/VERIFICATION.md and history/POSITIONS.md, still to be reviewed and committed by the coordinator)
+    state: finishing (2026-10-09; waiting for two delegated agents to report, then Joseph's final /context; read so far: the core reading, RAISE, the California report, a conversation with the EU Code expert, and the Sept 5 amendment; the agents' files are history/VERIFICATION.md and history/POSITIONS.md)
     branch: expert/california-2025-sb53, in the worktree .claude/worktrees/expert-sb53 (background sessions can't edit the main checkout); pushing the branch is fine (Joseph)
     priming: the repo's CLAUDE.md describes SB 53; Joseph accepted it (2026-10-09) and the expert records it in its reflections
     read: [{key: california-2025-sb53, sha256: 1b31896f258088b35af5ea6fbd56b052fd6a3c2c9340262a0b9286958961de70, how: experientially, a paragraph per unit, 224 units}]
