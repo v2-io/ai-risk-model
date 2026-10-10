@@ -75,6 +75,10 @@ The order is Claude's, from the conversation: the source first, so the expert se
 2. **How the source relates to the rest of the corpus:** `influx/source-models/OVERVIEW.md` and the source's catalog entry, including who copies it and whom it copies.
 3. **The project's methodology:** `influx/gamma-research/risk-formalisms.md` and the lexicon, last. Read first, they would have the expert see the source through our vocabulary, which is the flattening this project exists to catch.
 
+### 4b. Exploring, and talking with each other
+
+After the reading, Joseph's guidance (2026-10-09): experts "should be welcome to explore a bit and fire off any delegated agents to do web searches etc. as desired", and room should be left for experts to talk with each other, asking about each other's readings and experiences of reading, before either reaches about 700k tokens.
+
 ### 5. Kept, never compacted
 
 An expert is never compacted. Compaction replaces the reading with a summary, which is the failure the reading exists to avoid. Claude Code compacts automatically as a session nears its context limit, and its `--autocompact` flag sets the window but can't turn compaction off. Joseph offered to turn automatic compaction off (2026-10-09). Until that's confirmed, each fork's task is kept well under the limit, and the expert's context after preparation is recorded in the registry so the margin is known.
