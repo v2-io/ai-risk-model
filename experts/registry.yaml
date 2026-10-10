@@ -18,7 +18,7 @@ experts:
     lineage: [california-2025-sb53]
     available: true
     name: expert-california-2025-sb53
-    forks: [expert-california-2025-sb53-fork-1 (the recall test from the main checkout, passed; stopped)]
+    forks: [expert-california-2025-sb53-fork-1 (the recall test from the main checkout, passed; stopped), expert-california-2025-sb53-fork-gold-1 (2026-10-10, started by ai-risk-model-61: the pilot of the gold judgments, blind then shown; brief in experts/fork-briefs/gold-pilot-california-2025-sb53.md; running)]
     session: 8c1808c5-b812-4e61-af21-82cfa984310f
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
