@@ -104,6 +104,7 @@ The plan is a proposal. Apart from decisions marked as Joseph's, nothing in it i
 | `ref/` | local copies of reference texts. Some are git-ignored (see `ref/.gitignore`), including the IASR 2026 full text |
 | `bin/canonicalize` | builds `ref/canonical/<relata-key>.md`: each catalog source's text with physical-page markers (git-ignored; rebuilt locally) |
 | `bin/source-index`, `bin/source-search` | a local search index over the canonical texts (Postgres database `airisk_sources`): ranked search with definitions first (`hybrid`, the default), cosine-only search (`semantic`), every definition of a term (`defs`), and every occurrence at four strictnesses (`lexical`, `exact-phrase`, `exact-words`, `exact-bytes`). Each result carries a relata key, PDF page, printed page and exact quote |
+| `experts/` | source experts: Claude sessions that have read one source experientially and are kept to be forked for questions about it. `README.md` is the design and how to coordinate them, `registry.yaml` lists them; `bin/expert-launch` starts one, and `bin/reading` serves a text one unit at a time |
 | `catalog/sets/` | named sets of sources for searching and other work (Au5, the G4 pilots, the anchors), each a list of keys or catalog-field selectors |
 | `search/` | the index's design (`DESIGN.md`, with what is built and what isn't), schema, ranking weights (`weights.toml`, each with its reason) and code |
 | `bib/` | `relata emit bib` writes `bib/refs.bib` from the `@key`s in `source-catalog.md` |

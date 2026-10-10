@@ -92,6 +92,20 @@ A background session can't edit the main checkout unless the repo's `.claude/set
 
 Each use is a fork: the prepared expert stays as it was, and each fork does one task. Joseph: "alas, the experience wouldn't continue to build like it will in the future". A fork's answer, if it's worth keeping, goes into the repository; nothing a fork learns returns to the expert.
 
+## Coordinating experts
+
+What a coordinator (the Claude session that starts and looks after experts) does, so that a later session can take over:
+- **Starting one:** `bin/expert-launch KEY "TITLE" [--lineage …] [--note …]`. It fills in `experts/BRIEF.md`, starts the background session (named `expert-KEY`) with Joseph's appended system prompt, and adds it to the registry. `--dry-run` shows the brief first.
+- **Talking with one:** `SendMessage` to `expert-KEY`. The expert replies the same way, to the coordinator named in its brief. `ListAgents` shows which experts are running. If the coordinator session has ended, a new one can take over: tell each running expert the new coordinator's name.
+- **Joseph's part:** he talks with each expert before it reads (`claude attach ID`), and takes the `/context` readings (an expert can't see its own). The coordinator tells him when an expert is ready to talk, at each checkpoint the expert named, and when a reading is finished.
+- **Checkpoints:** the expert names them, and they go in the registry's `checkpoints`. A coordinator passes a reading back to the expert only at those points, or when the margin calls for a decision (Joseph: context anxiety "doesn't end up saving any context").
+- **After a reading:** the expert stops and reports. Joseph takes `/context`, the reading's cost goes in the registry, and the coordinator proposes the next preparation (earlier versions, then the corpus overview, then methodology; §4 of "How an expert is made") to fit the room left.
+- **Merging:** an expert's reflections are on its branch `expert/KEY`. Merging that branch into main is the coordinator's job, once the expert says it's ready, unless the expert has chosen to keep its reflections unpublished.
+
+Open, for Joseph:
+- `"worktree": {"bgIsolation": "none"}` in the repo's `.claude/settings.json` would let experts write on main.
+- Automatic compaction was turned off on 2026-10-09 (this coordinator's `/context` shows it disabled). Whether that reaches the two experts started before the change is unconfirmed; their next `/context` will show it.
+
 ## The registry
 
 `experts/registry.yaml` lists each expert: its source key and lineage, its session's name and id, its model, what it has read (with the sha256 of each text), its context after preparation, and its state (asked, reading, paused, prepared). It is what anyone who wants to fork an expert looks up.

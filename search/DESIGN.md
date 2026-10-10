@@ -443,6 +443,9 @@ The rest of the pooled gap (0.278 against 0.291) is a trade-off, not a fault. Co
    - In Anthropic's Risk Report, everything after "2.14 Claim 8", §§3–5 included, nests under it (326 passages).
    - The Risk Report's front-matter contents (L40–69) is indexed as body text, so it ranks high for "hazard".
    - IASR's Figure 2.1 data text ranks first for "hazard", above IASR's own definition.
+
+   **Labelled data from source experts** (`experts/README.md`, Joseph's idea, 2026-10-09). An agent that has read a source experientially is that source's domain expert; shown what the search returned, it can give the order it should have come in and say what was missed. That is the fitting and test data RANKING.md §3.3 needs, and it comes from work the project needs anyway (tags, definitions, assertions). The first two experts, SB 53 and the EU Code, started reading the same day.
+
 9. The ranking as one model of evidence (`search/RANKING.md`, proposed 2026-10-09 at Joseph's request): every factor a registered hypothesis, with fixtures, ablations and equal weights until measured. It waits on Joseph's decisions in RANKING.md §8.
 10. The gold queries, now partly reframed by §12's evaluation idea, then `--eval` and tuning.
 11. Grouping, `--history`, and the embedder bake-off.

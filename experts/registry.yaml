@@ -19,8 +19,10 @@ experts:
     branch: expert/california-2025-sb53, in the worktree .claude/worktrees/expert-sb53 (background sessions can't edit the main checkout); pushing the branch is fine (Joseph)
     priming: the repo's CLAUDE.md describes SB 53; Joseph accepted it (2026-10-09) and the expert records it in its reflections
     read: []
+    checkpoints: [the end of the reading]
+    context: {start: ~185k, at_unit_67_of_224: 312k}
     context_after_preparation: null
-    note: the pilot expert (README, Open)
+    note: the pilot expert (README, Open); reading a paragraph per unit
   - key: eu-cop-2025-safety-security
     lineage: [eu-cop-2025-safety-security, eu-cop-chairs-2025-statement]
     name: expert-eu-cop-2025-safety-security
@@ -30,5 +32,7 @@ experts:
     started_by: ai-risk-search-tool, with experts/BRIEF.md (as revised after the SB 53 expert's start)
     state: asked
     read: []
+    checkpoints: [unit 30, unit 60, unit 90, the end of the reading (124 units of at least 150 words)]
+    context: {start: 188k}
     context_after_preparation: null
     note: the second expert; Grok judged this source whole for the outline evaluation, so its gold can be compared across model families
