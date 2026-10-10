@@ -94,6 +94,16 @@ Joseph has set Claude Code's session cleanup to ten years, so saved sessions don
 
 A background session can't edit the main checkout unless the repo's `.claude/settings.json` sets `"worktree": {"bgIsolation": "none"}`. Without that, an expert writes its reflections in a git worktree, on a branch of its own (`expert/KEY`), which it may push; main stays Joseph's to push.
 
+**Freezing and forking a prepared expert** (2026-10-09). Once an expert is ready, stop it (`claude stop ID`) so nothing more is added to its transcript. Avoid `claude rm`, which may not keep the transcript. Then fork it, interactively in a terminal:
+
+```
+claude --dangerously-skip-permissions \
+  --append-system-prompt-file ~/src/arch/proprium/comproprium/stopgap-system-prompt.md \
+  --resume SESSION-ID --fork-session -n expert-KEY-fork-N
+```
+
+Add `--bg` and a prompt to run a fork's task in the background. The same appended system prompt keeps the fork's system prompt identical to the expert's. A fork's `/context` should match the expert's final reading, which is the check that it holds the whole reading.
+
 Each use is a fork: the prepared expert stays as it was, and each fork does one task. Joseph: "alas, the experience wouldn't continue to build like it will in the future". A fork's answer, if it's worth keeping, goes into the repository; nothing a fork learns returns to the expert.
 
 ## Coordinating experts
