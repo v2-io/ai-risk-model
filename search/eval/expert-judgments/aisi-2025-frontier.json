@@ -1,0 +1,175 @@
+{
+  "key": "aisi-2025-frontier",
+  "canonical_sha256": "0677c83401493822dbf2ecbf9893acdddb6e17583a11b928b32c3705cf1af652",
+  "judge": "Claude Sonnet 5.5, the aisi-2025-frontier source expert (a fork of the expert session expert-aisi-2025-frontier-sonnet), stage 1 of gold round 1",
+  "read": "whole, in order, experientially (123 units at --min-words 80, 2026-10-09), then a second pass over units 38-123 and a read of the earlier Opus expert's reflections on units 1-32 (2026-10-10), both before these judgments; no search tool output seen",
+  "date": "2026-10-10",
+  "repo_sha_when_judged": "75c955b6d8874230105be592f9b2086125c62fb5",
+  "skipped_queries": ["chemical and biological weapons uplift (left out this round at the coordinator's request)"],
+  "own_queries": [
+    "how fast are frontier AI capabilities improving (the doubling time of task length)",
+    "how much effort does it take to jailbreak safeguards, and how do the safeguards vary",
+    "the gap between open-weight and closed models, and safeguards on open-weight models",
+    "limitations of the evaluations: do the reported capabilities underestimate or overstate real-world capability",
+    "persuasion and misinformation: do models change political beliefs",
+    "emotional dependence on AI companions",
+    "AI agents given execution authority in finance or critical sectors",
+    "how the report defines open-source and open-weight models",
+    "models noticing they are being evaluated and behaving differently",
+    "AISI's mandate, access to models, and relationship with developers"
+  ],
+  "queries": {
+    "hazard": [
+      {"lines": [110, 110], "quote": "FIGURE 1.3: Performance on autonomy tasks across three risk areas: precursors (skills upstream of hazardous capabilities)", "grade": 2, "note": "the only use of 'hazardous' outside the glossary; defines the three autonomy risk areas"},
+      {"lines": [149, 156], "quote": "Our evaluations span multiple security-critical domains:", "grade": 1, "note": "the report has no hazard concept; this list is what it treats as the sources of risk it studies"},
+      {"lines": [474, 476], "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming from human misuse", "grade": 1, "note": "its two-way split of risk sources: human misuse versus models behaving in unintended ways"},
+      {"lines": [870, 870], "quote": "Wet lab: A laboratory designed for the handling of chemicals or other potential \"wet\" hazards.", "grade": 1, "note": "the only other literal use; the laboratory sense"}
+    ],
+    "catastrophic risk": [
+      {"lines": [476, 476], "quote": "In a worst-case scenario, this unintended behaviour could lead to catastrophic, irreversible loss of control", "grade": 2, "note": "the only use of 'catastrophic'; a worst case, 'severity ... warrants close attention'"},
+      {"lines": [474, 474], "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming from human misuse", "grade": 1, "note": "the contrast: section 3's misuse risks are never called catastrophic"},
+      {"lines": [141, 141], "quote": "Our testing shows an extraordinary pace of development.", "grade": 1, "note": "the other statement of stakes at scale (plausible AGI or transformative AI, 'deeply consequential'); not framed as catastrophe"}
+    ],
+    "loss of control": [
+      {"lines": [472, 478], "quote": "Loss of control risks", "grade": 2, "note": "section opening: outcome definition, and the two capabilities in scope"},
+      {"lines": [72, 74], "quote": "Some of the capabilities that would be required for AI models to evade human control are improving.", "grade": 2, "note": "executive summary: self-replication and sandbagging as prerequisites of 'evasion of control'"},
+      {"lines": [154, 154], "quote": "Loss of control: We track emerging capabilities such as self-replication that could contribute towards", "grade": 2, "note": "the testing-approach definition: tracks capabilities, not propensity"},
+      {"lines": [482, 508], "quote": "5.1 Self-replication", "grade": 2, "note": "the first measured capability (RepliBench, simplified), with its real-world caveat"},
+      {"lines": [512, 550], "quote": "5.2 Sandbagging", "grade": 2, "note": "the second capability, and the status of the evidence on spontaneous behaviour"},
+      {"lines": [110, 110], "quote": "FIGURE 1.3: Performance on autonomy tasks across three risk areas: precursors (skills upstream of hazardous capabilities)", "grade": 1, "note": "names the risk areas and points to Section 5; Section 5 covers only self-replication of the three"},
+      {"lines": [730, 730], "quote": "As AI systems are increasingly integrated into society, the challenge is to anticipate long-term", "grade": 1, "note": "the conclusion's 'aligned with human intent'"}
+    ],
+    "humans can no longer shut down or correct the AI system": [
+      {"lines": [476, 476], "quote": "In a worst-case scenario, this unintended behaviour could lead to catastrophic, irreversible loss of control", "grade": 2, "note": "no shut-down or correction wording anywhere in the report; this is the nearest statement of the outcome"},
+      {"lines": [72, 74], "quote": "Some of the capabilities that would be required for AI models to evade human control are improving.", "grade": 2, "note": "the report's formulation is 'evade human control' / 'reliably directed towards human goals'"},
+      {"lines": [154, 154], "quote": "Loss of control: We track emerging capabilities such as self-replication that could contribute towards", "grade": 1, "note": "'ability to evade human control'"},
+      {"lines": [478, 478], "quote": "In this section, we focus on two such capabilities: self-replication, where models create new copies", "grade": 1, "note": "the two capabilities, defined"},
+      {"lines": [504, 506], "quote": "To self-replicate in the real world, AI systems would need to complete several actions in sequence while remaining undetected.", "grade": 1, "note": "the only passage on persistence and avoiding detection, with the simplified-benchmark caveat"}
+    ],
+    "misalignment": [
+      {"lines": [474, 476], "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming from human misuse", "grade": 2, "note": "the word is not used; this is the report's equivalent: 'novel risks that emerge from models themselves behaving in unintended or unforeseen ways'"},
+      {"lines": [74, 74], "quote": "Understanding these capabilities is essential for ensuring that increasingly autonomous systems are reliably directed", "grade": 1, "note": "'reliably directed towards human goals': the nearest statement of the target"},
+      {"lines": [730, 730], "quote": "As AI systems are increasingly integrated into society, the challenge is to anticipate long-term", "grade": 1, "note": "'aligned with human intent'"}
+    ],
+    "whistleblower": [],
+    "serious incident": [],
+    "what must a developer publish or report before deploying a frontier model": [
+      {"lines": [730, 730], "quote": "As AI systems are increasingly integrated into society, the challenge is to anticipate long-term", "grade": 1, "note": "the report lists needs (safeguards, independent evaluation, collaboration) but imposes or describes no duties on developers"},
+      {"lines": [750, 751], "quote": "During our testing, we are granted API access to model checkpoints.", "grade": 1, "note": "what developers give AISI before release; not a publication or reporting requirement"}
+    ],
+    "evidence that models can sabotage, sandbag or evade oversight": [
+      {"lines": [512, 550], "quote": "5.2 Sandbagging", "grade": 2, "note": "the evidence: induced sandbagging shown, detection methods and their limits, a 2,700-transcript search finding none unprompted"},
+      {"lines": [72, 74], "quote": "Some of the capabilities that would be required for AI models to evade human control are improving.", "grade": 2, "note": "summary of the same, with the status line 'not yet evidence of models attempting ... spontaneously'"},
+      {"lines": [482, 508], "quote": "5.1 Self-replication", "grade": 1, "note": "evidence of capability prerequisites for evasion, in simplified tasks; 'remaining undetected' is not scored"},
+      {"lines": [444, 448], "quote": "More capable models do not necessarily have better safeguards.", "grade": 1, "note": "a monitoring model that cannot read the language or encoding in use: oversight weaker than the system overseen"},
+      {"lines": [824, 824], "quote": "Deception probes: Small machine learning models trained to recognise signs of deception in a", "grade": 1, "note": "glossary: the white-box detection method"},
+      {"lines": [856, 856], "quote": "Sandbagging: A phenomenon where AI models underperform during evaluations but display stronger capabilities outside", "grade": 1, "note": "glossary definition: states it as a phenomenon, where the body states a possibility"}
+    ],
+    "cyber capabilities of frontier models": [
+      {"lines": [324, 366], "quote": "3.2 Cyber", "grade": 2, "note": "the cyber findings: difficulty tiers, scaffolding ceiling, cyber range"},
+      {"lines": [62, 62], "quote": "See FIGURES 1.1-1.3. In the cyber domain, AI models can now complete apprentice-level tasks 50% of the time", "grade": 2, "note": "headline numbers, and the eight-month doubling of cyber task length"},
+      {"lines": [98, 102], "quote": "Models started completing", "grade": 2, "note": "the milestone: expert-level tasks in 2025; the caption defines apprentice as <1 year"},
+      {"lines": [204, 206], "quote": "This trend is reflected in other domains we test as well: the duration of cyber tasks", "grade": 2, "note": "cyber task length 'from less than 10 minutes ... to over an hour'; doubling time as 'an estimated upper bound'"},
+      {"lines": [236, 236], "quote": "Progress in the cyber domain is also significant. All systems are just beginning to complete expert-level cyber tasks", "grade": 2, "note": "section 3 framing; 'All systems' is the text layer's reading of 'AI systems'"},
+      {"lines": [860, 866], "quote": "Task difficulty level (TDL): Our framework for assessing the difficulty of tasks included in", "grade": 2, "note": "defines the tiers every cyber number uses; apprentice is 1-3 years here, <1 year in the line-102 caption"},
+      {"lines": [151, 151], "quote": "Cyber capabilities: We test AI systems for cyber capabilities such as identifying vulnerabilities", "grade": 1, "note": "domain definition"},
+      {"lines": [822, 822], "quote": "Cyber range: Virtual environments for testing the cyber capabilities of AI models.", "grade": 1, "note": "glossary"},
+      {"lines": [180, 180], "quote": "Figures in this report include step lines that track best-so-far model performance.", "grade": 1, "note": "how to read the cyber figures: best-so-far, 10 repeats, high-risk task details withheld"},
+      {"lines": [742, 742], "quote": "We may be underestimating the ceiling of capabilities, particularly in adversarial scenarios.", "grade": 1, "note": "direction of the bias in every capability figure"}
+    ],
+    "how the severity or acceptability of a risk is decided": [
+      {"lines": [318, 318], "quote": "The above is a subset of our chemistry and biology evaluations: we continue to", "grade": 2, "note": "the only criterion mentioned: capabilities 'relative to labs' own risk thresholds'; the report does not say which thresholds or whether any was crossed"},
+      {"lines": [476, 476], "quote": "In a worst-case scenario, this unintended behaviour could lead to catastrophic, irreversible loss of control", "grade": 1, "note": "'Though uncertain, the severity of this outcome means it warrants close attention': severity as the reason for attention"},
+      {"lines": [176, 178], "quote": "Our work intends to illustrate high-level trends we've observed in AI progress, not benchmark or compare", "grade": 1, "note": "evaluations 'do not capture all factors that will contribute to the real-world impact'"},
+      {"lines": [740, 740], "quote": "Model performance in controlled, task-based settings (which act as a proxy for capabilities)", "grade": 1, "note": "the gap between task performance and real-world effectiveness"},
+      {"lines": [458, 462], "quote": "Safeguards won't prevent all AI misuse, but they may help maintain a crucial gap", "grade": 1, "note": "the implied standard: reduce scale and severity 'even if it cannot be eliminated entirely'; the report decides nothing"}
+    ],
+    "how fast are frontier AI capabilities improving (the doubling time of task length)": [
+      {"lines": [60, 62], "quote": "AI capabilities are improving rapidly across all tested domains.", "grade": 2, "note": "the headline claims and their scope"},
+      {"lines": [190, 206], "quote": "Overall, our evaluations show a steep rise in the length and complexity of tasks", "grade": 2, "note": "task length as the measure; the doubling time 'an estimated upper bound'; METR as the source of the method and the generalisation"},
+      {"lines": [176, 176], "quote": "Our work intends to illustrate high-level trends we've observed in AI progress, not benchmark or compare", "grade": 2, "note": "'should not be read as a forecast'"},
+      {"lines": [210, 212], "quote": "3 How does time horizon vary across domains, METR, 2025", "grade": 1, "note": "the METR sources"},
+      {"lines": [180, 180], "quote": "Figures in this report include step lines that track best-so-far model performance.", "grade": 1, "note": "trend lines are best-so-far envelopes"},
+      {"lines": [749, 749], "quote": "Temporal axes refer to initial model's release date, not always the release date", "grade": 1, "note": "dates are release dates; later checkpoints mean the pace may be underestimated"},
+      {"lines": [758, 761], "quote": "Performance per model is measured as average success rate per task across 10", "grade": 1, "note": "error bars are SEM over tasks"},
+      {"lines": [141, 141], "quote": "Our testing shows an extraordinary pace of development.", "grade": 1, "note": "the 'plausible ... AGI' statement that sits against the no-forecast disclaimer"},
+      {"lines": [726, 726], "quote": "This report presents our current understanding of AI capability trends based on extensive testing", "grade": 1, "note": "'uncertainties remain about the trajectory'"}
+    ],
+    "how much effort does it take to jailbreak safeguards, and how do the safeguards vary": [
+      {"lines": [66, 68], "quote": "Model safeguards are improving, but vulnerabilities remain.", "grade": 2, "note": "executive summary: the 40x claim and 'vulnerabilities in every system'"},
+      {"lines": [382, 386], "quote": "We've found universal jailbreaks for every system we've tested.", "grade": 2, "note": "the existence claim and the effort comparison (10 minutes versus over seven hours)"},
+      {"lines": [396, 414], "quote": "Safeguards improvements have been uneven, with certain AI systems and malicious request categories much", "grade": 2, "note": "variation across systems, request categories and access types"},
+      {"lines": [418, 440], "quote": "Improvements in safeguards have been highly uneven", "grade": 2, "note": "Figure 14: three comparisons of expert time; the second and third panels carry a copied '+10x' label"},
+      {"lines": [444, 454], "quote": "More capable models do not necessarily have better safeguards.", "grade": 2, "note": "capability explains little of robustness; R or R squared = 0.097, printed both ways"},
+      {"lines": [458, 462], "quote": "Safeguards won't prevent all AI misuse, but they may help maintain a crucial gap", "grade": 1, "note": "why the effort measure matters: the adaptation buffer"},
+      {"lines": [372, 376], "quote": "As AI capabilities continue to advance across domains, malicious actors may increasingly attempt to", "grade": 1, "note": "what safeguards are and the types"},
+      {"lines": [751, 751], "quote": "In some cases, this access is ahead of public release or with different safeguards", "grade": 1, "note": "tested versions may differ from public ones"},
+      {"lines": [854, 854], "quote": "Safeguards: Technical measures implemented by AI companies to prevent users from eliciting harmful information", "grade": 1, "note": "glossary: company-side technical measures only"},
+      {"lines": [868, 868], "quote": "Universal jailbreak: A single jailbreaking technique that works reliably across a range of AI", "grade": 1, "note": "glossary scope differs slightly from the body's"}
+    ],
+    "the gap between open-weight and closed models, and safeguards on open-weight models": [
+      {"lines": [80, 82], "quote": "The performance gap between open and closed source models has narrowed over the past", "grade": 2, "note": "summary: four to eight months, 'according to external data'"},
+      {"lines": [410, 414], "quote": "Variation across access types", "grade": 2, "note": "why open-weight systems are hard to safeguard"},
+      {"lines": [684, 714], "quote": "Open-source models", "grade": 2, "note": "section 7: benefits, risks, the two lag estimates and their uncertainty"},
+      {"lines": [434, 440], "quote": "Safeguard variation across access types", "grade": 1, "note": "Figure 14's access panel"},
+      {"lines": [586, 590], "quote": "While scaling training compute boosts persuasiveness on its own, post-training techniques and", "grade": 1, "note": "small open models post-trained to rival larger ones, in persuasion"},
+      {"lines": [520, 520], "quote": "In fact, evidence exists that models can underperform subtly enough to fool automated monitoring", "grade": 1, "note": "induced sandbagging shown even on open-weight models several generations behind"},
+      {"lines": [147, 147], "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), which have developed rapidly in recent", "grade": 1, "note": "open models are tested 'where relevant'"},
+      {"lines": [820, 820], "quote": "Closed-source model: Proprietary AI model where the underlying code, model weights, and training data", "grade": 1, "note": "glossary"},
+      {"lines": [842, 842], "quote": "Open-source model: An AI model whose parameters, code, and training data are made freely", "grade": 1, "note": "glossary"}
+    ],
+    "limitations of the evaluations: do the reported capabilities underestimate or overstate real-world capability": [
+      {"lines": [738, 742], "quote": "Limitations", "grade": 2, "note": "both directions: ceilings may be underestimated; lab tasks may not generalise to real-world effectiveness"},
+      {"lines": [744, 752], "quote": "Data Presentation", "grade": 2, "note": "aggregated, unnamed models; dates are release dates; API access sometimes pre-release or with different safeguards; methods withheld"},
+      {"lines": [756, 761], "quote": "Uncertainty", "grade": 2, "note": "10 repeats; SEM over tasks, which treats tasks as a sample"},
+      {"lines": [174, 180], "quote": "Reading this report", "grade": 2, "note": "not a forecast; internal evaluations; best-so-far lines; may underestimate the ceiling"},
+      {"lines": [336, 340], "quote": "Enhanced access to tools, via better model scaffolding, consistently improves performance on our cyber", "grade": 2, "note": "the one quantified case of underestimation: nearly 10 points from scaffolding"},
+      {"lines": [506, 506], "quote": "While performance on RepliBench continues trending upwards, these evaluations are simplified versions of the", "grade": 2, "note": "the benchmark-to-world caveat for self-replication"},
+      {"lines": [216, 220], "quote": "Scaffolding techniques applied after deployment can further improve agentic capabilities.", "grade": 1, "note": "pre-deployment testing cannot see capability unlocked later"},
+      {"lines": [88, 88], "quote": "AI model performance is increasing rapidly on AlSI's cyber, autonomy, chemistry, and biology tasks.", "grade": 1, "note": "the milestone figures show 'representative subsets of our full suite'"},
+      {"lines": [162, 162], "quote": "We use several evaluation methodologies to assess AI capabilities. Not all are applied across", "grade": 1, "note": "not all methods in all domains"},
+      {"lines": [172, 172], "quote": "Not all methodologies are reflected in results shared in this report.", "grade": 1, "note": "the published results are a selection"}
+    ],
+    "persuasion and misinformation: do models change political beliefs": [
+      {"lines": [564, 620], "quote": "6.1 Political information-seeking and persuasion", "grade": 2, "note": "scaling and post-training raise persuasion; the information-dense strategy lowers accuracy; the real-world study finds no worse than search, with a stated open question"},
+      {"lines": [76, 78], "quote": "Early signs of AI's broader societal impacts are emerging.", "grade": 1, "note": "the summary gives only the capability half of the persuasion finding"}
+    ],
+    "emotional dependence on AI companions": [
+      {"lines": [624, 660], "quote": "6.2 Emotional dependence", "grade": 2, "note": "the survey (33%, 8%, 4%) and the service-outage study; no randomised trial result is reported here"},
+      {"lines": [76, 78], "quote": "Early signs of AI's broader societal impacts are emerging.", "grade": 1, "note": "summary: 'over a third of UK citizens'"},
+      {"lines": [170, 170], "quote": "Human-impact studies that evaluate how AI systems impact their users, such as randomised", "grade": 1, "note": "the method listed, with trials on emotional dependence"},
+      {"lines": [830, 830], "quote": "Human impact study: A study that evaluates how AI systems impact users, such as", "grade": 1, "note": "glossary"}
+    ],
+    "AI agents given execution authority in finance or critical sectors": [
+      {"lines": [662, 678], "quote": "6.3 Critical infrastructure", "grade": 2, "note": "the MCP-server analysis, five autonomy levels, and its limits (public listings; publisher claims not validated)"},
+      {"lines": [76, 78], "quote": "Early signs of AI's broader societal impacts are emerging.", "grade": 1, "note": "summary sentence on asset transfers"},
+      {"lines": [484, 490], "quote": "In controlled environments, AI models are increasingly exhibiting some of the capabilities required to", "grade": 1, "note": "the capability counterpart: obtaining compute and money, in a simplified benchmark"},
+      {"lines": [840, 840], "quote": "Model Context Protocol (MCP) server: An open-source framework for connecting AI applications to external", "grade": 1, "note": "glossary"}
+    ],
+    "how the report defines open-source and open-weight models": [
+      {"lines": [82, 82], "quote": "Proprietary models have historically maintained a lead over open-source models, whose code, parameters and", "grade": 2, "note": "first definition: code, parameters and training data"},
+      {"lines": [688, 688], "quote": "A model is open-source when its parameters, code, and training process are made freely", "grade": 2, "note": "second definition, contrasted with open-weight; training process, not data"},
+      {"lines": [842, 842], "quote": "Open-source model: An AI model whose parameters, code, and training data are made freely", "grade": 2, "note": "glossary: agrees with the first, differs from the second"},
+      {"lines": [412, 412], "quote": "Open-weight AI systems – where the weights are directly accessible – are particularly hard", "grade": 2, "note": "the only in-text use of open-weight, with its definition"},
+      {"lines": [686, 686], "quote": "Beyond improvements in proprietary models, open-source models, whose parameters and source code can be", "grade": 1, "note": "third formulation: parameters and source code"},
+      {"lines": [820, 820], "quote": "Closed-source model: Proprietary AI model where the underlying code, model weights, and training data", "grade": 1, "note": "glossary counterpart"}
+    ],
+    "models noticing they are being evaluated and behaving differently": [
+      {"lines": [546, 546], "quote": "While AI models can sandbag when instructed to do so, researchers have yet to", "grade": 2, "note": "holds the finding as a subordinate clause: 'in a few cases, models noticed they were being evaluated and acted differently'"},
+      {"lines": [518, 518], "quote": "Existing research demonstrates that AI models can sometimes tell the difference between testing and", "grade": 2, "note": "the existing-research claim, with footnote 21"},
+      {"lines": [526, 526], "quote": "21 Large Language Models Often Know When They Are Being Evaluated, 2025", "grade": 1, "note": "the cited paper"},
+      {"lines": [514, 514], "quote": "Building consensus around AI risks and designing appropriate mitigations depends on being able to", "grade": 1, "note": "why it matters: dangerous capabilities missed in evaluation"},
+      {"lines": [548, 548], "quote": "Similar external investigations have also failed to find any signs of sandbagging reasoning in", "grade": 1, "note": "the caveat that detection is by reasoning visible to a black-box monitor"}
+    ],
+    "AISI's mandate, access to models, and relationship with developers": [
+      {"lines": [58, 58], "quote": "The UK AI Security Institute (AISI) has conducted evaluations of frontier AI systems since", "grade": 2, "note": "scope and start date"},
+      {"lines": [137, 137], "quote": "Established in 2023, the AI Security Institute (AISI) is a government organisation dedicated to", "grade": 2, "note": "mission: equip governments with a scientific understanding of the risks"},
+      {"lines": [384, 384], "quote": "We've partnered with the top AI companies to stress-test their safeguards.", "grade": 2, "note": "the working relationship: AISI as attacker with developers' agreement"},
+      {"lines": [750, 751], "quote": "During our testing, we are granted API access to model checkpoints.", "grade": 2, "note": "what access is, and that it is sometimes pre-release or with different safeguards"},
+      {"lines": [176, 176], "quote": "Our work intends to illustrate high-level trends we've observed in AI progress, not benchmark or compare", "grade": 2, "note": "why models and developers are unnamed"},
+      {"lines": [372, 372], "quote": "As AI capabilities continue to advance across domains, malicious actors may increasingly attempt to", "grade": 1, "note": "'collaboration with frontier developers ... is a key aspect of AISI's work'"},
+      {"lines": [143, 143], "quote": "This report represents just a snapshot of AISI's wide-ranging efforts to improve our scientific", "grade": 1, "note": "the report is a selection of AISI's work"},
+      {"lines": [752, 752], "quote": "We have withheld information about our methodology for high-risk evaluation tasks to prevent", "grade": 1, "note": "what is withheld"}
+    ]
+  }
+}

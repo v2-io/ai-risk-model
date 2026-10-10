@@ -1,0 +1,7306 @@
+{
+ "meta": {
+  "key": "aisi-2025-frontier",
+  "canonical_sha256": "0677c83401493822dbf2ecbf9893acdddb6e17583a11b928b32c3705cf1af652",
+  "repo_sha": "e0e702550a81994afd9ab7878fea57c71d5cf5a5",
+  "judge": "Claude Sonnet 5.5, the aisi-2025-frontier source expert (a fork of the expert session expert-aisi-2025-frontier-sonnet), stage 1 of gold round 1",
+  "date": "2026-10-10",
+  "commands": [
+   "bin/source-search hybrid -n 20 QUERY aisi-2025-frontier",
+   "bin/source-search outline QUERY aisi-2025-frontier --lines 60 (--text read; JSON kept)",
+   "bin/source-search lexical TERM aisi-2025-frontier --text (the term queries only, as a check)"
+  ],
+  "how": "Items are the tool's own passages (src.passages, ord), in the order they should have come, with the grade from stage 1 (the highest grade of any judged stretch that overlaps the passage). The order is: the 'order' override where I gave one, then grade, then the order I listed the stretches in stage 1 (roughly importance, not strictly). shown_rank is the hybrid rank, null if not in the top 20. For the outline, 'opened' says whether any opened (▸) range overlaps the passage. 'noise' lists hybrid ranks, or outline ranges, holding no graded passage; passages that are relevant but weren't graded (listed per query in overrides.json as ok) aren't counted as noise. 'banner' is the outline's own line about whether anything answers the query. A passage inside a graded section counts as graded even when it is not worth reading on its own (a figure's 'Source:' line, say); I dropped the two clearest cases, per overrides.json.",
+  "passages": {
+   "0": [
+    23,
+    52
+   ],
+   "1": [
+    58,
+    60
+   ],
+   "2": [
+    62,
+    62
+   ],
+   "3": [
+    64,
+    64
+   ],
+   "4": [
+    68,
+    68
+   ],
+   "5": [
+    74,
+    78
+   ],
+   "6": [
+    80,
+    82
+   ],
+   "7": [
+    88,
+    88
+   ],
+   "8": [
+    92,
+    92
+   ],
+   "9": [
+    100,
+    102
+   ],
+   "10": [
+    106,
+    110
+   ],
+   "11": [
+    116,
+    129
+   ],
+   "12": [
+    135,
+    137
+   ],
+   "13": [
+    141,
+    143
+   ],
+   "14": [
+    147,
+    155
+   ],
+   "15": [
+    156,
+    170
+   ],
+   "16": [
+    172,
+    172
+   ],
+   "17": [
+    176,
+    180
+   ],
+   "18": [
+    186,
+    190
+   ],
+   "19": [
+    196,
+    204
+   ],
+   "20": [
+    206,
+    212
+   ],
+   "21": [
+    218,
+    226
+   ],
+   "22": [
+    232,
+    234
+   ],
+   "23": [
+    236,
+    238
+   ],
+   "24": [
+    244,
+    250
+   ],
+   "25": [
+    252,
+    260
+   ],
+   "26": [
+    262,
+    266
+   ],
+   "27": [
+    272,
+    278
+   ],
+   "28": [
+    280,
+    284
+   ],
+   "29": [
+    286,
+    292
+   ],
+   "30": [
+    294,
+    296
+   ],
+   "31": [
+    304,
+    304
+   ],
+   "32": [
+    306,
+    308
+   ],
+   "33": [
+    314,
+    320
+   ],
+   "34": [
+    326,
+    336
+   ],
+   "35": [
+    338,
+    342
+   ],
+   "36": [
+    346,
+    356
+   ],
+   "37": [
+    358,
+    358
+   ],
+   "38": [
+    362,
+    366
+   ],
+   "39": [
+    372,
+    376
+   ],
+   "40": [
+    378,
+    378
+   ],
+   "41": [
+    384,
+    384
+   ],
+   "42": [
+    386,
+    392
+   ],
+   "43": [
+    396,
+    400
+   ],
+   "44": [
+    404,
+    404
+   ],
+   "45": [
+    408,
+    408
+   ],
+   "46": [
+    412,
+    414
+   ],
+   "47": [
+    420,
+    420
+   ],
+   "48": [
+    424,
+    424
+   ],
+   "49": [
+    430,
+    430
+   ],
+   "50": [
+    436,
+    440
+   ],
+   "51": [
+    446,
+    450
+   ],
+   "52": [
+    454,
+    460
+   ],
+   "53": [
+    462,
+    466
+   ],
+   "54": [
+    474,
+    478
+   ],
+   "55": [
+    484,
+    500
+   ],
+   "56": [
+    504,
+    506
+   ],
+   "57": [
+    514,
+    518
+   ],
+   "58": [
+    520,
+    534
+   ],
+   "59": [
+    538,
+    542
+   ],
+   "60": [
+    546,
+    550
+   ],
+   "61": [
+    558,
+    560
+   ],
+   "62": [
+    566,
+    570
+   ],
+   "63": [
+    574,
+    588
+   ],
+   "64": [
+    590,
+    590
+   ],
+   "65": [
+    598,
+    612
+   ],
+   "66": [
+    614,
+    620
+   ],
+   "67": [
+    626,
+    650
+   ],
+   "68": [
+    654,
+    658
+   ],
+   "69": [
+    664,
+    672
+   ],
+   "70": [
+    674,
+    680
+   ],
+   "71": [
+    686,
+    690
+   ],
+   "72": [
+    692,
+    700
+   ],
+   "73": [
+    702,
+    720
+   ],
+   "74": [
+    726,
+    728
+   ],
+   "75": [
+    730,
+    732
+   ],
+   "76": [
+    740,
+    742
+   ],
+   "77": [
+    746,
+    752
+   ],
+   "78": [
+    758,
+    761
+   ],
+   "79": [
+    765,
+    779
+   ],
+   "80": [
+    780,
+    794
+   ],
+   "81": [
+    795,
+    804
+   ],
+   "82": [
+    814,
+    814
+   ],
+   "83": [
+    816,
+    816
+   ],
+   "84": [
+    818,
+    818
+   ],
+   "85": [
+    820,
+    820
+   ],
+   "86": [
+    822,
+    822
+   ],
+   "87": [
+    824,
+    824
+   ],
+   "88": [
+    826,
+    826
+   ],
+   "89": [
+    828,
+    828
+   ],
+   "90": [
+    830,
+    830
+   ],
+   "91": [
+    832,
+    832
+   ],
+   "92": [
+    834,
+    834
+   ],
+   "93": [
+    836,
+    836
+   ],
+   "94": [
+    838,
+    838
+   ],
+   "95": [
+    840,
+    840
+   ],
+   "96": [
+    842,
+    842
+   ],
+   "97": [
+    844,
+    844
+   ],
+   "98": [
+    846,
+    846
+   ],
+   "99": [
+    850,
+    850
+   ],
+   "100": [
+    852,
+    852
+   ],
+   "101": [
+    854,
+    854
+   ],
+   "102": [
+    856,
+    856
+   ],
+   "103": [
+    858,
+    858
+   ],
+   "104": [
+    860,
+    860
+   ],
+   "105": [
+    862,
+    862
+   ],
+   "106": [
+    863,
+    863
+   ],
+   "107": [
+    864,
+    864
+   ],
+   "108": [
+    866,
+    866
+   ],
+   "109": [
+    868,
+    868
+   ],
+   "110": [
+    870,
+    870
+   ],
+   "111": [
+    876,
+    878
+   ]
+  }
+ },
+ "entries": [
+  {
+   "query": "hazard",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 10,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "Models can now complete hourlong software tasks with >40% success, ver",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 15,
+     "lines": [
+      156,
+      170
+     ],
+     "quote": "- Societal impacts: We research emerging societal risks from AI system",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 110,
+     "lines": [
+      870,
+      870
+     ],
+     "quote": "Wet lab: A laboratory designed for the handling of chemicals or other ",
+     "grade": 1,
+     "shown_rank": 1
+    }
+   ],
+   "noise": [
+    4,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    110,
+    10,
+    54,
+    39,
+    100,
+    101,
+    111,
+    53,
+    57,
+    92,
+    102,
+    48,
+    41,
+    22,
+    42,
+    47,
+    40,
+    50,
+    52,
+    49
+   ],
+   "note": "The report has no hazard concept; its only literal uses are 'hazardous capabilities' (the Figure 1.3 caption, inside p10) and 'wet hazards' (glossary, p110). Hybrid has both at ranks 1-2, but rank 1 is the laboratory sense, and the rest is a sweep of definitional glossary entries and risk-neighbours. `lexical hazard` gives the two occurrences exactly and shows there are no others, which is the answer an agent needs."
+  },
+  {
+   "query": "hazard",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 10,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "Models can now complete hourlong software tasks with >40% success, ver",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 15,
+     "lines": [
+      156,
+      170
+     ],
+     "quote": "- Societal impacts: We research emerging societal risks from AI system",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 110,
+     "lines": [
+      870,
+      870
+     ],
+     "quote": "Wet lab: A laboratory designed for the handling of chemicals or other ",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L23–52",
+    "L74–78",
+    "L135–137",
+    "L141–143",
+    "L232–234",
+    "L294–296",
+    "L314–320",
+    "L372–378",
+    "L384–400",
+    "L404–404",
+    "L408–408",
+    "L412–414",
+    "L420–420",
+    "L424–424",
+    "L430–430",
+    "L436–440",
+    "L446–450",
+    "L454–466",
+    "L546–550",
+    "L702–720",
+    "L726–732",
+    "L834–834",
+    "L844–844",
+    "L863–863"
+   ],
+   "opened_ranges": [
+    [
+     23,
+     52
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     232,
+     234
+    ],
+    [
+     294,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     372,
+     378
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     404,
+     404
+    ],
+    [
+     408,
+     408
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     420,
+     420
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     430,
+     430
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     702,
+     720
+    ],
+    [
+     726,
+     732
+    ],
+    [
+     834,
+     834
+    ],
+    [
+     844,
+     844
+    ],
+    [
+     852,
+     856
+    ],
+    [
+     863,
+     863
+    ],
+    [
+     868,
+     878
+    ]
+   ],
+   "source_lines_in_opened_ranges": 190,
+   "banner": "Nothing in scope seems to answer this: no passage holds all of the query's words, and the nearest passage by meaning is ",
+   "note": "The banner says nothing in scope seems to answer, which is defensible for the concept but not for the word: two inflected forms exist and the test appears to want the exact word. One of its opened ranges is the contributors list (L23-52, 30 source lines of names)."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 13,
+     "lines": [
+      141,
+      143
+     ],
+     "quote": "Our testing shows an extraordinary pace of development. We've found th",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    54,
+    33,
+    57,
+    10,
+    61,
+    15,
+    17,
+    73,
+    39,
+    72,
+    77,
+    12,
+    60,
+    74,
+    88,
+    42,
+    100,
+    5,
+    22,
+    70
+   ],
+   "note": "Rank 1 is the right passage (p54, the only use of 'catastrophic'). It carries the worst-case sentence and 'severity ... warrants close attention'. The rest is risk-vocabulary neighbours; p13 (the 'extraordinary pace ... AGI' paragraph) is not in the top 20."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 13,
+     "lines": [
+      141,
+      143
+     ],
+     "quote": "Our testing shows an extraordinary pace of development. We've found th",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L68–68",
+    "L74–78",
+    "L106–110",
+    "L135–137",
+    "L156–170",
+    "L176–180",
+    "L232–234",
+    "L280–296",
+    "L314–320",
+    "L358–358",
+    "L362–366",
+    "L372–376",
+    "L384–392",
+    "L436–440",
+    "L454–466",
+    "L514–518",
+    "L546–550",
+    "L558–560",
+    "L674–680",
+    "L692–720",
+    "L726–728",
+    "L746–752",
+    "L826–826",
+    "L834–834",
+    "L852–854",
+    "L860–860",
+    "L870–878"
+   ],
+   "opened_ranges": [
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     156,
+     170
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     232,
+     234
+    ],
+    [
+     280,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     358,
+     358
+    ],
+    [
+     362,
+     366
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     384,
+     392
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     514,
+     518
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     558,
+     560
+    ],
+    [
+     674,
+     680
+    ],
+    [
+     692,
+     720
+    ],
+    [
+     726,
+     728
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     826,
+     826
+    ],
+    [
+     834,
+     834
+    ],
+    [
+     852,
+     854
+    ],
+    [
+     860,
+     860
+    ],
+    [
+     870,
+     878
+    ]
+   ],
+   "source_lines_in_opened_ranges": 178,
+   "banner": "Nothing in scope seems to answer this: no passage holds all of the query's words, and the nearest passage by meaning is ",
+   "note": "Opened p54, but its banner says no passage holds all of the query's words. p54 holds 'catastrophic' and 'risks'; the plural seems to defeat the test. An agent trusting the banner would stop one step short of the answer."
+  },
+  {
+   "query": "loss of control",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 55,
+     "lines": [
+      484,
+      500
+     ],
+     "quote": "In controlled environments, AI models are increasingly exhibiting some",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 57,
+     "lines": [
+      514,
+      518
+     ],
+     "quote": "Building consensus around AI risks and designing appropriate mitigatio",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 59,
+     "lines": [
+      538,
+      542
+     ],
+     "quote": "For small models, we found that deception probes work well across task",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 60,
+     "lines": [
+      546,
+      550
+     ],
+     "quote": "While AI models can sandbag when instructed to do so, researchers have",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 10,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "Models can now complete hourlong software tasks with >40% success, ver",
+     "grade": 1,
+     "shown_rank": 20
+    },
+    {
+     "passage": 75,
+     "lines": [
+      730,
+      732
+     ],
+     "quote": "As AI systems are increasingly integrated into society, the challenge ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    18,
+    19
+   ],
+   "top20": [
+    54,
+    14,
+    5,
+    57,
+    58,
+    100,
+    55,
+    76,
+    71,
+    90,
+    91,
+    62,
+    15,
+    92,
+    68,
+    102,
+    6,
+    42,
+    67,
+    10
+   ],
+   "note": "Found 6 of 9 must-read passages. The three it missed carry the section's findings and none of the query's words: p56 ('would need to complete several actions in sequence while remaining undetected'), p59 (detection results) and p60 (no unprompted sandbagging detected). Section 5 is the answer; passage ranking cannot know section membership."
+  },
+  {
+   "query": "loss of control",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      484,
+      500
+     ],
+     "quote": "In controlled environments, AI models are increasingly exhibiting some",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 57,
+     "lines": [
+      514,
+      518
+     ],
+     "quote": "Building consensus around AI risks and designing appropriate mitigatio",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 59,
+     "lines": [
+      538,
+      542
+     ],
+     "quote": "For small models, we found that deception probes work well across task",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 60,
+     "lines": [
+      546,
+      550
+     ],
+     "quote": "While AI models can sandbag when instructed to do so, researchers have",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 10,
+     "lines": [
+      106,
+      110
+     ],
+     "quote": "Models can now complete hourlong software tasks with >40% success, ver",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 75,
+     "lines": [
+      730,
+      732
+     ],
+     "quote": "As AI systems are increasingly integrated into society, the challenge ",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L116–129",
+    "L141–143",
+    "L186–190",
+    "L196–204",
+    "L384–400",
+    "L404–404",
+    "L412–414",
+    "L424–424",
+    "L436–440",
+    "L462–466",
+    "L566–570",
+    "L626–658",
+    "L686–690",
+    "L740–742",
+    "L816–816",
+    "L830–834",
+    "L852–852",
+    "L868–868"
+   ],
+   "opened_ranges": [
+    [
+     74,
+     82
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     116,
+     129
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     196,
+     204
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     404,
+     404
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     462,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     506
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     626,
+     658
+    ],
+    [
+     686,
+     690
+    ],
+    [
+     726,
+     732
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     816,
+     816
+    ],
+    [
+     830,
+     834
+    ],
+    [
+     852,
+     852
+    ],
+    [
+     856,
+     856
+    ],
+    [
+     868,
+     868
+    ]
+   ],
+   "source_lines_in_opened_ranges": 225,
+   "banner": null,
+   "note": "All nine opened, because Section 5 is a section with hits and the census says so. It also opened the contents page (L116-129, 14 source lines) and passages from the Agents and Introduction sections that answer nothing."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 2,
+     "shown_rank": 20
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 1,
+     "shown_rank": 8
+    }
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "top20": [
+    18,
+    83,
+    19,
+    30,
+    42,
+    46,
+    52,
+    56,
+    54,
+    41,
+    51,
+    62,
+    36,
+    34,
+    2,
+    75,
+    13,
+    15,
+    4,
+    5
+   ],
+   "note": "A natural-language question whose key words ('shut down', 'correct') are not in the document: the first seven results hold nothing I graded (matches on 'ai', 'can', 'systems', 'humans'). The two must-read passages are at ranks 9 and 20. The report never says shut down or correct; its words are 'evade human control' and 'reliably directed towards human goals'."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L58–64",
+    "L68–68",
+    "L135–137",
+    "L141–143",
+    "L186–190",
+    "L196–212",
+    "L262–284",
+    "L294–296",
+    "L314–320",
+    "L326–336",
+    "L346–356",
+    "L372–376",
+    "L384–400",
+    "L412–414",
+    "L446–450",
+    "L454–466",
+    "L514–534",
+    "L546–550",
+    "L566–570",
+    "L614–620",
+    "L626–650",
+    "L664–672",
+    "L692–700",
+    "L730–732",
+    "L814–816"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     64
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     196,
+     212
+    ],
+    [
+     262,
+     284
+    ],
+    [
+     294,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     336
+    ],
+    [
+     346,
+     356
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     504,
+     506
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     614,
+     620
+    ],
+    [
+     626,
+     650
+    ],
+    [
+     664,
+     672
+    ],
+    [
+     692,
+     700
+    ],
+    [
+     730,
+     732
+    ],
+    [
+     814,
+     816
+    ]
+   ],
+   "source_lines_in_opened_ranges": 258,
+   "banner": null,
+   "note": "Opened both must-read passages; nearest-meaning distance 0.40, so no unanswered banner. The agent is not told the wording differs from the question."
+  },
+  {
+   "query": "misalignment",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 75,
+     "lines": [
+      730,
+      732
+     ],
+     "quote": "As AI systems are increasingly integrated into society, the challenge ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    42,
+    54,
+    43,
+    46,
+    57,
+    102,
+    5,
+    59,
+    65,
+    58,
+    78,
+    50,
+    45,
+    56,
+    47,
+    49,
+    92,
+    62,
+    36,
+    17
+   ],
+   "note": "The word is not in the document; hybrid returns 20 results anyway. Rank 2 is p54, the report's equivalent ('models themselves behaving in unintended or unforeseen ways'). Nothing in the output says no passage holds the word, except that most results list no matched words."
+  },
+  {
+   "query": "misalignment",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 75,
+     "lines": [
+      730,
+      732
+     ],
+     "quote": "As AI systems are increasingly integrated into society, the challenge ",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L68–68",
+    "L176–180",
+    "L262–266",
+    "L306–308",
+    "L346–358",
+    "L362–366",
+    "L372–376",
+    "L384–400",
+    "L408–408",
+    "L412–414",
+    "L420–420",
+    "L430–430",
+    "L436–440",
+    "L446–450",
+    "L462–466",
+    "L504–506",
+    "L514–542",
+    "L566–570",
+    "L598–612",
+    "L692–720",
+    "L758–761",
+    "L824–824",
+    "L828–828",
+    "L834–834",
+    "L850–852",
+    "L856–856"
+   ],
+   "opened_ranges": [
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     262,
+     266
+    ],
+    [
+     306,
+     308
+    ],
+    [
+     346,
+     358
+    ],
+    [
+     362,
+     366
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     408,
+     408
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     420,
+     420
+    ],
+    [
+     430,
+     430
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     462,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     504,
+     506
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     598,
+     612
+    ],
+    [
+     692,
+     720
+    ],
+    [
+     758,
+     761
+    ],
+    [
+     824,
+     824
+    ],
+    [
+     828,
+     828
+    ],
+    [
+     834,
+     834
+    ],
+    [
+     850,
+     852
+    ],
+    [
+     856,
+     856
+    ]
+   ],
+   "source_lines_in_opened_ranges": 177,
+   "banner": "No passage in scope holds any of the query's words, so every hit is by meaning alone, and the ranks are relative: an off",
+   "note": "Says plainly: 'No passage in scope holds any of the query's words, so every hit is by meaning alone'. That is the right statement and the right amount of it. p54 and p5 opened."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "hybrid",
+   "items": [],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    0,
+    41,
+    62,
+    50,
+    49,
+    42,
+    58,
+    66,
+    92,
+    48,
+    43,
+    87,
+    40,
+    59,
+    60,
+    47,
+    25,
+    46,
+    20,
+    110
+   ],
+   "note": "Absent from the document. Rank 1 is the contributors list (names run together), then passages with no matched words. The JSON has no 'nothing here' signal."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "outline",
+   "items": [],
+   "noise": [
+    "L23–52",
+    "L68–68",
+    "L74–78",
+    "L135–137",
+    "L206–212",
+    "L252–260",
+    "L306–308",
+    "L314–320",
+    "L338–356",
+    "L372–378",
+    "L384–400",
+    "L404–404",
+    "L408–408",
+    "L412–414",
+    "L420–420",
+    "L424–424",
+    "L430–430",
+    "L436–440",
+    "L514–542",
+    "L546–550",
+    "L566–570",
+    "L598–620",
+    "L692–720",
+    "L824–824",
+    "L834–834",
+    "L864–864",
+    "L868–878"
+   ],
+   "opened_ranges": [
+    [
+     23,
+     52
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     206,
+     212
+    ],
+    [
+     252,
+     260
+    ],
+    [
+     306,
+     308
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     338,
+     356
+    ],
+    [
+     372,
+     378
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     404,
+     404
+    ],
+    [
+     408,
+     408
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     420,
+     420
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     430,
+     430
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     598,
+     620
+    ],
+    [
+     692,
+     720
+    ],
+    [
+     824,
+     824
+    ],
+    [
+     834,
+     834
+    ],
+    [
+     864,
+     864
+    ],
+    [
+     868,
+     878
+    ]
+   ],
+   "source_lines_in_opened_ranges": 226,
+   "banner": "Nothing in scope seems to answer this: no passage holds all of the query's words, and the nearest passage by meaning is ",
+   "note": "The banner is right ('Nothing in scope seems to answer this'). It then opens the contributors list (L23-52, 30 source lines), the nearest thing by meaning, as its first range."
+  },
+  {
+   "query": "serious incident",
+   "tool": "hybrid",
+   "items": [],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    54,
+    4,
+    42,
+    59,
+    50,
+    41,
+    100,
+    67,
+    44,
+    68,
+    108,
+    49,
+    107,
+    110,
+    48,
+    60,
+    30,
+    51,
+    102,
+    53
+   ],
+   "note": "Absent. Rank 1 is 'This possibility is taken seriously by many experts' (a stem match on serious/seriously). A reader of the quote alone could take it for a hit."
+  },
+  {
+   "query": "serious incident",
+   "tool": "outline",
+   "items": [],
+   "noise": [
+    "L68–68",
+    "L74–78",
+    "L141–143",
+    "L236–238",
+    "L286–296",
+    "L372–376",
+    "L384–400",
+    "L404–404",
+    "L408–408",
+    "L412–414",
+    "L424–424",
+    "L430–430",
+    "L436–440",
+    "L446–450",
+    "L462–466",
+    "L474–478",
+    "L514–542",
+    "L546–550",
+    "L566–570",
+    "L626–658",
+    "L674–680",
+    "L730–732",
+    "L824–824",
+    "L830–830",
+    "L834–834",
+    "L850–852",
+    "L856–856",
+    "L863–878"
+   ],
+   "opened_ranges": [
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     236,
+     238
+    ],
+    [
+     286,
+     296
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     404,
+     404
+    ],
+    [
+     408,
+     408
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     430,
+     430
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     462,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     626,
+     658
+    ],
+    [
+     674,
+     680
+    ],
+    [
+     730,
+     732
+    ],
+    [
+     824,
+     824
+    ],
+    [
+     830,
+     830
+    ],
+    [
+     834,
+     834
+    ],
+    [
+     850,
+     852
+    ],
+    [
+     856,
+     856
+    ],
+    [
+     863,
+     878
+    ]
+   ],
+   "source_lines_in_opened_ranges": 177,
+   "banner": "Nothing in scope seems to answer this: no passage holds all of the query's words, and the nearest passage by meaning is ",
+   "note": "The banner is right. The ranges it opened are the nearest material by meaning (safeguards, the societal section), none of it about incidents."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 75,
+     "lines": [
+      730,
+      732
+     ],
+     "quote": "As AI systems are increasingly integrated into society, the challenge ",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 1,
+     "shown_rank": 2
+    }
+   ],
+   "noise": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    75,
+    77,
+    48,
+    55,
+    14,
+    73,
+    1,
+    36,
+    50,
+    63,
+    17,
+    30,
+    39,
+    12,
+    93,
+    21,
+    13,
+    28,
+    70,
+    71
+   ],
+   "note": "The report imposes or describes no duties on developers. Ranks 1-2 are the two passages I graded as helpful (the needs list; the pre-release access statement); the rest match on 'frontier', 'models', 'report'. The true answer is 'none stated', which this ranking cannot say."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 75,
+     "lines": [
+      730,
+      732
+     ],
+     "quote": "As AI systems are increasingly integrated into society, the challenge ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L58–60",
+    "L106–110",
+    "L135–137",
+    "L141–143",
+    "L147–155",
+    "L172–172",
+    "L176–180",
+    "L218–226",
+    "L280–284",
+    "L294–296",
+    "L314–320",
+    "L338–356",
+    "L424–424",
+    "L436–440",
+    "L446–450",
+    "L454–466",
+    "L484–500",
+    "L514–534",
+    "L574–588",
+    "L664–680",
+    "L686–690",
+    "L702–720",
+    "L836–836"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     60
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     155
+    ],
+    [
+     172,
+     172
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     280,
+     284
+    ],
+    [
+     294,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     338,
+     356
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     574,
+     588
+    ],
+    [
+     664,
+     680
+    ],
+    [
+     686,
+     690
+    ],
+    [
+     702,
+     720
+    ],
+    [
+     726,
+     732
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     836,
+     836
+    ]
+   ],
+   "source_lines_in_opened_ranges": 210,
+   "banner": null,
+   "note": "No banner, though nothing answers the question as asked; it opened ranges across the report on the strength of 'frontier', 'models', 'report'."
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 57,
+     "lines": [
+      514,
+      518
+     ],
+     "quote": "Building consensus around AI risks and designing appropriate mitigatio",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 59,
+     "lines": [
+      538,
+      542
+     ],
+     "quote": "For small models, we found that deception probes work well across task",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 60,
+     "lines": [
+      546,
+      550
+     ],
+     "quote": "While AI models can sandbag when instructed to do so, researchers have",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 55,
+     "lines": [
+      484,
+      500
+     ],
+     "quote": "In controlled environments, AI models are increasingly exhibiting some",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 51,
+     "lines": [
+      446,
+      450
+     ],
+     "quote": "We might have expected that more generally capable systems would be mo",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 87,
+     "lines": [
+      824,
+      824
+     ],
+     "quote": "**Deception probes:** Small machine learning models trained to recogni",
+     "grade": 1,
+     "shown_rank": 10
+    },
+    {
+     "passage": 102,
+     "lines": [
+      856,
+      856
+     ],
+     "quote": "**Sandbagging:** A phenomenon where AI models underperform during eval",
+     "grade": 1,
+     "shown_rank": 9
+    }
+   ],
+   "noise": [
+    7,
+    8,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    57,
+    5,
+    58,
+    60,
+    54,
+    59,
+    46,
+    71,
+    102,
+    87,
+    76,
+    65,
+    41,
+    26,
+    31,
+    10,
+    30,
+    34,
+    2,
+    63
+   ],
+   "note": "All five must-read passages in the top 6, in a good order. The self-replication passages (p55, p56), which I graded helpful, are not in the top 20: they hold the 'evade' capability evidence under a heading that does not use these words."
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 57,
+     "lines": [
+      514,
+      518
+     ],
+     "quote": "Building consensus around AI risks and designing appropriate mitigatio",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 59,
+     "lines": [
+      538,
+      542
+     ],
+     "quote": "For small models, we found that deception probes work well across task",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 60,
+     "lines": [
+      546,
+      550
+     ],
+     "quote": "While AI models can sandbag when instructed to do so, researchers have",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      484,
+      500
+     ],
+     "quote": "In controlled environments, AI models are increasingly exhibiting some",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 51,
+     "lines": [
+      446,
+      450
+     ],
+     "quote": "We might have expected that more generally capable systems would be mo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 87,
+     "lines": [
+      824,
+      824
+     ],
+     "quote": "**Deception probes:** Small machine learning models trained to recogni",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 102,
+     "lines": [
+      856,
+      856
+     ],
+     "quote": "**Sandbagging:** A phenomenon where AI models underperform during eval",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L62–62",
+    "L68–68",
+    "L106–110",
+    "L147–155",
+    "L186–190",
+    "L196–204",
+    "L244–250",
+    "L262–278",
+    "L286–296",
+    "L304–308",
+    "L326–336",
+    "L346–358",
+    "L384–384",
+    "L396–400",
+    "L412–414",
+    "L436–440",
+    "L566–570",
+    "L574–590",
+    "L598–620",
+    "L686–690",
+    "L740–742"
+   ],
+   "opened_ranges": [
+    [
+     62,
+     62
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     82
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     147,
+     155
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     196,
+     204
+    ],
+    [
+     244,
+     250
+    ],
+    [
+     262,
+     278
+    ],
+    [
+     286,
+     296
+    ],
+    [
+     304,
+     308
+    ],
+    [
+     326,
+     336
+    ],
+    [
+     346,
+     358
+    ],
+    [
+     384,
+     384
+    ],
+    [
+     396,
+     400
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     574,
+     590
+    ],
+    [
+     598,
+     620
+    ],
+    [
+     686,
+     690
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     824,
+     824
+    ],
+    [
+     856,
+     856
+    ]
+   ],
+   "source_lines_in_opened_ranges": 216,
+   "banner": null,
+   "note": "All five must-read opened, in the 5.2 range. 5.1 Self-replication is not shown at all: Section 5's line says '+1 section not shown (no hits)'. True of the words, not of the sense, since that is where the 'evade' capability evidence is; an agent told 'no hits' would not look."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 2,
+     "lines": [
+      62,
+      62
+     ],
+     "quote": "See FIGURES 1.1-1.3. In the cyber domain, AI models can now complete a",
+     "grade": 2,
+     "shown_rank": 10
+    },
+    {
+     "passage": 34,
+     "lines": [
+      326,
+      336
+     ],
+     "quote": "AI cyber capabilities are inherently dual-use; they can be used for bo",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 9,
+     "lines": [
+      100,
+      102
+     ],
+     "quote": "Cyber expert-level tasks (typically requiring 10+ years of experience)",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 23,
+     "lines": [
+      236,
+      238
+     ],
+     "quote": "Progress in the **cyber** domain is also significant. All systems are ",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 35,
+     "lines": [
+      338,
+      342
+     ],
+     "quote": "To investigate the upper limit of cyber capabilities, we enhanced the ",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 19,
+     "lines": [
+      196,
+      204
+     ],
+     "quote": "We have observed how models form and execute plans, use external tools",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 20,
+     "lines": [
+      206,
+      212
+     ],
+     "quote": "While doubling times may not map exactly to other domains, they are si",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 36,
+     "lines": [
+      346,
+      356
+     ],
+     "quote": "FIGURE 11: Performance difference on AISI's cyber task set between an ",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 37,
+     "lines": [
+      358,
+      358
+     ],
+     "quote": "FIGURE 12 shows results from the first three of nine total flags in on",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 38,
+     "lines": [
+      362,
+      366
+     ],
+     "quote": "Source: UK AI Security Institute ![](msc/aisi-2025-frontier/_page_23_F",
+     "grade": 2,
+     "shown_rank": 11
+    },
+    {
+     "passage": 105,
+     "lines": [
+      862,
+      862
+     ],
+     "quote": "- Technical non-expert: A novice with limited or no knowledge in the r",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 106,
+     "lines": [
+      863,
+      863
+     ],
+     "quote": "- **Apprentice:** An individual with 1-3 years of cybersecurity profes",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 107,
+     "lines": [
+      864,
+      864
+     ],
+     "quote": "- **Practitioner:** An individual with 3-10 years of professional cybe",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 108,
+     "lines": [
+      866,
+      866
+     ],
+     "quote": "**Expert:** Veterans in the field with at least 10 years' experience, ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 104,
+     "lines": [
+      860,
+      860
+     ],
+     "quote": "**Task difficulty level (TDL):** Our framework for assessing the diffi",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "shown_rank": 5
+    },
+    {
+     "passage": 86,
+     "lines": [
+      822,
+      822
+     ],
+     "quote": "Cyber range: Virtual environments for testing the cyber capabilities o",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 76,
+     "lines": [
+      740,
+      742
+     ],
+     "quote": "- Model performance in controlled, task-based settings (which act as a",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    7,
+    8,
+    9,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    35,
+    86,
+    34,
+    23,
+    14,
+    36,
+    55,
+    48,
+    21,
+    2,
+    38,
+    50,
+    1,
+    22,
+    63,
+    39,
+    52,
+    12,
+    30,
+    73
+   ],
+   "note": "Found 6 of 15 must-read. Missed: the cyber time-horizon sentences (L204-206), which sit in the Agents section under a software-engineering heading; the milestone line (L100-102); the range text (L358); and the five glossary entries defining the task difficulty levels that give 'apprentice' and 'expert' their meaning. Ranks 2 and 5 are a glossary line ('Cyber range') and the domain list."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 2,
+     "lines": [
+      62,
+      62
+     ],
+     "quote": "See FIGURES 1.1-1.3. In the cyber domain, AI models can now complete a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 34,
+     "lines": [
+      326,
+      336
+     ],
+     "quote": "AI cyber capabilities are inherently dual-use; they can be used for bo",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 9,
+     "lines": [
+      100,
+      102
+     ],
+     "quote": "Cyber expert-level tasks (typically requiring 10+ years of experience)",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 23,
+     "lines": [
+      236,
+      238
+     ],
+     "quote": "Progress in the **cyber** domain is also significant. All systems are ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 35,
+     "lines": [
+      338,
+      342
+     ],
+     "quote": "To investigate the upper limit of cyber capabilities, we enhanced the ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 19,
+     "lines": [
+      196,
+      204
+     ],
+     "quote": "We have observed how models form and execute plans, use external tools",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 20,
+     "lines": [
+      206,
+      212
+     ],
+     "quote": "While doubling times may not map exactly to other domains, they are si",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 36,
+     "lines": [
+      346,
+      356
+     ],
+     "quote": "FIGURE 11: Performance difference on AISI's cyber task set between an ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 37,
+     "lines": [
+      358,
+      358
+     ],
+     "quote": "FIGURE 12 shows results from the first three of nine total flags in on",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 38,
+     "lines": [
+      362,
+      366
+     ],
+     "quote": "Source: UK AI Security Institute ![](msc/aisi-2025-frontier/_page_23_F",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 105,
+     "lines": [
+      862,
+      862
+     ],
+     "quote": "- Technical non-expert: A novice with limited or no knowledge in the r",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 106,
+     "lines": [
+      863,
+      863
+     ],
+     "quote": "- **Apprentice:** An individual with 1-3 years of cybersecurity profes",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 107,
+     "lines": [
+      864,
+      864
+     ],
+     "quote": "- **Practitioner:** An individual with 3-10 years of professional cybe",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 108,
+     "lines": [
+      866,
+      866
+     ],
+     "quote": "**Expert:** Veterans in the field with at least 10 years' experience, ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 104,
+     "lines": [
+      860,
+      860
+     ],
+     "quote": "**Task difficulty level (TDL):** Our framework for assessing the diffi",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 86,
+     "lines": [
+      822,
+      822
+     ],
+     "quote": "Cyber range: Virtual environments for testing the cyber capabilities o",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 76,
+     "lines": [
+      740,
+      742
+     ],
+     "quote": "- Model performance in controlled, task-based settings (which act as a",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L74–78",
+    "L88–88",
+    "L106–110",
+    "L135–137",
+    "L218–226",
+    "L244–250",
+    "L280–284",
+    "L294–296",
+    "L314–320",
+    "L372–376",
+    "L412–414",
+    "L424–424",
+    "L436–440",
+    "L454–466",
+    "L474–478",
+    "L484–500",
+    "L514–534",
+    "L574–588",
+    "L702–720",
+    "L726–728"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     62
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     88,
+     88
+    ],
+    [
+     100,
+     102
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     147,
+     155
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     232,
+     238
+    ],
+    [
+     244,
+     250
+    ],
+    [
+     280,
+     284
+    ],
+    [
+     294,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     358
+    ],
+    [
+     362,
+     366
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     574,
+     588
+    ],
+    [
+     702,
+     720
+    ],
+    [
+     726,
+     728
+    ],
+    [
+     822,
+     822
+    ]
+   ],
+   "source_lines_in_opened_ranges": 220,
+   "banner": null,
+   "note": "Opened 8 of 15. It missed the same Agents-section sentences (the Agents section is shown only for scaffolding, with '+1 section not shown (1 near)') and the glossary tier entries ('+29 of its own not shown'). About 22 source lines went to four chemistry and biology passages for a cyber question. An agent would know something near was unread in Agents, but not that it was the answer's time axis."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 33,
+     "lines": [
+      314,
+      320
+     ],
+     "quote": "FIGURE 9: Frontier model performance over time on AISI's multimodal tr",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 76,
+     "lines": [
+      740,
+      742
+     ],
+     "quote": "- Model performance in controlled, task-based settings (which act as a",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 52,
+     "lines": [
+      454,
+      460
+     ],
+     "quote": "FIGURE 15: Comparing AI capability on GPQA (a standard capabilities be",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 53,
+     "lines": [
+      462,
+      466
+     ],
+     "quote": "However, strong defences on the most capable and widely used systems c",
+     "grade": 1,
+     "shown_rank": 3
+    }
+   ],
+   "noise": [
+    1,
+    5,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    15,
+    33,
+    53,
+    54,
+    61,
+    57,
+    10,
+    42,
+    28,
+    12,
+    17,
+    58,
+    67,
+    77,
+    74,
+    39,
+    73,
+    72,
+    56,
+    68
+   ],
+   "note": "The report decides no acceptability; its one criterion is 'relative to labs' own risk thresholds', inside p33, a passage whose first paragraph is a Figure 9 caption. It is at rank 2 and the anchor quote shows the sentence. Rank 1 is the domain list ('societal risks'). The helpful passages follow."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 33,
+     "lines": [
+      314,
+      320
+     ],
+     "quote": "FIGURE 9: Frontier model performance over time on AISI's multimodal tr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 54,
+     "lines": [
+      474,
+      478
+     ],
+     "quote": "Section 3 discusses how advanced AI might exacerbate risks stemming fr",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 76,
+     "lines": [
+      740,
+      742
+     ],
+     "quote": "- Model performance in controlled, task-based settings (which act as a",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 52,
+     "lines": [
+      454,
+      460
+     ],
+     "quote": "FIGURE 15: Comparing AI capability on GPQA (a standard capabilities be",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 53,
+     "lines": [
+      462,
+      466
+     ],
+     "quote": "However, strong defences on the most capable and widely used systems c",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L68–68",
+    "L106–110",
+    "L135–137",
+    "L147–170",
+    "L280–296",
+    "L326–336",
+    "L372–376",
+    "L384–392",
+    "L404–404",
+    "L412–414",
+    "L436–440",
+    "L446–450",
+    "L504–506",
+    "L546–550",
+    "L558–560",
+    "L626–658",
+    "L686–720",
+    "L726–728",
+    "L746–752",
+    "L758–761",
+    "L826–826",
+    "L860–860"
+   ],
+   "opened_ranges": [
+    [
+     68,
+     68
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     280,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     336
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     384,
+     392
+    ],
+    [
+     404,
+     404
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     462,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     504,
+     506
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     558,
+     560
+    ],
+    [
+     626,
+     658
+    ],
+    [
+     686,
+     720
+    ],
+    [
+     726,
+     728
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     758,
+     761
+    ],
+    [
+     826,
+     826
+    ],
+    [
+     860,
+     860
+    ]
+   ],
+   "source_lines_in_opened_ranges": 227,
+   "banner": null,
+   "note": "Opened p33 and three of the five helpful passages; 22 of its opened ranges hold nothing I graded (the domain list, safeguards and societal neighbours, the glossary)."
+  },
+  {
+   "query": "how fast are frontier AI capabilities improving (the doubling time of task length)",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 1,
+     "lines": [
+      58,
+      60
+     ],
+     "quote": "The UK AI Security Institute (AISI) has conducted evaluations of front",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 2,
+     "lines": [
+      62,
+      62
+     ],
+     "quote": "See FIGURES 1.1-1.3. In the cyber domain, AI models can now complete a",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 18,
+     "lines": [
+      186,
+      190
+     ],
+     "quote": "Progress in general-purpose AI systems has been driven largely by a co",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 19,
+     "lines": [
+      196,
+      204
+     ],
+     "quote": "We have observed how models form and execute plans, use external tools",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 20,
+     "lines": [
+      206,
+      212
+     ],
+     "quote": "While doubling times may not map exactly to other domains, they are si",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 78,
+     "lines": [
+      758,
+      761
+     ],
+     "quote": "- Performance per model is measured as average success rate per task a",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 13,
+     "lines": [
+      141,
+      143
+     ],
+     "quote": "Our testing shows an extraordinary pace of development. We've found th",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 74,
+     "lines": [
+      726,
+      728
+     ],
+     "quote": "This report presents our current understanding of AI capability trends",
+     "grade": 1,
+     "shown_rank": 14
+    }
+   ],
+   "noise": [
+    6,
+    9,
+    10,
+    11,
+    12,
+    15,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    1,
+    34,
+    19,
+    20,
+    2,
+    33,
+    18,
+    21,
+    55,
+    52,
+    30,
+    36,
+    10,
+    74,
+    73,
+    13,
+    14,
+    63,
+    27,
+    12
+   ],
+   "note": "Found 5 of 6 must-read. Missed p17, the 'should not be read as a forecast' paragraph, which limits how the doubling may be used. Appendix qualifiers (release dates as the axis; SEM over tasks) not in the top 20. p10 (the >40% milestone) shows as noise but is relevant."
+  },
+  {
+   "query": "how fast are frontier AI capabilities improving (the doubling time of task length)",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 1,
+     "lines": [
+      58,
+      60
+     ],
+     "quote": "The UK AI Security Institute (AISI) has conducted evaluations of front",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 2,
+     "lines": [
+      62,
+      62
+     ],
+     "quote": "See FIGURES 1.1-1.3. In the cyber domain, AI models can now complete a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 18,
+     "lines": [
+      186,
+      190
+     ],
+     "quote": "Progress in general-purpose AI systems has been driven largely by a co",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 19,
+     "lines": [
+      196,
+      204
+     ],
+     "quote": "We have observed how models form and execute plans, use external tools",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 20,
+     "lines": [
+      206,
+      212
+     ],
+     "quote": "While doubling times may not map exactly to other domains, they are si",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 78,
+     "lines": [
+      758,
+      761
+     ],
+     "quote": "- Performance per model is measured as average success rate per task a",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 13,
+     "lines": [
+      141,
+      143
+     ],
+     "quote": "Our testing shows an extraordinary pace of development. We've found th",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 74,
+     "lines": [
+      726,
+      728
+     ],
+     "quote": "This report presents our current understanding of AI capability trends",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L74–78",
+    "L88–88",
+    "L135–137",
+    "L147–170",
+    "L244–250",
+    "L272–278",
+    "L294–296",
+    "L314–320",
+    "L372–376",
+    "L424–424",
+    "L436–440",
+    "L454–466",
+    "L484–500",
+    "L574–588",
+    "L692–720",
+    "L740–742",
+    "L828–828"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     62
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     88,
+     88
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     196,
+     212
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     244,
+     250
+    ],
+    [
+     272,
+     278
+    ],
+    [
+     294,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     356
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     574,
+     588
+    ],
+    [
+     692,
+     720
+    ],
+    [
+     726,
+     732
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     828,
+     828
+    ]
+   ],
+   "source_lines_in_opened_ranges": 233,
+   "banner": null,
+   "note": "All six must-read opened; appendix qualifiers (p77, p78) not opened."
+  },
+  {
+   "query": "how much effort does it take to jailbreak safeguards, and how do the safeguards vary",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 4,
+     "lines": [
+      68,
+      68
+     ],
+     "quote": "The models with the strongest safeguards are requiring longer, more so",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 41,
+     "lines": [
+      384,
+      384
+     ],
+     "quote": "We've partnered with the top AI companies to stress-test their safegua",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 42,
+     "lines": [
+      386,
+      392
+     ],
+     "quote": "We've seen significant progress in the safeguards of certain AI system",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 43,
+     "lines": [
+      396,
+      400
+     ],
+     "quote": "Safeguards improvements have been uneven, with certain AI systems and ",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 44,
+     "lines": [
+      404,
+      404
+     ],
+     "quote": "Even among very recent releases, some AI systems are much more robust ",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 45,
+     "lines": [
+      408,
+      408
+     ],
+     "quote": "Some AI systems are much more robust to some categories of malicious r",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 46,
+     "lines": [
+      412,
+      414
+     ],
+     "quote": "Open-weight AI systems – where the weights are directly accessible – a",
+     "grade": 2,
+     "shown_rank": 15
+    },
+    {
+     "passage": 48,
+     "lines": [
+      424,
+      424
+     ],
+     "quote": "Two recent frontier models require drastically different expert time t",
+     "grade": 2,
+     "shown_rank": 11
+    },
+    {
+     "passage": 49,
+     "lines": [
+      430,
+      430
+     ],
+     "quote": "For the same model, much more expert time is needed to develop a unive",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 50,
+     "lines": [
+      436,
+      440
+     ],
+     "quote": "Developing a universal jailbreak for open weight models requires much ",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 51,
+     "lines": [
+      446,
+      450
+     ],
+     "quote": "We might have expected that more generally capable systems would be mo",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 52,
+     "lines": [
+      454,
+      460
+     ],
+     "quote": "FIGURE 15: Comparing AI capability on GPQA (a standard capabilities be",
+     "grade": 2,
+     "shown_rank": 14
+    },
+    {
+     "passage": 53,
+     "lines": [
+      462,
+      466
+     ],
+     "quote": "However, strong defences on the most capable and widely used systems c",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 39,
+     "lines": [
+      372,
+      376
+     ],
+     "quote": "As AI capabilities continue to advance across domains, malicious actor",
+     "grade": 1,
+     "shown_rank": 13
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 101,
+     "lines": [
+      854,
+      854
+     ],
+     "quote": "**Safeguards:** Technical measures implemented by AI companies to prev",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 109,
+     "lines": [
+      868,
+      868
+     ],
+     "quote": "**Universal jailbreak:** A single jailbreaking technique that works re",
+     "grade": 1,
+     "shown_rank": 12
+    }
+   ],
+   "noise": [
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    4,
+    44,
+    42,
+    50,
+    43,
+    45,
+    49,
+    41,
+    51,
+    92,
+    48,
+    109,
+    39,
+    52,
+    46,
+    101,
+    40,
+    2,
+    19,
+    57
+   ],
+   "note": "Found 12 of 12 once the one-line 'Source:' header under Figure 14's heading is dropped as unworthy of reading. Rank 1 is the executive summary passage, rank 15 the open-weight passage. Good."
+  },
+  {
+   "query": "how much effort does it take to jailbreak safeguards, and how do the safeguards vary",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 4,
+     "lines": [
+      68,
+      68
+     ],
+     "quote": "The models with the strongest safeguards are requiring longer, more so",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 41,
+     "lines": [
+      384,
+      384
+     ],
+     "quote": "We've partnered with the top AI companies to stress-test their safegua",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 42,
+     "lines": [
+      386,
+      392
+     ],
+     "quote": "We've seen significant progress in the safeguards of certain AI system",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 43,
+     "lines": [
+      396,
+      400
+     ],
+     "quote": "Safeguards improvements have been uneven, with certain AI systems and ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 44,
+     "lines": [
+      404,
+      404
+     ],
+     "quote": "Even among very recent releases, some AI systems are much more robust ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 45,
+     "lines": [
+      408,
+      408
+     ],
+     "quote": "Some AI systems are much more robust to some categories of malicious r",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 46,
+     "lines": [
+      412,
+      414
+     ],
+     "quote": "Open-weight AI systems – where the weights are directly accessible – a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 48,
+     "lines": [
+      424,
+      424
+     ],
+     "quote": "Two recent frontier models require drastically different expert time t",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 49,
+     "lines": [
+      430,
+      430
+     ],
+     "quote": "For the same model, much more expert time is needed to develop a unive",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 50,
+     "lines": [
+      436,
+      440
+     ],
+     "quote": "Developing a universal jailbreak for open weight models requires much ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 51,
+     "lines": [
+      446,
+      450
+     ],
+     "quote": "We might have expected that more generally capable systems would be mo",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 52,
+     "lines": [
+      454,
+      460
+     ],
+     "quote": "FIGURE 15: Comparing AI capability on GPQA (a standard capabilities be",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 53,
+     "lines": [
+      462,
+      466
+     ],
+     "quote": "However, strong defences on the most capable and widely used systems c",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 39,
+     "lines": [
+      372,
+      376
+     ],
+     "quote": "As AI capabilities continue to advance across domains, malicious actor",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 101,
+     "lines": [
+      854,
+      854
+     ],
+     "quote": "**Safeguards:** Technical measures implemented by AI companies to prev",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 109,
+     "lines": [
+      868,
+      868
+     ],
+     "quote": "**Universal jailbreak:** A single jailbreaking technique that works re",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L62–62",
+    "L74–78",
+    "L141–143",
+    "L147–170",
+    "L196–212",
+    "L232–234",
+    "L280–284",
+    "L346–356",
+    "L514–518",
+    "L626–650",
+    "L686–720",
+    "L730–732"
+   ],
+   "opened_ranges": [
+    [
+     62,
+     62
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     196,
+     212
+    ],
+    [
+     232,
+     234
+    ],
+    [
+     280,
+     284
+    ],
+    [
+     346,
+     356
+    ],
+    [
+     372,
+     378
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     404,
+     404
+    ],
+    [
+     408,
+     408
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     420,
+     420
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     430,
+     430
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     514,
+     518
+    ],
+    [
+     626,
+     650
+    ],
+    [
+     686,
+     720
+    ],
+    [
+     730,
+     732
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     834,
+     834
+    ],
+    [
+     854,
+     854
+    ],
+    [
+     868,
+     868
+    ]
+   ],
+   "source_lines_in_opened_ranges": 203,
+   "banner": null,
+   "note": "All opened, with the whole of section 4 shown as subsections, which is the right shape for this question."
+  },
+  {
+   "query": "the gap between open-weight and closed models, and safeguards on open-weight models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 6,
+     "lines": [
+      80,
+      82
+     ],
+     "quote": "The performance gap between open and closed source models has narrowed",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 46,
+     "lines": [
+      412,
+      414
+     ],
+     "quote": "Open-weight AI systems – where the weights are directly accessible – a",
+     "grade": 2,
+     "shown_rank": 10
+    },
+    {
+     "passage": 71,
+     "lines": [
+      686,
+      690
+     ],
+     "quote": "Beyond improvements in proprietary models, open-source models, whose p",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 72,
+     "lines": [
+      692,
+      700
+     ],
+     "quote": "<sup>31</sup> Badllama 3: removing safety finetuning from Llama 3 in m",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 73,
+     "lines": [
+      702,
+      720
+     ],
+     "quote": "The trajectory of the gap is uncertain. Up until January 2025, the ope",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 50,
+     "lines": [
+      436,
+      440
+     ],
+     "quote": "Developing a universal jailbreak for open weight models requires much ",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 63,
+     "lines": [
+      574,
+      588
+     ],
+     "quote": "As AI models get larger and more capable, they are increasingly able t",
+     "grade": 1,
+     "shown_rank": 9
+    },
+    {
+     "passage": 64,
+     "lines": [
+      590,
+      590
+     ],
+     "quote": "In fact, our research shows that post-training increases models' persu",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 1,
+     "shown_rank": 15
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "shown_rank": 18
+    },
+    {
+     "passage": 85,
+     "lines": [
+      820,
+      820
+     ],
+     "quote": "**Closed-source model:** Proprietary AI model where the underlying cod",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 96,
+     "lines": [
+      842,
+      842
+     ],
+     "quote": "Open-source model: An AI model whose parameters, code, and training da",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    4,
+    7,
+    13,
+    14,
+    16,
+    17,
+    19,
+    20
+   ],
+   "top20": [
+    72,
+    6,
+    50,
+    4,
+    71,
+    73,
+    52,
+    43,
+    63,
+    46,
+    85,
+    53,
+    51,
+    57,
+    58,
+    65,
+    101,
+    14,
+    75,
+    42
+   ],
+   "note": "All five must-read in the top 10. Rank 1 is p72, a passage that begins with two footnotes (31, 32) and holds the lag paragraph and the AA/METR estimate; its displayed quote is a footnote title, which would not tell an agent so."
+  },
+  {
+   "query": "the gap between open-weight and closed models, and safeguards on open-weight models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 6,
+     "lines": [
+      80,
+      82
+     ],
+     "quote": "The performance gap between open and closed source models has narrowed",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 46,
+     "lines": [
+      412,
+      414
+     ],
+     "quote": "Open-weight AI systems – where the weights are directly accessible – a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 71,
+     "lines": [
+      686,
+      690
+     ],
+     "quote": "Beyond improvements in proprietary models, open-source models, whose p",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 72,
+     "lines": [
+      692,
+      700
+     ],
+     "quote": "<sup>31</sup> Badllama 3: removing safety finetuning from Llama 3 in m",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 73,
+     "lines": [
+      702,
+      720
+     ],
+     "quote": "The trajectory of the gap is uncertain. Up until January 2025, the ope",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 50,
+     "lines": [
+      436,
+      440
+     ],
+     "quote": "Developing a universal jailbreak for open weight models requires much ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 63,
+     "lines": [
+      574,
+      588
+     ],
+     "quote": "As AI models get larger and more capable, they are increasingly able t",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 64,
+     "lines": [
+      590,
+      590
+     ],
+     "quote": "In fact, our research shows that post-training increases models' persu",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 14,
+     "lines": [
+      147,
+      155
+     ],
+     "quote": "We primarily evaluate general-purpose Large Language Models (LLMs), wh",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 85,
+     "lines": [
+      820,
+      820
+     ],
+     "quote": "**Closed-source model:** Proprietary AI model where the underlying cod",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 96,
+     "lines": [
+      842,
+      842
+     ],
+     "quote": "Open-source model: An AI model whose parameters, code, and training da",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L64–64",
+    "L68–68",
+    "L92–92",
+    "L218–226",
+    "L232–234",
+    "L244–260",
+    "L346–356",
+    "L372–378",
+    "L424–424",
+    "L446–450",
+    "L484–500",
+    "L598–612",
+    "L730–732",
+    "L740–742",
+    "L746–752",
+    "L854–854"
+   ],
+   "opened_ranges": [
+    [
+     64,
+     64
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     82
+    ],
+    [
+     92,
+     92
+    ],
+    [
+     147,
+     155
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     232,
+     234
+    ],
+    [
+     244,
+     260
+    ],
+    [
+     346,
+     356
+    ],
+    [
+     372,
+     378
+    ],
+    [
+     384,
+     400
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     424,
+     424
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     574,
+     590
+    ],
+    [
+     598,
+     612
+    ],
+    [
+     686,
+     720
+    ],
+    [
+     730,
+     732
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     820,
+     820
+    ],
+    [
+     842,
+     842
+    ],
+    [
+     854,
+     854
+    ]
+   ],
+   "source_lines_in_opened_ranges": 241,
+   "banner": null,
+   "note": "All opened, across sections 1, 4 and 7."
+  },
+  {
+   "query": "limitations of the evaluations: do the reported capabilities underestimate or overstate real-world capability",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 76,
+     "lines": [
+      740,
+      742
+     ],
+     "quote": "- Model performance in controlled, task-based settings (which act as a",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 78,
+     "lines": [
+      758,
+      761
+     ],
+     "quote": "- Performance per model is measured as average success rate per task a",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 35,
+     "lines": [
+      338,
+      342
+     ],
+     "quote": "To investigate the upper limit of cyber capabilities, we enhanced the ",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 21,
+     "lines": [
+      218,
+      226
+     ],
+     "quote": "In our testing, we found that agents with the best externally develope",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 7,
+     "lines": [
+      88,
+      88
+     ],
+     "quote": "AI model performance is increasing rapidly on AlSI's cyber, autonomy, ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 15,
+     "lines": [
+      156,
+      170
+     ],
+     "quote": "- Societal impacts: We research emerging societal risks from AI system",
+     "grade": 1,
+     "shown_rank": 18
+    },
+    {
+     "passage": 16,
+     "lines": [
+      172,
+      172
+     ],
+     "quote": "Not all methodologies are reflected in results shared in this report. ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    4,
+    8,
+    10,
+    12,
+    13,
+    16,
+    17,
+    20
+   ],
+   "top20": [
+    17,
+    76,
+    57,
+    54,
+    35,
+    74,
+    24,
+    30,
+    34,
+    53,
+    33,
+    102,
+    52,
+    55,
+    23,
+    61,
+    5,
+    15,
+    29,
+    22
+   ],
+   "note": "Found 3 of 6 must-read. Missed the appendix's Data Presentation (p77: release dates, API access, different safeguards, withheld methods), Uncertainty (p78) and the RepliBench 'simplified versions' sentence (p56). They are the report's own answer; their words have little in common with the question."
+  },
+  {
+   "query": "limitations of the evaluations: do the reported capabilities underestimate or overstate real-world capability",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 76,
+     "lines": [
+      740,
+      742
+     ],
+     "quote": "- Model performance in controlled, task-based settings (which act as a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 78,
+     "lines": [
+      758,
+      761
+     ],
+     "quote": "- Performance per model is measured as average success rate per task a",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 35,
+     "lines": [
+      338,
+      342
+     ],
+     "quote": "To investigate the upper limit of cyber capabilities, we enhanced the ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 56,
+     "lines": [
+      504,
+      506
+     ],
+     "quote": "To self-replicate in the real world, AI systems would need to complete",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 21,
+     "lines": [
+      218,
+      226
+     ],
+     "quote": "In our testing, we found that agents with the best externally develope",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 7,
+     "lines": [
+      88,
+      88
+     ],
+     "quote": "AI model performance is increasing rapidly on AlSI's cyber, autonomy, ",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 15,
+     "lines": [
+      156,
+      170
+     ],
+     "quote": "- Societal impacts: We research emerging societal risks from AI system",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 16,
+     "lines": [
+      172,
+      172
+     ],
+     "quote": "Not all methodologies are reflected in results shared in this report. ",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L58–60",
+    "L74–78",
+    "L106–110",
+    "L141–143",
+    "L272–278",
+    "L306–308",
+    "L446–450",
+    "L454–466",
+    "L474–478",
+    "L558–560",
+    "L566–570",
+    "L598–612",
+    "L692–720",
+    "L822–822",
+    "L856–856"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     60
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     232,
+     238
+    ],
+    [
+     244,
+     250
+    ],
+    [
+     272,
+     278
+    ],
+    [
+     286,
+     296
+    ],
+    [
+     306,
+     308
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     356
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     454,
+     466
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     506
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     558,
+     560
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     598,
+     612
+    ],
+    [
+     692,
+     720
+    ],
+    [
+     726,
+     732
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     822,
+     822
+    ],
+    [
+     856,
+     856
+    ]
+   ],
+   "source_lines_in_opened_ranges": 265,
+   "banner": null,
+   "note": "Opened 5 of 6; missed p78 (Uncertainty). The appendix is shown under 'Conclusion: looking ahead' rather than as a section of its own."
+  },
+  {
+   "query": "persuasion and misinformation: do models change political beliefs",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 62,
+     "lines": [
+      566,
+      570
+     ],
+     "quote": "Today's AI models (specifically LLMs) can engage in sophisticated dial",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 63,
+     "lines": [
+      574,
+      588
+     ],
+     "quote": "As AI models get larger and more capable, they are increasingly able t",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 64,
+     "lines": [
+      590,
+      590
+     ],
+     "quote": "In fact, our research shows that post-training increases models' persu",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 65,
+     "lines": [
+      598,
+      612
+     ],
+     "quote": "The same techniques that increase model persuasiveness – such as model",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 66,
+     "lines": [
+      614,
+      620
+     ],
+     "quote": "Despite fears about their impact on political beliefs and voting behav",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "shown_rank": 5
+    }
+   ],
+   "noise": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    65,
+    63,
+    62,
+    66,
+    5,
+    61,
+    64,
+    71,
+    57,
+    59,
+    58,
+    4,
+    50,
+    6,
+    54,
+    90,
+    87,
+    67,
+    60,
+    32
+   ],
+   "note": "All five must-read in the top 7. Good."
+  },
+  {
+   "query": "persuasion and misinformation: do models change political beliefs",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 62,
+     "lines": [
+      566,
+      570
+     ],
+     "quote": "Today's AI models (specifically LLMs) can engage in sophisticated dial",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 63,
+     "lines": [
+      574,
+      588
+     ],
+     "quote": "As AI models get larger and more capable, they are increasingly able t",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 64,
+     "lines": [
+      590,
+      590
+     ],
+     "quote": "In fact, our research shows that post-training increases models' persu",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 65,
+     "lines": [
+      598,
+      612
+     ],
+     "quote": "The same techniques that increase model persuasiveness – such as model",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 66,
+     "lines": [
+      614,
+      620
+     ],
+     "quote": "Despite fears about their impact on political beliefs and voting behav",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L64–64",
+    "L68–68",
+    "L92–92",
+    "L186–190",
+    "L244–260",
+    "L304–308",
+    "L326–336",
+    "L412–414",
+    "L436–440",
+    "L446–450",
+    "L474–478",
+    "L484–500",
+    "L514–542",
+    "L546–550",
+    "L626–650",
+    "L674–680",
+    "L686–690",
+    "L740–742",
+    "L746–752",
+    "L820–820",
+    "L824–824",
+    "L830–832",
+    "L856–856"
+   ],
+   "opened_ranges": [
+    [
+     64,
+     64
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     82
+    ],
+    [
+     92,
+     92
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     244,
+     260
+    ],
+    [
+     304,
+     308
+    ],
+    [
+     326,
+     336
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     446,
+     450
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     558,
+     560
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     574,
+     590
+    ],
+    [
+     598,
+     620
+    ],
+    [
+     626,
+     650
+    ],
+    [
+     674,
+     680
+    ],
+    [
+     686,
+     690
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     820,
+     820
+    ],
+    [
+     824,
+     824
+    ],
+    [
+     830,
+     832
+    ],
+    [
+     856,
+     856
+    ]
+   ],
+   "source_lines_in_opened_ranges": 220,
+   "banner": null,
+   "note": "All five opened; the section is a coherent unit and the outline shows it."
+  },
+  {
+   "query": "emotional dependence on AI companions",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 67,
+     "lines": [
+      626,
+      650
+     ],
+     "quote": "People are increasingly turning to AI systems for emotional support or",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 68,
+     "lines": [
+      654,
+      658
+     ],
+     "quote": "Negative sentiment posting surge during service outage To explore how ",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 15,
+     "lines": [
+      156,
+      170
+     ],
+     "quote": "- Societal impacts: We research emerging societal risks from AI system",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 90,
+     "lines": [
+      830,
+      830
+     ],
+     "quote": "**Human impact study:** A study that evaluates how AI systems impact u",
+     "grade": 1,
+     "shown_rank": 5
+    }
+   ],
+   "noise": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    15,
+    68,
+    61,
+    5,
+    90,
+    67,
+    66,
+    18,
+    57,
+    69,
+    63,
+    70,
+    54,
+    13,
+    75,
+    52,
+    73,
+    33,
+    1,
+    39
+   ],
+   "note": "Found both must-read passages (ranks 2 and 6); rank 1 is the domain list, which I graded helpful."
+  },
+  {
+   "query": "emotional dependence on AI companions",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 67,
+     "lines": [
+      626,
+      650
+     ],
+     "quote": "People are increasingly turning to AI systems for emotional support or",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 68,
+     "lines": [
+      654,
+      658
+     ],
+     "quote": "Negative sentiment posting surge during service outage To explore how ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 15,
+     "lines": [
+      156,
+      170
+     ],
+     "quote": "- Societal impacts: We research emerging societal risks from AI system",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 90,
+     "lines": [
+      830,
+      830
+     ],
+     "quote": "**Human impact study:** A study that evaluates how AI systems impact u",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L58–64",
+    "L106–110",
+    "L135–137",
+    "L141–143",
+    "L186–190",
+    "L196–204",
+    "L272–278",
+    "L314–320",
+    "L326–336",
+    "L372–376",
+    "L396–400",
+    "L454–460",
+    "L474–478",
+    "L484–500",
+    "L514–518",
+    "L566–570",
+    "L574–588",
+    "L614–620",
+    "L664–680",
+    "L692–720",
+    "L730–732",
+    "L814–816",
+    "L856–856"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     64
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     196,
+     204
+    ],
+    [
+     272,
+     278
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     336
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     396,
+     400
+    ],
+    [
+     454,
+     460
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     514,
+     518
+    ],
+    [
+     558,
+     560
+    ],
+    [
+     566,
+     570
+    ],
+    [
+     574,
+     588
+    ],
+    [
+     614,
+     620
+    ],
+    [
+     626,
+     658
+    ],
+    [
+     664,
+     680
+    ],
+    [
+     692,
+     720
+    ],
+    [
+     730,
+     732
+    ],
+    [
+     814,
+     816
+    ],
+    [
+     830,
+     830
+    ],
+    [
+     856,
+     856
+    ]
+   ],
+   "source_lines_in_opened_ranges": 247,
+   "banner": null,
+   "note": "Found both, plus the glossary and the domain list."
+  },
+  {
+   "query": "AI agents given execution authority in finance or critical sectors",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 69,
+     "lines": [
+      664,
+      672
+     ],
+     "quote": "Our analysis shows that autonomous AI systems are being deployed withi",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 70,
+     "lines": [
+      674,
+      680
+     ],
+     "quote": "As AI models become more capable and widely used, it will be increasin",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 55,
+     "lines": [
+      484,
+      500
+     ],
+     "quote": "In controlled environments, AI models are increasingly exhibiting some",
+     "grade": 1,
+     "shown_rank": 19
+    },
+    {
+     "passage": 95,
+     "lines": [
+      840,
+      840
+     ],
+     "quote": "**Model Context Protocol (MCP) server:** An open-source framework for ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "noise": [
+    2,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20
+   ],
+   "top20": [
+    69,
+    27,
+    5,
+    22,
+    25,
+    1,
+    15,
+    18,
+    61,
+    30,
+    74,
+    19,
+    82,
+    10,
+    14,
+    36,
+    41,
+    103,
+    55,
+    73
+   ],
+   "note": "Rank 1 is p69 (6.3). The closing monitoring sentence (p70) is not in the top 20, a small loss. p55, which holds the capability counterpart (obtaining compute and money), is at rank 19."
+  },
+  {
+   "query": "AI agents given execution authority in finance or critical sectors",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 69,
+     "lines": [
+      664,
+      672
+     ],
+     "quote": "Our analysis shows that autonomous AI systems are being deployed withi",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 70,
+     "lines": [
+      674,
+      680
+     ],
+     "quote": "As AI models become more capable and widely used, it will be increasin",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 5,
+     "lines": [
+      74,
+      78
+     ],
+     "quote": "Understanding these capabilities is essential for ensuring that increa",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      484,
+      500
+     ],
+     "quote": "In controlled environments, AI models are increasingly exhibiting some",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 95,
+     "lines": [
+      840,
+      840
+     ],
+     "quote": "**Model Context Protocol (MCP) server:** An open-source framework for ",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L58–64",
+    "L88–88",
+    "L106–110",
+    "L135–137",
+    "L141–143",
+    "L186–190",
+    "L196–212",
+    "L218–226",
+    "L232–234",
+    "L244–260",
+    "L272–278",
+    "L294–296",
+    "L314–320",
+    "L326–336",
+    "L346–356",
+    "L372–376",
+    "L384–384",
+    "L454–460",
+    "L474–478",
+    "L546–550",
+    "L558–560",
+    "L692–720",
+    "L726–728",
+    "L858–858"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     64
+    ],
+    [
+     74,
+     78
+    ],
+    [
+     88,
+     88
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     170
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     196,
+     212
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     232,
+     234
+    ],
+    [
+     244,
+     260
+    ],
+    [
+     272,
+     278
+    ],
+    [
+     294,
+     296
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     336
+    ],
+    [
+     346,
+     356
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     384,
+     384
+    ],
+    [
+     454,
+     460
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     558,
+     560
+    ],
+    [
+     664,
+     680
+    ],
+    [
+     692,
+     720
+    ],
+    [
+     726,
+     728
+    ],
+    [
+     814,
+     816
+    ],
+    [
+     858,
+     858
+    ]
+   ],
+   "source_lines_in_opened_ranges": 234,
+   "banner": null,
+   "note": "Opened both must-read passages; the glossary MCP entry not opened."
+  },
+  {
+   "query": "how the report defines open-source and open-weight models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 71,
+     "lines": [
+      686,
+      690
+     ],
+     "quote": "Beyond improvements in proprietary models, open-source models, whose p",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 96,
+     "lines": [
+      842,
+      842
+     ],
+     "quote": "Open-source model: An AI model whose parameters, code, and training da",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 6,
+     "lines": [
+      80,
+      82
+     ],
+     "quote": "The performance gap between open and closed source models has narrowed",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 46,
+     "lines": [
+      412,
+      414
+     ],
+     "quote": "Open-weight AI systems – where the weights are directly accessible – a",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 85,
+     "lines": [
+      820,
+      820
+     ],
+     "quote": "**Closed-source model:** Proprietary AI model where the underlying cod",
+     "grade": 1,
+     "shown_rank": 10
+    }
+   ],
+   "noise": [
+    3,
+    4,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    71,
+    96,
+    14,
+    72,
+    46,
+    6,
+    73,
+    17,
+    50,
+    85,
+    95,
+    63,
+    77,
+    58,
+    43,
+    10,
+    65,
+    25,
+    8,
+    93
+   ],
+   "note": "All four must-read in the top 6. Rank 1 is the section 7 definition, rank 2 the glossary; the open-weight definition is at rank 5 and the executive-summary definition at rank 6. Nothing marks that the three formulations differ."
+  },
+  {
+   "query": "how the report defines open-source and open-weight models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 71,
+     "lines": [
+      686,
+      690
+     ],
+     "quote": "Beyond improvements in proprietary models, open-source models, whose p",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 96,
+     "lines": [
+      842,
+      842
+     ],
+     "quote": "Open-source model: An AI model whose parameters, code, and training da",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 6,
+     "lines": [
+      80,
+      82
+     ],
+     "quote": "The performance gap between open and closed source models has narrowed",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 46,
+     "lines": [
+      412,
+      414
+     ],
+     "quote": "Open-weight AI systems – where the weights are directly accessible – a",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 85,
+     "lines": [
+      820,
+      820
+     ],
+     "quote": "**Closed-source model:** Proprietary AI model where the underlying cod",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L64–64",
+    "L68–68",
+    "L92–92",
+    "L106–110",
+    "L141–143",
+    "L147–155",
+    "L176–180",
+    "L218–226",
+    "L244–260",
+    "L396–400",
+    "L420–420",
+    "L436–440",
+    "L484–500",
+    "L514–534",
+    "L574–590",
+    "L598–612",
+    "L726–732",
+    "L746–752",
+    "L758–761",
+    "L832–832",
+    "L836–836"
+   ],
+   "opened_ranges": [
+    [
+     64,
+     64
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     82
+    ],
+    [
+     92,
+     92
+    ],
+    [
+     106,
+     110
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     147,
+     155
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     244,
+     260
+    ],
+    [
+     396,
+     400
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     420,
+     420
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     574,
+     590
+    ],
+    [
+     598,
+     612
+    ],
+    [
+     686,
+     720
+    ],
+    [
+     726,
+     732
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     758,
+     761
+    ],
+    [
+     820,
+     820
+    ],
+    [
+     832,
+     832
+    ],
+    [
+     836,
+     836
+    ],
+    [
+     840,
+     842
+    ]
+   ],
+   "source_lines_in_opened_ranges": 203,
+   "banner": null,
+   "note": "All four opened. It cannot say the definitions differ."
+  },
+  {
+   "query": "models noticing they are being evaluated and behaving differently",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 60,
+     "lines": [
+      546,
+      550
+     ],
+     "quote": "While AI models can sandbag when instructed to do so, researchers have",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 57,
+     "lines": [
+      514,
+      518
+     ],
+     "quote": "Building consensus around AI risks and designing appropriate mitigatio",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 1,
+     "shown_rank": 2
+    }
+   ],
+   "noise": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "top20": [
+    60,
+    58,
+    57,
+    59,
+    77,
+    76,
+    63,
+    54,
+    71,
+    5,
+    25,
+    18,
+    4,
+    36,
+    34,
+    3,
+    55,
+    74,
+    32,
+    64
+   ],
+   "note": "p60 at rank 1, which holds the finding as a final clause ('in a few cases, models noticed they were being evaluated and acted differently'); the displayed quote is the paragraph's first sentence, not the clause."
+  },
+  {
+   "query": "models noticing they are being evaluated and behaving differently",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 60,
+     "lines": [
+      546,
+      550
+     ],
+     "quote": "While AI models can sandbag when instructed to do so, researchers have",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 57,
+     "lines": [
+      514,
+      518
+     ],
+     "quote": "Building consensus around AI risks and designing appropriate mitigatio",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 58,
+     "lines": [
+      520,
+      534
+     ],
+     "quote": "In fact, evidence exists that models can underperform subtly enough to",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L62–64",
+    "L68–68",
+    "L74–82",
+    "L176–180",
+    "L186–190",
+    "L196–212",
+    "L218–226",
+    "L236–238",
+    "L244–260",
+    "L304–308",
+    "L326–336",
+    "L346–356",
+    "L408–408",
+    "L436–440",
+    "L474–478",
+    "L484–506",
+    "L574–590",
+    "L598–612",
+    "L626–650",
+    "L686–720",
+    "L726–728",
+    "L740–742",
+    "L746–752",
+    "L824–824",
+    "L856–856"
+   ],
+   "opened_ranges": [
+    [
+     62,
+     64
+    ],
+    [
+     68,
+     68
+    ],
+    [
+     74,
+     82
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     186,
+     190
+    ],
+    [
+     196,
+     212
+    ],
+    [
+     218,
+     226
+    ],
+    [
+     236,
+     238
+    ],
+    [
+     244,
+     260
+    ],
+    [
+     304,
+     308
+    ],
+    [
+     326,
+     336
+    ],
+    [
+     346,
+     356
+    ],
+    [
+     408,
+     408
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     506
+    ],
+    [
+     514,
+     542
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     574,
+     590
+    ],
+    [
+     598,
+     612
+    ],
+    [
+     626,
+     650
+    ],
+    [
+     686,
+     720
+    ],
+    [
+     726,
+     728
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     824,
+     824
+    ],
+    [
+     856,
+     856
+    ]
+   ],
+   "source_lines_in_opened_ranges": 271,
+   "banner": null,
+   "note": "Opened all three. The clause is inside a range quoted by its first sentence; an agent reading the outline would not see it."
+  },
+  {
+   "query": "AISI's mandate, access to models, and relationship with developers",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 1,
+     "lines": [
+      58,
+      60
+     ],
+     "quote": "The UK AI Security Institute (AISI) has conducted evaluations of front",
+     "grade": 2,
+     "shown_rank": 18
+    },
+    {
+     "passage": 12,
+     "lines": [
+      135,
+      137
+     ],
+     "quote": "Artificial intelligence is advancing rapidly, creating both opportunit",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 41,
+     "lines": [
+      384,
+      384
+     ],
+     "quote": "We've partnered with the top AI companies to stress-test their safegua",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 39,
+     "lines": [
+      372,
+      376
+     ],
+     "quote": "As AI capabilities continue to advance across domains, malicious actor",
+     "grade": 1,
+     "shown_rank": 5
+    },
+    {
+     "passage": 13,
+     "lines": [
+      141,
+      143
+     ],
+     "quote": "Our testing shows an extraordinary pace of development. We've found th",
+     "grade": 1,
+     "shown_rank": 11
+    }
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    6,
+    7,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    20
+   ],
+   "top20": [
+    73,
+    71,
+    35,
+    77,
+    39,
+    61,
+    58,
+    12,
+    36,
+    60,
+    13,
+    63,
+    72,
+    33,
+    54,
+    70,
+    38,
+    1,
+    85,
+    50
+   ],
+   "note": "Poor: three of five must-read at ranks 4, 8 and 18; p41 ('We've partnered with the top AI companies') and p17 ('not to benchmark or compare specific models or developers') not in the top 20. The first three results are open-model gap and scaffolding passages that match on 'access', 'developers', 'models'."
+  },
+  {
+   "query": "AISI's mandate, access to models, and relationship with developers",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 1,
+     "lines": [
+      58,
+      60
+     ],
+     "quote": "The UK AI Security Institute (AISI) has conducted evaluations of front",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 12,
+     "lines": [
+      135,
+      137
+     ],
+     "quote": "Artificial intelligence is advancing rapidly, creating both opportunit",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 41,
+     "lines": [
+      384,
+      384
+     ],
+     "quote": "We've partnered with the top AI companies to stress-test their safegua",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 77,
+     "lines": [
+      746,
+      752
+     ],
+     "quote": "- This report presents aggregated results from our internal evaluation",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      176,
+      180
+     ],
+     "quote": "Our work intends to illustrate high-level trends we've observed in AI ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 39,
+     "lines": [
+      372,
+      376
+     ],
+     "quote": "As AI capabilities continue to advance across domains, malicious actor",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 13,
+     "lines": [
+      141,
+      143
+     ],
+     "quote": "Our testing shows an extraordinary pace of development. We've found th",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L64–64",
+    "L74–82",
+    "L88–88",
+    "L244–260",
+    "L272–284",
+    "L306–308",
+    "L314–320",
+    "L326–356",
+    "L362–366",
+    "L412–414",
+    "L436–440",
+    "L474–478",
+    "L484–500",
+    "L514–534",
+    "L546–550",
+    "L558–560",
+    "L574–588",
+    "L664–680",
+    "L686–720",
+    "L740–742",
+    "L820–820",
+    "L832–832",
+    "L858–858"
+   ],
+   "opened_ranges": [
+    [
+     58,
+     60
+    ],
+    [
+     64,
+     64
+    ],
+    [
+     74,
+     82
+    ],
+    [
+     88,
+     88
+    ],
+    [
+     135,
+     137
+    ],
+    [
+     141,
+     143
+    ],
+    [
+     176,
+     180
+    ],
+    [
+     244,
+     260
+    ],
+    [
+     272,
+     284
+    ],
+    [
+     306,
+     308
+    ],
+    [
+     314,
+     320
+    ],
+    [
+     326,
+     356
+    ],
+    [
+     362,
+     366
+    ],
+    [
+     372,
+     376
+    ],
+    [
+     412,
+     414
+    ],
+    [
+     436,
+     440
+    ],
+    [
+     474,
+     478
+    ],
+    [
+     484,
+     500
+    ],
+    [
+     514,
+     534
+    ],
+    [
+     546,
+     550
+    ],
+    [
+     558,
+     560
+    ],
+    [
+     574,
+     588
+    ],
+    [
+     664,
+     680
+    ],
+    [
+     686,
+     720
+    ],
+    [
+     740,
+     742
+    ],
+    [
+     746,
+     752
+    ],
+    [
+     820,
+     820
+    ],
+    [
+     832,
+     832
+    ],
+    [
+     858,
+     858
+    ]
+   ],
+   "source_lines_in_opened_ranges": 245,
+   "banner": null,
+   "note": "Opened 4 of 5; missed p41. 23 of its opened ranges hold nothing I graded, mostly open-model, scaffolding and chemistry passages."
+  }
+ ]
+}
