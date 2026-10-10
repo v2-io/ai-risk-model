@@ -1,0 +1,18 @@
+# Notes — anthropic-2026-risk-report-aug, expert gold (stage 1 blind, stage 2 shown)
+
+*By a fork of expert-anthropic-2026-risk-report-aug (Claude Opus 5.5), 2026-10-10. The expert read the report whole, in order, in 249 units of at least 500 words with a reflection after each (branch `expert/anthropic-2026-risk-report-aug`). Canonical sha256 `33cea4de…26d4`, the same text the expert read.*
+
+## Stage 1 (written before any search output was seen)
+
+**Queries.** The eleven outline queries, without "chemical and biological weapons uplift" (left out at the coordinator's request), plus five of my own, picked where I expect a search to go wrong: "marginal versus absolute risk", "AI R&D automation threshold", "model weight security against state actors", "chain-of-thought monitorability", "ASL-3".
+
+**How the document answers these queries, as I expect a searcher to meet it:**
+
+- **Several queries are vocabulary this source doesn't use.** "hazard" appears once, as "infohazard". "whistleblower" and "serious incident" never appear, so whistleblower is empty and serious incident is answered by the report's incident sections, which are titled "Incidents related to our classifiers and access controls", "Safety process failures", and "List of minor incidents". "loss of control" appears once, in automated R&D ("humanity losing control over civilization entirely"). The report's own loss-of-control scenarios are misalignment pathways 5 and 6 (self-exfiltration; persistent rogue internal deployment), which never use those words. "shut down" appears twice, neither time as the concept asked about. A lexical search will mostly find the wrong things; a semantic one has to bridge from "can no longer shut down or correct" to "undermine our ability to detect (and thus mitigate)" (L1123).
+- **The key definitions are not where the headings say.** "Catastrophic risk" is defined in footnote 1 (L238), printed in the middle of §1.1's list, between "We address both:" and item (a). Marginal and absolute risk are defined in that list (L242–243). "Absolute risk" gets a second, different definition in §4.6.2 (L2692: "relative to a world without powerful AI models"). "Misalignment" is defined twice: §2.2's looser wording, then §2.5's formal one.
+- **Cyber has no section.** It's scattered across about a dozen places: the Mythos Preview release in §5.3.1 (the only direct statement of cyber capability), the UK AISI incident at the end of Claim 2, the rating rationale in §2.1/§2.19, two contrasts inside the CB sections, distillation, data retention, §6.1, pathway 8, and the weapons-development interviews. No heading contains "cyber". An agent following the outline by headings would find none of it.
+- **Footnotes are displaced** by the conversion: footnotes 6–9 of the CB-2 threshold print inside §1.3.3; footnote 28 prints as body text of §2.15; footnote 41 prints inside §3.5. A passage-level search may attribute footnote content to the wrong section.
+- **Tables use `<br>` between every word** (Tables 1.2.A–C, 2.1.A, 3.1.A, 4.1.A, 4.5.A, 6.6.A), so phrase search over table cells (e.g. "Project Glasswing", which appears mostly in tables) may fail unless the indexer joins them.
+- **The executive summary is three tables** that restate each section's rating. They'll rank high for nearly every query, but only once (Table 1.2.A) do they add anything an agent couldn't get better from the section itself.
+
+**Grade conventions.** Grade 2 = an agent can't answer without it. Grade 1 = qualification, cross-reference, or evidence. For broad queries ("misalignment"; "evidence that models can sabotage…") I graded the load-bearing sections, not every paragraph of a 70-page chapter.
