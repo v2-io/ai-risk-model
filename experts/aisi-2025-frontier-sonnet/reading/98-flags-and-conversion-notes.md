@@ -15,6 +15,6 @@ Internal inconsistencies in the source worth knowing before quoting (all with un
 - Open-source defined three ways (units 10, 101, 119).
 - Sandbagging defined as possibility (77), as strategic underperformance (73), as a phenomenon (glossary, 120).
 - Self-replication stages: prose says persistence is weak; Fig 17 shows 70% top score for persisting (unit 77).
-- "First model" (units 5, 47) vs "All systems are just beginning" (unit 34) for expert-level cyber tasks.
+- WITHDRAWN 2026-10-10: I had listed "First model" (units 5, 47) vs "All systems are just beginning" (unit 34) as an inconsistency. The PDF text layer reads "Al systems are just beginning to complete expert-level cyber tasks" (the report's font renders "AI" as "Al"; the converter turned it into "All", as it did "AlSI" in unit 11). The sentence is "AI systems are just beginning...", so there is no all-systems claim and no inconsistency. Found by comparing with the earlier expert's text-suspicions file.
 - Fig 11 dev set vs "separate development task set" (units 49-50).
 - Exec-summary compressions: "doubling every eight months" omits "upper bound"; "5% to 60%" omits "11 of 20 tasks" and "closed models only"; "over a third" is 33%; "up to 60%/90%" are best-model relative scores; the persuasion belief null result is omitted.
