@@ -1,0 +1,3 @@
+warning: 3 keys in scope have no canonical text yet (ref/canonical/skipped.json)
+added 472, unchanged 0, passages 61559, definitions 4030, seconds 61.1
+AIRISK_SOURCES_DB=airisk_tokspike python3 $SP/tree/bin/source-index --db     43.05s user 0.45s system 70% cpu 1:01.27 total

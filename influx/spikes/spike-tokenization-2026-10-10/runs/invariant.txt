@@ -1,0 +1,50 @@
+Pager usage is off.
+psql-18:influx/spikes/spike-tokenization-2026-10-10/code/variants.sql:18: NOTICE:  extension "unaccent" already exists, skipping
+CREATE EXTENSION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+SELECT 4696126
+psql-18:influx/spikes/spike-tokenization-2026-10-10/code/invariant.sql:12: NOTICE:  word is too long to be indexed
+DETAIL:  Words longer than 2047 characters are ignored.
+SELECT 4789535
+CREATE INDEX
+CREATE INDEX
+   v   | pairs  | passages | letters 3+ | letters 1-2 | digits | mixed 
+-------+--------+----------+------------+-------------+--------+-------
+ today | 144215 |    28495 |      22652 |       22287 |  94889 |  4387
+ H     |    104 |       82 |         15 |          54 |      0 |    35
+ W     |    104 |       82 |         15 |          54 |      0 |    35
+(3 rows)
+
+what W leaves (math notation such as pˆ, hex hashes, a few split names):
+                   word                   | count 
+------------------------------------------+-------
+ ˆ                                        |     7
+ rˆ                                       |     6
+ pˆ                                       |     5
+ vˆ                                       |     3
+ 785e231869ea8b3b                         |     3
+ yˆ                                       |     3
+ βˆ                                       |     3
+ hˆ                                       |     3
+ ℒ                                        |     3
+ eˆ                                       |     3
+ ˆf                                       |     3
+ ˆθ                                       |     2
+ µˆ                                       |     2
+ inˆes                                    |     2
+ ٠                                        |     2
+ 963373e433e489a87a10c823c52a0a013e9172dd |     2
+ 56e5ee0d                                 |     2
+ 8e4d91e1                                 |     2
+ 5410e3d9                                 |     2
+ τˆ                                       |     2
+ 33e4e118                                 |     2
+ 3282e4fc                                 |     2
+ 7e1ab885d1b24176                         |     2
+ 2pˆ                                      |     1
+ 1e8a6131dda045f1ad00054933b0bda0         |     1
+(25 rows)
+

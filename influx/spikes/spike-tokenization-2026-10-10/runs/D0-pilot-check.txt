@@ -1,0 +1,17 @@
+0.715  judged 10/10  hazard
+0.833  judged  9/10  catastrophic risk
+0.726  judged 10/10  severe harm
+0.925  judged  9/10  loss of control
+0.889  judged 10/10  developer
+0.866  judged 10/10  definition of risk
+0.917  judged 10/10  systemic risk
+0.370  judged  9/10  humans can no longer shut down or correct the AI system
+0.586  judged  9/10  difference between malicious and non-malicious risks
+0.917  judged  9/10  information hazard
+0.872  judged 10/10  death or serious injury to more than 50 people or a billion dollars of damage
+0.928  judged 10/10  whistleblower
+0.841  judged 10/10  misalignment
+0.826  judged 10/10  deployer
+0.748  judged 10/10  serious incident
+0.866  judged 10/10  critical safety incident
+mean nDCG@10 over 16 queries: 0.802  (fusion default); 155 of 160 results were judged by the pilot

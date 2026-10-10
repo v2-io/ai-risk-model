@@ -1,0 +1,79 @@
+--- a/search/srcsearch/__init__.py
++++ b/code/srcsearch/__init__.py
+@@ -13,8 +13,9 @@
+ 
+ sys.dont_write_bytecode = True   # importing bin/corpus.py would otherwise leave bin/__pycache__ behind
+ 
+-SEARCH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+-REPO = os.path.dirname(SEARCH)
++# PATCHED (tokenization spike): this copy lives five levels below the repository
++REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), *['..'] * 5))
++SEARCH = os.path.join(REPO, 'search')
+ if os.path.join(REPO, 'bin') not in sys.path:
+     sys.path.insert(0, os.path.join(REPO, 'bin'))
+ CANON = os.path.join(REPO, 'ref', 'canonical')
+--- a/search/srcsearch/rank.py
++++ b/code/srcsearch/rank.py
+@@ -35,6 +35,10 @@
+                         r'define|definition:)\s+', re.I)
+ 
+ 
++def _runs(s):
++    return re.findall(r'[^\W_]+', fold(s))
++
++
+ def weights():
+     return tomllib.load(open(WEIGHTS_PATH, 'rb'))
+ 
+@@ -44,7 +48,8 @@
+     asks about X), and its content words."""
+     q = corpus.fix_ocr_ai(query)[0].strip()
+     term = DEF_INTENT.sub('', q).strip(' ?"\'“”‘’')
+-    ws = [w for w in words(term) if w not in STOP] or words(term)
++    # PATCHED: a word is a run of letters and digits (the index form's unit, and rank._TOK's)
++    ws = [w for w in _runs(term) if w not in STOP] or _runs(term)
+     return dict(query=q, term=term, norm=norm_term(term), words=ws)
+ 
+ 
+@@ -78,7 +83,9 @@
+ 
+ 
+ def _lexemes(conn, cfg, text):
+-    return [r[0] for r in conn.execute(f"select lexeme from unnest(to_tsvector('{cfg}', %s))", (text,))]
++    # PATCHED: the query goes through src.index_form, the function the tsvector columns use
++    lex = [r[0] for r in conn.execute(f"select lexeme from unnest(to_tsvector('{cfg}', src.index_form(%s)))", (text,))]
++    return [x for x in lex if x not in STOP] or lex
+ 
+ 
+ def _bm25(conn, col, cfg, lexemes, w, keys):
+@@ -210,7 +217,7 @@
+     second leg at lower weight (DESIGN §6.2): Postgres's English stems, or, with
+     `forms_weight`, each word's longer forms; then the phrase, heading, proximity
+     and density factors."""
+-    text = ' '.join(pq['words'])
++    text = pq['term']   # PATCHED: the term itself, so a compound the index form keeps is kept
+     exact = _bm25(conn, 'tsv_exact', 'simple', _lexemes(conn, 'simple', text), w, keys)
+     score = defaultdict(float)
+     for i, s in exact.items():
+@@ -241,10 +248,10 @@
+                     phrase.add(i)
+     elif len(pq['words']) > 1:
+         phrase = {r[0] for r in conn.execute(
+-            "select id from src.passages where id = any(%s) and tsv_exact @@ phraseto_tsquery('simple', %s)",
++            "select id from src.passages where id = any(%s) and tsv_exact @@ phraseto_tsquery('simple', src.index_form(%s))",
+             (ids, text))}
+     heading = {r[0] for r in conn.execute(
+-        "select id from src.passages where id = any(%s) and tsv_head @@ plainto_tsquery('simple', %s)", (ids, text))}
++        "select id from src.passages where id = any(%s) and tsv_head @@ plainto_tsquery('simple', src.index_form(%s))", (ids, ' '.join(pq['words'])))}
+     for i in phrase:
+         score[i] *= w['phrase_factor']
+     for i in heading:
+@@ -293,7 +300,7 @@
+                join cache.embeddings e on e.model = %(m)s and e.input_sha = p.embed_sha
+                where (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))""", dict(v=v, m=model, keys=keys)).fetchone()[0]
+     n_all = conn.execute(
+-        """select count(*) from src.passages where tsv_exact @@ plainto_tsquery('simple', %s)
++        """select count(*) from src.passages where tsv_exact @@ plainto_tsquery('simple', src.index_form(%s))
+            and (%s::text[] is null or doc_key = any(%s))""", (' '.join(pq['words']), keys, keys)).fetchone()[0] if pq['words'] else 0
+     unanswered = near is not None and n_all == 0 and near >= W['distance']
+     return dict(nearest_distance=None if near is None else round(float(near), 4), passages_with_all_words=n_all,

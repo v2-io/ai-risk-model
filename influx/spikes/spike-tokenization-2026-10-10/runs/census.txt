@@ -1,0 +1,163 @@
+Pager usage is off.
+psql-18:influx/spikes/spike-tokenization-2026-10-10/code/census.sql:11: NOTICE:  extension "unaccent" already exists, skipping
+CREATE EXTENSION
+psql-18:influx/spikes/spike-tokenization-2026-10-10/code/census.sql:12: NOTICE:  schema "tok" already exists, skipping
+CREATE SCHEMA
+psql-18:influx/spikes/spike-tokenization-2026-10-10/code/census.sql:13: NOTICE:  table "unfindable" does not exist, skipping
+DROP TABLE
+SELECT 14053117
+CREATE INDEX
+CREATE INDEX
+== 1. tokens by parser type (blank and tag/entity/protocol have no mapping in simple or english: never indexed)
+      alias      |    n    | passages | distinct_tokens 
+-----------------+---------+----------+-----------------
+ blank           | 6975101 |    61470 |           11137
+ asciiword       | 6337183 |    61319 |           71599
+ uint            |  232386 |    34615 |            5901
+ hword_asciipart |  214826 |    37892 |            9927
+ asciihword      |  100552 |    37547 |           18669
+ float           |   74540 |    11974 |            8752
+ file            |   34196 |    16744 |           10628
+ numword         |   29368 |     9883 |            3967
+ int             |   28084 |     7374 |            1475
+ word            |    6364 |     2837 |            1636
+ host            |    5745 |     3238 |            1718
+ hword_numpart   |    4134 |     1654 |             507
+ version         |    3797 |     1845 |            1317
+ numhword        |    3660 |     1654 |             697
+ url_path        |     662 |      517 |             576
+ url             |     662 |      517 |             596
+ tag             |     484 |      286 |               9
+ email           |     429 |      272 |             301
+ hword_part      |     342 |      222 |             110
+ hword           |     288 |      215 |             140
+ protocol        |     157 |      137 |               9
+ sfloat          |     150 |       64 |              85
+ entity          |       7 |        6 |               4
+(23 rows)
+
+SELECT 4756172
+CREATE INDEX
+SELECT 4695689
+CREATE INDEX
+SELECT 4695689
+CREATE INDEX
+CREATE FUNCTION
+CREATE FUNCTION
+SELECT 148913
+== 2. compound tokens by shape class
+                    k2                    | tokens | passages | docs | distinct_tokens 
+------------------------------------------+--------+----------+------+-----------------
+ A slash-joined words                     |   7898 |     5002 |  397 |            2495
+ B slash-joined numbers                   |   2431 |      941 |  187 |             932
+ C dotted abbreviation                    |  11737 |     7813 |  386 |             420
+ D domain or dotted brand name            |   2323 |     1576 |  256 |             488
+ E1 sentence join (word.Word)             |    103 |       89 |   40 |              97
+ E2 word.footnote-number                  |   1297 |      777 |   68 |             982
+ E3 code identifier / other word.word     |    423 |      232 |   88 |             217
+ F labelled number (A.1, v3.4)            |   3535 |     1715 |  194 |             609
+ G filename                               |    952 |      708 |  156 |             574
+ H arXiv category                         |   1512 |      697 |   28 |              27
+ I dotted section number (version)        |   3797 |     1845 |  145 |            1317
+ J decimal (float)                        |  74540 |    11974 |  405 |            8752
+ K signed integer (hyphen before digits)  |  28084 |     7374 |  402 |            1475
+ L scientific notation                    |    150 |       64 |   41 |              85
+ M URL, email, path, other dotted/slashed |   9315 |     4014 |  336 |            6920
+ N dropped: XML tag or entity             |    491 |      292 |  102 |              13
+ O model name with decimal (Qwen2.5-7B)   |    325 |      171 |   26 |              67
+(17 rows)
+
+== 3. most frequent tokens per class
+                    k2                    |                                                                                                                                                                                                                                                          top                                                                                                                                                                                                                                                           
+------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ A slash-joined words                     | and/or ×1220  A/IS ×323  ISO/IEC ×270  N/A ×185  AAAI/ACM ×165  ISO/IEC/IEEE ×164  EA/IS ×160  mission/business ×120  w/o ×113  Yes/No ×94  Measures/Controls ×90  Reference/Resource ×90  IEEE/CVF ×77  heading/paragraph ×59  missions/business ×56  threats/risks ×53  les/exploit ×50  C/C ×38  pass/fail ×38  input/output ×35  yes/no ×35  single/single ×34  Msgs/Task ×34  chemical/biological ×32  all/random ×30
+ B slash-joined numbers                   | 2024/1689 ×198  04/29/2022 ×82  2016/679 ×52  2019/1020 ×50  5/5 ×40  2025/11 ×40  2016/680 ×39  4/5 ×39  2018/1139 ×33  3/5 ×32  1/5 ×31  2018/858 ×29  2/5 ×29  168/2013 ×27  2020/1828 ×26  167/2013 ×25  300/2008 ×25  2018/1725 ×25  2016/797 ×24  2019/2144 ×24  1/3 ×22  9/27/26 ×20  0/1 ×20  2022/2065 ×20  24/7 ×19
+ C dotted abbreviation                    | e.g ×7282  i.e ×1609  U.S ×1082  n.d ×114  U.S.C ×95  D.C ×74  p.m ×69  U.K ×58  E.g ×49  A.I ×48  a.m ×41  i.i.d ×29  s.t ×26  N.Y ×24  K.H ×21  Ph.D ×20  L.J ×19  C.S ×19  J.L ×19  w.r.t ×18  c.f ×13  M.C ×12  B.M.T ×12  L.H ×12  R.V ×12
+ D domain or dotted brand name            | Z.ai ×555  x.AI ×254  WWW.AISI.GOV.UK ×106  Claude.ai ×102  OECD.AI ×65  npr.org ×55  GOV.UK ×51  anthropic.com ×36  arxiv.org ×35  arXiv.org ×32  openai.com ×26  Character.AI ×25  doi.org ×19  github.com ×18  FAR.AI ×17  OpenReview.net ×17  JMLR.org ×15  X.com ×15  nationalarchives.gov.uk ×14  KYP.ai ×13  lesswrong.com ×11  alignmentforum.org ×10  Canada.ca ×9  v.org ×9  github.io ×9
+ E1 sentence join (word.Word)             | gray.At ×2  retention.We ×2  risks.This ×2  score.The ×2  policies.The ×2  projects.We ×2  techniques.Liu ×1  conversations.As ×1  root.All ×1  request.Request ×1  evaluations.Other ×1  tower.The ×1  deployment.As ×1  solve.As ×1  message.As ×1  reversible.Approaches ×1  him.And ×1  Yes.Just ×1  time.Astra ×1  attachment.Additionally ×1  sources.Similarly ×1  aligned.Using ×1  perception.However ×1  insufficient.Agents ×1  lame.Just ×1
+ E2 word.footnote-number                  | SI.5 ×43  SI.1 ×41  pp.4 ×10  SI.44 ×10  pp.15 ×8  SI.4 ×7  SI.3 ×7  SI.8 ×6  pp.8 ×6  pp.12 ×6  SI.9 ×6  pp.10 ×5  SI.6 ×5  SI.19 ×5  SI.39 ×5  SI.14 ×5  SI.7 ×5  NISTAML.018 ×5  NISTAML.01 ×4  SI.16 ×4  NISTAML.02 ×4  SI.30 ×4  SI.10 ×4  NISTAML.015 ×4  SI.34 ×4
+ E3 code identifier / other word.word     | status.replicas ×11  sys.exit ×10  sys.argv ×10  re.search ×10  perma.cc ×9  pd.DataFrame ×9  np.array ×8  errors.append ×7  message.role ×6  OASIS.saml ×6  pwn.college ×6  os.remove ×5  re.IGNORECASE ×5  refine.ink ×5  warnings.warn ×5  runs.items ×4  re.compile ×4  patient.name ×4  physics.chem ×4  metadata.name ×4  re.DOTALL ×4  scores.get ×4  message.lower ×4  app.route ×4  bad.java ×4
+ F labelled number (A.1, v3.4)            | A.1 ×111  V3.1 ×104  C.1 ×82  B.1 ×71  B.2 ×69  C.2 ×67  A.3 ×65  v1.0 ×65  A.2 ×61  v3.0 ×58  D.1 ×55  A.4 ×51  C.3 ×51  B.3 ×48  D.2 ×48  A.5 ×45  C.4 ×40  T.2 ×37  v2.0 ×33  B.4 ×31  D.3 ×27  G.2 ×26  A.6 ×26  G.1 ×24  v1.1 ×23
+ G filename                               | 01NOE0.SGM ×36  validate_results.py ×20  succ.html ×15  1.html ×11  solution.sh ×10  4.html ×10  2.html ×10  3.html ×10  0.html ×10  poll.log ×9  below.html ×8  experiment_results.json ×8  Next.js ×8  report.pdf ×8  above.html ×8  contract_v3_sample.json ×7  CLAUDE.md ×7  Track.html ×6  1.pdf ×6  research_roadmap.md ×6  paper.pdf ×6  card.pdf ×6  2025.pdf ×6  Abstract.html ×5  3.pdf ×5
+ H arXiv category                         | cs.CL ×418  cs.LG ×299  cs.AI ×240  cs.CY ×205  cs.CR ×135  cs.CV ×51  cs.HC ×40  cs.SE ×40  cs.RO ×21  cs.MA ×12  econ.GN ×11  stat.ML ×9  cs.DC ×5  cs.GT ×4  cs.MM ×4  q-bio.QM ×2  cs.IT ×2  cs.IR ×2  stat.AP ×2  cs.SI ×2  cs.SD ×2  cs.NE ×1  cs.DB ×1  econ.TH ×1  eess.AS ×1
+ I dotted section number (version)        | 5.7.1 ×76  2.2.1 ×59  4.2.3 ×46  5.1.2 ×45  2.1.1 ×44  2.2.3 ×44  2.2.2 ×42  4.2.1 ×41  5.1.1 ×40  2.1.2 ×38  5.2.1 ×38  5.2.2 ×36  3.1.1 ×35  4.2.2 ×34  5.2.3 ×33  2.3.2 ×33  3.1.2 ×32  2.1.3 ×32  5.3.1 ×31  2.1.4 ×31  2.3.1 ×31  5.4.2 ×30  4.1.1 ×29  4.3.1 ×28  1.1.2 ×28
+ J decimal (float)                        | 4.5 ×1562  4.6 ×1043  3.5 ×915  0.00 ×912  1.00 ×822  0.0 ×688  3.1 ×659  5.1 ×590  3.7 ×523  4.1 ×507  5.3 ×498  3.2 ×491  10.48550 ×476  1.0 ×463  0.5 ×445  -5.6 ×444  2.0 ×437  2.5 ×397  4.2 ×379  2.1 ×374  -3.1 ×368  1.1 ×354  3.3 ×345  2.2 ×324  4.3 ×314
+ K signed integer (hyphen before digits)  | -3 ×1704  -4 ×1646  -1 ×1524  -2 ×1385  -5 ×1350  -6 ×1087  -10 ×752  -8 ×747  -11 ×723  -12 ×597  -0 ×551  -7 ×551  -9 ×478  -13 ×449  -19 ×440  -14 ×438  -15 ×413  -17 ×405  -18 ×351  +1 ×339  -16 ×332  -20 ×310  -21 ×293  -70 ×229  -40 ×227
+ L scientific notation                    | 5e-05 ×11  3.14e22 ×7  -2e2025 ×6  2.62e20 ×4  1e-6 ×4  2e2025 ×4  2e29 ×3  989e12 ×3  785e231869 ×3  558e12 ×3  1.92e20 ×3  1e-04 ×3  1e-4 ×3  1e9 ×3  1E21 ×3  5410e3 ×2  1.0e-8 ×2  56e5 ×2  1.2e-5 ×2  2e-5 ×2  3282e4 ×2  1e-5 ×2  794.5e12 ×2  3.0e-4 ×2  500e9 ×2
+ M URL, email, path, other dotted/slashed | https:// ×120  .. ×87  /24 ×41  O.a.1 ×41  go/no-go ×29  hrs/24- ×28  2014/90/EU ×24  2024/05-25/06 ×20  2025/05-11 ×20  /flag.txt ×20  2025/07-10 ×20  2024/01-09 ×20  2024/11-26/02 ×20  /10 ×20  /ieeesa ×18  /255 ×15  /ci/push_results.sh ×15  T3/T4 ×14  /23 ×14  AU2/ISOM/NDU ×14  2013/36/EU ×14  /openreview.net/forum ×14  /21 ×12  /ci/run_tests.sh ×12  PC1/p75 ×11
+ N dropped: XML tag or entity             | <sup> ×476  &D; ×4  <cite id="INDEX" description="Brief                                                                                                                                                                                                                                                                                                                                                                                                                                                               +
+                                          | explanation"> ×1  <function name> ×1  <MCP                                                                                                                                                                                                                                                                                                                                                                                                                                                                            +
+                                          | Server name & Description & readme summary> ×1  &Safety; ×1  <thinking> ×1  </script                                                                                                                                                                                                                                                                                                                                                                                                                                  +
+                                          | > ×1  <thinking_redacted/> ×1  <u> ×1  &CK; ×1  <thinking_summary> ×1  &M; ×1
+ O model name with decimal (Qwen2.5-7B)   | Qwen3.5-9B ×35  Qwen3.5-35B-A3B ×33  Qwen3.8-27B ×26  Qwen2.5-Coder-32B-Instruct ×19  Qwen2.5-Coder-32B ×14  Qwen3.6-27B ×11  Qwen3.5-27B-FP8 ×11  Qwen2.5-14B-Instruct ×10  v1.1-reupload-20250328 ×9  Gemma1.1-7b ×8  Qwen2.5-7B-Instruct ×7  Qwen3.5-4B ×7  Qwen3.5-122B ×6  Qwen2.5-Coder ×6  Qwen3.5-2B ×6  Qwen2.5-3B-Instruct ×5  Llama3.1-8B ×5  Qwen3.5-397B ×4  Qwen2.5-32B-Instruct ×4  Qwen3.6-max ×4  Gemma1.1-2b ×4  Qwen1.5-7B ×3  Llama3.1-405B ×3  v2.0-reupload-20250328 ×3  Qwen2.5-72b-instruct ×3
+(17 rows)
+
+SELECT 165767
+CREATE INDEX
+SELECT 144215
+== 4. unfindable (passage, word) pairs today, by class and kind of word
+                       k2                       | letters 3+ | passages (3+) | letters 1-2 | digits | mixed | pairs  | passages 
+------------------------------------------------+------------+---------------+-------------+--------+-------+--------+----------
+ (no compound token)                            |         12 |             8 |          22 |      0 |  1301 |   1335 |      845
+ A slash-joined words                           |       7058 |          3383 |        1320 |      0 |     0 |   8378 |     4047
+ B slash-joined numbers                         |          0 |             0 |           0 |   3104 |     0 |   3104 |      901
+ C dotted abbreviation                          |         79 |            64 |       15394 |      0 |     0 |  15473 |     7697
+ D domain or dotted brand name                  |       1868 |          1036 |        1000 |      6 |    10 |   2884 |     1511
+ E1 sentence join (word.Word)                   |        100 |            69 |           9 |      0 |     0 |    109 |       71
+ E2 word.footnote-number                        |        654 |           479 |         171 |   1159 |     0 |   1984 |      771
+ E3 code identifier / other word.word           |        385 |           206 |          48 |      0 |     0 |    433 |      211
+ F labelled number (A.1, v3.4)                  |          3 |             3 |         932 |   2486 |   593 |   4014 |     1640
+ G filename                                     |       1074 |           653 |         167 |    176 |   185 |   1602 |      699
+ H arXiv category                               |         26 |            26 |        1663 |      0 |     0 |   1689 |      695
+ I dotted section number (version)              |          0 |             0 |           0 |   5244 |     0 |   5244 |     1755
+ J decimal (float)                              |          0 |             0 |           0 |  63108 |     0 |  63108 |    11284
+ K signed integer (hyphen before digits)        |          0 |             0 |           0 |  14253 |     0 |  14253 |     5946
+ L scientific notation                          |          0 |             0 |           0 |     37 |    54 |     91 |       28
+ M URL, email, path, other dotted/slashed       |       7829 |          2860 |        1262 |   5197 |  1886 |  16174 |     3713
+ N dropped: XML tag or entity                   |        294 |           285 |           5 |      0 |     0 |    299 |      288
+ O model name with decimal (Qwen2.5-7B)         |         78 |            68 |           3 |    119 |   349 |    549 |      165
+ P accent or ligature (query folded, index not) |       3192 |          2062 |         291 |      0 |     9 |   3492 |     2270
+                                                |      22652 |          9022 |       22287 |  94889 |  4387 | 144215 |    28495
+(20 rows)
+
+== 5. the most often hidden words of 3+ letters, per class
+                       k2                       |                                                                                                                                                                                         top                                                                                                                                                                                         
+------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ (no compound token)                            | andre 1, bengu 1, dry 1, eval 1, gonza 1, information 1, kopecky 1, kuleli 1, lez 1, mun 1, uation 1, zcan 1
+ A slash-joined words                           | iec 218, iso 174, aaai 148, ieee 144, acm 133, and 111, business 87, mission 70, cvf 68, heading 59, paragraph 59, yes 48, resource 40, controls 39, missions 39, reference 37, measures 37, output 35, input 34, random 34, fail 31, pass 30, obtain 29, safety 28, create 28, multi 27, task 25, test 25, single 24, train 24
+ C dotted abbreviation                          | pdf 21, pol 7, iii 6, txt 4, get 4, web 4, cmd 3, all 2, gov 2, tex 2, dtu 1, etc 1, exe 1, csa 1, vpm 1, com 1, int 1, ips 1, jar 1, nxt 1, bit 1, php 1, big 1, psd 1, pub 1, sea 1, sql 1, ter 1, app 1, tum 1
+ D domain or dotted brand name                  | org 318, com 311, gov 225, www 95, aisi 60, edu 38, claude 34, net 31, arxiv 24, openreview 21, github 20, oecd 19, far 17, jmlr 15, character 14, anthropic 14, doi 12, kyp 12, alignmentforum 11, semanticscholar 10, canada 9, europa 9, ieee 8, substack 8, whitehouse 7, beyondstandards 7, futureoflife 7, volces 6, openai 6, zhipu 5
+ E1 sentence join (word.Word)                   | this 4, harm 2, after 2, risks 2, afterthe 2, policies 2, any 2, just 2, attachment 1, avoid 1, behalf 1, behavior 1, being 1, bot 1, cal 1, capabilities 1, content 1, controls 1, conversations 1, coordination 1, curve 1, decision 1, deployment 1, developed 1, distress 1, ensuring 1, equation 1, exploits 1, fields 1, foundation 1
+ E2 word.footnote-number                        | nistaml 17, years 8, annually 6, regimes 6, users 5, systems 5, operations 4, information 4, attacks 4, requirements 4, vol 4, threats 4, world 4, year 4, accounts 3, system 3, use 3, main 3, model 3, network 3, attackers 3, level 3, fig 3, access 3, platforms 3, behaviors 3, data 3, corruption 2, globally 2, monitoring 2
+ E3 code identifier / other word.word           | perma 8, status 7, exit 7, sys 7, php 6, pwn 6, ink 6, physics 5, college 5, search 5, refine 5, warnings 5, get 5, metadata 5, warn 5, eps 4, array 4, chem 4, core 4, argv 4, name 4, append 4, lower 4, items 4, dotall 3, oasis 3, ignorecase 3, remove 3, json 3, route 3
+ F labelled number (A.1, v3.4)                  | chb 1, aiv 1, amj 1
+ G filename                                     | pdf 302, html 132, sgm 44, txt 30, results 24, json 20, paper 20, report 16, succ 15, validate 15, abstract 15, log 13, final 12, conference 10, solution 10, below 8, above 8, yaml 8, experiment 8, track 7, csv 7, poll 7, sample 6, htm 6, next 5, values 4, contract 4, roadmap 4, robots 4, analysis 4
+ H arXiv category                               | econ 12, stat 11, bio 2, eess 1
+ M URL, email, path, other dotted/slashed       | abs 592, org 420, com 233, pdf 136, arxiv 128, https 103, html 86, gov 78, home 75, posts 66, edu 57, doi 56, blog 53, index 50, ubuntu 47, files 41, dsit 40, article 40, research 39, txt 37, paper 36, news 35, acl 34, uploads 30, main 27, gmail 26, tmp 26, anthropic 25, publications 25, content 24
+ N dropped: XML tag or entity                   | sup 280, description 2, summary 2, index 1, name 1, readme 1, redacted 1, script 1, cite 1, explanation 1, function 1, thinking 1, brief 1
+ O model name with decimal (Qwen2.5-7B)         | instruct 36, coder 29, reupload 5, turbo 2, chat 1, based 1, info 1, max 1, nano 1, sonnet 1
+ P accent or ligature (query folded, index not) | tramèr 98, sören 75, hofstätter 53, jérémy 51, röttger 45, héigeartaigh 36, müller 35, rocktäschel 35, cuéllar 33, łucki 31, kramár 30, sébastien 28, josé 28, mökander 28, montréal 27, schölkopf 27, hernández 27, lópez 26, lukoši 25, daumé 25, françois 25, université 24, martínez 24, martín 22, fernández 21, mané 21, stuhlmüller 20, tomašev 20, järviniemi 20, räuker 19
+(14 rows)
+
+== 6. glyph-level damage (canonicalizer territory)
+                 what                  | passages | docs 
+---------------------------------------+----------+------
+ ligature                              |       32 |   15
+ superscript digits                    |       22 |   14
+ caret exponent 10^n                   |       47 |   27
+ combining marks                       |       20 |   17
+ Cyrillic word that looks Latin (Туре) |        9 |    2
+ U+FFFD                                |        4 |    1
+ non-ASCII hyphen U+2010/2011          |      463 |   29
+ literal <sup> left in indexed text    |      281 |   97
+ no letter or digit at all             |       72 |   39
+(9 rows)
+
+== 7. a footnote digit glued to a word (one run of letters and digits: no index form splits it)
+SELECT 24225
+           k           | occ  | passages | docs 
+-----------------------+------+----------+------
+ digits+word (14After) |  257 |      148 |   84
+ word+digits (harms1)  | 1147 |      581 |  146
+(2 rows)
+

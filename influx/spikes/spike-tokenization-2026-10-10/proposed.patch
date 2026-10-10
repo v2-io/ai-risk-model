@@ -1,0 +1,107 @@
+--- a/search/schema.sql
++++ b/search/schema.sql
+@@ -11,6 +11,7 @@
+ 
+ create extension if not exists vector;
+ create extension if not exists pg_trgm;
++create extension if not exists unaccent;
+ 
+ create schema if not exists cache;
+ 
+@@ -25,6 +26,18 @@
+ 
+ create schema src;
+ 
++-- What the parser is given, for passages and queries alike (RANKING.md H-Q5): a word
++-- is a run of letters and digits, and every other character separates. Without it
++-- the parser joins words into one token across '/', '.', '@' and a hyphen before a
++-- digit ("chemical/biological", "U.S", "Z.ai", "espionage.144", "2024-2025" read as
++-- 2024 and -2025, "4.5"), and no query can find either word: 144,215 passage-word
++-- pairs in 28,495 passages on 2026-10-10 (influx/spikes/spike-tokenization-2026-10-10/).
++-- Accents and ligatures are folded, as text.fold folds a query ("Schölkopf",
++-- "ﬁne-tuning"). rank.py sends every query through this same function.
++create function src.index_form(t text) returns text
++    language sql immutable parallel safe as
++$$ select regexp_replace(public.unaccent('public.unaccent'::regdictionary, t), '[^[:alnum:]]+', ' ', 'g') $$;
++
+ -- What built this database: schema_sha is sha256 of this file, so a changed schema
+ -- is noticed and answered with --rebuild rather than silently half-applied.
+ create table src.meta (
+@@ -86,7 +99,7 @@
+     path        text[] not null,
+     page        int,
+     printed     text,
+-    tsv         tsvector generated always as (to_tsvector('simple', text || ' ' || coalesce(title, ''))) stored,
++    tsv         tsvector generated always as (to_tsvector('simple', src.index_form(text || ' ' || coalesce(title, '')))) stored,
+     primary key (doc_key, ord)
+ );
+ 
+@@ -108,12 +121,12 @@
+     section     text not null,           -- body | glossary | toc | references | abbreviations | index | annex | restored
+     kinds       text[] not null,         -- the block kinds it holds; 'cut' if it is a piece of a longer block
+     text        text not null,           -- indexed text: links, tags, images and emphasis removed
+-    nwords      int  not null,           -- its length in words, for BM25's length normalisation
++    nwords      int  not null,           -- its length in words (text.words, as src.index_form cuts them), for BM25's length normalisation
+     norm_sha    text not null,           -- sha256 of its words, for collapsing duplicates (DESIGN §6.3)
+     embed_sha   text not null,           -- sha256 of its embedding input; joins cache.embeddings
+-    tsv_exact   tsvector generated always as (to_tsvector('simple', text)) stored,
+-    tsv_stem    tsvector generated always as (to_tsvector('english', text)) stored,
+-    tsv_head    tsvector generated always as (to_tsvector('simple', heading)) stored,
++    tsv_exact   tsvector generated always as (to_tsvector('simple', src.index_form(text))) stored,
++    tsv_stem    tsvector generated always as (to_tsvector('english', src.index_form(text))) stored,
++    tsv_head    tsvector generated always as (to_tsvector('simple', src.index_form(heading))) stored,
+     unique (doc_key, layer, ord)
+ );
+ create index on src.passages using gin (tsv_exact);
+--- a/search/srcsearch/text.py
++++ b/search/srcsearch/text.py
+@@ -168,11 +168,13 @@
+              .replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"'))
+ 
+ 
+-WORD_RE = re.compile(r'[^\W_]+(?:[-\'][^\W_]+)*')
++WORD_RE = re.compile(r'[^\W_]+')
+ 
+ 
+ def words(s):
+-    """Word tokens of folded text; hyphenated and apostrophe'd words stay whole."""
++    """Word tokens of folded text: runs of letters and digits, as src.index_form cuts
++    them for the index (RANKING.md H-Q5). A hyphen, slash, period or apostrophe
++    separates: "loss-of-control" is three words, as the literal matcher reads it."""
+     return WORD_RE.findall(fold(s))
+ 
+ 
+--- a/search/srcsearch/rank.py
++++ b/search/srcsearch/rank.py
+@@ -78,7 +78,8 @@
+ 
+ 
+ def _lexemes(conn, cfg, text):
+-    return [r[0] for r in conn.execute(f"select lexeme from unnest(to_tsvector('{cfg}', %s))", (text,))]
++    # through src.index_form, as the tsvector columns are (schema.sql; RANKING.md H-Q5)
++    return [r[0] for r in conn.execute(f"select lexeme from unnest(to_tsvector('{cfg}', src.index_form(%s)))", (text,))]
+ 
+ 
+ def _bm25(conn, col, cfg, lexemes, w, keys):
+@@ -241,10 +242,10 @@
+                     phrase.add(i)
+     elif len(pq['words']) > 1:
+         phrase = {r[0] for r in conn.execute(
+-            "select id from src.passages where id = any(%s) and tsv_exact @@ phraseto_tsquery('simple', %s)",
++            "select id from src.passages where id = any(%s) and tsv_exact @@ phraseto_tsquery('simple', src.index_form(%s))",
+             (ids, text))}
+     heading = {r[0] for r in conn.execute(
+-        "select id from src.passages where id = any(%s) and tsv_head @@ plainto_tsquery('simple', %s)", (ids, text))}
++        "select id from src.passages where id = any(%s) and tsv_head @@ plainto_tsquery('simple', src.index_form(%s))", (ids, text))}
+     for i in phrase:
+         score[i] *= w['phrase_factor']
+     for i in heading:
+@@ -293,7 +294,7 @@
+                join cache.embeddings e on e.model = %(m)s and e.input_sha = p.embed_sha
+                where (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))""", dict(v=v, m=model, keys=keys)).fetchone()[0]
+     n_all = conn.execute(
+-        """select count(*) from src.passages where tsv_exact @@ plainto_tsquery('simple', %s)
++        """select count(*) from src.passages where tsv_exact @@ plainto_tsquery('simple', src.index_form(%s))
+            and (%s::text[] is null or doc_key = any(%s))""", (' '.join(pq['words']), keys, keys)).fetchone()[0] if pq['words'] else 0
+     unanswered = near is not None and n_all == 0 and near >= W['distance']
+     return dict(nearest_distance=None if near is None else round(float(near), 4), passages_with_all_words=n_all,

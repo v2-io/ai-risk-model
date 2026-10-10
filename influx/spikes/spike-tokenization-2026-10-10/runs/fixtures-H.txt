@@ -1,0 +1,59 @@
+database airisk_tokspike; index form: src.index_form; ranking code: patched
+
+forms
+  ok   'chemical/biological'                      A slash-joined words
+  ok   'ISO/IEC 42001'                            A slash-joined words
+  FAIL 'self-preservation/shutdown-resistance'    M path-like token hides a hyphenated word   got ['preservation', 'resistance', 'self', 'self-preservation', 'shutdown', 'shutdown-resistance']
+  ok   '2024/1689'                                B slash-joined numbers
+  ok   'U.S.'                                     C dotted abbreviation
+  ok   'e.g.'                                     C dotted abbreviation
+  ok   'Z.ai'                                     D dotted brand name
+  ok   'knowledge.These'                          E1 sentence join
+  ok   'espionage.144'                            E2 footnote number after a period
+  ok   'Annex A.1'                                F labelled number
+  ok   'section 5.7.1'                            I dotted section number
+  ok   '§22757.11(c)'                             J decimal
+  ok   '4.5%'                                     J decimal
+  ok   '2024-2025'                                K signed integer (a hyphen read as a minus sign)
+  ok   '2024–2025'                                en dash: separates today too
+  ok   'COVID-19'                                 K signed integer
+  ok   'Llama-3.1-70B'                            K/J signed decimal
+  ok   '1e26'                                     L scientific notation: one run, one word
+  ok   '10^26'                                    caret exponent: separates today too
+  ok   '$1B'                                      currency and suffix: one word today too
+  ok   'x@y.com'                                  M email
+  FAIL 'loss-of-control'                          hyphen between letters (W; H would add loss-of-control)   got ['control', 'loss', 'loss-of-control', 'of']
+  ok   'AI’s'                                     apostrophe separates, today too
+  ok   'Schölkopf'                                accent folded, as the query side folds
+  ok   'Montréal'                                 accent folded
+  FAIL 'ﬁne-tuning'                               ligature folded   got ['fine', 'fine-tuning', 'tuning']
+
+findable
+  ok   'chemical weapons'             anthropic-2026-rsp-v3-4                A   (4 passages)
+  ok   'biological weapons'           anthropic-2026-rsp-v3-4                A   (4 passages)
+  ok   'misalignment'                 bengio-2026-international              A (the shortfall spike's case)   (1 passage)
+  ok   'safety measures'              anthropic-2023-rsp-v1-0                A   (2 passages)
+  ok   'fine-tuning'                  nevo-2024-securing                     A with a hyphenated part   (1 passage)
+  ok   'shutdown'                     csb-2007-bp-texas-city                 M   (1 passage)
+  ok   'ISO/IEC 42001'                bengio-2026-international              A, typed as written   (1 passage)
+  ok   'IEC 42001'                    bengio-2026-international              A   (1 passage)
+  ok   'Regulation (EU) 2024/1689'    eu-2024-ai-act                         B, typed as written   (10 passages)
+  ok   'U.S. government'              anthropic-2025-rsp-v2-2                C, typed as written   (1 passage)
+  ok   'Claude.ai'                    anthropic-2023-rsp-v1-0                D, typed as written   (1 passage)
+  ok   'Z.ai'                         fli-2026-ai-safety-index-summer        D, typed as written   (63 passages)
+  ok   'industrial espionage'         nevo-2024-securing                     E2   (1 passage)
+  ok   'risk mitigation'              gekker-2026-aisp                       E2   (1 passage)
+  ok   'human knowledge'              kasirzadeh-gabriel-2023-conversation   E1   (1 passage)
+  ok   'Section 22757.11'             california-2025-sb53                   J, typed as written   (3 passages)
+  ok   'Claude Opus 4.5'              anthropic-2026-risk-report-feb         J, typed as written   (1 passage)
+  ok   'RSP 2025'                     anthropic-2026-rsp-v3-4                K   (1 passage)
+  ok   'COVID 19'                     anthropic-2026-rsp-v3-4                K   (1 passage)
+  ok   'COVID-19'                     anthropic-2026-rsp-v3-4                K, typed as written (passes today: both sides read -19)   (1 passage)
+  ok   'Schölkopf'                    bengio-2026-international              accent: today the query is folded and the index isn't   (1 passage)
+  ok   'Scholkopf'                    bengio-2026-international              accent   (1 passage)
+  ok   'Université de Montréal'       bengio-2026-international              accent   (1 passage)
+  ok   'manage files'                 bengio-2026-international              ligature   (1 passage)
+  ok   'scientific reasoning'         bengio-2026-international              ligature   (1 passage)
+  ok   'loss of control'              eu-cop-2025-safety-security            control: plain words, passes everywhere   (1 passage)
+
+49 of 52 pass

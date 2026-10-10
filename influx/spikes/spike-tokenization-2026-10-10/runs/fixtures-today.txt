@@ -1,0 +1,59 @@
+database airisk_sources; index form: none (raw text); ranking code: search/srcsearch
+
+forms
+  FAIL 'chemical/biological'                      A slash-joined words   got ['chemical/biological']
+  FAIL 'ISO/IEC 42001'                            A slash-joined words   got ['42001', 'iso/iec']
+  FAIL 'self-preservation/shutdown-resistance'    M path-like token hides a hyphenated word   got ['/shutdown-resistance', 'preservation', 'self', 'self-preservation']
+  FAIL '2024/1689'                                B slash-joined numbers   got ['2024/1689']
+  FAIL 'U.S.'                                     C dotted abbreviation   got ['u.s']
+  FAIL 'e.g.'                                     C dotted abbreviation   got ['e.g']
+  FAIL 'Z.ai'                                     D dotted brand name   got ['z.ai']
+  FAIL 'knowledge.These'                          E1 sentence join   got ['knowledge.these']
+  FAIL 'espionage.144'                            E2 footnote number after a period   got ['espionage.144']
+  FAIL 'Annex A.1'                                F labelled number   got ['a.1', 'annex']
+  FAIL 'section 5.7.1'                            I dotted section number   got ['5.7.1', 'section']
+  FAIL '§22757.11(c)'                             J decimal   got ['22757.11', 'c']
+  FAIL '4.5%'                                     J decimal   got ['4.5']
+  FAIL '2024-2025'                                K signed integer (a hyphen read as a minus sign)   got ['-2025', '2024']
+  ok   '2024–2025'                                en dash: separates today too
+  FAIL 'COVID-19'                                 K signed integer   got ['-19', 'covid']
+  FAIL 'Llama-3.1-70B'                            K/J signed decimal   got ['-3.1', '-70', 'b', 'llama']
+  ok   '1e26'                                     L scientific notation: one run, one word
+  ok   '10^26'                                    caret exponent: separates today too
+  ok   '$1B'                                      currency and suffix: one word today too
+  FAIL 'x@y.com'                                  M email   got ['x@y.com']
+  FAIL 'loss-of-control'                          hyphen between letters (W; H would add loss-of-control)   got ['control', 'loss', 'loss-of-control', 'of']
+  ok   'AI’s'                                     apostrophe separates, today too
+  FAIL 'Schölkopf'                                accent folded, as the query side folds   got ['schölkopf']
+  FAIL 'Montréal'                                 accent folded   got ['montréal']
+  FAIL 'ﬁne-tuning'                               ligature folded   got ['tuning', 'ﬁne', 'ﬁne-tuning']
+
+findable
+  FAIL 'chemical weapons'             anthropic-2026-rsp-v3-4                A   query lexemes ['chemical', 'weapons']; passage 123777 lacks ['chemical']
+  FAIL 'biological weapons'           anthropic-2026-rsp-v3-4                A   query lexemes ['biological', 'weapons']; passage 123777 lacks ['biological']
+  FAIL 'misalignment'                 bengio-2026-international              A (the shortfall spike's case)   query lexemes ['misalignment']; passage 124924 lacks ['misalignment']
+  FAIL 'safety measures'              anthropic-2023-rsp-v1-0                A   query lexemes ['measures', 'safety']; passage 124440 lacks ['safety']
+  FAIL 'fine-tuning'                  nevo-2024-securing                     A with a hyphenated part   query lexemes ['fine', 'fine-tuning', 'tuning']; passage 128365 lacks ['fine', 'fine-tuning', 'tuning']
+  FAIL 'shutdown'                     csb-2007-bp-texas-city                 M   query lexemes ['shutdown']; passage 146021 lacks ['shutdown']
+  FAIL 'ISO/IEC 42001'                bengio-2026-international              A, typed as written   query lexemes ['42001', 'iec', 'iso']; passage 125452 lacks ['iec', 'iso']
+  FAIL 'IEC 42001'                    bengio-2026-international              A   query lexemes ['42001', 'iec']; passage 125452 lacks ['iec']
+  FAIL 'Regulation (EU) 2024/1689'    eu-2024-ai-act                         B, typed as written   query lexemes ['1689', '2024', 'eu', 'regulation']; passage 127739 lacks ['1689', '2024']
+  FAIL 'U.S. government'              anthropic-2025-rsp-v2-2                C, typed as written   query lexemes ['government', 's', 'u']; passage 124199 lacks ['u']
+  FAIL 'Claude.ai'                    anthropic-2023-rsp-v1-0                D, typed as written   query lexemes ['ai', 'claude']; passage 124430 lacks ['ai', 'claude']
+  FAIL 'Z.ai'                         fli-2026-ai-safety-index-summer        D, typed as written   query lexemes ['ai', 'z']; passage 130868 lacks ['ai', 'z']
+  FAIL 'industrial espionage'         nevo-2024-securing                     E2   query lexemes ['espionage', 'industrial']; passage 128238 lacks ['espionage']
+  FAIL 'risk mitigation'              gekker-2026-aisp                       E2   query lexemes ['mitigation', 'risk']; passage 140891 lacks ['mitigation']
+  FAIL 'human knowledge'              kasirzadeh-gabriel-2023-conversation   E1   query lexemes ['human', 'knowledge']; passage 178478 lacks ['knowledge']
+  FAIL 'Section 22757.11'             california-2025-sb53                   J, typed as written   query lexemes ['11', '22757', 'section']; passage 123727 lacks ['11', '22757']
+  FAIL 'Claude Opus 4.5'              anthropic-2026-risk-report-feb         J, typed as written   query lexemes ['4', '5', 'claude', 'opus']; passage 130567 lacks ['4', '5']
+  FAIL 'RSP 2025'                     anthropic-2026-rsp-v3-4                K   query lexemes ['2025', 'rsp']; passage 123813 lacks ['2025']
+  FAIL 'COVID 19'                     anthropic-2026-rsp-v3-4                K   query lexemes ['19', 'covid']; passage 123760 lacks ['19']
+  ok   'COVID-19'                     anthropic-2026-rsp-v3-4                K, typed as written (passes today: both sides read -19)   (1 passage)
+  FAIL 'Schölkopf'                    bengio-2026-international              accent: today the query is folded and the index isn't   query lexemes ['scholkopf']; passage 124517 lacks ['scholkopf']
+  FAIL 'Scholkopf'                    bengio-2026-international              accent   query lexemes ['scholkopf']; passage 124517 lacks ['scholkopf']
+  FAIL 'Université de Montréal'       bengio-2026-international              accent   query lexemes ['de', 'montreal', 'universite']; passage 124526 lacks ['montreal', 'universite']
+  FAIL 'manage files'                 bengio-2026-international              ligature   query lexemes ['files', 'manage']; passage 124593 lacks ['files']
+  FAIL 'scientific reasoning'         bengio-2026-international              ligature   query lexemes ['reasoning', 'scientific']; passage 124606 lacks ['scientific']
+  ok   'loss of control'              eu-cop-2025-safety-security            control: plain words, passes everywhere   (1 passage)
+
+7 of 52 pass
