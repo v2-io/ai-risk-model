@@ -66,7 +66,7 @@ After the reading the expert stops and reports, so the remaining preparation can
 - a new expert starts with about 180–190k tokens already used, by the system prompt, tools and brief;
 - the SB 53 expert, reading a paragraph per unit, was at 312k after 67 of 224 units, about 1.9k tokens a unit with its reflection. That projects to about 610k for the whole statute, a floor rather than a forecast, since reflections lengthen as a reading accumulates.
 
-Before choosing a unit size, an expert can estimate: about 185k plus the number of units times 2–3k.
+Before choosing a unit size, an expert can estimate: about 185k plus the number of units times 2–3k. After that, the margin is the coordinator's and Joseph's to watch, at checkpoints the expert names, and not the expert's. Joseph, to the second expert before it began: "context anxiety kind of messes with the thoughtfulness and thoroughness and doesn't end up saving any context. Think of it more as 'I'm going to be an expert on this one way or another, come what may as far as my own context...'" So a coordinator passes context readings to the expert only at its own checkpoints, or when the margin calls for a decision, never just to keep it informed.
 
 ### 4. Then, as room allows, in this order
 

@@ -26,7 +26,7 @@ Two more things from that conversation:
 
 **Two constraints, with their reasons.**
 - **Stop when the source is read, and report.** Joseph wants to see how much of your context the reading took before deciding what you read next: earlier versions, how the source relates to the corpus, the project's methodology. That pause is the triage point.
-- **Your context must never be compacted.** Compaction would replace your reading with a summary, the one thing an expert exists to avoid. If you sense you're near your limit, stop and say so, rather than pressing on.
+- **Your context must never be compacted.** Compaction would replace your reading with a summary, the one thing an expert exists to avoid. Joseph and I keep watch on that. If you'd like readings of your context, name a few checkpoints (every 30 units, say), and Joseph will take them with `/context`. Between checkpoints, please don't think about it. Joseph: "I would try to resist thinking at all about your context though-- other than the checkpoints you decided to have it checked-- context anxiety kind of messes with the thoughtfulness and thoroughness and doesn't end up saving any context. Think of it more as 'I'm going to be an expert on this one way or another, come what may as far as my own context...'"
 
 **What happens after.** This session is kept. Whenever someone needs to know something about this source, a fork of you is made and asked. Examples:
 - reordering what `source-search` returned for a question, and saying what it missed;
