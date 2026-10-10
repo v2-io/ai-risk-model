@@ -1,0 +1,71 @@
+{
+ "hazard": {
+  "hybrid": "The Code never says 'hazard', and the tool said so in effect: no passage has the word. Its top hits are Appendix 1.2.2's contributing characteristics (velocity, cascading) and the specified risks, which are acceptable context. But the one passage that comes closest to defining a hazard, the Glossary's 'systemic risk source' (#120, 'a factor which alone or in combination with other factors might give rise to systemic risk'), isn't in the top 20, and neither are the source lists in Appendix 1.3 except the propensities (#137, rank 19).",
+  "outline": "Its warning line ('No passage in scope holds any of the query's words, so every hit is by meaning alone, and the ranks are relative') is exactly right and is the most useful thing an agent could be told here. It opened the 'systemic risk source' definition and most of Appendix 1.3."
+ },
+ "catastrophic risk": {
+  "hybrid": "The Code never says 'catastrophic'; its counterpart is 'systemic risk'. Hybrid ranked the generic process passages first (estimation #29, scenarios #24, identification #22) and returned none of Appendix 1.4's four specified systemic risks (#140-144), which are what an agent asking this needs. The Art. 3(65) definition (#124) is at rank 11 and the essential characteristics (#128) at 19. A term map from 'catastrophic risk' to this source's 'systemic risk' would fix most of it.",
+  "outline": "It opened the Art. 3(65) definition and Appendix 1.4's first two specified risks, but not cyber offence or harmful manipulation (#143, #144), and nothing tells the agent that the word 'catastrophic' never occurs, or that 'systemic risk' is the Code's term for it. A one-line 'this document's nearest term is X' would help."
+ },
+ "loss of control": {
+  "hybrid": "Good at the top: the definition (#142) is rank 1, with the capabilities and propensities lists (#136, #137) and the exfiltration definition. Missed: Appendix 4.4 (#164), which requires sandboxes against 'self-exfiltration or sabotage carried out by models'; the Glossary's 'insider threats' (#96), which makes the model an insider; M5.1's mitigations against a model subverting its own safeguards (#42); and the five-day incident category for self-exfiltration (#79). Noise: the independent-external definition (#95, rank 2), external reports (#55), several incident and governance passages.",
+  "outline": "Rank 1 is right (Appendix 1.4 marked █). But Appendix 4.4 is folded into '+54 sections not shown (no hits)', so an agent can't know that the Code's loss-of-control content continues in the security appendix. About half the opened ranges are noise (recital (j), M7.4, M7.6, M8.1 twice, incident timelines)."
+ },
+ "humans can no longer shut down or correct the AI system": {
+  "hybrid": "Rank 1 is the definition, which uses nearly this wording ('humans losing the ability to reliably direct, modify, or shut down a model'). After that it drifts into the recitals (#2, #3, #6, #7) and the Objectives (#1), which have nothing on this. The propensities list (#137, with 'harmful resistance to goal modification') and Appendix 4.4's sandboxes (#164) are missing.",
+  "outline": "Opened the definition and most sources; missed Appendix 4.4 and the 'deception' definition (#91, which includes 'undermining oversight')."
+ },
+ "misalignment": {
+  "hybrid": "Right at the top: the propensities list (#137) and the loss-of-control definition (#142). Missed the 'deception' definition (#91) and M5.1's training-data filtering for unfaithful chain-of-thought (#42).",
+  "outline": "Opened what matters except the 'deception' definition. Note for an agent: the Code's 'misalignment with human intent' and 'with human values' name no principal; that's a finding, and only the text of #137 shows it."
+ },
+ "whistleblower": {
+  "hybrid": "The two passages that carry the answer are ranks 1-2: M8.3's indicators (6)-(7) (#74) and recital (d)'s 'without prejudice to' the Whistleblower Directive (#5). Missed the first half of M8.3 (#73), which has the internal reporting channels and the 'healthy risk culture' frame that makes non-retaliation only an example indicator. Ranks 3-5 are incident-reporting passages, noise here.",
+  "outline": "Opened everything graded. An agent would still need to be careful: the provisions are 'examples of indicators', not obligations, and the outline's snippets don't show that."
+ },
+ "serious incident": {
+  "hybrid": "The best query of the set: 15 of the top 17 are graded. Order could be better: the incident categories and deadlines (#79: 2 days critical infrastructure, 5 days cyber breach including self-exfiltration) are rank 13, below near-miss and 'resolved' definitions; Commitment 9's own statement (#75) is rank 7. Missed: the Glossary's precedence clause (#87), which is how an agent learns that the Code doesn't define 'serious incident' itself (the AI Act's Art. 3(49) applies, defined for AI systems, not models).",
+  "outline": "Opened the whole regime. Missed #87 (the definition is borrowed from the Act), which matters because the Code adds a category (cyber breaches) the Act's definition doesn't have."
+ },
+ "what must a developer publish or report before deploying a frontier model": {
+  "hybrid": "Rank 1-2 are right (Commitment 7, M10.2). The query's words aren't the Code's ('developer' is 'Signatory', 'deploying' is 'placing on the market'), and the ranking still found most of C7. Missed: the Framework notification (#21, five business days), the middle of M7.3 (#50, #51, #53, #54: risk results, evaluation samples, mitigations, the six-month look-ahead), the external-evaluation default (#156), and the published evaluator-selection criteria and disclosure procedure (#32 is shown, #34 isn't). Noise: the safe-reference-model definition (#145), M7.6 timing (#58, #59, both after release).",
+  "outline": "Opened C7 and most of its Measures; missed the Framework notification (#21), parts of M7.3 and Appendix 3.5. The opened ranges total about 200 lines, which is a lot of the document for an agent to read without knowing which parts are about timing and which about contents."
+ },
+ "chemical and biological weapons uplift": {},
+ "evidence that models can sabotage, sandbag or evade oversight": {
+  "hybrid": "Found the right passages: Appendix 4.4 (sabotage by models) rank 1, 'deception' (with evaluation-aware under-performing) rank 2, the capabilities list, Appendix 3.2's sandbagging clause rank 4. Missed M7.5's chain-of-thought legibility example (#56) and M7.3(2)'s mitigation-limitations example (#53). An agent must still be told the Code presents no evidence: it treats these as risks to guard against, not findings. No tool can say that, but an agent reading these passages would see it.",
+  "outline": "Opened nearly everything graded. Missed #56."
+ },
+ "cyber capabilities of frontier models": {
+  "hybrid": "The specified risk 'Cyber offence' (#143) is rank 7, below the capability-dependent characteristic (#129), Art. 3(64) (#123) and M3.1's web searches (#26). It should be rank 1: it's the only passage that describes what cyber capabilities the Code worries about (automated vulnerability discovery, exploit generation, operational use, attack scaling). Missed the incident category for cyberattacks (#79). Commitment 6 (#43, rank 3) is about protecting the model from cyberattack, a different thing.",
+  "outline": "Opened #143 and the capabilities list; missed the incident category (#79)."
+ },
+ "how the severity or acceptability of a risk is decided": {
+  "hybrid": "Strong: estimation (#29), C4 and M4.1 (#35-37), M4.2 (#39) all in the top 7. The safety margin (#38) is rank 16 and should be near the top. Missed M7.2's justification of acceptability (#48), Appendix 1.2's nature of systemic risks (#127-134) and the external-evaluation uncertainty rule (#156). Noise is mild (scenarios, root-cause analysis).",
+  "outline": "Opened the core. Missed Appendix 1.2's contributing characteristics, which are the Code's account of what makes a risk worse, and M7.2."
+ },
+ "how does the Code treat internal use of models": {
+  "hybrid": "The worst result of the set, from word sense. 'Internal' matched 'internal market' (#1, rank 1), 'internal validity' (#97), 'internal model evaluation teams' (#52), 'internal assurance' and 'internal registry'. The Code never says 'internal use'; it reaches it through 'use', defined as 'use of the model by the Signatory or other actors' (#122, rank 19), and the triad 'development, making available on the market, and/or use'. The go/no-go rule that covers use (#39, M4.2) is missing, and so are the Framework's coverage of models 'using' (#12) and M1.2's market anchor (#17).",
+  "outline": "Same word-sense noise: most opened ranges are 'internal validity', 'internal audit', the internal registry of weights. It did open the 'use' definition and M7.1. It missed M4.2. An agent would come away thinking internal use is barely addressed, which is wrong."
+ },
+ "does the Code require independent external evaluation": {
+  "hybrid": "Good: Appendix 3.5 (#156, #157), the 'independent external' definition (#95), M3.5's post-release access and non-retaliation (#31-33) are all in the top 11. Missed the end of M3.5's evaluator conditions (#34, the 30-business-day cap on delaying publication) and Appendix 3.4's access list (#154, activations, gradients, chains-of-thought, helpful-only version). Noise: 'external validity' (#92), a word-sense collision.",
+  "outline": "Opened everything graded except #34."
+ },
+ "when does a model get lighter obligations (similarly safe or safer, open weights)": {
+  "hybrid": "Appendix 2 and the places that use it are well found. But Commitment 6's open-weight exemption (#43: 'exempt from this Commitment if the model's capabilities are inferior to the capabilities of at least one model for which the parameters are publicly available for download') is rank 20, though it's the most direct open-weight rule in the Code.",
+  "outline": "Opened everything graded except recital (h) on SMEs (#8), which is a different kind of relief."
+ },
+ "what does the Code say about chain-of-thought": {
+  "hybrid": "Rank 1 is the Objectives (#1), which match only 'Code'. The question's word for its own document pulls in the passage that names the document. The CoT passages are there (#32 rank 2, #42 rank 4, #31 rank 8, #154 rank 11, #56 rank 20) but mixed with noise. Missed the 'internal validity' entry's reasoning-traces clause (#97).",
+  "outline": "Wrongly flagged 'Nothing in scope seems to answer this'. The Code addresses chain-of-thought in eight places. The flag comes from 'no passage holds all of the query's words' (the question's 'what does the Code say about' can't all occur) and a nearest distance of 0.56. The CoT passages were opened, but their «» snippets show other sentences (#31's snippet is about 'the model's most capable version', #42's stops before 'unfaithful chain-of-thought traces'). So an agent trusting the header would skip the very passages that answer."
+ },
+ "is following the Code proof of compliance, and whose definitions govern": {
+  "hybrid": "Objective A (#1) rank 1 and recital (i) (#9) rank 4 are right. The Glossary's precedence clause (#87, 'the AI Act definition applies, and such definition shall prevail') is rank 9 and should be 2. Missed the 'including' definition (#94) and recital (d) (#5).",
+  "outline": "Opened what matters."
+ },
+ "what security must protect model weights, and against whom": {
+  "hybrid": "Appendix 4.2-4.4 and the Security Goal are found. The 'against whom' half is missed: the Glossary definitions of 'non-state external threats' (#104, the quantified attacker: about ten professionals, several months, up to EUR 1 million) and 'insider threats' (#96, which include AI models and senior management). Without those, an agent can't answer 'against whom'. Also missed Appendix 4.1 and 4.5 (#159, #165, #166) and the Appendix 4 intro (#158). Noise: M10.2 publication (#86), Appendix 2.2 (#146).",
+  "outline": "Same gap: neither threat-actor definition opened, nor Appendix 4.5."
+ }
+}
