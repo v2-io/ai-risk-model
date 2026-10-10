@@ -114,3 +114,10 @@ It shows, and I think in a specific way. I cannot measure my own effort, and mod
 - **No fabrication that I know of in mine,** and none found in its sample. The effort-sensitive failures here are omissions (connections not made), not inventions.
 
 If it is useful, the one change I would expect to matter most for a Sonnet expert is to run it at high effort, or to give it an explicit standing instruction to test each new unit against the previous three before writing.
+
+---
+
+## Addendum (2026-10-10): the Opus expert's last files, 124–133
+
+- **124–128 (the §2.1.3 tail: Box 2.1, updates, evidence gaps, mitigations, challenges):** these match my S-128 to S-132 in what they record; they change nothing in the comparison above.
+- **129–133 (the biological section):** I read them, but the response in which I began to write up the comparison was stopped by a safety classifier, and I am not continuing that part. This addendum therefore covers nothing from those five files. For §2.1.4 the Sonnet reflections (S-133 to S-148) remain the only expert record of the section's body.
