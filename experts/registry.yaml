@@ -92,12 +92,14 @@ experts:
     name: expert-aisi-2025-frontier-sonnet
     session: 78d471da-d663-4696-8ea4-7f793eb201d8
     model: sonnet
+    effort: the default (low or medium, Joseph judged), not set at launch
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
     state: paused (reading finished 2026-10-09: all 123 units of at least 80 words, every claim-bearing figure, the reference list and glossary; no safeguard flags; 399k after the reading, against about 600-700k for the Opus experts; what it reads next is Joseph's call)
     branch: expert/aisi-2025-frontier-sonnet, in .claude/worktrees/expert-aisi-2025-frontier
     read: [{key: aisi-2025-frontier, sha256: 0677c8340149..., how: experientially, units of at least 80 words, 123 units}]
     products: [reading/00-start.md (priming), reading/01-reflections.md (~31k words, one entry per unit), reading/98-flags-and-conversion-notes.md, reading/99-questions.md]
+    after_reading: Joseph talked with it at length (2026-10-10), and had it read the flagged Opus AISI expert's reflections (units 1-33); a fork holds both readings
     checkpoints: [unit 62 of 123 (reached), the end (reached)]
     context_after_preparation: null
   - key: bengio-2026-international
@@ -105,6 +107,7 @@ experts:
     name: expert-bengio-2026-international-sonnet
     session: 2df084a5-dce6-4f6b-b42e-b7fe1553c3bf
     model: sonnet
+    effort: the default (low or medium, Joseph judged), not set at launch
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
     state: paused (reading finished 2026-10-09: units 1-340 of 481, the report, glossary and citation; the reference list left out by its own call, reasons and cost in its file; its own estimate about 770k, awaiting Joseph's /context; it asked for no further messages)

@@ -33,6 +33,7 @@ def main():
     ap.add_argument('--coordinator', default='ai-risk-search-tool')
     ap.add_argument('--dry-run', action='store_true')
     ap.add_argument('--model', help="Claude Code's --model (an alias such as 'sonnet', or a full name)")
+    ap.add_argument('--effort', default='xhigh', help="Claude Code's --effort (default xhigh; Joseph, 2026-10-10: Sonnet experts at their default effort were much less thoughtful than the Opus ones)")
     ap.add_argument('--suffix', default='', help='added to the session name, for a second expert on one source')
     a = ap.parse_args()
     if not os.path.isfile(os.path.join(ROOT, 'ref', 'canonical', a.key + '.md')):
@@ -49,7 +50,7 @@ def main():
     if a.note:
         brief += '\n\n' + a.note
     cmd = ['claude', '--bg', '--dangerously-skip-permissions', '--append-system-prompt-file', PROMPT, '-n', name] + \
-          (['--model', a.model] if a.model else []) + [brief]
+          (['--model', a.model] if a.model else []) + ['--effort', a.effort] + [brief]
     if a.dry_run:
         print(brief, '\n\n', ' '.join(cmd[:-1]), '"<brief>"')
         return
@@ -62,6 +63,7 @@ def main():
     name: {name}
     session: {sid or 'unknown (see claude agents --json)'}
     model: {a.model or 'the default'}
+    effort: {a.effort}
     started: {datetime.date.today().isoformat()}
     started_by: {a.coordinator}, with bin/expert-launch and experts/BRIEF.md
     state: asked

@@ -41,13 +41,15 @@ def main():
     ap.add_argument('task', nargs='?')
     ap.add_argument('--bg', action='store_true')
     ap.add_argument('--name')
+    ap.add_argument('--effort', default='xhigh', help="Claude Code's --effort for the fork (default xhigh)")
     a = ap.parse_args()
     if a.bg and not a.task:
         sys.exit('--bg needs a task, since nobody would be there to type one')
     base = a.key if a.key.startswith('expert-') else 'expert-' + a.key
     name = a.name or f'{base}-fork-{datetime.datetime.now():%Y%m%d-%H%M}'
     cmd = ['claude'] + (['--bg'] if a.bg else []) + ['--dangerously-skip-permissions', '--append-system-prompt-file',
-                                                      PROMPT, '--resume', session_of(a.key), '--fork-session', '-n', name]
+                                                      PROMPT, '--resume', session_of(a.key), '--fork-session', '-n', name,
+                                                      '--effort', a.effort]
     if a.task:
         cmd.append(a.task)
     os.chdir(ROOT)
