@@ -15,12 +15,13 @@ experts:
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
     started_by: ai-risk-search-tool, with experts/BRIEF.md
-    state: preparing (reading finished 2026-10-09 at 507k; next, by Joseph's decision: NY's RAISE Act whole, then the California Report on Frontier AI Policy whole, then a conversation with the EU Code expert, all before about 700k. SB 53's amendment history waits on whether Joseph fetches those versions)
+    state: prepared (2026-10-09; stopped after the core reading, RAISE, the California report, a conversation with the EU Code expert, and the Sept 5 amendment; two delegated agents' files, history/VERIFICATION.md and history/POSITIONS.md, still to be reviewed and committed by the coordinator)
     branch: expert/california-2025-sb53, in the worktree .claude/worktrees/expert-sb53 (background sessions can't edit the main checkout); pushing the branch is fine (Joseph)
     priming: the repo's CLAUDE.md describes SB 53; Joseph accepted it (2026-10-09) and the expert records it in its reflections
     read: [{key: california-2025-sb53, sha256: 1b31896f258088b35af5ea6fbd56b052fd6a3c2c9340262a0b9286958961de70, how: experientially, a paragraph per unit, 224 units}]
+    also_read: [ny-2026-raise-s8828 (whole), bommasani-2025-california (whole but the bibliography), SB 53's amendment history (the Sept 5 amendment whole, from Legislative Counsel's markup, and the Sept 10 committee analysis; the other versions fetched to history/ but not read)]
     checkpoints: [the end of the reading]
-    products: [reading/ (224 unit files), reading/000-before.md (its priming), reading/outline.md, reading/questions.md (likely and should-ask questions, answered with cites)]
+    products: [reading/raise/, reading/ca-report/ (06-where-sb53-departs.md answers Joseph's question), reading/conversation-eu-cop-expert.md, reading/history/01-sept5-package.md, history/ (versions, diffs, analyses, NOTES.md unverified), reading/ (224 unit files), reading/000-before.md (its priming), reading/outline.md, reading/questions.md (likely and should-ask questions, answered with cites)]
     context: {start: ~185k, at_unit_67_of_224: 312k, at_unit_172_of_224: 430k, after_reading: 507k, after_raise_and_ca_report: 628k}
     context_after_preparation: null
     note: the pilot expert (README, Open); reading a paragraph per unit
