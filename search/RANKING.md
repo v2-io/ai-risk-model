@@ -272,6 +272,12 @@ These come before any evidence is scored. They decide what the query is and what
 - Hypothesis: carries no information about any query.
 - Status: proposed, not built. It is the other candidate cause of the SB 53 navigation result.
 
+**H-R4 A summary inside the source** (proposed by the SB 53 expert, 2026-10-09).
+- Feature: a passage that summarises the source it sits in: a legislative digest, an executive summary, a key-findings box.
+- Hypothesis: such a passage is keyword-dense, so it ranks above the operative text, yet it can drop the qualifiers that decide a question. It is weaker evidence than the text it summarises, on the questions the summary gets wrong.
+- Impetus: SB 53's Legislative Counsel's Digest drops "comply with" from the framework duty, the large-developer limit on the penalty, and "reasonable" in the internal-process duty, and once writes "internet use" for "internal use".
+- Status: proposed. A whole-document reader is what finds this, since the summary and the operative text agree on the words.
+
 ### Document
 
 **H-D1 Superseded.**
