@@ -4,14 +4,15 @@
 #     --append-system-prompt-file ~/src/arch/proprium/comproprium/stopgap-system-prompt.md \
 #     --resume SESSION-ID --fork-session ["task"]
 # (add --bg to run the fork in the background). Each fork does one task; the expert
-# itself stays as it was.
+# itself stays as it was. Resume by session id from any directory: it finds the
+# transcript even when it is filed under a worktree's path (tested 2026-10-09).
 #
 # state: asked | reading | paused | prepared | declined
 experts:
   - key: california-2025-sb53
     lineage: [california-2025-sb53]
     name: expert-california-2025-sb53
-    cwd: ~/src/ai-risk-model (fork from here)
+    forks: [expert-california-2025-sb53-fork-1 (the recall test from the main checkout, passed; stopped)]
     session: 8c1808c5-b812-4e61-af21-82cfa984310f
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
@@ -29,7 +30,6 @@ experts:
   - key: eu-cop-2025-safety-security
     lineage: [eu-cop-2025-safety-security, eu-cop-chairs-2025-statement]
     name: expert-eu-cop-2025-safety-security
-    cwd: ~/src/ai-risk-model/.claude/worktrees/expert-eu-cop (fork from here: the transcript is filed under the worktree's path)
     forks: [expert-eu-cop-2025-safety-security-fork-1 (session 6bff3be9-c897-49c8-a08d-6fc8e9522974; the recall test, passed; /context 637k after its task, against the expert's 617k; stopped)]
     session: 7354940e-6bd5-44cc-86a2-bd1b61638fd6
     model: Opus 5.5 (Claude Code 2.1.296)
@@ -53,7 +53,6 @@ experts:
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
     state: reading (willing; units of at least 100 words)
-    cwd: ~/src/ai-risk-model/.claude/worktrees/expert-aisi (fork from here if its transcript is filed under the worktree; check)
     branch: expert/aisi-2025-frontier
     read: []
     checkpoints: [unit 54 of 108, the end of the reading]
@@ -64,8 +63,8 @@ experts:
     session: 81669188-e877-46c9-ad36-ef49b66ac9f2
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
+    forks: [expert-anthropic-2026-risk-report-aug-fork-1 (the recall test from the main checkout, though its transcript is filed under its worktree; passed; stopped)]
     state: prepared (2026-10-09, Joseph: an expert at 703k, to be stopped and kept for questions; all 249 units of at least 500 words, every appendix)
-    cwd: ~/src/ai-risk-model/.claude/worktrees/expert-risk-report-aug (fork from there; its ref/canonical is a symlink to the main checkout's, so bin/reading runs inside the worktree)
     branch: expert/anthropic-2026-risk-report-aug (reflections committed, not pushed)
     read: [{key: anthropic-2026-risk-report-aug, sha256: 33cea4de19a3..., how: experientially, units of at least 500 words, 249 units}]
     products: [reading/000-before.md (priming and conflict of interest), reading/001-249, reading/outline.md (structure, model of risk, pathway defence matrix), reading/questions.md (25 questions), reading/999-after.md (opening predictions scored), reading/conversion.md]
@@ -80,7 +79,6 @@ experts:
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
     state: reading (willing; units of at least 500 words, about 338 expected; the bibliography left out, the glossary and notes read)
-    cwd: its worktree under ~/src/ai-risk-model/.claude/worktrees/ (fork from there; check the transcript's directory)
     branch: expert/bengio-2026-international
     read: []
     checkpoints: [the halfway unit (about 170), the end of the reading; readings at no other times, at its request]
