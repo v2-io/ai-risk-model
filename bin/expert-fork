@@ -42,7 +42,7 @@ def main():
     ap.add_argument('--bg', action='store_true')
     ap.add_argument('--name')
     ap.add_argument('--effort', default='xhigh', help="Claude Code's --effort for the fork (default xhigh)")
-    a = ap.parse_args()
+    a = ap.parse_intermixed_args()
     if a.bg and not a.task:
         sys.exit('--bg needs a task, since nobody would be there to type one')
     base = a.key if a.key.startswith('expert-') else 'expert-' + a.key
