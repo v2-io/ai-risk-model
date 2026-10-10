@@ -18,6 +18,18 @@ Read side by side, the sources seldom mean the same thing by the same word, and 
 
 So this project does not pick a winning taxonomy. It treats each source as its own context, maps that source's words into one vocabulary of ours, and records what each source claims in those terms.
 
+## The truths it serves
+
+Joseph, 2026-10-10, naming the layers of truth the project works toward, each depending on the ones before it being true:
+- The truth about what the source documents state
+- The truth about what the document authors intended and/or intend
+- (A model/lexicon that quickly adapts and absorbs new sources as they become available)
+- A model/lexicon that allows us to discuss claims from as many of the sources as possible with a common semantic substrate, with as much precision as possible as per the first two items, and that also allows us to model our own hypotheses.
+- A model of the entire AI risk field to discover shortcomings in ideation, analysis, and/or execution -- to discover the best paths forward
+- The Truth about the immediate and longer-term future, with and without interventions. (that is, the *actual* truth, which we only aspire to model as closely as possible with our confidence and epistemic honesty fully transparent-- it is, nevertheless, the ideal we serve in this project).
+
+The tools, the source experts and the lexicon all serve these. When choosing between designs, it helps to ask which layer a piece of work serves, and whether it keeps the layers below it honest.
+
 ## Principles
 
 - **Compilation, not adjudication.** The model records what each source claims, in its own words and with its role marked. It does not argue for or against any claim, including hypotheses of the project's own. If the structure is right, the answers to questions about the landscape should be easy to see without a verdict being written in.
@@ -117,6 +129,7 @@ The plan is a proposal. Apart from decisions marked as Joseph's, nothing in it i
 - **Sources live in relata**, Joseph's citation manager (`relata --help`). For a document's text, `relata show <key>` gives its PDF path; extract it with `pdftotext -layout`. Avoid `relata show-markdown` to check conversion state, since it forces the conversion. Avoid `relata ingest --retry`, which re-stages the whole shared review queue.
 - **Line references in `influx/`** (the atlas, the source models, the spike, the thin pass and others) are lines of `pdftotext -layout` extractions made before `ref/canonical/` existed; banners there say so. Their page numbers are physical PDF pages and still hold. To regenerate the layout text for one source: `pdftotext -layout "$(relata show KEY | awk '/^pdf:/{print $2}')" KEY.txt`. For new citations, the proposed anchor (plan, G1(e)) is the physical PDF page from `ref/canonical/`'s markers plus the exact quote.
 - **Searching the sources.** `bin/source-search 'hazard'` (ranked), `bin/source-search defs hazard`, `bin/source-search lexical 'loss of control' Au5` (every occurrence, with a table of the distinct spans); `bin/source-search help` for the rest. The query is one argument; what follows it is the scope: relata keys, `'anthropic-*'`, a set from `catalog/sets/`, or catalog fields (`org:anthropic`, `influence:anchor`). A lowercase letter matches either case and an uppercase letter only itself; `--verify` runs the anchors through `bin/check-quote`. `bin/source-index` brings the database up to date after the catalog or the canonical texts change (about 20 s, plus embedding any new passages with bge-m3 through ollama).
+- **The search tool is unsettled.** Joseph, 2026-10-10: "the source-search tool / schema / everything was built *mostly* before I had had a chance to look at the CLI and give my opinion on everything... If something is in the code already-- do not assume there was a good reason for it. Same with the design docs etc. -- it's all new work and all unsettled and all iteratively ready for improvement." That goes for `search/DESIGN.md`'s and `search/RANKING.md`'s decisions and `search/weights.toml`'s values too.
 - **Parallel agents** each need their own scratch directory. Shared helper-script names have collided before.
 - **This repository is public.** Keep private or personal material out of it.
 - **Current Exposures**: influx/ai-welfare-and-release-framings.md, influx/model-beta/notes-sx.md, and influx/perspective-logos-2026-09-28.md -- Joseph may decide to remove at some point, but they are fine for now (- Joseph, 28-Sept-2026)

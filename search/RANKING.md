@@ -155,6 +155,14 @@ These come before any evidence is scored. They decide what the query is and what
 - Status: the cap and spelling rules were measured on 18 key terms (DESIGN §7.1); stems against run-on as a ranking leg, measured (H-W2b).
 - Open: the two encodings disagree by design, and that disagreement is itself unexamined.
 
+**H-Q8 Expansion through the lexicon** (proposed 2026-10-10).
+- Feature: the query's terms resolved through the lexicon's per-source term mappings to each source's own wording ("loss of control" → the EU Code's "reliably direct, modify, or shut down"; "developer" → the AI Act's "provider").
+- Hypothesis: a passage that states a mapped equivalent of the query's term, in its source's own words, is evidence of relevance much as the query's own words are, weighted by how close the mapping is.
+- Impetus: the paraphrase gap. A quarter of what the whole-document judges marked never shares the query's words (DESIGN §11 step 8), and on 2026-10-10 the EU Code's loss-of-control definition ranked 105th by cosine for "humans can no longer shut down or correct the AI system". Embedding the text without its title or path didn't change that (0.493 against 0.567 for a generic "AI systems can…" passage), so the embedder itself is matching surface words.
+- Decided against, 2026-10-10: fine-tuning the embedder on lexicon mappings. That would hide our translation decisions in the vectors, where they can't be seen, attributed or switched off, and freeze first-pass mappings. Joseph raised fine-tuning, Claude argued for explicit expansion instead, and Joseph agreed: "a potential new hybrid factor or flag that does lexicon-based permutations-- we'll stay model-agnostic still for now."
+- Encoding: none yet. It needs the lexicon's mapping records (plan G4). `--explain` should name each mapping used, so every expansion is visible and can be checked.
+- Open: a factor in the default ranking or an opt-in flag; how a closed ambiguity (`{a | b}`) expands; whether expansion also widens the candidate pool (H-C1), which it would have to in order to help at all.
+
 **H-T1 The unit of relevance.**
 - Feature: the passage: about 800–1,500 characters, never across a heading, one glossary entry or definition per passage, split at paragraphs then sentences, with one sentence of overlap (DESIGN §5.2).
 - Hypothesis: relevance can be judged a passage at a time. The outline then aggregates passages to sections.
