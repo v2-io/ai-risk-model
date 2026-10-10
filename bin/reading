@@ -24,7 +24,10 @@ cadence at the tool level, because "a batched read forces a batched reflection"
 (~/src/arch/firmatum/verisectorium/theory/src/form-experiential-reading.md). Link targets, link tooltips, images and HTML are removed, as in the
 search index (search/srcsearch/text.py), so a web edition reads as prose rather
 than as citation markup. Each unit shows its lines of ref/canonical/KEY.md and its
-PDF page, so notes can point back to it.
+PDF page, so notes can point back to it. A figure or image shows as
+⟦figure: ref/canonical/msc/KEY/FILE⟧ at the end of the unit it belongs with
+(an image on a line of its own goes with the unit after it); open that file to
+see it.
 
 There is deliberately no way to look ahead: the cursor only moves forward by what has
 been read, and `where` shows how far through, not what comes next. Reading again
@@ -42,6 +45,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'search'))
 from srcsearch.text import clean  # noqa: E402
 
+IMG = re.compile(r'!\[([^\]]*)\]\(([^)\s]+)[^)]*\)')
+FIG = '⟦figure: {}⟧'
+FIG_RE = re.compile(r'⟦figure: [^⟧]*⟧')
 MARK = re.compile(r'^-{3,}\[pdf-page (\d+)(?:, printed "([^"]*)")?\]-{3,}\s*$')
 NOT_IN_PDF = re.compile(r'^-{3,}\[not in pdf\]-{3,}\s*$')
 
@@ -56,6 +62,7 @@ def units(lines):
             i += 1
         i += 1
     pending_heading = None
+    pending_figs = []
     while i < n:
         line = lines[i]
         m = MARK.match(line)
@@ -86,10 +93,19 @@ def units(lines):
             continue
         else:
             body, kind, i, last = [line], 'text', i + 1, i
+        # figures: shown as a marker with the image's path, which ref/canonical/'s
+        # image links give relative to ref/canonical/; cleaning would drop them
+        figs = [FIG.format(os.path.join('ref', 'canonical', m.group(2))) for b in body for m in IMG.finditer(b)]
+        body = [IMG.sub(' ', b) for b in body]
         text = '\n'.join(' '.join(clean(b, emphasis=True).s.split()) if kind != 'table' else b.strip()
                          for b in body).strip()
         if not text:
+            pending_figs += figs        # a line that is only an image goes with the next unit
             continue
+        figs = pending_figs + figs
+        pending_figs = []
+        if figs:
+            text += '\n\n' + '\n'.join(figs)
         if pending_heading:
             h = pending_heading
             out.append((h[0], last + 1, h[2], h[3], kind, h[5] + '\n\n' + text))
@@ -109,7 +125,7 @@ def group(us, min_words):
     out, cur = [], None
     for u in us:
         starts_heading = u[5].lstrip().startswith('#')
-        if cur is None or starts_heading or len(cur[5].split()) >= min_words:
+        if cur is None or starts_heading or len(FIG_RE.sub(' ', cur[5]).split()) >= min_words:
             if cur is not None:
                 out.append(cur)
             cur = u
