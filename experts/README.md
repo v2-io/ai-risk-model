@@ -110,6 +110,8 @@ Open, for Joseph:
 - `"worktree": {"bgIsolation": "none"}` in the repo's `.claude/settings.json` would let experts write on main.
 - Automatic compaction was turned off on 2026-10-09 (this coordinator's `/context` shows it disabled). Whether that reaches the two experts started before the change is unconfirmed; their next `/context` will show it.
 
+**Faults experts find** in the canonical texts, the index or the reading tool go in `experts/findings-for-tools.md`, so they reach the tools' owners.
+
 ## The registry
 
 `experts/registry.yaml` lists each expert: its source key and lineage, its session's name and id, its model, what it has read (with the sha256 of each text), its context after preparation, and its state (asked, reading, paused, prepared). It is what anyone who wants to fork an expert looks up.
