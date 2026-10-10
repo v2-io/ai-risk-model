@@ -27,7 +27,12 @@ def session_of(key):
         k = block.split('\n', 1)[0].strip()
         n = re.search(r'\n    name: (\S+)', block)
         m = re.search(r'\n    session: ([0-9a-f-]{36})', block)
+        avail = re.search(r'\n    available: (true|false)', block)
         if m and (k == key or (n and n.group(1) == key)):
+            if avail and avail.group(1) == 'false':
+                if n and n.group(1) == key:
+                    sys.exit(f'{key} is marked available: false in experts/registry.yaml (see its state there)')
+                continue
             found = m.group(1)
     if not found:
         sys.exit(f'no session for {key!r} in experts/registry.yaml')

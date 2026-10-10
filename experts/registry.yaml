@@ -11,10 +11,12 @@
 # itself stays as it was. Resume by session id from any directory: it finds the
 # transcript even when it is filed under a worktree's path (tested 2026-10-09).
 #
-# state: asked | reading | paused | prepared | declined
+# available: true for an expert that can be forked; false soft-deletes it (bin/expert-fork
+# skips it). state: asked | reading | paused | prepared | flagged | declined
 experts:
   - key: california-2025-sb53
     lineage: [california-2025-sb53]
+    available: true
     name: expert-california-2025-sb53
     forks: [expert-california-2025-sb53-fork-1 (the recall test from the main checkout, passed; stopped)]
     session: 8c1808c5-b812-4e61-af21-82cfa984310f
@@ -33,6 +35,7 @@ experts:
     note: the pilot expert (README, Open); reading a paragraph per unit
   - key: eu-cop-2025-safety-security
     lineage: [eu-cop-2025-safety-security, eu-cop-chairs-2025-statement]
+    available: true
     name: expert-eu-cop-2025-safety-security
     forks: [expert-eu-cop-2025-safety-security-fork-1 (session 6bff3be9-c897-49c8-a08d-6fc8e9522974; the recall test, passed; /context 637k after its task, against the expert's 617k; stopped)]
     session: 7354940e-6bd5-44cc-86a2-bd1b61638fd6
@@ -52,6 +55,7 @@ experts:
     note: the second expert; Grok judged this source whole for the outline evaluation, so its gold can be compared across model families
   - key: aisi-2025-frontier
     lineage: [aisi-2025-frontier]
+    available: false
     name: expert-aisi-2025-frontier
     session: dce07d10-4941-4c1e-9446-a00a684f6c13
     started: 2026-10-09
@@ -64,6 +68,7 @@ experts:
     context_after_preparation: null
   - key: anthropic-2026-risk-report-aug
     lineage: [anthropic-2026-risk-report-aug, anthropic-2026-risk-report-feb]
+    available: true
     name: expert-anthropic-2026-risk-report-aug
     session: 81669188-e877-46c9-ad36-ef49b66ac9f2
     started: 2026-10-09
@@ -79,6 +84,7 @@ experts:
     checkpoints: [unit 124 of 249 (reached, 2026-10-09 evening), the end of the reading]
   - key: bengio-2026-international
     lineage: [bengio-2026-international, bengio-2026-international-extended, bengio-2025-international, bengio-2025-iasr-key-update-1, bengio-2025-iasr-key-update-2]
+    available: false
     name: expert-bengio-2026-international
     session: 240cfb7e-db79-4ea2-bd47-d42e8614bc54
     started: 2026-10-09
@@ -91,6 +97,7 @@ experts:
     context_after_preparation: null
   - key: aisi-2025-frontier
     lineage: [aisi-2025-frontier]
+    available: true
     name: expert-aisi-2025-frontier-sonnet
     session: 78d471da-d663-4696-8ea4-7f793eb201d8
     model: sonnet
@@ -106,6 +113,7 @@ experts:
     context_after_preparation: 533k
   - key: bengio-2026-international
     lineage: [bengio-2026-international, bengio-2026-international-extended, bengio-2025-international, bengio-2025-iasr-key-update-1, bengio-2025-iasr-key-update-2]
+    available: true
     name: expert-bengio-2026-international-sonnet
     session: 2df084a5-dce6-4f6b-b42e-b7fe1553c3bf
     model: sonnet

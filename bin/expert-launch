@@ -59,6 +59,7 @@ def main():
     sid = next((x.get('sessionId') for x in agents if x.get('name') == name), None)
     lineage = [a.key] + [k for k in a.lineage if k != a.key]
     entry = f"""  - key: {a.key}
+    available: true
     lineage: [{', '.join(lineage)}]
     name: {name}
     session: {sid or 'unknown (see claude agents --json)'}
