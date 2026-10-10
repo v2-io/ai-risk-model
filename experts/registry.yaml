@@ -64,7 +64,7 @@ experts:
     session: 81669188-e877-46c9-ad36-ef49b66ac9f2
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: paused (reading finished 2026-10-09: all 249 units of at least 500 words, every appendix; awaiting Joseph's /context and the triage of what it reads next)
+    state: paused (reading finished 2026-10-09 at 703k: all 249 units of at least 500 words, every appendix; next read, if any, is Joseph's call)
     cwd: ~/src/ai-risk-model/.claude/worktrees/expert-risk-report-aug (fork from there; its ref/canonical is a symlink to the main checkout's, so bin/reading runs inside the worktree)
     branch: expert/anthropic-2026-risk-report-aug (reflections committed, not pushed)
     read: [{key: anthropic-2026-risk-report-aug, sha256: 33cea4de19a3..., how: experientially, units of at least 500 words, 249 units}]
