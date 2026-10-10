@@ -52,9 +52,11 @@ experts:
     session: dce07d10-4941-4c1e-9446-a00a684f6c13
     started: 2026-10-09
     started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
-    state: asked
+    state: reading (willing; units of at least 100 words)
+    cwd: ~/src/ai-risk-model/.claude/worktrees/expert-aisi (fork from here if its transcript is filed under the worktree; check)
+    branch: expert/aisi-2025-frontier
     read: []
-    checkpoints: []
+    checkpoints: [unit 40, unit 80, unit 120, the end of the reading]
     context_after_preparation: null
   - key: anthropic-2026-risk-report-aug
     lineage: [anthropic-2026-risk-report-aug, anthropic-2026-risk-report-feb]
