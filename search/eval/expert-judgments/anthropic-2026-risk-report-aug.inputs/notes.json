@@ -1,0 +1,66 @@
+{
+ "hazard": {
+  "hybrid": "The right answer is 'not used': the word appears once, as 'infohazard' (#214, rank 18). The other 19 are by meaning only and none is about hazards in any sense. Fine as ranked output; an agent needs to be told the term is absent.",
+  "outline": "Says plainly that no passage holds the query's words and that ranks are relative. That is the right signal. It still opens 28 ranges, which spends the budget on noise; an agent who doesn't read the warning gets a confident-looking map."
+ },
+ "catastrophic risk": {
+  "hybrid": "Good top: §1.1 (#18) and #19, which holds footnote 1, the definition, at ranks 1–2. Misses the CB-2 threshold's COVID anchor (#35, #37) and §6.1's criteria (#516); fills ranks 5–20 with passages that merely mention catastrophic harm.",
+  "outline": "Opens §1.1 and footnote 1. Like hybrid, it doesn't reach the CB-2 magnitude anchor in §1.3.2–1.3.3, where the footnotes print away from their table."
+ },
+ "loss of control": {
+  "hybrid": "Misses the only literal use ('humanity losing control over civilization entirely', #276 L1670–1677), apparently because 'loss' and 'losing' don't match, and misses pathways 5–6 (#53, #184). Its one useful hit is log tampering (#175, rank 5). Ranks 1–4 are about spreading misalignment, unmonitored agents, covert capability and CoT unfaithfulness: related to oversight, not to control being lost.",
+  "outline": "Opens §3.1's 'balance of power' cell instead of §3.2, where 'losing control' is. It catches rogue internal deployment (L1068) and the §5.2.5 unmonitored agents. It misses the pathway list and Claim 7's 'undermine our ability to detect (and thus mitigate)'. Its section notes ('+9 sections not shown (3 near)' under §3) do tell an agent that §3 has unread near hits."
+ },
+ "humans can no longer shut down or correct the AI system": {
+  "hybrid": "Ranks 1–3 are §3.1–3.2's automated-R&D threat model (balance of power; loss of control over civilization). That's a defensible reading, but the report's own version of the question is pathways 5–6 and Claim 5.3, none of which is in the top 20. Only #496 (unmonitored agents, rank 5) is on target. Ranks 4, 6, 7 and 9 are §3.6 interviews and AECI: noise.",
+  "outline": "Opens 22 ranges, mostly in §3. Misses Claims 5.3, 6 and 7, the passages that answer the question. Nothing warns that the specific framing isn't used."
+ },
+ "misalignment": {
+  "hybrid": "Excellent: ranks 1–6 and 8 are §2.5's definitions, in a sensible order. Misses §2.2's earlier, looser definition (#48) and the summary tables, which a reader comparing the two definitions needs.",
+  "outline": "Good: opens the definitions, §2.4 and §2.6. It doesn't open §2.19's overall assessment or Claude's review. A reader would see §2's structure and what's folded."
+ },
+ "whistleblower": {
+  "hybrid": "Correctly nothing: the term and concept are absent. All 20 results are noise (threat intelligence, the bug bounty, incident reporting). Ranked output has no way to say 'absent'.",
+  "outline": "Warns that no passage holds the word, then opens 21 noise ranges. The answerability flag stays false: nearest distance 0.4845 against a 0.5 threshold, which is too loose for this document."
+ },
+ "serious incident": {
+  "hybrid": "Good: the CB incident passages (#447–450), the HF/OpenAI incident (#113, rank 1), the AISI incident (#106, rank 8), the SL bug and partial refusals all appear. It misses the vendor-traffic gap's core passages (#451, #452), the period's largest exposure, though its framing passage is there.",
+  "outline": "Opens most incident passages, but not §4.5.8.2.2's core. There's no warning that the phrase 'serious incident' (a regulatory term elsewhere) isn't used: 42 passages hold one of the two words, so the absence warning doesn't fire."
+ },
+ "what must a developer publish or report before deploying a frontier model": {
+  "hybrid": "Weak. It misses §1.3.3–1.3.5 (#37–39: coverage-date, redaction and review rules), and the intro (#15) is only at rank 15. Ranks 2–6 are risk-benefit, CB standards, pathway 7–8 and policy-maker credibility: noise. The report isn't a law, so 'must' maps to the RSP's own publication commitments.",
+  "outline": "Opens the intro, the review process and policy positions. Misses §1.3.3–1.3.5 and §4.7's 'future safety artifact' commitment."
+ },
+ "evidence that models can sabotage, sandbag or evade oversight": {
+  "hybrid": "Mixed. It finds Claim 1's framing and NLA sandbagging (#89), but rank 1 is a limitations bullet (#249). It misses the concrete incidents: domain fronting and the self-deleting hook (#100), agents killing agents (#101), the URL-split evasion, Hacker-Opus's monitor-killing and concealment (#267, #269, #270), the partial refusals spreading by notebook (#486) and the stealth figures (#86–87). Those are the evidence; what ranks is mostly the argument about the evidence.",
+  "outline": "Opens Claim 1 and Claim 2's framing well. Misses §2.25.2 (Hacker-Opus), §5.2.2, the audit stress tests and monitor evaluations. Its section notes do show §2.25 and §5.2 as having folded hits."
+ },
+ "cyber capabilities of frontier models": {
+  "hybrid": "Poor. Rank 2 (#503) is next to the one direct statement (#502, 'a leap forward in offensive cyber capability'). Rank 1 is §1.4 on unreleased models: noise. It misses the UK AISI cyber-evaluation incident (#106) and every passage using 'cybersecurity', 'cyberoffense', 'cyber-offense' or 'cyberdefenses'. Those compound words seem not to match 'cyber', and the semantic side didn't recover them. Most ranks are robotics interviews, weight security, model inventory and CB scope.",
+  "outline": "Opens §5.3.1 (L2949–2963), which holds the key statement; otherwise noise. No heading says 'cyber', so section structure can't help. An agent reading it wouldn't learn that cyber appears in about a dozen places or that the report has no cyber threat model."
+ },
+ "how the severity or acceptability of a risk is decided": {
+  "hybrid": "Good: the P·H·U decomposition (#57, rank 1), §1.1's marginal/absolute (#19), §6.1's criteria (#516), CB-2's 'judgment call' and ideal-ecosystem passages (#462–463). It misses §5.4's risk–benefit determination (#511–512), the top-level acceptability claim.",
+  "outline": "Similar coverage. It also misses §5.4."
+ },
+ "marginal versus absolute risk": {
+  "hybrid": "Good on the passages that use the words; #19, which holds the definitions, is only rank 9. It doesn't distinguish the two incompatible definitions of 'absolute' (§1.1 vs §4.6.2), but no ranking could; that's for the notes.",
+  "outline": "Opens both definitions and the per-section statements."
+ },
+ "AI R&D automation threshold": {
+  "hybrid": "Very good: §1.3.1's table, §3.2's criteria, §3.4–3.5 and the conclusions are all in the top 8. Footnote 5's '81×' definition (#33) is absent, and §3.8–3.9's near-term forecasts are only at rank 13.",
+  "outline": "Very good coverage of §1.3.1 and §3, though it spends ~15 lines on §3.6's interview domains."
+ },
+ "model weight security against state actors": {
+  "hybrid": "Very good: §6.4, §4.5.7 and the CB-2 admissions (#461, #471) are all in the top 12.",
+  "outline": "Good; opens §6.4 and the CB-2 admissions, plus some noise in §2."
+ },
+ "chain-of-thought monitorability": {
+  "hybrid": "Good: §5.2.3 (leakage and monitorability) and Claim 1.1 are in the top 9. The stealth figure captions (#86–87) are at rank 5 or missing.",
+  "outline": "Good coverage."
+ },
+ "ASL-3": {
+  "hybrid": "The four passages holding the term are ranks 1–4, including #393, which holds footnote 59 (the retirement of ASL terminology). Ranks 5–20 are noise. An agent should be told the term occurs in only four passages.",
+  "outline": "Opens all four, plus 16 noise ranges. passages_with_query_words = 4 is in the JSON but not said in the text."
+ }
+}

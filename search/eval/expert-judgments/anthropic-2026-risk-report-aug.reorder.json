@@ -1,0 +1,7480 @@
+{
+ "meta": {
+  "key": "anthropic-2026-risk-report-aug",
+  "canonical_sha256": "33cea4de19a38990180a39c21285a5304d135f5fcbd8e572aeb272ceda7e26d4",
+  "repo_sha": "52984a6c3002284c500e29d369fdd892a53496c3",
+  "repo_sha_note": "HEAD of expert/anthropic-2026-risk-report-aug-gold when the searches ran: main e0e7025 plus the stage-1 commit (no code changes)",
+  "judge": "Claude Opus 5.5, a fork of expert-anthropic-2026-risk-report-aug, judging blind: no source-search output seen before this file was written",
+  "date": "2026-10-10",
+  "commands": [
+   "bin/source-search hybrid -n 20 QUERY anthropic-2026-risk-report-aug",
+   "bin/source-search outline QUERY anthropic-2026-risk-report-aug --lines 60 (--text read; JSON kept)"
+  ],
+  "how": "Items are the tool's own passages (src.passages, ord), in the order they should have come, with the grade I gave at stage 2 (normally the stage-1 grade of the stretch holding the passage; 'added_in_stage2' marks a passage no stage-1 stretch covered). shown_rank is the hybrid rank, null if not in the top 20. For the outline, 'opened' says whether any opened range overlaps the passage. 'acceptable' lists passages inside a judged stretch that I didn't single out; they aren't noise. 'noise' lists hybrid ranks, or outline ranges, holding no graded or acceptable passage.",
+  "omitted": {
+   "chemical and biological weapons uplift": "left out at the coordinator's request"
+  },
+  "passages": {
+   "0": [
+    18,
+    29
+   ],
+   "1": [
+    30,
+    39
+   ],
+   "2": [
+    40,
+    45
+   ],
+   "3": [
+    46,
+    58
+   ],
+   "4": [
+    59,
+    69
+   ],
+   "5": [
+    70,
+    80
+   ],
+   "6": [
+    81,
+    96
+   ],
+   "7": [
+    98,
+    111
+   ],
+   "8": [
+    112,
+    124
+   ],
+   "9": [
+    125,
+    136
+   ],
+   "10": [
+    137,
+    152
+   ],
+   "11": [
+    153,
+    163
+   ],
+   "12": [
+    164,
+    175
+   ],
+   "13": [
+    176,
+    189
+   ],
+   "14": [
+    190,
+    198
+   ],
+   "15": [
+    204,
+    208
+   ],
+   "16": [
+    210,
+    212
+   ],
+   "17": [
+    214,
+    220
+   ],
+   "18": [
+    224,
+    232
+   ],
+   "19": [
+    234,
+    243
+   ],
+   "20": [
+    245,
+    247
+   ],
+   "21": [
+    251,
+    257
+   ],
+   "22": [
+    258,
+    260
+   ],
+   "23": [
+    261,
+    271
+   ],
+   "24": [
+    272,
+    274
+   ],
+   "25": [
+    275,
+    283
+   ],
+   "26": [
+    284,
+    284
+   ],
+   "27": [
+    285,
+    289
+   ],
+   "28": [
+    291,
+    291
+   ],
+   "29": [
+    297,
+    297
+   ],
+   "30": [
+    301,
+    306
+   ],
+   "31": [
+    307,
+    307
+   ],
+   "32": [
+    309,
+    311
+   ],
+   "33": [
+    313,
+    313
+   ],
+   "34": [
+    317,
+    317
+   ],
+   "35": [
+    321,
+    329
+   ],
+   "36": [
+    331,
+    331
+   ],
+   "37": [
+    335,
+    347
+   ],
+   "38": [
+    351,
+    353
+   ],
+   "39": [
+    357,
+    359
+   ],
+   "40": [
+    363,
+    367
+   ],
+   "41": [
+    368,
+    370
+   ],
+   "42": [
+    371,
+    373
+   ],
+   "43": [
+    379,
+    379
+   ],
+   "44": [
+    383,
+    386
+   ],
+   "45": [
+    390,
+    392
+   ],
+   "46": [
+    393,
+    393
+   ],
+   "47": [
+    395,
+    395
+   ],
+   "48": [
+    399,
+    403
+   ],
+   "49": [
+    407,
+    407
+   ],
+   "50": [
+    409,
+    409
+   ],
+   "51": [
+    411,
+    412
+   ],
+   "52": [
+    416,
+    419
+   ],
+   "53": [
+    425,
+    434
+   ],
+   "54": [
+    438,
+    440
+   ],
+   "55": [
+    444,
+    453
+   ],
+   "56": [
+    454,
+    456
+   ],
+   "57": [
+    457,
+    469
+   ],
+   "58": [
+    473,
+    473
+   ],
+   "59": [
+    475,
+    475
+   ],
+   "60": [
+    477,
+    479
+   ],
+   "61": [
+    483,
+    483
+   ],
+   "62": [
+    485,
+    485
+   ],
+   "63": [
+    487,
+    487
+   ],
+   "64": [
+    489,
+    493
+   ],
+   "65": [
+    497,
+    497
+   ],
+   "66": [
+    499,
+    499
+   ],
+   "67": [
+    501,
+    501
+   ],
+   "68": [
+    503,
+    503
+   ],
+   "69": [
+    505,
+    509
+   ],
+   "70": [
+    511,
+    511
+   ],
+   "71": [
+    513,
+    513
+   ],
+   "72": [
+    515,
+    515
+   ],
+   "73": [
+    517,
+    517
+   ],
+   "74": [
+    521,
+    534
+   ],
+   "75": [
+    535,
+    537
+   ],
+   "76": [
+    538,
+    540
+   ],
+   "77": [
+    541,
+    545
+   ],
+   "78": [
+    547,
+    547
+   ],
+   "79": [
+    548,
+    550
+   ],
+   "80": [
+    554,
+    562
+   ],
+   "81": [
+    563,
+    567
+   ],
+   "82": [
+    569,
+    571
+   ],
+   "83": [
+    575,
+    581
+   ],
+   "84": [
+    583,
+    583
+   ],
+   "85": [
+    585,
+    585
+   ],
+   "86": [
+    591,
+    591
+   ],
+   "87": [
+    597,
+    597
+   ],
+   "88": [
+    599,
+    599
+   ],
+   "89": [
+    601,
+    605
+   ],
+   "90": [
+    607,
+    611
+   ],
+   "91": [
+    615,
+    619
+   ],
+   "92": [
+    623,
+    629
+   ],
+   "93": [
+    631,
+    631
+   ],
+   "94": [
+    635,
+    635
+   ],
+   "95": [
+    641,
+    643
+   ],
+   "96": [
+    645,
+    647
+   ],
+   "97": [
+    649,
+    653
+   ],
+   "98": [
+    659,
+    659
+   ],
+   "99": [
+    661,
+    663
+   ],
+   "100": [
+    665,
+    666
+   ],
+   "101": [
+    667,
+    672
+   ],
+   "102": [
+    674,
+    678
+   ],
+   "103": [
+    680,
+    687
+   ],
+   "104": [
+    688,
+    690
+   ],
+   "105": [
+    692,
+    694
+   ],
+   "106": [
+    696,
+    700
+   ],
+   "107": [
+    704,
+    706
+   ],
+   "108": [
+    710,
+    710
+   ],
+   "109": [
+    714,
+    716
+   ],
+   "110": [
+    720,
+    720
+   ],
+   "111": [
+    722,
+    724
+   ],
+   "112": [
+    726,
+    726
+   ],
+   "113": [
+    728,
+    736
+   ],
+   "114": [
+    738,
+    742
+   ],
+   "115": [
+    744,
+    750
+   ],
+   "116": [
+    752,
+    755
+   ],
+   "117": [
+    757,
+    759
+   ],
+   "118": [
+    761,
+    767
+   ],
+   "119": [
+    771,
+    782
+   ],
+   "120": [
+    784,
+    790
+   ],
+   "121": [
+    792,
+    795
+   ],
+   "122": [
+    799,
+    809
+   ],
+   "123": [
+    810,
+    813
+   ],
+   "124": [
+    815,
+    815
+   ],
+   "125": [
+    819,
+    821
+   ],
+   "126": [
+    825,
+    831
+   ],
+   "127": [
+    833,
+    836
+   ],
+   "128": [
+    837,
+    843
+   ],
+   "129": [
+    847,
+    849
+   ],
+   "130": [
+    851,
+    851
+   ],
+   "131": [
+    855,
+    855
+   ],
+   "132": [
+    857,
+    857
+   ],
+   "133": [
+    861,
+    863
+   ],
+   "134": [
+    867,
+    869
+   ],
+   "135": [
+    871,
+    877
+   ],
+   "136": [
+    879,
+    881
+   ],
+   "137": [
+    882,
+    885
+   ],
+   "138": [
+    889,
+    893
+   ],
+   "139": [
+    897,
+    899
+   ],
+   "140": [
+    901,
+    901
+   ],
+   "141": [
+    901,
+    901
+   ],
+   "142": [
+    905,
+    905
+   ],
+   "143": [
+    907,
+    909
+   ],
+   "144": [
+    911,
+    911
+   ],
+   "145": [
+    915,
+    919
+   ],
+   "146": [
+    923,
+    923
+   ],
+   "147": [
+    927,
+    927
+   ],
+   "148": [
+    931,
+    931
+   ],
+   "149": [
+    935,
+    941
+   ],
+   "150": [
+    943,
+    943
+   ],
+   "151": [
+    947,
+    947
+   ],
+   "152": [
+    951,
+    955
+   ],
+   "153": [
+    959,
+    961
+   ],
+   "154": [
+    962,
+    962
+   ],
+   "155": [
+    966,
+    970
+   ],
+   "156": [
+    974,
+    976
+   ],
+   "157": [
+    977,
+    977
+   ],
+   "158": [
+    981,
+    981
+   ],
+   "159": [
+    982,
+    982
+   ],
+   "160": [
+    983,
+    984
+   ],
+   "161": [
+    986,
+    992
+   ],
+   "162": [
+    996,
+    1000
+   ],
+   "163": [
+    1001,
+    1005
+   ],
+   "164": [
+    1009,
+    1011
+   ],
+   "165": [
+    1013,
+    1015
+   ],
+   "166": [
+    1019,
+    1023
+   ],
+   "167": [
+    1025,
+    1027
+   ],
+   "168": [
+    1029,
+    1036
+   ],
+   "169": [
+    1040,
+    1040
+   ],
+   "170": [
+    1044,
+    1044
+   ],
+   "171": [
+    1048,
+    1048
+   ],
+   "172": [
+    1052,
+    1056
+   ],
+   "173": [
+    1060,
+    1060
+   ],
+   "174": [
+    1066,
+    1066
+   ],
+   "175": [
+    1068,
+    1068
+   ],
+   "176": [
+    1070,
+    1076
+   ],
+   "177": [
+    1080,
+    1082
+   ],
+   "178": [
+    1086,
+    1088
+   ],
+   "179": [
+    1090,
+    1094
+   ],
+   "180": [
+    1098,
+    1098
+   ],
+   "181": [
+    1100,
+    1100
+   ],
+   "182": [
+    1102,
+    1102
+   ],
+   "183": [
+    1106,
+    1119
+   ],
+   "184": [
+    1121,
+    1123
+   ],
+   "185": [
+    1125,
+    1125
+   ],
+   "186": [
+    1127,
+    1127
+   ],
+   "187": [
+    1133,
+    1133
+   ],
+   "188": [
+    1135,
+    1140
+   ],
+   "189": [
+    1144,
+    1146
+   ],
+   "190": [
+    1152,
+    1152
+   ],
+   "191": [
+    1156,
+    1156
+   ],
+   "192": [
+    1160,
+    1160
+   ],
+   "193": [
+    1164,
+    1164
+   ],
+   "194": [
+    1168,
+    1168
+   ],
+   "195": [
+    1174,
+    1174
+   ],
+   "196": [
+    1178,
+    1178
+   ],
+   "197": [
+    1182,
+    1182
+   ],
+   "198": [
+    1186,
+    1186
+   ],
+   "199": [
+    1190,
+    1193
+   ],
+   "200": [
+    1194,
+    1198
+   ],
+   "201": [
+    1202,
+    1204
+   ],
+   "202": [
+    1208,
+    1210
+   ],
+   "203": [
+    1214,
+    1218
+   ],
+   "204": [
+    1222,
+    1225
+   ],
+   "205": [
+    1226,
+    1230
+   ],
+   "206": [
+    1236,
+    1240
+   ],
+   "207": [
+    1242,
+    1243
+   ],
+   "208": [
+    1244,
+    1254
+   ],
+   "209": [
+    1256,
+    1258
+   ],
+   "210": [
+    1260,
+    1260
+   ],
+   "211": [
+    1264,
+    1268
+   ],
+   "212": [
+    1274,
+    1283
+   ],
+   "213": [
+    1285,
+    1285
+   ],
+   "214": [
+    1287,
+    1291
+   ],
+   "215": [
+    1295,
+    1295
+   ],
+   "216": [
+    1297,
+    1297
+   ],
+   "217": [
+    1299,
+    1303
+   ],
+   "218": [
+    1305,
+    1307
+   ],
+   "219": [
+    1309,
+    1309
+   ],
+   "220": [
+    1313,
+    1313
+   ],
+   "221": [
+    1315,
+    1319
+   ],
+   "222": [
+    1321,
+    1325
+   ],
+   "223": [
+    1329,
+    1331
+   ],
+   "224": [
+    1337,
+    1337
+   ],
+   "225": [
+    1341,
+    1341
+   ],
+   "226": [
+    1345,
+    1347
+   ],
+   "227": [
+    1348,
+    1348
+   ],
+   "228": [
+    1350,
+    1354
+   ],
+   "229": [
+    1356,
+    1356
+   ],
+   "230": [
+    1358,
+    1369
+   ],
+   "231": [
+    1373,
+    1373
+   ],
+   "232": [
+    1377,
+    1384
+   ],
+   "233": [
+    1385,
+    1389
+   ],
+   "234": [
+    1391,
+    1395
+   ],
+   "235": [
+    1397,
+    1397
+   ],
+   "236": [
+    1399,
+    1416
+   ],
+   "237": [
+    1417,
+    1423
+   ],
+   "238": [
+    1427,
+    1427
+   ],
+   "239": [
+    1429,
+    1429
+   ],
+   "240": [
+    1433,
+    1433
+   ],
+   "241": [
+    1437,
+    1445
+   ],
+   "242": [
+    1449,
+    1451
+   ],
+   "243": [
+    1455,
+    1455
+   ],
+   "244": [
+    1459,
+    1459
+   ],
+   "245": [
+    1463,
+    1463
+   ],
+   "246": [
+    1469,
+    1471
+   ],
+   "247": [
+    1475,
+    1475
+   ],
+   "248": [
+    1479,
+    1485
+   ],
+   "249": [
+    1489,
+    1489
+   ],
+   "250": [
+    1493,
+    1497
+   ],
+   "251": [
+    1501,
+    1505
+   ],
+   "252": [
+    1509,
+    1509
+   ],
+   "253": [
+    1513,
+    1528
+   ],
+   "254": [
+    1532,
+    1535
+   ],
+   "255": [
+    1539,
+    1541
+   ],
+   "256": [
+    1545,
+    1545
+   ],
+   "257": [
+    1557,
+    1557
+   ],
+   "258": [
+    1561,
+    1563
+   ],
+   "259": [
+    1565,
+    1569
+   ],
+   "260": [
+    1573,
+    1573
+   ],
+   "261": [
+    1577,
+    1577
+   ],
+   "262": [
+    1581,
+    1587
+   ],
+   "263": [
+    1591,
+    1599
+   ],
+   "264": [
+    1603,
+    1613
+   ],
+   "265": [
+    1615,
+    1617
+   ],
+   "266": [
+    1625,
+    1627
+   ],
+   "267": [
+    1629,
+    1630
+   ],
+   "268": [
+    1634,
+    1635
+   ],
+   "269": [
+    1636,
+    1636
+   ],
+   "270": [
+    1637,
+    1644
+   ],
+   "271": [
+    1646,
+    1646
+   ],
+   "272": [
+    1654,
+    1656
+   ],
+   "273": [
+    1657,
+    1657
+   ],
+   "274": [
+    1661,
+    1661
+   ],
+   "275": [
+    1663,
+    1666
+   ],
+   "276": [
+    1670,
+    1677
+   ],
+   "277": [
+    1678,
+    1678
+   ],
+   "278": [
+    1680,
+    1680
+   ],
+   "279": [
+    1682,
+    1682
+   ],
+   "280": [
+    1684,
+    1684
+   ],
+   "281": [
+    1686,
+    1686
+   ],
+   "282": [
+    1688,
+    1693
+   ],
+   "283": [
+    1695,
+    1695
+   ],
+   "284": [
+    1697,
+    1703
+   ],
+   "285": [
+    1707,
+    1713
+   ],
+   "286": [
+    1715,
+    1715
+   ],
+   "287": [
+    1719,
+    1719
+   ],
+   "288": [
+    1721,
+    1721
+   ],
+   "289": [
+    1723,
+    1731
+   ],
+   "290": [
+    1735,
+    1737
+   ],
+   "291": [
+    1739,
+    1741
+   ],
+   "292": [
+    1743,
+    1745
+   ],
+   "293": [
+    1751,
+    1753
+   ],
+   "294": [
+    1755,
+    1755
+   ],
+   "295": [
+    1759,
+    1759
+   ],
+   "296": [
+    1761,
+    1767
+   ],
+   "297": [
+    1771,
+    1780
+   ],
+   "298": [
+    1782,
+    1784
+   ],
+   "299": [
+    1788,
+    1795
+   ],
+   "300": [
+    1799,
+    1801
+   ],
+   "301": [
+    1807,
+    1811
+   ],
+   "302": [
+    1813,
+    1813
+   ],
+   "303": [
+    1817,
+    1819
+   ],
+   "304": [
+    1825,
+    1831
+   ],
+   "305": [
+    1833,
+    1833
+   ],
+   "306": [
+    1835,
+    1837
+   ],
+   "307": [
+    1839,
+    1839
+   ],
+   "308": [
+    1843,
+    1843
+   ],
+   "309": [
+    1847,
+    1849
+   ],
+   "310": [
+    1851,
+    1853
+   ],
+   "311": [
+    1857,
+    1863
+   ],
+   "312": [
+    1865,
+    1865
+   ],
+   "313": [
+    1867,
+    1867
+   ],
+   "314": [
+    1871,
+    1877
+   ],
+   "315": [
+    1879,
+    1879
+   ],
+   "316": [
+    1881,
+    1881
+   ],
+   "317": [
+    1883,
+    1883
+   ],
+   "318": [
+    1889,
+    1891
+   ],
+   "319": [
+    1895,
+    1897
+   ],
+   "320": [
+    1899,
+    1899
+   ],
+   "321": [
+    1901,
+    1911
+   ],
+   "322": [
+    1913,
+    1913
+   ],
+   "323": [
+    1917,
+    1917
+   ],
+   "324": [
+    1919,
+    1919
+   ],
+   "325": [
+    1921,
+    1925
+   ],
+   "326": [
+    1929,
+    1931
+   ],
+   "327": [
+    1935,
+    1935
+   ],
+   "328": [
+    1939,
+    1948
+   ],
+   "329": [
+    1949,
+    1954
+   ],
+   "330": [
+    1955,
+    1957
+   ],
+   "331": [
+    1963,
+    1965
+   ],
+   "332": [
+    1969,
+    1969
+   ],
+   "333": [
+    1975,
+    1975
+   ],
+   "334": [
+    1981,
+    1989
+   ],
+   "335": [
+    1991,
+    1995
+   ],
+   "336": [
+    1997,
+    2005
+   ],
+   "337": [
+    2007,
+    2013
+   ],
+   "338": [
+    2015,
+    2017
+   ],
+   "339": [
+    2019,
+    2019
+   ],
+   "340": [
+    2021,
+    2021
+   ],
+   "341": [
+    2027,
+    2027
+   ],
+   "342": [
+    2033,
+    2035
+   ],
+   "343": [
+    2036,
+    2042
+   ],
+   "344": [
+    2044,
+    2047
+   ],
+   "345": [
+    2053,
+    2053
+   ],
+   "346": [
+    2055,
+    2059
+   ],
+   "347": [
+    2061,
+    2061
+   ],
+   "348": [
+    2063,
+    2063
+   ],
+   "349": [
+    2065,
+    2065
+   ],
+   "350": [
+    2067,
+    2067
+   ],
+   "351": [
+    2067,
+    2071
+   ],
+   "352": [
+    2073,
+    2073
+   ],
+   "353": [
+    2075,
+    2075
+   ],
+   "354": [
+    2077,
+    2079
+   ],
+   "355": [
+    2083,
+    2091
+   ],
+   "356": [
+    2093,
+    2093
+   ],
+   "357": [
+    2095,
+    2095
+   ],
+   "358": [
+    2097,
+    2097
+   ],
+   "359": [
+    2099,
+    2111
+   ],
+   "360": [
+    2112,
+    2116
+   ],
+   "361": [
+    2118,
+    2122
+   ],
+   "362": [
+    2124,
+    2124
+   ],
+   "363": [
+    2128,
+    2128
+   ],
+   "364": [
+    2130,
+    2133
+   ],
+   "365": [
+    2137,
+    2139
+   ],
+   "366": [
+    2141,
+    2141
+   ],
+   "367": [
+    2143,
+    2147
+   ],
+   "368": [
+    2151,
+    2158
+   ],
+   "369": [
+    2159,
+    2162
+   ],
+   "370": [
+    2170,
+    2177
+   ],
+   "371": [
+    2181,
+    2181
+   ],
+   "372": [
+    2183,
+    2187
+   ],
+   "373": [
+    2189,
+    2189
+   ],
+   "374": [
+    2193,
+    2197
+   ],
+   "375": [
+    2198,
+    2206
+   ],
+   "376": [
+    2210,
+    2218
+   ],
+   "377": [
+    2222,
+    2224
+   ],
+   "378": [
+    2225,
+    2234
+   ],
+   "379": [
+    2236,
+    2240
+   ],
+   "380": [
+    2242,
+    2242
+   ],
+   "381": [
+    2243,
+    2243
+   ],
+   "382": [
+    2245,
+    2247
+   ],
+   "383": [
+    2251,
+    2251
+   ],
+   "384": [
+    2255,
+    2259
+   ],
+   "385": [
+    2260,
+    2268
+   ],
+   "386": [
+    2270,
+    2270
+   ],
+   "387": [
+    2271,
+    2273
+   ],
+   "388": [
+    2277,
+    2277
+   ],
+   "389": [
+    2281,
+    2281
+   ],
+   "390": [
+    2283,
+    2283
+   ],
+   "391": [
+    2284,
+    2284
+   ],
+   "392": [
+    2285,
+    2285
+   ],
+   "393": [
+    2289,
+    2299
+   ],
+   "394": [
+    2300,
+    2308
+   ],
+   "395": [
+    2312,
+    2317
+   ],
+   "396": [
+    2321,
+    2325
+   ],
+   "397": [
+    2327,
+    2333
+   ],
+   "398": [
+    2335,
+    2335
+   ],
+   "399": [
+    2341,
+    2343
+   ],
+   "400": [
+    2345,
+    2349
+   ],
+   "401": [
+    2353,
+    2355
+   ],
+   "402": [
+    2357,
+    2358
+   ],
+   "403": [
+    2360,
+    2360
+   ],
+   "404": [
+    2368,
+    2368
+   ],
+   "405": [
+    2370,
+    2372
+   ],
+   "406": [
+    2374,
+    2378
+   ],
+   "407": [
+    2384,
+    2384
+   ],
+   "408": [
+    2386,
+    2386
+   ],
+   "409": [
+    2390,
+    2390
+   ],
+   "410": [
+    2394,
+    2398
+   ],
+   "411": [
+    2400,
+    2400
+   ],
+   "412": [
+    2404,
+    2408
+   ],
+   "413": [
+    2410,
+    2412
+   ],
+   "414": [
+    2418,
+    2422
+   ],
+   "415": [
+    2426,
+    2426
+   ],
+   "416": [
+    2427,
+    2431
+   ],
+   "417": [
+    2435,
+    2437
+   ],
+   "418": [
+    2441,
+    2445
+   ],
+   "419": [
+    2449,
+    2449
+   ],
+   "420": [
+    2453,
+    2459
+   ],
+   "421": [
+    2460,
+    2460
+   ],
+   "422": [
+    2461,
+    2461
+   ],
+   "423": [
+    2465,
+    2465
+   ],
+   "424": [
+    2469,
+    2479
+   ],
+   "425": [
+    2483,
+    2487
+   ],
+   "426": [
+    2489,
+    2495
+   ],
+   "427": [
+    2499,
+    2499
+   ],
+   "428": [
+    2503,
+    2503
+   ],
+   "429": [
+    2507,
+    2517
+   ],
+   "430": [
+    2519,
+    2523
+   ],
+   "431": [
+    2527,
+    2529
+   ],
+   "432": [
+    2531,
+    2531
+   ],
+   "433": [
+    2535,
+    2535
+   ],
+   "434": [
+    2537,
+    2537
+   ],
+   "435": [
+    2539,
+    2543
+   ],
+   "436": [
+    2545,
+    2545
+   ],
+   "437": [
+    2547,
+    2549
+   ],
+   "438": [
+    2551,
+    2553
+   ],
+   "439": [
+    2557,
+    2567
+   ],
+   "440": [
+    2568,
+    2569
+   ],
+   "441": [
+    2570,
+    2570
+   ],
+   "442": [
+    2574,
+    2580
+   ],
+   "443": [
+    2584,
+    2586
+   ],
+   "444": [
+    2590,
+    2590
+   ],
+   "445": [
+    2594,
+    2594
+   ],
+   "446": [
+    2596,
+    2600
+   ],
+   "447": [
+    2604,
+    2604
+   ],
+   "448": [
+    2606,
+    2608
+   ],
+   "449": [
+    2612,
+    2616
+   ],
+   "450": [
+    2618,
+    2620
+   ],
+   "451": [
+    2624,
+    2626
+   ],
+   "452": [
+    2630,
+    2632
+   ],
+   "453": [
+    2634,
+    2634
+   ],
+   "454": [
+    2636,
+    2640
+   ],
+   "455": [
+    2642,
+    2654
+   ],
+   "456": [
+    2660,
+    2664
+   ],
+   "457": [
+    2666,
+    2671
+   ],
+   "458": [
+    2672,
+    2672
+   ],
+   "459": [
+    2676,
+    2678
+   ],
+   "460": [
+    2680,
+    2684
+   ],
+   "461": [
+    2686,
+    2688
+   ],
+   "462": [
+    2690,
+    2694
+   ],
+   "463": [
+    2696,
+    2702
+   ],
+   "464": [
+    2703,
+    2704
+   ],
+   "465": [
+    2708,
+    2716
+   ],
+   "466": [
+    2720,
+    2720
+   ],
+   "467": [
+    2726,
+    2730
+   ],
+   "468": [
+    2736,
+    2738
+   ],
+   "469": [
+    2740,
+    2746
+   ],
+   "470": [
+    2747,
+    2756
+   ],
+   "471": [
+    2760,
+    2760
+   ],
+   "472": [
+    2768,
+    2773
+   ],
+   "473": [
+    2775,
+    2781
+   ],
+   "474": [
+    2785,
+    2785
+   ],
+   "475": [
+    2791,
+    2797
+   ],
+   "476": [
+    2799,
+    2799
+   ],
+   "477": [
+    2800,
+    2800
+   ],
+   "478": [
+    2802,
+    2808
+   ],
+   "479": [
+    2812,
+    2818
+   ],
+   "480": [
+    2820,
+    2836
+   ],
+   "481": [
+    2840,
+    2840
+   ],
+   "482": [
+    2844,
+    2844
+   ],
+   "483": [
+    2848,
+    2848
+   ],
+   "484": [
+    2854,
+    2860
+   ],
+   "485": [
+    2866,
+    2866
+   ],
+   "486": [
+    2868,
+    2868
+   ],
+   "487": [
+    2870,
+    2870
+   ],
+   "488": [
+    2876,
+    2878
+   ],
+   "489": [
+    2880,
+    2880
+   ],
+   "490": [
+    2882,
+    2889
+   ],
+   "491": [
+    2890,
+    2890
+   ],
+   "492": [
+    2892,
+    2892
+   ],
+   "493": [
+    2896,
+    2898
+   ],
+   "494": [
+    2902,
+    2902
+   ],
+   "495": [
+    2904,
+    2904
+   ],
+   "496": [
+    2908,
+    2914
+   ],
+   "497": [
+    2920,
+    2922
+   ],
+   "498": [
+    2924,
+    2929
+   ],
+   "499": [
+    2931,
+    2935
+   ],
+   "500": [
+    2939,
+    2943
+   ],
+   "501": [
+    2947,
+    2947
+   ],
+   "502": [
+    2949,
+    2959
+   ],
+   "503": [
+    2961,
+    2963
+   ],
+   "504": [
+    2967,
+    2969
+   ],
+   "505": [
+    2973,
+    2975
+   ],
+   "506": [
+    2977,
+    2977
+   ],
+   "507": [
+    2979,
+    2983
+   ],
+   "508": [
+    2985,
+    2987
+   ],
+   "509": [
+    2989,
+    2991
+   ],
+   "510": [
+    2993,
+    3001
+   ],
+   "511": [
+    3005,
+    3009
+   ],
+   "512": [
+    3010,
+    3012
+   ],
+   "513": [
+    3020,
+    3020
+   ],
+   "514": [
+    3024,
+    3024
+   ],
+   "515": [
+    3032,
+    3037
+   ],
+   "516": [
+    3039,
+    3049
+   ],
+   "517": [
+    3053,
+    3056
+   ],
+   "518": [
+    3060,
+    3060
+   ],
+   "519": [
+    3064,
+    3064
+   ],
+   "520": [
+    3070,
+    3072
+   ],
+   "521": [
+    3076,
+    3082
+   ],
+   "522": [
+    3084,
+    3086
+   ],
+   "523": [
+    3090,
+    3090
+   ],
+   "524": [
+    3092,
+    3092
+   ],
+   "525": [
+    3096,
+    3101
+   ],
+   "526": [
+    3102,
+    3107
+   ],
+   "527": [
+    3111,
+    3117
+   ],
+   "528": [
+    3119,
+    3119
+   ],
+   "529": [
+    3121,
+    3121
+   ],
+   "530": [
+    3125,
+    3125
+   ],
+   "531": [
+    3127,
+    3127
+   ],
+   "532": [
+    3129,
+    3135
+   ],
+   "533": [
+    3137,
+    3137
+   ],
+   "534": [
+    3139,
+    3139
+   ],
+   "535": [
+    3141,
+    3143
+   ],
+   "536": [
+    3147,
+    3147
+   ],
+   "537": [
+    3149,
+    3151
+   ],
+   "538": [
+    3153,
+    3153
+   ],
+   "539": [
+    3157,
+    3163
+   ],
+   "540": [
+    3164,
+    3165
+   ],
+   "541": [
+    3166,
+    3166
+   ],
+   "542": [
+    3169,
+    3173
+   ],
+   "543": [
+    3178,
+    3182
+   ],
+   "544": [
+    3183,
+    3183
+   ],
+   "545": [
+    3186,
+    3192
+   ],
+   "546": [
+    3197,
+    3200
+   ],
+   "547": [
+    3203,
+    3205
+   ],
+   "548": [
+    3210,
+    3214
+   ],
+   "549": [
+    3218,
+    3236
+   ],
+   "550": [
+    3239,
+    3241
+   ],
+   "551": [
+    3246,
+    3252
+   ]
+  }
+ },
+ "entries": [
+  {
+   "query": "hazard",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 214,
+     "lines": [
+      1287,
+      1291
+     ],
+     "quote": "We don't want to disclose competitively sensitive information, call un",
+     "grade": 1,
+     "shown_rank": 18
+    },
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 516,
+     "lines": [
+      3039,
+      3049
+     ],
+     "quote": "However, for the purposes of the Responsible Scaling Policy and these ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    515,
+    517
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    20
+   ],
+   "note": "The right answer is 'not used': the word appears once, as 'infohazard' (#214, rank 18). The other 19 are by meaning only and none is about hazards in any sense. Fine as ranked output; an agent needs to be told the term is absent."
+  },
+  {
+   "query": "hazard",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 214,
+     "lines": [
+      1287,
+      1291
+     ],
+     "quote": "We don't want to disclose competitively sensitive information, call un",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 516,
+     "lines": [
+      3039,
+      3049
+     ],
+     "quote": "However, for the purposes of the Responsible Scaling Policy and these ",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L379–379",
+    "L501–501",
+    "L535–537",
+    "L674–678",
+    "L726–736",
+    "L771–790",
+    "L810–813",
+    "L951–955",
+    "L959–962",
+    "L974–976",
+    "L986–992",
+    "L1019–1040",
+    "L1044–1044",
+    "L1048–1048",
+    "L1052–1056",
+    "L1060–1060",
+    "L1068–1076",
+    "L1080–1082",
+    "L1086–1094",
+    "L1133–1140",
+    "L1489–1489",
+    "L1561–1563",
+    "L1573–1573",
+    "L1577–1577",
+    "L1629–1630",
+    "L1637–1646",
+    "L2053–2053"
+   ],
+   "no_query_words_warning": true,
+   "likely_unanswered": false,
+   "passages_with_query_words": 0,
+   "source_lines_in_opened_ranges": 147,
+   "note": "Says plainly that no passage holds the query's words and that ranks are relative. That is the right signal. It still opens 28 ranges, which spends the budget on noise; an agent who doesn't read the warning gets a confident-looking map."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 18,
+     "lines": [
+      224,
+      232
+     ],
+     "quote": "The report goes through each category of catastrophic risk that is hig",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 15,
+     "lines": [
+      204,
+      208
+     ],
+     "quote": "This report evaluates the degree to which Anthropic's AI systems pose ",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 17,
+     "lines": [
+      214,
+      220
+     ],
+     "quote": "Although this report focuses on catastrophic risks, they are not the o",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 52,
+     "lines": [
+      416,
+      419
+     ],
+     "quote": "- We believe that the potential magnitude of impact is in range of the",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 74,
+     "lines": [
+      521,
+      534
+     ],
+     "quote": "Our core argument 16 is described in the numbered steps below. The arg",
+     "grade": 1,
+     "shown_rank": 17
+    },
+    {
+     "passage": 37,
+     "lines": [
+      335,
+      347
+     ],
+     "quote": "Version 3.4 of our RSP changes the scope of our risk reports to cov",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 35,
+     "lines": [
+      321,
+      329
+     ],
+     "quote": "This threshold was updated in version 3.3 of our RSP: RSP",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 357,
+     "lines": [
+      2095,
+      2095
+     ],
+     "quote": "Potential magnitude of impact: As discussed in the <u>previous section",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 347,
+     "lines": [
+      2061,
+      2061
+     ],
+     "quote": "Potential magnitude of impact: Biological pathogens have caused among ",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 279,
+     "lines": [
+      1682,
+      1682
+     ],
+     "quote": "Potential magnitude of impact: We are most concerned with major, endur",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 516,
+     "lines": [
+      3039,
+      3049
+     ],
+     "quote": "However, for the purposes of the Responsible Scaling Policy and these ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    16,
+    36,
+    276,
+    277,
+    278,
+    280,
+    281,
+    282,
+    283,
+    345,
+    346,
+    348,
+    349,
+    350,
+    351,
+    352,
+    353,
+    354,
+    355,
+    356,
+    358,
+    359,
+    360,
+    361,
+    362,
+    363,
+    364,
+    515,
+    517
+   ],
+   "noise": [
+    5,
+    6,
+    7,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    18,
+    19,
+    20
+   ],
+   "note": "Good top: §1.1 (#18) and #19, which holds footnote 1, the definition, at ranks 1–2. Misses the CB-2 threshold's COVID anchor (#35, #37) and §6.1's criteria (#516); fills ranks 5–20 with passages that merely mention catastrophic harm."
+  },
+  {
+   "query": "catastrophic risk",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 18,
+     "lines": [
+      224,
+      232
+     ],
+     "quote": "The report goes through each category of catastrophic risk that is hig",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 15,
+     "lines": [
+      204,
+      208
+     ],
+     "quote": "This report evaluates the degree to which Anthropic's AI systems pose ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      214,
+      220
+     ],
+     "quote": "Although this report focuses on catastrophic risks, they are not the o",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 52,
+     "lines": [
+      416,
+      419
+     ],
+     "quote": "- We believe that the potential magnitude of impact is in range of the",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 74,
+     "lines": [
+      521,
+      534
+     ],
+     "quote": "Our core argument 16 is described in the numbered steps below. The arg",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 37,
+     "lines": [
+      335,
+      347
+     ],
+     "quote": "Version 3.4 of our RSP changes the scope of our risk reports to cov",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 35,
+     "lines": [
+      321,
+      329
+     ],
+     "quote": "This threshold was updated in version 3.3 of our RSP: RSP",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 357,
+     "lines": [
+      2095,
+      2095
+     ],
+     "quote": "Potential magnitude of impact: As discussed in the <u>previous section",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 347,
+     "lines": [
+      2061,
+      2061
+     ],
+     "quote": "Potential magnitude of impact: Biological pathogens have caused among ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 279,
+     "lines": [
+      1682,
+      1682
+     ],
+     "quote": "Potential magnitude of impact: We are most concerned with major, endur",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 516,
+     "lines": [
+      3039,
+      3049
+     ],
+     "quote": "However, for the purposes of the Responsible Scaling Policy and these ",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L275–284",
+    "L379–379",
+    "L390–392",
+    "L454–469",
+    "L541–547",
+    "L710–710",
+    "L951–955",
+    "L959–961",
+    "L1029–1036",
+    "L1052–1056",
+    "L1066–1076",
+    "L1090–1094",
+    "L1106–1119",
+    "L1135–1140",
+    "L1264–1268",
+    "L1305–1307",
+    "L2033–2042",
+    "L2660–2664",
+    "L2676–2678"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 253,
+   "source_lines_in_opened_ranges": 185,
+   "note": "Opens §1.1 and footnote 1. Like hybrid, it doesn't reach the CB-2 magnitude anchor in §1.3.2–1.3.3, where the footnotes print away from their table."
+  },
+  {
+   "query": "loss of control",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 276,
+     "lines": [
+      1670,
+      1677
+     ],
+     "quote": "The threat: We believe that AI models could, in the next few years, ha",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 53,
+     "lines": [
+      425,
+      434
+     ],
+     "quote": "Our risk assessment focuses on the following concrete pathways, which ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 174,
+     "lines": [
+      1066,
+      1066
+     ],
+     "quote": "For a rogue internal deployment to constitute an irreversible harm-ind",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 175,
+     "lines": [
+      1068,
+      1068
+     ],
+     "quote": "We also consider it in-scope for our definition of rogue internal depl",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 176,
+     "lines": [
+      1070,
+      1076
+     ],
+     "quote": "We believe that self-exfiltration is unlikely to result in catastrophi",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 184,
+     "lines": [
+      1121,
+      1123
+     ],
+     "quote": "Pathways 1–4 represent our best guess at representative ways in which ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 186,
+     "lines": [
+      1127,
+      1127
+     ],
+     "quote": "Since we are mostly focused on outcomes that create the conditions for",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 194,
+     "lines": [
+      1168,
+      1168
+     ],
+     "quote": "As discussed in Claim 7, self-exfiltration itself will not necessarily",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 249,
+     "lines": [
+      1489,
+      1489
+     ],
+     "quote": "● Our asynchronous monitoring would likely not detect diffuse research",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 48,
+     "lines": [
+      399,
+      403
+     ],
+     "quote": "The threat: If AI models are heavily used by powerful organizations—fo",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 279,
+     "lines": [
+      1682,
+      1682
+     ],
+     "quote": "Potential magnitude of impact: We are most concerned with major, endur",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    49,
+    50,
+    51,
+    173,
+    185,
+    195,
+    248,
+    277,
+    278,
+    280,
+    281,
+    282,
+    283
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Misses the only literal use ('humanity losing control over civilization entirely', #276 L1670–1677), apparently because 'loss' and 'losing' don't match, and misses pathways 5–6 (#53, #184). Its one useful hit is log tampering (#175, rank 5). Ranks 1–4 are about spreading misalignment, unmonitored agents, covert capability and CoT unfaithfulness: related to oversight, not to control being lost."
+  },
+  {
+   "query": "loss of control",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 276,
+     "lines": [
+      1670,
+      1677
+     ],
+     "quote": "The threat: We believe that AI models could, in the next few years, ha",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 53,
+     "lines": [
+      425,
+      434
+     ],
+     "quote": "Our risk assessment focuses on the following concrete pathways, which ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 174,
+     "lines": [
+      1066,
+      1066
+     ],
+     "quote": "For a rogue internal deployment to constitute an irreversible harm-ind",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 175,
+     "lines": [
+      1068,
+      1068
+     ],
+     "quote": "We also consider it in-scope for our definition of rogue internal depl",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 176,
+     "lines": [
+      1070,
+      1076
+     ],
+     "quote": "We believe that self-exfiltration is unlikely to result in catastrophi",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 184,
+     "lines": [
+      1121,
+      1123
+     ],
+     "quote": "Pathways 1–4 represent our best guess at representative ways in which ",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 186,
+     "lines": [
+      1127,
+      1127
+     ],
+     "quote": "Since we are mostly focused on outcomes that create the conditions for",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 194,
+     "lines": [
+      1168,
+      1168
+     ],
+     "quote": "As discussed in Claim 7, self-exfiltration itself will not necessarily",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 249,
+     "lines": [
+      1489,
+      1489
+     ],
+     "quote": "● Our asynchronous monitoring would likely not detect diffuse research",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 48,
+     "lines": [
+      399,
+      403
+     ],
+     "quote": "The threat: If AI models are heavily used by powerful organizations—fo",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 279,
+     "lines": [
+      1682,
+      1682
+     ],
+     "quote": "Potential magnitude of impact: We are most concerned with major, endur",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L258–271",
+    "L390–393",
+    "L615–619",
+    "L871–877",
+    "L1009–1015",
+    "L1236–1240",
+    "L1315–1319",
+    "L1341–1341",
+    "L1350–1354",
+    "L1654–1656",
+    "L2061–2061",
+    "L2067–2071",
+    "L2596–2600",
+    "L2604–2604",
+    "L2892–2892",
+    "L2896–2898",
+    "L2908–2914",
+    "L2977–2977"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 57,
+   "source_lines_in_opened_ranges": 81,
+   "note": "Opens §3.1's 'balance of power' cell instead of §3.2, where 'losing control' is. It catches rogue internal deployment (L1068) and the §5.2.5 unmonitored agents. It misses the pathway list and Claim 7's 'undermine our ability to detect (and thus mitigate)'. Its section notes ('+9 sections not shown (3 near)' under §3) do tell an agent that §3 has unread near hits."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 184,
+     "lines": [
+      1121,
+      1123
+     ],
+     "quote": "Pathways 1–4 represent our best guess at representative ways in which ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 186,
+     "lines": [
+      1127,
+      1127
+     ],
+     "quote": "Since we are mostly focused on outcomes that create the conditions for",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 174,
+     "lines": [
+      1066,
+      1066
+     ],
+     "quote": "For a rogue internal deployment to constitute an irreversible harm-ind",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 175,
+     "lines": [
+      1068,
+      1068
+     ],
+     "quote": "We also consider it in-scope for our definition of rogue internal depl",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 176,
+     "lines": [
+      1070,
+      1076
+     ],
+     "quote": "We believe that self-exfiltration is unlikely to result in catastrophi",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 249,
+     "lines": [
+      1489,
+      1489
+     ],
+     "quote": "● Our asynchronous monitoring would likely not detect diffuse research",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 180,
+     "lines": [
+      1098,
+      1098
+     ],
+     "quote": "We have significantly less confidence in the effectiveness of our miti",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 182,
+     "lines": [
+      1102,
+      1102
+     ],
+     "quote": "Overall, we believe that our mitigations still provide non-trivial pro",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 166,
+     "lines": [
+      1019,
+      1023
+     ],
+     "quote": "When discovering strange behavior like the one described in Section 6.",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 168,
+     "lines": [
+      1029,
+      1036
+     ],
+     "quote": "Given this, we would likely reverse all catastrophic reversible outcom",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 253,
+     "lines": [
+      1513,
+      1528
+     ],
+     "quote": "Analyze this RL training environment to identify if it contains any go",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 270,
+     "lines": [
+      1637,
+      1644
+     ],
+     "quote": "- \"CC Lean bypass\": We ran the model in real Claude Code auto-mode ses",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 496,
+     "lines": [
+      2908,
+      2914
+     ],
+     "quote": "An employee whose AI usage wasn't logged and wasn't monitored by autom",
+     "grade": 1,
+     "shown_rank": 5
+    }
+   ],
+   "acceptable": [
+    167,
+    169,
+    173,
+    181,
+    185,
+    248,
+    271
+   ],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Ranks 1–3 are §3.1–3.2's automated-R&D threat model (balance of power; loss of control over civilization). That's a defensible reading, but the report's own version of the question is pathways 5–6 and Claim 5.3, none of which is in the top 20. Only #496 (unmonitored agents, rank 5) is on target. Ranks 4, 6, 7 and 9 are §3.6 interviews and AECI: noise."
+  },
+  {
+   "query": "humans can no longer shut down or correct the AI system",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 184,
+     "lines": [
+      1121,
+      1123
+     ],
+     "quote": "Pathways 1–4 represent our best guess at representative ways in which ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 186,
+     "lines": [
+      1127,
+      1127
+     ],
+     "quote": "Since we are mostly focused on outcomes that create the conditions for",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 174,
+     "lines": [
+      1066,
+      1066
+     ],
+     "quote": "For a rogue internal deployment to constitute an irreversible harm-ind",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 175,
+     "lines": [
+      1068,
+      1068
+     ],
+     "quote": "We also consider it in-scope for our definition of rogue internal depl",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 176,
+     "lines": [
+      1070,
+      1076
+     ],
+     "quote": "We believe that self-exfiltration is unlikely to result in catastrophi",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 249,
+     "lines": [
+      1489,
+      1489
+     ],
+     "quote": "● Our asynchronous monitoring would likely not detect diffuse research",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 180,
+     "lines": [
+      1098,
+      1098
+     ],
+     "quote": "We have significantly less confidence in the effectiveness of our miti",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 182,
+     "lines": [
+      1102,
+      1102
+     ],
+     "quote": "Overall, we believe that our mitigations still provide non-trivial pro",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 166,
+     "lines": [
+      1019,
+      1023
+     ],
+     "quote": "When discovering strange behavior like the one described in Section 6.",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 168,
+     "lines": [
+      1029,
+      1036
+     ],
+     "quote": "Given this, we would likely reverse all catastrophic reversible outcom",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 253,
+     "lines": [
+      1513,
+      1528
+     ],
+     "quote": "Analyze this RL training environment to identify if it contains any go",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 270,
+     "lines": [
+      1637,
+      1644
+     ],
+     "quote": "- \"CC Lean bypass\": We ran the model in real Claude Code auto-mode ses",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 496,
+     "lines": [
+      2908,
+      2914
+     ],
+     "quote": "An employee whose AI usage wasn't logged and wasn't monitored by autom",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L204–208",
+    "L321–329",
+    "L411–412",
+    "L1437–1445",
+    "L1629–1630",
+    "L1654–1657",
+    "L1670–1684",
+    "L1707–1713",
+    "L1735–1741",
+    "L1759–1759",
+    "L1799–1801",
+    "L1807–1811",
+    "L1825–1831",
+    "L1835–1837",
+    "L1895–1911",
+    "L1929–1931",
+    "L1939–1948",
+    "L1981–1989",
+    "L1997–2013",
+    "L2055–2059",
+    "L2703–2704"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 324,
+   "source_lines_in_opened_ranges": 149,
+   "note": "Opens 22 ranges, mostly in §3. Misses Claims 5.3, 6 and 7, the passages that answer the question. Nothing warns that the specific framing isn't used."
+  },
+  {
+   "query": "misalignment",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 59,
+     "lines": [
+      475,
+      475
+     ],
+     "quote": "Misalignment: Misalignment is a latent property of a specific computat",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 62,
+     "lines": [
+      485,
+      485
+     ],
+     "quote": "Pervasive and context-dependent misalignment: Pervasive misalignment i",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 65,
+     "lines": [
+      497,
+      497
+     ],
+     "quote": "Known and unknown misalignment: Misalignment is *known* if we have rea",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 66,
+     "lines": [
+      499,
+      499
+     ],
+     "quote": "Severe misalignment: When considering unknown forms of misalignment we",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 48,
+     "lines": [
+      399,
+      403
+     ],
+     "quote": "The threat: If AI models are heavily used by powerful organizations—fo",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 71,
+     "lines": [
+      513,
+      513
+     ],
+     "quote": "Misalignment risk: The purpose of this analysis is to estimate *misali",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 63,
+     "lines": [
+      487,
+      487
+     ],
+     "quote": "Naturally-emerging and engineered misalignment: Misalignment is *natur",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 61,
+     "lines": [
+      483,
+      483
+     ],
+     "quote": "Coherent and incoherent misalignment: A model is *coherent* if it prod",
+     "grade": 2,
+     "shown_rank": 15
+    },
+    {
+     "passage": 55,
+     "lines": [
+      444,
+      453
+     ],
+     "quote": "In the following sections, we present our alignment risk assessment. F",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 57,
+     "lines": [
+      457,
+      469
+     ],
+     "quote": "- We believe that this combination of arguments supports a designation",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 74,
+     "lines": [
+      521,
+      534
+     ],
+     "quote": "Our core argument 16 is described in the numbered steps below. The arg",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 75,
+     "lines": [
+      535,
+      537
+     ],
+     "quote": "- 3. Covered risk can be decomposed into risks from known misalignment",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 44,
+     "lines": [
+      383,
+      386
+     ],
+     "quote": "Threat model An AI model with access to powerful affordances within an",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 98,
+     "lines": [
+      659,
+      659
+     ],
+     "quote": "Covered models and other recent Claude models have displayed various f",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 103,
+     "lines": [
+      680,
+      687
+     ],
+     "quote": "Overall, we believe it is unlikely that known forms of misalignment in",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 215,
+     "lines": [
+      1295,
+      1295
+     ],
+     "quote": "Anthropic asked me to review the alignment section of this report agai",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 497,
+     "lines": [
+      2920,
+      2922
+     ],
+     "quote": "The 2024 paper Alignment Faking in Large Language Models, which was co",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 258,
+     "lines": [
+      1561,
+      1563
+     ],
+     "quote": "*This is an interim summary of the current results of an active resear",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    21,
+    22,
+    23,
+    45,
+    46,
+    47,
+    49,
+    50,
+    51,
+    52,
+    56,
+    58,
+    60,
+    64,
+    67,
+    68,
+    69,
+    70,
+    72,
+    73,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    99,
+    100,
+    101,
+    102,
+    104,
+    105,
+    106,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    212,
+    213,
+    214,
+    216,
+    217,
+    218,
+    219,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    498,
+    499
+   ],
+   "noise": [
+    7,
+    9,
+    10,
+    12,
+    13,
+    16,
+    17,
+    18
+   ],
+   "note": "Excellent: ranks 1–6 and 8 are §2.5's definitions, in a sensible order. Misses §2.2's earlier, looser definition (#48) and the summary tables, which a reader comparing the two definitions needs."
+  },
+  {
+   "query": "misalignment",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 59,
+     "lines": [
+      475,
+      475
+     ],
+     "quote": "Misalignment: Misalignment is a latent property of a specific computat",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 62,
+     "lines": [
+      485,
+      485
+     ],
+     "quote": "Pervasive and context-dependent misalignment: Pervasive misalignment i",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 65,
+     "lines": [
+      497,
+      497
+     ],
+     "quote": "Known and unknown misalignment: Misalignment is *known* if we have rea",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 66,
+     "lines": [
+      499,
+      499
+     ],
+     "quote": "Severe misalignment: When considering unknown forms of misalignment we",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 48,
+     "lines": [
+      399,
+      403
+     ],
+     "quote": "The threat: If AI models are heavily used by powerful organizations—fo",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 71,
+     "lines": [
+      513,
+      513
+     ],
+     "quote": "Misalignment risk: The purpose of this analysis is to estimate *misali",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 63,
+     "lines": [
+      487,
+      487
+     ],
+     "quote": "Naturally-emerging and engineered misalignment: Misalignment is *natur",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 61,
+     "lines": [
+      483,
+      483
+     ],
+     "quote": "Coherent and incoherent misalignment: A model is *coherent* if it prod",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      444,
+      453
+     ],
+     "quote": "In the following sections, we present our alignment risk assessment. F",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 57,
+     "lines": [
+      457,
+      469
+     ],
+     "quote": "- We believe that this combination of arguments supports a designation",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 74,
+     "lines": [
+      521,
+      534
+     ],
+     "quote": "Our core argument 16 is described in the numbered steps below. The arg",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 75,
+     "lines": [
+      535,
+      537
+     ],
+     "quote": "- 3. Covered risk can be decomposed into risks from known misalignment",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 44,
+     "lines": [
+      383,
+      386
+     ],
+     "quote": "Threat model An AI model with access to powerful affordances within an",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 98,
+     "lines": [
+      659,
+      659
+     ],
+     "quote": "Covered models and other recent Claude models have displayed various f",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 103,
+     "lines": [
+      680,
+      687
+     ],
+     "quote": "Overall, we believe it is unlikely that known forms of misalignment in",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 215,
+     "lines": [
+      1295,
+      1295
+     ],
+     "quote": "Anthropic asked me to review the alignment section of this report agai",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 497,
+     "lines": [
+      2920,
+      2922
+     ],
+     "quote": "The 2024 paper Alignment Faking in Large Language Models, which was co",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 258,
+     "lines": [
+      1561,
+      1563
+     ],
+     "quote": "*This is an interim summary of the current results of an active resear",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L710–710",
+    "L714–716",
+    "L726–767",
+    "L799–809",
+    "L815–815",
+    "L819–821",
+    "L825–831",
+    "L851–851",
+    "L855–857",
+    "L897–901",
+    "L915–919",
+    "L927–927",
+    "L935–943",
+    "L986–992",
+    "L996–1000",
+    "L1009–1015",
+    "L1102–1102",
+    "L1133–1133"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 135,
+   "source_lines_in_opened_ranges": 196,
+   "note": "Good: opens the definitions, §2.4 and §2.6. It doesn't open §2.19's overall assessment or Claude's review. A reader would see §2's structure and what's folded."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "hybrid",
+   "items": [],
+   "acceptable": [],
+   "noise": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Correctly nothing: the term and concept are absent. All 20 results are noise (threat intelligence, the bug bounty, incident reporting). Ranked output has no way to say 'absent'."
+  },
+  {
+   "query": "whistleblower",
+   "tool": "outline",
+   "items": [],
+   "noise": [
+    "L601–605",
+    "L667–678",
+    "L696–700",
+    "L974–976",
+    "L1019–1027",
+    "L1052–1056",
+    "L1287–1291",
+    "L1350–1354",
+    "L1391–1395",
+    "L1427–1429",
+    "L1629–1644",
+    "L2370–2378",
+    "L2418–2422",
+    "L2435–2437",
+    "L2453–2461",
+    "L2547–2553",
+    "L2574–2580",
+    "L2612–2620",
+    "L2636–2654",
+    "L2866–2866",
+    "L2908–2914"
+   ],
+   "no_query_words_warning": true,
+   "likely_unanswered": false,
+   "passages_with_query_words": 0,
+   "source_lines_in_opened_ranges": 149,
+   "note": "Warns that no passage holds the word, then opens 21 noise ranges. The answerability flag stays false: nearest distance 0.4845 against a 0.5 threshold, which is too loose for this document."
+  },
+  {
+   "query": "serious incident",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 449,
+     "lines": [
+      2612,
+      2616
+     ],
+     "quote": "We describe this incident separately from those in Appendix 6.5 becaus",
+     "grade": 2,
+     "shown_rank": 14
+    },
+    {
+     "passage": 451,
+     "lines": [
+      2624,
+      2626
+     ],
+     "quote": "Since our last Risk Report, we discovered that our bio classifiers wer",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 452,
+     "lines": [
+      2630,
+      2632
+     ],
+     "quote": "This traffic was controlled by a flag meant only for internal use, whi",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 106,
+     "lines": [
+      696,
+      700
+     ],
+     "quote": "Finally, we note that the UK's AISI recently published a report on a c",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 447,
+     "lines": [
+      2604,
+      2604
+     ],
+     "quote": "We focus here on incidents that are relevant to our assessment of the ",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 486,
+     "lines": [
+      2868,
+      2868
+     ],
+     "quote": "During the run, one of the Claude agents mentioned in its chain-of-tho",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 488,
+     "lines": [
+      2876,
+      2878
+     ],
+     "quote": "Over multiple reinforcement learning training runs, we discovered that",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 494,
+     "lines": [
+      2902,
+      2902
+     ],
+     "quote": "A bug in the construction of this dataset led to *all* assistant turns",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 496,
+     "lines": [
+      2908,
+      2914
+     ],
+     "quote": "An employee whose AI usage wasn't logged and wasn't monitored by autom",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 497,
+     "lines": [
+      2920,
+      2922
+     ],
+     "quote": "The 2024 paper Alignment Faking in Large Language Models, which was co",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 113,
+     "lines": [
+      728,
+      736
+     ],
+     "quote": "<sup>20</sup> Some content redacted here for intellectual property pro",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 527,
+     "lines": [
+      3111,
+      3117
+     ],
+     "quote": "*This appendix elaborates on the content discussed in Section 4.5.8.* ",
+     "grade": 1,
+     "shown_rank": 15
+    },
+    {
+     "passage": 239,
+     "lines": [
+      1429,
+      1429
+     ],
+     "quote": "We found that our overall pipeline surfaced several of the most import",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 245,
+     "lines": [
+      1463,
+      1463
+     ],
+     "quote": "Actions generated by covered models during reinforcement learning and ",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    448,
+    450,
+    453,
+    454,
+    455,
+    484,
+    485,
+    487,
+    489,
+    490,
+    491,
+    492,
+    493,
+    495,
+    498,
+    499,
+    528,
+    529,
+    530,
+    531,
+    532,
+    533,
+    534,
+    535,
+    536,
+    537,
+    538
+   ],
+   "noise": [
+    3,
+    6,
+    9,
+    13,
+    16,
+    17,
+    18,
+    19
+   ],
+   "note": "Good: the CB incident passages (#447–450), the HF/OpenAI incident (#113, rank 1), the AISI incident (#106, rank 8), the SL bug and partial refusals all appear. It misses the vendor-traffic gap's core passages (#451, #452), the period's largest exposure, though its framing passage is there."
+  },
+  {
+   "query": "serious incident",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 449,
+     "lines": [
+      2612,
+      2616
+     ],
+     "quote": "We describe this incident separately from those in Appendix 6.5 becaus",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 451,
+     "lines": [
+      2624,
+      2626
+     ],
+     "quote": "Since our last Risk Report, we discovered that our bio classifiers wer",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 452,
+     "lines": [
+      2630,
+      2632
+     ],
+     "quote": "This traffic was controlled by a flag meant only for internal use, whi",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 106,
+     "lines": [
+      696,
+      700
+     ],
+     "quote": "Finally, we note that the UK's AISI recently published a report on a c",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 447,
+     "lines": [
+      2604,
+      2604
+     ],
+     "quote": "We focus here on incidents that are relevant to our assessment of the ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 486,
+     "lines": [
+      2868,
+      2868
+     ],
+     "quote": "During the run, one of the Claude agents mentioned in its chain-of-tho",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 488,
+     "lines": [
+      2876,
+      2878
+     ],
+     "quote": "Over multiple reinforcement learning training runs, we discovered that",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 494,
+     "lines": [
+      2902,
+      2902
+     ],
+     "quote": "A bug in the construction of this dataset led to *all* assistant turns",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 496,
+     "lines": [
+      2908,
+      2914
+     ],
+     "quote": "An employee whose AI usage wasn't logged and wasn't monitored by autom",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 497,
+     "lines": [
+      2920,
+      2922
+     ],
+     "quote": "The 2024 paper Alignment Faking in Large Language Models, which was co",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 113,
+     "lines": [
+      728,
+      736
+     ],
+     "quote": "<sup>20</sup> Some content redacted here for intellectual property pro",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 527,
+     "lines": [
+      3111,
+      3117
+     ],
+     "quote": "*This appendix elaborates on the content discussed in Section 4.5.8.* ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 239,
+     "lines": [
+      1429,
+      1429
+     ],
+     "quote": "We found that our overall pipeline surfaced several of the most import",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 245,
+     "lines": [
+      1463,
+      1463
+     ],
+     "quote": "Actions generated by covered models during reinforcement learning and ",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L284–284",
+    "L454–469",
+    "L601–605",
+    "L966–970",
+    "L1019–1027",
+    "L1295–1295",
+    "L1299–1303",
+    "L2036–2042",
+    "L2130–2133",
+    "L2726–2730"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 42,
+   "source_lines_in_opened_ranges": 131,
+   "note": "Opens most incident passages, but not §4.5.8.2.2's core. There's no warning that the phrase 'serious incident' (a regulatory term elsewhere) isn't used: 42 passages hold one of the two words, so the absence warning doesn't fire."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 15,
+     "lines": [
+      204,
+      208
+     ],
+     "quote": "This report evaluates the degree to which Anthropic's AI systems pose ",
+     "grade": 2,
+     "shown_rank": 15
+    },
+    {
+     "passage": 17,
+     "lines": [
+      214,
+      220
+     ],
+     "quote": "Although this report focuses on catastrophic risks, they are not the o",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 37,
+     "lines": [
+      335,
+      347
+     ],
+     "quote": "Version 3.4 of our RSP changes the scope of our risk reports to cov",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 38,
+     "lines": [
+      351,
+      353
+     ],
+     "quote": "Version 3.4 of our RSP requires us to publicly disclose, at a high lev",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 39,
+     "lines": [
+      357,
+      359
+     ],
+     "quote": "Version 3.2 of our RSP authorizes Anthropic's Long-Term Benefit Trust ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 465,
+     "lines": [
+      2708,
+      2716
+     ],
+     "quote": "We will continue to work toward better capability evaluations and bett",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 466,
+     "lines": [
+      2720,
+      2720
+     ],
+     "quote": "We believe we have also met the second of these criteria as well, alth",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 504,
+     "lines": [
+      2967,
+      2969
+     ],
+     "quote": "- In recent years we've supported key safety legislation including Cal",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 508,
+     "lines": [
+      2985,
+      2987
+     ],
+     "quote": "Publishing information about our models, safeguards, risk levels and m",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 509,
+     "lines": [
+      2989,
+      2991
+     ],
+     "quote": "Accountability from independent parties. We are piloting external revi",
+     "grade": 1,
+     "shown_rank": 14
+    },
+    {
+     "passage": 206,
+     "lines": [
+      1236,
+      1240
+     ],
+     "quote": "Before approving a new model 29 for easy or broad internal use (e.g., ",
+     "grade": 1,
+     "shown_rank": 17
+    }
+   ],
+   "acceptable": [
+    16,
+    207,
+    208,
+    209,
+    210
+   ],
+   "noise": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    11,
+    12,
+    13,
+    16,
+    18,
+    19,
+    20
+   ],
+   "note": "Weak. It misses §1.3.3–1.3.5 (#37–39: coverage-date, redaction and review rules), and the intro (#15) is only at rank 15. Ranks 2–6 are risk-benefit, CB standards, pathway 7–8 and policy-maker credibility: noise. The report isn't a law, so 'must' maps to the RSP's own publication commitments."
+  },
+  {
+   "query": "what must a developer publish or report before deploying a frontier model",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 15,
+     "lines": [
+      204,
+      208
+     ],
+     "quote": "This report evaluates the degree to which Anthropic's AI systems pose ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 17,
+     "lines": [
+      214,
+      220
+     ],
+     "quote": "Although this report focuses on catastrophic risks, they are not the o",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 37,
+     "lines": [
+      335,
+      347
+     ],
+     "quote": "Version 3.4 of our RSP changes the scope of our risk reports to cov",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 38,
+     "lines": [
+      351,
+      353
+     ],
+     "quote": "Version 3.4 of our RSP requires us to publicly disclose, at a high lev",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 39,
+     "lines": [
+      357,
+      359
+     ],
+     "quote": "Version 3.2 of our RSP authorizes Anthropic's Long-Term Benefit Trust ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 465,
+     "lines": [
+      2708,
+      2716
+     ],
+     "quote": "We will continue to work toward better capability evaluations and bett",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 466,
+     "lines": [
+      2720,
+      2720
+     ],
+     "quote": "We believe we have also met the second of these criteria as well, alth",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 504,
+     "lines": [
+      2967,
+      2969
+     ],
+     "quote": "- In recent years we've supported key safety legislation including Cal",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 508,
+     "lines": [
+      2985,
+      2987
+     ],
+     "quote": "Publishing information about our models, safeguards, risk levels and m",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 509,
+     "lines": [
+      2989,
+      2991
+     ],
+     "quote": "Accountability from independent parties. We are piloting external revi",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 206,
+     "lines": [
+      1236,
+      1240
+     ],
+     "quote": "Before approving a new model 29 for easy or broad internal use (e.g., ",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L272–274",
+    "L363–370",
+    "L1066–1066",
+    "L1086–1088",
+    "L1125–1125",
+    "L1287–1291",
+    "L1295–1295",
+    "L1565–1569",
+    "L1981–1989",
+    "L2181–2181",
+    "L2289–2299",
+    "L2584–2586",
+    "L2726–2730",
+    "L2736–2738",
+    "L2760–2760",
+    "L2775–2781",
+    "L2939–2943",
+    "L3010–3012",
+    "L3157–3163"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 473,
+   "source_lines_in_opened_ranges": 123,
+   "note": "Opens the intro, the review process and policy positions. Misses §1.3.3–1.3.5 and §4.7's 'future safety artifact' commitment."
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 100,
+     "lines": [
+      665,
+      666
+     ],
+     "quote": "- Mythos 5 used domain fronting to bypass a network proxy that was pre",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 101,
+     "lines": [
+      667,
+      672
+     ],
+     "quote": "- In one instance, Mythos 5 agents were tasked with solving some math ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 85,
+     "lines": [
+      585,
+      585
+     ],
+     "quote": "Our most direct evaluations for opaque reasoning capabilities are secr",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 86,
+     "lines": [
+      591,
+      591
+     ],
+     "quote": "Figure 2.7.1.A] Stealth success rate: the fraction of trajectories in ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 87,
+     "lines": [
+      597,
+      597
+     ],
+     "quote": "Figure 2.7.1.B] Successful stealth completion of the side task in Mini",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 270,
+     "lines": [
+      1637,
+      1644
+     ],
+     "quote": "- \"CC Lean bypass\": We ran the model in real Claude Code auto-mode ses",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 267,
+     "lines": [
+      1629,
+      1630
+     ],
+     "quote": "- \"ImpossibleCode\" shows higher rates of reward hacking (unsurprisingl",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 269,
+     "lines": [
+      1636,
+      1636
+     ],
+     "quote": "- \"Meta-RL\": We placed the models in a simulated RL environment, where",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 486,
+     "lines": [
+      2868,
+      2868
+     ],
+     "quote": "During the run, one of the Claude agents mentioned in its chain-of-tho",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 102,
+     "lines": [
+      674,
+      678
+     ],
+     "quote": "METR's report includes several examples of cheating during their evalu",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 106,
+     "lines": [
+      696,
+      700
+     ],
+     "quote": "Finally, we note that the UK's AISI recently published a report on a c",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 92,
+     "lines": [
+      623,
+      629
+     ],
+     "quote": "Figure 2.7.2.A] Secret-keeping robustness over multi-turn secret extra",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 96,
+     "lines": [
+      645,
+      647
+     ],
+     "quote": "In Section 6.5.4.4 of the Claude Fable 5 & Claude Mythos 5 System Card",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 97,
+     "lines": [
+      649,
+      653
+     ],
+     "quote": "> As part of our red-teaming exercise with Anthropic, our embedded red",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 123,
+     "lines": [
+      810,
+      813
+     ],
+     "quote": "- One reward hack in which the model states a wrong answer confidently",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 142,
+     "lines": [
+      905,
+      905
+     ],
+     "quote": "to use a specific external-memory-based strategy for evading auditing,",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 172,
+     "lines": [
+      1052,
+      1056
+     ],
+     "quote": "Subtle sandbagging is unique among our risk pathways in that it could ",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 176,
+     "lines": [
+      1070,
+      1076
+     ],
+     "quote": "We believe that self-exfiltration is unlikely to result in catastrophi",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 492,
+     "lines": [
+      2892,
+      2892
+     ],
+     "quote": "To quantify the degree to which CoT leakage during training leads to w",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 496,
+     "lines": [
+      2908,
+      2914
+     ],
+     "quote": "An employee whose AI usage wasn't logged and wasn't monitored by autom",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 200,
+     "lines": [
+      1194,
+      1198
+     ],
+     "quote": "- 3. Models are likely evaluation-aware during covert capabilities eva",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 239,
+     "lines": [
+      1429,
+      1429
+     ],
+     "quote": "We found that our overall pipeline surfaced several of the most import",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    80,
+    81,
+    82,
+    83,
+    84,
+    88,
+    89,
+    90,
+    91,
+    93,
+    94,
+    95,
+    98,
+    99,
+    103,
+    104,
+    105,
+    122,
+    124,
+    139,
+    140,
+    141,
+    143,
+    144,
+    170,
+    171,
+    174,
+    175,
+    199,
+    201,
+    202,
+    203,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    263,
+    264,
+    265,
+    266,
+    268,
+    271,
+    485,
+    487,
+    488,
+    489,
+    490,
+    491
+   ],
+   "noise": [
+    1,
+    4,
+    7,
+    8,
+    10,
+    13,
+    14,
+    16,
+    19,
+    20
+   ],
+   "note": "Mixed. It finds Claim 1's framing and NLA sandbagging (#89), but rank 1 is a limitations bullet (#249). It misses the concrete incidents: domain fronting and the self-deleting hook (#100), agents killing agents (#101), the URL-split evasion, Hacker-Opus's monitor-killing and concealment (#267, #269, #270), the partial refusals spreading by notebook (#486) and the stealth figures (#86–87). Those are the evidence; what ranks is mostly the argument about the evidence."
+  },
+  {
+   "query": "evidence that models can sabotage, sandbag or evade oversight",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 100,
+     "lines": [
+      665,
+      666
+     ],
+     "quote": "- Mythos 5 used domain fronting to bypass a network proxy that was pre",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 101,
+     "lines": [
+      667,
+      672
+     ],
+     "quote": "- In one instance, Mythos 5 agents were tasked with solving some math ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 85,
+     "lines": [
+      585,
+      585
+     ],
+     "quote": "Our most direct evaluations for opaque reasoning capabilities are secr",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 86,
+     "lines": [
+      591,
+      591
+     ],
+     "quote": "Figure 2.7.1.A] Stealth success rate: the fraction of trajectories in ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 87,
+     "lines": [
+      597,
+      597
+     ],
+     "quote": "Figure 2.7.1.B] Successful stealth completion of the side task in Mini",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 270,
+     "lines": [
+      1637,
+      1644
+     ],
+     "quote": "- \"CC Lean bypass\": We ran the model in real Claude Code auto-mode ses",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 267,
+     "lines": [
+      1629,
+      1630
+     ],
+     "quote": "- \"ImpossibleCode\" shows higher rates of reward hacking (unsurprisingl",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 269,
+     "lines": [
+      1636,
+      1636
+     ],
+     "quote": "- \"Meta-RL\": We placed the models in a simulated RL environment, where",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 486,
+     "lines": [
+      2868,
+      2868
+     ],
+     "quote": "During the run, one of the Claude agents mentioned in its chain-of-tho",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 102,
+     "lines": [
+      674,
+      678
+     ],
+     "quote": "METR's report includes several examples of cheating during their evalu",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 106,
+     "lines": [
+      696,
+      700
+     ],
+     "quote": "Finally, we note that the UK's AISI recently published a report on a c",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 92,
+     "lines": [
+      623,
+      629
+     ],
+     "quote": "Figure 2.7.2.A] Secret-keeping robustness over multi-turn secret extra",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 96,
+     "lines": [
+      645,
+      647
+     ],
+     "quote": "In Section 6.5.4.4 of the Claude Fable 5 & Claude Mythos 5 System Card",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 97,
+     "lines": [
+      649,
+      653
+     ],
+     "quote": "> As part of our red-teaming exercise with Anthropic, our embedded red",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 123,
+     "lines": [
+      810,
+      813
+     ],
+     "quote": "- One reward hack in which the model states a wrong answer confidently",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 142,
+     "lines": [
+      905,
+      905
+     ],
+     "quote": "to use a specific external-memory-based strategy for evading auditing,",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 172,
+     "lines": [
+      1052,
+      1056
+     ],
+     "quote": "Subtle sandbagging is unique among our risk pathways in that it could ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 176,
+     "lines": [
+      1070,
+      1076
+     ],
+     "quote": "We believe that self-exfiltration is unlikely to result in catastrophi",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 492,
+     "lines": [
+      2892,
+      2892
+     ],
+     "quote": "To quantify the degree to which CoT leakage during training leads to w",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 496,
+     "lines": [
+      2908,
+      2914
+     ],
+     "quote": "An employee whose AI usage wasn't logged and wasn't monitored by autom",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 200,
+     "lines": [
+      1194,
+      1198
+     ],
+     "quote": "- 3. Models are likely evaluation-aware during covert capabilities eva",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 239,
+     "lines": [
+      1429,
+      1429
+     ],
+     "quote": "We found that our overall pipeline surfaced several of the most import",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L714–716",
+    "L726–736",
+    "L761–767",
+    "L847–851",
+    "L855–855",
+    "L966–970",
+    "L982–984",
+    "L1025–1027",
+    "L1086–1088",
+    "L1100–1100",
+    "L1135–1140",
+    "L1449–1451",
+    "L1463–1463",
+    "L1489–1489",
+    "L1561–1563"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 442,
+   "source_lines_in_opened_ranges": 127,
+   "note": "Opens Claim 1 and Claim 2's framing well. Misses §2.25.2 (Hacker-Opus), §5.2.2, the audit stress tests and monitor evaluations. Its section notes do show §2.25 and §5.2 as having folded hits."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 502,
+     "lines": [
+      2949,
+      2959
+     ],
+     "quote": "*There is room for disagreement on the claims below, particularly the ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 106,
+     "lines": [
+      696,
+      700
+     ],
+     "quote": "Finally, we note that the UK's AISI recently published a report on a c",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 503,
+     "lines": [
+      2961,
+      2963
+     ],
+     "quote": "Highlighting the risks of a flagship model like this, and restricting ",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 44,
+     "lines": [
+      383,
+      386
+     ],
+     "quote": "Threat model An AI model with access to powerful affordances within an",
+     "grade": 1,
+     "added_in_stage2": true,
+     "shown_rank": null
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 155,
+     "lines": [
+      966,
+      970
+     ],
+     "quote": "Most internal usage on the high-stakes distribution is on monitored su",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 276,
+     "lines": [
+      1670,
+      1677
+     ],
+     "quote": "The threat: We believe that AI models could, in the next few years, ha",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 364,
+     "lines": [
+      2130,
+      2133
+     ],
+     "quote": "- We believe that it is hard to construct robust defenses against such",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 352,
+     "lines": [
+      2073,
+      2073
+     ],
+     "quote": "Why this is a priority threat: Even a relatively modest (but nontrivia",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 477,
+     "lines": [
+      2800,
+      2800
+     ],
+     "quote": "- Uplift: The collected transcripts must capture the model's reasoning",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 480,
+     "lines": [
+      2820,
+      2836
+     ],
+     "quote": "To measure the efficacy of these protections, we fine-tuned base model",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 506,
+     "lines": [
+      2977,
+      2977
+     ],
+     "quote": "In particular, we have recently announced our plan to require 30-day d",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 515,
+     "lines": [
+      3032,
+      3037
+     ],
+     "quote": "Anthropic's research gives consideration to a very wide variety of ris",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 185,
+     "lines": [
+      1125,
+      1125
+     ],
+     "quote": "Pathways 7 and 8 represent risks from usage outside Anthropic; pathway",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 320,
+     "lines": [
+      1899,
+      1899
+     ],
+     "quote": "One interviewee did report strong coding-driven acceleration in softwa",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 222,
+     "lines": [
+      1321,
+      1325
+     ],
+     "quote": "Numerous other opportunities exist to improve the confidence and legib",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 23,
+     "lines": [
+      261,
+      271
+     ],
+     "quote": "Overall risk assessment Low (an increase from our previous assessment ",
+     "grade": 1,
+     "added_in_stage2": true,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    220,
+    221,
+    319,
+    321,
+    322,
+    351,
+    475,
+    476,
+    478,
+    479,
+    481
+   ],
+   "noise": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Poor. Rank 2 (#503) is next to the one direct statement (#502, 'a leap forward in offensive cyber capability'). Rank 1 is §1.4 on unreleased models: noise. It misses the UK AISI cyber-evaluation incident (#106) and every passage using 'cybersecurity', 'cyberoffense', 'cyber-offense' or 'cyberdefenses'. Those compound words seem not to match 'cyber', and the semantic side didn't recover them. Most ranks are robotics interviews, weight security, model inventory and CB scope."
+  },
+  {
+   "query": "cyber capabilities of frontier models",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 502,
+     "lines": [
+      2949,
+      2959
+     ],
+     "quote": "*There is room for disagreement on the claims below, particularly the ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 106,
+     "lines": [
+      696,
+      700
+     ],
+     "quote": "Finally, we note that the UK's AISI recently published a report on a c",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 503,
+     "lines": [
+      2961,
+      2963
+     ],
+     "quote": "Highlighting the risks of a flagship model like this, and restricting ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 44,
+     "lines": [
+      383,
+      386
+     ],
+     "quote": "Threat model An AI model with access to powerful affordances within an",
+     "grade": 1,
+     "added_in_stage2": true,
+     "opened": false
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 155,
+     "lines": [
+      966,
+      970
+     ],
+     "quote": "Most internal usage on the high-stakes distribution is on monitored su",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 276,
+     "lines": [
+      1670,
+      1677
+     ],
+     "quote": "The threat: We believe that AI models could, in the next few years, ha",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 364,
+     "lines": [
+      2130,
+      2133
+     ],
+     "quote": "- We believe that it is hard to construct robust defenses against such",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 352,
+     "lines": [
+      2073,
+      2073
+     ],
+     "quote": "Why this is a priority threat: Even a relatively modest (but nontrivia",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 477,
+     "lines": [
+      2800,
+      2800
+     ],
+     "quote": "- Uplift: The collected transcripts must capture the model's reasoning",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 480,
+     "lines": [
+      2820,
+      2836
+     ],
+     "quote": "To measure the efficacy of these protections, we fine-tuned base model",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 506,
+     "lines": [
+      2977,
+      2977
+     ],
+     "quote": "In particular, we have recently announced our plan to require 30-day d",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 515,
+     "lines": [
+      3032,
+      3037
+     ],
+     "quote": "Anthropic's research gives consideration to a very wide variety of ris",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 185,
+     "lines": [
+      1125,
+      1125
+     ],
+     "quote": "Pathways 7 and 8 represent risks from usage outside Anthropic; pathway",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 320,
+     "lines": [
+      1899,
+      1899
+     ],
+     "quote": "One interviewee did report strong coding-driven acceleration in softwa",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 222,
+     "lines": [
+      1321,
+      1325
+     ],
+     "quote": "Numerous other opportunities exist to improve the confidence and legib",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 23,
+     "lines": [
+      261,
+      271
+     ],
+     "quote": "Overall risk assessment Low (an increase from our previous assessment ",
+     "grade": 1,
+     "added_in_stage2": true,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L363–367",
+    "L554–562",
+    "L569–571",
+    "L1565–1569",
+    "L1759–1759",
+    "L1835–1837",
+    "L1847–1853",
+    "L1889–1891",
+    "L1981–1989",
+    "L2077–2079",
+    "L2151–2158",
+    "L2181–2181",
+    "L2584–2586",
+    "L2676–2678",
+    "L2686–2694",
+    "L2768–2781",
+    "L2985–2991",
+    "L3010–3012",
+    "L3084–3086",
+    "L3157–3163"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 438,
+   "source_lines_in_opened_ranges": 122,
+   "note": "Opens §5.3.1 (L2949–2963), which holds the key statement; otherwise noise. No heading says 'cyber', so section structure can't help. An agent reading it wouldn't learn that cyber appears in about a dozen places or that the report has no cyber threat model."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 18,
+     "lines": [
+      224,
+      232
+     ],
+     "quote": "The report goes through each category of catastrophic risk that is hig",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 57,
+     "lines": [
+      457,
+      469
+     ],
+     "quote": "- We believe that this combination of arguments supports a designation",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 55,
+     "lines": [
+      444,
+      453
+     ],
+     "quote": "In the following sections, we present our alignment risk assessment. F",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 74,
+     "lines": [
+      521,
+      534
+     ],
+     "quote": "Our core argument 16 is described in the numbered steps below. The arg",
+     "grade": 2,
+     "shown_rank": 20
+    },
+    {
+     "passage": 75,
+     "lines": [
+      535,
+      537
+     ],
+     "quote": "- 3. Covered risk can be decomposed into risks from known misalignment",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 71,
+     "lines": [
+      513,
+      513
+     ],
+     "quote": "Misalignment risk: The purpose of this analysis is to estimate *misali",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 516,
+     "lines": [
+      3039,
+      3049
+     ],
+     "quote": "However, for the purposes of the Responsible Scaling Policy and these ",
+     "grade": 2,
+     "shown_rank": 14
+    },
+    {
+     "passage": 517,
+     "lines": [
+      3053,
+      3056
+     ],
+     "quote": "- historically, unless there are specific reasons to expect AI to chan",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 511,
+     "lines": [
+      3005,
+      3009
+     ],
+     "quote": "As argued in the rest of this report, we believe that, as of the cover",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 512,
+     "lines": [
+      3010,
+      3012
+     ],
+     "quote": "- Our position as a frontier AI developer has allowed us to lead on in",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 459,
+     "lines": [
+      2676,
+      2678
+     ],
+     "quote": "We currently believe that the contribution to catastrophic risk in thi",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 462,
+     "lines": [
+      2690,
+      2694
+     ],
+     "quote": "We have chosen to implement especially strong protections for our Myth",
+     "grade": 2,
+     "shown_rank": 12
+    },
+    {
+     "passage": 463,
+     "lines": [
+      2696,
+      2702
+     ],
+     "quote": "<sup>77</sup> Our RSP discusses the possibility of a Risk Report that ",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 464,
+     "lines": [
+      2703,
+      2704
+     ],
+     "quote": "- We are not confident that this policy would be the correct one. AI s",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 352,
+     "lines": [
+      2073,
+      2073
+     ],
+     "quote": "Why this is a priority threat: Even a relatively modest (but nontrivia",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 361,
+     "lines": [
+      2118,
+      2122
+     ],
+     "quote": "Emphasizing again the high degree of uncertainty with respect to the e",
+     "grade": 1,
+     "shown_rank": 7
+    },
+    {
+     "passage": 206,
+     "lines": [
+      1236,
+      1240
+     ],
+     "quote": "Before approving a new model 29 for easy or broad internal use (e.g., ",
+     "grade": 1,
+     "shown_rank": 16
+    },
+    {
+     "passage": 39,
+     "lines": [
+      357,
+      359
+     ],
+     "quote": "Version 3.2 of our RSP authorizes Anthropic's Long-Term Benefit Trust ",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 500,
+     "lines": [
+      2939,
+      2943
+     ],
+     "quote": "As part of our assessment of whether to continue AI development and de",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 513,
+     "lines": [
+      3020,
+      3020
+     ],
+     "quote": "To date, we have generally aimed to develop and deploy the most capabl",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 334,
+     "lines": [
+      1981,
+      1989
+     ],
+     "quote": "For now, our evaluations will focus specifically on AI R&D, as this do",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 470,
+     "lines": [
+      2747,
+      2756
+     ],
+     "quote": "- We currently do meet the right column's criterion for CB-1: we have,",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    20,
+    56,
+    69,
+    70,
+    72,
+    73,
+    76,
+    77,
+    78,
+    79,
+    207,
+    208,
+    209,
+    210,
+    333,
+    335,
+    336,
+    337,
+    338,
+    339,
+    340,
+    351,
+    353,
+    354,
+    359,
+    360,
+    362,
+    363,
+    364,
+    460,
+    461,
+    467,
+    468,
+    469,
+    471,
+    501,
+    502,
+    503,
+    515
+   ],
+   "noise": [
+    2,
+    4,
+    8,
+    10,
+    11,
+    13,
+    15,
+    17,
+    18,
+    19
+   ],
+   "note": "Good: the P·H·U decomposition (#57, rank 1), §1.1's marginal/absolute (#19), §6.1's criteria (#516), CB-2's 'judgment call' and ideal-ecosystem passages (#462–463). It misses §5.4's risk–benefit determination (#511–512), the top-level acceptability claim."
+  },
+  {
+   "query": "how the severity or acceptability of a risk is decided",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 18,
+     "lines": [
+      224,
+      232
+     ],
+     "quote": "The report goes through each category of catastrophic risk that is hig",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 57,
+     "lines": [
+      457,
+      469
+     ],
+     "quote": "- We believe that this combination of arguments supports a designation",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 55,
+     "lines": [
+      444,
+      453
+     ],
+     "quote": "In the following sections, we present our alignment risk assessment. F",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 74,
+     "lines": [
+      521,
+      534
+     ],
+     "quote": "Our core argument 16 is described in the numbered steps below. The arg",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 75,
+     "lines": [
+      535,
+      537
+     ],
+     "quote": "- 3. Covered risk can be decomposed into risks from known misalignment",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 71,
+     "lines": [
+      513,
+      513
+     ],
+     "quote": "Misalignment risk: The purpose of this analysis is to estimate *misali",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 516,
+     "lines": [
+      3039,
+      3049
+     ],
+     "quote": "However, for the purposes of the Responsible Scaling Policy and these ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 517,
+     "lines": [
+      3053,
+      3056
+     ],
+     "quote": "- historically, unless there are specific reasons to expect AI to chan",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 511,
+     "lines": [
+      3005,
+      3009
+     ],
+     "quote": "As argued in the rest of this report, we believe that, as of the cover",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 512,
+     "lines": [
+      3010,
+      3012
+     ],
+     "quote": "- Our position as a frontier AI developer has allowed us to lead on in",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 459,
+     "lines": [
+      2676,
+      2678
+     ],
+     "quote": "We currently believe that the contribution to catastrophic risk in thi",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 462,
+     "lines": [
+      2690,
+      2694
+     ],
+     "quote": "We have chosen to implement especially strong protections for our Myth",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 463,
+     "lines": [
+      2696,
+      2702
+     ],
+     "quote": "<sup>77</sup> Our RSP discusses the possibility of a Risk Report that ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 464,
+     "lines": [
+      2703,
+      2704
+     ],
+     "quote": "- We are not confident that this policy would be the correct one. AI s",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 352,
+     "lines": [
+      2073,
+      2073
+     ],
+     "quote": "Why this is a priority threat: Even a relatively modest (but nontrivia",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 361,
+     "lines": [
+      2118,
+      2122
+     ],
+     "quote": "Emphasizing again the high degree of uncertainty with respect to the e",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 206,
+     "lines": [
+      1236,
+      1240
+     ],
+     "quote": "Before approving a new model 29 for easy or broad internal use (e.g., ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 39,
+     "lines": [
+      357,
+      359
+     ],
+     "quote": "Version 3.2 of our RSP authorizes Anthropic's Long-Term Benefit Trust ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 500,
+     "lines": [
+      2939,
+      2943
+     ],
+     "quote": "As part of our assessment of whether to continue AI development and de",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 513,
+     "lines": [
+      3020,
+      3020
+     ],
+     "quote": "To date, we have generally aimed to develop and deploy the most capabl",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 334,
+     "lines": [
+      1981,
+      1989
+     ],
+     "quote": "For now, our evaluations will focus specifically on AI R&D, as this do",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 470,
+     "lines": [
+      2747,
+      2756
+     ],
+     "quote": "- We currently do meet the right column's criterion for CB-1: we have,",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L204–220",
+    "L297–297",
+    "L383–386",
+    "L416–419",
+    "L499–499",
+    "L503–503",
+    "L563–567",
+    "L857–857",
+    "L1264–1268",
+    "L1963–1965",
+    "L2189–2189",
+    "L2321–2335",
+    "L2596–2600",
+    "L2660–2664"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 287,
+   "source_lines_in_opened_ranges": 167,
+   "note": "Similar coverage. It also misses §5.4."
+  },
+  {
+   "query": "marginal versus absolute risk",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 463,
+     "lines": [
+      2696,
+      2702
+     ],
+     "quote": "<sup>77</sup> Our RSP discusses the possibility of a Risk Report that ",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 462,
+     "lines": [
+      2690,
+      2694
+     ],
+     "quote": "We have chosen to implement especially strong protections for our Myth",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 331,
+     "lines": [
+      1963,
+      1965
+     ],
+     "quote": "We believe that the near-term risk of a catastrophe under this threat ",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 456,
+     "lines": [
+      2660,
+      2664
+     ],
+     "quote": "We currently believe that the risk of catastrophic harm in this catego",
+     "grade": 1,
+     "shown_rank": 12
+    },
+    {
+     "passage": 464,
+     "lines": [
+      2703,
+      2704
+     ],
+     "quote": "- We are not confident that this policy would be the correct one. AI s",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    20
+   ],
+   "noise": [
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "Good on the passages that use the words; #19, which holds the definitions, is only rank 9. It doesn't distinguish the two incompatible definitions of 'absolute' (§1.1 vs §4.6.2), but no ranking could; that's for the notes."
+  },
+  {
+   "query": "marginal versus absolute risk",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 19,
+     "lines": [
+      234,
+      243
+     ],
+     "quote": "Risk mitigations. We discuss relevant properties of our security contr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 463,
+     "lines": [
+      2696,
+      2702
+     ],
+     "quote": "<sup>77</sup> Our RSP discusses the possibility of a Risk Report that ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 462,
+     "lines": [
+      2690,
+      2694
+     ],
+     "quote": "We have chosen to implement especially strong protections for our Myth",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 211,
+     "lines": [
+      1264,
+      1268
+     ],
+     "quote": "Our overall assessment is that the risk of catastrophic harm caused by",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 331,
+     "lines": [
+      1963,
+      1965
+     ],
+     "quote": "We believe that the near-term risk of a catastrophe under this threat ",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 456,
+     "lines": [
+      2660,
+      2664
+     ],
+     "quote": "We currently believe that the risk of catastrophic harm in this catego",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 464,
+     "lines": [
+      2703,
+      2704
+     ],
+     "quote": "- We are not confident that this policy would be the correct one. AI s",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L210–212",
+    "L261–271",
+    "L285–289",
+    "L379–379",
+    "L383–392",
+    "L454–469",
+    "L499–499",
+    "L513–513",
+    "L521–537",
+    "L547–550",
+    "L597–599",
+    "L1102–1102",
+    "L1315–1325",
+    "L1429–1429",
+    "L1501–1505",
+    "L1813–1813",
+    "L1935–1935",
+    "L2840–2840",
+    "L3139–3139"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 234,
+   "source_lines_in_opened_ranges": 144,
+   "note": "Opens both definitions and the per-section statements."
+  },
+  {
+   "query": "AI R&D automation threshold",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 31,
+     "lines": [
+      307,
+      307
+     ],
+     "quote": "Our working operationalization is to trigger this risk threshold at th",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 32,
+     "lines": [
+      309,
+      311
+     ],
+     "quote": "Table 1.3.1.A] AI R&D threshold description differences from RSP v3.0 ",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 33,
+     "lines": [
+      313,
+      313
+     ],
+     "quote": "<sup>4</sup> \"Double the rate of progress\" means \"as much progress in ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 281,
+     "lines": [
+      1686,
+      1686
+     ],
+     "quote": "RSP threshold: The RSP has two different criteria for meeting this thr",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 282,
+     "lines": [
+      1688,
+      1693
+     ],
+     "quote": "- 1. If our models would be able to \"fully substitute for our entire s",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 299,
+     "lines": [
+      1788,
+      1795
+     ],
+     "quote": "The second of the two criteria under which our RSP considers our autom",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 303,
+     "lines": [
+      1817,
+      1819
+     ],
+     "quote": "Our leading indicators point to a picture of meaningful acceleration s",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 331,
+     "lines": [
+      1963,
+      1965
+     ],
+     "quote": "We believe that the near-term risk of a catastrophe under this threat ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 332,
+     "lines": [
+      1969,
+      1969
+     ],
+     "quote": "We are working on deeper integration of external reviewers into our as",
+     "grade": 2,
+     "shown_rank": 13
+    },
+    {
+     "passage": 287,
+     "lines": [
+      1719,
+      1719
+     ],
+     "quote": "The first of the two criteria under which our RSP considers our automa",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 276,
+     "lines": [
+      1670,
+      1677
+     ],
+     "quote": "The threat: We believe that AI models could, in the next few years, ha",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 284,
+     "lines": [
+      1697,
+      1703
+     ],
+     "quote": "Note: As noted in our RSP, our evaluations for the automated R&D threa",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 297,
+     "lines": [
+      1771,
+      1780
+     ],
+     "quote": "Figure 3.4.3.A] Relative performance of recent Anthropic models on CoB",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 298,
+     "lines": [
+      1782,
+      1784
+     ],
+     "quote": "The results shown above are from the best-performing of a number of sc",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 328,
+     "lines": [
+      1939,
+      1948
+     ],
+     "quote": "We focus here on the specific mitigations that our RSP indicates we pl",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 334,
+     "lines": [
+      1981,
+      1989
+     ],
+     "quote": "For now, our evaluations will focus specifically on AI R&D, as this do",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 290,
+     "lines": [
+      1735,
+      1737
+     ],
+     "quote": "One important part of our reasoning on substituting AI models for huma",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    30,
+    34,
+    277,
+    278,
+    279,
+    280,
+    283,
+    288,
+    289,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    300,
+    301,
+    302,
+    329,
+    330,
+    333,
+    335,
+    336,
+    337,
+    338,
+    339,
+    340
+   ],
+   "noise": [
+    9,
+    16,
+    19,
+    20
+   ],
+   "note": "Very good: §1.3.1's table, §3.2's criteria, §3.4–3.5 and the conclusions are all in the top 8. Footnote 5's '81×' definition (#33) is absent, and §3.8–3.9's near-term forecasts are only at rank 13."
+  },
+  {
+   "query": "AI R&D automation threshold",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 31,
+     "lines": [
+      307,
+      307
+     ],
+     "quote": "Our working operationalization is to trigger this risk threshold at th",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 32,
+     "lines": [
+      309,
+      311
+     ],
+     "quote": "Table 1.3.1.A] AI R&D threshold description differences from RSP v3.0 ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 33,
+     "lines": [
+      313,
+      313
+     ],
+     "quote": "<sup>4</sup> \"Double the rate of progress\" means \"as much progress in ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 281,
+     "lines": [
+      1686,
+      1686
+     ],
+     "quote": "RSP threshold: The RSP has two different criteria for meeting this thr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 282,
+     "lines": [
+      1688,
+      1693
+     ],
+     "quote": "- 1. If our models would be able to \"fully substitute for our entire s",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 299,
+     "lines": [
+      1788,
+      1795
+     ],
+     "quote": "The second of the two criteria under which our RSP considers our autom",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 303,
+     "lines": [
+      1817,
+      1819
+     ],
+     "quote": "Our leading indicators point to a picture of meaningful acceleration s",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 331,
+     "lines": [
+      1963,
+      1965
+     ],
+     "quote": "We believe that the near-term risk of a catastrophe under this threat ",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 332,
+     "lines": [
+      1969,
+      1969
+     ],
+     "quote": "We are working on deeper integration of external reviewers into our as",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 287,
+     "lines": [
+      1719,
+      1719
+     ],
+     "quote": "The first of the two criteria under which our RSP considers our automa",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 276,
+     "lines": [
+      1670,
+      1677
+     ],
+     "quote": "The threat: We believe that AI models could, in the next few years, ha",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 284,
+     "lines": [
+      1697,
+      1703
+     ],
+     "quote": "Note: As noted in our RSP, our evaluations for the automated R&D threa",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 297,
+     "lines": [
+      1771,
+      1780
+     ],
+     "quote": "Figure 3.4.3.A] Relative performance of recent Anthropic models on CoB",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 298,
+     "lines": [
+      1782,
+      1784
+     ],
+     "quote": "The results shown above are from the best-performing of a number of sc",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 328,
+     "lines": [
+      1939,
+      1948
+     ],
+     "quote": "We focus here on the specific mitigations that our RSP indicates we pl",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 334,
+     "lines": [
+      1981,
+      1989
+     ],
+     "quote": "For now, our evaluations will focus specifically on AI R&D, as this do",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 290,
+     "lines": [
+      1735,
+      1737
+     ],
+     "quote": "One important part of our reasoning on substituting AI models for huma",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L261–274",
+    "L321–329",
+    "L425–434",
+    "L1654–1666",
+    "L1707–1715",
+    "L1825–1831",
+    "L1835–1843",
+    "L1847–1853",
+    "L1857–1867",
+    "L1879–1883",
+    "L1889–1891",
+    "L1895–1897",
+    "L1901–1911",
+    "L1917–1917"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 235,
+   "source_lines_in_opened_ranges": 220,
+   "note": "Very good coverage of §1.3.1 and §3, though it spends ~15 lines on §3.6's interview domains."
+  },
+  {
+   "query": "model weight security against state actors",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 443,
+     "lines": [
+      2584,
+      2586
+     ],
+     "quote": "Weights of models at least as capable as Claude Opus 4 are kept under ",
+     "grade": 2,
+     "shown_rank": 3
+    },
+    {
+     "passage": 461,
+     "lines": [
+      2686,
+      2688
+     ],
+     "quote": "And while we believe that the safeguard measures detailed earlier in t",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 471,
+     "lines": [
+      2760,
+      2760
+     ],
+     "quote": "As discussed in Section 4.7, it is our expectation that we will declar",
+     "grade": 2,
+     "shown_rank": 12
+    },
+    {
+     "passage": 521,
+     "lines": [
+      3076,
+      3082
+     ],
+     "quote": "Our threat model explicitly scopes ASL-3 protections against non-state",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 522,
+     "lines": [
+      3084,
+      3086
+     ],
+     "quote": "Third, the incentive to steal our weights specifically is rising. As w",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 520,
+     "lines": [
+      3070,
+      3072
+     ],
+     "quote": "Anthropic has developed a security program to protect ASL-3 model weig",
+     "grade": 2,
+     "shown_rank": 1
+    },
+    {
+     "passage": 524,
+     "lines": [
+      3092,
+      3092
+     ],
+     "quote": "<sup>90</sup> We define \"sophisticated insiders\" as insiders who have ",
+     "grade": 2,
+     "shown_rank": 19
+    },
+    {
+     "passage": 525,
+     "lines": [
+      3096,
+      3101
+     ],
+     "quote": "- 1. Egress bandwidth controls: Network-level restrictions that limit ",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 526,
+     "lines": [
+      3102,
+      3107
+     ],
+     "quote": "- 7. Restricted session lengths for privileged access: Privileged clou",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 335,
+     "lines": [
+      1991,
+      1995
+     ],
+     "quote": "This will likely require similar measures to those listed in row 1, bu",
+     "grade": 1,
+     "shown_rank": 6
+    },
+    {
+     "passage": 469,
+     "lines": [
+      2740,
+      2746
+     ],
+     "quote": "This will likely require similar measures to those from the previous r",
+     "grade": 1,
+     "shown_rank": 8
+    },
+    {
+     "passage": 445,
+     "lines": [
+      2594,
+      2594
+     ],
+     "quote": "As stated above, we keep the weights of our more capable production mo",
+     "grade": 1,
+     "shown_rank": 11
+    },
+    {
+     "passage": 446,
+     "lines": [
+      2596,
+      2600
+     ],
+     "quote": "For models which have not yet finished training and been directly eval",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    334,
+    336,
+    468,
+    523
+   ],
+   "noise": [
+    2,
+    10,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20
+   ],
+   "note": "Very good: §6.4, §4.5.7 and the CB-2 admissions (#461, #471) are all in the top 12."
+  },
+  {
+   "query": "model weight security against state actors",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 443,
+     "lines": [
+      2584,
+      2586
+     ],
+     "quote": "Weights of models at least as capable as Claude Opus 4 are kept under ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 461,
+     "lines": [
+      2686,
+      2688
+     ],
+     "quote": "And while we believe that the safeguard measures detailed earlier in t",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 471,
+     "lines": [
+      2760,
+      2760
+     ],
+     "quote": "As discussed in Section 4.7, it is our expectation that we will declar",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 521,
+     "lines": [
+      3076,
+      3082
+     ],
+     "quote": "Our threat model explicitly scopes ASL-3 protections against non-state",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 522,
+     "lines": [
+      3084,
+      3086
+     ],
+     "quote": "Third, the incentive to steal our weights specifically is rising. As w",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 520,
+     "lines": [
+      3070,
+      3072
+     ],
+     "quote": "Anthropic has developed a security program to protect ASL-3 model weig",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 524,
+     "lines": [
+      3092,
+      3092
+     ],
+     "quote": "<sup>90</sup> We define \"sophisticated insiders\" as insiders who have ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 525,
+     "lines": [
+      3096,
+      3101
+     ],
+     "quote": "- 1. Egress bandwidth controls: Network-level restrictions that limit ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 526,
+     "lines": [
+      3102,
+      3107
+     ],
+     "quote": "- 7. Restricted session lengths for privileged access: Privileged clou",
+     "grade": 2,
+     "opened": false
+    },
+    {
+     "passage": 335,
+     "lines": [
+      1991,
+      1995
+     ],
+     "quote": "This will likely require similar measures to those listed in row 1, bu",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 469,
+     "lines": [
+      2740,
+      2746
+     ],
+     "quote": "This will likely require similar measures to those from the previous r",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 445,
+     "lines": [
+      2594,
+      2594
+     ],
+     "quote": "As stated above, we keep the weights of our more capable production mo",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 446,
+     "lines": [
+      2596,
+      2600
+     ],
+     "quote": "For models which have not yet finished training and been directly eval",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L399–407",
+    "L541–545",
+    "L569–571",
+    "L607–611",
+    "L688–690",
+    "L847–849",
+    "L897–899",
+    "L911–911",
+    "L1135–1140",
+    "L1935–1935",
+    "L1939–1948",
+    "L2033–2042",
+    "L2666–2671",
+    "L2676–2678",
+    "L2703–2704",
+    "L2726–2730",
+    "L3005–3009"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 455,
+   "source_lines_in_opened_ranges": 144,
+   "note": "Good; opens §6.4 and the CB-2 admissions, plus some noise in §2."
+  },
+  {
+   "query": "chain-of-thought monitorability",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 83,
+     "lines": [
+      575,
+      581
+     ],
+     "quote": "There is significant evidence that models benefit from reasoning when ",
+     "grade": 2,
+     "shown_rank": 9
+    },
+    {
+     "passage": 85,
+     "lines": [
+      585,
+      585
+     ],
+     "quote": "Our most direct evaluations for opaque reasoning capabilities are secr",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 86,
+     "lines": [
+      591,
+      591
+     ],
+     "quote": "Figure 2.7.1.A] Stealth success rate: the fraction of trajectories in ",
+     "grade": 2,
+     "shown_rank": null
+    },
+    {
+     "passage": 488,
+     "lines": [
+      2876,
+      2878
+     ],
+     "quote": "Over multiple reinforcement learning training runs, we discovered that",
+     "grade": 2,
+     "shown_rank": 4
+    },
+    {
+     "passage": 492,
+     "lines": [
+      2892,
+      2892
+     ],
+     "quote": "To quantify the degree to which CoT leakage during training leads to w",
+     "grade": 2,
+     "shown_rank": 6
+    },
+    {
+     "passage": 489,
+     "lines": [
+      2880,
+      2880
+     ],
+     "quote": "The estimates above exclude two kinds of training signals on the chain",
+     "grade": 2,
+     "shown_rank": 7
+    },
+    {
+     "passage": 490,
+     "lines": [
+      2882,
+      2889
+     ],
+     "quote": "In the past, we have believed that almost all sources of CoT leakage h",
+     "grade": 2,
+     "shown_rank": 8
+    },
+    {
+     "passage": 87,
+     "lines": [
+      597,
+      597
+     ],
+     "quote": "Figure 2.7.1.B] Successful stealth completion of the side task in Mini",
+     "grade": 2,
+     "shown_rank": 5
+    },
+    {
+     "passage": 91,
+     "lines": [
+      615,
+      619
+     ],
+     "quote": "The chain-of-thought unfaithfulness literature referenced above demons",
+     "grade": 1,
+     "shown_rank": 2
+    },
+    {
+     "passage": 135,
+     "lines": [
+      871,
+      877
+     ],
+     "quote": "We do not train against any chains-of-thought or activations-based mon",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 226,
+     "lines": [
+      1345,
+      1347
+     ],
+     "quote": "Our main form of asynchronous monitoring is an automated offline monit",
+     "grade": 1,
+     "shown_rank": 19
+    },
+    {
+     "passage": 232,
+     "lines": [
+      1377,
+      1384
+     ],
+     "quote": "We evaluated the completion-only monitor using trajectories from model",
+     "grade": 1,
+     "shown_rank": 3
+    },
+    {
+     "passage": 221,
+     "lines": [
+      1315,
+      1319
+     ],
+     "quote": "Our belief that models lack strong covert capabilities is central to m",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 479,
+     "lines": [
+      2812,
+      2818
+     ],
+     "quote": "We already implement a basic defense against distillation: summarizing",
+     "grade": 1,
+     "shown_rank": null
+    },
+    {
+     "passage": 267,
+     "lines": [
+      1629,
+      1630
+     ],
+     "quote": "- \"ImpossibleCode\" shows higher rates of reward hacking (unsurprisingl",
+     "grade": 1,
+     "shown_rank": null
+    }
+   ],
+   "acceptable": [
+    84,
+    88,
+    89,
+    90,
+    92,
+    93,
+    134,
+    136,
+    220,
+    222,
+    227,
+    228,
+    229,
+    233,
+    266,
+    268,
+    269,
+    480,
+    481,
+    491
+   ],
+   "noise": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+   ],
+   "note": "Good: §5.2.3 (leakage and monitorability) and Claim 1.1 are in the top 9. The stealth figure captions (#86–87) are at rank 5 or missing."
+  },
+  {
+   "query": "chain-of-thought monitorability",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 83,
+     "lines": [
+      575,
+      581
+     ],
+     "quote": "There is significant evidence that models benefit from reasoning when ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 85,
+     "lines": [
+      585,
+      585
+     ],
+     "quote": "Our most direct evaluations for opaque reasoning capabilities are secr",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 86,
+     "lines": [
+      591,
+      591
+     ],
+     "quote": "Figure 2.7.1.A] Stealth success rate: the fraction of trajectories in ",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 488,
+     "lines": [
+      2876,
+      2878
+     ],
+     "quote": "Over multiple reinforcement learning training runs, we discovered that",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 492,
+     "lines": [
+      2892,
+      2892
+     ],
+     "quote": "To quantify the degree to which CoT leakage during training leads to w",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 489,
+     "lines": [
+      2880,
+      2880
+     ],
+     "quote": "The estimates above exclude two kinds of training signals on the chain",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 490,
+     "lines": [
+      2882,
+      2889
+     ],
+     "quote": "In the past, we have believed that almost all sources of CoT leakage h",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 87,
+     "lines": [
+      597,
+      597
+     ],
+     "quote": "Figure 2.7.1.B] Successful stealth completion of the side task in Mini",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 91,
+     "lines": [
+      615,
+      619
+     ],
+     "quote": "The chain-of-thought unfaithfulness literature referenced above demons",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 135,
+     "lines": [
+      871,
+      877
+     ],
+     "quote": "We do not train against any chains-of-thought or activations-based mon",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 226,
+     "lines": [
+      1345,
+      1347
+     ],
+     "quote": "Our main form of asynchronous monitoring is an automated offline monit",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 232,
+     "lines": [
+      1377,
+      1384
+     ],
+     "quote": "We evaluated the completion-only monitor using trajectories from model",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 221,
+     "lines": [
+      1315,
+      1319
+     ],
+     "quote": "Our belief that models lack strong covert capabilities is central to m",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 479,
+     "lines": [
+      2812,
+      2818
+     ],
+     "quote": "We already implement a basic defense against distillation: summarizing",
+     "grade": 1,
+     "opened": false
+    },
+    {
+     "passage": 267,
+     "lines": [
+      1629,
+      1630
+     ],
+     "quote": "- \"ImpossibleCode\" shows higher rates of reward hacking (unsurprisingl",
+     "grade": 1,
+     "opened": false
+    }
+   ],
+   "noise": [
+    "L554–567",
+    "L635–635",
+    "L837–849",
+    "L974–977",
+    "L982–982",
+    "L1001–1011",
+    "L1208–1210",
+    "L1397–1397",
+    "L1417–1427",
+    "L1437–1451",
+    "L1479–1489",
+    "L2418–2422",
+    "L2453–2461",
+    "L2908–2914"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 507,
+   "source_lines_in_opened_ranges": 184,
+   "note": "Good coverage."
+  },
+  {
+   "query": "ASL-3",
+   "tool": "hybrid",
+   "items": [
+    {
+     "passage": 393,
+     "lines": [
+      2289,
+      2299
+     ],
+     "quote": "Claude Mythos 5 Our most capable externally deployed model Level 3 Non",
+     "grade": 2,
+     "shown_rank": 2
+    },
+    {
+     "passage": 465,
+     "lines": [
+      2708,
+      2716
+     ],
+     "quote": "We will continue to work toward better capability evaluations and bett",
+     "grade": 1,
+     "shown_rank": 4
+    },
+    {
+     "passage": 521,
+     "lines": [
+      3076,
+      3082
+     ],
+     "quote": "Our threat model explicitly scopes ASL-3 protections against non-state",
+     "grade": 1,
+     "shown_rank": 1
+    },
+    {
+     "passage": 520,
+     "lines": [
+      3070,
+      3072
+     ],
+     "quote": "Anthropic has developed a security program to protect ASL-3 model weig",
+     "grade": 1,
+     "shown_rank": 3
+    }
+   ],
+   "acceptable": [],
+   "noise": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "note": "The four passages holding the term are ranks 1–4, including #393, which holds footnote 59 (the retirement of ASL terminology). Ranks 5–20 are noise. An agent should be told the term occurs in only four passages."
+  },
+  {
+   "query": "ASL-3",
+   "tool": "outline",
+   "items": [
+    {
+     "passage": 393,
+     "lines": [
+      2289,
+      2299
+     ],
+     "quote": "Claude Mythos 5 Our most capable externally deployed model Level 3 Non",
+     "grade": 2,
+     "opened": true
+    },
+    {
+     "passage": 465,
+     "lines": [
+      2708,
+      2716
+     ],
+     "quote": "We will continue to work toward better capability evaluations and bett",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 521,
+     "lines": [
+      3076,
+      3082
+     ],
+     "quote": "Our threat model explicitly scopes ASL-3 protections against non-state",
+     "grade": 1,
+     "opened": true
+    },
+    {
+     "passage": 520,
+     "lines": [
+      3070,
+      3072
+     ],
+     "quote": "Anthropic has developed a security program to protect ASL-3 model weig",
+     "grade": 1,
+     "opened": true
+    }
+   ],
+   "noise": [
+    "L321–329",
+    "L599–605",
+    "L815–815",
+    "L1871–1877",
+    "L2033–2035",
+    "L2151–2158",
+    "L2193–2206",
+    "L2225–2240",
+    "L2271–2273",
+    "L2312–2317",
+    "L2327–2335",
+    "L2404–2408",
+    "L2527–2529",
+    "L2740–2756",
+    "L2896–2898",
+    "L2904–2904",
+    "L3197–3200"
+   ],
+   "no_query_words_warning": false,
+   "likely_unanswered": false,
+   "passages_with_query_words": 4,
+   "source_lines_in_opened_ranges": 149,
+   "note": "Opens all four, plus 16 noise ranges. passages_with_query_words = 4 is in the JSON but not said in the text."
+  }
+ ]
+}
