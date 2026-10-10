@@ -62,7 +62,11 @@ IASR's counts include its bibliography (about 4,500 of its 7,704 lines). Whether
 
 ### 3. A pause, then triage
 
-After the reading the expert stops and reports, so the remaining preparation can be fitted to the room left (Joseph: "pause after experientially reading so we can gauge how much context they have remaining in order to triage the rest"). The ceiling Joseph set is about 80% of the context, 800k tokens of a 1M window. That leaves room for one independent task in each fork.
+After the reading the expert stops and reports, so the remaining preparation can be fitted to the room left (Joseph: "pause after experientially reading so we can gauge how much context they have remaining in order to triage the rest"). The ceiling Joseph set is about 80% of the context, 800k tokens of a 1M window. That leaves room for one independent task in each fork. Measured on the first two experts (Joseph, with `/context`, 2026-10-09):
+- a new expert starts with about 180–190k tokens already used, by the system prompt, tools and brief;
+- the SB 53 expert, reading a paragraph per unit, was at 312k after 67 of 224 units, about 1.9k tokens a unit with its reflection. That projects to about 610k for the whole statute, a floor rather than a forecast, since reflections lengthen as a reading accumulates.
+
+Before choosing a unit size, an expert can estimate: about 185k plus the number of units times 2–3k.
 
 ### 4. Then, as room allows, in this order
 
