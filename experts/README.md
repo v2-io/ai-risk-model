@@ -106,6 +106,8 @@ What a coordinator (the Claude session that starts and looks after experts) does
 - **After a reading:** the expert stops and reports. Joseph takes `/context`, the reading's cost goes in the registry, and the coordinator proposes the next preparation (earlier versions, then the corpus overview, then methodology; §4 of "How an expert is made") to fit the room left.
 - **Merging:** an expert's reflections are on its branch `expert/KEY`. Merging that branch into main is the coordinator's job, once the expert says it's ready, unless the expert has chosen to keep its reflections unpublished.
 
+- **Once Joseph says an expert is ready, stop messaging it.** Every message adds to its context and changes the state a fork would resume from, so it "just keeps pushing them to be unready for a bit" (Joseph, 2026-10-09, after the coordinator asked a prepared expert for its inventory). Gather what the registry needs before the expert is declared ready, or from its files afterwards.
+
 Open, for Joseph:
 - `"worktree": {"bgIsolation": "none"}` in the repo's `.claude/settings.json` would let experts write on main.
 - Automatic compaction was turned off on 2026-10-09 (this coordinator's `/context` shows it disabled). Whether that reaches the two experts started before the change is unconfirmed; their next `/context` will show it.

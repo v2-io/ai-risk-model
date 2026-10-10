@@ -32,7 +32,7 @@ experts:
     model: Opus 5.5 (Claude Code 2.1.296)
     started: 2026-10-09
     started_by: ai-risk-search-tool, with experts/BRIEF.md (as revised after the SB 53 expert's start)
-    state: prepared (2026-10-09, Joseph: "all ready" at 615k; after its core reading it talked with the SB 53 expert)
+    state: prepared (2026-10-09, Joseph: "all ready" at 615k, then 617k after the coordinator asked it one more question; after its core reading it talked with the SB 53 expert)
     branch: expert/eu-cop-2025-safety-security, in .claude/worktrees/expert-eu-cop; unpushed, since the reflections quote the Code heavily
     read: [{key: eu-cop-2025-safety-security, sha256: d2968247a71d1cb372aa050f42af0459ce4249ccbc56983ceb76f194ac79370f, how: experientially, units of at least 150 words, 124 units}]
     products: [reading/ (117 files), reading/000-before.md (its priming), reading/031a-figures-1-4.md, reading/999-after.md (a look back over the whole reading)]
@@ -40,6 +40,6 @@ experts:
     fork_should_read_first: [reading/999-after.md, reading/after-1-ai-act-anchors.md, reading/after-2-chairs-statement.md, reading/000-before.md, then the per-unit NNN.md files]
     checkpoints: [unit 30, unit 60, unit 90, the end of the reading (124 units of at least 150 words)]
     context: {start: 188k, at_unit_39_of_124: 318k, at_unit_60_of_124: 379k, at_unit_90_of_124: 461k, after_reading: 536k}
-    context_after_preparation: 615k
+    context_after_preparation: 617k
     note_figures: bin/reading dropped figures until 2026-10-09 evening; this expert passed four (units 11, 16, 17, 22) and was sent their paths
     note: the second expert; Grok judged this source whole for the outline evaluation, so its gold can be compared across model families
