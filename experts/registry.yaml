@@ -87,3 +87,25 @@ experts:
     read: []
     checkpoints: [the halfway unit (about 170), the end of the reading; readings at no other times, at its request]
     context_after_preparation: null
+  - key: aisi-2025-frontier
+    lineage: [aisi-2025-frontier]
+    name: expert-aisi-2025-frontier-sonnet
+    session: 78d471da-d663-4696-8ea4-7f793eb201d8
+    model: sonnet
+    started: 2026-10-09
+    started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
+    state: asked
+    read: []
+    checkpoints: []
+    context_after_preparation: null
+  - key: bengio-2026-international
+    lineage: [bengio-2026-international, bengio-2026-international-extended, bengio-2025-international, bengio-2025-iasr-key-update-1, bengio-2025-iasr-key-update-2]
+    name: expert-bengio-2026-international-sonnet
+    session: 2df084a5-dce6-4f6b-b42e-b7fe1553c3bf
+    model: sonnet
+    started: 2026-10-09
+    started_by: ai-risk-search-tool, with bin/expert-launch and experts/BRIEF.md
+    state: asked
+    read: []
+    checkpoints: []
+    context_after_preparation: null

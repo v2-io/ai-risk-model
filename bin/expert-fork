@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Fork a prepared source expert (experts/README.md). Always a fork, never a resume.
 
-    bin/expert-fork KEY                  an interactive fork, in this terminal
+    bin/expert-fork KEY                  an interactive fork, in this terminal (KEY: a source key, for
+                                         its latest expert, or an expert's name)
     bin/expert-fork KEY "task" [--bg]    a fork that starts on the task (--bg: in the background)
     bin/expert-fork KEY --name NAME …    name the fork (default: expert-KEY-fork-<time>)
 
@@ -18,13 +19,19 @@ PROMPT = os.path.expanduser('~/src/arch/proprium/comproprium/stopgap-system-prom
 
 
 def session_of(key):
+    """The session of the expert named key (expert-…), or of the latest expert on the
+    source key: a source can have more than one, and the later supersedes."""
     text = open(os.path.join(ROOT, 'experts', 'registry.yaml')).read()
+    found = None
     for block in re.split(r'\n  - key: ', text)[1:]:
-        if block.split('\n', 1)[0].strip() == key:
-            m = re.search(r'\n    session: ([0-9a-f-]{36})', block)
-            if m:
-                return m.group(1)
-    sys.exit(f'no session for {key!r} in experts/registry.yaml')
+        k = block.split('\n', 1)[0].strip()
+        n = re.search(r'\n    name: (\S+)', block)
+        m = re.search(r'\n    session: ([0-9a-f-]{36})', block)
+        if m and (k == key or (n and n.group(1) == key)):
+            found = m.group(1)
+    if not found:
+        sys.exit(f'no session for {key!r} in experts/registry.yaml')
+    return found
 
 
 def main():
@@ -37,13 +44,14 @@ def main():
     a = ap.parse_args()
     if a.bg and not a.task:
         sys.exit('--bg needs a task, since nobody would be there to type one')
-    name = a.name or f'expert-{a.key}-fork-{datetime.datetime.now():%Y%m%d-%H%M}'
+    base = a.key if a.key.startswith('expert-') else 'expert-' + a.key
+    name = a.name or f'{base}-fork-{datetime.datetime.now():%Y%m%d-%H%M}'
     cmd = ['claude'] + (['--bg'] if a.bg else []) + ['--dangerously-skip-permissions', '--append-system-prompt-file',
                                                       PROMPT, '--resume', session_of(a.key), '--fork-session', '-n', name]
     if a.task:
         cmd.append(a.task)
     os.chdir(ROOT)
-    print(f'forking expert-{a.key} as {name}' + (' in the background' if a.bg else '') +
+    print(f'forking {base} as {name}' + (' in the background' if a.bg else '') +
           f'. Message it with SendMessage to {name!r}; stop it with /stop inside it, or claude stop with the id '
           f'claude prints (claude agents lists them). The expert itself is untouched.', file=sys.stderr, flush=True)
     os.execvp('claude', cmd)

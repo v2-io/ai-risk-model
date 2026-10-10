@@ -32,17 +32,24 @@ def main():
     ap.add_argument('--lineage', nargs='*', default=[])
     ap.add_argument('--coordinator', default='ai-risk-search-tool')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--model', help="Claude Code's --model (an alias such as 'sonnet', or a full name)")
+    ap.add_argument('--suffix', default='', help='added to the session name, for a second expert on one source')
     a = ap.parse_args()
     if not os.path.isfile(os.path.join(ROOT, 'ref', 'canonical', a.key + '.md')):
         sys.exit(f'no canonical text for {a.key!r}; bin/canonicalize builds ref/canonical/{a.key}.md')
-    name = 'expert-' + a.key
-    if name in open(REGISTRY).read():
+    name = 'expert-' + a.key + (('-' + a.suffix) if a.suffix else '')
+    if f'name: {name}\n' in open(REGISTRY).read():
         sys.exit(f'{name} is already in experts/registry.yaml')
     brief = open(os.path.join(ROOT, 'experts', 'BRIEF.md')).read().split('\n---\n', 1)[1].strip()
     brief = brief.replace('COORDINATOR', a.coordinator).replace('TITLE', a.title).replace('KEY', a.key)
+    if a.suffix:
+        brief += (f"\n\nSince another expert has worked on this source, please keep your files apart from its: run "
+                  f"`bin/reading {a.key} next --expert {a.key}-{a.suffix}`, put your reflections in "
+                  f"experts/{a.key}-{a.suffix}/reading/, and give any worktree or branch the -{a.suffix} suffix.")
     if a.note:
         brief += '\n\n' + a.note
-    cmd = ['claude', '--bg', '--dangerously-skip-permissions', '--append-system-prompt-file', PROMPT, '-n', name, brief]
+    cmd = ['claude', '--bg', '--dangerously-skip-permissions', '--append-system-prompt-file', PROMPT, '-n', name] + \
+          (['--model', a.model] if a.model else []) + [brief]
     if a.dry_run:
         print(brief, '\n\n', ' '.join(cmd[:-1]), '"<brief>"')
         return
@@ -54,6 +61,7 @@ def main():
     lineage: [{', '.join(lineage)}]
     name: {name}
     session: {sid or 'unknown (see claude agents --json)'}
+    model: {a.model or 'the default'}
     started: {datetime.date.today().isoformat()}
     started_by: {a.coordinator}, with bin/expert-launch and experts/BRIEF.md
     state: asked
