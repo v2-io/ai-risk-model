@@ -1,0 +1,146 @@
+# Source segments: each source as a small verisectorium (a draft convention)
+
+*Drafted 2026-10-10 by Claude (Opus 5.5, ai-risk-model-61) from a discussion with Joseph the same evening. Each point says whether it's **agreed** (Joseph's words quoted where they're the source), **proposed** (Claude's, not yet answered), or **open**. Nothing here is built. The pilot it proposes is SB 53.*
+
+## 1. What it's for
+
+Joseph, 2026-10-10, after the day's work on the search tool and the source experts:
+
+> "[pdf] -> [naive canonical] ; [niave c.] + fixes (e.g., OCR, offsets, etc.) -> [high-fidelity canonical] … then we have the [hifi-canonical] (which is also the one chunked and embedded) + anchored sidecars … I almost wonder if it makes even more sense to have the hfc, instead of one big document …, *cut up into chunks with the chunks in their own file, with frontmatter & file-name affordances and probably an outline table for reassembling etc.-- "verisecting" them … ensuring that each segment tells exactly how to cite it … and sidecars just attach to the appropriate segment… Each segment, like in all verisectoria, gets to have its own working notes and markdown yaml frontmatter …-- each segment's working-notes is also the collector for issues that anyone uncovers with it-- the usual 'related: #..., #...' slugs in the frontmatter and dependency tree etc. etc. and also easy for us to then tie it into our lexicon *AND* our claims"
+
+What it would fix, from what the day measured:
+- **Identity that doesn't move under a rebuild.** Every sidecar today has to anchor by text hash and heading path (`search/DESIGN.md` §13), because line numbers and offsets change whenever `bin/canonicalize` rebuilds a text. The experts' gold judgments (`search/eval/expert-judgments/`) are keyed by passage ord, which changes on any re-chunk. And the tokenizer fix (`influx/spikes/spike-tokenization-2026-10-10/`) renumbers every passage id. A segment's slug is its identity, never its position (`def-atom` in `~/src/arch/firmatum/verisectorium/theory/src/`).
+- **Findings at the grain they're found.** Nearly every fault the experts reported was about one passage: a footnote moved away from its marker, a lost article number, the digest's "internet use" (`experts/findings-for-tools.md`). Each would land in that segment's working notes.
+- **Relations no tag or similarity can carry.** SB 53's equity exclusion (§22757.16) qualifies the catastrophic-risk definition without using its words. Both search tools missed it, and the shortfall spike counts such cross-references as about 5% of what the outline misses. Between segments, that's an edge.
+- **One citable unit** for search results, claims, lexicon citations and gold judgments alike.
+
+It serves the first two of Joseph's layers of truth (`CLAUDE.md`, "The truths it serves"): what the sources state, and what their authors intended.
+
+## 2. The pipeline (agreed in outline)
+
+1. **PDF → naive canonical**: today's `ref/canonical/KEY.md`.
+2. **Naive → high-fidelity**: conversion faults fixed in one of two ways. Joseph: "either has generalized fixes to the canonicalizer itself that fix it + other current & future instances of that error, OR (relevant for here) -- *patch sidecars*/scripts that only apply to that single document."
+3. **High-fidelity → segments.** After this step the segments are the authored source of truth for that source. Nothing regenerates them, so there's no build for their slugs to survive. A fix found later arrives as a patch to the segments it touches, located through each segment's original-page metadata.
+
+**A per-source inbox** for issues not yet attributable to one segment (Joseph: "probably need an 'influx'/feedback.md or something per source as its own sidecar for issues to accumulate so that things aren't lost that the experts or someone can drain & integrate"). Drained into segment notes, into a canonicalizer fix, or into a patch.
+
+## 3. The segment
+
+**Grain (agreed).** A segment is one citable unit that fails as a whole: source fidelity at this stage; later, a definition that goes unused, an empirical claim that can be falsified. Joseph: "This is exactly the right way to set up a verisectorium-- one thing that is citable and a thing that fails in specific ways as a whole".
+- **A rule of thumb** (Joseph): put into one segment "what you would usually want to see holistically as a source-search result". That is a distinct logical chunk. But "logical chunk" ≠ "actual chunk as embedded/vectorized": embedding may widen to neighbouring segments or their summaries. That is a separate decision, not taken here.
+- **Whole lists and tables may be one segment** "until there is a later need to actually pull it apart-- for example to challenge a single claim of 7".
+- **Splitting is normal** (Joseph): "it's not uncommon to end up splitting a segment for various reasons-- the slugs etc. are easily tracked and reconfigured as necessary."
+- The SB 53 expert's gold notes reached the statutory case independently: split statutes on subdivision markers, so that each passage means one thing (`search/eval/expert-judgments/california-2025-sb53.notes.md`, finding 8).
+
+**Slugs (agreed: lenient).** Joseph: "we should be pretty lenient about the slug names per source… What we don't need is to come up with a clever 3-word description of every single paragraph and bullet-point in the corpus and give it an ontological home. That's the beauty of this, it allows for organic and systemmatic incremental improvement and refinement with minimal impact radiuses."
+- **Acceptable forms:** a positional name like `part-2.par-12`, to be split or renamed later; "even a guid or partial sha of the L1 quote"; meaningful names where the source supplies them (`22757.11-c`); hierarchy or namespaces where they help.
+- **The estate's precedent** is the reverse of this use: in a verisectorium, order and grouping live in the outline, and the slug carries only identity (`~/src/arch/asf/01-aat-core/OUTLINE.md`; `form-slug-form-kinds`).
+
+**Arrangement by the authors' logical intent (agreed, with a discipline).** Joseph: "we are under no obligation to recreate the original document based on how we segment the paper-- we can essentially segment into what the authors intended logically regardless of the pdf as it was rendered, and we can even go a step further … and have the segments as what the author *intended* but didn't execute well enough." And: "none of those say 'your understanding of the source document must always be reversible into the original document with its flaws.'"
+- **The discipline (proposed):** the arrangement is our reading; the words inside the quote marks are the source's.
+  - A segment that rejoins a footnote to its marker, rebuilds a table the converter interleaved, or groups a definition with the exclusion that qualifies it says so in a `## Mapping to original` section.
+  - That section marks how sure the reading of intent is.
+  - A reader can then always tell layer 1 (what was written) from layer 2 (what we take the authors to have meant).
+
+**Back-tracing (agreed).** Joseph's examples: `original-logical-location: blah.md|part 2|chapter 7|section 'blah'` and `original-pages: asdf.pdf pp.332-333 + 419`. These "make it trivial to back-trace for a paper or to propagate forward a typeo-fix". Each segment also says how to cite it: internally by slug, externally by PDF pages (physical and printed), section, and quote.
+
+**Per segment (agreed in outline):** YAML frontmatter; the verbatim section; working notes, which collect issues; `related:` slugs and typed edges; any sidecar sections.
+
+**A document record above the segments (proposed):** the source's own model of risk (today's `influx/source-models/`), its lineage, its authority and its licence, the views over its segments (its own table of contents among them), and its inbox.
+
+## 4. Verbatim text and its marks (agreed)
+
+The verbatim section is generated by the high-fidelity pass plus its patches. Everything else in a segment is authored. Edits inside the marks are forbidden once a span is at level 3.
+
+| Mark | Level | Meaning |
+|---|---|---|
+| `‹⟨…⟩›` | 1 | a raw estimate that needs fixes |
+| `«⟨…⟩»` | 2 | a likely correct copy that still needs final verification and normalisation |
+| `«⟪…⟫»` | 3 | done: verified against the source, page included, and normalised to the project's conventions |
+
+- **The levels say what has been done to the text.** Level 3 is required for anything cited externally or load-bearing. Joseph's reason for marking it in-band: an agent meeting an odd phrase "by the delimiter know[s] that no one has yet double-checked the pdf".
+- **Normalisation** (`$…$` mathematics, heading and footnote notation, whitespace) can happen at any level, and level 3 can equal level 1's text "when justified" (Joseph). Level 3 means checked and in the conventions, not altered.
+- **Earned, not typed** (agreed with Joseph's "I agree 100% with your refinements"):
+  - level 2 can be certified by `bin/check-quote` itself;
+  - level 3 needs a recorded act (who looked at which page, when), kept in the segment's working notes;
+  - tools may downgrade a mark that no record supports.
+- **Per span, lowest wins.** A segment can hold spans at different levels, and a quote crossing them takes the lowest.
+- **Two kinds of error** (proposed):
+  - a *conversion* error is fixed inside the marks with a recorded patch ("1013" → "10^13" because the PDF says so), and the fixed span earns level 3 as it's fixed;
+  - the *authors'* own error is kept exactly and noted (the Legislative Counsel's digest writes "internet use" for "internal use").
+- **Search output follows the same marks.** Today every result's quote shows `«⟨…⟩»` whatever its state, which overstates most of them. The marks are taught in `--help` (glyphs are interfaces: `form-agentic-eyes`, concern 5).
+
+**Evidence that agents read them** (`~/src/arch/asf/empirica/glyph-sequence-perception/spikes/quote-level-marks-2026-10-10/REPORT.md`, commit `4ee2b895`, run at Joseph's request the same evening):
+- **Frontier readers were right on every item:** Opus 5.5, Sonnet 5.5, Grok 4.6, Gemini 3.1 Pro and Gemini 3.8 Flash. That covers levels, which quotations may be cited, single versus double, grouping, spotting a mismatched closing mark, and writing the marks back, with the legend in context and without, in lists and inline. Opus and Gemini Flash did most of it with no thinking tokens.
+- **The one slip:** Haiku 4.5 with thinking off got 111 of 120 inline quotations right, every error pointing downward (level 2 read as level 1). It never read a quotation upward, and its lists of citable quotations were right every time.
+- **Gaps:** no GPT data (the account was at its limit), and no small local model was usable.
+- **The marks stay as designed** (Joseph: "I like them as we designed"). The report's option of changing level 1's inner mark, to widen its margin from level 2, wasn't taken.
+
+## 5. Licences, and two records per slug (open)
+
+`catalog/licences.yaml` (commit `657a166`; summary in `catalog/licences.md`) covers all 472 catalog keys:
+
+| May the whole text be committed? | Sources |
+|---|---|
+| yes | 276 (75 by a general rule) |
+| conditional | 16 |
+| no | 160 |
+| unknown | 20 |
+
+Of Au5, four are committable and Anthropic's August Risk Report isn't. SB 53 is a US state edict (public domain by general rule, high confidence).
+
+Proposed: each slug has two records with one identity.
+- **The verbatim part** is committed only where the licence allows, and git-ignored otherwise.
+- **The public part** (frontmatter, working notes, sidecars, brief quotes) is always committed.
+
+That is DESIGN §13's two dispositions made structural. The licence survey adds three cautions:
+- **No-derivatives texts** (and IETF and W3C documents) mustn't be modified, so normalising them could count as modifying them.
+- **ShareAlike** may extend to commentary kept in the same file. Separate files avoid that.
+- **The repository has no LICENSE file,** so mixed licences mean marking each committed file.
+
+Ten papers, Canada's ISED pages and one CSET brief are non-commercial only. Whether this repository counts as commercial is Joseph's call.
+
+## 6. Sidecars
+
+Joseph's list, as given (2026-10-10):
+
+> [commentary:findings (e.g., "This is inconsistent here vs in the executive summary, which ....")], [structural-tags (e.g., normalize as frontmatter->section->subsection->subsubsection->backmatter or something accross many document variations)], [commentary:observations (e.g., from wandering thoughts etc.)], [commentary:summary:family-1], [chunk-boundaries?], [epistemic-labels?], [authority?], [model-role-tags? (that is, from the perspective of risk-analysis models etc.-- "<hazard>" -- this is stuff that is among the first that will need the lexicon as a rosetta stone where the term is the most useful from a risk-analysis-modeling perspective -- i.e., independent of "AI" and actual risk/hazard instances...)], [lexical-tags?], [relational-context-tags?], ...
+
+What has been measured so far, and where it fits:
+- **Concept tags** (what a passage is about, in the field's usual words) are RANKING's H-M3. Tagged by Sonnet agents blind to the queries, on Au5:
+  - +0.068 to the outline's flagged score against the whole-document judges;
+  - +0.042 against the experts' blind judgments, an interval crossing zero;
+  - +0.098 against the experts when combined with query expansion (the robust result).
+
+  Sources: `influx/spikes/spike-search-shortfall-2026-10-10/` and its `de-novo-feedback-1.md`. They work mostly by restating a passage in standard vocabulary. Free tags drift between batches, so the proposal is three labelled tiers: tags a model writes, an expert's source-aware tags, and the lexicon's terms, the last superseding the others as entries land.
+- **Role tags** (what a passage *is* in its document: operative text, the source's own summary, example rather than obligation, front matter, navigation, interpretive rule) answer findings the experts made: the digest outranking the law (H-R4), site chrome ranking (H-R3), and the EU Code expert's "example, not obligation". These are Joseph's structural tags and `authority`.
+- **Relations** (qualifies, cites, near-copy-of) are edges between segments, not tags on one. They're Joseph's relational-context tags.
+- **Summaries and observations** are commentary, ours, and shown as ours.
+
+Every sidecar is our reading, never quoted as the source's words. Search may let a sidecar raise a segment, never exclude one (DESIGN §12).
+
+## 7. What it would change in the tools (proposed, nothing decided)
+
+- `bin/source-index` reads segments where a source has them, and the canonical text where it doesn't yet. Search results carry slugs.
+- `bin/check-quote` certifies level 2 and reports each quote's level.
+- `bin/reading` serves an expert one segment, or a run of them, at a time.
+- The experts' gold judgments get re-keyed from passage ords to slugs, which tests whether the slugs hold.
+
+## 8. The pilot (proposed)
+
+SB 53:
+- **It's public domain,** so the public form can be tested whole.
+- **It has natural units** (subdivisions).
+- **It has an expert,** whose findings become the first working notes.
+- **Its gold has three judges** (Claude, Gemini, the expert), to re-key as an identity test.
+
+Then the search index reads SB 53's segments, and we see what breaks before touching the other 471 keys.
+
+## 9. Open
+
+- **The two-record split** (§5) and where each part lives.
+- **The segment file's format:** markdown with YAML frontmatter, as in other verisectoria, or udon like the lexicon.
+- **Where segments live:** something like `sources/KEY/` for the public part, and a git-ignored mirror for verbatim text that can't be committed.
+- **Typed edges:** their vocabulary, and whether only `qualifies` and `cites` cascade.
+- **How a segment's working notes and the per-source inbox are drained,** and by whom.
+- **The high-fidelity conventions themselves** (mathematics, headings, footnotes). They become level 3's definition.

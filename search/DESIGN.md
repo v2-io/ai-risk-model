@@ -265,7 +265,7 @@ Every result carries an anchor in the plan's form (plan §3.5, Claude's proposal
 
 A first whole-corpus `lexical 'loss of control'` checked 121 anchors in 31 s; with the cache the same search takes about 1 s.
 
-**Quotes are marked «⟨…⟩»** in all text output (Joseph's choice, 2026-10-09: "a little clunky maybe but looks great in the terminal (fwiw) and no ambiguity or confusion"). The pair never occurs in the 392 canonical texts, while the sources' own quote marks often do. A quote cut short ends `⟩»…`, with the ellipsis outside the marks, since `check-quote` reads an ellipsis inside a quote as a gap. JSON keeps quotes as plain strings.
+**Quotes are marked «⟨…⟩»** in all text output (Joseph's choice, 2026-10-09: "a little clunky maybe but looks great in the terminal (fwiw) and no ambiguity or confusion"). *Since 2026-10-10 the marks are to carry a verification level, `‹⟨…⟩›` / `«⟨…⟩»` / `«⟪…⟫»`, agreed with Joseph for the source segments (`influx/source-segments-2026-10-10.md` §4). The search output still shows `«⟨…⟩»` for every quote, which overstates most of them, until that's built.* The pair never occurs in the 392 canonical texts, while the sources' own quote marks often do. A quote cut short ends `⟩»…`, with the ellipsis outside the marks, since `check-quote` reads an ellipsis inside a quote as a gap. JSON keeps quotes as plain strings.
 
 Flags shared across verbs: `-n` (how many results), `--explain` (the factors behind each score), `--verify` (runs every anchor through `bin/check-quote`), `--json` (automatic when piped), and, not built yet, `--by source|org|family|lineage` and `--history` (§6.3).
 
@@ -446,6 +446,22 @@ The rest of the pooled gap (0.278 against 0.291) is a trade-off, not a fault. Co
    - IASR's Figure 2.1 data text ranks first for "hazard", above IASR's own definition.
 
    **Labelled data from source experts** (`experts/README.md`, Joseph's idea, 2026-10-09). An agent that has read a source experientially is that source's domain expert; shown what the search returned, it can give the order it should have come in and say what was missed. That is the fitting and test data RANKING.md §3.3 needs, and it comes from work the project needs anyway (tags, definitions, assertions). The first two experts, SB 53 and the EU Code, started reading the same day.
+
+   **2026-10-10: what the shortfall is, and what it isn't.** Three pieces of work, each with its own record:
+   - **Expert gold, round 1** (`search/eval/expert-judgments/`, with a README). Four source experts judged the 12 queries and their own questions blind, then reordered what `hybrid` and `outline` returned; IASR's fork was stopped twice by a safety classifier, and a second fork is finishing in small steps.
+     - Agreement with each document's whole-document judge on shared queries (marked or not): AISI 0.84, SB 53 0.83, EU Code 0.65 against Grok, Risk Report 0.61.
+     - The outline flags 0.710 of what the experts marked, pooled.
+     - Their findings by mechanism are in `experts/findings-for-tools.md`.
+   - **The shortfall spike, verified de novo** (`influx/spikes/spike-search-shortfall-2026-10-10/`, with `de-novo-feedback-1.md`). Of the quarter the outline misses:
+     - 0.057 is stretches with no candidate passage at all;
+     - most of the rest is related concepts and rewordings, not weighting.
+     - Re-weighting today's features, stop-list variants, a full cosine scan, embedding inputs and three other small embedders all moved it by about ±0.02 or less.
+     - What moved it was knowledge from outside the similarity computation. Query expansion plus document-side concept tags gained +0.118 against the whole-document judges and +0.098 against the experts. Tags alone are uncertain (+0.04 to +0.08 by judge).
+     - Under every ranking tried, a list read to the same source lines reaches more than the outline opens. So the outline's value is what it flags and counts, not what it opens.
+     - RANKING's register carries each measurement.
+   - **The tokenization spike** (`influx/spikes/spike-tokenization-2026-10-10/`). 46% of passages hold at least one word a reader sees and no query can find, because Postgres's parser and the query side cut words differently. RANKING H-Q5 has the measurement and the fix, which is tested and not yet applied.
+
+   Joseph, the same evening, put the next step at the source rather than the ranker: high-fidelity texts cut into citable segments with sidecars attached (`influx/source-segments-2026-10-10.md`, a draft convention).
 
 9. The ranking as one model of evidence (`search/RANKING.md`, proposed 2026-10-09 at Joseph's request): every factor a registered hypothesis, with fixtures, ablations and equal weights until measured. It waits on Joseph's decisions in RANKING.md §8.
 10. The gold queries, now partly reframed by §12's evaluation idea, then `--eval` and tuning.

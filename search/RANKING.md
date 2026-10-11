@@ -143,12 +143,24 @@ These come before any evidence is scored. They decide what the query is and what
 - Feature: how q and p are cut into words.
 - Hypothesis: the unit of matching is the word, with apostrophes inside a word kept.
 - Encoding: inconsistent, found 2026-10-09. `hybrid`'s query words keep a hyphenated word whole ("loss-of-control" is one token, `text.WORD_RE`), while the literal matcher splits it into three. Postgres's parser does something else again. One of these is an unstated assumption; which should win isn't decided.
-- Found 2026-10-10 (the shortfall spike): Postgres's parser reads slash-joined words ("Misalignment/Instrumental", "chemical/biological", "threats/risks") as a single `file` token, so BM25 sees neither word. That's 4,748 passages in 393 texts by the spike's count, and 6,047 passages by the verifier's regex (`[A-Za-z]{2,}/[A-Za-z]{2,}`). Not fixed.
+- Found 2026-10-10 (the shortfall spike): Postgres's parser reads slash-joined words ("Misalignment/Instrumental", "chemical/biological", "threats/risks") as a single `file` token, so BM25 sees neither word. That's 4,748 passages in 393 texts by the spike's count, and 6,047 passages by the verifier's regex (`[A-Za-z]{2,}/[A-Za-z]{2,}`).
+- Measured 2026-10-10 (the tokenization spike, `influx/spikes/spike-tokenization-2026-10-10/`): the slash case is one of about a dozen with one cause.
+  - Postgres glues words into one token across `/`, `.`, `@` and a hyphen before a digit ("U.S", "espionage.144", "§22757.11", "2024-2025", "COVID-19"), while the query side (`text.WORD_RE`) splits at exactly those characters.
+  - Queries are folded for accents and the index isn't, so "Schölkopf" typed exactly isn't found.
+  - In all: 144,215 (passage, word) pairs visible to a reader but unfindable, in 28,495 passages (46% of the index). "%" is harmless.
+- The hypothesis above never held as stated: apostrophes have never been kept inside a word by BM25.
+- Proposed fix, tested on a scratch copy and not applied (`proposed.patch` there): one definition of a word everywhere, a run of letters and digits with accents folded on both sides, through one SQL function (`src.index_form`) feeding every tsvector column and every query.
+  - Unfindable pairs fall from 144,215 to 104, and the spike's fixtures from 7 of 52 passing to 52 of 52.
+  - The evals don't move, except "misalignment" (0.63 → 0.65), because the judged queries barely touch these cases. So the fixtures and the corpus-wide count are the evidence, and the evals guard against regression.
+  - Applying it rebuilds the index and renumbers passage ids. Passages are otherwise byte-identical, so anything keyed by id remaps by (document, ord).
+  - Decisions with it, each Claude's lean, not yet Joseph's: hyphenated words split into their parts with no extra whole-compound match (the phrase factor already matches "loss-of-control" for "loss of control"); accents folded on both sides (needs `unaccent`); apostrophes split; decimals become two words ("4.5"), which a phrase still matches.
+- Status: measured; fix pending, to be applied after the IASR expert's stage-2 searches so all five experts' searches ran on one index.
 
 **H-Q6 Term identity for definitions.**
 - Feature: a defined term and the query's term, each normalised: folded, unaccented, quotes, emphasis and a parenthetical abbreviation removed, the last word made singular (`text.norm_term`).
 - Hypothesis: two terms that normalise alike are the same term ("Risks" = "risk"; "Floating point operations (FLOP)" = "floating point operations").
 - Open: singularising the last word merges terms the project might keep apart. "Capabilities" as a defined term may not be "capability".
+- Found 2026-10-10 (the tokenization spike): `norm_term` keeps hyphens, so "red-teaming" (7 definitions) and "red teaming" count as different terms. Not changed by the tokenization fix.
 
 **H-Q7 Word forms.**
 - Feature: what extends a word: the two spelling rules, up to four more letters, a free plural or possessive, function words kept whole (DESIGN §7.1); in BM25, Postgres's stems (H-W2).
