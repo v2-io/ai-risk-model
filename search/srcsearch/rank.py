@@ -78,7 +78,8 @@ def _stats(conn):
 
 
 def _lexemes(conn, cfg, text):
-    return [r[0] for r in conn.execute(f"select lexeme from unnest(to_tsvector('{cfg}', %s))", (text,))]
+    # through src.index_form, as the tsvector columns are (schema.sql; RANKING.md H-Q5)
+    return [r[0] for r in conn.execute(f"select lexeme from unnest(to_tsvector('{cfg}', src.index_form(%s)))", (text,))]
 
 
 def _bm25(conn, col, cfg, lexemes, w, keys):
@@ -241,10 +242,10 @@ def lexical(conn, pq, w, keys):
                     phrase.add(i)
     elif len(pq['words']) > 1:
         phrase = {r[0] for r in conn.execute(
-            "select id from src.passages where id = any(%s) and tsv_exact @@ phraseto_tsquery('simple', %s)",
+            "select id from src.passages where id = any(%s) and tsv_exact @@ phraseto_tsquery('simple', src.index_form(%s))",
             (ids, text))}
     heading = {r[0] for r in conn.execute(
-        "select id from src.passages where id = any(%s) and tsv_head @@ plainto_tsquery('simple', %s)", (ids, text))}
+        "select id from src.passages where id = any(%s) and tsv_head @@ plainto_tsquery('simple', src.index_form(%s))", (ids, text))}
     for i in phrase:
         score[i] *= w['phrase_factor']
     for i in heading:
@@ -293,7 +294,7 @@ def answerability(conn, query, qvec, model='bge-m3', keys=None, w=None):
                join cache.embeddings e on e.model = %(m)s and e.input_sha = p.embed_sha
                where (%(keys)s::text[] is null or p.doc_key = any(%(keys)s))""", dict(v=v, m=model, keys=keys)).fetchone()[0]
     n_all = conn.execute(
-        """select count(*) from src.passages where tsv_exact @@ plainto_tsquery('simple', %s)
+        """select count(*) from src.passages where tsv_exact @@ plainto_tsquery('simple', src.index_form(%s))
            and (%s::text[] is null or doc_key = any(%s))""", (' '.join(pq['words']), keys, keys)).fetchone()[0] if pq['words'] else 0
     unanswered = near is not None and n_all == 0 and near >= W['distance']
     return dict(nearest_distance=None if near is None else round(float(near), 4), passages_with_all_words=n_all,

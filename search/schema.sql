@@ -11,6 +11,7 @@
 
 create extension if not exists vector;
 create extension if not exists pg_trgm;
+create extension if not exists unaccent;
 
 create schema if not exists cache;
 
@@ -24,6 +25,29 @@ create table if not exists cache.embeddings (
 );
 
 create schema src;
+
+-- What the parser is given, for passages and queries alike (RANKING.md H-Q5): a word
+-- is a run of letters and digits, and every other character separates. Without it
+-- the parser joins words into one token across '/', '.', '@' and a hyphen before a
+-- digit ("chemical/biological", "U.S", "Z.ai", "espionage.144", "2024-2025" read as
+-- 2024 and -2025, "4.5"), and no query can find either word: 144,215 passage-word
+-- pairs in 28,495 passages on 2026-10-10 (influx/spikes/spike-tokenization-2026-10-10/).
+-- Accents and ligatures are folded, as text.fold folds a query ("Schölkopf",
+-- "ﬁne-tuning"). rank.py sends every query through this same function.
+create function src.index_form(t text) returns text
+    language sql immutable parallel safe as
+$$ select regexp_replace(public.unaccent('public.unaccent'::regdictionary, t), '[^[:alnum:]]+', ' ', 'g') $$;
+
+-- [[:alnum:]] follows the database's LC_CTYPE. Under C it matches ASCII only, and
+-- index_form would turn every Greek, Cyrillic or CJK word into a separator, so those
+-- words would vanish from the index (the parser alone keeps them). Python's side
+-- (text.WORD_RE) is Unicode whatever the locale. Refuse to build rather than disagree.
+do $$ begin
+    if src.index_form('λόγος Шёлк 中文') <> 'λογος Шелк 中文' then
+        raise exception 'src.index_form needs a Unicode-aware LC_CTYPE (this database: %); create it with e.g. --locale=en_US.UTF-8',
+            (select datctype from pg_database where datname = current_database());
+    end if;
+end $$;
 
 -- What built this database: schema_sha is sha256 of this file, so a changed schema
 -- is noticed and answered with --rebuild rather than silently half-applied.
@@ -86,7 +110,7 @@ create table src.headings (
     path        text[] not null,
     page        int,
     printed     text,
-    tsv         tsvector generated always as (to_tsvector('simple', text || ' ' || coalesce(title, ''))) stored,
+    tsv         tsvector generated always as (to_tsvector('simple', src.index_form(text || ' ' || coalesce(title, '')))) stored,
     primary key (doc_key, ord)
 );
 
@@ -108,12 +132,12 @@ create table src.passages (
     section     text not null,           -- body | glossary | toc | references | abbreviations | index | annex | restored
     kinds       text[] not null,         -- the block kinds it holds; 'cut' if it is a piece of a longer block
     text        text not null,           -- indexed text: links, tags, images and emphasis removed
-    nwords      int  not null,           -- its length in words, for BM25's length normalisation
+    nwords      int  not null,           -- its length in words (text.words, as src.index_form cuts them), for BM25's length normalisation
     norm_sha    text not null,           -- sha256 of its words, for collapsing duplicates (DESIGN §6.3)
     embed_sha   text not null,           -- sha256 of its embedding input; joins cache.embeddings
-    tsv_exact   tsvector generated always as (to_tsvector('simple', text)) stored,
-    tsv_stem    tsvector generated always as (to_tsvector('english', text)) stored,
-    tsv_head    tsvector generated always as (to_tsvector('simple', heading)) stored,
+    tsv_exact   tsvector generated always as (to_tsvector('simple', src.index_form(text))) stored,
+    tsv_stem    tsvector generated always as (to_tsvector('english', src.index_form(text))) stored,
+    tsv_head    tsvector generated always as (to_tsvector('simple', src.index_form(heading))) stored,
     unique (doc_key, layer, ord)
 );
 create index on src.passages using gin (tsv_exact);

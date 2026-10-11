@@ -459,7 +459,7 @@ The rest of the pooled gap (0.278 against 0.291) is a trade-off, not a fault. Co
      - What moved it was knowledge from outside the similarity computation. Query expansion plus document-side concept tags gained +0.118 against the whole-document judges and +0.098 against the experts. Tags alone are uncertain (+0.04 to +0.08 by judge).
      - Under every ranking tried, a list read to the same source lines reaches more than the outline opens. So the outline's value is what it flags and counts, not what it opens.
      - RANKING's register carries each measurement.
-   - **The tokenization spike** (`influx/spikes/spike-tokenization-2026-10-10/`). 46% of passages hold at least one word a reader sees and no query can find, because Postgres's parser and the query side cut words differently. RANKING H-Q5 has the measurement and the fix, which is tested and not yet applied.
+   - **The tokenization spike** (`influx/spikes/spike-tokenization-2026-10-10/`). 46% of passages hold at least one word a reader sees and no query can find, because Postgres's parser and the query side cut words differently. The fix, one definition of a word for the index and the query, was applied the same day; RANKING H-Q5 has the measurements.
 
    Joseph, the same evening, put the next step at the source rather than the ranker: high-fidelity texts cut into citable segments with sidecars attached (`influx/source-segments-2026-10-10.md`, a draft convention).
 

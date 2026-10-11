@@ -168,11 +168,13 @@ def fold(s):
              .replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"'))
 
 
-WORD_RE = re.compile(r'[^\W_]+(?:[-\'][^\W_]+)*')
+WORD_RE = re.compile(r'[^\W_]+')
 
 
 def words(s):
-    """Word tokens of folded text; hyphenated and apostrophe'd words stay whole."""
+    """Word tokens of folded text: runs of letters and digits, as src.index_form cuts
+    them for the index (RANKING.md H-Q5). A hyphen, slash, period or apostrophe
+    separates: "loss-of-control" is three words, as the literal matcher reads it."""
     return WORD_RE.findall(fold(s))
 
 
