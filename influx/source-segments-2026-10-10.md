@@ -195,9 +195,39 @@ Then the search index reads SB 53's segments, and we see what breaks before touc
 
 Joseph, 2026-10-10: "while a lot of the commentary and all of the lexicon + risk modeling etc. will stay unique to this project, I predict that a lot of this pdf -> verisectorium w/ encryption & license awareness etc. will eventually move over to be standard within verisectorium or even from within relata itself." Recorded so that it can be checked later, and so the tools are built with that move in mind: the sealing, the licence awareness and the template kept separable from this project's lexicon and models.
 
-## 10. Open
+## 10. Settled details (Claude's, Joseph supported, 2026-10-10)
 
-- **The segment file's format:** markdown with YAML frontmatter, as in other verisectoria, or udon like the lexicon.
-- **Typed edges:** their vocabulary, and whether only `qualifies` and `cites` cascade.
-- **How a segment's working notes and the per-source inbox are drained,** and by whom.
-- **The high-fidelity conventions themselves** (mathematics, headings, footnotes). They become level 3's definition.
+Joseph, 2026-10-10: "I feel we see eye-to-eye on the big picture here and I will defer the details to you which you can mark as 'Joseph supported.'" Each detail below is to be tested by the SB 53 pilot, and changed by what it teaches.
+
+**Edges between segments.**
+- **Starting vocabulary:**
+  - `qualifies`: an exclusion, a definition used inside another, or an interpretive rule that sets how another segment is read. SB 53's §22757.16 and "Property"; the EU Code's glossary and recitals.
+  - `cites`: an explicit cross-reference.
+  - `summarises`, with a `diverges` qualifier where the summary drops, strengthens or misstates its body: SB 53's digest, AISI's and IASR's summaries (H-R4).
+  - `copies`, marked quoted-with-attribution, adopted-verbatim or paraphrased-unattributed, within a source or across sources (the EU Code's loss-of-control formula in nine later documents). This is "correlation is not corroboration" at segment grain.
+  - `version-of`, marked same or changed.
+- **Each edge carries** its direction, who asserted it, a confidence and a note. Inverses are computed, never written twice. Every edge is our reading, attributed like any sidecar.
+- **Where edges live** follows the sidecar rule (§3): an edge added while working a segment goes in its frontmatter; edges found by a pass go in that pass's file.
+- **No cascade along edges.** The one propagation that matters is citation: when a segment's Source Content is corrected, everything that quotes or cites it is flagged for a re-check (claims, lexicon entries, other segments' quotes).
+- **Edges serve reading and search:** when the outline opens a definition, its qualifiers open with it (the shortfall spike's proposal 5, and the miss all three SB 53 judges caught).
+
+**Draining.**
+- A source's `influx.md` is drained first whenever any pass works that source. Each item is landed (in a segment's notes, a canonicalizer fix or a patch) or found truly disposable: the delete test.
+- A segment's Working Notes are drained by whoever next works that segment.
+
+**The high-fidelity conventions (what level 3 normalises to).**
+- **Mathematics** in `$…$`, displays in `$$…$$` on their own lines.
+- **Headings:** the source's heading markup becomes structure (the outline, and `original-logical-location`), not text inside Source Content. A heading that is itself content, such as a statute's section title, stays as text.
+- **Footnotes** travel with the segment holding their marker, as markdown footnotes.
+- **Tables** stay markdown tables where they fit. A table that doesn't fit is noted in Mapping to original, with how it was rendered.
+- **Figures:** an image link plus the verbatim caption.
+- **A page break inside a segment** gets a compact inline marker, so a quote within it can be cited by page.
+- **Two kinds of error** (§4): conversion errors are fixed with a recorded patch; the authors' own errors are kept and noted.
+
+**`sop/` and the `sop:` namespace** (Joseph, 2026-10-10).
+- **`sop/`:** Joseph: "There are several things in influx right now whose proper home is (the not yet created) sop/ directory, which will have its own outline and slugs for how to actually do things around here." The plan is to create it when the pilot completes, carving this convention into SOP segments from what the pilot proved. Candidates to move then: this convention, `experts/fork-briefs/`, `search/eval/outline-judging-brief.md`, and the coordination parts of `experts/README.md`.
+- **`sop:` in `def/`:** Joseph: "a specialized namespace that is essentially sop: namespace for things like that-- terms that are used for our machinery etc. distinct from not only AI risk modeling but distinct from risk modeling and that are probably candidates to be adopted upstream in verisectorium etc." First candidates: segment, Source Content, level (1–3), seal, sidecar, pass, influx, front door, the high-fidelity pass, attestation trailer, and the `KEY#slug` citation.
+
+## 11. Open
+
+- **How sealed segments are searched and served:** the index reads `.decrypted/` where the PDF is present, and what search shows a reader who lacks it.
