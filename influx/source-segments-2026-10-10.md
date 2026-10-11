@@ -153,7 +153,7 @@ Why encrypted rather than ignored: after the high-fidelity pass a segment's verb
 - **No-derivatives texts** (and IETF and W3C documents) mustn't be modified, so normalising them could count as modifying them.
 - **ShareAlike** (7 sources: 3 CC BY-SA, 4 CC BY-NC-SA) extends to our commentary in the same file. Agreed (Joseph): such segments say so in their frontmatter and in a one-line notice, and the whole segment is offered under the source's licence.
 - **The repository has no LICENSE file,** so mixed licences mean marking each committed file. Committed verbatim files carry their licence's attribution notice.
-- **Ten papers, Canada's ISED pages and one CSET brief are non-commercial only.** Whether this repository counts as commercial is Joseph's call.
+- **Non-commercial licences** (ten papers, Canada's ISED pages and one CSET brief): Joseph, 2026-10-10, "Yes, non-commercial": this repository counts as non-commercial use, so their Source Content is committed in plain text with their licence notice.
 
 ## 6. Sidecars
 
