@@ -60,7 +60,21 @@ udon stays the lexicon's format (`def/`). Joseph: other kinds of segment may mig
 
 This is co-change cohesion (TST's measure, as Joseph put it) counted by change event rather than by frequency alone. Logical udon stores may later make the split transparent.
 
-**A document record above the segments (proposed):** the source's own model of risk (today's `influx/source-models/`), its lineage, its authority and its licence, the views over its segments (its own table of contents among them), and its inbox.
+**Where segments live** (agreed 2026-10-10). Each source has a directory `sources/KEY/`, flat inside:
+- `SLUG.md`: one per segment;
+- `outline.md`: the source's front door and its own table of contents, the first view. Document-level facts go in its frontmatter and head: licence, whether its Source Content is sealed, lineage and versions;
+- `influx.md`: issues not yet placed in a segment (Joseph: "influx", "the name it's given everywhere else");
+- `sidecars/`: the per-pass files (`tags.free.yaml`, `tags.expert.yaml`, …), each keyed by slug;
+- `.decrypted/`: git-ignored.
+
+Three further points:
+- **No README per source.** Joseph's concern: "in other projects outline tends to get checked rigorously over and over along with the segments, and stuff that would normally be in the readme ends up in outline but more current". `asf/01-aat-core/` has none, since a README nobody read was a surface nobody kept fresh. One `sources/README.md` explains the convention once, sealing included.
+- **The source's own model of risk** (today's `influx/source-models/`) is our reading of the whole document, so it becomes a record of its own, linked from the outline.
+- **Only sources being worked get a directory:** Au5 and the pilot first.
+
+**Citing a segment** (agreed): `KEY#slug` (`california-2025-sb53#22757.11-c`), resolving to `sources/KEY/SLUG.md`. Slugs need only be unique within their source. Joseph: "as long as we are consistent, it will be easy to change wholesale if udon/verisectorium develops a principled standard for us."
+
+**Starting a source** (agreed): a `sources/.new/` template-with-instructions and a `bin/` utility that copies it into place, built with the SB 53 pilot so the template is shaped by what the pilot needs.
 
 ## 4. Verbatim text and its marks (agreed)
 
@@ -177,10 +191,13 @@ SB 53:
 
 Then the search index reads SB 53's segments, and we see what breaks before touching the other 471 keys.
 
-## 9. Open
+## 9. A prediction
+
+Joseph, 2026-10-10: "while a lot of the commentary and all of the lexicon + risk modeling etc. will stay unique to this project, I predict that a lot of this pdf -> verisectorium w/ encryption & license awareness etc. will eventually move over to be standard within verisectorium or even from within relata itself." Recorded so that it can be checked later, and so the tools are built with that move in mind: the sealing, the licence awareness and the template kept separable from this project's lexicon and models.
+
+## 10. Open
 
 - **The segment file's format:** markdown with YAML frontmatter, as in other verisectoria, or udon like the lexicon.
-- **Where segments live:** something like `sources/KEY/` for the public part, and a git-ignored mirror for verbatim text that can't be committed.
 - **Typed edges:** their vocabulary, and whether only `qualifies` and `cites` cascade.
 - **How a segment's working notes and the per-source inbox are drained,** and by whom.
 - **The high-fidelity conventions themselves** (mathematics, headings, footnotes). They become level 3's definition.
