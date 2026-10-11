@@ -465,7 +465,7 @@ class Outline:
         label = an.get('page_label') or ('not in the PDF' if an.get('not_in_pdf') else
                                          'page not yet confirmed' if an.get('check_pdf') else None)
         flag = f' [{label}]' if label else ''
-        return (f"{self.heat(best)} {r['prefix']}▸ L{a}–{b}  p.{an['page']}{pr}{flag}"
+        return (f"{self.heat(best)} {r['prefix']}▸ L{a}–{b}  {anchor.page_text(an)}{pr}{flag}"
                 + (f"  {'; '.join(tags)}" if tags else '') + f'  {anchor.show_quote(q)}{cut}')
 
     # ------------------------------------------------------------------- json

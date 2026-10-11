@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""Regression check for settling an anchor's page (anchor.settle, DESIGN §5.1).
+
+bin/check-quote reports a quote that crosses a page marker with `page` as a pair,
+[first, last]. Until 2026-10-10 settle() wrote that pair into cache.quote_checks'
+integer `page` column, so every search whose anchors included one failed
+(`source-search lexical 'Z.ai'`, exit 3: "column page is of type integer but
+expression is of type smallint[]"; experts/findings-for-tools.md). The anchor now
+keeps the first page as `page` and the last as `page_last`, and so does the cache.
+
+The cases are real anchors from the FLI AI Safety Index. Each is settled twice: once
+with its cache row removed (bin/check-quote runs), then again from the cache. All of
+it runs in one transaction that is rolled back, so the shared cache is left as it was.
+
+    search/eval/settle-check          exit 0 when every case passes, 1 otherwise
+"""
+import os, sys
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from srcsearch import anchor, db  # noqa: E402
+import hashlib  # noqa: E402
+
+# (key, cited page, printed, quote, expected settled pages)
+CASES = [
+    ('fli-2026-ai-safety-index-summer', 32, '31',
+     'Safety Framework Report Anthropic OpenAI Google DeepMind Meta xAI DeepSeek Z.ai Alibaba Cloud Mistral Claude '
+     'Opus 4.7 GPT 5.5 Gemini 3.1 Pro * Muse Spark Grok 4.1 V4 GLM 5 Qwen 3.5 Max Mistral Large 3 Scheming & '
+     'Misalignment Risks', (32, 33)),
+    ('fli-2025-ai-safety-index-summer', 60, '59',
+     '$of_{i}$ i sti tě Sub-Indicator Anthropic DeepSeek Google Meta OpenAI x.AI Zhipu AI', (60, 61)),
+]
+
+
+def fresh(key, page, printed, quote):
+    return dict(key=key, page=page, printed=printed, quote=quote, not_in_pdf=False, check_pdf=True,
+                unique_on_page=True)
+
+
+def check(a, want, how):
+    first, last = want
+    errs = []
+    if a['page'] != first:
+        errs.append(f'page {a["page"]!r}, expected {first}')
+    if a.get('page_last') != (last if last != first else None):
+        errs.append(f'page_last {a.get("page_last")!r}, expected {last}')
+    shown = f'p.{first}–{last}' if last != first else f'p.{first}'
+    if shown not in anchor.fmt(a):
+        errs.append(f'fmt shows {anchor.fmt(a)[:80]!r}, expected {shown!r}')
+    print(f'  {"ok  " if not errs else "FAIL"} {how:<10} {a["key"]} p.{want[0]}: ' + ('; '.join(errs) or anchor.fmt(a)[:90]))
+    return not errs
+
+
+def main():
+    conn = db.connect()
+    ok = True
+    try:
+        for key, page, printed, quote, want in CASES:
+            qs = hashlib.sha256(quote.encode('utf-8')).hexdigest()
+            conn.execute('delete from cache.quote_checks where doc_key = %s and quote_sha = %s', (key, qs))
+            try:
+                a = fresh(key, page, printed, quote)
+                n = anchor.settle(conn, [a], every=True)
+                ok &= check(a, want, f'checked {n}')
+                row = conn.execute('select page, page_last from cache.quote_checks where doc_key = %s and quote_sha = %s',
+                                   (key, qs)).fetchone()
+                if row != want:
+                    print(f'  FAIL cache row {row!r}, expected {want!r}')
+                    ok = False
+                b = fresh(key, page, printed, quote)
+                n = anchor.settle(conn, [b], every=True)
+                ok &= check(b, want, f'cached {n}')
+            except Exception as e:                   # the failure this check exists for
+                print(f'  FAIL {key} p.{page}: {type(e).__name__}: {str(e).splitlines()[0]}')
+                ok = False
+                conn.rollback()
+    finally:
+        conn.rollback()
+    print('pass' if ok else 'fail')
+    sys.exit(0 if ok else 1)
+
+
+main()

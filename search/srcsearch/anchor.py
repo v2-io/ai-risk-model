@@ -180,7 +180,12 @@ def fmt(a):
         flags.append('page not yet confirmed')
     if a.get('unique_on_page') is False and not (a.get('page_check') or {}).get('status') == 'ambiguous':
         flags.append('quote occurs more than once on the page')
-    return f'{a["key"]} p.{a["page"]}{pr}: {show_quote(a["quote"])}' + (f'  [{"; ".join(flags)}]' if flags else '')
+    return f'{a["key"]} {page_text(a)}{pr}: {show_quote(a["quote"])}' + (f'  [{"; ".join(flags)}]' if flags else '')
+
+
+def page_text(a):
+    """'p.32', or 'p.32–33' for a quote settled across a page break."""
+    return f'p.{a["page"]}' + (f'–{a["page_last"]}' if a.get('page_last') else '')
 
 
 # ------------------------------------------------------------- settling pages
@@ -226,11 +231,19 @@ def needs_check(a):
     return bool(a.get('check_pdf') or a.get('not_in_pdf'))
 
 
+def _span(page):
+    """check-quote's page, an int or [first, last] for a quote that crosses a page
+    marker, as (page, page_last): page_last is None unless the quote crosses one."""
+    if isinstance(page, list):
+        return page[0], (page[-1] if page[-1] != page[0] else None)
+    return page, None
+
+
 def _apply(a, rec):
     status = rec.get('status')
     a['page_check'] = dict(status=status, page_from=rec.get('page_from'), cited=a['page'])
     if rec.get('page') is not None and status in ('ok', 'unconfirmed', 'ambiguous'):
-        a['page'] = rec['page']
+        a['page'], a['page_last'] = _span(rec['page'])
         if rec.get('printed'):
             a['printed'] = rec['printed']
     a['check_pdf'] = False
@@ -285,9 +298,9 @@ def settle(conn, anchors, every=False):
                 got[(k, qs, pc)] = x
                 conn.execute(
                     """insert into cache.quote_checks (doc_key, quote_sha, page_cited, canon_sha, checker_sha, quote,
-                                                       status, page, page_from, printed, record)
-                       values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) on conflict do nothing""",
-                    (k, qs, pc, cs, ck, q, x.get('status') or 'unknown', x.get('page'), x.get('page_from'),
+                                                       status, page, page_last, page_from, printed, record)
+                       values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) on conflict do nothing""",
+                    (k, qs, pc, cs, ck, q, x.get('status') or 'unknown', *_span(x.get('page')), x.get('page_from'),
                      x.get('printed'), json.dumps(x)))
         for a, k, qs, pc, cs in keyed:
             if (k, qs, pc) in got:

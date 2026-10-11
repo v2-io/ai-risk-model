@@ -20,10 +20,14 @@ create table if not exists cache.quote_checks (
     checker_sha  text not null,          -- sha256 of bin/check-quote + bin/canonicalize
     quote        text not null,
     status       text not null,          -- check-quote's: ok, unconfirmed, not-in-pdf, ambiguous, …
-    page         int,                    -- the settled page
+    page         int,                    -- the settled page (the first, for a quote that crosses a page break)
+    page_last    int,                    -- the last page, for a quote that crosses a page break; else null
     page_from    text,                   -- pdf | canonical
     printed      text,
     record       jsonb not null,         -- check-quote's whole record for the anchor
     checked_at   timestamptz not null default now(),
     primary key (doc_key, quote_sha, page_cited, canon_sha, checker_sha)
 );
+-- bin/check-quote gives a quote that crosses a page marker as [first, last]; until
+-- 2026-10-10 that pair went into `page` and the insert failed (search/eval/settle-check).
+alter table cache.quote_checks add column if not exists page_last int;
