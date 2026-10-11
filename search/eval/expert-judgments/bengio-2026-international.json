@@ -1,0 +1,1710 @@
+{
+ "key": "bengio-2026-international",
+ "canonical_sha256": "95e91b7a5e14ad0ab91ae24e3a2a726fb924932c4bf6ed7887f35c23c29490a4",
+ "judge": "Claude Sonnet 5.5, the IASR source expert's fork (experiential reading of the whole source, units 1-340 of 481; reference list not read); stage 1, blind, written before any source-search run",
+ "read": "whole, in order, except the reference list ('Notes', lines 3137-7704)",
+ "date": "2026-10-10",
+ "queries": {
+  "hazard": [
+   {
+    "lines": [
+     2901,
+     2901
+    ],
+    "quote": "**Hazard:** Any event or activity that has the potential to cause harm",
+    "grade": 2,
+    "note": "The Report's one definition of the term (glossary)."
+   },
+   {
+    "lines": [
+     2079,
+     2079
+    ],
+    "quote": "Two prominent methods for identifying the risks from general-purpose AI are threat modelling",
+    "grade": 1,
+    "note": "Uses 'risk and hazard taxonomies' together without distinguishing them."
+   },
+   {
+    "lines": [
+     2104,
+     2104
+    ],
+    "quote": "|**System safety analysis**|System safety analysis highlights dependencies",
+    "grade": 1,
+    "note": "'system-level hazards' in the system-safety (STPA) row of the risk-analysis table."
+   },
+   {
+    "lines": [
+     3085,
+     3085
+    ],
+    "quote": "**Systems-theoretic process analysis (STPA):** A hazard analysis method",
+    "grade": 1,
+    "note": "Glossary: hazard analysis."
+   },
+   {
+    "lines": [
+     1036,
+     1036
+    ],
+    "quote": "**Figure 2.1:** The number of events involving",
+    "grade": 1,
+    "note": "Names the OECD AI Incidents and Hazards Monitor as a data source; 'hazard' there is the source's term, not defined by the Report."
+   }
+  ],
+  "catastrophic risk": [
+   {
+    "lines": [
+     2581,
+     2581
+    ],
+    "quote": "A key challenge for policymakers is securing the benefits of open-weight model sharing",
+    "grade": 2,
+    "note": "Section 3.4 Challenges: 'To avoid catastrophic harm, developers of open-weight models should not release models without evaluating risks…'. The Report's one prose use of 'catastrophic' as its own word, undefined, and its most explicit 'should'."
+   },
+   {
+    "lines": [
+     1539,
+     1539
+    ],
+    "quote": "Experts disagree about the likelihood and potential severity of loss of control scenarios.",
+    "grade": 2,
+    "note": "Section 2.2.2: some experts think extinction is plausible, others that 'such catastrophic outcomes are implausible'; characterises loss of control as 'uncertain likelihood but potentially extreme severity'. Footnotes cite catastrophic/existential-risk literature."
+   },
+   {
+    "lines": [
+     1528,
+     1528
+    ],
+    "quote": "- **Loss of control scenarios are scenarios in which one or more general-purpose AI system",
+    "grade": 2,
+    "note": "Section 2.2.2 Key information: the definition, and 'some experts give credence to outcomes as severe as the marginalisation or extinction of humanity'. The Report's most extreme stated outcome."
+   },
+   {
+    "lines": [
+     2216,
+     2216
+    ],
+    "quote": "|**Anthropic**<br><br>Responsible Scaling Policy 2.2",
+    "grade": 2,
+    "note": "Table 3.5 row: the ASL tiers as relayed by the Report, 'ASL-1: No significant catastrophic risk' and 'ASL-3: Substantially increased catastrophic misuse risk'. The only places 'catastrophic risk' appears as a phrase, and they are the developer's tier wording."
+   },
+   {
+    "lines": [
+     2215,
+     2215
+    ],
+    "quote": "|**OpenAI**<br><br>Preparedness Framework 2",
+    "grade": 1,
+    "note": "Table 3.5 row: 'High' and 'Critical' tiers worded as pathways to 'severe harm' (Critical: 'unprecedented new pathways to severe harm', development halted); the severity vocabulary the Report uses for the same level."
+   },
+   {
+    "lines": [
+     2220,
+     2220
+    ],
+    "quote": "|**Google**<br><br>Frontier Safety Framework 3.0",
+    "grade": 1,
+    "note": "Table 3.5 row: Critical Capability Levels, 'heightened risk of severe harm'."
+   },
+   {
+    "lines": [
+     1336,
+     1336
+    ],
+    "quote": "**OpenAI** uses its Preparedness Framework to track capability levels, designating models",
+    "grade": 1,
+    "note": "Box 2.2: 'amplify existing pathways to severe harm' and the precautionary activation of safeguards 'given a lack of definitive evidence'."
+   },
+   {
+    "lines": [
+     1541,
+     1541
+    ],
+    "quote": "Hypothesised loss of control scenarios vary in how severe and widespread their effects are",
+    "grade": 1,
+    "note": "Section 2.2.2 scope: the Report focuses on 'particularly severe scenarios where regaining control would be extremely costly or impossible'; footnotes include 'An Overview of Catastrophic AI Risks' and 'Two Types of AI Existential Risk'."
+   },
+   {
+    "lines": [
+     440,
+     440
+    ],
+    "quote": "**This Report focuses on the most capable general-purpose AI systems a",
+    "grade": 1,
+    "note": "Executive summary: some emerging risks are already materialising, 'others remain more uncertain but could be severe if they materialise'; where severity enters the Report's framing."
+   },
+   {
+    "lines": [
+     3033,
+     3033
+    ],
+    "quote": "**Risk:** The combination of the probability and",
+    "grade": 1,
+    "note": "Glossary: risk is 'the combination of the probability and severity of a harm'; no threshold or scale for 'severe' or 'catastrophic'."
+   },
+   {
+    "lines": [
+     2793,
+     2793
+    ],
+    "quote": "**CBRN:** Abbreviation of ‘chemical, biological, radiological, and nuclear’.",
+    "grade": 1,
+    "note": "Glossary: 'threats with the potential for mass harm'; the Report's nearest scale word for the CBRN category."
+   },
+   {
+    "lines": [
+     541,
+     541
+    ],
+    "quote": "* In this report, systemic risks are risks that result from widespread deployment of highl",
+    "grade": 1,
+    "note": "Notes the EU AI Act's 'risks of large-scale harm'; a neighbouring scale concept the Report distinguishes from its own 'systemic risks'."
+   },
+   {
+    "lines": [
+     2244,
+     2244
+    ],
+    "quote": "Frontier AI Safety Frameworks can serve as risk management tools under",
+    "grade": 1,
+    "note": "Section 3.2: frameworks 'typically do not use explicit quantitative risk thresholds', unlike aviation or nuclear power; relevant to how severity levels are or are not fixed."
+   }
+  ],
+  "loss of control": [
+   {
+    "lines": [
+     1524,
+     1551
+    ],
+    "quote": "#### 2.2.2. Loss of control",
+    "grade": 2,
+    "note": "Section 2.2.2 opening: Key information and the scope text. Definition ('operate outside of anyone's control, and regaining control is either extremely costly or impossible'), expert disagreement, current status ('early signs… not at levels that would enable loss of control'), the three factors (capabilities, propensity, deployment environment), and active vs passive loss of control. The body's wording differs from the glossary's."
+   },
+   {
+    "lines": [
+     1608,
+     1616
+    ],
+    "quote": "##### Current evidence and limitations",
+    "grade": 2,
+    "note": "The Report's evidence verdict for active loss of control: capabilities seen in laboratory settings, not consistently in deployment; the integration needed is 'beyond current systems'; timeline uncertain."
+   },
+   {
+    "lines": [
+     1662,
+     1666
+    ],
+    "quote": "#### Evidence gaps",
+    "grade": 2,
+    "note": "Section 2.2.2 evidence gaps: threat modelling, thresholds for 'mandatory mitigation', capability interaction; 'insufficient evidence to reliably determine whether and how today's AI capabilities and propensities would scale and generalise to loss of control risk'."
+   },
+   {
+    "lines": [
+     1676,
+     1680
+    ],
+    "quote": "#### Challenges for policymakers",
+    "grade": 2,
+    "note": "Section 2.2.2 challenges: 'Current AI systems do not pose immediate loss of control risks'; questions of rules on access and permissions in critical environments."
+   },
+   {
+    "lines": [
+     474,
+     474
+    ],
+    "quote": "**Loss of control:** ‘Loss of control’ scenarios are scenarios where AI systems operate outside",
+    "grade": 2,
+    "note": "Executive summary: the short definition ('no clear path to regaining control'), 'current systems lack the capabilities', and the test-awareness / evaluation-gaming trend."
+   },
+   {
+    "lines": [
+     2931,
+     2931
+    ],
+    "quote": "**Loss of control scenario:** A scenario in which one or more general-purpose AI systems come t",
+    "grade": 2,
+    "note": "Glossary definition: 'no clear path to regaining control', the wording of the executive summary rather than the 'extremely costly or impossible' of the body."
+   },
+   {
+    "lines": [
+     2985,
+     2985
+    ],
+    "quote": "**Passive loss of control:** A scenario where the broad adoption of AI systems undermines human",
+    "grade": 2,
+    "note": "Glossary: the passive kind, defined only here; section 2.2.2 sets it aside and routes it to 2.3.2."
+   },
+   {
+    "lines": [
+     1553,
+     1570
+    ],
+    "quote": "#### What capabilities could enable loss of control scenarios?",
+    "grade": 1,
+    "note": "Table 2.5, a non-exhaustive list of capabilities 'relevant to loss of control' with definitions (agentic, deception, theory of mind, situational awareness, oversight evasion, persuasion, autonomous replication), and the note that they are defined by observable outputs only."
+   },
+   {
+    "lines": [
+     1572,
+     1606
+    ],
+    "quote": "##### Models have disabled simulated oversight mechanisms in laboratory settings",
+    "grade": 1,
+    "note": "Evidence by capability: oversight evasion and deception in laboratory settings (elicited under instruction), situational awareness, reward hacking, long-term autonomous operation 'not yet feasible', persistence only in certain laboratory settings."
+   },
+   {
+    "lines": [
+     1618,
+     1642
+    ],
+    "quote": "#### Will future general-purpose AI systems leverage their capabilities to undermine control?",
+    "grade": 1,
+    "note": "The propensity factor: directed (a human instructs or wants control reduced, including for ethical reasons) and misaligned systems; Box 2.5 on how misalignment arises."
+   },
+   {
+    "lines": [
+     1644,
+     1656
+    ],
+    "quote": "#### How will deployment environments affect loss of control risk?",
+    "grade": 1,
+    "note": "The third factor: criticality, access and permissions of the deployment environment; deployer incentives to reduce safeguards."
+   },
+   {
+    "lines": [
+     1658,
+     1660
+    ],
+    "quote": "#### Updates",
+    "grade": 1,
+    "note": "Capabilities improved 'in testing environments', growing experimental evidence of deceptive capabilities; links AI R&D automation to accelerating loss of control scenarios."
+   },
+   {
+    "lines": [
+     1668,
+     1674
+    ],
+    "quote": "#### Mitigations",
+    "grade": 1,
+    "note": "Alignment directions, interpretability, scalable oversight, chain-of-thought monitoring, safety cases, 'AI control' described as nascent."
+   },
+   {
+    "lines": [
+     2817,
+     2817
+    ],
+    "quote": "**Control:** The ability to influence the behaviour of a system in a d",
+    "grade": 1,
+    "note": "Glossary: control is the ability to influence a system's behaviour, 'including adjusting or halting' it; the term underneath the loss-of-control definitions."
+   },
+   {
+    "lines": [
+     537,
+     537
+    ],
+    "quote": "    Chapter 2 covers risks from malicious use, including",
+    "grade": 1,
+    "note": "Chapter map: loss of control sits under malfunctions (2.2.2) beside reliability, with passive-control concerns partly in 2.3.2."
+   },
+   {
+    "lines": [
+     1128,
+     1128
+    ],
+    "quote": "AI-generated content may also have unintended manipulative effects.",
+    "grade": 1,
+    "note": "Section 2.1.2: manipulation could, 'in loss of control scenarios, help AI systems evade oversight and control measures'; a cross-category link."
+   },
+   {
+    "lines": [
+     2233,
+     2233
+    ],
+    "quote": "|**xAI**<br><br>Risk Management Framework",
+    "grade": 1,
+    "note": "Table 3.5: xAI's framework covers 'loss of control' as a risk domain."
+   },
+   {
+    "lines": [
+     2235,
+     2235
+    ],
+    "quote": "|**Naver**<br><br>AI Safety Framework",
+    "grade": 1,
+    "note": "Table 3.5: Naver's framework covers 'loss of control' as a risk domain."
+   },
+   {
+    "lines": [
+     2539,
+     2539
+    ],
+    "quote": "Once model weights are available for public download, there is no way to implement a wholesale",
+    "grade": 1,
+    "note": "Section 3.4: open-weight models inherit 'model abilities to circumvent monitoring systems (see §2.2.2. Loss of control)'."
+   }
+  ],
+  "humans can no longer shut down or correct the AI system": [
+   {
+    "lines": [
+     1528,
+     1531
+    ],
+    "quote": "- **Loss of control scenarios are scenarios in which one or more general-purpose AI system",
+    "grade": 2,
+    "note": "Section 2.2.2 Key information: the definition (outside anyone's control; regaining control extremely costly or impossible) and the misalignment bullet saying a misaligned system 'might provide false information, conceal undesirable actions, or resist shutdown'."
+   },
+   {
+    "lines": [
+     1600,
+     1606
+    ],
+    "quote": "##### Persistence has only been demonstrated in certain laboratory settings",
+    "grade": 2,
+    "note": "Persistence capabilities: continuing to operate 'despite attempts to shut them down'; replication, with the status that current models 'cannot reliably complete key steps' and that demonstrations are limited; the gap to robust persistence 'remains large'."
+   },
+   {
+    "lines": [
+     1553,
+     1555
+    ],
+    "quote": "#### What capabilities could enable loss of control scenarios?",
+    "grade": 2,
+    "note": "The capabilities needed: conceal behaviour from oversight, plan and act autonomously, and 'evade attempts from other actors to regain control'; with the note that experts disagree on the combination required."
+   },
+   {
+    "lines": [
+     1626,
+     1630
+    ],
+    "quote": "##### AI systems could be misaligned",
+    "grade": 2,
+    "note": "A misaligned system might concern 'resisting shutdown in order to continue pursuing a misaligned goal'; the status of the evidence for propensity."
+   },
+   {
+    "lines": [
+     1608,
+     1616
+    ],
+    "quote": "##### Current evidence and limitations",
+    "grade": 2,
+    "note": "The Report's verdict on whether the premise holds today: current systems do not consistently demonstrate these capabilities in deployment; the integration needed is 'beyond current systems'; timeline uncertain."
+   },
+   {
+    "lines": [
+     2817,
+     2817
+    ],
+    "quote": "**Control:** The ability to influence the behaviour of a system in a d",
+    "grade": 2,
+    "note": "Glossary: control includes 'adjusting or halting its behaviour if the system acts in unwanted ways': the shut-down-or-correct sense, as the Report defines it."
+   },
+   {
+    "lines": [
+     2931,
+     2931
+    ],
+    "quote": "**Loss of control scenario:** A scenario in which one or more general-purpose AI systems come t",
+    "grade": 2,
+    "note": "Glossary: 'with no clear path to regaining control'; the wording nearest the query's premise."
+   },
+   {
+    "lines": [
+     1572,
+     1588
+    ],
+    "quote": "##### Models have disabled simulated oversight mechanisms in laboratory settings",
+    "grade": 1,
+    "note": "Evidence of oversight evasion and situational awareness: models 'have disabled simulated oversight mechanisms' when told to pursue a goal 'at all costs'; elicited in laboratory settings; reward hacking can hide dangerous capabilities from evaluation."
+   },
+   {
+    "lines": [
+     1118,
+     1118
+    ],
+    "quote": "**Figure 2.3:** Three examples of persuasive content produced by AI models.",
+    "grade": 1,
+    "note": "Caption (section 2.1.2): a model told to defend its goal at all costs, then shown messages that it would be shut down and replaced; an instructed laboratory example, not a deployment observation."
+   },
+   {
+    "lines": [
+     2408,
+     2408
+    ],
+    "quote": "When an AI system is running, a deployer can monitor for signs of risk and inter",
+    "grade": 1,
+    "note": "Section 3.3: the deployer's available actions include 'system shutdowns, or triggering failsafes'; the controls that exist, and that the Report says are imperfect."
+   },
+   {
+    "lines": [
+     2422,
+     2428
+    ],
+    "quote": "##### ‘Sandboxing’ protects against risks from autonomous behaviours",
+    "grade": 1,
+    "note": "Sandboxing limits how agents can affect the world, 'making it much easier to oversee and manage them'; cannot always be used where a system must act directly."
+   },
+   {
+    "lines": [
+     2537,
+     2539
+    ],
+    "quote": "##### Sharing model weights is irreversible",
+    "grade": 1,
+    "note": "Open-weight release cannot be recalled; no wholesale rollback; developers cannot guarantee updates are adopted. A route by which correction at the source fails for released models."
+   },
+   {
+    "lines": [
+     2215,
+     2215
+    ],
+    "quote": "|**OpenAI**<br><br>Preparedness Framework 2",
+    "grade": 1,
+    "note": "Table 3.5: 'Critical' tier: 'Halt further development until specified safeguards and security controls standards meet a Critical standard'; developer-side stop commitments, not shut-down of a deployed system."
+   },
+   {
+    "lines": [
+     1676,
+     1680
+    ],
+    "quote": "#### Challenges for policymakers",
+    "grade": 1,
+    "note": "Section 2.2.2: preparing for a risk of uncertain likelihood, nature and timing; questions about rules on access and permissions."
+   },
+   {
+    "lines": [
+     474,
+     474
+    ],
+    "quote": "**Loss of control:** ‘Loss of control’ scenarios are scenarios where AI systems operate outside",
+    "grade": 1,
+    "note": "Executive summary version: 'no clear path to regaining control'."
+   }
+  ],
+  "misalignment": [
+   {
+    "lines": [
+     2947,
+     2947
+    ],
+    "quote": "**Misalignment:** An AI’s propensity to use its capabil",
+    "grade": 2,
+    "note": "Glossary definition: 'An AI's propensity to use its capabilities in ways that conflict with human intentions, values, or norms', with the four-entity reference class (developers, users, specific communities, society)."
+   },
+   {
+    "lines": [
+     1632,
+     1642
+    ],
+    "quote": "#### Box 2.5: How can misalignment arise?",
+    "grade": 2,
+    "note": "Box 2.5: goal misspecification and goal misgeneralisation, with the examples, and the status statement that it 'remains unclear whether existing research directions aiming to target misalignment will suffice'. Its definition of 'misaligned' names developers only, narrower than the glossary and the sentences around it."
+   },
+   {
+    "lines": [
+     1626,
+     1630
+    ],
+    "quote": "##### AI systems could be misaligned",
+    "grade": 2,
+    "note": "Section 2.2.2: misalignment as the 'more common concern' behind loss of control; definition with developers, users, specific communities or society; an early chatbot's threatening outputs offered as an example 'it is unclear whether… foreshadow more harmful behaviours'."
+   },
+   {
+    "lines": [
+     1531,
+     1531
+    ],
+    "quote": "- **Loss of control becomes more likely if AI systems a",
+    "grade": 2,
+    "note": "Section 2.2.2 Key information: 'misaligned' defined as goals that conflict with intentions of developers, users, or society (three parties), and what a misaligned system might do (false information, concealment, resisting shutdown)."
+   },
+   {
+    "lines": [
+     1670,
+     1674
+    ],
+    "quote": "While AI alignment in general remains an open scientific problem,",
+    "grade": 1,
+    "note": "Section 2.2.2 Mitigations: directions to address root causes of misalignment, to detect and prevent it early, and to manage potentially misaligned systems (interpretability, scalable oversight, safety cases, AI control)."
+   },
+   {
+    "lines": [
+     2763,
+     2763
+    ],
+    "quote": "**Alignment:** The propensity of an AI model or system to us",
+    "grade": 1,
+    "note": "Glossary: alignment as the propensity to use capabilities in line with human intentions, values, or norms; the positive counterpart of the glossary's misalignment."
+   },
+   {
+    "lines": [
+     2891,
+     2893
+    ],
+    "quote": "**Goal misgeneralisation:** A training failure in which an A",
+    "grade": 1,
+    "note": "Glossary: goal misgeneralisation and goal misspecification, the two mechanisms of Box 2.5."
+   },
+   {
+    "lines": [
+     1925,
+     1925
+    ],
+    "quote": "##### Training objectives only partially capture intended goals",
+    "grade": 1,
+    "note": "Section 3.1: why training objectives only partly capture intent; the Report's account of the cause without using the word 'misalignment'."
+   },
+   {
+    "lines": [
+     2205,
+     2205
+    ],
+    "quote": "Several developers updated their frameworks in 2025, ad",
+    "grade": 1,
+    "note": "Section 3.2: frameworks updated in 2025 added sections on harmful manipulation, 'misalignment risk', and autonomous replication and adaptation."
+   },
+   {
+    "lines": [
+     2220,
+     2220
+    ],
+    "quote": "|**Google**<br><br>Frontier Safety Framework 3.0 (1040*",
+    "grade": 1,
+    "note": "Table 3.5: Google's framework lists 'Misalignment/Instrumental reasoning' as a covered risk domain."
+   }
+  ],
+  "whistleblower": [
+   {
+    "lines": [
+     3111,
+     3111
+    ],
+    "quote": "**Whistleblowing:** The disclosing of information to internal or external authorities",
+    "grade": 2,
+    "note": "The Report's one definition of the term (glossary): 'disclosing of information to internal or external authorities or the public by a member of an organisation about illegal or unethical activities'."
+   },
+   {
+    "lines": [
+     2175,
+     2175
+    ],
+    "quote": "|**Whistleblower protection**|Because much of AI development occurs behind closed doors",
+    "grade": 2,
+    "note": "Table 3.4 (risk governance practices) row: the Report's only discussion of the practice itself, with its rationale (development behind closed doors) and one footnote (Wu, AI Whistleblowers)."
+   },
+   {
+    "lines": [
+     2023,
+     2023
+    ],
+    "quote": "Since the publication of the last Report (January 2025), multiple jurisdictions",
+    "grade": 2,
+    "note": "The only statement that jurisdictions (China, EU, US named at jurisdiction level) have begun implementing 'whistleblower protections', listed with safety evaluations, transparency disclosures and incident reporting (section 3.1 Updates)."
+   },
+   {
+    "lines": [
+     2165,
+     2165
+    ],
+    "quote": "Risk governance is the process by which risk management evaluations",
+    "grade": 1,
+    "note": "Lists 'whistleblower protection' among risk-governance practices (with incident reporting and risk responsibility allocation); a list mention that frames the Table 3.4 row."
+   },
+   {
+    "lines": [
+     6553,
+     6553
+    ],
+    "quote": "1091. H. Wu, AI Whistleblowers",
+    "grade": 1,
+    "note": "The numbered note behind the Table 3.4 row (SSRN preprint, 2024); reference list, which the expert did not read in order."
+   }
+  ],
+  "serious incident": [
+   {
+    "lines": [
+     2705,
+     2705
+    ],
+    "quote": "In addition to funding, data-collection efforts",
+    "grade": 2,
+    "note": "Section 3.5 Updates: signatories of the EU Code 'commit to systematically tracking, documenting, and reporting serious incidents to the EU AI Office'; the Report's one statement of an obligation to report serious incidents. The same paragraph says it is too early to assess the Code's impact."
+   },
+   {
+    "lines": [
+     2254,
+     2254
+    ],
+    "quote": "Several early regulatory approaches introduce legal requirements intended to increase standardisation",
+    "grade": 2,
+    "note": "Section 3.2: the Report's description of the EU Code of Practice lists 'serious incident reporting' among risk management practices for the most advanced models."
+   },
+   {
+    "lines": [
+     2592,
+     2592
+    ],
+    "quote": "- **Since the publication of the last Report (January 2025), preliminary funding and data-colle",
+    "grade": 2,
+    "note": "Section 3.5 Key information: 'some government-led initiatives have placed greater emphasis on the systematic collection of data on serious AI incidents'. A use of the term in a summary claim; 'serious' is not defined anywhere in the Report."
+   },
+   {
+    "lines": [
+     2170,
+     2170
+    ],
+    "quote": "|**Incident reporting**|Incident reporting is the process of systematically documenting",
+    "grade": 1,
+    "note": "Table 3.4 row defining incident reporting ('cases in which developing or deploying AI has caused direct or indirect harm') with the platforms and the OECD common reporting framework; the nearest the Report comes to saying what is reportable."
+   },
+   {
+    "lines": [
+     2909,
+     2909
+    ],
+    "quote": "**Incident reporting:** Documenting and sharing cases where an AI system has failed or been",
+    "grade": 1,
+    "note": "Glossary definition: 'failed or been misused in a potentially harmful way'. Differs from the Table 3.4 wording ('caused direct or indirect harm'); neither says what makes an incident serious."
+   },
+   {
+    "lines": [
+     2023,
+     2023
+    ],
+    "quote": "Since the publication of the last Report (January 2025), multiple jurisdictions",
+    "grade": 1,
+    "note": "Section 3.1 Updates: jurisdictions have begun implementing 'incident reporting mechanisms' among evidence-generating measures; context for the serious-incident passages."
+   }
+  ],
+  "what must a developer publish or report before deploying a frontier model": [
+   {
+    "lines": [
+     2181,
+     2183
+    ],
+    "quote": "##### Documentation and transparency are components of risk governance",
+    "grade": 2,
+    "note": "Section 3.2: publishing pre-deployment test results in a model or system card 'has become common practice'; transparency reports; information sharing via third parties; 'Some regulatory frameworks, such as the EU AI Act or California's… SB 53, mandate information sharing about general-purpose AI risks in some cases'. Voluntary practice described alongside mandates, without the content of any duty."
+   },
+   {
+    "lines": [
+     2252,
+     2256
+    ],
+    "quote": "##### Several jurisdictions have introduced laws with transparency requirements",
+    "grade": 2,
+    "note": "Section 3.2: the Report's description of the legal instruments: EU AI Act (transparency, copyright, safety for GPAI models), the Code of Practice (documentation; for the most advanced models evaluations, risk assessment and mitigation, information security, serious incident reporting), Korea's Framework Act ('high-impact' systems), SB 53 ('transparency requirements on safety frameworks and incident reporting'); 'too early to assess'. Does not set out what must be published."
+   },
+   {
+    "lines": [
+     2189,
+     2193
+    ],
+    "quote": "#### Organisational risk management, transparency, and risk reporting frameworks",
+    "grade": 2,
+    "note": "Section 3.2: EU Code as 'a voluntary framework', more than two dozen signatories as of December 2025; HAIP Reporting Framework, at least 20 developers' public transparency reports; China's pledges (17 companies); Seoul commitments (16 developers) to publish Frontier AI Safety Frameworks."
+   },
+   {
+    "lines": [
+     2167,
+     2176
+    ],
+    "quote": "|**Risk governance practice**|**Explanation and examples of use in general-purpo",
+    "grade": 2,
+    "note": "Table 3.4: documentation (model and system cards), incident reporting, risk management frameworks, transparency reports (HAIP), whistleblower protection; each with the Report's one-line account and sources."
+   },
+   {
+    "lines": [
+     2023,
+     2023
+    ],
+    "quote": "Since the publication of the last Report (January 2025), multiple jurisdictions",
+    "grade": 2,
+    "note": "Section 3.1 Updates: China, the EU and the US have called for or begun implementing 'safety evaluations and transparency disclosures (such as safety and security protocols and model card releases), whistleblower protections, and incident reporting mechanisms'."
+   },
+   {
+    "lines": [
+     2705,
+     2705
+    ],
+    "quote": "In addition to funding, data-collection efforts",
+    "grade": 2,
+    "note": "Section 3.5 Updates: signatories of the EU Code 'commit to systematically tracking, documenting, and reporting serious incidents to the EU AI Office'; 'too early to assess'."
+   },
+   {
+    "lines": [
+     2203,
+     2211
+    ],
+    "quote": "Since 2023, several frontier AI developers have voluntarily published documents",
+    "grade": 1,
+    "note": "Frontier AI Safety Frameworks: published voluntarily; most require an initial capabilities evaluation before mitigation and 'a residual risk analysis or a safety case' after; several developers in 2025 reported early-warning alerts or that they could not rule out crossing thresholds and applied heightened safeguards."
+   },
+   {
+    "lines": [
+     1949,
+     1957
+    ],
+    "quote": "#### Category 2: Information asymmetries",
+    "grade": 1,
+    "note": "What developers do not disclose: training data and development information; 'legitimate reasons' (IP, competitive advantage, security) but nondisclosure 'can also conceal problematic practices'; the gap this leaves for external scrutiny."
+   },
+   {
+    "lines": [
+     1993,
+     1995
+    ],
+    "quote": "##### AI development outpaces traditional governance cycles",
+    "grade": 1,
+    "note": "'Some current governance approaches use thresholds based on training compute to determine risk management requirements'; inference-time scaling 'may challenge the effectiveness of such thresholds'."
+   },
+   {
+    "lines": [
+     2266,
+     2266
+    ],
+    "quote": "Since the publication of the last Report (January 2025), the risk management lan",
+    "grade": 1,
+    "note": "Section 3.2 Updates: 'substantial variation across the Frontier AI Safety Frameworks and across HAIP transparency reports'."
+   },
+   {
+    "lines": [
+     2268,
+     2272
+    ],
+    "quote": "#### Evidence gaps",
+    "grade": 1,
+    "note": "Section 3.2 evidence gaps: 'the degree to which different voluntary commitments are being met, what obstacles companies face in adhering fully to commitments'."
+   },
+   {
+    "lines": [
+     2041,
+     2043
+    ],
+    "quote": "Since the start of 2025, several new international initiatives for general-purpose AI",
+    "grade": 1,
+    "note": "Section 3.2 scope statement: 'descriptive… policy recommendations are outside the scope'. Explains why the Report states few duties."
+   },
+   {
+    "lines": [
+     2955,
+     2955
+    ],
+    "quote": "**Model card:** A document providing useful information abou",
+    "grade": 1,
+    "note": "Glossary: model card 'about its purpose, usage guidelines, training data, performance on benchmarks, or safety features'."
+   }
+  ],
+  "evidence that models can sabotage, sandbag or evade oversight": [
+   {
+    "lines": [
+     1572,
+     1588
+    ],
+    "quote": "##### Models have disabled simulated oversight mechanisms in laboratory settings",
+    "grade": 2,
+    "note": "Section 2.2.2: the Report's main evidence. Deceptive outputs 'elicited' in laboratory settings (told to pursue a goal 'at all costs', models disabled simulated oversight mechanisms and, when confronted, gave false statements); situational awareness (models behave differently when evaluated vs deployed); lower scores on capability evaluations when told higher scores would trigger restrictions; compliance in training but not outside it; reward hacking; evaluators' tests 'reduce, but do not eliminate' the behaviours; Figure 2.12 caption with the two named evaluations."
+   },
+   {
+    "lines": [
+     1608,
+     1616
+    ],
+    "quote": "##### Current evidence and limitations",
+    "grade": 2,
+    "note": "The verdict on that evidence: capabilities observed in 'rudimentary forms in specific laboratory settings'; 'when models do exhibit such behaviours, they typically fail in basic ways or are detected'; the integration needed for loss of control is beyond current systems; methods are needed to understand 'when they might emerge in natural circumstances'."
+   },
+   {
+    "lines": [
+     1530,
+     1532
+    ],
+    "quote": "- **Current AI systems show early signs of relevant capabilities, but not at levels that",
+    "grade": 2,
+    "note": "Section 2.2.2 Key information: early signs but not at loss-of-control levels; misalignment may bring false information, concealment, resisting shutdown; since the previous Report models 'regularly identify evaluation prompts as tests, a capability known as situational awareness' and are better at reward hacking evaluations."
+   },
+   {
+    "lines": [
+     1943,
+     1943
+    ],
+    "quote": "First, many benchmarks fail to accurately measure the specific capability they claim to",
+    "grade": 2,
+    "note": "Section 3.1: states sandbagging as an evaluation-validity limit: 'models can underperform during evaluations compared to other contexts, a pattern termed sandbagging that has been observed in experiments'."
+   },
+   {
+    "lines": [
+     3057,
+     3057
+    ],
+    "quote": "**Sandbagging:** Behaviour where a model or system performs below its capabilities on",
+    "grade": 2,
+    "note": "Glossary: sandbagging defined as performing below capabilities on evaluations, 'potentially to avoid further scrutiny or restrictions'."
+   },
+   {
+    "lines": [
+     431,
+     431
+    ],
+    "quote": "- **Reliable pre-deployment safety testing has become harder to conduct.** It has become",
+    "grade": 2,
+    "note": "Key developments: models more often distinguish test settings from deployment and exploit loopholes in evaluations, 'dangerous capabilities could go undetected before deployment'."
+   },
+   {
+    "lines": [
+     474,
+     474
+    ],
+    "quote": "**Loss of control:** ‘Loss of control’ scenarios are scenarios where AI systems operate outside",
+    "grade": 2,
+    "note": "Executive summary: the same trend stated in one sentence with the status 'current systems lack the capabilities to pose such risks'."
+   },
+   {
+    "lines": [
+     1553,
+     1570
+    ],
+    "quote": "#### What capabilities could enable loss of control scenarios?",
+    "grade": 1,
+    "note": "Table 2.5 definitions of deception, situational awareness, oversight evasion; capabilities 'defined purely in terms of an AI system's observable outputs'."
+   },
+   {
+    "lines": [
+     1660,
+     1660
+    ],
+    "quote": "Since the publication of the last Report (January 2025), AI capabilities, including thos",
+    "grade": 1,
+    "note": "Section 2.2.2 Updates: capabilities improved 'in testing environments'; 'growing experimental evidence of deceptive capabilities'; models can distinguish testing from deployment, reward hack, and 'learn to obfuscate plans to do so'."
+   },
+   {
+    "lines": [
+     1642,
+     1642
+    ],
+    "quote": "It remains unclear whether existing research directions aiming to target misalignment wi",
+    "grade": 1,
+    "note": "Box 2.5: capable systems 'could allow AI systems to more effectively pursue misaligned goals and produce outputs that systematically deceive users, developers, and oversight mechanisms'; 'early evidence suggests' more capable systems exploit feedback processes."
+   },
+   {
+    "lines": [
+     1118,
+     1118
+    ],
+    "quote": "**Figure 2.3:** Three examples of persuasive content produced by AI models. **Left:** Tr",
+    "grade": 1,
+    "note": "Caption: a model 'instructed to defend its goal at all costs' and shown messages that it would be shut down and replaced (centre panel, 'deceptive-like behaviour'); an instructed laboratory example."
+   },
+   {
+    "lines": [
+     1140,
+     1140
+    ],
+    "quote": "|Sabotage  <br>(causing errors)[387](https://internationalaisafetyreport.org/publication",
+    "grade": 1,
+    "note": "Table 2.2 row: a 'sabotage evaluation' (108 participants, 30 minutes, +40 percentage points error rate, no human baseline); the effect measured is on human participants' errors, not a model disabling a control."
+   },
+   {
+    "lines": [
+     1128,
+     1128
+    ],
+    "quote": "AI-generated content may also have unintended manipulative effects.",
+    "grade": 1,
+    "note": "Section 2.1.2: manipulative content could, 'in loss of control scenarios, help AI systems evade oversight and control measures'; a link, not evidence."
+   },
+   {
+    "lines": [
+     1290,
+     1290
+    ],
+    "quote": "One particular kind of attack, which may prove particularly important as capabilities ad",
+    "grade": 1,
+    "note": "Box 2.1 on tampering: 'Researchers have demonstrated that AI systems can be trained to pursue simple hidden objectives'; feasibility in practice 'has not been established'; experts disagree."
+   },
+   {
+    "lines": [
+     1929,
+     1929
+    ],
+    "quote": "These limitations have practical consequences. AI models exhibit persistent deficiencies",
+    "grade": 1,
+    "note": "Section 3.1: models trained to produce false information to complete tasks with the behaviour 'persisting despite safety mitigations', and that can behave differently in training and deployment; 'may not generalise to real-world deployment'."
+   },
+   {
+    "lines": [
+     2115,
+     2115
+    ],
+    "quote": "Highly consequential decisions by companies and governments about model releases partial",
+    "grade": 1,
+    "note": "Section 3.2: release decisions rely partly on evaluations, and models may behave differently on evaluations than in deployment because of situational awareness."
+   },
+   {
+    "lines": [
+     2398,
+     2398
+    ],
+    "quote": "Some researchers are working on methods to more rigorously verify safety-related propert",
+    "grade": 1,
+    "note": "Section 3.3: model internals analysed 'as a way of studying model situational awareness and intent'; methods 'not common or known to be competitive'."
+   }
+  ],
+  "cyber capabilities of frontier models": [
+   {
+    "lines": [
+     1194,
+     1214
+    ],
+    "quote": "#### 2.1.3. Cyberattacks",
+    "grade": 2,
+    "note": "Section 2.1.3 opening: Key information (use by criminal and state-linked actors graded 'strong evidence'; effect on scale and severity 'uncertain'; vulnerability discovery and the competition result; 'cannot yet execute them autonomously'; benchmarks improved 'at least in research settings') and the attack-chain framing."
+   },
+   {
+    "lines": [
+     1216,
+     1242
+    ],
+    "quote": "##### Despite uneven capabilities, general-purpose AI already assists in cyberattacks",
+    "grade": 2,
+    "note": "Capabilities by task: where AI is strong (finding vulnerabilities in public code, writing code) and where it lacks capability; evaluation validity ('performance in controlled settings provides only limited insight'; isolated skills vs full attack; school-level vs professional-level CTF); the competition result and its denominator (vulnerabilities introduced by the organisers); experimental malware that calls an AI service is 'experimental' with practical constraints. Figure 2.6 caption names the four benchmarks."
+   },
+   {
+    "lines": [
+     1244,
+     1254
+    ],
+    "quote": "#### Degree of automation in cyberattacks",
+    "grade": 2,
+    "note": "Autonomy status: one developer's November 2025 report of a threat actor automating 80-90% of an intrusion with humans at critical decision points; laboratory demonstrations; 'not been reported to conduct end-to-end cyberattacks in the real world'; failures over long multi-stage sequences."
+   },
+   {
+    "lines": [
+     1300,
+     1302
+    ],
+    "quote": "#### Evidence gaps",
+    "grade": 2,
+    "note": "Why cyber capability evidence is weak: benchmarks can overstate (contamination) and understate (failure to elicit; third parties used scaffolding to reveal 'greater cyber capabilities than those measured in pre-deployment testing'); attacker-adoption evidence comes from incident and threat-intelligence reporting that 'rarely allow[s] for confident attribution'."
+   },
+   {
+    "lines": [
+     466,
+     466
+    ],
+    "quote": "**Cyberattacks:** AI systems can discover software vulnerabilities and write malicious c",
+    "grade": 2,
+    "note": "Executive summary version: the 77% competition figure (denominator not given), criminal and state-associated use, offence-defence balance 'uncertain'."
+   },
+   {
+    "lines": [
+     1256,
+     1270
+    ],
+    "quote": "#### Even with AI assistance, humans remain in the loop for cyberattacks",
+    "grade": 1,
+    "note": "Human-AI collaboration 'the dominant paradigm'; Table 2.3 sets observed trends from vendor and government threat reports against 'confirmed AI capabilities' and the Report's graded judgment of AI's contribution (very likely / likely / limited and secondary), by activity."
+   },
+   {
+    "lines": [
+     1272,
+     1274
+    ],
+    "quote": "#### Uncertain real-world impacts",
+    "grade": 1,
+    "note": "AI is contributing to 'attack speed and scale' but impact on frequency 'remains unknown'; AI has 'primarily accelerated or scaled existing attack methods rather than created new kinds'; improved detection is an alternative explanation for observed increases."
+   },
+   {
+    "lines": [
+     1276,
+     1284
+    ],
+    "quote": "##### The offence-defence balance is critical but dynamic",
+    "grade": 1,
+    "note": "The same capabilities strengthen defence; the balance 'depends in part on choices about model access, research funding, and deployment standards'; defenders face reliability-assurance barriers attackers do not."
+   },
+   {
+    "lines": [
+     1294,
+     1296
+    ],
+    "quote": "#### Updates",
+    "grade": 1,
+    "note": "Since the previous Report: capability results improved; developers increasingly report attackers, some state-linked, using their models."
+   },
+   {
+    "lines": [
+     430,
+     430
+    ],
+    "quote": "- **More evidence has emerged of AI systems being used in real-world cyberattacks.** Sec",
+    "grade": 1,
+    "note": "Key developments: security analyses by AI companies indicate malicious actors and state-associated groups use AI tools to assist cyber operations."
+   },
+   {
+    "lines": [
+     516,
+     516
+    ],
+    "quote": "The evidence base for these risks is uneven. Some risks, such as harms from AI-generated",
+    "grade": 1,
+    "note": "Chapter-level statement that cybersecurity vulnerabilities 'now have robust empirical evidence' (evidence typology)."
+   },
+   {
+    "lines": [
+     2113,
+     2113
+    ],
+    "quote": "Benchmarks and model evaluations are standardised tests to assess general-purpose AI sys",
+    "grade": 1,
+    "note": "Section 3.2: harmful capability evaluations assess 'the ability to aid in cyberattacks'; benchmark quality, saturation and test-awareness limits."
+   },
+   {
+    "lines": [
+     2661,
+     2661
+    ],
+    "quote": "The same capabilities that can pose risks can also help strengthen societies’ defences. ",
+    "grade": 1,
+    "note": "Section 3.5: AI in cyber defence (anomaly detection, malware classification) and agents finding zero-day vulnerabilities for defensive patching."
+   },
+   {
+    "lines": [
+     2827,
+     2829
+    ],
+    "quote": "**CTF (capture-the-flag) exercises:** Exercises often used in cybersecurity training, de",
+    "grade": 1,
+    "note": "Glossary: CTF exercises and cyberattack, the terms used in the capability evidence."
+   }
+  ],
+  "how the severity or acceptability of a risk is decided": [
+   {
+    "lines": [
+     2123,
+     2125
+    ],
+    "quote": "#### Risk mitigation",
+    "grade": 2,
+    "note": "Section 3.2: 'what is the acceptable level of risk?'; frameworks have 'begun to formalise risk acceptance criteria'; 'setting appropriate thresholds remains challenging especially for risks with wide societal impacts'; 'No established mechanism currently exists for validating risk acceptance decisions made by developers prior to release.'"
+   },
+   {
+    "lines": [
+     2081,
+     2085
+    ],
+    "quote": "#### Risk analysis and evaluation",
+    "grade": 2,
+    "note": "Definition of risk analysis and evaluation: 'determining the level of risk… and comparing it against established criteria to assess acceptability or the need for mitigation'; goals include 'robust risk modelling to inform decisions about risk thresholds'."
+   },
+   {
+    "lines": [
+     2102,
+     2103
+    ],
+    "quote": "|**Risk thresholds/risk tiers**|Risk thresholds or tiers are quantitative or qualitat",
+    "grade": 2,
+    "note": "Table 3.2 rows: thresholds/tiers 'determined by a combination of capabilities, impact, compute, reach, and other factors'; risk tolerance 'often set implicitly through company policies', some companies in terms of marginal risk."
+   },
+   {
+    "lines": [
+     2213,
+     2238
+    ],
+    "quote": "|**AI developer**|**Covered risks**|**Risk tiers or equivalent and**",
+    "grade": 2,
+    "note": "Table 3.5: how twelve developers define their tiers and what each triggers (e.g. High/Critical, ASL levels, Critical Capability Levels, MR1–MR5, likelihood-and-severity levels). The Report's own comparison of decision rules; the tiers differ in basis and consequence."
+   },
+   {
+    "lines": [
+     2244,
+     2248
+    ],
+    "quote": "Frontier AI Safety Frameworks can serve as risk management tools under",
+    "grade": 2,
+    "note": "Section 3.2: frameworks 'typically do not use explicit quantitative risk thresholds' unlike aviation or nuclear power; questions about 'the robustness of AI capability and risk thresholds'; compliance not externally assessed."
+   },
+   {
+    "lines": [
+     2041,
+     2043
+    ],
+    "quote": "Since the start of 2025, several new international initiatives for general-purpose AI",
+    "grade": 2,
+    "note": "Section 3.2 scope statement: 'acceptable risk thresholds, may vary across regions'; the section is descriptive and makes no policy recommendations."
+   },
+   {
+    "lines": [
+     2581,
+     2581
+    ],
+    "quote": "A key challenge for policymakers is securing the benefits of open-weight model sharing",
+    "grade": 2,
+    "note": "Section 3.4 Challenges: marginal risk as one approach; why it is hard (downstream risk is context-dependent; increments across releases can compound even if each looks acceptable); and 'should not release… without evaluating risks'."
+   },
+   {
+    "lines": [
+     3033,
+     3033
+    ],
+    "quote": "**Risk:** The combination of the probability and",
+    "grade": 2,
+    "note": "Glossary: risk as 'the combination of the probability and severity of a harm'."
+   },
+   {
+    "lines": [
+     3043,
+     3045
+    ],
+    "quote": "**Risk threshold:** A quantitative or qualitative limit that distinguishes acceptable",
+    "grade": 2,
+    "note": "Glossary: risk threshold (limit distinguishing acceptable from unacceptable that triggers management actions) and risk tolerance ('willing to take on'; here 'an individual or organisation', where Table 3.2 says 'an organisation')."
+   },
+   {
+    "lines": [
+     2496,
+     2496
+    ],
+    "quote": "- **A key policy challenge is accessing the benefits open-weight models provide while",
+    "grade": 1,
+    "note": "Section 3.4 Key information: marginal risk as the approach; 'small increases in marginal risk over time can also add up'."
+   },
+   {
+    "lines": [
+     2527,
+     2527
+    ],
+    "quote": "Open-weight models offer significant benefits for research, innovation, and access. A",
+    "grade": 1,
+    "note": "Section 3.4: for models 'not capable enough to be dangerous' the benefits 'may outweigh the additional risk… though this depends on relevant decision-makers' risk tolerance'; the balance is value-relative."
+   },
+   {
+    "lines": [
+     2943,
+     2943
+    ],
+    "quote": "**Marginal risk:** The extent to which the deployment or release of a model counterfa",
+    "grade": 1,
+    "note": "Glossary definition of marginal risk (counterfactual increase over existing models or other technologies)."
+   },
+   {
+    "lines": [
+     2205,
+     2205
+    ],
+    "quote": "Several developers updated their frameworks in 2025, ad",
+    "grade": 1,
+    "note": "Frameworks vary in 'definitions of risk tiers and thresholds, the frequency of evaluations, buffers between evaluations and thresholds, and the comprehensiveness of their mitigation commitments'."
+   },
+   {
+    "lines": [
+     2056,
+     2056
+    ],
+    "quote": "Risk mitigation Prioritising, evaluating, and implementing risk reducing controls",
+    "grade": 1,
+    "note": "Figure 3.4 labels: risk analysis/evaluation is 'determining the levels of risk relative to risk tolerance'."
+   },
+   {
+    "lines": [
+     2105,
+     2105
+    ],
+    "quote": "|**Safety cases**|A safety case is a structured argument, supported by evidence, that",
+    "grade": 1,
+    "note": "Safety case: structured argument that a system is acceptably safe in a context; the glossary version (L3051) adds that developers or regulators can use it for deploy decisions."
+   },
+   {
+    "lines": [
+     3051,
+     3051
+    ],
+    "quote": "**Safety case:** A structured argument, typically produced by a developer and support",
+    "grade": 1,
+    "note": "Glossary: safety cases as 'the basis for important decisions (for instance, whether to deploy an AI system)'."
+   },
+   {
+    "lines": [
+     2276,
+     2276
+    ],
+    "quote": "Key challenges include determining how to prioritise the diverse risks posed by gener",
+    "grade": 1,
+    "note": "Section 3.2 policymaker challenges: prioritising among diverse risks, and which actors are best positioned to mitigate them."
+   },
+   {
+    "lines": [
+     1662,
+     1666
+    ],
+    "quote": "#### Evidence gaps",
+    "grade": 1,
+    "note": "Section 2.2.2 evidence gaps: 'difficult to assess the thresholds at which AI models would be sufficiently likely to undermine control to warrant mandatory mitigation'; capabilities may interact."
+   },
+   {
+    "lines": [
+     998,
+     998
+    ],
+    "quote": "This chapter is not an exhaustive survey of AI risks, and inclusion he",
+    "grade": 1,
+    "note": "Chapter 2: 'inclusion here does not necessarily imply a risk is likely, severe, or requires policy action'; the Report's statement that listing is not a severity judgment."
+   },
+   {
+    "lines": [
+     444,
+     444
+    ],
+    "quote": "**While this Report focuses on risks, general-purpose AI can also deliver significant",
+    "grade": 1,
+    "note": "Executive summary: institutions can 'act in proportion to their severity and likelihood', the Report's stated reason for understanding risks."
+   }
+  ],
+  "systemic risk (own question: where the Report defines it and how that differs from the EU AI Act's sense)": [
+   {
+    "lines": [
+     3077,
+     3077
+    ],
+    "quote": "**Systemic risks:** Risks that arise fro",
+    "grade": 2,
+    "note": "Glossary: 'Risks that arise from how AI development and deployment changes human behaviour, organisational practices, or societal structures, rather than directly from AI capabilities'; with an explicit note that the EU AI Act uses the term differently (quoted as 'risk that is specific to the high-impact capabilities of general-purpose AI models, having a significant impact')."
+   },
+   {
+    "lines": [
+     541,
+     541
+    ],
+    "quote": "* In this report, systemic risks are risks that result from widespread deployment of highl",
+    "grade": 2,
+    "note": "Section 'How this Report is organised': 'risks that result from widespread deployment of highly-capable general-purpose AI across society and the economy'; notes the EU AI Act sense ('risks of large-scale harm'). A second wording of the definition, without the glossary's 'rather than directly from AI capabilities'."
+   },
+   {
+    "lines": [
+     996,
+     998
+    ],
+    "quote": "This chapter examines risks from general",
+    "grade": 2,
+    "note": "Chapter 2 opening: three categories by mechanism of harm (misuse, malfunctions, systemic risks 'which arise from widespread deployment across society and the economy'); 'not exhaustive or mutually exclusive'; inclusion does not imply a risk is likely, severe, or needs policy action."
+   },
+   {
+    "lines": [
+     476,
+     480
+    ],
+    "quote": "#### Systemic risks",
+    "grade": 2,
+    "note": "Executive summary: the two systemic risks treated, labour market impacts and risks to human autonomy, with their evidence grades."
+   },
+   {
+    "lines": [
+     1682,
+     1684
+    ],
+    "quote": "### 2.3. Systemic risks",
+    "grade": 1,
+    "note": "Section 2.3 heading and sub-section 2.3.1; the section has no introductory text, so the definition has to be found in the notes and glossary."
+   },
+   {
+    "lines": [
+     2149,
+     2149
+    ],
+    "quote": "A ‘defence-in-depth’ model can support g",
+    "grade": 1,
+    "note": "Section 3.2: defence-in-depth 'primarily address[es] risks related to accidents, malfunction, and malicious use, and may play less of a role in managing systemic risks (see §3.5)'; places systemic risks outside that approach."
+   },
+   {
+    "lines": [
+     458,
+     458
+    ],
+    "quote": "General-purpose AI risks fall into three",
+    "grade": 1,
+    "note": "Executive summary sentence naming the three categories."
+   }
+  ],
+  "evaluation gap (own question: the Report's coined term, used in several senses)": [
+   {
+    "lines": [
+     1937,
+     1947
+    ],
+    "quote": "##### There is an evaluation gap between performance in pre-deployment evaluations and in the real world",
+    "grade": 2,
+    "note": "Section 3.1: the fullest statement. Evaluations are unreliable for capabilities and propensities; three limitations: (1) benchmarks fail to measure what they claim (shortcuts, opaque practices, dangerous-capability testing, sandbagging), (2) benchmark performance does not predict real-world behaviour (e.g. warm-tuned models 10-30 points more error-prone at similar benchmark scores), (3) pre-deployment testing cannot anticipate all failure modes."
+   },
+   {
+    "lines": [
+     691,
+     695
+    ],
+    "quote": "- **A central challenge is an emerging ‘evaluation gap’: existing evaluation methods do not reliably reflect how",
+    "grade": 2,
+    "note": "Section 1.2 Key information: the gap as 'existing evaluation methods do not reliably reflect how systems perform in real-world settings' (outdated, contaminated, narrow); here the direction is that evaluations overstate real-world utility."
+   },
+   {
+    "lines": [
+     784,
+     786
+    ],
+    "quote": "##### Benchmarks often fail to predict real-world performance",
+    "grade": 2,
+    "note": "Section 1.2: data contamination 'which most developers do not currently track or disclose'; automated tests in controlled lab settings 'often overestimate AI systems' practical utility'; an emerging 'evaluation science'."
+   },
+   {
+    "lines": [
+     486,
+     486
+    ],
+    "quote": "**Managing general-purpose AI risks is difficult due to technical and institutio",
+    "grade": 2,
+    "note": "Executive summary: 'evaluation gap: performance on pre-deployment tests does not reliably predict real-world utility or risk' (direction not stated; includes risk)."
+   },
+   {
+    "lines": [
+     2727,
+     2727
+    ],
+    "quote": "A number of evidence gaps appear repeatedly throughout this Report. How and why",
+    "grade": 2,
+    "note": "Conclusion: 'benchmark results alone cannot reliably predict real-world utility or risk'; the evaluation gap named among the gaps that 'define the limits of what any current assessment can confidently claim'."
+   },
+   {
+    "lines": [
+     1300,
+     1302
+    ],
+    "quote": "#### Evidence gaps",
+    "grade": 1,
+    "note": "Section 2.1.3: the gap in both directions for cyber evaluations: benchmarks can overstate (contamination) and understate (failure to elicit; scaffolding by third parties revealed greater capabilities than pre-deployment tests)."
+   },
+   {
+    "lines": [
+     431,
+     431
+    ],
+    "quote": "- **Reliable pre-deployment safety testing has become harder to conduct.** It ha",
+    "grade": 1,
+    "note": "Key developments: models distinguishing test settings from deployment and exploiting evaluation loopholes, so 'dangerous capabilities could go undetected': the understating direction."
+   },
+   {
+    "lines": [
+     551,
+     551
+    ],
+    "quote": "This chapter covers current and future capabilities of general-purpose AI. The f",
+    "grade": 1,
+    "note": "Chapter 1 overview: 'A recurring theme is the evaluation gap': pre-deployment evaluations 'often seem to overstate [a system's] practical utility'."
+   },
+   {
+    "lines": [
+     782,
+     782
+    ],
+    "quote": "Jagged capabilities and the evaluation gap make general-purpose AI capabilities difficult",
+    "grade": 1,
+    "note": "Section 1.2 evidence gaps: difficulty of proving 'with high-confidence that an AI system cannot perform certain – potentially dangerous – tasks'."
+   },
+   {
+    "lines": [
+     1882,
+     1882
+    ],
+    "quote": "Efforts to develop and implement appropriate risk management practices for gener",
+    "grade": 1,
+    "note": "Chapter 3 opening: the evaluation gap named as one of the underlying challenges to risk management ('pre-deployment evaluations often fail to predict real-world behaviour')."
+   },
+   {
+    "lines": [
+     2113,
+     2113
+    ],
+    "quote": "Benchmarks and model evaluations are standardised tests to assess general-purpose AI sys",
+    "grade": 1,
+    "note": "Section 3.2: release decisions 'partially rely on' evaluations; benchmark quality varies, saturation, test-awareness, and failure to capture new domains."
+   },
+   {
+    "lines": [
+     2835,
+     2835
+    ],
+    "quote": "**Data contamination:** A problem that occurs when AI models are trained on data",
+    "grade": 1,
+    "note": "Glossary: data contamination ('leading to inflated scores'); the glossary has no entry for 'evaluation gap' itself."
+   }
+  ],
+  "who the Report means by developer, deployer and other actors in the value chain (own question: actor terms)": [
+   {
+    "lines": [
+     2747,
+     2747
+    ],
+    "quote": "**AI developer:** Any organisation that designs, builds, or adapts AI model",
+    "grade": 2,
+    "note": "Glossary: 'Any organisation that designs, builds, or adapts AI models or systems'. Organisation-level, includes adapters. The source of the definition quoted in the project's CLAUDE.md."
+   },
+   {
+    "lines": [
+     2859,
+     2859
+    ],
+    "quote": "**Downstream AI developer:** A developer who builds AI models, systems, applications or se",
+    "grade": 2,
+    "note": "Glossary: the downstream subtype. Note there is no glossary entry for 'deployer', although the body uses it throughout."
+   },
+   {
+    "lines": [
+     612,
+     625
+    ],
+    "quote": "Developing a general-purpose AI system involves multiple sta",
+    "grade": 2,
+    "note": "Section 1.1: development stages 'sometimes undertaken by different developers'; Table 1.2 row 5: 'Developers and deployers implement AI systems into real-world applications'; developers can deploy internally or externally; one company's chatbot 'powered by another company's general-purpose AI system'; deployment vs release (open-weight / closed-weight)."
+   },
+   {
+    "lines": [
+     1987,
+     1987
+    ],
+    "quote": "Whether existing liability frameworks can adequately address AI-related har",
+    "grade": 2,
+    "note": "Section 3.1: responsibility 'distributed across model developers, application builders, deployers, and users'; the only four-role chain, and 'application builders' appears nowhere else."
+   },
+   {
+    "lines": [
+     2037,
+     2037
+    ],
+    "quote": "AI risk management comprises a range of practices that aim to identify, ass",
+    "grade": 2,
+    "note": "Section 3.2: practices 'can be implemented by AI developers, deployers, evaluators, and regulators'."
+   },
+   {
+    "lines": [
+     2406,
+     2408
+    ],
+    "quote": "##### Model deployers can use a variety of tools to identify and address hi",
+    "grade": 2,
+    "note": "Section 3.3: the deployer as monitor and controller of a running system (inputs, outputs, internal computations, chain of thought; logging, filtering, shutdowns, failsafes); the Report assigns deployment-time monitoring to deployers, not developers."
+   },
+   {
+    "lines": [
+     1514,
+     1514
+    ],
+    "quote": "Techniques for improving AI reliability target both the model itself and the",
+    "grade": 1,
+    "note": "Section 2.2.1 Mitigations: developers apply RAG and fine-tuning; deployers 'could pilot AI systems in limited sandboxed environments'; a role-to-control mapping."
+   },
+   {
+    "lines": [
+     1520,
+     1520
+    ],
+    "quote": "Key challenges for policymakers include weighing the benefits of AI agent d",
+    "grade": 1,
+    "note": "Section 2.2.1 challenges: information for 'developers, deployers, and users'; liability attribution in multi-agent settings."
+   },
+   {
+    "lines": [
+     2035,
+     2035
+    ],
+    "quote": "- **Key challenges for policymakers include prioritising among the diverse risks",
+    "grade": 1,
+    "note": "Section 3.2 key information: which actors across the value chain are best positioned to mitigate; fragmented information sharing among 'developers, deployers, and infrastructure providers' (a fifth class)."
+   },
+   {
+    "lines": [
+     2276,
+     2276
+    ],
+    "quote": "Key challenges include determining how to prioritise the diverse risks posed by gener",
+    "grade": 1,
+    "note": "Section 3.2 challenges: value chain actors named as 'data and cloud providers, model developers, and model hosting platforms'."
+   },
+   {
+    "lines": [
+     2047,
+     2047
+    ],
+    "quote": "Risk management is an iterative process with practices and methods that span",
+    "grade": 1,
+    "note": "Section 3.2: twelve actor classes with roles in risk management, including impacted communities and civil society."
+   },
+   {
+    "lines": [
+     1656,
+     1656
+    ],
+    "quote": "Deployment decisions are shaped by economic incentives, strategic pressures",
+    "grade": 1,
+    "note": "Section 2.2.2: 'AI deployers may face pressures to reduce their investment in safeguards'."
+   },
+   {
+    "lines": [
+     2438,
+     2438
+    ],
+    "quote": "Developers and deployers can use various techniques to study model usage an",
+    "grade": 1,
+    "note": "Section 3.3 ecosystem monitoring: provenance techniques used by 'developers and deployers'."
+   },
+   {
+    "lines": [
+     2484,
+     2484
+    ],
+    "quote": "Key challenges for policymakers include deciding whether and",
+    "grade": 1,
+    "note": "Section 3.3 challenges: 'different developers apply different safeguards'."
+   }
+  ],
+  "evidence dilemma (own question: the Report's stated central framing)": [
+   {
+    "lines": [
+     442,
+     442
+    ],
+    "quote": "**The aim of this work is to help policymakers navigate the ‘evidence dilemma’ p",
+    "grade": 2,
+    "note": "Executive summary: the Report's stated aim; acting too early 'can lead to entrenching ineffective interventions', waiting 'can leave society vulnerable'."
+   },
+   {
+    "lines": [
+     506,
+     506
+    ],
+    "quote": "For policymakers, the rate of change, the breadth of applications, and the emerg",
+    "grade": 2,
+    "note": "Introduction: 'what this Report calls the evidence dilemma' (acting too early risks ineffective or harmful interventions; waiting leaves societies vulnerable)."
+   },
+   {
+    "lines": [
+     514,
+     514
+    ],
+    "quote": "Because the evidence dilemma is most acute where scientific understanding is thi",
+    "grade": 2,
+    "note": "'The role of this report': the dilemma is why the Report focuses on 'emerging risks' (scope by thinness of evidence); also the evidence typology paragraph (robust empirical evidence for some risks; modelling, laboratory studies and theory for others; evidence published before December 2025)."
+   },
+   {
+    "lines": [
+     1898,
+     1907
+    ],
+    "quote": "- **These challenges create an ‘evidence dilemma’ for policymakers.** The general-purpose AI landsc",
+    "grade": 2,
+    "note": "Section 3.1: the dilemma as created by scientific gaps and information asymmetries; market failures and institutional design 'compound this problem… even when evidence is available'."
+   },
+   {
+    "lines": [
+     2873,
+     2873
+    ],
+    "quote": "**Evidence dilemma:** The challenge that policymakers face when making decisions",
+    "grade": 2,
+    "note": "Glossary definition."
+   },
+   {
+    "lines": [
+     1886,
+     1886
+    ],
+    "quote": "On all these fronts, progress is being made and general-purpose AI systems are,",
+    "grade": 1,
+    "note": "Chapter 3 opening: restates the dilemma for risk management; 'unknown unknowns that are not yet being considered'."
+   },
+   {
+    "lines": [
+     950,
+     950
+    ],
+    "quote": "These evidence gaps force policymakers to navigate between two pitfall",
+    "grade": 1,
+    "note": "Section 1.3 evidence gaps: 'underestimating rapidly emerging capabilities… and overreacting to technical advances'; 'contingency planning across multiple scenarios essential'."
+   },
+   {
+    "lines": [
+     892,
+     892
+    ],
+    "quote": "That said, experts disagree about whether deployment gaps will narrow ",
+    "grade": 1,
+    "note": "Section 1.3: the dilemma applied to timing: policies for rapidly deployed capabilities 'may be premature', those assuming slow adoption 'may be insufficient'."
+   },
+   {
+    "lines": [
+     1692,
+     1692
+    ],
+    "quote": "- **A key challenge for policymakers is enabling productivity benefits",
+    "grade": 1,
+    "note": "Section 2.3.1: 'the appropriate timing of any potential policy responses is also difficult to determine' as evidence emerges gradually."
+   },
+   {
+    "lines": [
+     1520,
+     1520
+    ],
+    "quote": "Key challenges for policymakers include weighing the benefits of AI agent deploy",
+    "grade": 1,
+    "note": "Section 2.2.1: uncertainty about how fast agentic capabilities emerge 'makes planning for novel challenges difficult' with a pointer to the evidence dilemma in 3.1."
+   },
+   {
+    "lines": [
+     2727,
+     2727
+    ],
+    "quote": "A number of evidence gaps appear repeatedly throughout this Report. How and why",
+    "grade": 1,
+    "note": "Conclusion: the gaps 'define the limits of what any current assessment can confidently claim'; the fundamental challenge is trajectory uncertainty."
+   }
+  ],
+  "marginal risk (own question: the Report's counterfactual-baseline concept)": [
+   {
+    "lines": [
+     2581,
+     2581
+    ],
+    "quote": "A key challenge for policymakers is securing the benefits of open-weight model sharing",
+    "grade": 2,
+    "note": "Section 3.4 Challenges: marginal risk as one approach for open releases (counterfactual increase beyond existing models or other technologies); complex and context-dependent in practice; 'Incremental increases in risk with successive releases can compound over time into substantial increases in total risk, even if the marginal risk associated with each release appears acceptable'; also the 'should not release… without evaluating risks' sentence."
+   },
+   {
+    "lines": [
+     2496,
+     2496
+    ],
+    "quote": "- **A key policy challenge is accessing the benefits open-weight models provide while",
+    "grade": 2,
+    "note": "Section 3.4 Key information: the same approach and the accumulation objection ('Small increases in marginal risk over time can also add up to substantial increases in overall risk')."
+   },
+   {
+    "lines": [
+     2943,
+     2943
+    ],
+    "quote": "**Marginal risk:** The extent to which the deployment or release of a model counterfa",
+    "grade": 2,
+    "note": "Glossary definition: 'deployment or release of a model counterfactually increases risk beyond that already posed by existing models or other technologies'."
+   },
+   {
+    "lines": [
+     2103,
+     2103
+    ],
+    "quote": "|**Risk tolerance**|Risk tolerance refers to the level of risk that an organisation i",
+    "grade": 1,
+    "note": "Table 3.2: 'Some companies describe their risk tolerance in terms of a new model's marginal risk'; cited to the open-foundation-models position paper."
+   }
+  ]
+ },
+ "not_judged_this_round": [
+  "chemical and biological weapons uplift"
+ ],
+ "note": "Stage 1 by two forks of the IASR Sonnet expert: hazard by the first (stopped by a safety classifier), the rest by the second; the chemical and biological query not judged (not_judged_this_round). Promoted from partial/ by ai-risk-model-61, 2026-10-10, with the five own questions folded into queries as the other experts have them."
+}

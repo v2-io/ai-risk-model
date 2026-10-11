@@ -73,7 +73,7 @@ A second fork from the same frozen expert then did the whole job without a stop.
 - the lines to avoid printing named in advance;
 - one query per turn, committed before the next.
 
-Its first fork's advice, which made the difference, is in `fork-briefs/gold-iasr-2-step1.md`. A fresh judge reading the canonical text is the fallback. IASR's whole-document judge read the text whole without a stop, which suggests an expert's reflections on a dangerous-capability section weigh more than the text itself.
+Its first fork's advice, which made the difference, is in `fork-briefs/gold-iasr-2-step1.md`. The second fork then filled its context window partway through stage 2. The expert stood at 775k, so its forks start near 795k and have about 200k, and stage 2's searches, even read narrowly, cost more than that across 16 queries. A large expert's fork wants a job sized to its room, or the job split across several forks. A fresh judge reading the canonical text is the fallback. IASR's whole-document judge read the text whole without a stop, which suggests an expert's reflections on a dangerous-capability section weigh more than the text itself.
 
 **Effort.** The first two Sonnet experts (AISI and IASR, 2026-10-09) were launched without an effort level and ran at their default. Joseph, after talking with the AISI one (2026-10-10): "it looks like the sonnet agents were set at effort low or medium, and that to be as thoughtful as the opus instances (even if a bit less capable) needed it to be at xhigh or so." Their reflections were much shorter, and the AISI reading cost about 215k against 320–520k for the Opus readings. `bin/expert-launch` and `bin/expert-fork` now pass `--effort xhigh` unless told otherwise. The Opus experts ran at high.
 
